@@ -21,11 +21,15 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /FIT-VTO-100K/);
   assert.match(html, /Fit-VTO/);
   assert.match(html, /FLUX VTO/);
+  assert.match(html, /SANA-Video 2\.0/);
+  assert.match(html, /GraphVid-Bench/);
+  assert.match(html, /Mage-Flow/);
   assert.match(html, /应用场景/);
   assert.match(html, /数字人/);
   assert.match(html, /视频翻译/);
   assert.match(html, /Try-On/);
   assert.match(html, /10\/10/);
+  assert.match(html, /模型—数据关系/);
   assert.match(html, /\/AIGCDataHub\/_next\/static\//);
   assert.match(html, /https:\/\/tobinzuo\.github\.io\/AIGCDataHub\/og\.png/);
 

@@ -1,6 +1,6 @@
 {
-  "schema_version": 1,
-  "generated_at": "2026-07-26T09:33:34Z",
+  "schema_version": 2,
+  "generated_at": "2026-07-26T10:31:18Z",
   "sources": [
     {
       "track_id": "datasets",
@@ -8,23 +8,87 @@
       "resolved_url": "https://arxiv.org/abs/2607.16283",
       "status": 200,
       "candidates": [],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "datasets",
       "source_url": "https://arxiv.org/list/cs.CV/recent",
       "resolved_url": "https://arxiv.org/list/cs.CV/recent",
       "status": 200,
-      "candidates": [],
-      "error": null
+      "candidates": [
+        {
+          "title": "T-STAR: A Large-Scale Benchmark for Spatio-Temporal Panoptic Scene Graph Generation in Satellite Video",
+          "url": "https://arxiv.org/abs/2607.21228"
+        },
+        {
+          "title": "Adaptive Identity Anchoring: Closed-Loop Keyframe Placement for Synthetic Paired Supervision in Video Face Swapping",
+          "url": "https://arxiv.org/abs/2607.21434"
+        },
+        {
+          "title": "Texture++: Elevating 3D Asset Texture Resolution with a Region-Aware Diffusion Model",
+          "url": "https://arxiv.org/abs/2607.21504"
+        },
+        {
+          "title": "ElasticTTT: Prior-Preserving Test-Time Tuning for Video Editing",
+          "url": "https://arxiv.org/abs/2607.21529"
+        },
+        {
+          "title": "SANA-Video 2.0: Hybrid Linear Attention with Attention Residuals for Efficient Video Generation",
+          "url": "https://arxiv.org/abs/2607.21553"
+        },
+        {
+          "title": "GraphVid: Interactive Graph-Controllable Video Generation",
+          "url": "https://arxiv.org/abs/2607.21580"
+        },
+        {
+          "title": "Inference-Time Scaling of Diffusion Models via Progressive Seed Pruning",
+          "url": "https://arxiv.org/abs/2607.21591"
+        },
+        {
+          "title": "Streaming Multi-Agent Autoregressive Diffusion Model with World State Registers",
+          "url": "https://arxiv.org/abs/2607.21594"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "datasets",
       "source_url": "https://arxiv.org/list/cs.MM/recent",
       "resolved_url": "https://arxiv.org/list/cs.MM/recent",
       "status": 200,
-      "candidates": [],
-      "error": null
+      "candidates": [
+        {
+          "title": "Large Language Model-Enhanced Multi-hop Parallel Image Semantic Communication",
+          "url": "https://arxiv.org/abs/2607.15297"
+        },
+        {
+          "title": "Debiasing Text-to-Image Evaluation via Implicit Cultural Alignment Reward Modeling",
+          "url": "https://arxiv.org/abs/2607.15740"
+        },
+        {
+          "title": "Between Safe Boundaries: Exploiting Temporal Consistency for Jailbreaking Text-To-Video Generation Models",
+          "url": "https://arxiv.org/abs/2607.17279"
+        },
+        {
+          "title": "Keyframe-Anchored Identity Preservation for Sequential-Action Video Generation",
+          "url": "https://arxiv.org/abs/2607.17985"
+        },
+        {
+          "title": "Mage-Flow: An Efficient Native-Resolution Foundation Model for Image Generation and Editing",
+          "url": "https://arxiv.org/abs/2607.19064"
+        },
+        {
+          "title": "Group-of-Latents: Perceptual Video Compression at Extreme Bitrates via Masked Latent Generative Modeling",
+          "url": "https://arxiv.org/abs/2607.19437"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "datasets",
@@ -32,7 +96,9 @@
       "resolved_url": "https://github.com/NVIDIA-NeMo/Curator",
       "status": 200,
       "candidates": [],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "datasets",
@@ -45,7 +111,9 @@
           "url": "https://huggingface.co/collections/baidu/ernie-image"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "datasets",
@@ -74,7 +142,9 @@
           "url": "https://huggingface.co/datasets?modality=modality%3Avideo"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "datasets",
@@ -115,7 +185,9 @@
           "url": "https://huggingface.co/datasets?task_categories=task_categories%3Avideo-to-video"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -123,7 +195,9 @@
       "resolved_url": "https://github.com/Lightricks/LTX-2",
       "status": 200,
       "candidates": [],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -140,7 +214,9 @@
           "url": "https://huggingface.co/TMElyralab/MuseTalk"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -169,7 +245,9 @@
           "url": "https://github.com/deepbeepmeep/Wan2GP"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -206,7 +284,9 @@
           "url": "https://huggingface.co/models?pipeline_tag=video-to-video"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -223,7 +303,9 @@
           "url": "https://github.com/Lightricks/LTX-2/tree/main/packages/ltx-pipelines"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -244,7 +326,9 @@
           "url": "https://www.heygen.com/tool/ai-video-generator"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -265,7 +349,9 @@
           "url": "https://www.heygen.com/tool/ai-video-generator"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "image-generation",
@@ -326,7 +412,9 @@
           "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/veo/3-1-generate"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "image-generation",
@@ -339,7 +427,9 @@
           "url": "https://ai.meta.com/blog/introducing-muse-image-muse-video-msl"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "image-generation",
@@ -404,7 +494,9 @@
           "url": "https://github.com/black-forest-labs/flux"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "image-generation",
@@ -445,7 +537,9 @@
           "url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-1-Flash-Lite-Image-Model-Card.pdf"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "image-generation",
@@ -458,7 +552,9 @@
           "url": "https://github.com/QwenLM/Qwen-Image"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "image-generation",
@@ -466,7 +562,9 @@
       "resolved_url": "https://github.com/baidu",
       "status": 200,
       "candidates": [],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "image-generation",
@@ -495,7 +593,9 @@
           "url": "https://yiyan.baidu.com/blog/posts/ernie-image"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "image-generation",
@@ -560,11 +660,11 @@
           "url": "https://huggingface.co/models?pipeline_tag=text-to-video"
         },
         {
-          "title": "nvidia/Qwen-Image-Flash Text-to-Image • 20B • Updated 3 days ago • 238 • 35",
+          "title": "nvidia/Qwen-Image-Flash Text-to-Image • 20B • Updated 3 days ago • 238 • 37",
           "url": "https://huggingface.co/nvidia/Qwen-Image-Flash"
         },
         {
-          "title": "ponpoke/flux2-klein-9b-uncensored-text-encoder Text-to-Image • 8B • Updated May 2 • 27.8k • 324",
+          "title": "ponpoke/flux2-klein-9b-uncensored-text-encoder Text-to-Image • 8B • Updated May 2 • 27.8k • 325",
           "url": "https://huggingface.co/ponpoke/flux2-klein-9b-uncensored-text-encoder"
         },
         {
@@ -572,7 +672,9 @@
           "url": "https://huggingface.co/wikeeyang/Flux2-Klein-9B-True-V3"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "image-generation",
@@ -601,7 +703,9 @@
           "url": "https://stability.ai/news-updates/stable-video-4d-20-new-upgrades-for-high-fidelity-novel-views-and-4d-generation-from-a-single-video"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "image-generation",
@@ -609,7 +713,9 @@
       "resolved_url": "https://updates.midjourney.com/",
       "status": 200,
       "candidates": [],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "image-generation",
@@ -617,7 +723,109 @@
       "resolved_url": "https://www.microsoft.com/en-us/research/publications",
       "status": 200,
       "candidates": [],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/Dalision/Omni2Sound_Benchmark",
+      "resolved_url": "https://huggingface.co/api/datasets/Dalision/Omni2Sound_Benchmark",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-04-24T14:54:54.000Z@4f2b6bbd41976b32a9cfb6157af62c7b4924e303",
+      "revision_url": "https://huggingface.co/datasets/Dalision/Omni2Sound_Benchmark"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/HuggingFaceFV/finevideo",
+      "resolved_url": "https://huggingface.co/api/datasets/HuggingFaceFV/finevideo",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-04-30T18:21:00.000Z@84c74091e1c6ee7a5dffabfafb5c9033e4718883",
+      "revision_url": "https://huggingface.co/datasets/HuggingFaceFV/finevideo"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/OpenGVLab/InternVid",
+      "resolved_url": "https://huggingface.co/api/datasets/OpenGVLab/InternVid",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2024-08-13T02:04:22.000Z@8f8e0138bd89103a914e8c97ae124ab0c4a78fcf",
+      "revision_url": "https://huggingface.co/datasets/OpenGVLab/InternVid"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k",
+      "resolved_url": "https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-06-14T10:51:28.000Z@5563646729edf148ed2b32c4b9c794d51a1bc828",
+      "revision_url": "https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/cvssp/WavCaps",
+      "resolved_url": "https://huggingface.co/api/datasets/cvssp/WavCaps",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2023-07-06T13:28:10.000Z@0930ec11ded28fa0eaa910fde2f6fc3538acbeac",
+      "revision_url": "https://huggingface.co/datasets/cvssp/WavCaps"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/justdubit/audiovisual_translation_dub",
+      "resolved_url": "https://huggingface.co/api/datasets/justdubit/audiovisual_translation_dub",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-02-08T14:09:47.000Z@5b9a84788df7bad0e27a9e5091c64c650a85535e",
+      "revision_url": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/kakaobrain/coyo-700m",
+      "resolved_url": "https://huggingface.co/api/datasets/kakaobrain/coyo-700m",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2022-08-30T19:07:52.000Z@54ee2d8c64d3d80a5e10ef6952a4466551834fc1",
+      "revision_url": "https://huggingface.co/datasets/kakaobrain/coyo-700m"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/mlfoundations/datacomp_1b",
+      "resolved_url": "https://huggingface.co/api/datasets/mlfoundations/datacomp_1b",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2023-08-21T21:43:05.000Z@086ebeee20d4cc3b3e7c05ae703fcf278ae3a759",
+      "revision_url": "https://huggingface.co/datasets/mlfoundations/datacomp_1b"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/nkp37/OpenVid-1M",
+      "resolved_url": "https://huggingface.co/api/datasets/nkp37/OpenVid-1M",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-03-31T03:50:30.000Z@d8a63bd22989c80b5734ec2bb989f4e1b61a5807",
+      "revision_url": "https://huggingface.co/datasets/nkp37/OpenVid-1M"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/tiange/Cap3D",
+      "resolved_url": "https://huggingface.co/api/datasets/tiange/Cap3D",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-02-06T05:33:20.000Z@0f05a726ff7eb3db93444a4efc65f0552bce84a4",
+      "revision_url": "https://huggingface.co/datasets/tiange/Cap3D"
     },
     {
       "track_id": "video-and-audio-generation",
@@ -650,7 +858,9 @@
           "url": "https://gemini.google.com/veo"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -683,7 +893,9 @@
           "url": "https://deepmind.google/models/veo"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -728,7 +940,9 @@
           "url": "https://storage.googleapis.com/deepmind-media/veo/Veo-3-Tech-Report.pdf"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -736,7 +950,9 @@
       "resolved_url": "https://github.com/Lightricks",
       "status": 200,
       "candidates": [],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -757,7 +973,9 @@
           "url": "https://github.com/Tencent-Hunyuan/HunyuanVideo-I2V"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -774,7 +992,9 @@
           "url": "https://github.com/Wan-Video/Wan2.2"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -795,7 +1015,9 @@
           "url": "https://openai.com/index/sora-2"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -808,7 +1030,9 @@
           "url": "https://openai.com/index/sora-2"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -829,7 +1053,9 @@
           "url": "https://openai.com/index/sora-vallee-duhamel"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -842,7 +1068,9 @@
           "url": "https://seed.bytedance.com/en/seedance2_0"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -907,7 +1135,9 @@
           "url": "https://huggingface.co/black-forest-labs"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -920,7 +1150,9 @@
           "url": "https://huggingface.co/black-forest-labs/FLUX.1-dev"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -928,7 +1160,9 @@
       "resolved_url": "https://github.com/fashn-AI",
       "status": 200,
       "candidates": [],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -945,7 +1179,9 @@
           "url": "https://huggingface.co/datasets?task_categories=task_categories%3Aimage-to-image"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -970,7 +1206,9 @@
           "url": "https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k"
         }
       ],
-      "error": null
+      "error": null,
+      "revision": null,
+      "revision_url": null
     }
   ]
 }

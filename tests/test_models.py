@@ -16,7 +16,7 @@ class ModelCatalogTests(unittest.TestCase):
     def test_representative_modalities_are_present(self) -> None:
         cards = [card for _, card in load_models()]
         modalities = {modality for card in cards for modality in card["modalities"]}
-        self.assertGreaterEqual(len(cards), 17)
+        self.assertGreaterEqual(len(cards), 20)
         self.assertTrue({"image", "video", "audio", "multimodal"}.issubset(modalities))
 
     def test_product_only_releases_are_representable(self) -> None:
@@ -33,9 +33,15 @@ class ModelCatalogTests(unittest.TestCase):
         omni_ops = set(cards["gemini-omni-flash"]["data"]["stages"][0]["operations"])
         image_stages = cards["gemini-3-1-flash-lite-image"]["data"]["stages"]
         image_ops = {operation for stage in image_stages for operation in stage["operations"]}
+        mage_ops = {
+            operation
+            for stage in cards["mage-flow"]["data"]["stages"]
+            for operation in stage["operations"]
+        }
 
         self.assertTrue({"multilevel-captioning", "semantic-deduplication"}.issubset(omni_ops))
         self.assertTrue({"dataset-filtering", "human-preference-alignment", "critic-feedback"}.issubset(image_ops))
+        self.assertTrue({"multi-granularity-captioning", "concept-balanced-sampling", "diffusion-nft"}.issubset(mage_ops))
 
     def test_digital_human_and_video_localization_lineage(self) -> None:
         cards = {card["id"]: card for _, card in load_models()}
@@ -77,6 +83,9 @@ class ModelCatalogTests(unittest.TestCase):
 
         ernie_ids = {item["catalog_id"] for item in cards["ernie-image"]["data"]["datasets"]}
         self.assertEqual(ernie_ids, {None, "eria-1k"})
+
+        graphvid_ids = {item["catalog_id"] for item in cards["graphvid"]["data"]["datasets"]}
+        self.assertEqual(graphvid_ids, {None, "graphvid-bench"})
 
 
 if __name__ == "__main__":

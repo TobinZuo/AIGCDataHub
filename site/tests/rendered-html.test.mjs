@@ -36,6 +36,10 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /Midjourney V8\.2/);
   assert.match(html, /Muse Image/);
   assert.match(html, /FLUX 3/);
+  assert.match(html, /SANA-Video 2\.0/);
+  assert.match(html, /GraphVid/);
+  assert.match(html, /GraphVid-Bench/);
+  assert.match(html, /Mage-Flow/);
   assert.match(html, /Omni2Sound/);
   assert.match(html, /SoundAtlas/);
   assert.match(html, /Cap3D/);
@@ -65,6 +69,7 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /Try-On/);
   assert.match(html, /10\/10/);
   assert.match(html, /目录关联/);
+  assert.match(html, /模型—数据关系/);
   assert.match(html, /最新数据集/);
   assert.match(html, /最新模型/);
   assert.match(html, /结构化数据集/);
@@ -104,13 +109,17 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"fsd50k"/);
   assert.match(catalog, /"million-song-dataset"/);
   assert.match(catalog, /"fma"/);
+  assert.match(catalog, /"graphvid-bench"/);
+  assert.match(catalog, /"sana-video-2-0"/);
+  assert.match(catalog, /"mage-flow"/);
+  assert.match(catalog, /"relations"/);
   const parsedCatalog = JSON.parse(catalog);
-  assert.equal(parsedCatalog.format_version, 4);
+  assert.equal(parsedCatalog.format_version, 5);
   assert.deepEqual(
     parsedCatalog.scenarios.map((scenario) => scenario.id),
     ["image-generation", "video-generation", "digital-human", "video-localization", "virtual-try-on"],
   );
-  assert.equal(parsedCatalog.datasets[0].id, "gensyn10");
+  assert.equal(parsedCatalog.datasets[0].id, "graphvid-bench");
   const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
   assert.deepEqual(
     models.lens.data.datasets.map((dataset) => dataset.catalog_id),
@@ -124,6 +133,10 @@ test("uses generated catalog data and removes starter preview assets", async () 
     models["just-dub-it"].data.datasets.map((dataset) => dataset.catalog_id),
     [null, "audiovisual-translation-dub"],
   );
+  assert.deepEqual(models.graphvid.linked_dataset_ids, ["graphvid-bench"]);
+  assert.ok(parsedCatalog.relations.some(
+    (relation) => relation.model_id === "graphvid" && relation.dataset_id === "graphvid-bench",
+  ));
   assert.deepEqual(models["fit-vto"].scenario_ids, ["virtual-try-on"]);
   assert.deepEqual(models["flux-vto"].scenario_ids, ["virtual-try-on"]);
   assert.deepEqual(models["fit-vto"].strategy_profile.stage_names, ["pretraining", "fine-tuning"]);
@@ -134,6 +147,8 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalogExplorer, /StrategyMatrix/);
   assert.match(catalogExplorer, /同场景数据策略对比/);
   assert.match(catalogExplorer, /不做综合评分/);
+  assert.match(catalogExplorer, /打开数据卡/);
+  assert.match(catalogExplorer, /目录内反向链接只由模型卡/);
   assert.match(layout, /AIGCDataHub/);
   assert.doesNotMatch(layout, /codex-preview|Starter Project/i);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);

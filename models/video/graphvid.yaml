@@ -1,0 +1,79 @@
+id: graphvid
+name: GraphVid
+organization: University of Illinois Urbana-Champaign and Sony Research India
+released_at: "2026-07-23"
+modalities:
+  - video
+tasks:
+  - image-to-video
+  - graph-conditioned-video-generation
+access:
+  status: announced
+  license: Paper-only release; no model license or weights are published
+  release_url: https://arxiv.org/abs/2607.21580
+  weights_url: null
+  api_url: null
+architecture:
+  family: Graph-conditioned LTX-Video diffusion transformer with GINE reasoning and LoRA
+  parameters: null
+  notes: The frozen LTX-Video backbone is adapted with Qwen3 encoders, a GINE graph module, conditioning adapters, and rank-128 LoRA; the paper reports 0.6B trainable parameters.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: LTX-Video base-model training mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: GraphVid inherits a frozen LTX-Video generative prior whose original source corpus and mixture are not restated by this paper.
+    - name: GraphVid-Bench
+      catalog_id: graphvid-bench
+      role: fine-tuning
+      availability: not-released
+      scale: approximately 27,500 videos
+      notes: The paper constructs the training corpus from WISA-80K, Something-Something v2, and MagicData, then adds graph-structured object-interaction supervision.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-foundation-model
+      scale_disclosed: false
+      strategy: Reuse the frozen LTX-Video diffusion transformer and video autoencoder without restating their complete training-data lineage.
+    - name: fine-tuning
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - public-dataset
+        - synthetic
+      operations:
+        - semantic-interaction-filtering
+        - motion-window-selection
+        - dynamic-letterboxing
+        - graph-annotation
+        - graph-conditioned-lora
+        - flow-matching
+      scale_disclosed: true
+      strategy: Filter three upstream video sources for discrete object interactions, select high-motion 81-frame windows, construct directed scene graphs with vision-language models, and train only the graph module, adapters, and LoRA parameters.
+  strategy_summary:
+    - Convert video clips into directed object-interaction graphs so motion intent is explicit rather than implicit in a caption.
+    - Select fixed 81-frame, 16-FPS windows using semantic interaction and motion-energy filters, then preserve geometry through dynamic letterboxing.
+    - Freeze the LTX-Video backbone and train a compact graph-conditioning path plus rank-128 LoRA with flow matching.
+  unknowns:
+    - Complete LTX-Video base-model corpus, mixture, rights composition, and any inherited filtering decisions.
+    - Per-source retention rates and the exact split of WISA-80K, Something-Something v2, and MagicData after filtering.
+    - Dataset, graph annotations, code, checkpoints, and their licenses have not been released.
+    - The project URL declared in the paper returned HTTP 404 when checked on 2026-07-26.
+evidence:
+  release: https://arxiv.org/abs/2607.21580
+  technical_report: https://arxiv.org/abs/2607.21580
+  repository: null
+status: watch
+last_verified: "2026-07-26"

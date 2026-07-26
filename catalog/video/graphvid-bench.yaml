@@ -1,0 +1,72 @@
+id: graphvid-bench
+name: GraphVid-Bench
+organization: University of Illinois Urbana-Champaign and Sony Research India
+released_at: "2026-07-23"
+release_date_source: https://arxiv.org/abs/2607.21580
+modality: video
+tasks:
+  - graph-conditioned-video-generation
+  - image-to-video
+  - object-interaction-generation
+  - video-generation-evaluation
+stages:
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A paper-described graph-conditioned image-to-video training and evaluation
+  resource built around discrete object interactions, directed scene graphs,
+  and fixed-duration motion clips.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2607.21580
+  requires_account: false
+  notes: The paper describes the corpus and benchmark, but no official dataset files, annotations, or download procedure were available on 2026-07-26.
+scale:
+  samples: 27504
+  source_items: null
+  hours: null
+  approximate: true
+  notes: >-
+    The reported category counts sum to 27,504 clips: 3,881 no-interaction,
+    10,982 single-interaction, and 12,641 multi-interaction examples.
+annotations:
+  types:
+    - source-image
+    - object-entity
+    - directed-interaction-edge
+    - scene-graph
+    - interaction-count
+    - clip-boundary
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Not published
+  media: Upstream and source-dependent
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The paper names WISA-80K, Something-Something v2, and MagicData as training sources and DAVIS 2017 plus MoveBench for evaluation; their original terms remain binding, and no GraphVid-Bench-specific license is published.
+quality:
+  dimensions:
+    - motion
+    - temporal-consistency
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - The corpus and its graph annotations are not publicly downloadable, so reported counts and construction steps cannot yet be independently audited.
+    - Vision-language filtering intentionally excludes camera, ego-motion, background, and fluid-dynamics changes, narrowing the motion distribution.
+    - Machine-generated entities and directed interaction edges can inherit errors and biases from the Qwen3-VL and embedding models used in construction.
+    - Upstream dataset snapshots, per-source counts, duplicate handling, and media-rights composition are not disclosed.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: The paper describes Qwen3-VL semantic filtering, motion-energy selection of 81-frame windows at 16 FPS, 512-by-288 dynamic letterboxing, and graph construction, but publishes no executable recipe.
+evidence:
+  homepage: https://arxiv.org/abs/2607.21580
+  paper: https://arxiv.org/abs/2607.21580
+  used_by:
+    - GraphVid
+status: partial
+last_verified: "2026-07-26"

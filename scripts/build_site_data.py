@@ -113,10 +113,43 @@ def build_payload() -> dict[str, Any]:
 
     datasets.sort(key=lambda item: (item["released_at"], item["name"].lower()), reverse=True)
     models.sort(key=lambda item: (item["released_at"], item["name"].lower()), reverse=True)
+    relations: list[dict[str, Any]] = []
+    seen_relations: set[tuple[str, str, str]] = set()
+    linked_models: dict[str, list[str]] = {item["id"]: [] for item in datasets}
+    for model in models:
+        linked_dataset_ids: list[str] = []
+        for reference in model["data"]["datasets"]:
+            dataset_id = reference["catalog_id"]
+            if dataset_id is None:
+                continue
+            key = (model["id"], dataset_id, reference["role"])
+            if key in seen_relations:
+                raise ValueError(f"duplicate model-dataset relation: {key!r}")
+            seen_relations.add(key)
+            relations.append(
+                {
+                    "model_id": model["id"],
+                    "dataset_id": dataset_id,
+                    "role": reference["role"],
+                    "availability": reference["availability"],
+                    "scale": reference["scale"],
+                    "reference_name": reference["name"],
+                }
+            )
+            if dataset_id not in linked_dataset_ids:
+                linked_dataset_ids.append(dataset_id)
+            if model["id"] not in linked_models[dataset_id]:
+                linked_models[dataset_id].append(model["id"])
+        model["linked_dataset_ids"] = linked_dataset_ids
+
+    for dataset in datasets:
+        dataset["linked_model_ids"] = linked_models[dataset["id"]]
+
+    relations.sort(key=lambda item: (item["model_id"], item["dataset_id"], item["role"]))
     verified_dates = [item["last_verified"] for item in [*datasets, *models]]
 
     return {
-        "format_version": 4,
+        "format_version": 5,
         "generated_from": ["catalog/**/*.yaml", "models/**/*.yaml", "sources/scenarios.yaml"],
         "last_verified": max(verified_dates),
         "scenarios": [
@@ -125,6 +158,7 @@ def build_payload() -> dict[str, Any]:
         ],
         "datasets": datasets,
         "models": models,
+        "relations": relations,
     }
 
 

@@ -11,6 +11,7 @@ from discover_updates import (
     SourceSnapshot,
     compare_snapshots,
     extract_candidate_links,
+    extract_source_revision,
     load_watchlist,
     normalize_url,
     render_report,
@@ -45,11 +46,19 @@ class DiscoveryTests(unittest.TestCase):
 
     def test_extracts_arxiv_title_from_recent_listing(self) -> None:
         html = """
-        <dt><a href="/abs/2607.12345">arXiv:2607.12345</a></dt>
-        <dd><div class="list-title mathjax">Title: A Video Generation Dataset</div></dd>
+        <dt><a href ="/abs/2607.12345">arXiv:2607.12345</a></dt>
+        <dd><div class="list-title mathjax"><span class="descriptor">Title:</span> A Video Generation Dataset</div></dd>
         """
         candidates = extract_candidate_links(html, "https://arxiv.org/list/cs.CV/recent")
         self.assertEqual(candidates, (Candidate("A Video Generation Dataset", "https://arxiv.org/abs/2607.12345"),))
+
+    def test_extracts_hugging_face_dataset_revision(self) -> None:
+        revision, url = extract_source_revision(
+            '{"id":"nkp37/OpenVid-1M","sha":"abc123","lastModified":"2026-07-25T10:00:00Z"}',
+            "https://huggingface.co/api/datasets/nkp37/OpenVid-1M",
+        )
+        self.assertEqual(revision, "2026-07-25T10:00:00Z@abc123")
+        self.assertEqual(url, "https://huggingface.co/datasets/nkp37/OpenVid-1M")
 
     def test_extracts_relevant_sitemap_locations(self) -> None:
         xml = """
@@ -103,6 +112,7 @@ class DiscoveryTests(unittest.TestCase):
                 "https://johannakarras.github.io/FIT/",
             }.issubset(urls)
         )
+        self.assertIn("https://huggingface.co/api/datasets/nkp37/OpenVid-1M", urls)
 
     def test_compares_candidates_failures_recoveries_and_known_urls(self) -> None:
         baseline = {
@@ -118,6 +128,13 @@ class DiscoveryTests(unittest.TestCase):
                     "source_url": "https://example.com/datasets",
                     "candidates": [],
                     "error": "HTTP 503",
+                },
+                {
+                    "track_id": "important-dataset-updates",
+                    "source_url": "https://huggingface.co/api/datasets/nkp37/OpenVid-1M",
+                    "candidates": [],
+                    "revision": "2026-07-01T00:00:00Z@old",
+                    "error": None,
                 },
             ]
         }
@@ -150,11 +167,25 @@ class DiscoveryTests(unittest.TestCase):
                 (),
                 "HTTP 429",
             ),
+            SourceSnapshot(
+                "important-dataset-updates",
+                "https://huggingface.co/api/datasets/nkp37/OpenVid-1M",
+                "https://huggingface.co/api/datasets/nkp37/OpenVid-1M",
+                200,
+                (),
+                None,
+                "2026-07-25T10:00:00Z@new",
+                "https://huggingface.co/datasets/nkp37/OpenVid-1M",
+            ),
         )
         diff = compare_snapshots(baseline, current, {"https://example.com/known"})
         self.assertEqual([item["url"] for item in diff.new_candidates], ["https://example.com/new"])
         self.assertEqual([item["error"] for item in diff.failures], ["HTTP 429"])
         self.assertEqual([item["previous_error"] for item in diff.recoveries], ["HTTP 503"])
+        self.assertEqual(
+            [item["url"] for item in diff.source_updates],
+            ["https://huggingface.co/datasets/nkp37/OpenVid-1M"],
+        )
 
     def test_report_preserves_human_review_contract(self) -> None:
         baseline = {"sources": []}

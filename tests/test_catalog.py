@@ -16,7 +16,7 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(validate(), [])
 
     def test_cards_are_present(self) -> None:
-        self.assertGreaterEqual(len(load_cards()), 28)
+        self.assertGreaterEqual(len(load_cards()), 29)
 
     def test_audio_and_3d_coverage_is_present(self) -> None:
         modalities = {card["modality"] for _, card in load_cards()}
@@ -53,7 +53,7 @@ class CatalogTests(unittest.TestCase):
         datasets = build_payload()["datasets"]
         dates = [card["released_at"] for card in datasets]
         self.assertEqual(dates, sorted(dates, reverse=True))
-        self.assertEqual(datasets[0]["id"], "gensyn10")
+        self.assertEqual(datasets[0]["id"], "graphvid-bench")
 
     def test_compact_number(self) -> None:
         self.assertEqual(compact_number(70_723_513), "70.7M")

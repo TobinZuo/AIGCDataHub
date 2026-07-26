@@ -1,0 +1,109 @@
+id: sana-video-2-0
+name: SANA-Video 2.0
+organization: NVIDIA
+released_at: "2026-07-23"
+modalities:
+  - video
+tasks:
+  - text-to-video
+  - image-to-video
+access:
+  status: research-preview
+  license: Code is Apache-2.0; SANA-Video 2.0 weights have not been released
+  release_url: https://nvlabs.github.io/Sana/Video2/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Hybrid linear-attention and softmax-attention video diffusion transformer
+  parameters: 14000000000
+  notes: The report describes 5B and 14B variants trained progressively up to 720p, with a joint image-video recipe.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Curated in-house image and video training pool
+      catalog_id: null
+      role: pretraining
+      availability: not-released
+      scale: null
+      notes: The report names no source datasets, but describes separate broad pretraining, stricter continual-training, and trusted supervised-fine-tuning pools.
+    - name: Gemini-ranked generated video preference pairs
+      catalog_id: null
+      role: preference
+      availability: not-released
+      scale: null
+      notes: Generated candidates are ranked for visual fidelity, prompt alignment, motion quality, and temporal coherence before unreliable comparisons are removed.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - proprietary
+      operations:
+        - shot-segmentation
+        - subtitle-removal
+        - quality-filtering
+        - motion-filtering
+        - text-media-filtering
+        - structured-recaptioning
+        - image-video-joint-training
+        - progressive-resolution-training
+      scale_disclosed: false
+      strategy: Build a broad pool through shot segmentation and independent visual, motion, exposure, artifact, alignment, and shot-integrity filters, then train progressively from 480p to 720p while increasing frame rate and duration.
+    - name: midtraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - proprietary
+      operations:
+        - stricter-quality-filtering
+        - dense-recaptioning
+        - motion-description
+        - image-video-joint-training
+      scale_disclosed: false
+      strategy: Continue training on a stricter-quality pool with denser structured captions and appended motion descriptions while retaining interleaved image batches.
+    - name: fine-tuning
+      modalities:
+        - video
+        - text
+      source_types:
+        - proprietary
+      operations:
+        - trusted-subset-selection
+        - supervised-fine-tuning
+      scale_disclosed: false
+      strategy: Supervise the model on a smaller trusted subset selected from the progressively curated video pool, without publishing the underlying clips or selection thresholds.
+    - name: preference
+      modalities:
+        - video
+        - text
+      source_types:
+        - synthetic
+      operations:
+        - pairwise-ranking
+        - unreliable-pair-filtering
+        - diffusion-dpo
+        - online-reward-learning
+        - reward-ensembling
+      scale_disclosed: false
+      strategy: Apply Diffusion-DPO to Gemini-ranked generated pairs, then online reward fine-tuning with HPSv3++, DeQA-Score, and UniPercept while regularizing against the frozen base model.
+  strategy_summary:
+    - Turn heterogeneous in-house clips into progressively stricter pretraining, continual-training, and trusted fine-tuning pools through independent quality axes.
+    - Increase resolution, frame rate, duration, and caption density in stages while interleaving images to preserve spatial quality.
+    - Combine filtered pairwise preferences with an online visual-quality reward ensemble after supervised training.
+  unknowns:
+    - Source dataset identities, corpus sizes, mixture ratios, collection dates, and media-rights composition.
+    - Exact thresholds and retention rates for every filtering dimension and trusted-subset selection.
+    - The complete preference-pair count, prompt distribution, Gemini configuration, and reward-optimization sample budget.
+    - Release timing and license terms for SANA-Video 2.0 weights and training data.
+evidence:
+  release: https://nvlabs.github.io/Sana/Video2/
+  technical_report: https://arxiv.org/abs/2607.21553
+  repository: https://github.com/NVlabs/Sana
+status: watch
+last_verified: "2026-07-26"

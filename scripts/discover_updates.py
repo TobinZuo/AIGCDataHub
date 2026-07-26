@@ -22,7 +22,7 @@ from catalog import load_cards
 from models import load_models
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 USER_AGENT = "AIGCDataHub-discovery/0.1 (+https://github.com/TobinZuo/AIGCDataHub)"
 MEDIA_TERMS = (
     "image",
@@ -186,6 +186,8 @@ class SourceSnapshot:
     status: int | None
     candidates: tuple[Candidate, ...]
     error: str | None
+    revision: str | None = None
+    revision_url: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         payload = asdict(self)
@@ -196,12 +198,13 @@ class SourceSnapshot:
 @dataclass(frozen=True)
 class DiscoveryDiff:
     new_candidates: tuple[dict[str, str], ...]
+    source_updates: tuple[dict[str, str], ...]
     failures: tuple[dict[str, str], ...]
     recoveries: tuple[dict[str, str], ...]
 
     @property
     def has_updates(self) -> bool:
-        return bool(self.new_candidates or self.failures or self.recoveries)
+        return bool(self.new_candidates or self.source_updates or self.failures or self.recoveries)
 
 
 class AnchorParser(HTMLParser):
@@ -273,6 +276,26 @@ def _strip_tags(fragment: str) -> str:
     return normalize_text(re.sub(r"<[^>]+>", " ", fragment))
 
 
+def extract_source_revision(payload: str, source_url: str) -> tuple[str | None, str | None]:
+    """Extract a stable revision from supported first-party dataset APIs."""
+    parsed_url = urllib.parse.urlsplit(source_url)
+    if parsed_url.hostname != "huggingface.co" or not parsed_url.path.startswith("/api/datasets/"):
+        return None, None
+    try:
+        metadata = json.loads(payload)
+    except (json.JSONDecodeError, TypeError):
+        return None, None
+    if not isinstance(metadata, dict):
+        return None, None
+    dataset_id = metadata.get("id")
+    sha = metadata.get("sha")
+    modified = metadata.get("lastModified")
+    if not isinstance(dataset_id, str) or not isinstance(sha, str) or not sha:
+        return None, None
+    revision = sha if not isinstance(modified, str) or not modified else f"{modified}@{sha}"
+    return revision, f"https://huggingface.co/datasets/{dataset_id}"
+
+
 def extract_candidate_links(html: str, base_url: str, contextual: bool = False) -> tuple[Candidate, ...]:
     parser = AnchorParser()
     parser.feed(html)
@@ -281,12 +304,14 @@ def extract_candidate_links(html: str, base_url: str, contextual: bool = False) 
     # arXiv listing anchors contain identifiers rather than titles, so retain
     # the title block paired with each /abs/ link.
     arxiv_pattern = re.compile(
-        r'<dt>.*?href=["\'](?P<href>/abs/[^"\']+)["\'].*?</dt>\s*'
+        r'<dt>.*?href\s*=\s*["\'](?P<href>/abs/[^"\']+)["\'].*?</dt>\s*'
         r'<dd>.*?<div[^>]+class=["\'][^"\']*list-title[^"\']*["\'][^>]*>'
-        r'(?:\s*Title:\s*)?(?P<title>.*?)</div>',
+        r'(?P<title>.*?)</div>',
         re.IGNORECASE | re.DOTALL,
     )
-    raw_links.extend((match.group("href"), _strip_tags(match.group("title"))) for match in arxiv_pattern.finditer(html))
+    for match in arxiv_pattern.finditer(html):
+        title = re.sub(r"^Title:\s*", "", _strip_tags(match.group("title")), flags=re.IGNORECASE)
+        raw_links.append((match.group("href"), title))
 
     # XML sitemaps are often more stable than bot-protected news indexes. The
     # canonical <loc> path supplies a conservative title for keyword triage.
@@ -323,6 +348,7 @@ def _fetch_source(track_id: str, source_url: str, timeout: float, max_bytes: int
             charset = response.headers.get_content_charset() or "utf-8"
             html = payload.decode(charset, errors="replace")
             hostname = (urllib.parse.urlsplit(response.url).hostname or "").lower()
+            revision, revision_url = extract_source_revision(html, response.url)
             return SourceSnapshot(
                 track_id=track_id,
                 source_url=source_url,
@@ -334,6 +360,8 @@ def _fetch_source(track_id: str, source_url: str, timeout: float, max_bytes: int
                     contextual=track_id in CONTEXTUAL_TRACKS and hostname not in INDEX_HOSTS,
                 ),
                 error=None,
+                revision=revision,
+                revision_url=revision_url,
             )
     except urllib.error.HTTPError as exc:
         error = f"HTTP {exc.code}"
@@ -412,6 +440,7 @@ def compare_snapshots(
         (item["track_id"], item["source_url"]): item for item in baseline.get("sources", [])
     }
     new_candidates: list[dict[str, str]] = []
+    source_updates: list[dict[str, str]] = []
     failures: list[dict[str, str]] = []
     recoveries: list[dict[str, str]] = []
 
@@ -430,6 +459,22 @@ def compare_snapshots(
                     "url": candidate.url,
                 }
             )
+        previous_revision = previous.get("revision")
+        if (
+            not source.error
+            and previous_revision
+            and source.revision
+            and source.revision != previous_revision
+        ):
+            source_updates.append(
+                {
+                    "track_id": source.track_id,
+                    "source_url": source.source_url,
+                    "url": source.revision_url or source.resolved_url or source.source_url,
+                    "previous_revision": previous_revision,
+                    "revision": source.revision,
+                }
+            )
         previous_error = previous.get("error")
         if source.error and source.error != previous_error:
             failures.append(
@@ -442,6 +487,9 @@ def compare_snapshots(
 
     return DiscoveryDiff(
         new_candidates=tuple(sorted(new_candidates, key=lambda item: (item["track_id"], item["url"]))),
+        source_updates=tuple(
+            sorted(source_updates, key=lambda item: (item["track_id"], item["source_url"]))
+        ),
         failures=tuple(sorted(failures, key=lambda item: (item["track_id"], item["source_url"]))),
         recoveries=tuple(sorted(recoveries, key=lambda item: (item["track_id"], item["source_url"]))),
     )
@@ -462,6 +510,7 @@ def report_payload(
         "source_count": source_count,
         "has_updates": diff.has_updates,
         "new_candidates": list(diff.new_candidates),
+        "source_updates": list(diff.source_updates),
         "failures": list(diff.failures),
         "recoveries": list(diff.recoveries),
     }
@@ -477,6 +526,7 @@ def render_report(report: dict[str, Any], limit: int = 100) -> str:
         f"- Focus: {', '.join(report['focus'])}",
         f"- Watched sources checked: {report['source_count']}",
         f"- New candidate links: {len(report['new_candidates'])}",
+        f"- Important dataset revisions: {len(report['source_updates'])}",
         f"- New source failures: {len(report['failures'])}",
         f"- Source recoveries: {len(report['recoveries'])}",
         "",
@@ -489,6 +539,13 @@ def render_report(report: dict[str, Any], limit: int = 100) -> str:
             )
         if len(report["new_candidates"]) > limit:
             lines.append(f"- … {len(report['new_candidates']) - limit} additional candidates are available in the JSON artifact.")
+        lines.append("")
+    if report["source_updates"]:
+        lines.extend(["## Important dataset revisions", ""])
+        for item in report["source_updates"]:
+            lines.append(
+                f"- [ ] [{item['url']}]({item['url']}) — `{item['previous_revision']}` → `{item['revision']}`"
+            )
         lines.append("")
     if report["failures"]:
         lines.extend(["## Source failures", ""])
@@ -565,7 +622,8 @@ def main() -> int:
     args.markdown_out.write_text(render_report(report), encoding="utf-8")
     print(
         f"Checked {len(sources)} watched source(s): {len(diff.new_candidates)} new candidate(s), "
-        f"{len(diff.failures)} new failure(s), {len(diff.recoveries)} recovery/recoveries."
+        f"{len(diff.source_updates)} important dataset revision(s), {len(diff.failures)} new failure(s), "
+        f"{len(diff.recoveries)} recovery/recoveries."
     )
     return 0
 

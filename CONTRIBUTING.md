@@ -27,6 +27,10 @@ unreviewed links.
   SFT, preference optimization, and distillation into one vague paragraph.
 - Link named datasets to `catalog_id` when a catalog card exists. A named but
   unreleased corpus should still be recorded with `availability: not-released`.
+- Use model-side `catalog_id` as the only editable model-to-dataset relation.
+  Generated dataset backlinks and the top-level site relation index must not be
+  hand-edited. `evidence.used_by` records an upstream statement, not a canonical
+  backlink.
 - Set `exact_datasets_disclosed` and `exact_mixture_disclosed` independently.
   A paper can describe a strong strategy while withholding source identities.
 - Put every material gap in `data.unknowns`; never infer a source from model

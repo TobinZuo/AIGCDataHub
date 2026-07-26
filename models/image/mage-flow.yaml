@@ -1,0 +1,118 @@
+id: mage-flow
+name: Mage-Flow
+organization: Microsoft Mage Team
+released_at: "2026-07-21"
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - text-rendering
+access:
+  status: announced
+  license: Paper-only release; no model license or weights are published
+  release_url: https://arxiv.org/abs/2607.19064
+  weights_url: null
+  api_url: null
+architecture:
+  family: Native-resolution multimodal diffusion transformer with Mage-VAE
+  parameters: 4000000000
+  notes: The family combines a 4B rectified-flow backbone, a one-step image tokenizer, native-resolution sequence packing, RL-aligned generation and editing variants, and four-step Turbo distillations.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Mage-Flow curated image-text corpus
+      catalog_id: null
+      role: pretraining
+      availability: not-released
+      scale: 1.3B retained pairs from roughly 10B raw pairs
+      notes: The raw pool comes from unnamed large-scale open-source datasets and is filtered, deduplicated, recaptioned, supplemented, and concept-balanced before progressive training.
+    - name: Mage-Flow-Edit training triples
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: roughly 90M raw triples
+      notes: The pool combines about 50M triples from unnamed open-source editing datasets with 40M in-house synthetic triples, then undergoes VLM filtering and edit-type balancing.
+    - name: Mage-Flow capability-routed RL prompt pools
+      catalog_id: null
+      role: preference
+      availability: not-released
+      scale: approximately 20K generation prompts and 30K editing prompts
+      notes: Generation prompts cover text rendering, aesthetics, and semantic understanding; editing prompts are sampled across edit tasks and mixed with the generation stream.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - public-dataset
+        - synthetic
+      operations:
+        - sample-level-filtering
+        - semantic-deduplication
+        - multi-granularity-captioning
+        - concept-aware-synthesis
+        - concept-balanced-sampling
+        - native-resolution-packing
+        - progressive-resolution-training
+      scale_disclosed: true
+      strategy: Reduce roughly 10B raw open-source image-text pairs to 1.3B curated pairs, then progressively train on 1.2B at 256px, a cleaner 600M native-aspect subset at 512px, and a still cleaner 300M subset at 1024px.
+    - name: fine-tuning
+      modalities:
+        - image
+        - text
+      source_types:
+        - public-dataset
+        - synthetic
+      operations:
+        - strict-quality-filtering
+        - supervised-fine-tuning
+        - synthetic-edit-generation
+        - vlm-quality-filtering
+        - edit-type-balancing
+        - generation-editing-interleaving
+      scale_disclosed: true
+      strategy: Fine-tune generation on a strict 150M-pair 1024px subset, then adapt editing with 35M editing triples plus 35M generation pairs before a higher-quality 20M editing plus 10M generation mixture.
+    - name: preference
+      modalities:
+        - image
+        - text
+      source_types:
+        - synthetic
+      operations:
+        - capability-routed-prompting
+        - online-candidate-generation
+        - rubric-based-rewarding
+        - diffusion-nft
+        - generation-editing-interleaving
+      scale_disclosed: true
+      strategy: Run Diffusion-NFT on online candidates using OCR, aesthetic, semantic, and editing-specific reward routes; shift generation prompt weights across two stages and interleave editing with generation at a four-to-one ratio.
+    - name: distillation
+      modalities:
+        - image
+        - text
+      source_types:
+        - synthetic
+      operations:
+        - distribution-matching-distillation
+        - adversarial-perceptual-guidance
+        - four-step-distillation
+      scale_disclosed: false
+      strategy: Distill Base and Edit models to four denoising steps with Decoupled-DMD plus perceptual adversarial gradients from frozen visual encoders and a lightweight feature discriminator.
+  strategy_summary:
+    - Filter and recaption a 10B-scale open-source pool into progressively cleaner 256px, 512px, 1024px, and supervised-fine-tuning subsets.
+    - Build editing supervision from open-source and in-house synthetic triples, then balance edit types and interleave generation pairs to retain the visual prior.
+    - Route compact generation and editing prompt pools to task-specific online rewards before four-step distillation.
+  unknowns:
+    - Names, versions, licenses, collection dates, and mixture shares of the open-source image-text and editing datasets.
+    - Retention rates for individual filters, duplicate thresholds, and the exact composition of stage-wise subsets.
+    - Source and licensing of every synthetic target image, supplemental long-tail sample, and RL prompt.
+    - Release timing and terms for code, checkpoints, tokenizer weights, and any training-data artifacts.
+evidence:
+  release: https://arxiv.org/abs/2607.19064
+  technical_report: https://arxiv.org/abs/2607.19064
+  repository: null
+status: watch
+last_verified: "2026-07-26"

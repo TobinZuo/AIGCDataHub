@@ -14,6 +14,7 @@ discovery:
     - digital-human-and-localization
     - virtual-try-on-and-commerce
     - datasets
+    - important-dataset-updates
   excluded_sources:
     - https://github.com/omni2sound/Omni2Sound
     - https://github.com/allenai/objaverse-xl
@@ -149,6 +150,24 @@ tracks:
       - https://arxiv.org/abs/2607.16283
       - https://huggingface.co/datasets/justdubit/audiovisual_translation_dub
       - https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k
+
+  - id: important-dataset-updates
+    topics:
+      - dataset-revision
+      - release-files
+      - metadata-change
+      - license-change
+    official_sources:
+      - https://huggingface.co/api/datasets/HuggingFaceFV/finevideo
+      - https://huggingface.co/api/datasets/nkp37/OpenVid-1M
+      - https://huggingface.co/api/datasets/OpenGVLab/InternVid
+      - https://huggingface.co/api/datasets/kakaobrain/coyo-700m
+      - https://huggingface.co/api/datasets/tiange/Cap3D
+      - https://huggingface.co/api/datasets/mlfoundations/datacomp_1b
+      - https://huggingface.co/api/datasets/Dalision/Omni2Sound_Benchmark
+      - https://huggingface.co/api/datasets/justdubit/audiovisual_translation_dub
+      - https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k
+      - https://huggingface.co/api/datasets/cvssp/WavCaps
 
 acceptance_rules:
   - Require an official release, repository, model card, dataset card, or technical report.

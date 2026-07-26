@@ -43,7 +43,10 @@ model's capabilities or outputs.
 | Model | Organization | Modalities | Released | Access | Data disclosure | Named datasets | Status |
 |---|---|---|---|---|---|---|:---:|
 | [Midjourney V8.2](models/image/midjourney-v8-2.yaml) | Midjourney | image | 2026-07-24 | product only | high level | V8.2 personalization ratings and image-selection pool | 👀 |
+| [SANA-Video 2.0](models/video/sana-video-2-0.yaml) | NVIDIA | video | 2026-07-23 | research preview | partial | Curated in-house image and video training pool, Gemini-ranked generated video preference pairs | 👀 |
+| [GraphVid](models/video/graphvid.yaml) | University of Illinois Urbana-Champaign and Sony Research India | video | 2026-07-23 | announced | partial | LTX-Video base-model training mixture, [GraphVid-Bench](catalog/video/graphvid-bench.yaml) | 👀 |
 | [FLUX 3](models/multimodal/flux-3.yaml) | Black Forest Labs | image, video, audio, action | 2026-07-23 | early access | partial | General video training corpus, Human and robot manipulation video corpus, Robot action demonstrations | 👀 |
+| [Mage-Flow](models/image/mage-flow.yaml) | Microsoft Mage Team | image | 2026-07-21 | announced | partial | Mage-Flow curated image-text corpus, Mage-Flow-Edit training triples, Mage-Flow capability-routed RL prompt pools | 👀 |
 | [Muse Video](models/video/muse-video.yaml) | Meta Superintelligence Labs | video, audio | 2026-07-07 | announced | high level | not disclosed | 👀 |
 | [Muse Image](models/multimodal/muse-image.yaml) | Meta Superintelligence Labs | image | 2026-07-07 | product only | high level | not disclosed | 👀 |
 | [Gemini Omni Flash](models/video/gemini-omni-flash.yaml) | Google DeepMind | video, audio | 2026-06-30 | api only | high level | Undisclosed multimodal training mixture | ✅ |
@@ -74,6 +77,7 @@ generated table.
 <!-- BEGIN DATASET CATALOG -->
 | Dataset | Organization | Modality | Released | Tasks | Scale | Access | Commercial use | Status |
 |---|---|---|---|---|---:|---|---|:---:|
+| [GraphVid-Bench](catalog/video/graphvid-bench.yaml) | University of Illinois Urbana-Champaign and Sony Research India | video | 2026-07-23 | graph conditioned video generation, image to video, object interaction generation, video generation evaluation | ~27.5K | unavailable | unknown | 🟡 |
 | [GenSyn10](catalog/evaluation/gensyn10.yaml) | University of Western Australia | evaluation | 2026-07-10 | synthetic image detection, image classification, out of distribution evaluation | 60K | unavailable | review required | 🟡 |
 | [ERIA-1K](catalog/evaluation/eria-1k.yaml) | Baidu | evaluation | 2026-05-25 | image aesthetic assessment, aesthetic model evaluation | 1K | unavailable | unknown | 🟡 |
 | [Lens-RL-8K](catalog/preference/lens-rl-8k.yaml) | Microsoft Research | preference | 2026-05-20 | text to image reinforcement learning, rubric based reward modeling | ~8K | unavailable | unknown | 🟡 |
@@ -165,10 +169,12 @@ The weekly discovery workflow compares image/video-related links from those
 watched sources with a reviewed baseline. Its application tracks include
 digital humans, talking avatars, video translation and dubbing, lip sync,
 virtual try-on, and commerce-oriented conditional generation. It opens or
-updates one GitHub Issue when it finds new candidates or source failures, and
-closes the Issue when the queue is clear. This is triage rather than automatic
-fact generation: a card, license conclusion, or `last_verified` date changes
-only through a reviewed PR.
+updates one GitHub Issue when it finds new candidates, source failures, or an
+important dataset revision. For selected Hugging Face datasets it records both
+`lastModified` and the repository commit SHA, so a changed release is surfaced
+even when its URL stays the same. It closes the Issue when the queue is clear.
+This is triage rather than automatic fact generation: a card, license
+conclusion, or `last_verified` date changes only through a reviewed PR.
 
 The application taxonomy in [sources/scenarios.yaml](sources/scenarios.yaml)
 maps card tasks to stable scenario IDs. The generated site uses those IDs for
@@ -177,6 +183,13 @@ model record also includes a source-bound `strategy_profile` derived directly
 from its stages, source types, data references, scale disclosures, and recorded
 unknowns. Selecting one scenario in the strategy view exposes those fields in a
 cross-model matrix without adding an inferred score.
+
+Model-to-dataset relationships have one canonical source: a model data
+reference with a non-null `catalog_id`. Site generation converts those reviewed
+references into a relation index plus model and dataset backlinks, so users can
+navigate in either direction without maintaining two editable copies. A
+dataset card's `evidence.used_by` remains an upstream claim and is never
+silently promoted to a canonical relationship.
 
 The latest evidence review is recorded in
 [updates/2026-07-26.md](updates/2026-07-26.md), including accepted releases,

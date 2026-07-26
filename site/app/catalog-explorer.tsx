@@ -40,6 +40,15 @@ type StrategyProfile = {
   unknown_count: number;
 };
 
+type ModelDatasetRelation = {
+  model_id: string;
+  dataset_id: string;
+  role: string;
+  availability: string;
+  scale: string | null;
+  reference_name: string;
+};
+
 type ModelCard = {
   id: string;
   name: string;
@@ -78,6 +87,7 @@ type ModelCard = {
   source_path: string;
   scenario_ids: string[];
   strategy_profile: StrategyProfile;
+  linked_dataset_ids: string[];
 };
 
 type DatasetCard = {
@@ -135,6 +145,7 @@ type DatasetCard = {
   last_verified: string;
   source_path: string;
   scenario_ids: string[];
+  linked_model_ids: string[];
 };
 
 type Catalog = {
@@ -142,6 +153,7 @@ type Catalog = {
   scenarios: ScenarioDefinition[];
   models: ModelCard[];
   datasets: DatasetCard[];
+  relations: ModelDatasetRelation[];
 };
 
 const MODE_LABELS: Record<Mode, string> = {
@@ -170,6 +182,7 @@ const DISCLOSURE_LABELS: Record<string, string> = {
 
 const STAGE_LABELS: Record<string, string> = {
   pretraining: "预训练",
+  midtraining: "持续训练",
   "fine-tuning": "微调",
   preference: "偏好对齐",
   distillation: "蒸馏",
@@ -254,16 +267,17 @@ function EmptyState({ query }: { query: string }) {
   );
 }
 
-function ModelResult({ model, scenarioLabels, expanded, onToggle }: {
+function ModelResult({ model, scenarioLabels, expanded, onToggle, onOpenDataset }: {
   model: ModelCard;
   scenarioLabels: string[];
   expanded: boolean;
   onToggle: () => void;
+  onOpenDataset: (datasetId: string) => void;
 }) {
   const namedDatasets = model.data.datasets.filter((item) => item.catalog_id);
 
   return (
-    <article className={`result-card model-card ${expanded ? "is-expanded" : ""}`}>
+    <article id={`model-${model.id}`} className={`result-card model-card ${expanded ? "is-expanded" : ""}`}>
       <button className="card-toggle" onClick={onToggle} aria-expanded={expanded}>
         <div className="card-index">M/{model.released_at.slice(2).replaceAll("-", "")}</div>
         <div className="card-primary">
@@ -309,8 +323,8 @@ function ModelResult({ model, scenarioLabels, expanded, onToggle }: {
           <section>
             <p className="detail-label">阶段与操作</p>
             <div className="stage-list">
-              {model.data.stages.map((stage) => (
-                <div className="stage" key={`${model.id}-${stage.name}`}>
+              {model.data.stages.map((stage, index) => (
+                <div className="stage" key={`${model.id}-${index}-${stage.name}`}>
                   <div className="stage-title">
                     <strong>{stage.name}</strong>
                     <span>{stage.scale_disclosed ? "规模已披露" : "规模未知"}</span>
@@ -332,6 +346,11 @@ function ModelResult({ model, scenarioLabels, expanded, onToggle }: {
                     <strong>{item.name}</strong>
                     <span>{item.role} · {item.scale ?? "规模未披露"}</span>
                     <p>{item.notes}</p>
+                    {item.catalog_id && (
+                      <button className="relation-link" onClick={() => onOpenDataset(item.catalog_id!)}>
+                        打开数据卡 <span aria-hidden="true">→</span>
+                      </button>
+                    )}
                   </div>
                 ))}
               </div>
@@ -360,14 +379,16 @@ function ModelResult({ model, scenarioLabels, expanded, onToggle }: {
   );
 }
 
-function DatasetResult({ dataset, scenarioLabels, expanded, onToggle }: {
+function DatasetResult({ dataset, scenarioLabels, linkedModels, expanded, onToggle, onOpenModel }: {
   dataset: DatasetCard;
   scenarioLabels: string[];
+  linkedModels: ModelCard[];
   expanded: boolean;
   onToggle: () => void;
+  onOpenModel: (modelId: string) => void;
 }) {
   return (
-    <article className={`result-card dataset-card ${expanded ? "is-expanded" : ""}`}>
+    <article id={`dataset-${dataset.id}`} className={`result-card dataset-card ${expanded ? "is-expanded" : ""}`}>
       <button className="card-toggle" onClick={onToggle} aria-expanded={expanded}>
         <div className="card-index">D/{dataset.released_at.slice(2).replaceAll("-", "")}</div>
         <div className="card-primary">
@@ -383,6 +404,7 @@ function DatasetResult({ dataset, scenarioLabels, expanded, onToggle }: {
             ))}
             <span className="tag">{MODALITY_LABELS[dataset.modality] ?? dataset.modality}</span>
             {dataset.tasks.slice(0, 2).map((item) => <span className="tag" key={item}>{item}</span>)}
+            {linkedModels.length > 0 && <span className="tag tag-relation">{linkedModels.length} 个模型关联</span>}
           </div>
         </div>
         <div className="card-metrics">
@@ -422,6 +444,25 @@ function DatasetResult({ dataset, scenarioLabels, expanded, onToggle }: {
             </dl>
             <p className="license-note">{dataset.license.notes}</p>
           </section>
+          {(linkedModels.length > 0 || dataset.evidence.used_by.length > 0) && (
+            <section className="relation-panel">
+              <p className="detail-label">模型关系</p>
+              {linkedModels.length > 0 && (
+                <div className="relation-list">
+                  {linkedModels.map((model) => (
+                    <button className="relation-link" onClick={() => onOpenModel(model.id)} key={model.id}>
+                      <span>{model.name}</span><small>{model.data.datasets.find((item) => item.catalog_id === dataset.id)?.role ?? "关联"}</small><b aria-hidden="true">→</b>
+                    </button>
+                  ))}
+                </div>
+              )}
+              {dataset.evidence.used_by.length > 0 && (
+                <p className="editorial-relation">
+                  上游资料提及：{dataset.evidence.used_by.join("、")}。目录内反向链接只由模型卡的 <code>catalog_id</code> 自动生成。
+                </p>
+              )}
+            </section>
+          )}
           <section className="unknown-panel">
             <p className="detail-label">已知限制</p>
             <ul>
@@ -607,6 +648,10 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
     () => new Map(catalog.scenarios.map((item) => [item.id, item.short_label])),
     [catalog.scenarios],
   );
+  const modelById = useMemo(
+    () => new Map(catalog.models.map((item) => [item.id, item])),
+    [catalog.models],
+  );
 
   const modelResults = useMemo(() => {
     const search = normalize(query.trim());
@@ -639,10 +684,11 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         ...dataset.tasks,
         ...dataset.annotations.types,
         ...dataset.evidence.used_by,
+        ...dataset.linked_model_ids.map((id) => modelById.get(id)?.name ?? id),
       ].join(" "));
       return inModality && inScenario && (!search || haystack.includes(search));
     });
-  }, [catalog.datasets, modality, query, scenario]);
+  }, [catalog.datasets, modality, modelById, query, scenario]);
 
   const visibleModalities = mode === "datasets"
     ? ["all", "image", "video", "audio", "3d", "preference"]
@@ -665,6 +711,20 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
     setMode(nextMode);
     setModality("all");
     setExpanded(null);
+  }
+
+  function openRelation(targetMode: "models" | "datasets", id: string) {
+    setMode(targetMode);
+    setQuery("");
+    setModality("all");
+    setScenario("all");
+    setExpanded(id);
+    const prefix = targetMode === "models" ? "model" : "dataset";
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        document.getElementById(`${prefix}-${id}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    });
   }
 
   return (
@@ -703,7 +763,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
             <div><strong>{catalog.datasets.length}</strong><span>结构化数据集</span></div>
             <div><strong>{openDatasets}</strong><span>公开可访问</span></div>
             <div><strong>{exactDatasetModels}</strong><span>披露具体数据</span></div>
-            <div><strong>7D</strong><span>更新节奏</span></div>
+            <div><strong>{catalog.relations.length}</strong><span>模型—数据关系</span></div>
           </div>
           <div className="stats-note">每条结论保留发布日期、核验时间和官方证据。未知不是空白，也是结论。</div>
         </aside>
@@ -714,7 +774,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         <span className="signal-date">{formatDate(catalog.models[0].released_at)}</span>
         <strong>{catalog.models[0].name}</strong>
         <p>{catalog.models[0].data.strategy_summary[0]}</p>
-        <button onClick={() => { switchMode("models"); setExpanded(catalog.models[0].id); document.querySelector("#explorer")?.scrollIntoView({ behavior: "smooth" }); }}>
+        <button onClick={() => openRelation("models", catalog.models[0].id)}>
           查看拆解 ↘
         </button>
       </section>
@@ -801,15 +861,21 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
               scenarioLabels={model.scenario_ids.map((item) => scenarioLabels.get(item) ?? item)}
               expanded={expanded === model.id}
               onToggle={() => setExpanded(expanded === model.id ? null : model.id)}
+              onOpenDataset={(id) => openRelation("datasets", id)}
             />
           ))}
           {mode === "datasets" && datasetResults.map((dataset) => (
             <DatasetResult
               key={dataset.id}
               dataset={dataset}
+              linkedModels={dataset.linked_model_ids.flatMap((id) => {
+                const model = modelById.get(id);
+                return model ? [model] : [];
+              })}
               scenarioLabels={dataset.scenario_ids.map((item) => scenarioLabels.get(item) ?? item)}
               expanded={expanded === dataset.id}
               onToggle={() => setExpanded(expanded === dataset.id ? null : dataset.id)}
+              onOpenModel={(id) => openRelation("models", id)}
             />
           ))}
           {mode === "strategies" && modelResults.map((model) => (
