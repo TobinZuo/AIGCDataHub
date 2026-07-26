@@ -56,6 +56,9 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /Phantom-Data/);
   assert.match(html, /HuMoSet/);
   assert.match(html, /HuMo-17B/);
+  assert.match(html, /Señorita-2M/);
+  assert.match(html, /SpatialVID/);
+  assert.match(html, /Phantom-Wan-14B/);
   assert.match(html, /应用场景/);
   assert.match(html, /数字人/);
   assert.match(html, /视频翻译/);

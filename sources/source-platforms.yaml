@@ -96,6 +96,29 @@ platforms:
     access_boundary: source-platform-not-dataset
     rights_review: required
     last_reviewed: "2026-07-27"
+  - id: pexels
+    name: Pexels
+    homepage: https://www.pexels.com/
+    category: stock-media
+    modalities: [image, video, text]
+    relevant_scenarios: [image-generation, video-generation]
+    content_scope: Contributor-uploaded stock photos, videos, creator attribution, search metadata, and downloadable media variants.
+    data_access:
+      status: documented-api
+      interface_name: Pexels API
+      interface_url: https://www.pexels.com/api/documentation/
+      scope: Authenticated photo and video search, curated collections, media metadata, contributor attribution, and downloadable file variants.
+      requirements: Pexels account, API key, attribution and rate-limit compliance, plus explicit Pexels permission for dataset construction or ML and AI use.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://help.pexels.com/api/v2/help_center/en-us/articles/900005880463.json
+      mode: content-revision
+      focus: API access, bulk collection, dataset construction, ML and AI use, attribution, redistribution, and license changes.
+      priority: high
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
   - id: netflix
     name: Netflix
     homepage: https://www.netflix.com/

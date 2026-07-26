@@ -523,7 +523,10 @@ def extract_source_revision(payload: str, source_url: str) -> tuple[str | None, 
         namespace = dataset.get("Namespace")
         name = dataset.get("Name")
         dataset_id = dataset.get("Id")
-        modified = dataset.get("GmtModified")
+        # ModelScope's GmtModified can advance with counters such as downloads,
+        # while LastUpdatedTime tracks the dataset artifact/card revision. Prefer
+        # the latter so popularity changes do not create false content updates.
+        modified = dataset.get("LastUpdatedTime") or dataset.get("GmtModified")
         if (
             not isinstance(namespace, str)
             or not namespace
@@ -1176,7 +1179,7 @@ def scan_sources(
     return tuple(sorted(snapshots, key=lambda item: (item.track_id, item.source_url)))
 
 
-def declared_urls() -> set[str]:
+def declared_urls(watchlist: dict[str, Any] | None = None) -> set[str]:
     urls: set[str] = set()
     for _, card in load_cards():
         values = [
@@ -1196,6 +1199,9 @@ def declared_urls() -> set[str]:
             platform["monitoring"]["url"],
         ]
         urls.update(url for value in values if value and (url := normalize_url(value)))
+    if watchlist is not None:
+        excluded = watchlist.get("discovery", {}).get("excluded_sources", [])
+        urls.update(url for value in excluded if (url := normalize_url(value)))
     return urls
 
 
@@ -1642,7 +1648,7 @@ def main() -> int:
     diff = compare_snapshots(
         baseline,
         snapshots,
-        declared_urls(),
+        declared_urls(watchlist),
         dataset_impact_index(),
         model_impact_index(),
         model_ranking_aliases(),

@@ -34,7 +34,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
                 self.assertIn(model_id, self.datasets[dataset_id]["linked_model_ids"])
 
     def test_dataset_lineage_index_and_backlinks_are_symmetric(self) -> None:
-        self.assertEqual(len(self.payload["dataset_relations"]), 15)
+        self.assertEqual(len(self.payload["dataset_relations"]), 16)
         relation_pairs = {
             (relation["source_dataset_id"], relation["derived_dataset_id"])
             for relation in self.payload["dataset_relations"]
@@ -50,6 +50,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn(("celebv-hq", "talkingheadbench"), relation_pairs)
         self.assertIn(("koala-36m", "phantom-data"), relation_pairs)
         self.assertIn(("openhumanvid", "humoset"), relation_pairs)
+        self.assertIn(("senorita-2m", "videocof-50k"), relation_pairs)
 
         for source_id, derived_id in relation_pairs:
             with self.subTest(source=source_id, derived=derived_id):
@@ -122,14 +123,19 @@ class ModelDatasetRelationTests(unittest.TestCase):
             set(self.models["humo-17b"]["linked_dataset_ids"]),
             {"phantom-data", "humoset"},
         )
+        self.assertEqual(
+            self.models["phantom-wan-14b"]["linked_dataset_ids"],
+            ["panda-70m"],
+        )
         self.assertIn("videocof", self.datasets["videocof-50k"]["linked_model_ids"])
         self.assertIn("humo-17b", self.datasets["phantom-data"]["linked_model_ids"])
         self.assertIn("humo-17b", self.datasets["humoset"]["linked_model_ids"])
+        self.assertIn("phantom-wan-14b", self.datasets["panda-70m"]["linked_model_ids"])
 
     def test_dataset_monitoring_is_joined_by_canonical_catalog_id(self) -> None:
         self.assertEqual(
             sum(dataset["monitoring"] is not None for dataset in self.datasets.values()),
-            57,
+            59,
         )
         self.assertEqual(
             self.datasets["fit-vto-100k"]["monitoring"],
@@ -188,6 +194,8 @@ class ModelDatasetRelationTests(unittest.TestCase):
         )
         self.assertEqual(self.datasets["videocof-50k"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["phantom-data"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["senorita-2m"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["spatialvid"]["monitoring"]["priority"], "critical")
         self.assertEqual(
             self.datasets["humoset"]["monitoring"]["source_url"],
             "https://modelscope.cn/api/v1/datasets/leoniuschen/HuMoSet",
@@ -202,7 +210,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
     def test_model_monitoring_is_joined_by_canonical_model_id(self) -> None:
         self.assertEqual(
             sum(model["monitoring"] is not None for model in self.models.values()),
-            56,
+            57,
         )
         self.assertEqual(
             self.models["hunyuanvideo-avatar"]["monitoring"],
@@ -238,6 +246,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.models["seedance-1-0-pro"]["monitoring"]["priority"], "high")
         self.assertEqual(self.models["videocof"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["humo-17b"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.models["phantom-wan-14b"]["monitoring"]["priority"], "critical")
         self.assertIsNone(self.models["graphvid"]["monitoring"])
 
 

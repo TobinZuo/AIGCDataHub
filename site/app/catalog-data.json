@@ -218,6 +218,40 @@
       "last_reviewed": "2026-07-27"
     },
     {
+      "id": "pexels",
+      "name": "Pexels",
+      "homepage": "https://www.pexels.com/",
+      "category": "stock-media",
+      "modalities": [
+        "image",
+        "video",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "image-generation",
+        "video-generation"
+      ],
+      "content_scope": "Contributor-uploaded stock photos, videos, creator attribution, search metadata, and downloadable media variants.",
+      "data_access": {
+        "status": "documented-api",
+        "interface_name": "Pexels API",
+        "interface_url": "https://www.pexels.com/api/documentation/",
+        "scope": "Authenticated photo and video search, curated collections, media metadata, contributor attribution, and downloadable file variants.",
+        "requirements": "Pexels account, API key, attribution and rate-limit compliance, plus explicit Pexels permission for dataset construction or ML and AI use.",
+        "training_rights": "not-granted-by-interface"
+      },
+      "monitoring": {
+        "url": "https://help.pexels.com/api/v2/help_center/en-us/articles/900005880463.json",
+        "mode": "content-revision",
+        "focus": "API access, bulk collection, dataset construction, ML and AI use, attribution, redistribution, and license changes.",
+        "priority": "high"
+      },
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
       "id": "shutterstock",
       "name": "Shutterstock",
       "homepage": "https://www.shutterstock.com/",
@@ -2173,6 +2207,14 @@
         "data-curation"
       ],
       "description": "The public training corpus for VideoCoF, pairing source videos, edit-region reasoning videos, edited targets, and natural-language instructions across object addition, removal, swap, and local style transfer.",
+      "derived_from": [
+        {
+          "catalog_id": "senorita-2m",
+          "relationship": "transformed-derivative",
+          "contribution": "Filtered source videos for the four released local-edit task archives",
+          "notes": "VideoCoF-50K selects Señorita source clips, creates new synthetic edits and edit-region reasoning videos, and applies DOVER and VIE filtering rather than copying Señorita pairs unchanged."
+        }
+      ],
       "access": {
         "status": "open",
         "type": "hosted",
@@ -2246,7 +2288,9 @@
         "priority": "critical",
         "source_url": "https://huggingface.co/api/datasets/XiangpengYang/VideoCoF-50k"
       },
-      "upstream_dataset_ids": [],
+      "upstream_dataset_ids": [
+        "senorita-2m"
+      ],
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "videocof"
@@ -2780,6 +2824,108 @@
       "linked_model_ids": [
         "humo-17b"
       ]
+    },
+    {
+      "id": "spatialvid",
+      "name": "SpatialVID",
+      "organization": "Nanjing University and Institute of Automation, Chinese Academy of Sciences",
+      "released_at": "2025-09-18",
+      "release_date_source": "https://github.com/NJU-3DV/SpatialVID",
+      "modality": "video",
+      "tasks": [
+        "camera-controlled-video-generation",
+        "world-modeling",
+        "video-to-3d",
+        "camera-pose-estimation",
+        "novel-view-synthesis"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A large spatially annotated video corpus derived from 33,443 manually screened YouTube videos, providing 2.7 million 720p clips with camera poses, depth, dynamic masks, structured captions, and serialized motion instructions for controllable generation and geometric learning.",
+      "access": {
+        "status": "gated",
+        "type": "request",
+        "url": "https://huggingface.co/datasets/SpatialVID/SpatialVID",
+        "requires_account": true,
+        "notes": "Access is automatically gated behind a Hugging Face form and acceptance of the non-commercial share-alike license; official download scripts cover video and annotation archives."
+      },
+      "scale": {
+        "samples": 2700000,
+        "source_items": 33443,
+        "hours": 7089,
+        "approximate": true,
+        "notes": "The paper reports 2.7M clips and 7,089 hours after filtering 21,789 hours of source video; SpatialVID-HQ is a balanced 1,111-hour subset used in downstream experiments."
+      },
+      "annotations": {
+        "types": [
+          "camera-extrinsics",
+          "camera-intrinsics",
+          "depth-map",
+          "dynamic-mask",
+          "structured-caption",
+          "camera-motion-instruction",
+          "scene-category",
+          "lighting-weather-time-tags"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-SA-4.0",
+        "media": "CC-BY-NC-SA-4.0 release terms plus YouTube and uploader rights",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The project requires attribution, non-commercial use, and share-alike derivatives. Those terms do not replace YouTube platform terms, uploader rights, privacy review, or clip-level permissions for the underlying media."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "geometry-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Camera poses and depth are model-generated rather than metric ground truth and can fail under severe distortion, changing focal length, occlusion, or object-dominated scenes.",
+          "Dynamic masks derived from motion probabilities can underperform in complex scenes.",
+          "The motion-keyword collection and manual screening pipeline favor smooth, reconstructable camera trajectories and may narrow geographic, cultural, subject, and motion diversity.",
+          "Source-video availability and legal usability remain dependent on YouTube and uploader rights despite the hosted release."
+        ]
+      },
+      "processing": {
+        "recipe": "Query YouTube with motion-oriented keywords; manually screen long videos; cut 3 to 15 second scenes; normalize to 1280x720 H.265; apply hierarchical quality and motion filtering; reconstruct camera motion and depth; generate dynamic masks, structured captions, and serialized motion instructions; then balance SpatialVID-HQ by motion and scene category.",
+        "recommended_format": "native",
+        "notes": "Use the official downloader and per-clip annotation folders; retain the source video ID, pose convention, depth representation, dynamic mask, caption fields, and license acceptance record."
+      },
+      "evidence": {
+        "homepage": "https://nju-3dv.github.io/projects/SpatialVID/",
+        "paper": "https://arxiv.org/abs/2509.09676",
+        "used_by": [
+          "SpatialVID Wan2.2 camera-control baseline",
+          "CUT3R",
+          "VGGT",
+          "GS-LRM"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/spatialvid.yaml",
+      "scenario_ids": [],
+      "scale_label": "~2.7M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/SpatialVID/SpatialVID"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
     },
     {
       "id": "talkvid",
@@ -3374,6 +3520,105 @@
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
+      "linked_model_ids": []
+    },
+    {
+      "id": "senorita-2m",
+      "name": "Señorita-2M",
+      "organization": "CUHK, PolyU, Tsinghua University, IntelliFusion, HKU, and UESTC",
+      "released_at": "2025-02-10",
+      "release_date_source": "https://huggingface.co/datasets/SENORITADATASET/Senorita",
+      "modality": "video",
+      "tasks": [
+        "instruction-guided-video-editing",
+        "video-to-video",
+        "local-video-editing",
+        "global-video-editing"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "An instruction-based video-editing corpus built from roughly 389,000 Pexels source videos and six specialist editing or vision pipelines, yielding about 1.95 million released source-target-instruction examples across local, global, conditional, grounding, inpainting, and outpainting tasks.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/SENORITADATASET/Senorita",
+        "requires_account": false,
+        "notes": "Hugging Face hosts approximately 1.6 TB of WebDataset archives and task-level JSON metadata without a login gate."
+      },
+      "scale": {
+        "samples": 1950021,
+        "source_items": 388909,
+        "hours": null,
+        "approximate": true,
+        "notes": "Hugging Face estimates 1,950,021 rows; the paper rounds this to 2M edited pairs produced from 388,909 Pexels source videos."
+      },
+      "annotations": {
+        "types": [
+          "source-video",
+          "edited-video",
+          "natural-language-edit-instruction",
+          "edit-task-type",
+          "object-mask",
+          "visual-quality-score",
+          "text-alignment-score",
+          "source-target-similarity"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-2.0",
+        "media": "CC-BY-NC-2.0 dataset terms plus Pexels contributor and platform terms",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The Hugging Face card applies CC-BY-NC-2.0, but the source media came from Pexels. Pexels' current terms prohibit using its API to build datasets or train ML systems without explicit permission, so the original collection authorization and per-asset rights require separate review."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "temporal-consistency",
+          "motion",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Most target videos are synthetic edits and can inherit artifacts, failure modes, or biases from the six specialist pipelines and language models.",
+          "The public row estimate, paper-level 2M count, and task archive composition use different counting surfaces and should not be treated as exact equivalents.",
+          "Pexels source provenance and the permission basis for the original authenticated API collection are not enumerated per sample on the dataset card.",
+          "The corpus focuses on short, mostly visual edits and does not cover audio editing, localization, long-form continuity, or the full professional editing distribution."
+        ]
+      },
+      "processing": {
+        "recipe": "Crawl high-resolution Pexels videos through authenticated APIs; caption and detect objects; create local, global, conditional, grounding, inpainting, and outpainting pairs with specialist models; generate instructions; then filter on visual quality, instruction alignment, and source-target similarity.",
+        "recommended_format": "webdataset",
+        "notes": "Preserve the task archive, source-target orientation, instruction, source identifier, and model-generated mask or condition; pin the Hugging Face revision before sharding."
+      },
+      "evidence": {
+        "homepage": "https://senorita-2m-dataset.github.io/",
+        "paper": "https://arxiv.org/abs/2502.06734",
+        "used_by": [
+          "VideoCoF-50K"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/senorita-2m.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~2M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/SENORITADATASET/Senorita"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "videocof-50k"
+      ],
       "linked_model_ids": []
     },
     {
@@ -4194,7 +4439,9 @@
       "evidence": {
         "homepage": "https://github.com/snap-research/Panda-70M",
         "paper": "https://arxiv.org/abs/2402.19479",
-        "used_by": []
+        "used_by": [
+          "Phantom-Wan-14B"
+        ]
       },
       "status": "verified",
       "last_verified": "2026-07-26",
@@ -4211,7 +4458,9 @@
       "downstream_dataset_ids": [
         "talkverse"
       ],
-      "linked_model_ids": []
+      "linked_model_ids": [
+        "phantom-wan-14b"
+      ]
     },
     {
       "id": "commoncatalog",
@@ -15378,6 +15627,159 @@
       ]
     },
     {
+      "id": "phantom-wan-14b",
+      "name": "Phantom-Wan-14B",
+      "organization": "ByteDance Intelligent Creation Team",
+      "released_at": "2025-05-27",
+      "modalities": [
+        "video",
+        "image"
+      ],
+      "tasks": [
+        "subject-consistent-video-generation",
+        "reference-image-conditioned-video",
+        "multi-subject-video-generation",
+        "identity-preservation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0",
+        "release_url": "https://github.com/Phantom-video/Phantom",
+        "weights_url": "https://huggingface.co/bytedance-research/Phantom",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Wan2.1 14B diffusion transformer adapted with Phantom cross-modal reference injection",
+        "parameters": 14000000000,
+        "notes": "The model jointly injects reference-image VAE and CLIP features with text and video tokens, using dynamic attention windows to support one to four reference subjects while preserving prompt control."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Panda-70M",
+            "catalog_id": "panda-70m",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "Part of the long-video source pool; exact Phantom subset size is not disclosed",
+            "notes": "The Phantom technical report names Panda-70M alongside in-house video as the input to scene cutting, quality filtering, captioning, subject detection, and cross-video matching."
+          },
+          {
+            "name": "In-house video sources",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "Included in an approximately one-million cross-pair corpus",
+            "notes": "The report does not identify the sources, license composition, sample count, or mixture with Panda-70M."
+          },
+          {
+            "name": "Subject200K",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "A portion of paired image data; exact count and mixture are not disclosed",
+            "notes": "The report names Subject200K from the UniReal work as extra paired-image data, but no standalone public training release is linked."
+          },
+          {
+            "name": "OmniGen paired image data",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "A portion of paired image data; exact count and mixture are not disclosed",
+            "notes": "The report names OmniGen as an additional paired-image source without identifying a public dataset artifact or exact subset."
+          }
+        ],
+        "stages": [
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "proprietary"
+            ],
+            "operations": [
+              "scene-cutting",
+              "visual-quality-filtering",
+              "motion-filtering",
+              "subtitle-filtering",
+              "gemini-video-captioning",
+              "llm-subject-extraction",
+              "vlm-subject-detection",
+              "clip-cross-video-matching",
+              "in-pair-reference-sampling",
+              "cross-pair-reference-sampling",
+              "identity-deduplication",
+              "cross-modal-alignment"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Build text-image-video triplets from filtered video, combine same-clip in-pair references with roughly one million cross-video subject pairs, and fine-tune the Wan2.1 backbone with joint low-level and semantic reference injection."
+          }
+        ],
+        "strategy_summary": [
+          "Mix in-pair frames with cross-video subject matches so the model preserves identity without learning to copy the reference frame.",
+          "Align detailed subject descriptions, reference detections, CLIP features, and video latents before dynamic multi-subject injection.",
+          "Add face-specific ArcFace matching, deduplication, and paired-image sources to improve human identity consistency and data diversity."
+        ],
+        "unknowns": [
+          "The exact Phantom-Wan-14B subset, Panda-70M versus in-house mixture, image-data mixture, sampling weights, and rejection rates.",
+          "Whether the released Wan adaptation used the identical corpus described for the paper's Phantom model or a revised internal version.",
+          "Training code, optimizer schedule, hardware, compute, safety filtering, consent handling, and per-source license distribution.",
+          "The planned Phantom-Wan-14B Pro and further 720p-trained checkpoint remain unreleased."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/Phantom-video/Phantom",
+        "technical_report": "https://arxiv.org/abs/2502.11079",
+        "repository": "https://github.com/Phantom-video/Phantom"
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/phantom-wan-14b.yaml",
+      "scenario_ids": [],
+      "strategy_profile": {
+        "stage_names": [
+          "fine-tuning"
+        ],
+        "source_types": [
+          "public-dataset",
+          "proprietary"
+        ],
+        "operations": [
+          "scene-cutting",
+          "visual-quality-filtering",
+          "motion-filtering",
+          "subtitle-filtering",
+          "gemini-video-captioning",
+          "llm-subject-extraction",
+          "vlm-subject-detection",
+          "clip-cross-video-matching",
+          "in-pair-reference-sampling",
+          "cross-pair-reference-sampling",
+          "identity-deduplication",
+          "cross-modal-alignment"
+        ],
+        "data_reference_count": 4,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 1,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/bytedance-research/Phantom"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "panda-70m"
+      ]
+    },
+    {
       "id": "musetalk-1-5",
       "name": "MuseTalk 1.5",
       "organization": "Tencent Music Entertainment Lyra Lab",
@@ -15855,6 +16257,14 @@
       "reference_name": "OpenVE-Bench"
     },
     {
+      "model_id": "phantom-wan-14b",
+      "dataset_id": "panda-70m",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "Part of the long-video source pool; exact Phantom subset size is not disclosed",
+      "reference_name": "Panda-70M"
+    },
+    {
       "model_id": "seedance-1-0-pro",
       "dataset_id": "seedance-1-pro-human-preference",
       "role": "evaluation",
@@ -16043,6 +16453,13 @@
       "relationship": "source-component",
       "contribution": "General human-related source videos and metadata",
       "notes": "The public TalkVerse metadata exposes a Panda-70M partition of approximately 1.34M rows after TalkVerse-specific filtering and annotation."
+    },
+    {
+      "source_dataset_id": "senorita-2m",
+      "derived_dataset_id": "videocof-50k",
+      "relationship": "transformed-derivative",
+      "contribution": "Filtered source videos for the four released local-edit task archives",
+      "notes": "VideoCoF-50K selects Señorita source clips, creates new synthetic edits and edit-region reasoning videos, and applies DOVER and VIE filtering rather than copying Señorita pairs unchanged."
     },
     {
       "source_dataset_id": "vggsound",

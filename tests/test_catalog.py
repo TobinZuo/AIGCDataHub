@@ -63,6 +63,8 @@ class CatalogTests(unittest.TestCase):
                 "videocof-50k",
                 "phantom-data",
                 "humoset",
+                "senorita-2m",
+                "spatialvid",
             }.issubset(cards)
         )
         self.assertIn("video-dubbing", cards["audiovisual-translation-dub"]["tasks"])
@@ -85,6 +87,10 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(cards["phantom-data"]["access"]["status"], "metadata-only")
         self.assertEqual(cards["humoset"]["scale"]["samples"], 670000)
         self.assertEqual(cards["humoset"]["access"]["type"], "hosted")
+        self.assertEqual(cards["senorita-2m"]["scale"]["samples"], 1950021)
+        self.assertEqual(cards["senorita-2m"]["access"]["status"], "open")
+        self.assertEqual(cards["spatialvid"]["scale"]["hours"], 7089)
+        self.assertEqual(cards["spatialvid"]["access"]["status"], "gated")
 
     def test_reference_wiki_candidates_are_backed_by_public_sources(self) -> None:
         cards = {card["id"]: card for _, card in load_cards()}
@@ -161,6 +167,10 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(
             cards["humoset"]["derived_from"][0]["catalog_id"],
             "openhumanvid",
+        )
+        self.assertEqual(
+            cards["videocof-50k"]["derived_from"][0]["catalog_id"],
+            "senorita-2m",
         )
 
     def test_site_catalog_orders_datasets_by_release_date(self) -> None:

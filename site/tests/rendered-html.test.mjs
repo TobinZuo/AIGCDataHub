@@ -101,6 +101,9 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /CelebV-HQ/);
   assert.match(html, /TalkVid/);
   assert.match(html, /MV-Fashion/);
+  assert.match(html, /Señorita-2M/);
+  assert.match(html, /SpatialVID/);
+  assert.match(html, /Phantom-Wan-14B/);
   assert.match(html, /应用场景/);
   assert.match(html, /数字人/);
   assert.match(html, /视频翻译/);
@@ -199,19 +202,22 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"humoset"/);
   assert.match(catalog, /"videocof"/);
   assert.match(catalog, /"humo-17b"/);
+  assert.match(catalog, /"senorita-2m"/);
+  assert.match(catalog, /"spatialvid"/);
+  assert.match(catalog, /"phantom-wan-14b"/);
   assert.match(catalog, /"relations"/);
   assert.match(catalog, /"dataset_relations"/);
   const parsedCatalog = JSON.parse(catalog);
   assert.equal(parsedCatalog.format_version, 12);
   assert.equal(parsedCatalog.rankings.length, 10);
-  assert.equal(parsedCatalog.source_platforms.length, 16);
+  assert.equal(parsedCatalog.source_platforms.length, 17);
   assert.equal(
     parsedCatalog.source_platforms.filter((platform) => platform.data_access.interface_url).length,
-    13,
+    14,
   );
   assert.equal(
     parsedCatalog.source_platforms.filter((platform) => platform.monitoring.priority === "high").length,
-    13,
+    14,
   );
   assert.equal(
     parsedCatalog.rankings.find((board) => board.id === "text-to-image").entries[0].model_id,
@@ -253,6 +259,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.deepEqual(models["musetalk-1-5"].linked_dataset_ids, ["hdtf"]);
   assert.deepEqual(models.videocof.linked_dataset_ids, ["videocof-50k"]);
   assert.deepEqual(models["humo-17b"].linked_dataset_ids, ["phantom-data", "humoset"]);
+  assert.deepEqual(models["phantom-wan-14b"].linked_dataset_ids, ["panda-70m"]);
   assert.equal(models["hunyuanvideo-avatar"].monitoring.priority, "critical");
   assert.equal(models["musetalk-1-5"].monitoring.priority, "critical");
   assert.equal(models["fashn-vton-1-5"].monitoring.priority, "critical");
@@ -284,6 +291,9 @@ test("uses generated catalog data and removes starter preview assets", async () 
     (relation) => relation.source_dataset_id === "koala-36m" && relation.derived_dataset_id === "phantom-data",
   ));
   assert.ok(parsedCatalog.dataset_relations.some(
+    (relation) => relation.source_dataset_id === "senorita-2m" && relation.derived_dataset_id === "videocof-50k",
+  ));
+  assert.ok(parsedCatalog.dataset_relations.some(
     (relation) => relation.source_dataset_id === "yfcc100m" && relation.derived_dataset_id === "commoncatalog",
   ));
   assert.ok(parsedCatalog.dataset_relations.some(
@@ -311,6 +321,8 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.equal(datasets["celebv-hq"].monitoring.priority, "critical");
   assert.equal(datasets.talkvid.monitoring.priority, "critical");
   assert.equal(datasets["mv-fashion"].monitoring.priority, "critical");
+  assert.equal(datasets["senorita-2m"].monitoring.priority, "critical");
+  assert.equal(datasets.spatialvid.monitoring.priority, "critical");
   assert.equal(
     datasets.openhumanvid.access.url,
     "https://forms.gle/moqec5Qod7mz9pfD6",

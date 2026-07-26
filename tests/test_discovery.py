@@ -18,6 +18,7 @@ from discover_updates import (
     compare_snapshots,
     content_revision,
     dataset_impact_index,
+    declared_urls,
     extract_candidate_links,
     extract_arena_ranking_entries,
     extract_huggingface_dataset_candidates,
@@ -35,6 +36,12 @@ from upsert_discovery_issue import issue_action, issue_body
 
 
 class DiscoveryTests(unittest.TestCase):
+    def test_reviewed_exclusions_are_known_candidate_urls(self) -> None:
+        watchlist, _ = load_watchlist(Path("sources/watchlist.yaml"))
+        known_urls = declared_urls(watchlist)
+        self.assertIn("https://github.com/Wan-Video/Wan2.1", known_urls)
+        self.assertIn("https://github.com/hpcaitech/Open-Sora", known_urls)
+
     def test_fetch_source_isolates_connection_resets(self) -> None:
         class ResettingResponse:
             def __enter__(self):
@@ -221,11 +228,20 @@ class DiscoveryTests(unittest.TestCase):
     def test_extracts_modelscope_dataset_revision_without_download_noise(self) -> None:
         revision, url = extract_source_revision(
             '{"Code":200,"Data":{"Id":167084,"Namespace":"leoniuschen",'
-            '"Name":"HuMoSet","Downloads":19024,"GmtModified":1784954704}}',
+            '"Name":"HuMoSet","Downloads":19024,"GmtModified":1784954704,'
+            '"LastUpdatedTime":1766492042}}',
+            "https://modelscope.cn/api/v1/datasets/leoniuschen/HuMoSet",
+        )
+        self.assertEqual(revision, "1766492042@dataset-167084")
+        self.assertEqual(url, "https://modelscope.cn/datasets/leoniuschen/HuMoSet")
+
+    def test_modelscope_dataset_revision_falls_back_to_modified_time(self) -> None:
+        revision, _ = extract_source_revision(
+            '{"Code":200,"Data":{"Id":167084,"Namespace":"leoniuschen",'
+            '"Name":"HuMoSet","GmtModified":1784954704}}',
             "https://modelscope.cn/api/v1/datasets/leoniuschen/HuMoSet",
         )
         self.assertEqual(revision, "1784954704@dataset-167084")
-        self.assertEqual(url, "https://modelscope.cn/datasets/leoniuschen/HuMoSet")
 
     def test_extracts_hugging_face_model_revision(self) -> None:
         revision, url = extract_source_revision(
@@ -398,15 +414,15 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            57,
+            59,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            56,
+            57,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
-            16,
+            17,
         )
         self.assertTrue(
             {
@@ -421,7 +437,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 10)
-        self.assertEqual(len(sources), 202)
+        self.assertEqual(len(sources), 208)
         self.assertEqual(
             {source.ranking_id for source in sources if source.ranking_id},
             {
@@ -544,7 +560,12 @@ class DiscoveryTests(unittest.TestCase):
             ("humo-17b", "skyreels-v4", "talkverse-5b"),
         )
         self.assertEqual(impacts["panda-70m"]["dataset_ids"], ("talkverse",))
-        self.assertEqual(impacts["panda-70m"]["model_ids"], ("talkverse-5b",))
+        self.assertEqual(
+            impacts["panda-70m"]["model_ids"],
+            ("phantom-wan-14b", "talkverse-5b"),
+        )
+        self.assertEqual(impacts["senorita-2m"]["dataset_ids"], ("videocof-50k",))
+        self.assertEqual(impacts["senorita-2m"]["model_ids"], ("videocof",))
         self.assertEqual(
             impacts["audioset"]["dataset_ids"],
             ("audiocaps-2-0", "soundatlas", "wavcaps"),
