@@ -1,0 +1,77 @@
+id: videoufo
+name: VideoUFO
+organization: ReLER Lab, University of Technology Sydney
+released_at: "2025-02-18"
+release_date_source: https://huggingface.co/datasets/WenhaoWang/VideoUFO
+modality: video
+tasks:
+  - text-to-video
+  - video-text-pretraining
+  - user-focused-video-generation
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A user-focused text-to-video corpus with more than 1.09 million Creative
+  Commons video clips, short and detailed captions, topic labels, temporal
+  boundaries, middle frames, and six VBench-derived quality signals.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/WenhaoWang/VideoUFO
+  requires_account: false
+  notes: >-
+    Hugging Face hosts the metadata and middle-frame dataset plus 200 compressed
+    video archives; the official card estimates the full video download at
+    approximately 800 GB.
+scale:
+  samples: 1091712
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The hosted Full split reports 1,091,712 examples spanning 1,291 topics.
+annotations:
+  types:
+    - brief-caption
+    - detailed-caption
+    - user-focused-topic
+    - source-time-boundary
+    - middle-frame
+    - vbench-quality-scores
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-4.0
+  media: CC-BY-4.0
+  commercial_use: allowed
+  redistribution: allowed
+  notes: >-
+    The official card states that released videos are CC BY 4.0; downstream
+    copies and derivatives must preserve attribution and license notices.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - aesthetics
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Topic selection is derived from VidProM prompts and may inherit the preferences and geographic skew of that user population.
+    - Captions and quality scores are model-generated signals rather than exhaustive human annotations.
+    - The 800 GB archive footprint makes full-corpus validation and local deduplication expensive.
+processing:
+  recipe: recipes/video_text
+  recommended_format: webdataset
+  notes: >-
+    Preserve topic, time-boundary, caption, quality-score, and source-ID fields;
+    verify archive checksums and split by source video to reduce leakage.
+evidence:
+  homepage: https://huggingface.co/datasets/WenhaoWang/VideoUFO
+  paper: https://arxiv.org/abs/2503.01739
+  used_by:
+    - MVDiT-VideoUFO
+status: verified
+last_verified: "2026-07-27"

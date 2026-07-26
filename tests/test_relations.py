@@ -34,7 +34,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
                 self.assertIn(model_id, self.datasets[dataset_id]["linked_model_ids"])
 
     def test_dataset_lineage_index_and_backlinks_are_symmetric(self) -> None:
-        self.assertEqual(len(self.payload["dataset_relations"]), 12)
+        self.assertEqual(len(self.payload["dataset_relations"]), 13)
         relation_pairs = {
             (relation["source_dataset_id"], relation["derived_dataset_id"])
             for relation in self.payload["dataset_relations"]
@@ -47,6 +47,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn(("yfcc100m", "commoncatalog"), relation_pairs)
         self.assertIn(("mvhumannet", "mvhumannet-plus-plus"), relation_pairs)
         self.assertIn(("openve-3m", "openve-bench"), relation_pairs)
+        self.assertIn(("celebv-hq", "talkingheadbench"), relation_pairs)
 
         for source_id, derived_id in relation_pairs:
             with self.subTest(source=source_id, derived=derived_id):
@@ -103,11 +104,19 @@ class ModelDatasetRelationTests(unittest.TestCase):
         )
         self.assertIn("hunyuanvideo-avatar", self.datasets["celebv-hq"]["linked_model_ids"])
         self.assertIn("musetalk-1-5", self.datasets["hdtf"]["linked_model_ids"])
+        self.assertIn(
+            "seedance-1-pro-human-preference",
+            self.models["seedance-1-0-pro"]["linked_dataset_ids"],
+        )
+        self.assertIn(
+            "seedance-1-0-pro",
+            self.datasets["seedance-1-pro-human-preference"]["linked_model_ids"],
+        )
 
     def test_dataset_monitoring_is_joined_by_canonical_catalog_id(self) -> None:
         self.assertEqual(
             sum(dataset["monitoring"] is not None for dataset in self.datasets.values()),
-            50,
+            54,
         )
         self.assertEqual(
             self.datasets["fit-vto-100k"]["monitoring"],
@@ -154,6 +163,16 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.datasets["graphvid-bench"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["vggsound"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["audioset"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["videoufo"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["talkingheadbench"]["monitoring"]["priority"], "critical")
+        self.assertEqual(
+            self.datasets["maven-multicultural-video"]["monitoring"]["priority"],
+            "critical",
+        )
+        self.assertEqual(
+            self.datasets["seedance-1-pro-human-preference"]["monitoring"]["priority"],
+            "high",
+        )
         linked_without_probe = {
             dataset_id
             for dataset_id, dataset in self.datasets.items()
@@ -164,7 +183,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
     def test_model_monitoring_is_joined_by_canonical_model_id(self) -> None:
         self.assertEqual(
             sum(model["monitoring"] is not None for model in self.models.values()),
-            53,
+            54,
         )
         self.assertEqual(
             self.models["hunyuanvideo-avatar"]["monitoring"],
@@ -197,6 +216,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.models["gpt-image-2"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["gemini-omni-flash"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["seedance-2-0"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.models["seedance-1-0-pro"]["monitoring"]["priority"], "high")
         self.assertIsNone(self.models["graphvid"]["monitoring"])
 
 

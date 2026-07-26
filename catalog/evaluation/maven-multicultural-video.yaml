@@ -1,0 +1,68 @@
+id: maven-multicultural-video
+name: MAVEN Multicultural Multiagent Videos
+organization: Sichuan University and University of Washington
+released_at: "2026-05-29"
+release_date_source: https://huggingface.co/datasets/AIM-SCU/MAVEN_Multicultura_Text-to-Video_Generation
+modality: evaluation
+tasks:
+  - text-to-video-evaluation
+  - multicultural-generation-evaluation
+  - prompt-refinement-evaluation
+stages:
+  - evaluation
+description: >-
+  A compact benchmark of original and agent-refined prompts paired with
+  generated videos for measuring mono-cultural and cross-cultural fidelity in
+  text-to-video systems across Chinese, American, and Romanian settings.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/AIM-SCU/MAVEN_Multicultura_Text-to-Video_Generation
+  requires_account: false
+  notes: The complete 676 MB dataset is directly hosted as five-second MP4 videos and structured prompt metadata.
+scale:
+  samples: 972
+  source_items: 243
+  hours: 1.35
+  approximate: false
+  notes: There are 243 prompt scenarios rendered through four pipelines, producing 972 five-second videos.
+annotations:
+  types:
+    - original-prompt
+    - refined-prompt
+    - culture
+    - cross-culture-flag
+    - action-type
+    - generation-pipeline
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC0-1.0
+  media: CC0-1.0
+  commercial_use: allowed
+  redistribution: allowed
+  notes: The official dataset card releases the dataset under CC0 1.0.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - aesthetics
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Coverage is limited to three cultures and three action categories and cannot represent within-culture diversity.
+    - Four outputs per scenario share prompts and generation pipelines, so rows are not statistically independent.
+    - Synthetic outputs inherit biases and artifacts from the evaluated video generator and prompt-refinement agents.
+processing:
+  recipe: recipes/dataset_audit
+  recommended_format: parquet
+  notes: Group evaluations by the 243 underlying scenarios and report mono-cultural and cross-cultural results separately.
+evidence:
+  homepage: https://github.com/AIM-SCU/CRAFT
+  paper: https://arxiv.org/abs/2605.16716
+  used_by:
+    - MAVEN
+status: verified
+last_verified: "2026-07-27"

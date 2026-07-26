@@ -389,11 +389,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            50,
+            54,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            53,
+            54,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -412,7 +412,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 10)
-        self.assertEqual(len(sources), 192)
+        self.assertEqual(len(sources), 197)
         self.assertEqual(
             {source.ranking_id for source in sources if source.ranking_id},
             {

@@ -418,6 +418,18 @@ tracks:
       - url: https://huggingface.co/api/datasets/Lewandofski/OpenVE-Bench
         catalog_id: openve-bench
         priority: critical
+      - url: https://huggingface.co/api/datasets/WenhaoWang/VideoUFO
+        catalog_id: videoufo
+        priority: critical
+      - url: https://huggingface.co/api/datasets/luchaoqi/TalkingHeadBench
+        catalog_id: talkingheadbench
+        priority: critical
+      - url: https://huggingface.co/api/datasets/AIM-SCU/MAVEN_Multicultura_Text-to-Video_Generation
+        catalog_id: maven-multicultural-video
+        priority: critical
+      - url: https://huggingface.co/api/datasets/Rapidata/image-to-video-human-preference-seedance-1-pro
+        catalog_id: seedance-1-pro-human-preference
+        priority: high
       - url: https://api.github.com/repos/MRzzm/HDTF/commits/main
         catalog_id: hdtf
         priority: critical
@@ -501,6 +513,9 @@ tracks:
       - release-files
       - license-change
     official_sources:
+      - url: https://seed.bytedance.com/en/blog/tech-report-of-seedance-1-0-is-now-publicly-available
+        model_id: seedance-1-0-pro
+        priority: high
       - url: https://huggingface.co/api/models/tencent/HunyuanVideo-Avatar
         model_id: hunyuanvideo-avatar
         priority: critical
