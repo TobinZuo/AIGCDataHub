@@ -326,6 +326,10 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalogExplorer, /同场景数据策略对比/);
   assert.match(catalogExplorer, /不做综合评分/);
   assert.match(catalogExplorer, /打开数据卡/);
+  assert.match(catalogExplorer, /查看数据卡/);
+  assert.match(catalogExplorer, /strategy-dataset-list/);
+  assert.match(catalogExplorer, /strategy-datasets-\$\{model\.id\}/);
+  assert.match(catalogExplorer, /onOpenDataset=\{\(id\) => openRelation\("datasets", id\)\}/);
   assert.match(catalogExplorer, /数据获取入口/);
   assert.match(catalogExplorer, /datasetAccessAction\(dataset\)/);
   assert.match(catalogExplorer, /目录内反向链接只由模型卡/);
