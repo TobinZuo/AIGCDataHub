@@ -77,12 +77,12 @@ The generated catalogs in `README.md` and `site/app/catalog-data.json` must be
 committed with changed dataset, model, or scenario sources. Link checks run
 separately because remote sites can be transient.
 
-Important dataset revision probes live under `important-dataset-updates` in
-`sources/watchlist.yaml`. Each probe must be an object with an official HTTPS
-`url`, an existing dataset `catalog_id`, and a `priority` of `critical`, `high`,
-or `standard`. The scanner derives downstream datasets from `derived_from` and
-affected models from model-side `catalog_id`; do not maintain either impact list
-in the watchlist.
+Important revision probes live under `important-dataset-updates` or
+`important-model-updates` in `sources/watchlist.yaml`. Each probe must use an
+official HTTPS `url`, a `priority` of `critical`, `high`, or `standard`, and
+exactly one existing canonical ID: dataset `catalog_id` or model `model_id`.
+The scanner derives downstream or linked impacts from reviewed card
+relationships; do not maintain impact lists in the watchlist.
 
 ## Recipes and benchmarks
 

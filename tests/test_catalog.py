@@ -16,7 +16,7 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(validate(), [])
 
     def test_cards_are_present(self) -> None:
-        self.assertGreaterEqual(len(load_cards()), 44)
+        self.assertGreaterEqual(len(load_cards()), 48)
 
     def test_audio_and_3d_coverage_is_present(self) -> None:
         modalities = {card["modality"] for _, card in load_cards()}
@@ -54,6 +54,10 @@ class CatalogTests(unittest.TestCase):
                 "talkverse",
                 "openhumanvid",
                 "openhumanvid-talking",
+                "hdtf",
+                "celebv-hq",
+                "talkvid",
+                "mv-fashion",
             }.issubset(cards)
         )
         self.assertIn("video-dubbing", cards["audiovisual-translation-dub"]["tasks"])
@@ -66,6 +70,12 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(cards["openhumanvid"]["access"]["status"], "gated")
         self.assertIn("talking-head-generation", cards["openhumanvid-talking"]["tasks"])
         self.assertEqual(cards["openhumanvid-talking"]["scale"]["samples"], 32176)
+        self.assertEqual(cards["talkvid"]["access"]["status"], "metadata-only")
+        self.assertEqual(cards["talkvid"]["scale"]["samples"], 500)
+        self.assertEqual(cards["mv-fashion"]["scale"]["samples"], 52020529)
+        self.assertEqual(cards["mv-fashion"]["access"]["status"], "gated")
+        self.assertIn("audio-driven-avatar", cards["hdtf"]["tasks"])
+        self.assertEqual(cards["celebv-hq"]["access"]["type"], "urls")
 
     def test_reference_wiki_candidates_are_backed_by_public_sources(self) -> None:
         cards = {card["id"]: card for _, card in load_cards()}

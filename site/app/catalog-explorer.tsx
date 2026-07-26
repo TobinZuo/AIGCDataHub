@@ -67,6 +67,11 @@ type EnrichedDatasetLineage = DatasetLineageRelation & {
   derivedDataset: DatasetCard;
 };
 
+type Monitoring = {
+  priority: string;
+  source_url: string;
+};
+
 type ModelCard = {
   id: string;
   name: string;
@@ -106,6 +111,7 @@ type ModelCard = {
   scenario_ids: string[];
   strategy_profile: StrategyProfile;
   linked_dataset_ids: string[];
+  monitoring: Monitoring | null;
 };
 
 type DatasetCard = {
@@ -172,10 +178,7 @@ type DatasetCard = {
   linked_model_ids: string[];
   upstream_dataset_ids: string[];
   downstream_dataset_ids: string[];
-  monitoring: {
-    priority: string;
-    source_url: string;
-  } | null;
+  monitoring: Monitoring | null;
 };
 
 type Catalog = {
@@ -355,6 +358,7 @@ function ModelResult({ model, scenarioLabels, expanded, onToggle, onOpenDataset 
             {model.modalities.slice(0, 4).map((item) => (
               <span className="tag" key={item}>{MODALITY_LABELS[item] ?? item}</span>
             ))}
+            {model.monitoring && <span className="tag tag-monitor">{MONITORING_LABELS[model.monitoring.priority]}</span>}
           </div>
         </div>
         <div className="card-metrics">
@@ -419,6 +423,9 @@ function ModelResult({ model, scenarioLabels, expanded, onToggle, onOpenDataset 
             {namedDatasets.length > 0 && (
               <p className="linked-note">其中 {namedDatasets.length} 个已与本目录数据卡建立关联。</p>
             )}
+            {model.monitoring && (
+              <p className="linked-note">模型版本：{MONITORING_LABELS[model.monitoring.priority]}，稳定权重或官方仓库修订会进入每周复核队列。</p>
+            )}
           </section>
           <section className="unknown-panel">
             <p className="detail-label">仍然未知</p>
@@ -432,6 +439,7 @@ function ModelResult({ model, scenarioLabels, expanded, onToggle, onOpenDataset 
               <ExternalLink href={model.evidence.release}>官方发布</ExternalLink>
               {model.evidence.technical_report && <ExternalLink href={model.evidence.technical_report}>技术报告</ExternalLink>}
               {model.evidence.repository && <ExternalLink href={model.evidence.repository}>代码仓库</ExternalLink>}
+              {model.monitoring && <ExternalLink href={model.monitoring.source_url}>版本监控源</ExternalLink>}
             </nav>
           </footer>
         </div>
@@ -641,6 +649,7 @@ function LineageOverview({ modelRelations, datasetRelations, onOpenModel, onOpen
                   <span>M</span>
                   <strong>{relation.model.name}</strong>
                   <small>{relation.model.organization}</small>
+                  {relation.model.monitoring && <small>{MONITORING_LABELS[relation.model.monitoring.priority]}</small>}
                 </button>
                 <div className="lineage-edge">
                   <strong>{taxonomyLabel(relation.role, RELATION_ROLE_LABELS)}</strong>
@@ -819,6 +828,7 @@ function StrategyResult({ model, scenarioLabels }: { model: ModelCard; scenarioL
             {scenarioLabels.slice(0, 2).map((item) => (
               <span className="tag tag-scenario" key={item}>{item}</span>
             ))}
+            {model.monitoring && <span className="tag tag-monitor">{MONITORING_LABELS[model.monitoring.priority]}</span>}
           </div>
         </div>
         <div className="disclosure-meter" aria-label={`披露程度：${DISCLOSURE_LABELS[model.data.disclosure_level]}`}>
@@ -904,6 +914,8 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         ...model.data.strategy_summary,
         ...model.data.datasets.map((item) => item.name),
         ...model.data.stages.flatMap((stage) => stage.operations),
+        model.monitoring?.priority ?? "",
+        model.monitoring ? MONITORING_LABELS[model.monitoring.priority] : "",
       ].join(" "));
       return inModality && inScenario && (!search || haystack.includes(search));
     });
@@ -955,6 +967,8 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         relation.role,
         relation.availability,
         relation.scale ?? "",
+        relation.model.monitoring?.priority ?? "",
+        relation.model.monitoring ? MONITORING_LABELS[relation.model.monitoring.priority] : "",
         relation.dataset.monitoring?.priority ?? "",
         relation.dataset.monitoring ? MONITORING_LABELS[relation.dataset.monitoring.priority] : "",
         ...relation.model.tasks,

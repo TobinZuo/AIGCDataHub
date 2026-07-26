@@ -80,6 +80,13 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /OpenVE-Bench/);
   assert.match(html, /CommonCanvas-XL-C/);
   assert.match(html, /OpenVE-Edit/);
+  assert.match(html, /HunyuanVideo-Avatar/);
+  assert.match(html, /MuseTalk 1\.5/);
+  assert.match(html, /FASHN VTON v1\.5/);
+  assert.match(html, /HDTF/);
+  assert.match(html, /CelebV-HQ/);
+  assert.match(html, /TalkVid/);
+  assert.match(html, /MV-Fashion/);
   assert.match(html, /应用场景/);
   assert.match(html, /数字人/);
   assert.match(html, /视频翻译/);
@@ -148,10 +155,17 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"commoncanvas-xl-c"/);
   assert.match(catalog, /"gpic-baselines"/);
   assert.match(catalog, /"openve-edit"/);
+  assert.match(catalog, /"hunyuanvideo-avatar"/);
+  assert.match(catalog, /"musetalk-1-5"/);
+  assert.match(catalog, /"fashn-vton-1-5"/);
+  assert.match(catalog, /"hdtf"/);
+  assert.match(catalog, /"celebv-hq"/);
+  assert.match(catalog, /"talkvid"/);
+  assert.match(catalog, /"mv-fashion"/);
   assert.match(catalog, /"relations"/);
   assert.match(catalog, /"dataset_relations"/);
   const parsedCatalog = JSON.parse(catalog);
-  assert.equal(parsedCatalog.format_version, 7);
+  assert.equal(parsedCatalog.format_version, 8);
   assert.deepEqual(
     parsedCatalog.scenarios.map((scenario) => scenario.id),
     ["image-generation", "video-generation", "digital-human", "video-localization", "virtual-try-on"],
@@ -177,6 +191,11 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.deepEqual(models["commoncanvas-xl-c"].linked_dataset_ids, ["commoncatalog"]);
   assert.deepEqual(models["gpic-baselines"].linked_dataset_ids, ["gpic"]);
   assert.deepEqual(models["openve-edit"].linked_dataset_ids, ["openve-3m", "openve-bench"]);
+  assert.deepEqual(models["hunyuanvideo-avatar"].linked_dataset_ids, ["hdtf", "celebv-hq"]);
+  assert.deepEqual(models["musetalk-1-5"].linked_dataset_ids, ["hdtf"]);
+  assert.equal(models["hunyuanvideo-avatar"].monitoring.priority, "critical");
+  assert.equal(models["musetalk-1-5"].monitoring.priority, "critical");
+  assert.equal(models["fashn-vton-1-5"].monitoring.priority, "critical");
   assert.ok(parsedCatalog.relations.some(
     (relation) => relation.model_id === "graphvid" && relation.dataset_id === "graphvid-bench",
   ));
@@ -222,6 +241,10 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.equal(datasets["openve-bench"].monitoring.priority, "critical");
   assert.equal(datasets.finevideo.monitoring.priority, "high");
   assert.equal(datasets["graphvid-bench"].monitoring, null);
+  assert.equal(datasets.hdtf.monitoring.priority, "critical");
+  assert.equal(datasets["celebv-hq"].monitoring.priority, "critical");
+  assert.equal(datasets.talkvid.monitoring.priority, "critical");
+  assert.equal(datasets["mv-fashion"].monitoring.priority, "critical");
   assert.deepEqual(datasets.talkverse.upstream_dataset_ids, ["openhumanvid", "panda-70m"]);
   assert.deepEqual(
     datasets.openhumanvid.downstream_dataset_ids,

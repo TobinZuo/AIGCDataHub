@@ -15,6 +15,7 @@ from discover_updates import (
     extract_candidate_links,
     extract_source_revision,
     load_watchlist,
+    model_impact_index,
     normalize_url,
     render_report,
     report_payload,
@@ -61,6 +62,15 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(revision, "2026-07-25T10:00:00Z@abc123")
         self.assertEqual(url, "https://huggingface.co/datasets/nkp37/OpenVid-1M")
+
+    def test_extracts_hugging_face_model_revision(self) -> None:
+        revision, url = extract_source_revision(
+            '{"id":"tencent/HunyuanVideo-Avatar","sha":"def456",'
+            '"lastModified":"2026-07-25T11:00:00Z"}',
+            "https://huggingface.co/api/models/tencent/HunyuanVideo-Avatar",
+        )
+        self.assertEqual(revision, "2026-07-25T11:00:00Z@def456")
+        self.assertEqual(url, "https://huggingface.co/tencent/HunyuanVideo-Avatar")
 
     def test_extracts_github_repository_revision(self) -> None:
         revision, url = extract_source_revision(
@@ -115,7 +125,22 @@ class DiscoveryTests(unittest.TestCase):
         _, sources = load_watchlist(Path("sources/watchlist.yaml"))
         track_ids = {source.track_id for source in sources}
         urls = {source.source_url for source in sources}
-        self.assertTrue({"digital-human-and-localization", "virtual-try-on-and-commerce"}.issubset(track_ids))
+        self.assertEqual(
+            sum(source.track_id == "important-dataset-updates" for source in sources),
+            29,
+        )
+        self.assertEqual(
+            sum(source.track_id == "important-model-updates" for source in sources),
+            13,
+        )
+        self.assertTrue(
+            {
+                "digital-human-and-localization",
+                "virtual-try-on-and-commerce",
+                "important-dataset-updates",
+                "important-model-updates",
+            }.issubset(track_ids)
+        )
         self.assertTrue(
             {
                 "https://www.heygen.com/research/avatar-v-data",
@@ -139,6 +164,13 @@ class DiscoveryTests(unittest.TestCase):
                 "https://huggingface.co/api/datasets/stanford-vision-lab/gpic",
                 "https://huggingface.co/api/datasets/Lewandofski/OpenVE-3M",
                 "https://huggingface.co/api/datasets/Lewandofski/OpenVE-Bench",
+                "https://api.github.com/repos/MRzzm/HDTF/commits/main",
+                "https://api.github.com/repos/CelebV-HQ/CelebV-HQ/commits/main",
+                "https://huggingface.co/api/datasets/FreedomIntelligence/TalkVid",
+                "https://huggingface.co/api/datasets/MV-Fashion/MV-Fashion",
+                "https://huggingface.co/api/models/tencent/HunyuanVideo-Avatar",
+                "https://huggingface.co/api/models/TMElyralab/MuseTalk",
+                "https://huggingface.co/api/models/fashn-ai/fashn-vton-1.5",
             }.issubset(urls)
         )
         self.assertIn("https://huggingface.co/api/datasets/nkp37/OpenVid-1M", urls)
@@ -149,6 +181,17 @@ class DiscoveryTests(unittest.TestCase):
             "openvid-1m",
             "high",
         ))
+        hunyuan_avatar = next(source for source in sources if source.model_id == "hunyuanvideo-avatar")
+        self.assertEqual(
+            hunyuan_avatar,
+            WatchSource(
+                "important-model-updates",
+                "https://huggingface.co/api/models/tencent/HunyuanVideo-Avatar",
+                None,
+                "critical",
+                "hunyuanvideo-avatar",
+            ),
+        )
 
     def test_dataset_impact_index_uses_canonical_model_references(self) -> None:
         impacts = dataset_impact_index()
@@ -185,6 +228,16 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(impacts["openve-3m"]["dataset_ids"], ("openve-bench",))
         self.assertEqual(impacts["openve-3m"]["model_ids"], ("openve-edit",))
 
+    def test_model_impact_index_uses_direct_dataset_links(self) -> None:
+        impacts = model_impact_index()
+        self.assertEqual(
+            impacts["hunyuanvideo-avatar"]["dataset_ids"],
+            ("celebv-hq", "hdtf"),
+        )
+        self.assertEqual(impacts["hunyuanvideo-avatar"]["model_ids"], ("hunyuanvideo-avatar",))
+        self.assertEqual(impacts["musetalk-1-5"]["dataset_ids"], ("hdtf",))
+        self.assertEqual(impacts["fashn-vton-1-5"]["dataset_ids"], ())
+
     def test_compares_candidates_failures_recoveries_and_known_urls(self) -> None:
         baseline = {
             "sources": [
@@ -205,6 +258,13 @@ class DiscoveryTests(unittest.TestCase):
                     "source_url": "https://huggingface.co/api/datasets/nkp37/OpenVid-1M",
                     "candidates": [],
                     "revision": "2026-07-01T00:00:00Z@old",
+                    "error": None,
+                },
+                {
+                    "track_id": "important-model-updates",
+                    "source_url": "https://huggingface.co/api/models/example/video-model",
+                    "candidates": [],
+                    "revision": "2026-07-01T00:00:00Z@old-model",
                     "error": None,
                 },
             ]
@@ -250,6 +310,18 @@ class DiscoveryTests(unittest.TestCase):
                 "openvid-1m",
                 "high",
             ),
+            SourceSnapshot(
+                track_id="important-model-updates",
+                source_url="https://huggingface.co/api/models/example/video-model",
+                resolved_url="https://huggingface.co/api/models/example/video-model",
+                status=200,
+                candidates=(),
+                error=None,
+                revision="2026-07-25T12:00:00Z@new-model",
+                revision_url="https://huggingface.co/example/video-model",
+                priority="critical",
+                model_id="video-model",
+            ),
         )
         diff = compare_snapshots(
             baseline,
@@ -261,18 +333,37 @@ class DiscoveryTests(unittest.TestCase):
                     "model_ids": ("video-model",),
                 }
             },
+            {
+                "video-model": {
+                    "dataset_ids": ("training-video",),
+                    "model_ids": ("video-model",),
+                }
+            },
         )
         self.assertEqual([item["url"] for item in diff.new_candidates], ["https://example.com/new"])
         self.assertEqual([item["error"] for item in diff.failures], ["HTTP 429"])
         self.assertEqual([item["previous_error"] for item in diff.recoveries], ["HTTP 503"])
         self.assertEqual(
             [item["url"] for item in diff.source_updates],
-            ["https://huggingface.co/datasets/nkp37/OpenVid-1M"],
+            [
+                "https://huggingface.co/datasets/nkp37/OpenVid-1M",
+                "https://huggingface.co/example/video-model",
+            ],
         )
         self.assertEqual(diff.source_updates[0]["catalog_id"], "openvid-1m")
+        self.assertEqual(diff.source_updates[0]["entity_type"], "dataset")
         self.assertEqual(diff.source_updates[0]["priority"], "high")
         self.assertEqual(diff.source_updates[0]["impacted_dataset_ids"], ["derived-video"])
         self.assertEqual(diff.source_updates[0]["impacted_model_ids"], ["video-model"])
+        self.assertEqual(diff.source_updates[1]["model_id"], "video-model")
+        self.assertEqual(diff.source_updates[1]["entity_type"], "model")
+        self.assertEqual(diff.source_updates[1]["impacted_dataset_ids"], ["training-video"])
+        markdown = render_report(
+            report_payload(diff, "2026-07-26T00:00:00Z", "Discovery", 2, ["video"])
+        )
+        self.assertIn("Important catalog revisions", markdown)
+        self.assertIn("linked datasets: `training-video`", markdown)
+        self.assertIn("**critical** model priority", markdown)
 
     def test_report_preserves_human_review_contract(self) -> None:
         baseline = {"sources": []}

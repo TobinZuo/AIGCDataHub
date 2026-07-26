@@ -59,33 +59,41 @@ def scenario_ids(tasks: list[str], scenarios: list[dict[str, Any]]) -> list[str]
     return [scenario["id"] for scenario in scenarios if task_set.intersection(scenario["tasks"])]
 
 
-def load_dataset_monitors() -> dict[str, dict[str, str]]:
+def load_monitors(track_id: str, id_key: str, entity_label: str) -> dict[str, dict[str, str]]:
     payload = yaml.safe_load(WATCHLIST_PATH.read_text(encoding="utf-8"))
     tracks = payload.get("tracks", []) if isinstance(payload, dict) else []
     track = next(
-        (item for item in tracks if isinstance(item, dict) and item.get("id") == "important-dataset-updates"),
+        (item for item in tracks if isinstance(item, dict) and item.get("id") == track_id),
         None,
     )
     if track is None:
-        raise ValueError("sources/watchlist.yaml must define important-dataset-updates")
+        raise ValueError(f"sources/watchlist.yaml must define {track_id}")
 
     monitors: dict[str, dict[str, str]] = {}
     for source in track.get("official_sources", []):
         if not isinstance(source, dict):
-            raise ValueError("important dataset watch sources must include url, catalog_id, and priority")
+            raise ValueError(f"important {entity_label} watch sources require structured metadata")
         source_url = source.get("url")
-        catalog_id = source.get("catalog_id")
+        entity_id = source.get(id_key)
         priority = source.get("priority")
-        if not all(isinstance(value, str) and value for value in (source_url, catalog_id, priority)):
-            raise ValueError("important dataset watch sources require non-empty metadata")
+        if not all(isinstance(value, str) and value for value in (source_url, entity_id, priority)):
+            raise ValueError(f"important {entity_label} watch sources require non-empty metadata")
         if not source_url.startswith("https://"):
-            raise ValueError(f"dataset monitor requires an HTTPS url: {source_url!r}")
+            raise ValueError(f"{entity_label} monitor requires an HTTPS url: {source_url!r}")
         if priority not in {"critical", "high", "standard"}:
-            raise ValueError(f"dataset monitor has invalid priority: {priority!r}")
-        if catalog_id in monitors:
-            raise ValueError(f"duplicate dataset monitor catalog_id: {catalog_id!r}")
-        monitors[catalog_id] = {"priority": priority, "source_url": source_url}
+            raise ValueError(f"{entity_label} monitor has invalid priority: {priority!r}")
+        if entity_id in monitors:
+            raise ValueError(f"duplicate {entity_label} monitor id: {entity_id!r}")
+        monitors[entity_id] = {"priority": priority, "source_url": source_url}
     return monitors
+
+
+def load_dataset_monitors() -> dict[str, dict[str, str]]:
+    return load_monitors("important-dataset-updates", "catalog_id", "dataset")
+
+
+def load_model_monitors() -> dict[str, dict[str, str]]:
+    return load_monitors("important-model-updates", "model_id", "model")
 
 
 def strategy_profile(card: dict[str, Any]) -> dict[str, Any]:
@@ -123,7 +131,8 @@ def strategy_profile(card: dict[str, Any]) -> dict[str, Any]:
 
 def build_payload() -> dict[str, Any]:
     scenarios = load_scenarios()
-    monitors = load_dataset_monitors()
+    dataset_monitors = load_dataset_monitors()
+    model_monitors = load_model_monitors()
     datasets = []
     for path, card in load_cards():
         item = dict(card)
@@ -132,10 +141,10 @@ def build_payload() -> dict[str, Any]:
         item["scale_label"] = compact_number(
             card["scale"].get("samples"), card["scale"].get("approximate", False)
         )
-        item["monitoring"] = monitors.get(card["id"])
+        item["monitoring"] = dataset_monitors.get(card["id"])
         datasets.append(item)
 
-    unknown_monitors = set(monitors) - {item["id"] for item in datasets}
+    unknown_monitors = set(dataset_monitors) - {item["id"] for item in datasets}
     if unknown_monitors:
         raise ValueError(f"dataset monitors reference unknown catalog ids: {sorted(unknown_monitors)}")
 
@@ -145,7 +154,12 @@ def build_payload() -> dict[str, Any]:
         item["source_path"] = path.relative_to(ROOT).as_posix()
         item["scenario_ids"] = scenario_ids(card["tasks"], scenarios)
         item["strategy_profile"] = strategy_profile(card)
+        item["monitoring"] = model_monitors.get(card["id"])
         models.append(item)
+
+    unknown_model_monitors = set(model_monitors) - {item["id"] for item in models}
+    if unknown_model_monitors:
+        raise ValueError(f"model monitors reference unknown model ids: {sorted(unknown_model_monitors)}")
 
     datasets.sort(key=lambda item: (item["released_at"], item["name"].lower()), reverse=True)
     models.sort(key=lambda item: (item["released_at"], item["name"].lower()), reverse=True)
@@ -226,7 +240,7 @@ def build_payload() -> dict[str, Any]:
     verified_dates = [item["last_verified"] for item in [*datasets, *models]]
 
     return {
-        "format_version": 7,
+        "format_version": 8,
         "generated_from": [
             "catalog/**/*.yaml",
             "models/**/*.yaml",

@@ -22,7 +22,7 @@ from catalog import load_cards
 from models import load_models
 
 
-SCHEMA_VERSION = 4
+SCHEMA_VERSION = 5
 USER_AGENT = "AIGCDataHub-discovery/0.1 (+https://github.com/TobinZuo/AIGCDataHub)"
 MEDIA_TERMS = (
     "image",
@@ -184,6 +184,7 @@ class WatchSource:
     source_url: str
     catalog_id: str | None = None
     priority: str | None = None
+    model_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -198,6 +199,7 @@ class SourceSnapshot:
     revision_url: str | None = None
     catalog_id: str | None = None
     priority: str | None = None
+    model_id: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         payload = asdict(self)
@@ -287,7 +289,7 @@ def _strip_tags(fragment: str) -> str:
 
 
 def extract_source_revision(payload: str, source_url: str) -> tuple[str | None, str | None]:
-    """Extract a stable revision from supported first-party dataset APIs."""
+    """Extract a stable revision from supported first-party repository APIs."""
     parsed_url = urllib.parse.urlsplit(source_url)
     try:
         metadata = json.loads(payload)
@@ -303,6 +305,15 @@ def extract_source_revision(payload: str, source_url: str) -> tuple[str | None, 
             return None, None
         revision = sha if not isinstance(modified, str) or not modified else f"{modified}@{sha}"
         return revision, f"https://huggingface.co/datasets/{dataset_id}"
+
+    if parsed_url.hostname == "huggingface.co" and parsed_url.path.startswith("/api/models/"):
+        model_id = metadata.get("id")
+        sha = metadata.get("sha")
+        modified = metadata.get("lastModified")
+        if not isinstance(model_id, str) or not isinstance(sha, str) or not sha:
+            return None, None
+        revision = sha if not isinstance(modified, str) or not modified else f"{modified}@{sha}"
+        return revision, f"https://huggingface.co/{model_id}"
 
     if parsed_url.hostname == "api.github.com" and re.fullmatch(
         r"/repos/[^/]+/[^/]+/commits/[^/]+", parsed_url.path
@@ -382,6 +393,7 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
                     "response-too-large",
                     catalog_id=source.catalog_id,
                     priority=source.priority,
+                    model_id=source.model_id,
                 )
             charset = response.headers.get_content_charset() or "utf-8"
             html = payload.decode(charset, errors="replace")
@@ -402,6 +414,7 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
                 revision_url=revision_url,
                 catalog_id=source.catalog_id,
                 priority=source.priority,
+                model_id=source.model_id,
             )
     except urllib.error.HTTPError as exc:
         error = f"HTTP {exc.code}"
@@ -420,6 +433,7 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
         error,
         catalog_id=source.catalog_id,
         priority=source.priority,
+        model_id=source.model_id,
     )
 
 
@@ -429,6 +443,7 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
     included = set(discovery.get("included_tracks", []))
     excluded = {normalize_url(url) or url for url in discovery.get("excluded_sources", [])}
     dataset_ids = {card["id"] for _, card in load_cards()}
+    model_ids = {card["id"] for _, card in load_models()}
     sources: list[WatchSource] = []
     seen_urls: set[str] = set()
     for track in watchlist["tracks"]:
@@ -438,28 +453,40 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
         for source in track["official_sources"]:
             catalog_id = None
             priority = None
+            model_id = None
             if isinstance(source, dict):
-                unexpected = set(source) - {"url", "catalog_id", "priority"}
+                unexpected = set(source) - {"url", "catalog_id", "model_id", "priority"}
                 if unexpected:
                     raise ValueError(f"watch source has unsupported keys: {sorted(unexpected)}")
                 url = source.get("url")
                 catalog_id = source.get("catalog_id")
                 priority = source.get("priority")
+                model_id = source.get("model_id")
             else:
                 url = source
             if not isinstance(url, str) or not url.startswith("https://"):
                 raise ValueError(f"watch source requires an HTTPS url: {url!r}")
             if catalog_id is not None and catalog_id not in dataset_ids:
                 raise ValueError(f"watch source references unknown dataset catalog_id: {catalog_id!r}")
+            if model_id is not None and model_id not in model_ids:
+                raise ValueError(f"watch source references unknown model model_id: {model_id!r}")
             if priority is not None and priority not in {"critical", "high", "standard"}:
                 raise ValueError(f"watch source has invalid priority: {priority!r}")
-            if track_id == "important-dataset-updates" and (catalog_id is None or priority is None):
-                raise ValueError("important dataset watch sources require catalog_id and priority")
+            if track_id == "important-dataset-updates":
+                if catalog_id is None or priority is None or model_id is not None:
+                    raise ValueError(
+                        "important dataset watch sources require catalog_id and priority only"
+                    )
+            if track_id == "important-model-updates":
+                if model_id is None or priority is None or catalog_id is not None:
+                    raise ValueError(
+                        "important model watch sources require model_id and priority only"
+                    )
             normalized = normalize_url(url) or url
             if normalized in seen_urls or normalized in excluded:
                 continue
             seen_urls.add(normalized)
-            sources.append(WatchSource(track_id, url, catalog_id, priority))
+            sources.append(WatchSource(track_id, url, catalog_id, priority, model_id))
     return watchlist, sorted(sources)
 
 
@@ -537,11 +564,58 @@ def dataset_impact_index() -> dict[str, dict[str, tuple[str, ...]]]:
     return impacts
 
 
+def model_impact_index() -> dict[str, dict[str, tuple[str, ...]]]:
+    """Map a model revision to its directly linked canonical datasets."""
+    impacts: dict[str, dict[str, tuple[str, ...]]] = {}
+    for _, model in load_models():
+        dataset_ids = {
+            reference["catalog_id"]
+            for reference in model["data"]["datasets"]
+            if reference["catalog_id"] is not None
+        }
+        impacts[model["id"]] = {
+            "dataset_ids": tuple(sorted(dataset_ids)),
+            "model_ids": (model["id"],),
+        }
+    return impacts
+
+
+def source_entity_payload(
+    source: SourceSnapshot,
+    dataset_impacts: dict[str, dict[str, tuple[str, ...]]],
+    model_impacts: dict[str, dict[str, tuple[str, ...]]],
+) -> dict[str, Any]:
+    if source.catalog_id:
+        impact = dataset_impacts.get(source.catalog_id, {})
+        return {
+            "entity_type": "dataset",
+            "entity_id": source.catalog_id,
+            "catalog_id": source.catalog_id,
+            "model_id": None,
+            "priority": source.priority or "standard",
+            "impacted_dataset_ids": list(impact.get("dataset_ids", ())),
+            "impacted_model_ids": list(impact.get("model_ids", ())),
+        }
+    if source.model_id:
+        impact = model_impacts.get(source.model_id, {})
+        return {
+            "entity_type": "model",
+            "entity_id": source.model_id,
+            "catalog_id": None,
+            "model_id": source.model_id,
+            "priority": source.priority or "standard",
+            "impacted_dataset_ids": list(impact.get("dataset_ids", ())),
+            "impacted_model_ids": list(impact.get("model_ids", (source.model_id,))),
+        }
+    return {}
+
+
 def compare_snapshots(
     baseline: dict[str, Any],
     current: tuple[SourceSnapshot, ...],
     known_urls: set[str],
     dataset_impacts: dict[str, dict[str, tuple[str, ...]]] | None = None,
+    model_impacts: dict[str, dict[str, tuple[str, ...]]] | None = None,
 ) -> DiscoveryDiff:
     baseline_sources = {
         (item["track_id"], item["source_url"]): item for item in baseline.get("sources", [])
@@ -551,6 +625,7 @@ def compare_snapshots(
     failures: list[dict[str, Any]] = []
     recoveries: list[dict[str, Any]] = []
     dataset_impacts = dataset_impacts or {}
+    model_impacts = model_impacts or {}
 
     for source in current:
         key = (source.track_id, source.source_url)
@@ -574,7 +649,6 @@ def compare_snapshots(
             and source.revision
             and source.revision != previous_revision
         ):
-            impact = dataset_impacts.get(source.catalog_id or "", {})
             source_updates.append(
                 {
                     "track_id": source.track_id,
@@ -582,10 +656,7 @@ def compare_snapshots(
                     "url": source.revision_url or source.resolved_url or source.source_url,
                     "previous_revision": previous_revision,
                     "revision": source.revision,
-                    "catalog_id": source.catalog_id,
-                    "priority": source.priority or "standard",
-                    "impacted_dataset_ids": list(impact.get("dataset_ids", ())),
-                    "impacted_model_ids": list(impact.get("model_ids", ())),
+                    **source_entity_payload(source, dataset_impacts, model_impacts),
                 }
             )
         previous_error = previous.get("error")
@@ -595,16 +666,7 @@ def compare_snapshots(
                 "source_url": source.source_url,
                 "error": source.error,
             }
-            if source.catalog_id:
-                impact = dataset_impacts.get(source.catalog_id, {})
-                failure.update(
-                    {
-                        "catalog_id": source.catalog_id,
-                        "priority": source.priority or "standard",
-                        "impacted_dataset_ids": list(impact.get("dataset_ids", ())),
-                        "impacted_model_ids": list(impact.get("model_ids", ())),
-                    }
-                )
+            failure.update(source_entity_payload(source, dataset_impacts, model_impacts))
             failures.append(failure)
         elif not source.error and previous_error:
             recovery: dict[str, Any] = {
@@ -612,8 +674,7 @@ def compare_snapshots(
                 "source_url": source.source_url,
                 "previous_error": previous_error,
             }
-            if source.catalog_id:
-                recovery.update({"catalog_id": source.catalog_id, "priority": source.priority or "standard"})
+            recovery.update(source_entity_payload(source, dataset_impacts, model_impacts))
             recoveries.append(recovery)
 
     return DiscoveryDiff(
@@ -657,7 +718,7 @@ def render_report(report: dict[str, Any], limit: int = 100) -> str:
         f"- Focus: {', '.join(report['focus'])}",
         f"- Watched sources checked: {report['source_count']}",
         f"- New candidate links: {len(report['new_candidates'])}",
-        f"- Important dataset revisions: {len(report['source_updates'])}",
+        f"- Important catalog revisions: {len(report['source_updates'])}",
         f"- New source failures: {len(report['failures'])}",
         f"- Source recoveries: {len(report['recoveries'])}",
         "",
@@ -672,23 +733,29 @@ def render_report(report: dict[str, Any], limit: int = 100) -> str:
             lines.append(f"- … {len(report['new_candidates']) - limit} additional candidates are available in the JSON artifact.")
         lines.append("")
     if report["source_updates"]:
-        lines.extend(["## Important dataset revisions", ""])
+        lines.extend(["## Important catalog revisions", ""])
         for item in report["source_updates"]:
+            empty_dataset_impact = (
+                "no linked catalog dataset"
+                if item["entity_type"] == "model"
+                else "no downstream catalog dataset"
+            )
             dataset_impact = ", ".join(
                 f"`{dataset_id}`" for dataset_id in item["impacted_dataset_ids"]
-            ) or "no downstream catalog dataset"
+            ) or empty_dataset_impact
             impact = ", ".join(f"`{model_id}`" for model_id in item["impacted_model_ids"]) or "no catalog-linked model"
+            dataset_label = "linked datasets" if item["entity_type"] == "model" else "downstream datasets"
             lines.append(
-                f"- [ ] [`{item['catalog_id']}`]({item['url']}) — **{item['priority']}** priority; "
-                f"`{item['previous_revision']}` → `{item['revision']}`; downstream datasets: {dataset_impact}; "
-                f"impacted models: {impact}"
+                f"- [ ] [`{item['entity_id']}`]({item['url']}) — **{item['priority']}** "
+                f"{item['entity_type']} priority; `{item['previous_revision']}` → `{item['revision']}`; "
+                f"{dataset_label}: {dataset_impact}; impacted models: {impact}"
             )
         lines.append("")
     if report["failures"]:
         lines.extend(["## Source failures", ""])
         for item in report["failures"]:
-            catalog = f" `{item['catalog_id']}` ({item['priority']}) —" if item.get("catalog_id") else ""
-            lines.append(f"-{catalog} `{item['error']}` — [{item['source_url']}]({item['source_url']})")
+            entity = f" `{item['entity_id']}` ({item['priority']}) —" if item.get("entity_id") else ""
+            lines.append(f"-{entity} `{item['error']}` — [{item['source_url']}]({item['source_url']})")
         lines.append("")
     if report["recoveries"]:
         lines.extend(["## Recovered sources", ""])
@@ -745,7 +812,13 @@ def main() -> int:
     else:
         raise SystemExit(f"reviewed discovery baseline is missing: {args.state}")
 
-    diff = compare_snapshots(baseline, snapshots, declared_urls(), dataset_impact_index())
+    diff = compare_snapshots(
+        baseline,
+        snapshots,
+        declared_urls(),
+        dataset_impact_index(),
+        model_impact_index(),
+    )
     discovery = watchlist.get("discovery", {})
     report = report_payload(
         diff=diff,
@@ -760,7 +833,7 @@ def main() -> int:
     args.markdown_out.write_text(render_report(report), encoding="utf-8")
     print(
         f"Checked {len(sources)} watched source(s): {len(diff.new_candidates)} new candidate(s), "
-        f"{len(diff.source_updates)} important dataset revision(s), {len(diff.failures)} new failure(s), "
+        f"{len(diff.source_updates)} important catalog revision(s), {len(diff.failures)} new failure(s), "
         f"{len(diff.recoveries)} recovery/recoveries."
     )
     return 0

@@ -1,0 +1,90 @@
+id: musetalk-1-5
+name: MuseTalk 1.5
+organization: Tencent Music Entertainment Lyra Lab
+released_at: "2025-03-28"
+modalities:
+  - video
+  - audio
+tasks:
+  - audio-driven-avatar
+  - talking-head-generation
+  - lip-sync
+  - video-dubbing
+access:
+  status: open-weights
+  license: Repository states MIT code and broad model use; Hugging Face metadata declares CreativeML Open RAIL-M
+  release_url: https://github.com/TMElyralab/MuseTalk
+  weights_url: https://huggingface.co/TMElyralab/MuseTalk
+  api_url: null
+architecture:
+  family: Single-step latent inpainting UNet with frozen ft-mse VAE and Whisper-tiny audio encoder
+  parameters: null
+  notes: Adapts a Stable Diffusion 1.4-derived UNet to one-step 256 by 256 face-region latent inpainting rather than iterative diffusion sampling, enabling more than 30 FPS on an NVIDIA V100.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Stable Diffusion 1.4 inherited training mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: MuseTalk initializes its UNet from Stable Diffusion 1.4 but does not restate the foundation model's complete data lineage.
+    - name: HDTF
+      catalog_id: hdtf
+      role: fine-tuning
+      availability: public
+      scale: Approximately 362 videos and 15.8 hours
+      notes: The official repository explicitly says the released checkpoint was trained on HDTF together with a private dataset.
+    - name: MuseTalk private talking-face dataset
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: null
+      notes: The repository names a private component but does not disclose its size, sources, language distribution, rights, or release plan.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - audio
+      source_types:
+        - public-dataset
+        - proprietary
+      operations:
+        - informative-frame-sampling
+        - facial-abstract-pretraining
+        - latent-inpainting
+        - perceptual-loss
+      scale_disclosed: false
+      strategy: Train a facial abstract representation with informative frame sampling over HDTF and a private talking-face set while keeping the VAE and Whisper audio encoder frozen.
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+      source_types:
+        - public-dataset
+        - proprietary
+      operations:
+        - dynamic-margin-sampling
+        - lip-sync-adversarial-training
+        - gan-loss
+        - sync-loss
+        - spatiotemporal-sampling
+      scale_disclosed: false
+      strategy: Adversarially fine-tune lip synchronization with dynamic margin sampling, perceptual and GAN objectives, and explicit sync supervision over spatiotemporal training samples.
+  strategy_summary:
+    - Combine public HDTF with an unnamed private talking-face set; the released checkpoint discloses dataset identity only for the public component and no mixture ratio.
+    - Use facial abstract pretraining with informative frame sampling before lip-sync adversarial fine-tuning with dynamic margin sampling.
+    - Freeze the ft-mse VAE and Whisper-tiny encoder while adapting a Stable Diffusion-derived UNet for single-step face-region inpainting and real-time inference.
+  unknowns:
+    - Size, source identities, languages, consent, licensing, demographic coverage, and mixture weight of the private training dataset.
+    - Complete inherited Stable Diffusion 1.4 corpus and the exact snapshot used for initialization.
+    - A single authoritative model-license statement resolving the repository's broad-use language and Hugging Face's CreativeML Open RAIL-M metadata.
+    - Full training hyperparameters, compute, rejected-sample counts, and reproducibility of the reported real-time quality from public assets alone.
+evidence:
+  release: https://github.com/TMElyralab/MuseTalk
+  technical_report: https://arxiv.org/abs/2410.10122
+  repository: https://github.com/TMElyralab/MuseTalk
+status: verified
+last_verified: "2026-07-26"

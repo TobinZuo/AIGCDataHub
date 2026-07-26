@@ -1,0 +1,79 @@
+id: fashn-vton-1-5
+name: FASHN VTON v1.5
+organization: FASHN AI
+released_at: "2026-01-19"
+modalities:
+  - image
+tasks:
+  - virtual-try-on
+  - garment-conditioned-generation
+  - identity-preserving-editing
+  - multi-garment-try-on
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://fashn.ai/research/vton-1-5
+  weights_url: https://huggingface.co/fashn-ai/fashn-vton-1.5
+  api_url: null
+architecture:
+  family: 972M-parameter pixel-space MMDiT with double-stream, single-stream, and patch-mixer blocks
+  parameters: 972000000
+  notes: Generates 576 by 864 try-on images from person, garment, category, and optional mask inputs using 8 double-stream, 16 single-stream, and 4 patch-mixer blocks with 12 by 12 patches.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: true
+  datasets:
+    - name: FASHN masked try-on pair pool
+      catalog_id: null
+      role: pretraining
+      availability: not-released
+      scale: 18 million masked try-on pairs
+      notes: The report discloses aggregate pair count but not source datasets, identities, acquisition terms, rights composition, or a downloadable artifact.
+    - name: FASHN synthetic same-person alternative-garment triplets
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: 4 million synthetic triplets
+      notes: Phase-one weights generate same-person alternative-garment supervision; source images and the exact number of examples consumed in phase two are not released.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+      source_types:
+        - proprietary
+      operations:
+        - masked-try-on-pairing
+        - pixel-space-training
+        - token-dropping
+        - random-mask-conditioning
+      scale_disclosed: true
+      strategy: Train the pixel-space MMDiT from scratch on 18 million masked person-garment try-on pairs while dropping up to 75 percent of input tokens to reduce compute.
+    - name: fine-tuning
+      modalities:
+        - image
+      source_types:
+        - proprietary
+        - synthetic
+      operations:
+        - synthetic-triplet-generation
+        - same-person-conditioning
+        - garment-substitution
+        - source-mixing
+        - token-dropping
+      scale_disclosed: true
+      strategy: Continue training on a 50 to 50 mix of masked pairs and a four-million-item synthetic pool where the phase-one checkpoint creates the same person wearing an alternative garment.
+  strategy_summary:
+    - Train a 972M pixel-space MMDiT from scratch in two phases instead of inheriting an undisclosed foundation-model corpus.
+    - Start from 18 million masked try-on pairs, then mix them equally with four million phase-one-generated same-person alternative-garment triplets.
+    - Drop up to 75 percent of tokens during training to lower compute while retaining person identity, garment fidelity, and optional-mask control.
+  unknowns:
+    - Source dataset identities, image acquisition path, consent, licensing, demographic balance, and rights composition of the 18-million-pair pool.
+    - Exact phase-two sample counts, sampling with or without replacement, number of epochs, rejection rate, and quality filters for the four-million synthetic pool.
+    - Complete training compute, per-stage duration, and whether every benchmark or production configuration is reproducible from the public checkpoint and repository.
+evidence:
+  release: https://fashn.ai/research/vton-1-5
+  technical_report: https://fashn.ai/research/vton-1-5
+  repository: https://github.com/fashn-AI/fashn-vton-1.5
+status: verified
+last_verified: "2026-07-26"

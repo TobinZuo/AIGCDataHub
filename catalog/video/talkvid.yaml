@@ -1,0 +1,74 @@
+id: talkvid
+name: TalkVid
+organization: FreedomIntelligence
+released_at: "2025-08-19"
+release_date_source: https://github.com/FreedomIntelligence/TalkVid
+modality: video
+tasks:
+  - talking-head-generation
+  - audio-driven-avatar
+  - multilingual-avatar-video
+  - lip-sync-training
+  - talking-head-evaluation
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A multilingual high-definition talking-video research corpus described at
+  1,244.33 hours, with a richly annotated 160-hour core and a stratified
+  benchmark; the current public Hugging Face artifact exposes only 500 test rows.
+access:
+  status: metadata-only
+  type: metadata
+  url: https://huggingface.co/datasets/FreedomIntelligence/TalkVid
+  requires_account: false
+  notes: The current repository contains a 500-row test split of about 2.02 GB; it is not the complete 1,244.33-hour corpus described by the paper and project page.
+scale:
+  samples: 500
+  source_items: null
+  hours: null
+  approximate: false
+  notes: This card reports the currently observable public artifact; the paper headline is 1,244.33 hours from 7,729 speakers, and TalkVid-Core is 160 hours with 180,860 structured annotations.
+annotations:
+  types:
+    - embedded-video
+    - speaker-attribute
+    - language-label
+    - structured-video-caption
+    - facial-motion
+    - audio-video-quality
+    - benchmark-stratum
+  source: mixed
+  languages:
+    - multilingual
+license:
+  metadata: CC-BY-NC-4.0
+  media: CC-BY-NC-4.0 release terms layered on original YouTube rights
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The public card uses CC BY-NC 4.0, while source videos remain subject to uploader and platform rights; the release is unsuitable for commercial training without additional clearance.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - aesthetics
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - The public Hugging Face artifact currently exposes only the 500-row benchmark, not the full training corpus claimed by the paper.
+    - DOVER, CoTracker, head-detail filters, Gemini annotations, and human validation can introduce model and reviewer bias.
+    - The project does not publish a complete item-level rights, consent, demographic, or per-language distribution audit.
+processing:
+  recipe: Segment more than 6,000 raw hours, filter visual quality and aesthetics with DOVER, bound motion with CoTracker, enforce head-detail criteria, human-validate retained clips, and stratify 500 benchmark clips by age, gender, ethnicity, and language.
+  recommended_format: parquet
+  notes: Treat the 500-row public test split separately from the unreleased full corpus and 160-hour TalkVid-Core claims.
+evidence:
+  homepage: https://freedomintelligence.github.io/talk-vid
+  paper: https://arxiv.org/abs/2508.13618
+  used_by: []
+status: partial
+last_verified: "2026-07-26"
