@@ -63,8 +63,11 @@ scenarios:
     description: 人物与服装条件生成、尺寸感知试穿、多服装组合和服装迁移。
     tasks:
       - fit-aware-generation
+      - controllable-virtual-try-on
       - garment-conditioned-generation
+      - garment-instance-segmentation
       - garment-transfer
       - multi-garment-try-on
+      - video-virtual-try-on
       - virtual-try-on
       - virtual-try-on-evaluation

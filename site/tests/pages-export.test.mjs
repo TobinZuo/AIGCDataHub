@@ -21,6 +21,10 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /FIT-VTO-100K/);
   assert.match(html, /Fit-VTO/);
   assert.match(html, /FLUX VTO/);
+  assert.match(html, /CtrlVTON/);
+  assert.match(html, /VITON-HD-edit/);
+  assert.match(html, /TripVVT/);
+  assert.match(html, /TripVVT-10K/);
   assert.match(html, /SANA-Video 2\.0/);
   assert.match(html, /GraphVid-Bench/);
   assert.match(html, /Mage-Flow/);

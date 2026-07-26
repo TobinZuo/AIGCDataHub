@@ -37,6 +37,10 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn("graphvid", self.datasets["graphvid-bench"]["linked_model_ids"])
         self.assertIn("fit-vto-100k", self.models["fit-vto"]["linked_dataset_ids"])
         self.assertIn("fit-vto", self.datasets["fit-vto-100k"]["linked_model_ids"])
+        self.assertIn("viton-hd-edit", self.models["ctrlvton"]["linked_dataset_ids"])
+        self.assertIn("ctrlvton", self.datasets["viton-hd-edit"]["linked_model_ids"])
+        self.assertIn("tripvvt-10k", self.models["tripvvt"]["linked_dataset_ids"])
+        self.assertIn("tripvvt", self.datasets["tripvvt-10k"]["linked_model_ids"])
         self.assertIn(
             "audiovisual-translation-dub",
             self.models["just-dub-it"]["linked_dataset_ids"],
@@ -52,6 +56,20 @@ class ModelDatasetRelationTests(unittest.TestCase):
             {
                 "priority": "critical",
                 "source_url": "https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k",
+            },
+        )
+        self.assertEqual(
+            self.datasets["viton-hd-edit"]["monitoring"],
+            {
+                "priority": "critical",
+                "source_url": "https://huggingface.co/api/datasets/NXN-Labs/VITON-HD-edit",
+            },
+        )
+        self.assertEqual(
+            self.datasets["tripvvt-10k"]["monitoring"],
+            {
+                "priority": "critical",
+                "source_url": "https://huggingface.co/api/datasets/TripVVT/TripVVT-10K",
             },
         )
         self.assertEqual(self.datasets["finevideo"]["monitoring"]["priority"], "high")

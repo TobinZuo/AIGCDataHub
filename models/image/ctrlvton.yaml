@@ -1,0 +1,126 @@
+id: ctrlvton
+name: CtrlVTON
+organization: NXN Labs and KAIST
+released_at: "2026-07-10"
+modalities:
+  - image
+tasks:
+  - image-editing
+  - virtual-try-on
+  - controllable-virtual-try-on
+  - multi-garment-try-on
+  - garment-conditioned-generation
+  - garment-instance-segmentation
+access:
+  status: announced
+  license: Project materials are CC-BY-NC-SA-4.0; model code, checkpoints, and model-specific terms are not yet published
+  release_url: https://github.com/nxnai/CtrlVTON
+  weights_url: null
+  api_url: null
+architecture:
+  family: FLUX.2 Klein image-editing DiT with semantic task tokens and a mask-conditioned LoRA
+  parameters: null
+  notes: Full-parameter fine-tuning produces CtrlVTON-base; a frozen-base LoRA then injects person, garment, and target masks by channel-wise latent concatenation for pixel-level control.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: FLUX.2 Klein inherited pretraining mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: CtrlVTON inherits the FLUX.2 Klein visual prior; this paper does not restate the foundation model's source corpus or mixture.
+    - name: VIP-Seg fashion segmentation dataset
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: roughly 10,000 human-labeled garment masks
+      notes: Garment-person pairs are annotated with the exact garment-instance region to train VIP-SAM, but the dataset is not released.
+    - name: CtrlVTON training corpus
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: null
+      notes: The paper discloses a 32% public, 62% licensed-commercial, and 6% in-house source mix, but not the total sample count or complete source list.
+    - name: VITON-HD-edit
+      catalog_id: viton-hd-edit
+      role: evaluation
+      availability: public
+      scale: 2,032 VITON-HD test cases with three derived control fields
+      notes: The public release evaluates image-editing try-on, garment-instance segmentation, and spatial mask control; it is not the private CtrlVTON training corpus.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-foundation-model
+      scale_disclosed: false
+      strategy: Reuse the FLUX.2 Klein image-editing DiT before task-specific virtual try-on adaptation; inherited data sources are not restated.
+    - name: fine-tuning
+      modalities:
+        - image
+      source_types:
+        - proprietary
+        - human-feedback
+      operations:
+        - support-query-pairing
+        - human-mask-annotation
+        - instance-mask-training
+        - early-feature-injection
+      scale_disclosed: true
+      strategy: Train VIP-SAM on roughly 10K human-labeled garment-person-mask triplets so the data pipeline can isolate a specific garment under occlusion, layering, and deformation.
+    - name: fine-tuning
+      modalities:
+        - image
+      source_types:
+        - public-dataset
+        - licensed
+        - proprietary
+        - synthetic
+        - human-feedback
+      operations:
+        - source-mixing
+        - triplet-synthesis
+        - task-token-labeling
+        - vlm-screening
+        - contour-filtering
+        - human-review
+        - full-parameter-fine-tuning
+      scale_disclosed: false
+      strategy: Build same-person cross-garment triplets from public, licensed, and in-house pairs, generate four or five candidates, filter with a VLM and contour-leakage test, then let three annotators choose the best candidate before full-parameter fine-tuning.
+    - name: fine-tuning
+      modalities:
+        - image
+      source_types:
+        - public-dataset
+        - licensed
+        - proprietary
+        - synthetic
+      operations:
+        - lora-fine-tuning
+        - mask-conditioning
+        - channel-concatenation
+        - multi-garment-conditioning
+        - flow-matching
+      scale_disclosed: false
+      strategy: Freeze CtrlVTON-base and train a LoRA that consumes person, reference-garment, and target-region masks through spatially aligned channel concatenation for single- and multi-garment control.
+  strategy_summary:
+    - Turn public VTO pairs, licensed retailer data, and in-house data into same-person cross-garment editing triplets with a disclosed 32/62/6 source-class mix.
+    - Generate four or five candidates per pair, then require VLM identity and scene checks, reject silhouette leakage, and use three-person review to select the final training target.
+    - "Separate semantic control from pixel control: full-tune FLUX.2 Klein with garment and task tokens, then add a mask-conditioned LoRA on the frozen base."
+  unknowns:
+    - Total CtrlVTON training-sample count, complete public-dataset list, per-dataset weights, licensed providers, and in-house provenance.
+    - Rights and model versions for every synthetic candidate generator, plus the rejection rate at each quality-control stage.
+    - CtrlVTON-base and mask-LoRA checkpoints, executable training code, model-specific release terms, and public availability date.
+    - Mask-LoRA training steps, compute budget, and whether its source mix exactly matches the disclosed base-model mix.
+evidence:
+  release: https://github.com/nxnai/CtrlVTON
+  technical_report: https://arxiv.org/abs/2607.09362
+  repository: https://github.com/nxnai/CtrlVTON
+status: watch
+last_verified: "2026-07-26"

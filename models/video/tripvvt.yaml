@@ -1,0 +1,121 @@
+id: tripvvt
+name: TripVVT
+organization: Nanjing University, JIUTIAN Research (CMCC), Jilin University, and ByteDance
+released_at: "2026-04-30"
+modalities:
+  - video
+tasks:
+  - video-virtual-try-on
+  - virtual-try-on
+  - garment-conditioned-generation
+  - video-to-video
+access:
+  status: announced
+  license: Paper and dataset are public, but model code, checkpoints, and model-specific terms are not published
+  release_url: https://shaodingbao.github.io/TripVVT/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Wan2.1-Fun-14B-control DiT with human-mask, pose, garment, and line conditioning
+  parameters: 14000000000
+  notes: The MagicTryOn-derived framework concatenates video and coarse human-mask latents, injects garment appearance and line-map tokens, and preserves motion with DWPose conditioning.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Wan2.1-Fun-14B-control inherited pretraining mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: TripVVT inherits the Wan2.1-I2V and control-model visual prior; their complete source lineage is not restated.
+    - name: TripVVT supplementary training set
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: null
+      notes: Image and video try-on sources are converted into synthetic triplets with CatVTON and MagicTryOn, but the set size, complete source list, and files are not published.
+    - name: TripVVT-10K
+      catalog_id: tripvvt-10k
+      role: fine-tuning
+      availability: gated
+      scale: 9,931 training triplets and 100 held-out benchmark triplets
+      notes: The released corpus adds in-the-wild video triplets plus human masks, pose, garment line maps, and video-level captions during the second and third progressive stages.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-foundation-model
+      scale_disclosed: false
+      strategy: Start from wan2.1-Fun-14B-control, itself fine-tuned from Wan2.1-I2V-14B, without restating either foundation corpus.
+    - name: fine-tuning
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - public-dataset
+        - synthetic
+      operations:
+        - public-dataset-conversion
+        - synthetic-triplet-generation
+        - modality-specific-filtering
+        - progressive-resolution-training
+      scale_disclosed: true
+      strategy: Train for 25K steps on the unreleased TripVVT supplementary set, whose image and video sources are converted into the same triplet structure with dedicated synthesis and filtering recipes.
+    - name: fine-tuning
+      modalities:
+        - video
+        - image
+        - text
+      source_types:
+        - public-web
+        - public-dataset
+        - synthetic
+        - human-feedback
+      operations:
+        - triplet-mixing
+        - human-mask-conditioning
+        - pose-conditioning
+        - garment-line-conditioning
+        - video-captioning
+        - mixed-resolution-training
+      scale_disclosed: true
+      strategy: Add TripVVT-10K to the supplementary pool for another 25K steps, using real videos as targets and synchronized synthetic inputs, garment references, masks, pose, line maps, and captions as conditions.
+    - name: fine-tuning
+      modalities:
+        - video
+        - image
+        - text
+      source_types:
+        - public-web
+        - public-dataset
+        - synthetic
+        - human-feedback
+      operations:
+        - high-resolution-training
+        - temporal-consistency-training
+        - flow-matching
+      scale_disclosed: true
+      strategy: Raise resolution for a final 5.5K-step stage while keeping 49-frame clips, batch size two, AdamW, and the combined training mixture.
+  strategy_summary:
+    - "Reverse the usual synthetic-target recipe: generate a garment-swapped input video but keep the crawled real video as the supervised target."
+    - Convert roughly 20K web videos into 10,031 retained triplets using fixed-length sampling, human masks, pose, garment reconstruction, VLM screening, and final manual review.
+    - Progress from a supplementary synthetic pool to mixed TripVVT-10K training and then higher resolution over 25K, 25K, and 5.5K steps.
+  unknowns:
+    - Complete Wan2.1-I2V and wan2.1-Fun-14B-control training corpora, rights composition, filtering, and mixture weights.
+    - Size, full source list, source licenses, and mixture weight of the unreleased TripVVT supplementary training set.
+    - Source URLs and rights status for the roughly 20K crawled videos used to construct TripVVT-10K.
+    - Model code, checkpoints, model-specific license, exact public release date, and reproducible end-to-end training configuration.
+evidence:
+  release: https://shaodingbao.github.io/TripVVT/
+  technical_report: https://arxiv.org/abs/2604.27958
+  repository: null
+status: verified
+last_verified: "2026-07-26"
