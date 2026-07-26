@@ -81,6 +81,8 @@ class ModelCatalogTests(unittest.TestCase):
                 "recraft-v4-1",
                 "flux-2-max",
                 "veo-3-1-lite",
+                "videocof",
+                "humo-17b",
             }.issubset(cards)
         )
         self.assertIn("GPT Image 2 (high)", cards["gpt-image-2"]["ranking_names"])
@@ -237,6 +239,19 @@ class ModelCatalogTests(unittest.TestCase):
                 "vggsound-omni",
             },
         )
+
+    def test_videocof_and_humo_resolve_their_public_training_data(self) -> None:
+        cards = {card["id"]: card for _, card in load_models()}
+        self.assertEqual(
+            {item["catalog_id"] for item in cards["videocof"]["data"]["datasets"]},
+            {"videocof-50k"},
+        )
+        self.assertEqual(
+            {item["catalog_id"] for item in cards["humo-17b"]["data"]["datasets"]},
+            {"phantom-data", "humoset"},
+        )
+        self.assertTrue(cards["videocof"]["data"]["exact_mixture_disclosed"])
+        self.assertEqual(cards["humo-17b"]["architecture"]["parameters"], 17000000000)
 
         cards = {card["id"]: card for _, card in load_models()}
         lens_ids = {item["catalog_id"] for item in cards["lens"]["data"]["datasets"]}

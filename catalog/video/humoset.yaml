@@ -1,0 +1,76 @@
+id: humoset
+name: HuMoSet
+organization: Tsinghua University and ByteDance Intelligent Creation Team
+released_at: "2025-12-23"
+release_date_source: https://github.com/Phantom-video/HuMo
+modality: video
+tasks:
+  - multimodal-human-video-generation
+  - audio-driven-avatar
+  - talking-head-generation
+  - subject-consistent-video-generation
+  - text-image-audio-to-video
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  A human-centric multimodal video corpus pairing each target video with a
+  same-identity but visually distinct reference image, a Qwen2.5-VL dense
+  caption, and strictly processed synchronized audio for controllable generation.
+derived_from:
+  - catalog_id: openhumanvid
+    relationship: source-component
+    contribution: A documented source of public human-centric videos and reference imagery
+    notes: The official card names OpenHumanVid as one example among multiple open-source source datasets; it does not disclose the exact contribution or full source mixture.
+access:
+  status: open
+  type: hosted
+  url: https://modelscope.cn/datasets/leoniuschen/HuMoSet
+  requires_account: false
+  notes: ModelScope provides direct CLI and Git LFS download instructions for target videos, reference images, and video_caption.parquet; its API reports approximately 708 GB of repository storage.
+scale:
+  samples: 670000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The official release reports about 670,000 video samples, each with a distinct same-identity reference image and a dense video caption.
+annotations:
+  types:
+    - target-video
+    - synchronized-audio
+    - same-identity-reference-image
+    - dense-video-caption
+    - sample-id
+  source: mixed
+  languages:
+    - multilingual
+license:
+  metadata: CC-BY-NC-ND (version not specified by ModelScope)
+  media: CC-BY-NC-ND release label layered on the licenses and rights of source datasets
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: ModelScope exposes the label CC-BY-NC-ND without a version; users must inspect the repository LICENSE and every upstream dataset's terms before training, adapting, or redistributing the media.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - The full source-dataset list, source proportions, deduplication method, and per-sample provenance are not published on the card.
+    - Qwen2.5-VL captions and automated audio-visual synchronization filters can contain hallucinations, exclusions, or alignment errors.
+    - Speaker language, demographic, consent, safety, and identity distributions are not documented.
+    - The license version is not specified and upstream source rights remain layered, so commercial use and derivative redistribution require review.
+processing:
+  recipe: Curate videos and distinct same-identity reference images from public datasets, generate dense descriptions with Qwen2.5-VL, enhance and filter speech segments, and retain samples that pass audio-visual synchronization processing.
+  recommended_format: native
+  notes: Download with the ModelScope CLI or Git LFS, join video and reference_image files through video_caption.parquet, and preserve source and license metadata when available.
+evidence:
+  homepage: https://modelscope.cn/datasets/leoniuschen/HuMoSet
+  paper: https://arxiv.org/abs/2509.08519
+  used_by:
+    - HuMo-17B
+status: partial
+last_verified: "2026-07-27"

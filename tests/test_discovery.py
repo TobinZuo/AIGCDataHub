@@ -218,6 +218,15 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(revision, "2026-07-25T10:00:00Z@abc123")
         self.assertEqual(url, "https://huggingface.co/datasets/nkp37/OpenVid-1M")
 
+    def test_extracts_modelscope_dataset_revision_without_download_noise(self) -> None:
+        revision, url = extract_source_revision(
+            '{"Code":200,"Data":{"Id":167084,"Namespace":"leoniuschen",'
+            '"Name":"HuMoSet","Downloads":19024,"GmtModified":1784954704}}',
+            "https://modelscope.cn/api/v1/datasets/leoniuschen/HuMoSet",
+        )
+        self.assertEqual(revision, "1784954704@dataset-167084")
+        self.assertEqual(url, "https://modelscope.cn/datasets/leoniuschen/HuMoSet")
+
     def test_extracts_hugging_face_model_revision(self) -> None:
         revision, url = extract_source_revision(
             '{"id":"tencent/HunyuanVideo-Avatar","sha":"def456",'
@@ -389,11 +398,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            54,
+            57,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            54,
+            56,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -412,7 +421,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 10)
-        self.assertEqual(len(sources), 197)
+        self.assertEqual(len(sources), 202)
         self.assertEqual(
             {source.ranking_id for source in sources if source.ranking_id},
             {
@@ -438,19 +447,19 @@ class DiscoveryTests(unittest.TestCase):
                 "https://huggingface.co/api/datasets/zhenzhiwang/TalkVerse",
                 "https://github.com/fudan-generative-vision/OpenHumanVid",
                 "https://huggingface.co/api/datasets/Haosonnn/OpenHumanVid-Talking",
-                "https://api.github.com/repos/fudan-generative-vision/OpenHumanVid/commits/main",
-                "https://api.github.com/repos/snap-research/Panda-70M/commits/main",
+                "https://github.com/fudan-generative-vision/OpenHumanVid/commits/main.atom",
+                "https://github.com/snap-research/Panda-70M/commits/main.atom",
                 "https://huggingface.co/api/datasets/Koala-36M/Koala-36M-v1",
                 "https://huggingface.co/api/datasets/wjwow/FreeMan",
-                "https://api.github.com/repos/GAP-LAB-CUHK-SZ/MVHumanNet/commits/main",
-                "https://api.github.com/repos/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus/commits/main",
+                "https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet/commits/main.atom",
+                "https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus/commits/main.atom",
                 "https://huggingface.co/api/datasets/common-canvas/commoncatalog-cc-by",
                 "https://huggingface.co/api/datasets/ma-xu/fine-t2i",
                 "https://huggingface.co/api/datasets/stanford-vision-lab/gpic",
                 "https://huggingface.co/api/datasets/Lewandofski/OpenVE-3M",
                 "https://huggingface.co/api/datasets/Lewandofski/OpenVE-Bench",
-                "https://api.github.com/repos/MRzzm/HDTF/commits/main",
-                "https://api.github.com/repos/CelebV-HQ/CelebV-HQ/commits/main",
+                "https://github.com/MRzzm/HDTF/commits/main.atom",
+                "https://github.com/CelebV-HQ/CelebV-HQ/commits/main.atom",
                 "https://huggingface.co/api/datasets/FreedomIntelligence/TalkVid",
                 "https://huggingface.co/api/datasets/MV-Fashion/MV-Fashion",
                 "https://huggingface.co/api/models/tencent/HunyuanVideo-Avatar",
@@ -459,10 +468,10 @@ class DiscoveryTests(unittest.TestCase):
                 "https://huggingface.co/api/datasets/amphion/Emilia-Dataset",
                 "https://projects.csail.mit.edu/soundnet/",
                 "https://arxiv.org/abs/2607.21580",
-                "https://export.arxiv.org/api/query?id_list=2607.16283",
+                "https://arxiv.org/html/2607.16283",
                 "https://huggingface.co/api/models/baidu/ERNIE-Image-Aes",
                 "https://www.microsoft.com/en-us/research/publication/lens-rethinking-training-efficiency-for-foundational-text-to-image-models/",
-                "https://api.github.com/repos/hche11/VGGSound/commits/master",
+                "https://github.com/hche11/VGGSound/commits/master.atom",
                 "https://research.google.com/audioset/download.html",
                 "https://registry.opendata.aws/multimedia-commons/",
                 "https://deepmind.google/models/model-cards/gemini-omni-flash/",
@@ -485,6 +494,11 @@ class DiscoveryTests(unittest.TestCase):
                 "https://developers.google.com/youtube/v3/docs",
                 "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction",
                 "https://partner.temu.com/documentation",
+                "https://huggingface.co/api/datasets/XiangpengYang/VideoCoF-50k",
+                "https://huggingface.co/api/datasets/ZhuoweiChen/Phantom-data-Koala36M",
+                "https://modelscope.cn/api/v1/datasets/leoniuschen/HuMoSet",
+                "https://huggingface.co/api/models/XiangpengYang/VideoCoF",
+                "https://huggingface.co/api/models/bytedance-research/HuMo",
             }.issubset(urls)
         )
         self.assertIn("https://huggingface.co/api/datasets/nkp37/OpenVid-1M", urls)
@@ -523,9 +537,12 @@ class DiscoveryTests(unittest.TestCase):
         impacts = dataset_impact_index()
         self.assertEqual(
             impacts["openhumanvid"]["dataset_ids"],
-            ("openhumanvid-talking", "talkverse"),
+            ("humoset", "openhumanvid-talking", "talkverse"),
         )
-        self.assertEqual(impacts["openhumanvid"]["model_ids"], ("skyreels-v4", "talkverse-5b"))
+        self.assertEqual(
+            impacts["openhumanvid"]["model_ids"],
+            ("humo-17b", "skyreels-v4", "talkverse-5b"),
+        )
         self.assertEqual(impacts["panda-70m"]["dataset_ids"], ("talkverse",))
         self.assertEqual(impacts["panda-70m"]["model_ids"], ("talkverse-5b",))
         self.assertEqual(
@@ -541,6 +558,11 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(impacts["openve-3m"]["dataset_ids"], ("openve-bench",))
         self.assertEqual(impacts["openve-3m"]["model_ids"], ("openve-edit",))
+        self.assertEqual(impacts["koala-36m"]["dataset_ids"], ("phantom-data",))
+        self.assertEqual(
+            impacts["koala-36m"]["model_ids"],
+            ("humo-17b", "skyreels-v4"),
+        )
 
     def test_model_impact_index_uses_direct_dataset_links(self) -> None:
         impacts = model_impact_index()
@@ -551,6 +573,11 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(impacts["hunyuanvideo-avatar"]["model_ids"], ("hunyuanvideo-avatar",))
         self.assertEqual(impacts["musetalk-1-5"]["dataset_ids"], ("hdtf",))
         self.assertEqual(impacts["fashn-vton-1-5"]["dataset_ids"], ())
+        self.assertEqual(
+            impacts["humo-17b"]["dataset_ids"],
+            ("humoset", "phantom-data"),
+        )
+        self.assertEqual(impacts["videocof"]["dataset_ids"], ("videocof-50k",))
 
     def test_compares_candidates_failures_recoveries_and_known_urls(self) -> None:
         baseline = {

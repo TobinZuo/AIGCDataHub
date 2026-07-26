@@ -385,10 +385,10 @@ tracks:
       - url: https://huggingface.co/api/datasets/Haosonnn/OpenHumanVid-Talking
         catalog_id: openhumanvid-talking
         priority: critical
-      - url: https://api.github.com/repos/fudan-generative-vision/OpenHumanVid/commits/main
+      - url: https://github.com/fudan-generative-vision/OpenHumanVid/commits/main.atom
         catalog_id: openhumanvid
         priority: critical
-      - url: https://api.github.com/repos/snap-research/Panda-70M/commits/main
+      - url: https://github.com/snap-research/Panda-70M/commits/main.atom
         catalog_id: panda-70m
         priority: critical
       - url: https://huggingface.co/api/datasets/Koala-36M/Koala-36M-v1
@@ -397,10 +397,10 @@ tracks:
       - url: https://huggingface.co/api/datasets/wjwow/FreeMan
         catalog_id: freeman
         priority: critical
-      - url: https://api.github.com/repos/GAP-LAB-CUHK-SZ/MVHumanNet/commits/main
+      - url: https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet/commits/main.atom
         catalog_id: mvhumannet
         priority: critical
-      - url: https://api.github.com/repos/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus/commits/main
+      - url: https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus/commits/main.atom
         catalog_id: mvhumannet-plus-plus
         priority: critical
       - url: https://huggingface.co/api/datasets/common-canvas/commoncatalog-cc-by
@@ -430,10 +430,19 @@ tracks:
       - url: https://huggingface.co/api/datasets/Rapidata/image-to-video-human-preference-seedance-1-pro
         catalog_id: seedance-1-pro-human-preference
         priority: high
-      - url: https://api.github.com/repos/MRzzm/HDTF/commits/main
+      - url: https://huggingface.co/api/datasets/XiangpengYang/VideoCoF-50k
+        catalog_id: videocof-50k
+        priority: critical
+      - url: https://huggingface.co/api/datasets/ZhuoweiChen/Phantom-data-Koala36M
+        catalog_id: phantom-data
+        priority: critical
+      - url: https://modelscope.cn/api/v1/datasets/leoniuschen/HuMoSet
+        catalog_id: humoset
+        priority: critical
+      - url: https://github.com/MRzzm/HDTF/commits/main.atom
         catalog_id: hdtf
         priority: critical
-      - url: https://api.github.com/repos/CelebV-HQ/CelebV-HQ/commits/main
+      - url: https://github.com/CelebV-HQ/CelebV-HQ/commits/main.atom
         catalog_id: celebv-hq
         priority: critical
       - url: https://huggingface.co/api/datasets/FreedomIntelligence/TalkVid
@@ -451,7 +460,7 @@ tracks:
       - url: https://arxiv.org/abs/2607.21580
         catalog_id: graphvid-bench
         priority: critical
-      - url: https://export.arxiv.org/api/query?id_list=2607.16283
+      - url: https://arxiv.org/html/2607.16283
         catalog_id: gensyn10
         priority: critical
       - url: https://huggingface.co/api/models/baidu/ERNIE-Image-Aes
@@ -466,22 +475,22 @@ tracks:
       - url: https://omni2sound.github.io/
         catalog_id: soundatlas
         priority: critical
-      - url: https://api.github.com/repos/cdjkim/audiocaps/commits/master
+      - url: https://github.com/cdjkim/audiocaps/commits/master.atom
         catalog_id: audiocaps-2-0
         priority: high
       - url: https://laion.ai/blog/relaion-5b/
         catalog_id: re-laion-5b
         priority: high
-      - url: https://api.github.com/repos/yuvalkirstain/PickScore/commits/main
+      - url: https://github.com/yuvalkirstain/PickScore/commits/main.atom
         catalog_id: pick-a-pic-v2
         priority: high
-      - url: https://api.github.com/repos/allenai/objaverse-xl/commits/main
+      - url: https://github.com/allenai/objaverse-xl/commits/main.atom
         catalog_id: objaverse-xl
         priority: high
       - url: https://journeydb.github.io/
         catalog_id: journeydb
         priority: high
-      - url: https://api.github.com/repos/m-bain/webvid/commits/main
+      - url: https://github.com/m-bain/webvid/commits/main.atom
         catalog_id: webvid-10m
         priority: high
       - url: https://zenodo.org/api/records/4783391
@@ -490,10 +499,10 @@ tracks:
       - url: https://zenodo.org/api/records/4060432
         catalog_id: fsd50k
         priority: high
-      - url: https://api.github.com/repos/hche11/VGGSound/commits/master
+      - url: https://github.com/hche11/VGGSound/commits/master.atom
         catalog_id: vggsound
         priority: critical
-      - url: https://api.github.com/repos/mdeff/fma/commits/master
+      - url: https://github.com/mdeff/fma/commits/master.atom
         catalog_id: fma
         priority: high
       - url: https://research.google.com/audioset/download.html
@@ -502,7 +511,7 @@ tracks:
       - url: https://registry.opendata.aws/multimedia-commons/
         catalog_id: yfcc100m
         priority: high
-      - url: https://api.github.com/repos/tbertinmahieux/MSongsDB/commits/master
+      - url: https://github.com/tbertinmahieux/MSongsDB/commits/master.atom
         catalog_id: million-song-dataset
         priority: high
 
@@ -516,6 +525,12 @@ tracks:
       - url: https://seed.bytedance.com/en/blog/tech-report-of-seedance-1-0-is-now-publicly-available
         model_id: seedance-1-0-pro
         priority: high
+      - url: https://huggingface.co/api/models/XiangpengYang/VideoCoF
+        model_id: videocof
+        priority: critical
+      - url: https://huggingface.co/api/models/bytedance-research/HuMo
+        model_id: humo-17b
+        priority: critical
       - url: https://huggingface.co/api/models/tencent/HunyuanVideo-Avatar
         model_id: hunyuanvideo-avatar
         priority: critical
@@ -531,13 +546,13 @@ tracks:
       - url: https://huggingface.co/api/models/justdubit/justdubit
         model_id: just-dub-it
         priority: critical
-      - url: https://api.github.com/repos/nxnai/CtrlVTON/commits/main
+      - url: https://github.com/nxnai/CtrlVTON/commits/main.atom
         model_id: ctrlvton
         priority: critical
-      - url: https://api.github.com/repos/HarryWang355/FIT-VTO/commits/main
+      - url: https://github.com/HarryWang355/FIT-VTO/commits/main.atom
         model_id: fit-vto
         priority: critical
-      - url: https://api.github.com/repos/Tencent-Hunyuan/HunyuanVideo-1.5/commits/main
+      - url: https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5/commits/main.atom
         model_id: hunyuanvideo-1-5
         priority: high
       - url: https://huggingface.co/api/models/Lightricks/LTX-2.3
@@ -567,7 +582,7 @@ tracks:
       - url: https://lumalabs.ai/news/uni-1-1-api
         model_id: luma-uni-1-max
         priority: critical
-      - url: https://api.github.com/repos/HiDream-ai/HiDream-O1-Image/commits/main
+      - url: https://github.com/HiDream-ai/HiDream-O1-Image/commits/main.atom
         model_id: hidream-o1-image
         priority: critical
       - url: https://www.hidream.ai/
