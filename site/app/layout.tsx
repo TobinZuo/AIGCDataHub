@@ -5,9 +5,7 @@ const title = "AIGCDataHub — 模型背后的数据策略";
 const description =
   "持续追踪最新 AIGC 模型、训练数据策略与可用数据集，并明确记录公开信息与未知项。";
 const githubPages = process.env.GITHUB_PAGES === "true";
-const origin = githubPages
-  ? "https://tobinzuo.github.io/AIGCDataHub"
-  : "https://aigc-datahub-index.zuotongbin.chatgpt.site";
+const origin = "https://tobinzuo.github.io/AIGCDataHub";
 const assetBase = githubPages ? "/AIGCDataHub" : "";
 
 const imageUrl = `${origin}/og.png`;

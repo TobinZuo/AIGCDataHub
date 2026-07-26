@@ -48,12 +48,14 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /FSD50K/);
   assert.match(html, /Million Song Dataset/);
   assert.match(html, /FMA/);
+  assert.match(html, /Lens-RL-8K/);
+  assert.match(html, /ERIA-1K/);
   assert.match(html, /10\/10/);
   assert.match(html, /目录关联/);
   assert.match(html, /最新数据集/);
   assert.match(html, /最新模型/);
   assert.match(html, /结构化数据集/);
-  assert.match(html, /https:\/\/aigc-datahub-index\.zuotongbin\.chatgpt\.site\/og\.png/);
+  assert.match(html, /https:\/\/tobinzuo\.github\.io\/AIGCDataHub\/og\.png/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 
@@ -73,6 +75,8 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"release_date_source"/);
   assert.match(catalog, /"audiocaps-2-0"/);
   assert.match(catalog, /"vggsound-omni"/);
+  assert.match(catalog, /"lens-rl-8k"/);
+  assert.match(catalog, /"eria-1k"/);
   assert.match(catalog, /"clotho-2-1"/);
   assert.match(catalog, /"audioset"/);
   assert.match(catalog, /"vggsound"/);
@@ -81,7 +85,16 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"fma"/);
   const parsedCatalog = JSON.parse(catalog);
   assert.equal(parsedCatalog.format_version, 2);
-  assert.equal(parsedCatalog.datasets[0].id, "lens-800m");
+  assert.equal(parsedCatalog.datasets[0].id, "eria-1k");
+  const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
+  assert.deepEqual(
+    models.lens.data.datasets.map((dataset) => dataset.catalog_id),
+    ["lens-800m", "lens-rl-8k"],
+  );
+  assert.deepEqual(
+    models["ernie-image"].data.datasets.map((dataset) => dataset.catalog_id),
+    [null, "eria-1k"],
+  );
   assert.match(page, /CatalogExplorer/);
   assert.match(layout, /AIGCDataHub/);
   assert.doesNotMatch(layout, /codex-preview|Starter Project/i);

@@ -47,6 +47,13 @@ class ModelCatalogTests(unittest.TestCase):
             },
         )
 
+        cards = {card["id"]: card for _, card in load_models()}
+        lens_ids = {item["catalog_id"] for item in cards["lens"]["data"]["datasets"]}
+        self.assertEqual(lens_ids, {"lens-800m", "lens-rl-8k"})
+
+        ernie_ids = {item["catalog_id"] for item in cards["ernie-image"]["data"]["datasets"]}
+        self.assertEqual(ernie_ids, {None, "eria-1k"})
+
 
 if __name__ == "__main__":
     unittest.main()

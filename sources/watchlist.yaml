@@ -13,7 +13,9 @@ tracks:
     official_sources:
       - https://bfl.ai/blog
       - https://www.microsoft.com/en-us/research/publications/
+      - https://github.com/microsoft/Lens
       - https://github.com/baidu
+      - https://github.com/baidu/ERNIE-Image
       - https://github.com/QwenLM
       - https://stability.ai/news
       - https://ai.meta.com/blog/
@@ -75,6 +77,8 @@ tracks:
       - https://zenodo.org/records/4060432
       - https://millionsongdataset.com/
       - https://github.com/mdeff/fma
+      - https://github.com/microsoft/Lens
+      - https://huggingface.co/baidu/ERNIE-Image-Aes
 
 acceptance_rules:
   - Require an official release, repository, model card, dataset card, or technical report.

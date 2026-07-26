@@ -1,0 +1,62 @@
+id: lens-rl-8k
+name: Lens-RL-8K
+organization: Microsoft Research
+released_at: "2026-05-20"
+release_date_source: https://arxiv.org/abs/2605.21573
+modality: preference
+tasks:
+  - text-to-image-reinforcement-learning
+  - rubric-based-reward-modeling
+stages:
+  - preference-tuning
+description: >-
+  A taxonomy-driven prompt and rubric collection used to reinforce Lens after
+  pretraining across diverse text-to-image scenarios, including people,
+  objects, scenes, text rendering, and graphic design.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2605.21573
+  requires_account: false
+  notes: The technical report describes the collection, but no official dataset download is currently linked.
+scale:
+  samples: 8000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The release identifies the prompt set as 8K rather than publishing an exact row count.
+annotations:
+  types:
+    - image-generation-prompt
+    - taxonomy-category
+    - prompt-specific-rubric
+    - global-structural-integrity-rubric
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Unknown
+  media: Not applicable; the described records are text prompts and rubrics
+  commercial_use: unknown
+  redistribution: unknown
+  notes: No dataset-specific license or redistribution terms are published with the technical report.
+quality:
+  dimensions:
+    - text-media-alignment
+    - aesthetics
+    - provenance
+  known_limitations:
+    - The prompt set and complete rubrics are not publicly downloadable for independent inspection.
+    - GPT-4.1 generated both prompts and prompt-specific rubrics, so model biases can propagate into RL coverage and rewards.
+    - The 8K name does not establish an exact machine-verifiable row count.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: Preserve taxonomy fields, prompts, up to ten prompt-specific rubrics, and the appended global rubric.
+evidence:
+  homepage: https://www.microsoft.com/en-us/research/publication/lens-rethinking-training-efficiency-for-foundational-text-to-image-models/
+  paper: https://arxiv.org/abs/2605.21573
+  used_by:
+    - Lens
+status: partial
+last_verified: "2026-07-26"

@@ -1,0 +1,61 @@
+id: eria-1k
+name: ERIA-1K
+organization: Baidu
+released_at: "2026-05-25"
+release_date_source: https://arxiv.org/abs/2605.25347
+modality: evaluation
+tasks:
+  - image-aesthetic-assessment
+  - aesthetic-model-evaluation
+stages:
+  - evaluation
+description: >-
+  A held-out, human-annotated image-aesthetics benchmark designed around a
+  deployment-oriented mixture of photography, illustration, graphic design,
+  mixed web imagery, film photography, and product imagery.
+access:
+  status: unavailable
+  type: none
+  url: https://huggingface.co/baidu/ERNIE-Image-Aes
+  requires_account: false
+  notes: The report says ERIA-1K is open-source, but no downloadable benchmark files are linked in the official resources.
+scale:
+  samples: 1000
+  source_items: 1000
+  hours: null
+  approximate: false
+  notes: The benchmark contains 1,000 images across six disclosed content categories.
+annotations:
+  types:
+    - aesthetic-tier
+    - content-category
+    - pairwise-aesthetic-preference
+  source: human
+  languages:
+    - language-agnostic
+license:
+  metadata: Unknown
+  media: Source-dependent and undisclosed
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The Apache-2.0 model license does not establish terms for the benchmark metadata or underlying images.
+quality:
+  dimensions:
+    - aesthetics
+    - human-preference
+    - provenance
+  known_limitations:
+    - No official downloadable data files or dataset-specific license were located during verification.
+    - The report gives category proportions but not the source-level provenance or rights composition of the images.
+    - Professional calibration improves annotation consistency but does not make aesthetic judgments universal.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: Preserve all six content categories and the Swiss-tournament-derived aesthetic tiers from 1 to 10.
+evidence:
+  homepage: https://huggingface.co/baidu/ERNIE-Image-Aes
+  paper: https://arxiv.org/abs/2605.25347
+  used_by:
+    - ERNIE-Image-Aes
+status: partial
+last_verified: "2026-07-26"
