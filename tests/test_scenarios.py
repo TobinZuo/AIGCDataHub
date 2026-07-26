@@ -68,7 +68,7 @@ class ScenarioTaxonomyTests(unittest.TestCase):
 
     def test_strategy_profiles_are_derived_from_model_cards(self) -> None:
         payload = build_payload()
-        self.assertEqual(payload["format_version"], 13)
+        self.assertEqual(payload["format_version"], 14)
         models = {item["id"]: item for item in payload["models"]}
 
         for model in models.values():

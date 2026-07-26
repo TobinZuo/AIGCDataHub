@@ -70,6 +70,7 @@ type EnrichedDatasetLineage = DatasetLineageRelation & {
 type Monitoring = {
   priority: string;
   source_url: string;
+  mode?: string;
 };
 
 type RankingPosition = {
@@ -327,6 +328,11 @@ const MONITORING_LABELS: Record<string, string> = {
   standard: "常规监控",
 };
 
+const MONITORING_MODE_LABELS: Record<string, string> = {
+  "content-revision": "内容版本监控",
+  availability: "可用性监控",
+};
+
 const STAGE_LABELS: Record<string, string> = {
   pretraining: "预训练",
   midtraining: "持续训练",
@@ -553,7 +559,7 @@ function ModelResult({ model, scenarioLabels, expanded, onToggle, onOpenDataset 
               <p className="linked-note">其中 {namedDatasets.length} 个已与本目录数据卡建立关联。</p>
             )}
             {model.monitoring && (
-              <p className="linked-note">模型版本：{MONITORING_LABELS[model.monitoring.priority]}，稳定权重或官方仓库修订会进入每周复核队列。</p>
+              <p className="linked-note">模型更新：{MONITORING_MODE_LABELS[model.monitoring.mode ?? "content-revision"]} / {MONITORING_LABELS[model.monitoring.priority]}。监控源变化时进入每周复核队列。</p>
             )}
           </section>
           <section className="unknown-panel">
@@ -651,7 +657,12 @@ function DatasetResult({
               <div><dt>账号要求</dt><dd>{dataset.access.requires_account ? "需要" : "不需要"}</dd></div>
               <div><dt>首次发布</dt><dd>{formatDate(dataset.released_at)}</dd></div>
               <div><dt>最近核验</dt><dd>{formatDate(dataset.last_verified)}</dd></div>
-              {dataset.monitoring && <div><dt>版本监控</dt><dd>{MONITORING_LABELS[dataset.monitoring.priority]}</dd></div>}
+              {dataset.monitoring && (
+                <div>
+                  <dt>更新监控</dt>
+                  <dd>{MONITORING_MODE_LABELS[dataset.monitoring.mode ?? "content-revision"]} / {MONITORING_LABELS[dataset.monitoring.priority]}</dd>
+                </div>
+              )}
             </dl>
           </section>
           <section>
@@ -1299,6 +1310,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         ...model.data.stages.flatMap((stage) => stage.operations),
         model.monitoring?.priority ?? "",
         model.monitoring ? MONITORING_LABELS[model.monitoring.priority] : "",
+        model.monitoring ? MONITORING_MODE_LABELS[model.monitoring.mode ?? "content-revision"] : "",
       ].join(" "));
       return inModality && inScenario && (!search || haystack.includes(search));
     });
@@ -1319,6 +1331,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         ...dataset.evidence.used_by,
         dataset.monitoring?.priority ?? "",
         dataset.monitoring ? MONITORING_LABELS[dataset.monitoring.priority] : "",
+        dataset.monitoring ? MONITORING_MODE_LABELS[dataset.monitoring.mode ?? "content-revision"] : "",
         ...dataset.linked_model_ids.map((id) => modelById.get(id)?.name ?? id),
         ...dataset.upstream_dataset_ids.map((id) => datasetById.get(id)?.name ?? id),
         ...dataset.downstream_dataset_ids.map((id) => datasetById.get(id)?.name ?? id),

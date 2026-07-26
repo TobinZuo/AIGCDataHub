@@ -569,6 +569,10 @@ tracks:
       - url: https://laion.ai/blog/relaion-5b/
         catalog_id: re-laion-5b
         priority: high
+      - url: https://huggingface.co/api/datasets/bigdata-pw/Flickr
+        catalog_id: flickr-5b
+        priority: critical
+        revision_mode: availability
       - url: https://github.com/yuvalkirstain/PickScore/commits/main.atom
         catalog_id: pick-a-pic-v2
         priority: high
@@ -610,6 +614,39 @@ tracks:
       - release-files
       - license-change
     official_sources:
+      - url: https://updates.midjourney.com/version-8-2/
+        model_id: midjourney-v8-2
+        priority: critical
+      - url: https://nvlabs.github.io/Sana/Video2/
+        model_id: sana-video-2-0
+        priority: critical
+      - url: https://export.arxiv.org/api/query?id_list=2607.21580
+        model_id: graphvid
+        priority: critical
+      - url: https://bfl.ai/blog/flux-3
+        model_id: flux-3
+        priority: critical
+      - url: https://arxiv.org/abs/2607.19064
+        model_id: mage-flow
+        priority: critical
+      - url: https://docs.bfl.ai/flux_tools/flux_vto
+        model_id: flux-vto
+        priority: critical
+      - url: https://arxiv.org/html/2605.21573
+        model_id: lens
+        priority: critical
+      - url: https://shaodingbao.github.io/TripVVT/
+        model_id: tripvvt
+        priority: critical
+      - url: https://huggingface.co/api/models/baidu/ERNIE-Image
+        model_id: ernie-image
+        priority: critical
+      - url: "https://dynamic.heygen.ai/www/Paper%20Links/avatarv_tech_report.pdf"
+        model_id: avatar-v
+        priority: critical
+      - url: https://github.com/OpenVE-Team/OpenVE-3M/commits/main.atom
+        model_id: openve-edit
+        priority: critical
       - url: https://seed.bytedance.com/en/seedance1_5_pro
         model_id: seedance-1-5-pro
         priority: critical
