@@ -1,0 +1,83 @@
+id: seedance-1-5-pro
+name: Seedance 1.5 pro
+organization: ByteDance Seed
+released_at: "2025-12-16"
+ranking_names:
+  - Seedance-1.5 Pro
+modalities:
+  - video
+  - audio
+tasks:
+  - text-to-video
+  - image-to-video
+  - audio-video-generation
+access:
+  status: api-only
+  license: Volcano Engine service terms
+  release_url: https://seed.bytedance.com/en/blog/sound-and-vision-all-in-one-take-the-official-release-of-seedance-1-5-pro
+  weights_url: null
+  api_url: https://seed.bytedance.com/en/seedance1_5_pro
+architecture:
+  family: Dual-branch audio-video diffusion transformer
+  parameters: null
+  notes: Uses dedicated audio and video branches plus a cross-modal joint module for synchronized native generation; parameter count is not disclosed.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: AVGen-Bench
+      catalog_id: avgen-bench
+      role: evaluation
+      availability: public
+      scale: 235 prompts and 3,009 generated examples
+      notes: The official leaderboard evaluates Seedance-1.5 Pro; this is evaluation evidence and not a training-data disclosure.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - multi-stage-data-curation
+        - joint-audio-video-training
+      scale_disclosed: false
+      strategy: Train native audio and video branches with a specialized multi-stage data pipeline and cross-modal interaction, without publishing corpus identities or scale.
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - proprietary
+      operations:
+        - supervised-fine-tuning
+        - quality-filtering
+      scale_disclosed: false
+      strategy: Apply supervised fine-tuning on an unreleased high-quality subset to improve instruction following, cinematography, narrative coherence, and multilingual lip sync.
+    - name: preference
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - human-feedback
+      operations:
+        - reinforcement-learning-from-human-feedback
+        - multi-dimensional-reward-modeling
+      scale_disclosed: false
+      strategy: Optimize with human feedback and multidimensional reward models after supervised fine-tuning; prompt counts, rater protocol, and mixtures are not reported.
+  strategy_summary:
+    - Couple audio and video during pretraining instead of adding sound in a separate post-process.
+    - Follow multi-stage curation with high-quality SFT and multidimensional RLHF.
+  unknowns:
+    - Training dataset identities, source rights, scale, language and modality mix, captions, filtering thresholds, and deduplication.
+    - SFT and RLHF sample counts, mixture weights, rater populations, and safety-training data.
+evidence:
+  release: https://seed.bytedance.com/en/blog/sound-and-vision-all-in-one-take-the-official-release-of-seedance-1-5-pro
+  technical_report: https://arxiv.org/abs/2512.13507
+  repository: null
+status: partial
+last_verified: "2026-07-27"

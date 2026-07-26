@@ -1,0 +1,60 @@
+id: conceptual-captions-3m
+name: Conceptual Captions 3M
+organization: Google Research
+released_at: "2018-05-18"
+release_date_source: https://arxiv.org/abs/1803.00931
+modality: image
+tasks:
+  - image-text-pretraining
+  - image-captioning
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  About 3.3 million web image and automatically cleaned alt-text pairs designed
+  for broad image-caption pretraining rather than manually curated captioning.
+access:
+  status: metadata-only
+  type: urls
+  url: https://ai.google.com/research/ConceptualCaptions/
+  requires_account: false
+  notes: Google publishes caption and source-URL metadata; image retrieval depends on current source availability and source-site permissions.
+scale:
+  samples: 3300000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The official project describes approximately 3.3M image-caption records.
+annotations:
+  types:
+    - cleaned-alt-text
+    - source-url
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Google dataset terms; verify current download notice
+  media: Source-dependent
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The release provides web-derived metadata rather than a blanket license for the referenced images; review each source and applicable terms.
+quality:
+  dimensions:
+    - text-media-alignment
+    - safety
+    - deduplication
+    - provenance
+  known_limitations:
+    - Source URLs decay and can return changed content.
+    - Automatically transformed alt text can omit details or preserve web bias and unsafe content.
+processing:
+  recipe: null
+  recommended_format: csv
+  notes: Preserve source URLs and retrieval timestamps, record failures, and re-run safety and rights checks on fetched media.
+evidence:
+  homepage: https://ai.google.com/research/ConceptualCaptions/
+  paper: https://arxiv.org/abs/1803.00931
+  used_by:
+    - Emu3.5
+status: partial
+last_verified: "2026-07-27"

@@ -1,0 +1,61 @@
+id: conceptual-12m
+name: Conceptual 12M
+organization: Google Research
+released_at: "2021-02-17"
+release_date_source: https://arxiv.org/abs/2102.08981
+modality: image
+tasks:
+  - image-text-pretraining
+  - long-tail-visual-learning
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A twelve-million-scale web image and text metadata collection built by
+  relaxing the Conceptual Captions filtering pipeline to improve long-tail
+  visual and language coverage.
+access:
+  status: metadata-only
+  type: urls
+  url: https://huggingface.co/datasets/google-research-datasets/conceptual_12m
+  requires_account: false
+  notes: The official Google Research Hugging Face repository distributes URL-caption metadata; image availability is source-dependent.
+scale:
+  samples: 12000000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The paper describes 12M image-text pairs.
+annotations:
+  types:
+    - alt-text
+    - source-url
+  source: web-metadata
+  languages:
+    - en
+license:
+  metadata: Dataset-card terms
+  media: Source-dependent
+  commercial_use: review-required
+  redistribution: review-required
+  notes: URL-caption metadata does not grant blanket rights to the referenced web images; verify source availability, licenses, and platform terms.
+quality:
+  dimensions:
+    - text-media-alignment
+    - safety
+    - deduplication
+    - provenance
+  known_limitations:
+    - Relaxed filtering expands long-tail coverage while increasing noise and unsafe-content risk.
+    - URL decay makes reconstructed copies differ over time.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: Preserve URL, caption, retrieval result, content hash, and rights metadata for every reconstructed sample.
+evidence:
+  homepage: https://huggingface.co/datasets/google-research-datasets/conceptual_12m
+  paper: https://arxiv.org/abs/2102.08981
+  used_by:
+    - Emu3.5
+status: partial
+last_verified: "2026-07-27"

@@ -855,7 +855,7 @@ function RankingOverview({ boards, onOpenModel }: {
         <div>
           <p className="comparison-kicker">RANKING / TOP 15 / OPEN + CLOSED</p>
           <h3 id="ranking-title">头部模型不是凭印象补录，而是跟着榜单持续复核。</h3>
-          <p>每周同步 Artificial Analysis 与 Arena 的十个生成媒体榜单。成员或名次变化进入复核队列，分数的小幅波动不单独提醒。</p>
+          <p>每周同步 Artificial Analysis、Arena 与 AVGen-Bench 的生成媒体榜单。成员或名次变化进入复核队列，分数的小幅波动不单独提醒。</p>
         </div>
         <dl>
           <div><dt>榜单</dt><dd>{boards.length}</dd></div>

@@ -1,0 +1,69 @@
+id: rovid-x
+name: RoVid-X
+organization: Peking University and ByteDance Seed
+released_at: "2026-05-21"
+release_date_source: https://github.com/DAGroup-PKU/ReVidgen
+modality: video
+tasks:
+  - robotics-video-generation
+  - text-to-video
+  - image-to-video
+  - embodied-world-modeling
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A four-million-clip robotic video corpus assembled from Internet and open
+  embodied sources, with RGB, depth, optical flow, task descriptions, and
+  physical-property annotations for embodied video generation.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/DAGroup-PKU/RoVid-X
+  requires_account: false
+  notes: The official release is hosted as large WebDataset tar shards on Hugging Face and is directly downloadable without a gate.
+scale:
+  samples: 4000000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The paper and release describe about four million annotated clips spanning thousands of robot tasks.
+annotations:
+  types:
+    - task-caption
+    - physical-property
+    - rgb-video
+    - depth-video
+    - optical-flow-video
+    - robot-and-object-metadata
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-4.0
+  media: CC-BY-4.0 repository declaration plus source-specific rights
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The hosted card declares CC BY 4.0, but Internet videos and more than twenty upstream embodied datasets retain source-specific terms and provenance obligations.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Internet and multi-dataset aggregation can produce uneven rights, embodiment, task, camera, and geographic coverage.
+    - Automatically derived depth, flow, captions, and physical properties require downstream validation.
+    - The Hugging Face viewer exposes WebDataset shards rather than a simple row-wise schema.
+processing:
+  recipe: Collect robotic videos, filter quality, segment tasks, caption actions, and annotate physical properties, then package clips as WebDataset shards.
+  recommended_format: webdataset
+  notes: Preserve upstream-source, task, embodiment, RGB/depth/flow alignment, annotation version, and tar-shard provenance during extraction.
+evidence:
+  homepage: https://dagroup-pku.github.io/ReVidgen.github.io/
+  paper: https://arxiv.org/abs/2601.15282
+  used_by: []
+status: partial
+last_verified: "2026-07-27"

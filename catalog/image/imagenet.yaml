@@ -1,0 +1,64 @@
+id: imagenet
+name: ImageNet
+organization: Princeton University and Stanford University
+released_at: "2009-06-20"
+release_date_source: https://www.image-net.org/about.php
+modality: image
+tasks:
+  - image-classification
+  - object-recognition
+  - visual-representation-learning
+stages:
+  - pretraining
+  - evaluation
+description: >-
+  A WordNet-organized image collection spanning more than fourteen million
+  indexed images and 21,841 synsets, with widely used classification and
+  localization challenge subsets.
+access:
+  status: gated
+  type: request
+  url: https://www.image-net.org/download.php
+  requires_account: true
+  notes: Full downloads require login or an access request and acceptance of the official non-commercial research and education terms.
+scale:
+  samples: 14197122
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The official site reports 14,197,122 indexed images across 21,841 synsets; ILSVRC 2012 is a smaller commonly used subset.
+annotations:
+  types:
+    - wordnet-synset
+    - class-label
+    - bounding-box
+    - source-url
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: ImageNet terms of access
+  media: Source-dependent image copyrights
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: Official access is limited to non-commercial research and education, and ImageNet states that it does not own the underlying images.
+quality:
+  dimensions:
+    - visual-quality
+    - deduplication
+    - provenance
+  known_limitations:
+    - Labels inherit WordNet coverage and category biases.
+    - Underlying image rights are source-specific and full access is gated.
+    - Historical web images and class distributions can encode demographic and geographic bias.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Pin the exact subset and release, retain synset and source metadata, and do not assume that ILSVRC statistics describe the full collection.
+evidence:
+  homepage: https://www.image-net.org/
+  paper: https://doi.org/10.1109/CVPR.2009.5206848
+  used_by:
+    - Emu3.5
+status: verified
+last_verified: "2026-07-27"

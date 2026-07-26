@@ -68,7 +68,7 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /数字人/);
   assert.match(html, /视频翻译/);
   assert.match(html, /Try-On/);
-  assert.match(html, /10\/10/);
+  assert.match(html, /11\/11/);
   assert.match(html, /模型与数据血缘/);
   assert.match(html, /关系图谱/);
   assert.match(html, /dataset_relations/);

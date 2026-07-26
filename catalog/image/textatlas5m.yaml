@@ -1,0 +1,66 @@
+id: textatlas5m
+name: TextAtlas5M
+organization: CSU-JPG and collaborators
+released_at: "2025-02-11"
+release_date_source: https://arxiv.org/abs/2502.07870
+modality: image
+tasks:
+  - text-to-image
+  - dense-text-rendering
+  - ocr-aware-generation
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A 5.4-million-record, 1.2 TB collection of synthetic and real dense-text
+  images with prompts across documents, slides, covers, scenes, and styled
+  rendering subsets.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/CSU-JPG/TextAtlas5M
+  requires_account: false
+  notes: All ten subsets are hosted on Hugging Face and can be loaded individually with the datasets library.
+scale:
+  samples: 5398826
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The current hosted repository reports 5,398,826 rows and about 1.2 TB.
+annotations:
+  types:
+    - generation-prompt
+    - rendered-text
+    - image-path
+    - subset-name
+    - layout-and-style-attributes
+  source: mixed
+  languages:
+    - multilingual
+license:
+  metadata: No single license declared in the current dataset card
+  media: Mixed synthetic and source-derived media
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Review subset construction, font licenses, document and scene sources, and the current repository terms before commercial or redistributed use.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - aesthetics
+    - provenance
+  known_limitations:
+    - Synthetic typography may not match natural layout and capture artifacts.
+    - License and source-rights information is not uniform across the ten subsets.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: Keep subset names and text/layout attributes separate so synthetic, document-derived, and natural-scene records can be audited independently.
+evidence:
+  homepage: https://textatlas5m.github.io/
+  paper: https://arxiv.org/abs/2502.07870
+  used_by:
+    - Emu3.5
+status: partial
+last_verified: "2026-07-27"

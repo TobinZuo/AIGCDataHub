@@ -1551,6 +1551,190 @@
       ]
     },
     {
+      "id": "rovid-x",
+      "name": "RoVid-X",
+      "organization": "Peking University and ByteDance Seed",
+      "released_at": "2026-05-21",
+      "release_date_source": "https://github.com/DAGroup-PKU/ReVidgen",
+      "modality": "video",
+      "tasks": [
+        "robotics-video-generation",
+        "text-to-video",
+        "image-to-video",
+        "embodied-world-modeling"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A four-million-clip robotic video corpus assembled from Internet and open embodied sources, with RGB, depth, optical flow, task descriptions, and physical-property annotations for embodied video generation.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/DAGroup-PKU/RoVid-X",
+        "requires_account": false,
+        "notes": "The official release is hosted as large WebDataset tar shards on Hugging Face and is directly downloadable without a gate."
+      },
+      "scale": {
+        "samples": 4000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The paper and release describe about four million annotated clips spanning thousands of robot tasks."
+      },
+      "annotations": {
+        "types": [
+          "task-caption",
+          "physical-property",
+          "rgb-video",
+          "depth-video",
+          "optical-flow-video",
+          "robot-and-object-metadata"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0",
+        "media": "CC-BY-4.0 repository declaration plus source-specific rights",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The hosted card declares CC BY 4.0, but Internet videos and more than twenty upstream embodied datasets retain source-specific terms and provenance obligations."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "motion",
+          "temporal-consistency",
+          "geometry-quality",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Internet and multi-dataset aggregation can produce uneven rights, embodiment, task, camera, and geographic coverage.",
+          "Automatically derived depth, flow, captions, and physical properties require downstream validation.",
+          "The Hugging Face viewer exposes WebDataset shards rather than a simple row-wise schema."
+        ]
+      },
+      "processing": {
+        "recipe": "Collect robotic videos, filter quality, segment tasks, caption actions, and annotate physical properties, then package clips as WebDataset shards.",
+        "recommended_format": "webdataset",
+        "notes": "Preserve upstream-source, task, embodiment, RGB/depth/flow alignment, annotation version, and tar-shard provenance during extraction."
+      },
+      "evidence": {
+        "homepage": "https://dagroup-pku.github.io/ReVidgen.github.io/",
+        "paper": "https://arxiv.org/abs/2601.15282",
+        "used_by": []
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/rovid-x.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~4M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/DAGroup-PKU/RoVid-X"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
+    },
+    {
+      "id": "rbench",
+      "name": "RBench",
+      "organization": "Peking University and ByteDance Seed",
+      "released_at": "2026-05-21",
+      "release_date_source": "https://github.com/DAGroup-PKU/ReVidgen",
+      "modality": "evaluation",
+      "tasks": [
+        "robotics-video-generation-evaluation",
+        "image-to-video-evaluation",
+        "physical-plausibility-evaluation"
+      ],
+      "stages": [
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A 650-case robotics video-generation benchmark spanning five task families and four robot embodiments, with reproducible structure, physics, action, and visual-quality metrics.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/DAGroup-PKU/RBench",
+        "requires_account": false,
+        "notes": "The validation images, prompts, metadata, and evaluator checkpoints total about 22 GB and are downloadable from the official Hugging Face repository."
+      },
+      "scale": {
+        "samples": 650,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "Includes 250 task-oriented image-text cases and 400 embodiment-oriented cases."
+      },
+      "annotations": {
+        "types": [
+          "reference-image",
+          "task-prompt",
+          "robot-type",
+          "manipulated-object",
+          "viewpoint",
+          "task-category"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0",
+        "media": "CC-BY-4.0 repository declaration",
+        "commercial_use": "allowed",
+        "redistribution": "allowed",
+        "notes": "The official dataset card declares CC BY 4.0; retain attribution and review the evaluator checkpoints and any third-party dependencies separately."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "motion",
+          "temporal-consistency",
+          "geometry-quality",
+          "text-media-alignment",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Six hundred fifty cases cannot represent every robot, task, camera, environment, or failure mode.",
+          "Automated metrics depend on multiple external perception checkpoints and optional GPT-based evaluation.",
+          "The reported 0.96 human correlation is study-specific and may not transfer to new model or task distributions."
+        ]
+      },
+      "processing": {
+        "recipe": "Generate videos from each reference image and prompt, then run task- and embodiment-oriented scripts combining VLM judgments with low-level structure, motion, and quality operators.",
+        "recommended_format": "native",
+        "notes": "Pin prompts, evaluator checkpoints, model outputs, metric versions, and API-backed judge settings for reproducible comparisons."
+      },
+      "evidence": {
+        "homepage": "https://dagroup-pku.github.io/ReVidgen.github.io/",
+        "paper": "https://arxiv.org/abs/2601.15282",
+        "used_by": []
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/evaluation/rbench.yaml",
+      "scenario_ids": [],
+      "scale_label": "650",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/DAGroup-PKU/RBench"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
+    },
+    {
       "id": "lens-rl-8k",
       "name": "Lens-RL-8K",
       "organization": "Microsoft Research",
@@ -2010,8 +2194,16 @@
           "Veo 3.1",
           "Sora 2",
           "Wan 2.6",
+          "Seedance 1.5 pro",
+          "Kling AI 2.6",
           "LTX-2.3",
-          "MOVA-720p"
+          "Gemini 3.1 Flash Image (Nano Banana 2)",
+          "MOVA-720p",
+          "LTX-2",
+          "Emu3.5",
+          "Wan2.2",
+          "HunyuanVideo-Foley",
+          "Ovi"
         ]
       },
       "status": "verified",
@@ -2026,12 +2218,20 @@
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
       "linked_model_ids": [
+        "gemini-3-1-flash-image",
         "ltx-2-3",
         "seedance-2-0",
         "mova-720p",
         "veo-3-1",
+        "ltx-2",
         "wan-2-6",
-        "sora-2"
+        "seedance-1-5-pro",
+        "kling-2-6",
+        "emu3-5",
+        "sora-2",
+        "ovi",
+        "hunyuanvideo-foley",
+        "wan-2-2"
       ]
     },
     {
@@ -3479,6 +3679,99 @@
       ]
     },
     {
+      "id": "postercraft-public-corpora",
+      "name": "PosterCraft public training corpora",
+      "organization": "PosterCraft team",
+      "released_at": "2025-06-12",
+      "release_date_source": "https://arxiv.org/abs/2506.10741",
+      "modality": "image",
+      "tasks": [
+        "text-to-image",
+        "poster-generation",
+        "text-rendering"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "The two public PosterCraft training collections: Text-Render-2M for large-scale text rendering and Poster100K for region-aware high-quality poster tuning.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/PosterCraft/datasets",
+        "requires_account": false,
+        "notes": "The official organization hosts Text-Render-2M and Poster100K as separate downloadable Hugging Face repositories."
+      },
+      "scale": {
+        "samples": 2198400,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "Current repository listings show about 2.15M Text-Render-2M rows and 48.4K Poster100K rows; pin each component revision."
+      },
+      "annotations": {
+        "types": [
+          "generation-prompt",
+          "ocr-text",
+          "text-region",
+          "poster-caption",
+          "style-metadata"
+        ],
+        "source": "mixed",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "Component-specific Hugging Face licenses",
+        "media": "Poster100K is CC-BY-NC-SA-4.0; verify Text-Render-2M terms separately",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "This aggregate card uses the more restrictive known component boundary; review both repository cards and all source and font rights before use."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Combining two repositories can hide different licenses, schemas, and construction pipelines unless component identity is retained.",
+          "Poster sources and synthetic fonts may carry additional attribution or reuse constraints."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "Preserve the component repository, revision, text regions, OCR fields, captions, and original rights metadata for every sample."
+      },
+      "evidence": {
+        "homepage": "https://ephemeral182.github.io/PosterCraft",
+        "paper": "https://arxiv.org/abs/2506.10741",
+        "used_by": [
+          "Emu3.5"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/image/postercraft-public-corpora.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~2.2M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/PosterCraft/datasets"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "emu3-5"
+      ]
+    },
+    {
       "id": "talkingheadbench",
       "name": "TalkingHeadBench",
       "organization": "University of North Carolina at Chapel Hill and Michigan State University",
@@ -3879,6 +4172,99 @@
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
       "linked_model_ids": []
+    },
+    {
+      "id": "textatlas5m",
+      "name": "TextAtlas5M",
+      "organization": "CSU-JPG and collaborators",
+      "released_at": "2025-02-11",
+      "release_date_source": "https://arxiv.org/abs/2502.07870",
+      "modality": "image",
+      "tasks": [
+        "text-to-image",
+        "dense-text-rendering",
+        "ocr-aware-generation"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A 5.4-million-record, 1.2 TB collection of synthetic and real dense-text images with prompts across documents, slides, covers, scenes, and styled rendering subsets.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/CSU-JPG/TextAtlas5M",
+        "requires_account": false,
+        "notes": "All ten subsets are hosted on Hugging Face and can be loaded individually with the datasets library."
+      },
+      "scale": {
+        "samples": 5398826,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The current hosted repository reports 5,398,826 rows and about 1.2 TB."
+      },
+      "annotations": {
+        "types": [
+          "generation-prompt",
+          "rendered-text",
+          "image-path",
+          "subset-name",
+          "layout-and-style-attributes"
+        ],
+        "source": "mixed",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "No single license declared in the current dataset card",
+        "media": "Mixed synthetic and source-derived media",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Review subset construction, font licenses, document and scene sources, and the current repository terms before commercial or redistributed use."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Synthetic typography may not match natural layout and capture artifacts.",
+          "License and source-rights information is not uniform across the ten subsets."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "Keep subset names and text/layout attributes separate so synthetic, document-derived, and natural-scene records can be audited independently."
+      },
+      "evidence": {
+        "homepage": "https://textatlas5m.github.io/",
+        "paper": "https://arxiv.org/abs/2502.07870",
+        "used_by": [
+          "Emu3.5"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/image/textatlas5m.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "5.4M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/CSU-JPG/TextAtlas5M"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "emu3-5"
+      ]
     },
     {
       "id": "jamendomaxcaps",
@@ -4915,6 +5301,99 @@
       ]
     },
     {
+      "id": "infinity-instruct",
+      "name": "Infinity-Instruct",
+      "organization": "Beijing Academy of Artificial Intelligence",
+      "released_at": "2024-06-13",
+      "release_date_source": "https://huggingface.co/datasets/BAAI/Infinity-Instruct",
+      "modality": "preference",
+      "tasks": [
+        "instruction-tuning",
+        "text-generation",
+        "data-selection"
+      ],
+      "stages": [
+        "fine-tuning",
+        "preference-tuning",
+        "data-curation"
+      ],
+      "description": "A versioned, multilingual family of millions of selected and evolved instruction-response records with task labels and reward scores for scalable supervised and preference tuning.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/BAAI/Infinity-Instruct",
+        "requires_account": false,
+        "notes": "Multiple versions and configurations are hosted as Parquet; consumers should pin the exact configuration and revision used."
+      },
+      "scale": {
+        "samples": 10000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The project targets a 10M family and exposes several 3M, 7M, core, generated, and chat configurations rather than one immutable split."
+      },
+      "annotations": {
+        "types": [
+          "instruction",
+          "response",
+          "task-category",
+          "ability-label",
+          "reward-score",
+          "language"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en",
+          "zh"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-SA-4.0",
+        "media": "Text records subject to component-source and share-alike terms",
+        "commercial_use": "review-required",
+        "redistribution": "allowed",
+        "notes": "The hosted dataset is marked CC BY-SA 4.0, while downstream users must retain attribution, share-alike obligations, and component provenance."
+      },
+      "quality": {
+        "dimensions": [
+          "human-preference",
+          "safety",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Version names cover materially different source, selected, evolved, and preference subsets.",
+          "Model-generated instructions and reward labels can transmit evaluator and teacher-model bias."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "Pin configuration and revision, retain source and reward metadata, and deduplicate against downstream evaluation and preference sets."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/BAAI/Infinity-Instruct",
+        "paper": "https://arxiv.org/abs/2506.11116",
+        "used_by": [
+          "Emu3.5"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/preference/infinity-instruct.yaml",
+      "scenario_ids": [],
+      "scale_label": "~10M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/BAAI/Infinity-Instruct"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "emu3-5"
+      ]
+    },
+    {
       "id": "mvhumannet",
       "name": "MVHumanNet",
       "organization": "GAP-Lab, CUHK-Shenzhen",
@@ -5648,7 +6127,9 @@
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
-      "linked_model_ids": []
+      "linked_model_ids": [
+        "emu3-5"
+      ]
     },
     {
       "id": "cap3d",
@@ -5838,7 +6319,9 @@
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
-      "linked_model_ids": []
+      "linked_model_ids": [
+        "emu3-5"
+      ]
     },
     {
       "id": "wavcaps",
@@ -6031,7 +6514,9 @@
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
-      "linked_model_ids": []
+      "linked_model_ids": [
+        "emu3-5"
+      ]
     },
     {
       "id": "celebv-hq",
@@ -6215,6 +6700,97 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "skyreels-v4"
+      ]
+    },
+    {
+      "id": "laion-5b",
+      "name": "LAION-5B",
+      "organization": "LAION",
+      "released_at": "2022-03-30",
+      "release_date_source": "https://laion.ai/blog/laion-5b/",
+      "modality": "image",
+      "tasks": [
+        "image-text-pretraining",
+        "text-to-image"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A 5.85-billion-scale multilingual index of Common Crawl image URLs and text, filtered with CLIP and released as metadata for reconstructing image-text training corpora.",
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://projects.laion.ai/laion-datasets/",
+        "requires_account": false,
+        "notes": "The release is an index and does not host the referenced images; current users should prefer the safety-cleaned Re-LAION release where applicable."
+      },
+      "scale": {
+        "samples": 5850000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The official project reports 5.85B multilingual CLIP-filtered URL-text pairs."
+      },
+      "annotations": {
+        "types": [
+          "caption",
+          "source-url",
+          "clip-embedding",
+          "language",
+          "similarity-score"
+        ],
+        "source": "web-metadata",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0 metadata",
+        "media": "Source-dependent",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The metadata license does not cover linked media; the original LAION-5B release also has known safety-removal history, so current availability and cleanup status must be checked."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "safety",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The original index was withdrawn and cleaned after illegal-content findings; do not reconstruct an unfiltered historical snapshot.",
+          "URL decay, source rights, noisy captions, duplicates, and demographic bias require independent controls."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "Prefer Re-LAION safety removals, keep URL and hash-based blocklists current, and retain source provenance and retrieval outcomes."
+      },
+      "evidence": {
+        "homepage": "https://projects.laion.ai/laion-datasets/",
+        "paper": "https://arxiv.org/abs/2210.08402",
+        "used_by": [
+          "Emu3.5"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/image/laion-5b.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "5.8B",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://projects.laion.ai/laion-datasets/"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "emu3-5"
       ]
     },
     {
@@ -6502,6 +7078,94 @@
       ]
     },
     {
+      "id": "conceptual-12m",
+      "name": "Conceptual 12M",
+      "organization": "Google Research",
+      "released_at": "2021-02-17",
+      "release_date_source": "https://arxiv.org/abs/2102.08981",
+      "modality": "image",
+      "tasks": [
+        "image-text-pretraining",
+        "long-tail-visual-learning"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A twelve-million-scale web image and text metadata collection built by relaxing the Conceptual Captions filtering pipeline to improve long-tail visual and language coverage.",
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://huggingface.co/datasets/google-research-datasets/conceptual_12m",
+        "requires_account": false,
+        "notes": "The official Google Research Hugging Face repository distributes URL-caption metadata; image availability is source-dependent."
+      },
+      "scale": {
+        "samples": 12000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The paper describes 12M image-text pairs."
+      },
+      "annotations": {
+        "types": [
+          "alt-text",
+          "source-url"
+        ],
+        "source": "web-metadata",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Dataset-card terms",
+        "media": "Source-dependent",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "URL-caption metadata does not grant blanket rights to the referenced web images; verify source availability, licenses, and platform terms."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "safety",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Relaxed filtering expands long-tail coverage while increasing noise and unsafe-content risk.",
+          "URL decay makes reconstructed copies differ over time."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "Preserve URL, caption, retrieval result, content hash, and rights metadata for every reconstructed sample."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/google-research-datasets/conceptual_12m",
+        "paper": "https://arxiv.org/abs/2102.08981",
+        "used_by": [
+          "Emu3.5"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/image/conceptual-12m.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~12M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/google-research-datasets/conceptual_12m"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "emu3-5"
+      ]
+    },
+    {
       "id": "acav100m",
       "name": "ACAV100M",
       "organization": "Facebook AI Research and Inria",
@@ -6759,7 +7423,8 @@
         "paper": "https://arxiv.org/abs/2004.14368",
         "used_by": [
           "Omni2Sound",
-          "MOVA-720p"
+          "MOVA-720p",
+          "HunyuanVideo-Foley"
         ]
       },
       "status": "partial",
@@ -6779,7 +7444,96 @@
       "linked_model_ids": [
         "skyreels-v4",
         "mova-720p",
-        "omni2sound"
+        "omni2sound",
+        "hunyuanvideo-foley"
+      ]
+    },
+    {
+      "id": "conceptual-captions-3m",
+      "name": "Conceptual Captions 3M",
+      "organization": "Google Research",
+      "released_at": "2018-05-18",
+      "release_date_source": "https://arxiv.org/abs/1803.00931",
+      "modality": "image",
+      "tasks": [
+        "image-text-pretraining",
+        "image-captioning"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "About 3.3 million web image and automatically cleaned alt-text pairs designed for broad image-caption pretraining rather than manually curated captioning.",
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://ai.google.com/research/ConceptualCaptions/",
+        "requires_account": false,
+        "notes": "Google publishes caption and source-URL metadata; image retrieval depends on current source availability and source-site permissions."
+      },
+      "scale": {
+        "samples": 3300000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The official project describes approximately 3.3M image-caption records."
+      },
+      "annotations": {
+        "types": [
+          "cleaned-alt-text",
+          "source-url"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Google dataset terms; verify current download notice",
+        "media": "Source-dependent",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The release provides web-derived metadata rather than a blanket license for the referenced images; review each source and applicable terms."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "safety",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source URLs decay and can return changed content.",
+          "Automatically transformed alt text can omit details or preserve web bias and unsafe content."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "csv",
+        "notes": "Preserve source URLs and retrieval timestamps, record failures, and re-run safety and rights checks on fetched media."
+      },
+      "evidence": {
+        "homepage": "https://ai.google.com/research/ConceptualCaptions/",
+        "paper": "https://arxiv.org/abs/1803.00931",
+        "used_by": [
+          "Emu3.5"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/image/conceptual-captions-3m.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~3.3M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/google-research-datasets/conceptual_captions"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "emu3-5"
       ]
     },
     {
@@ -7063,6 +7817,101 @@
       ]
     },
     {
+      "id": "open-images-v7",
+      "name": "Open Images V7",
+      "organization": "Google",
+      "released_at": "2016-09-30",
+      "release_date_source": "https://storage.googleapis.com/openimages/web/index.html",
+      "modality": "image",
+      "tasks": [
+        "image-classification",
+        "object-detection",
+        "visual-relationship-detection",
+        "image-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A roughly nine-million-image collection from Flickr with image-level labels, boxes, masks, relationships, localized narratives, and downloadable source and rights metadata.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://storage.googleapis.com/openimages/web/download_v7.html",
+        "requires_account": false,
+        "notes": "Official download scripts, annotation files, and hosted image subsets are public; some full-transfer workflows require a Google Cloud account."
+      },
+      "scale": {
+        "samples": 9200000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The Open Images V4 paper reports 9.2M images; V7 adds annotation types without changing the collection into a single simple training split."
+      },
+      "annotations": {
+        "types": [
+          "class-label",
+          "bounding-box",
+          "instance-mask",
+          "visual-relationship",
+          "localized-narrative",
+          "author-and-license-metadata"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0 annotations; Apache-2.0 tooling",
+        "media": "Per-image Creative Commons attribution metadata",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Google licenses annotations under CC BY 4.0, while each Flickr image retains its listed license and attribution requirements."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Flickr and annotation coverage bias the distribution toward particular regions, creators, and object categories.",
+          "Per-image license and attribution metadata must remain attached to redistributed media."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Use the official downloader and preserve image ID, author, original URL, license URL, split, and annotation-version fields."
+      },
+      "evidence": {
+        "homepage": "https://storage.googleapis.com/openimages/web/index.html",
+        "paper": "https://arxiv.org/abs/1811.00982",
+        "used_by": [
+          "Emu3.5"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/image/open-images-v7.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~9.2M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://storage.googleapis.com/openimages/web/download_v7.html"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "emu3-5"
+      ]
+    },
+    {
       "id": "yfcc100m",
       "name": "YFCC100M",
       "organization": "Yahoo Labs and collaborators",
@@ -7249,6 +8098,95 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "omni2sound"
+      ]
+    },
+    {
+      "id": "imagenet",
+      "name": "ImageNet",
+      "organization": "Princeton University and Stanford University",
+      "released_at": "2009-06-20",
+      "release_date_source": "https://www.image-net.org/about.php",
+      "modality": "image",
+      "tasks": [
+        "image-classification",
+        "object-recognition",
+        "visual-representation-learning"
+      ],
+      "stages": [
+        "pretraining",
+        "evaluation"
+      ],
+      "description": "A WordNet-organized image collection spanning more than fourteen million indexed images and 21,841 synsets, with widely used classification and localization challenge subsets.",
+      "access": {
+        "status": "gated",
+        "type": "request",
+        "url": "https://www.image-net.org/download.php",
+        "requires_account": true,
+        "notes": "Full downloads require login or an access request and acceptance of the official non-commercial research and education terms."
+      },
+      "scale": {
+        "samples": 14197122,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The official site reports 14,197,122 indexed images across 21,841 synsets; ILSVRC 2012 is a smaller commonly used subset."
+      },
+      "annotations": {
+        "types": [
+          "wordnet-synset",
+          "class-label",
+          "bounding-box",
+          "source-url"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "ImageNet terms of access",
+        "media": "Source-dependent image copyrights",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "Official access is limited to non-commercial research and education, and ImageNet states that it does not own the underlying images."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Labels inherit WordNet coverage and category biases.",
+          "Underlying image rights are source-specific and full access is gated.",
+          "Historical web images and class distributions can encode demographic and geographic bias."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Pin the exact subset and release, retain synset and source metadata, and do not assume that ILSVRC statistics describe the full collection."
+      },
+      "evidence": {
+        "homepage": "https://www.image-net.org/",
+        "paper": "https://doi.org/10.1109/CVPR.2009.5206848",
+        "used_by": [
+          "Emu3.5"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/image/imagenet.yaml",
+      "scenario_ids": [],
+      "scale_label": "14.2M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://www.image-net.org/download.php"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "emu3-5"
       ]
     }
   ],
@@ -12522,7 +13460,16 @@
         "disclosure_level": "undisclosed",
         "exact_datasets_disclosed": false,
         "exact_mixture_disclosed": false,
-        "datasets": [],
+        "datasets": [
+          {
+            "name": "AVGen-Bench",
+            "catalog_id": "avgen-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "235 prompts and 3,009 generated examples",
+            "notes": "The official leaderboard evaluates a Nano Banana 2 first-frame plus MOVA audio-video pipeline; this is not a standalone Nano Banana 2 score or a training source."
+          }
+        ],
         "stages": [
           {
             "name": "pretraining",
@@ -12564,8 +13511,8 @@
           "undisclosed"
         ],
         "operations": [],
-        "data_reference_count": 0,
-        "linked_dataset_count": 0,
+        "data_reference_count": 1,
+        "linked_dataset_count": 1,
         "scale_disclosed_stage_count": 0,
         "stage_count": 1,
         "unknown_count": 1
@@ -12604,7 +13551,9 @@
           "score_label": "Elo"
         }
       ],
-      "linked_dataset_ids": []
+      "linked_dataset_ids": [
+        "avgen-bench"
+      ]
     },
     {
       "id": "skyreels-v4",
@@ -13018,7 +13967,15 @@
         "priority": "high",
         "source_url": "https://huggingface.co/api/models/Lightricks/LTX-2.3"
       },
-      "ranking_positions": [],
+      "ranking_positions": [
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 8,
+          "score": 59.97,
+          "score_label": "Total"
+        }
+      ],
       "linked_dataset_ids": [
         "avgen-bench"
       ]
@@ -13143,6 +14100,13 @@
           "rank": 1,
           "score": 1377.1,
           "score_label": "Arena"
+        },
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 1,
+          "score": 72.07,
+          "score_label": "Total"
         },
         {
           "ranking_id": "image-to-video",
@@ -13610,6 +14574,10 @@
       "name": "MOVA-720p",
       "organization": "OpenMOSS",
       "released_at": "2026-01-29",
+      "ranking_names": [
+        "NanoBanana2 + MOVA",
+        "MOVA"
+      ],
       "modalities": [
         "video",
         "audio"
@@ -13853,7 +14821,15 @@
         "priority": "critical",
         "source_url": "https://huggingface.co/api/models/OpenMOSS-Team/MOVA-720p"
       },
-      "ranking_positions": [],
+      "ranking_positions": [
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 9,
+          "score": 58.1,
+          "score_label": "Total"
+        }
+      ],
       "linked_dataset_ids": [
         "autorecap-xl",
         "chronomagic-pro",
@@ -14563,6 +15539,8 @@
       "ranking_names": [
         "Veo 3.1",
         "Veo 3.1 Fast",
+        "Veo 3.1-fast",
+        "Veo 3.1-quality",
         "veo-3.1-audio",
         "veo-3.1-audio-1080p",
         "veo-3.1-fast-audio",
@@ -14768,6 +15746,20 @@
           "rank": 13,
           "score": 1339.0,
           "score_label": "Arena"
+        },
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 2,
+          "score": 67.87,
+          "score_label": "Total"
+        },
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 3,
+          "score": 66.28,
+          "score_label": "Total"
         },
         {
           "ranking_id": "image-to-video",
@@ -15033,6 +16025,159 @@
         "fma",
         "soundatlas",
         "vggsound-omni"
+      ]
+    },
+    {
+      "id": "ltx-2",
+      "name": "LTX-2",
+      "organization": "Lightricks",
+      "released_at": "2025-12-29",
+      "ranking_names": [
+        "LTX-2"
+      ],
+      "modalities": [
+        "multimodal",
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "video-to-video",
+        "audio-to-video",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "LTX-2 Community License Agreement",
+        "release_url": "https://ltx.io/blog/ltx-2-is-now-open-source",
+        "weights_url": "https://huggingface.co/Lightricks/LTX-2",
+        "api_url": "https://docs.ltx.video/"
+      },
+      "architecture": {
+        "family": "Asymmetric dual-stream audio-video diffusion transformer",
+        "parameters": 19000000000,
+        "notes": "Couples a 14B video stream and 5B audio stream with bidirectional cross-modal attention and separate latent representations."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "LTX-2 audio-video training corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "The technical report describes captioning, filtering, and joint training but does not identify constituent datasets or publish the corpus."
+          },
+          {
+            "name": "AVGen-Bench",
+            "catalog_id": "avgen-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "235 prompts and 3,009 generated examples",
+            "notes": "The official leaderboard evaluates LTX-2 separately from LTX-2.3; it is not a training source."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "audio-aware-filtering",
+              "multimodal-recaptioning",
+              "joint-audio-video-training",
+              "multi-resolution-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Select audio-informative clips, generate detailed captions spanning visuals, dialogue, sound, ambience, and music, and jointly train synchronized audio-video streams across resolutions."
+          },
+          {
+            "name": "distillation",
+            "modalities": [
+              "video",
+              "audio"
+            ],
+            "source_types": [
+              "synthetic",
+              "proprietary"
+            ],
+            "operations": [
+              "step-distillation",
+              "latent-upscaling"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Distill the full checkpoint for fewer sampling steps and pair it with spatial and temporal latent upscalers for production workflows."
+          }
+        ],
+        "strategy_summary": [
+          "Treat rich audiovisual recaptioning and audio-aware filtering as the central disclosed data operations.",
+          "Keep the public full, distilled, LoRA, and upscaler artifacts distinct from the unreleased training corpus."
+        ],
+        "unknowns": [
+          "Exact video and audio sources, rights composition, sample count, language mix, filters, deduplication, and mixture weights.",
+          "Distillation prompt sources and generated-sample scale."
+        ]
+      },
+      "evidence": {
+        "release": "https://ltx.io/blog/ltx-2-is-now-open-source",
+        "technical_report": "https://arxiv.org/abs/2601.03233",
+        "repository": "https://github.com/Lightricks/LTX-2"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/multimodal/ltx-2.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "distillation"
+        ],
+        "source_types": [
+          "proprietary",
+          "synthetic"
+        ],
+        "operations": [
+          "audio-aware-filtering",
+          "multimodal-recaptioning",
+          "joint-audio-video-training",
+          "multi-resolution-training",
+          "step-distillation",
+          "latent-upscaling"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/Lightricks/LTX-2"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 10,
+          "score": 56.62,
+          "score_label": "Total"
+        }
+      ],
+      "linked_dataset_ids": [
+        "avgen-bench"
       ]
     },
     {
@@ -15328,6 +16473,171 @@
           "rank": 15,
           "score": 1333.3,
           "score_label": "Arena"
+        },
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 5,
+          "score": 62.97,
+          "score_label": "Total"
+        }
+      ],
+      "linked_dataset_ids": [
+        "avgen-bench"
+      ]
+    },
+    {
+      "id": "seedance-1-5-pro",
+      "name": "Seedance 1.5 pro",
+      "organization": "ByteDance Seed",
+      "released_at": "2025-12-16",
+      "ranking_names": [
+        "Seedance-1.5 Pro"
+      ],
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Volcano Engine service terms",
+        "release_url": "https://seed.bytedance.com/en/blog/sound-and-vision-all-in-one-take-the-official-release-of-seedance-1-5-pro",
+        "weights_url": null,
+        "api_url": "https://seed.bytedance.com/en/seedance1_5_pro"
+      },
+      "architecture": {
+        "family": "Dual-branch audio-video diffusion transformer",
+        "parameters": null,
+        "notes": "Uses dedicated audio and video branches plus a cross-modal joint module for synchronized native generation; parameter count is not disclosed."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "AVGen-Bench",
+            "catalog_id": "avgen-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "235 prompts and 3,009 generated examples",
+            "notes": "The official leaderboard evaluates Seedance-1.5 Pro; this is evaluation evidence and not a training-data disclosure."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "multi-stage-data-curation",
+              "joint-audio-video-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Train native audio and video branches with a specialized multi-stage data pipeline and cross-modal interaction, without publishing corpus identities or scale."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "proprietary"
+            ],
+            "operations": [
+              "supervised-fine-tuning",
+              "quality-filtering"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Apply supervised fine-tuning on an unreleased high-quality subset to improve instruction following, cinematography, narrative coherence, and multilingual lip sync."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "human-feedback"
+            ],
+            "operations": [
+              "reinforcement-learning-from-human-feedback",
+              "multi-dimensional-reward-modeling"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Optimize with human feedback and multidimensional reward models after supervised fine-tuning; prompt counts, rater protocol, and mixtures are not reported."
+          }
+        ],
+        "strategy_summary": [
+          "Couple audio and video during pretraining instead of adding sound in a separate post-process.",
+          "Follow multi-stage curation with high-quality SFT and multidimensional RLHF."
+        ],
+        "unknowns": [
+          "Training dataset identities, source rights, scale, language and modality mix, captions, filtering thresholds, and deduplication.",
+          "SFT and RLHF sample counts, mixture weights, rater populations, and safety-training data."
+        ]
+      },
+      "evidence": {
+        "release": "https://seed.bytedance.com/en/blog/sound-and-vision-all-in-one-take-the-official-release-of-seedance-1-5-pro",
+        "technical_report": "https://arxiv.org/abs/2512.13507",
+        "repository": null
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/seedance-1-5-pro.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "preference"
+        ],
+        "source_types": [
+          "undisclosed",
+          "proprietary",
+          "human-feedback"
+        ],
+        "operations": [
+          "multi-stage-data-curation",
+          "joint-audio-video-training",
+          "supervised-fine-tuning",
+          "quality-filtering",
+          "reinforcement-learning-from-human-feedback",
+          "multi-dimensional-reward-modeling"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 3,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://seed.bytedance.com/en/seedance1_5_pro"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 6,
+          "score": 62.55,
+          "score_label": "Total"
         }
       ],
       "linked_dataset_ids": [
@@ -15805,6 +17115,118 @@
       ]
     },
     {
+      "id": "kling-2-6",
+      "name": "Kling AI 2.6",
+      "organization": "Kuaishou Technology",
+      "released_at": "2025-12-03",
+      "ranking_names": [
+        "Kling-V2.6",
+        "Kling 2.6"
+      ],
+      "modalities": [
+        "video",
+        "audio",
+        "image"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "motion-control",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "product-only",
+        "license": "Kling AI service terms",
+        "release_url": "https://ir.kuaishou.com/news-releases/news-release-details/kuaishou-technology-announces-fourth-quarter-and-full-year-2025",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Undisclosed native audio-video generation architecture",
+        "parameters": null,
+        "notes": "Generates video, voice, action sounds, and ambience in one process and supports reference-driven motion control; architecture and size are not public."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "AVGen-Bench",
+            "catalog_id": "avgen-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "235 prompts and 3,009 generated examples",
+            "notes": "The official leaderboard evaluates Kling-V2.6; the benchmark does not reveal its training corpus."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "audio",
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "Kuaishou documents simultaneous audio-visual generation and motion control but does not publish identifiable training data, curation, or post-training details."
+          }
+        ],
+        "strategy_summary": [
+          "Keep the native audio-video and motion-control capabilities separate from any claim about training sources; no first-party data inventory is public."
+        ],
+        "unknowns": [
+          "Dataset identities, provenance, rights, scale, languages, modality mixture, captions, filtering, deduplication, and post-training data."
+        ]
+      },
+      "evidence": {
+        "release": "https://ir.kuaishou.com/news-releases/news-release-details/kuaishou-technology-announces-fourth-quarter-and-full-year-2025",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/kling-2-6.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 1,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 1
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://ir.kuaishou.com/news-releases/news-release-details/kuaishou-technology-announces-fourth-quarter-and-full-year-2025"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 7,
+          "score": 61.82,
+          "score_label": "Total"
+        }
+      ],
+      "linked_dataset_ids": [
+        "avgen-bench"
+      ]
+    },
+    {
       "id": "kling-o1",
       "name": "Kling O1",
       "organization": "Kuaishou Technology",
@@ -16163,12 +17585,307 @@
       "linked_dataset_ids": []
     },
     {
+      "id": "emu3-5",
+      "name": "Emu3.5",
+      "organization": "Beijing Academy of Artificial Intelligence",
+      "released_at": "2025-10-30",
+      "ranking_names": [
+        "Emu3.5 + MOVA",
+        "Emu3.5"
+      ],
+      "modalities": [
+        "multimodal",
+        "image",
+        "video"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "interleaved-generation",
+        "world-modeling"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0",
+        "release_url": "https://github.com/baaivision/Emu3.5",
+        "weights_url": "https://huggingface.co/BAAI/Emu3.5",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Native autoregressive vision-language transformer",
+        "parameters": 34000000000,
+        "notes": "Predicts interleaved visual and language tokens with one next-token objective; the released checkpoint is listed as 34B on Hugging Face."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "ImageNet",
+            "catalog_id": "imagenet",
+            "role": "pretraining",
+            "availability": "gated",
+            "scale": "14,197,122 indexed images in the full official collection",
+            "notes": "Named as a general-domain source for training the Emu3.5 visual tokenizer."
+          },
+          {
+            "name": "Open Images V7",
+            "catalog_id": "open-images-v7",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "About 9M images with annotations",
+            "notes": "Named as a general-domain source for visual-tokenizer training."
+          },
+          {
+            "name": "Conceptual Captions 3M",
+            "catalog_id": "conceptual-captions-3m",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "About 3.3M image-text records",
+            "notes": "Named as paired vision-text data for visual-tokenizer and multimodal corpus construction."
+          },
+          {
+            "name": "Conceptual 12M",
+            "catalog_id": "conceptual-12m",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "About 12M image-text records",
+            "notes": "Named as a larger long-tail image-text source."
+          },
+          {
+            "name": "LAION-5B family",
+            "catalog_id": "laion-5b",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "5.85B URL-text metadata pairs",
+            "notes": "The report says LAION without a version; this relation points to the canonical 5B family card and preserves that ambiguity."
+          },
+          {
+            "name": "TextAtlas5M",
+            "catalog_id": "textatlas5m",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "About 5M dense-text images",
+            "notes": "Used to enrich text rendering in visual-tokenizer training."
+          },
+          {
+            "name": "PosterCraft public training corpora",
+            "catalog_id": "postercraft-public-corpora",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "About 2.25M released Text-Render-2M and Poster100K records",
+            "notes": "The report cites PosterCraft for text-rich image curation; the catalog card records the two released source collections."
+          },
+          {
+            "name": "COYO-700M",
+            "catalog_id": "coyo-700m",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "About 700M URL-text metadata pairs",
+            "notes": "Named as a source of face-rich images after face detection and filtering."
+          },
+          {
+            "name": "DataComp-1B",
+            "catalog_id": "datacomp-1b",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "About 1B URL-text metadata pairs",
+            "notes": "Named in the face-rich visual-tokenizer data mixture."
+          },
+          {
+            "name": "JourneyDB",
+            "catalog_id": "journeydb",
+            "role": "pretraining",
+            "availability": "gated",
+            "scale": "4,429,295 generated images",
+            "notes": "Named in the face-rich visual-tokenizer data mixture."
+          },
+          {
+            "name": "Infinity-Instruct",
+            "catalog_id": "infinity-instruct",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "About 8.9M instruction-response pairs used by Emu3.5",
+            "notes": "Used for general language instruction supervision during SFT."
+          },
+          {
+            "name": "Emu3.5 video-interleaved Internet corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "not-released",
+            "scale": "More than 13T multimodal tokens across the full pretraining mix",
+            "notes": "Built primarily from sequential frames and aligned transcripts of large-scale Internet videos; source URLs and media are not released."
+          },
+          {
+            "name": "AVGen-Bench",
+            "catalog_id": "avgen-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "235 prompts and 3,009 generated examples",
+            "notes": "AVGen-Bench evaluates an Emu3.5 image-generation plus MOVA audio-video pipeline, not Emu3.5 as a standalone audio-video generator."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "public-web",
+              "public-dataset",
+              "proprietary"
+            ],
+            "operations": [
+              "video-frame-extraction",
+              "transcript-alignment",
+              "resolution-filtering",
+              "quality-filtering",
+              "deduplication",
+              "next-token-prediction"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Pretrain in two stages on 10T then about 3T tokens, centered on long video-frame and transcript sequences, while raising resolution, quality, balance, and annotation density in stage two."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "video",
+              "text",
+              "action"
+            ],
+            "source_types": [
+              "public-dataset",
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "supervised-fine-tuning",
+              "scene-segmentation",
+              "automatic-speech-recognition",
+              "dense-captioning",
+              "clustering"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Mix general tasks, any-to-image, visual narrative, visual guidance, world exploration, and embodied manipulation, using structured video processing and synthetic supervision."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "image",
+              "text",
+              "action"
+            ],
+            "source_types": [
+              "human-feedback",
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "group-relative-policy-optimization",
+              "multi-task-reward-modeling",
+              "prompt-filtering"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Run unified multimodal GRPO over curated SFT prompts plus user feedback, then a separate image-focused stage with 58K X2I instructions and 50K T2I samples."
+          }
+        ],
+        "strategy_summary": [
+          "Make long video-frame and transcript sequences the center of a 13T-token native multimodal pretraining mix.",
+          "Train the tokenizer on linked public image corpora plus unreleased aesthetic, face-rich, and in-house media.",
+          "Move from broad multitask SFT to unified multimodal reinforcement learning and a targeted image-generation RL stage."
+        ],
+        "unknowns": [
+          "Exact Internet-video sources, media rights, per-source counts, removal requests, and the complete pretraining mixture.",
+          "Exact mapping from every public tokenizer source to the final checkpoint and the proportion of Midjourney-derived face data."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/baaivision/Emu3.5",
+        "technical_report": "https://arxiv.org/abs/2510.26583",
+        "repository": "https://github.com/baaivision/Emu3.5"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/multimodal/emu3-5.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "preference"
+        ],
+        "source_types": [
+          "public-web",
+          "public-dataset",
+          "proprietary",
+          "synthetic",
+          "human-feedback"
+        ],
+        "operations": [
+          "video-frame-extraction",
+          "transcript-alignment",
+          "resolution-filtering",
+          "quality-filtering",
+          "deduplication",
+          "next-token-prediction",
+          "supervised-fine-tuning",
+          "scene-segmentation",
+          "automatic-speech-recognition",
+          "dense-captioning",
+          "clustering",
+          "group-relative-policy-optimization",
+          "multi-task-reward-modeling",
+          "prompt-filtering"
+        ],
+        "data_reference_count": 13,
+        "linked_dataset_count": 12,
+        "scale_disclosed_stage_count": 3,
+        "stage_count": 3,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/BAAI/Emu3.5"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 11,
+          "score": 56.12,
+          "score_label": "Total"
+        }
+      ],
+      "linked_dataset_ids": [
+        "imagenet",
+        "open-images-v7",
+        "conceptual-captions-3m",
+        "conceptual-12m",
+        "laion-5b",
+        "textatlas5m",
+        "postercraft-public-corpora",
+        "coyo-700m",
+        "datacomp-1b",
+        "journeydb",
+        "infinity-instruct",
+        "avgen-bench"
+      ]
+    },
+    {
       "id": "sora-2",
       "name": "Sora 2",
       "organization": "OpenAI",
       "released_at": "2025-09-30",
       "ranking_names": [
         "Sora 2",
+        "Sora-2",
         "Sora 2 Pro",
         "sora-2",
         "sora-2-pro"
@@ -16287,6 +18004,168 @@
           "rank": 14,
           "score": 1337.1,
           "score_label": "Arena"
+        },
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 4,
+          "score": 64.16,
+          "score_label": "Total"
+        }
+      ],
+      "linked_dataset_ids": [
+        "avgen-bench"
+      ]
+    },
+    {
+      "id": "ovi",
+      "name": "Ovi",
+      "organization": "Character.AI and Yale University",
+      "released_at": "2025-09-29",
+      "ranking_names": [
+        "Ovi"
+      ],
+      "modalities": [
+        "video",
+        "audio",
+        "image"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0",
+        "release_url": "https://github.com/character-ai/Ovi",
+        "weights_url": "https://huggingface.co/chetwinlow1/Ovi",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Twin-backbone cross-modal audio-video diffusion transformer",
+        "parameters": 11000000000,
+        "notes": "Initializes a video tower from Wan2.2 and a separately pretrained 5B audio tower, then exchanges timing and semantics through blockwise cross-modal fusion."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Ovi audio pretraining corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "not-released",
+            "scale": "Hundreds of thousands of hours, primarily speech",
+            "notes": "The paper discloses scale class, duration curriculum, and source type but no constituent dataset names or download."
+          },
+          {
+            "name": "Ovi audio-video fusion corpus",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "Described only as a vast video corpus",
+            "notes": "Used to join the pretrained audio and video towers; its composition and size are not published."
+          },
+          {
+            "name": "AVGen-Bench",
+            "catalog_id": "avgen-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "235 prompts and 3,009 generated examples",
+            "notes": "The official leaderboard evaluates Ovi as an open-source joint audio-video system."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "audio"
+            ],
+            "source_types": [
+              "proprietary"
+            ],
+            "operations": [
+              "variable-duration-training",
+              "speech-pretraining",
+              "sound-effect-mixing"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Pretrain the 5B audio tower from scratch on hundreds of thousands of hours of mostly speech up to 12 seconds, then fine-tune on padded 5.04-second audio with sound effects."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "proprietary"
+            ],
+            "operations": [
+              "cross-modal-fusion-training",
+              "attention-only-fine-tuning",
+              "temporal-alignment"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Combine pretrained video and audio towers, freeze feed-forward networks, and tune unimodal and cross-modal attention on paired video to align timing and semantics."
+          }
+        ],
+        "strategy_summary": [
+          "Build the audio branch on long, diverse speech before adapting it to fixed-duration audiovisual generation.",
+          "Preserve pretrained modality knowledge by fine-tuning attention and newly initialized cross-modal fusion rather than the full 11B system."
+        ],
+        "unknowns": [
+          "Audio and video dataset identities, licenses, counts, languages, speakers, caption sources, safety filters, and mixture ratios.",
+          "Exact training differences between the original five-second release and the Ovi 1.1 ten-second checkpoint."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/character-ai/Ovi",
+        "technical_report": "https://arxiv.org/abs/2510.01284",
+        "repository": "https://github.com/character-ai/Ovi"
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/ovi.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "proprietary"
+        ],
+        "operations": [
+          "variable-duration-training",
+          "speech-pretraining",
+          "sound-effect-mixing",
+          "cross-modal-fusion-training",
+          "attention-only-fine-tuning",
+          "temporal-alignment"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/chetwinlow1/Ovi"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 13,
+          "score": 52.02,
+          "score_label": "Total"
         }
       ],
       "linked_dataset_ids": [
@@ -16471,6 +18350,292 @@
       "linked_dataset_ids": [
         "phantom-data",
         "humoset"
+      ]
+    },
+    {
+      "id": "hunyuanvideo-foley",
+      "name": "HunyuanVideo-Foley",
+      "organization": "Tencent Hunyuan",
+      "released_at": "2025-08-28",
+      "ranking_names": [
+        "Wan2.2 + HunyuanVideo-Foley",
+        "HunyuanVideo-Foley"
+      ],
+      "modalities": [
+        "multimodal",
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "video-to-audio",
+        "text-video-to-audio",
+        "foley-generation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Tencent Hunyuan Community License Agreement",
+        "release_url": "https://github.com/Tencent-Hunyuan/HunyuanVideo-Foley",
+        "weights_url": "https://huggingface.co/tencent/HunyuanVideo-Foley",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Hybrid multimodal and audio diffusion transformer",
+        "parameters": null,
+        "notes": "Fuses SigLIP2 video, CLAP text, DAC-VAE audio, and Synchformer timing features through multimodal then audio-only transformer blocks."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "HunyuanVideo-Foley TV2A corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "not-released",
+            "scale": "About 100K hours of text-video-audio material",
+            "notes": "The paper discloses scale and processing but not the raw video database, source providers, or a downloadable dataset."
+          },
+          {
+            "name": "VGGSound",
+            "catalog_id": "vggsound",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "More than 200K audio-video clips in the source dataset",
+            "notes": "The paper reports objective results on the public VGGSound test split; it does not state that VGGSound is in the 100K-hour training corpus."
+          },
+          {
+            "name": "AVGen-Bench",
+            "catalog_id": "avgen-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "235 prompts and 3,009 generated examples",
+            "notes": "The official leaderboard evaluates a Wan2.2 plus HunyuanVideo-Foley pipeline, so the score does not isolate the Foley model."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "public-web",
+              "synthetic"
+            ],
+            "operations": [
+              "scene-segmentation",
+              "silence-filtering",
+              "bandwidth-filtering",
+              "audio-quality-filtering",
+              "audio-video-sync-filtering",
+              "audio-classification",
+              "synthetic-captioning"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Segment raw videos into eight-second clips, remove silent or low-bandwidth audio, filter quality and audiovisual alignment, classify content, and caption audio to construct about 100K training hours."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "audio",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "proprietary"
+            ],
+            "operations": [
+              "representation-alignment",
+              "flow-matching"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Align intermediate diffusion features to self-supervised frame-level audio representations while balancing visual timing and textual semantics."
+          }
+        ],
+        "strategy_summary": [
+          "Scale TV2A supervision through a disclosed filter-and-caption pipeline rather than publishing the underlying corpus.",
+          "Separate temporal audiovisual alignment from global text-audio semantic alignment in architecture and training losses."
+        ],
+        "unknowns": [
+          "Raw source identities, licenses, geographic and language mix, duplication, safety filters, and exact retained sample counts.",
+          "Parameter counts for XXL and XL checkpoints and whether their training mixtures differ."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/Tencent-Hunyuan/HunyuanVideo-Foley",
+        "technical_report": "https://arxiv.org/abs/2508.16930",
+        "repository": "https://github.com/Tencent-Hunyuan/HunyuanVideo-Foley"
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "models/multimodal/hunyuanvideo-foley.yaml",
+      "scenario_ids": [],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "proprietary",
+          "public-web",
+          "synthetic"
+        ],
+        "operations": [
+          "scene-segmentation",
+          "silence-filtering",
+          "bandwidth-filtering",
+          "audio-quality-filtering",
+          "audio-video-sync-filtering",
+          "audio-classification",
+          "synthetic-captioning",
+          "representation-alignment",
+          "flow-matching"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 2,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/tencent/HunyuanVideo-Foley"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 12,
+          "score": 53.29,
+          "score_label": "Total"
+        }
+      ],
+      "linked_dataset_ids": [
+        "vggsound",
+        "avgen-bench"
+      ]
+    },
+    {
+      "id": "wan-2-2",
+      "name": "Wan2.2",
+      "organization": "Wan Team, Alibaba",
+      "released_at": "2025-07-28",
+      "ranking_names": [
+        "Wan2.2"
+      ],
+      "modalities": [
+        "video",
+        "image"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0",
+        "release_url": "https://github.com/Wan-Video/Wan2.2",
+        "weights_url": "https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Timestep-routed mixture-of-experts video diffusion transformer",
+        "parameters": 27000000000,
+        "notes": "The A14B family uses two roughly 14B experts routed by denoising timestep, with about 14B parameters active per step; a separate dense 5B TI2V variant is also released."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Wan2.2 expanded image-video corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "not-released",
+            "scale": "65.6% more images and 83.2% more videos than Wan2.1",
+            "notes": "The release reports relative growth and aesthetic labels but does not publish source identities or absolute sample counts."
+          },
+          {
+            "name": "AVGen-Bench",
+            "catalog_id": "avgen-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "235 prompts and 3,009 generated examples",
+            "notes": "The official leaderboard evaluates Wan2.2 paired with HunyuanVideo-Foley; the Total score is not a standalone Wan2.2 result."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "proprietary"
+            ],
+            "operations": [
+              "aesthetic-labeling",
+              "image-video-joint-training",
+              "mixture-of-experts-training",
+              "high-compression-vae-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Expand the Wan2.1 corpus substantially, add detailed lighting, composition, contrast, and color labels, and train MoE and dense high-compression variants for quality and efficiency."
+          }
+        ],
+        "strategy_summary": [
+          "Increase both image and video coverage while explicitly labeling cinematic aesthetics.",
+          "Separate high-noise layout modeling from low-noise detail refinement through timestep-routed experts."
+        ],
+        "unknowns": [
+          "Dataset identities, absolute image and video counts, source rights, languages, captions, filters, deduplication, and mixture weights.",
+          "Whether the public 5B and A14B checkpoints use identical data mixtures and post-training recipes."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/Wan-Video/Wan2.2",
+        "technical_report": "https://arxiv.org/abs/2503.20314",
+        "repository": "https://github.com/Wan-Video/Wan2.2"
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/wan-2-2.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "proprietary"
+        ],
+        "operations": [
+          "aesthetic-labeling",
+          "image-video-joint-training",
+          "mixture-of-experts-training",
+          "high-compression-vae-training"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/Wan-AI/Wan2.2-T2V-A14B"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "avgen-bench"
       ]
     },
     {
@@ -17374,6 +19539,102 @@
       "reference_name": "VITON-HD-edit"
     },
     {
+      "model_id": "emu3-5",
+      "dataset_id": "avgen-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "235 prompts and 3,009 generated examples",
+      "reference_name": "AVGen-Bench"
+    },
+    {
+      "model_id": "emu3-5",
+      "dataset_id": "conceptual-12m",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "About 12M image-text records",
+      "reference_name": "Conceptual 12M"
+    },
+    {
+      "model_id": "emu3-5",
+      "dataset_id": "conceptual-captions-3m",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "About 3.3M image-text records",
+      "reference_name": "Conceptual Captions 3M"
+    },
+    {
+      "model_id": "emu3-5",
+      "dataset_id": "coyo-700m",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "About 700M URL-text metadata pairs",
+      "reference_name": "COYO-700M"
+    },
+    {
+      "model_id": "emu3-5",
+      "dataset_id": "datacomp-1b",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "About 1B URL-text metadata pairs",
+      "reference_name": "DataComp-1B"
+    },
+    {
+      "model_id": "emu3-5",
+      "dataset_id": "imagenet",
+      "role": "pretraining",
+      "availability": "gated",
+      "scale": "14,197,122 indexed images in the full official collection",
+      "reference_name": "ImageNet"
+    },
+    {
+      "model_id": "emu3-5",
+      "dataset_id": "infinity-instruct",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "About 8.9M instruction-response pairs used by Emu3.5",
+      "reference_name": "Infinity-Instruct"
+    },
+    {
+      "model_id": "emu3-5",
+      "dataset_id": "journeydb",
+      "role": "pretraining",
+      "availability": "gated",
+      "scale": "4,429,295 generated images",
+      "reference_name": "JourneyDB"
+    },
+    {
+      "model_id": "emu3-5",
+      "dataset_id": "laion-5b",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "5.85B URL-text metadata pairs",
+      "reference_name": "LAION-5B family"
+    },
+    {
+      "model_id": "emu3-5",
+      "dataset_id": "open-images-v7",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "About 9M images with annotations",
+      "reference_name": "Open Images V7"
+    },
+    {
+      "model_id": "emu3-5",
+      "dataset_id": "postercraft-public-corpora",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "About 2.25M released Text-Render-2M and Poster100K records",
+      "reference_name": "PosterCraft public training corpora"
+    },
+    {
+      "model_id": "emu3-5",
+      "dataset_id": "textatlas5m",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "About 5M dense-text images",
+      "reference_name": "TextAtlas5M"
+    },
+    {
       "model_id": "ernie-image",
       "dataset_id": "eria-1k",
       "role": "evaluation",
@@ -17388,6 +19649,14 @@
       "availability": "public",
       "scale": "100,000 training and 5,000 evaluation triplets",
       "reference_name": "FIT-VTO-100K"
+    },
+    {
+      "model_id": "gemini-3-1-flash-image",
+      "dataset_id": "avgen-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "235 prompts and 3,009 generated examples",
+      "reference_name": "AVGen-Bench"
     },
     {
       "model_id": "gpic-baselines",
@@ -17438,12 +19707,36 @@
       "reference_name": "HDTF"
     },
     {
+      "model_id": "hunyuanvideo-foley",
+      "dataset_id": "avgen-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "235 prompts and 3,009 generated examples",
+      "reference_name": "AVGen-Bench"
+    },
+    {
+      "model_id": "hunyuanvideo-foley",
+      "dataset_id": "vggsound",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "More than 200K audio-video clips in the source dataset",
+      "reference_name": "VGGSound"
+    },
+    {
       "model_id": "just-dub-it",
       "dataset_id": "audiovisual-translation-dub",
       "role": "fine-tuning",
       "availability": "public",
       "scale": "288 paired multilingual video records",
       "reference_name": "Audiovisual Translation Dubbing Dataset"
+    },
+    {
+      "model_id": "kling-2-6",
+      "dataset_id": "avgen-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "235 prompts and 3,009 generated examples",
+      "reference_name": "AVGen-Bench"
     },
     {
       "model_id": "lens",
@@ -17460,6 +19753,14 @@
       "availability": "not-released",
       "scale": "8K prompts",
       "reference_name": "Lens-RL-8K"
+    },
+    {
+      "model_id": "ltx-2",
+      "dataset_id": "avgen-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "235 prompts and 3,009 generated examples",
+      "reference_name": "AVGen-Bench"
     },
     {
       "model_id": "ltx-2-3",
@@ -17654,6 +19955,14 @@
       "reference_name": "OpenVE-Bench"
     },
     {
+      "model_id": "ovi",
+      "dataset_id": "avgen-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "235 prompts and 3,009 generated examples",
+      "reference_name": "AVGen-Bench"
+    },
+    {
       "model_id": "phantom-wan-14b",
       "dataset_id": "panda-70m",
       "role": "fine-tuning",
@@ -17668,6 +19977,14 @@
       "availability": "public",
       "scale": "198 paired comparisons and about 6,000 human responses",
       "reference_name": "Seedance 1 Pro Human Preferences"
+    },
+    {
+      "model_id": "seedance-1-5-pro",
+      "dataset_id": "avgen-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "235 prompts and 3,009 generated examples",
+      "reference_name": "AVGen-Bench"
     },
     {
       "model_id": "seedance-2-0",
@@ -17804,6 +20121,14 @@
       "availability": "public",
       "scale": "49,177 released rows; paper mixture of 50K pairs across four editing tasks",
       "reference_name": "VideoCoF-50K"
+    },
+    {
+      "model_id": "wan-2-2",
+      "dataset_id": "avgen-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "235 prompts and 3,009 generated examples",
+      "reference_name": "AVGen-Bench"
     },
     {
       "model_id": "wan-2-6",
@@ -18802,6 +21127,175 @@
           "open_weights": false,
           "license": "Proprietary",
           "model_id": "runway-aleph"
+        }
+      ]
+    },
+    {
+      "id": "avgen-text-to-audio-video",
+      "provider": "AVGen-Bench",
+      "label": "文生音视频",
+      "modality": "video",
+      "score_label": "Total",
+      "date_label": "榜单快照",
+      "coverage_policy": "required",
+      "source_url": "https://microsoft.github.io/AVGen-Bench/",
+      "fetch_url": "https://raw.githubusercontent.com/microsoft/AVGen-Bench/main/README.md",
+      "entries": [
+        {
+          "rank": 1,
+          "creator": "Seedance 2.0 (Proprietary)",
+          "model": "Seedance 2.0",
+          "score": 72.07,
+          "confidence_interval": "",
+          "samples": null,
+          "released": "",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "seedance-2-0"
+        },
+        {
+          "rank": 2,
+          "creator": "Veo 3.1-fast (Proprietary)",
+          "model": "Veo 3.1-fast",
+          "score": 67.87,
+          "confidence_interval": "",
+          "samples": null,
+          "released": "",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "veo-3-1"
+        },
+        {
+          "rank": 3,
+          "creator": "Veo 3.1-quality (Proprietary)",
+          "model": "Veo 3.1-quality",
+          "score": 66.28,
+          "confidence_interval": "",
+          "samples": null,
+          "released": "",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "veo-3-1"
+        },
+        {
+          "rank": 4,
+          "creator": "Sora-2 (Proprietary)",
+          "model": "Sora-2",
+          "score": 64.16,
+          "confidence_interval": "",
+          "samples": null,
+          "released": "",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "sora-2"
+        },
+        {
+          "rank": 5,
+          "creator": "Wan2.6 (Proprietary)",
+          "model": "Wan2.6",
+          "score": 62.97,
+          "confidence_interval": "",
+          "samples": null,
+          "released": "",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "wan-2-6"
+        },
+        {
+          "rank": 6,
+          "creator": "Seedance-1.5 Pro (Proprietary)",
+          "model": "Seedance-1.5 Pro",
+          "score": 62.55,
+          "confidence_interval": "",
+          "samples": null,
+          "released": "",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "seedance-1-5-pro"
+        },
+        {
+          "rank": 7,
+          "creator": "Kling-V2.6 (Proprietary)",
+          "model": "Kling-V2.6",
+          "score": 61.82,
+          "confidence_interval": "",
+          "samples": null,
+          "released": "",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "kling-2-6"
+        },
+        {
+          "rank": 8,
+          "creator": "LTX-2.3 (Open-source)",
+          "model": "LTX-2.3",
+          "score": 59.97,
+          "confidence_interval": "",
+          "samples": null,
+          "released": "",
+          "open_weights": true,
+          "license": "Open-source",
+          "model_id": "ltx-2-3"
+        },
+        {
+          "rank": 9,
+          "creator": "NanoBanana2 (Proprietary) + MOVA (Open-source)",
+          "model": "NanoBanana2 + MOVA",
+          "score": 58.1,
+          "confidence_interval": "",
+          "samples": null,
+          "released": "",
+          "open_weights": false,
+          "license": "Mixed pipeline",
+          "model_id": "mova-720p"
+        },
+        {
+          "rank": 10,
+          "creator": "LTX-2 (Open-source)",
+          "model": "LTX-2",
+          "score": 56.62,
+          "confidence_interval": "",
+          "samples": null,
+          "released": "",
+          "open_weights": true,
+          "license": "Open-source",
+          "model_id": "ltx-2"
+        },
+        {
+          "rank": 11,
+          "creator": "Emu3.5 (Open-source) + MOVA (Open-source)",
+          "model": "Emu3.5 + MOVA",
+          "score": 56.12,
+          "confidence_interval": "",
+          "samples": null,
+          "released": "",
+          "open_weights": true,
+          "license": "Open-source",
+          "model_id": "emu3-5"
+        },
+        {
+          "rank": 12,
+          "creator": "Wan2.2 (Open-source) + HunyuanVideo-Foley (Open-source)",
+          "model": "Wan2.2 + HunyuanVideo-Foley",
+          "score": 53.29,
+          "confidence_interval": "",
+          "samples": null,
+          "released": "",
+          "open_weights": true,
+          "license": "Open-source",
+          "model_id": "hunyuanvideo-foley"
+        },
+        {
+          "rank": 13,
+          "creator": "Ovi (Open-source)",
+          "model": "Ovi",
+          "score": 52.02,
+          "confidence_interval": "",
+          "samples": null,
+          "released": "",
+          "open_weights": true,
+          "license": "Open-source",
+          "model_id": "ovi"
         }
       ]
     },

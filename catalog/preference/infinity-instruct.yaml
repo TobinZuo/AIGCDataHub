@@ -1,0 +1,68 @@
+id: infinity-instruct
+name: Infinity-Instruct
+organization: Beijing Academy of Artificial Intelligence
+released_at: "2024-06-13"
+release_date_source: https://huggingface.co/datasets/BAAI/Infinity-Instruct
+modality: preference
+tasks:
+  - instruction-tuning
+  - text-generation
+  - data-selection
+stages:
+  - fine-tuning
+  - preference-tuning
+  - data-curation
+description: >-
+  A versioned, multilingual family of millions of selected and evolved
+  instruction-response records with task labels and reward scores for scalable
+  supervised and preference tuning.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/BAAI/Infinity-Instruct
+  requires_account: false
+  notes: Multiple versions and configurations are hosted as Parquet; consumers should pin the exact configuration and revision used.
+scale:
+  samples: 10000000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The project targets a 10M family and exposes several 3M, 7M, core, generated, and chat configurations rather than one immutable split.
+annotations:
+  types:
+    - instruction
+    - response
+    - task-category
+    - ability-label
+    - reward-score
+    - language
+  source: mixed
+  languages:
+    - en
+    - zh
+license:
+  metadata: CC-BY-SA-4.0
+  media: Text records subject to component-source and share-alike terms
+  commercial_use: review-required
+  redistribution: allowed
+  notes: The hosted dataset is marked CC BY-SA 4.0, while downstream users must retain attribution, share-alike obligations, and component provenance.
+quality:
+  dimensions:
+    - human-preference
+    - safety
+    - deduplication
+    - provenance
+  known_limitations:
+    - Version names cover materially different source, selected, evolved, and preference subsets.
+    - Model-generated instructions and reward labels can transmit evaluator and teacher-model bias.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: Pin configuration and revision, retain source and reward metadata, and deduplicate against downstream evaluation and preference sets.
+evidence:
+  homepage: https://huggingface.co/datasets/BAAI/Infinity-Instruct
+  paper: https://arxiv.org/abs/2506.11116
+  used_by:
+    - Emu3.5
+status: verified
+last_verified: "2026-07-27"

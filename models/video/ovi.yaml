@@ -1,0 +1,84 @@
+id: ovi
+name: Ovi
+organization: Character.AI and Yale University
+released_at: "2025-09-29"
+ranking_names:
+  - Ovi
+modalities:
+  - video
+  - audio
+  - image
+tasks:
+  - text-to-video
+  - image-to-video
+  - audio-video-generation
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://github.com/character-ai/Ovi
+  weights_url: https://huggingface.co/chetwinlow1/Ovi
+  api_url: null
+architecture:
+  family: Twin-backbone cross-modal audio-video diffusion transformer
+  parameters: 11000000000
+  notes: Initializes a video tower from Wan2.2 and a separately pretrained 5B audio tower, then exchanges timing and semantics through blockwise cross-modal fusion.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Ovi audio pretraining corpus
+      catalog_id: null
+      role: pretraining
+      availability: not-released
+      scale: Hundreds of thousands of hours, primarily speech
+      notes: The paper discloses scale class, duration curriculum, and source type but no constituent dataset names or download.
+    - name: Ovi audio-video fusion corpus
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: Described only as a vast video corpus
+      notes: Used to join the pretrained audio and video towers; its composition and size are not published.
+    - name: AVGen-Bench
+      catalog_id: avgen-bench
+      role: evaluation
+      availability: public
+      scale: 235 prompts and 3,009 generated examples
+      notes: The official leaderboard evaluates Ovi as an open-source joint audio-video system.
+  stages:
+    - name: pretraining
+      modalities:
+        - audio
+      source_types:
+        - proprietary
+      operations:
+        - variable-duration-training
+        - speech-pretraining
+        - sound-effect-mixing
+      scale_disclosed: true
+      strategy: Pretrain the 5B audio tower from scratch on hundreds of thousands of hours of mostly speech up to 12 seconds, then fine-tune on padded 5.04-second audio with sound effects.
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - proprietary
+      operations:
+        - cross-modal-fusion-training
+        - attention-only-fine-tuning
+        - temporal-alignment
+      scale_disclosed: false
+      strategy: Combine pretrained video and audio towers, freeze feed-forward networks, and tune unimodal and cross-modal attention on paired video to align timing and semantics.
+  strategy_summary:
+    - Build the audio branch on long, diverse speech before adapting it to fixed-duration audiovisual generation.
+    - Preserve pretrained modality knowledge by fine-tuning attention and newly initialized cross-modal fusion rather than the full 11B system.
+  unknowns:
+    - Audio and video dataset identities, licenses, counts, languages, speakers, caption sources, safety filters, and mixture ratios.
+    - Exact training differences between the original five-second release and the Ovi 1.1 ten-second checkpoint.
+evidence:
+  release: https://github.com/character-ai/Ovi
+  technical_report: https://arxiv.org/abs/2510.01284
+  repository: https://github.com/character-ai/Ovi
+status: partial
+last_verified: "2026-07-27"

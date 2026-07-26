@@ -1,0 +1,59 @@
+id: kling-2-6
+name: Kling AI 2.6
+organization: Kuaishou Technology
+released_at: "2025-12-03"
+ranking_names:
+  - Kling-V2.6
+  - Kling 2.6
+modalities:
+  - video
+  - audio
+  - image
+tasks:
+  - text-to-video
+  - image-to-video
+  - motion-control
+  - audio-video-generation
+access:
+  status: product-only
+  license: Kling AI service terms
+  release_url: https://ir.kuaishou.com/news-releases/news-release-details/kuaishou-technology-announces-fourth-quarter-and-full-year-2025
+  weights_url: null
+  api_url: null
+architecture:
+  family: Undisclosed native audio-video generation architecture
+  parameters: null
+  notes: Generates video, voice, action sounds, and ambience in one process and supports reference-driven motion control; architecture and size are not public.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: AVGen-Bench
+      catalog_id: avgen-bench
+      role: evaluation
+      availability: public
+      scale: 235 prompts and 3,009 generated examples
+      notes: The official leaderboard evaluates Kling-V2.6; the benchmark does not reveal its training corpus.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - audio
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: Kuaishou documents simultaneous audio-visual generation and motion control but does not publish identifiable training data, curation, or post-training details.
+  strategy_summary:
+    - Keep the native audio-video and motion-control capabilities separate from any claim about training sources; no first-party data inventory is public.
+  unknowns:
+    - Dataset identities, provenance, rights, scale, languages, modality mixture, captions, filtering, deduplication, and post-training data.
+evidence:
+  release: https://ir.kuaishou.com/news-releases/news-release-details/kuaishou-technology-announces-fourth-quarter-and-full-year-2025
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-27"

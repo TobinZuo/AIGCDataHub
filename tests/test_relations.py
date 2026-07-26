@@ -146,13 +146,27 @@ class ModelDatasetRelationTests(unittest.TestCase):
         )
         self.assertEqual(
             set(self.datasets["avgen-bench"]["linked_model_ids"]),
-            {"seedance-2-0", "veo-3-1", "sora-2", "wan-2-6", "ltx-2-3", "mova-720p"},
+            {
+                "emu3-5", "gemini-3-1-flash-image", "hunyuanvideo-foley",
+                "kling-2-6", "ltx-2", "ltx-2-3", "mova-720p", "ovi",
+                "seedance-1-5-pro", "seedance-2-0", "sora-2", "veo-3-1",
+                "wan-2-2", "wan-2-6",
+            },
+        )
+        self.assertEqual(
+            set(self.models["emu3-5"]["linked_dataset_ids"]),
+            {
+                "imagenet", "open-images-v7", "conceptual-captions-3m",
+                "conceptual-12m", "laion-5b", "textatlas5m",
+                "postercraft-public-corpora", "coyo-700m", "datacomp-1b",
+                "journeydb", "infinity-instruct", "avgen-bench",
+            },
         )
 
     def test_dataset_monitoring_is_joined_by_canonical_catalog_id(self) -> None:
         self.assertEqual(
             sum(dataset["monitoring"] is not None for dataset in self.datasets.values()),
-            67,
+            77,
         )
         self.assertEqual(
             self.datasets["fit-vto-100k"]["monitoring"],
@@ -231,7 +245,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
     def test_model_monitoring_is_joined_by_canonical_model_id(self) -> None:
         self.assertEqual(
             sum(model["monitoring"] is not None for model in self.models.values()),
-            59,
+            66,
         )
         self.assertEqual(
             self.models["hunyuanvideo-avatar"]["monitoring"],
@@ -252,7 +266,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
             for board in self.payload["rankings"]
             for entry in board["entries"]
         }
-        self.assertEqual(len(ranked_model_ids), 40)
+        self.assertEqual(len(ranked_model_ids), 48)
         self.assertEqual(
             {
                 model_id

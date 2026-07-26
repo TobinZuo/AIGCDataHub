@@ -213,10 +213,13 @@ class CatalogTests(unittest.TestCase):
 
     def test_every_ranking_top_fifteen_entry_maps_to_a_model_card(self) -> None:
         rankings = build_payload()["rankings"]
-        self.assertEqual(len(rankings), 10)
-        self.assertEqual({board["provider"] for board in rankings}, {"Artificial Analysis", "Arena"})
+        self.assertEqual(len(rankings), 11)
+        self.assertEqual(
+            {board["provider"] for board in rankings},
+            {"Artificial Analysis", "Arena", "AVGen-Bench"},
+        )
         required_boards = [board for board in rankings if board["coverage_policy"] == "required"]
-        self.assertEqual(len(required_boards), 10)
+        self.assertEqual(len(required_boards), 11)
         for board in required_boards:
             with self.subTest(board=board["id"]):
                 required = min(15, len(board["entries"]))

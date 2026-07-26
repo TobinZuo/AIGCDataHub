@@ -352,6 +352,17 @@ tracks:
         ranking_date_label: 榜单快照
         ranking_coverage_policy: required
         ranking_page_url: https://arena.ai/leaderboard/video-edit
+      - url: https://raw.githubusercontent.com/microsoft/AVGen-Bench/main/README.md
+        ranking_id: avgen-text-to-audio-video
+        ranking_limit: 13
+        ranking_provider: AVGen-Bench
+        ranking_label: 文生音视频
+        ranking_modality: video
+        ranking_parser: avgen-markdown
+        ranking_score_label: Total
+        ranking_date_label: 榜单快照
+        ranking_coverage_policy: required
+        ranking_page_url: https://microsoft.github.io/AVGen-Bench/
 
   - id: important-dataset-updates
     topics:
@@ -360,6 +371,36 @@ tracks:
       - metadata-change
       - license-change
     official_sources:
+      - url: https://www.image-net.org/download.php
+        catalog_id: imagenet
+        priority: high
+      - url: https://storage.googleapis.com/openimages/web/download_v7.html
+        catalog_id: open-images-v7
+        priority: high
+      - url: https://huggingface.co/api/datasets/google-research-datasets/conceptual_captions
+        catalog_id: conceptual-captions-3m
+        priority: high
+      - url: https://huggingface.co/api/datasets/google-research-datasets/conceptual_12m
+        catalog_id: conceptual-12m
+        priority: high
+      - url: https://projects.laion.ai/laion-datasets/
+        catalog_id: laion-5b
+        priority: high
+      - url: https://huggingface.co/api/datasets/CSU-JPG/TextAtlas5M
+        catalog_id: textatlas5m
+        priority: critical
+      - url: https://huggingface.co/PosterCraft/datasets
+        catalog_id: postercraft-public-corpora
+        priority: high
+      - url: https://huggingface.co/api/datasets/BAAI/Infinity-Instruct
+        catalog_id: infinity-instruct
+        priority: high
+      - url: https://huggingface.co/api/datasets/DAGroup-PKU/RoVid-X
+        catalog_id: rovid-x
+        priority: critical
+      - url: https://huggingface.co/api/datasets/DAGroup-PKU/RBench
+        catalog_id: rbench
+        priority: critical
       - url: https://huggingface.co/api/datasets/microsoft/AVGen-Bench
         catalog_id: avgen-bench
         priority: critical
@@ -569,6 +610,27 @@ tracks:
       - release-files
       - license-change
     official_sources:
+      - url: https://seed.bytedance.com/en/seedance1_5_pro
+        model_id: seedance-1-5-pro
+        priority: critical
+      - url: https://ir.kuaishou.com/news-releases/news-release-details/kuaishou-technology-announces-fourth-quarter-and-full-year-2025
+        model_id: kling-2-6
+        priority: critical
+      - url: https://huggingface.co/api/models/Lightricks/LTX-2
+        model_id: ltx-2
+        priority: critical
+      - url: https://huggingface.co/api/models/BAAI/Emu3.5
+        model_id: emu3-5
+        priority: critical
+      - url: https://huggingface.co/api/models/Wan-AI/Wan2.2-T2V-A14B
+        model_id: wan-2-2
+        priority: critical
+      - url: https://huggingface.co/api/models/tencent/HunyuanVideo-Foley
+        model_id: hunyuanvideo-foley
+        priority: critical
+      - url: https://huggingface.co/api/models/chetwinlow1/Ovi
+        model_id: ovi
+        priority: critical
       - url: https://huggingface.co/api/models/OpenMOSS-Team/MOVA-720p
         model_id: mova-720p
         priority: critical

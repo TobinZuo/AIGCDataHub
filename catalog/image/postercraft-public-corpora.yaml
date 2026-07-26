@@ -1,0 +1,65 @@
+id: postercraft-public-corpora
+name: PosterCraft public training corpora
+organization: PosterCraft team
+released_at: "2025-06-12"
+release_date_source: https://arxiv.org/abs/2506.10741
+modality: image
+tasks:
+  - text-to-image
+  - poster-generation
+  - text-rendering
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  The two public PosterCraft training collections: Text-Render-2M for large-scale
+  text rendering and Poster100K for region-aware high-quality poster tuning.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/PosterCraft/datasets
+  requires_account: false
+  notes: The official organization hosts Text-Render-2M and Poster100K as separate downloadable Hugging Face repositories.
+scale:
+  samples: 2198400
+  source_items: null
+  hours: null
+  approximate: true
+  notes: Current repository listings show about 2.15M Text-Render-2M rows and 48.4K Poster100K rows; pin each component revision.
+annotations:
+  types:
+    - generation-prompt
+    - ocr-text
+    - text-region
+    - poster-caption
+    - style-metadata
+  source: mixed
+  languages:
+    - multilingual
+license:
+  metadata: Component-specific Hugging Face licenses
+  media: Poster100K is CC-BY-NC-SA-4.0; verify Text-Render-2M terms separately
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: This aggregate card uses the more restrictive known component boundary; review both repository cards and all source and font rights before use.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - aesthetics
+    - provenance
+  known_limitations:
+    - Combining two repositories can hide different licenses, schemas, and construction pipelines unless component identity is retained.
+    - Poster sources and synthetic fonts may carry additional attribution or reuse constraints.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: Preserve the component repository, revision, text regions, OCR fields, captions, and original rights metadata for every sample.
+evidence:
+  homepage: https://ephemeral182.github.io/PosterCraft
+  paper: https://arxiv.org/abs/2506.10741
+  used_by:
+    - Emu3.5
+status: partial
+last_verified: "2026-07-27"

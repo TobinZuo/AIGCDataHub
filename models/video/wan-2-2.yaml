@@ -1,0 +1,66 @@
+id: wan-2-2
+name: Wan2.2
+organization: Wan Team, Alibaba
+released_at: "2025-07-28"
+ranking_names:
+  - Wan2.2
+modalities:
+  - video
+  - image
+tasks:
+  - text-to-video
+  - image-to-video
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://github.com/Wan-Video/Wan2.2
+  weights_url: https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B
+  api_url: null
+architecture:
+  family: Timestep-routed mixture-of-experts video diffusion transformer
+  parameters: 27000000000
+  notes: The A14B family uses two roughly 14B experts routed by denoising timestep, with about 14B parameters active per step; a separate dense 5B TI2V variant is also released.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Wan2.2 expanded image-video corpus
+      catalog_id: null
+      role: pretraining
+      availability: not-released
+      scale: 65.6% more images and 83.2% more videos than Wan2.1
+      notes: The release reports relative growth and aesthetic labels but does not publish source identities or absolute sample counts.
+    - name: AVGen-Bench
+      catalog_id: avgen-bench
+      role: evaluation
+      availability: public
+      scale: 235 prompts and 3,009 generated examples
+      notes: The official leaderboard evaluates Wan2.2 paired with HunyuanVideo-Foley; the Total score is not a standalone Wan2.2 result.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - proprietary
+      operations:
+        - aesthetic-labeling
+        - image-video-joint-training
+        - mixture-of-experts-training
+        - high-compression-vae-training
+      scale_disclosed: false
+      strategy: Expand the Wan2.1 corpus substantially, add detailed lighting, composition, contrast, and color labels, and train MoE and dense high-compression variants for quality and efficiency.
+  strategy_summary:
+    - Increase both image and video coverage while explicitly labeling cinematic aesthetics.
+    - Separate high-noise layout modeling from low-noise detail refinement through timestep-routed experts.
+  unknowns:
+    - Dataset identities, absolute image and video counts, source rights, languages, captions, filters, deduplication, and mixture weights.
+    - Whether the public 5B and A14B checkpoints use identical data mixtures and post-training recipes.
+evidence:
+  release: https://github.com/Wan-Video/Wan2.2
+  technical_report: https://arxiv.org/abs/2503.20314
+  repository: https://github.com/Wan-Video/Wan2.2
+status: partial
+last_verified: "2026-07-27"
