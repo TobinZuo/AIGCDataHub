@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-07-26T11:08:17Z",
+  "generated_at": "2026-07-26T11:28:13Z",
   "sources": [
     {
       "track_id": "datasets",
@@ -110,6 +110,18 @@
     },
     {
       "track_id": "datasets",
+      "source_url": "https://github.com/fudan-generative-vision/OpenHumanVid",
+      "resolved_url": "https://github.com/fudan-generative-vision/OpenHumanVid",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
+    },
+    {
+      "track_id": "datasets",
       "source_url": "https://huggingface.co/baidu/ERNIE-Image-Aes",
       "resolved_url": "https://huggingface.co/baidu/ERNIE-Image-Aes",
       "status": 200,
@@ -160,6 +172,35 @@
     },
     {
       "track_id": "datasets",
+      "source_url": "https://huggingface.co/datasets/Haosonnn/OpenHumanVid-Talking",
+      "resolved_url": "https://huggingface.co/datasets/Haosonnn/OpenHumanVid-Talking",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Haosonnn/wan22-incontext-control-data",
+          "url": "https://huggingface.co/datasets/Haosonnn/wan22-incontext-control-data"
+        },
+        {
+          "title": "video-generation",
+          "url": "https://huggingface.co/datasets?other=video-generation"
+        },
+        {
+          "title": "Text-to-Video",
+          "url": "https://huggingface.co/datasets?task_categories=task_categories%3Atext-to-video"
+        },
+        {
+          "title": "Video Classification",
+          "url": "https://huggingface.co/datasets?task_categories=task_categories%3Avideo-classification"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
+    },
+    {
+      "track_id": "datasets",
       "source_url": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub",
       "resolved_url": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub",
       "status": 200,
@@ -195,6 +236,35 @@
         {
           "title": "Video-to-Video",
           "url": "https://huggingface.co/datasets?task_categories=task_categories%3Avideo-to-video"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
+    },
+    {
+      "track_id": "datasets",
+      "source_url": "https://huggingface.co/datasets/zhenzhiwang/TalkVerse",
+      "resolved_url": "https://huggingface.co/datasets/zhenzhiwang/TalkVerse",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "audio-video joint generation",
+          "url": "https://huggingface.co/datasets?other=audio-video+joint+generation"
+        },
+        {
+          "title": "speech-to-video generation",
+          "url": "https://huggingface.co/datasets?other=speech-to-video+generation"
+        },
+        {
+          "title": "Image-Text-to-Video",
+          "url": "https://huggingface.co/datasets?task_categories=task_categories%3Aimage-text-to-video"
+        },
+        {
+          "title": "TalkVerse: Democratizing Minute-Long Audio-Driven Video Generation Paper • 2512.14938 • Published Dec 16, 2025 • 1",
+          "url": "https://huggingface.co/papers/2512.14938"
         }
       ],
       "error": null,
@@ -271,6 +341,23 @@
     },
     {
       "track_id": "digital-human-and-localization",
+      "source_url": "https://github.com/snap-research/TalkVerse",
+      "resolved_url": "https://github.com/snap-research/TalkVerse",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "HuggingFace",
+          "url": "https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
+    },
+    {
+      "track_id": "digital-human-and-localization",
       "source_url": "https://huggingface.co/justdubit/justdubit",
       "resolved_url": "https://huggingface.co/justdubit/justdubit",
       "status": 200,
@@ -304,6 +391,18 @@
           "url": "https://huggingface.co/models?pipeline_tag=video-to-video"
         }
       ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
+    },
+    {
+      "track_id": "digital-human-and-localization",
+      "source_url": "https://huggingface.co/snap-research/talkverse-s2v-5b",
+      "resolved_url": "https://huggingface.co/snap-research/talkverse-s2v-5b",
+      "status": 200,
+      "candidates": [],
       "error": null,
       "revision": null,
       "revision_url": null,
@@ -373,6 +472,27 @@
         {
           "title": "AI Video Generator",
           "url": "https://www.heygen.com/tool/ai-video-generator"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
+    },
+    {
+      "track_id": "digital-human-and-localization",
+      "source_url": "https://zhenzhiwang.github.io/talkverse/",
+      "resolved_url": "https://zhenzhiwang.github.io/talkverse",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Code",
+          "url": "https://github.com/snap-research/TalkVerse"
+        },
+        {
+          "title": "🤗 Data",
+          "url": "https://huggingface.co/datasets/zhenzhiwang/TalkVerse"
         }
       ],
       "error": null,
@@ -702,7 +822,7 @@
           "url": "https://huggingface.co/models?pipeline_tag=text-to-video"
         },
         {
-          "title": "nvidia/Qwen-Image-Flash Text-to-Image • 20B • Updated 3 days ago • 238 • 37",
+          "title": "nvidia/Qwen-Image-Flash Text-to-Image • 20B • Updated 3 days ago • 238 • 38",
           "url": "https://huggingface.co/nvidia/Qwen-Image-Flash"
         },
         {
@@ -787,6 +907,18 @@
       "revision": "2026-04-24T14:54:54.000Z@4f2b6bbd41976b32a9cfb6157af62c7b4924e303",
       "revision_url": "https://huggingface.co/datasets/Dalision/Omni2Sound_Benchmark",
       "catalog_id": "vggsound-omni",
+      "priority": "critical"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/Haosonnn/OpenHumanVid-Talking",
+      "resolved_url": "https://huggingface.co/api/datasets/Haosonnn/OpenHumanVid-Talking",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-07-18T04:28:40.000Z@db4d79386cb91679ec762859af7914b173647d31",
+      "revision_url": "https://huggingface.co/datasets/Haosonnn/OpenHumanVid-Talking",
+      "catalog_id": "openhumanvid-talking",
       "priority": "critical"
     },
     {
@@ -920,6 +1052,18 @@
       "revision_url": "https://huggingface.co/datasets/tiange/Cap3D",
       "catalog_id": "cap3d",
       "priority": "high"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/zhenzhiwang/TalkVerse",
+      "resolved_url": "https://huggingface.co/api/datasets/zhenzhiwang/TalkVerse",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-01-02T03:01:54.000Z@0251e435401cf4dbb1e9e18ba3b54007be588833",
+      "revision_url": "https://huggingface.co/datasets/zhenzhiwang/TalkVerse",
+      "catalog_id": "talkverse",
+      "priority": "critical"
     },
     {
       "track_id": "video-and-audio-generation",

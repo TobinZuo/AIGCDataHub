@@ -63,6 +63,7 @@ model's capabilities or outputs.
 | [Seedance 2.0](models/video/seedance-2-0.yaml) | ByteDance Seed | video, audio | 2026-02-12 | api only | undisclosed | not disclosed | 👀 |
 | [JUST-DUB-IT](models/video/just-dub-it.yaml) | Lightricks and Tel Aviv University | video, audio | 2026-02-10 | gated weights | partial | LTX-2 base-model training mixture, [Audiovisual Translation Dubbing Dataset](catalog/video/audiovisual-translation-dub.yaml) | ✅ |
 | [Omni2Sound](models/multimodal/omni2sound.yaml) | Tsinghua University, Monash University, and Shengshu AI | audio, video | 2026-01-06 | open weights | partial | [AudioCaps](catalog/audio/audiocaps-2-0.yaml), [WavCaps](catalog/audio/wavcaps.yaml), [Clotho](catalog/audio/clotho-2-1.yaml), [AudioSet](catalog/audio/audioset.yaml), [VGGSound](catalog/audio/vggsound.yaml), [FSD50K](catalog/audio/fsd50k.yaml), [Million Song Dataset](catalog/audio/million-song-dataset.yaml), [FMA](catalog/audio/fma.yaml), [SoundAtlas](catalog/audio/soundatlas.yaml), [VGGSound-Omni](catalog/evaluation/vggsound-omni.yaml) | ✅ |
+| [TalkVerse-5B](models/video/talkverse-5b.yaml) | CUHK MMLab and Snap Research | video, audio | 2025-12-24 | open weights | partial | Wan2.2-TI2V-5B inherited training mixture, [TalkVerse](catalog/video/talkverse.yaml) | ✅ |
 | [HunyuanVideo 1.5](models/video/hunyuanvideo-1-5.yaml) | Tencent Hunyuan | video | 2025-11-24 | open weights | high level | not disclosed | 🟡 |
 <!-- END MODEL CATALOG -->
 
@@ -80,6 +81,7 @@ generated table.
 | Dataset | Organization | Modality | Released | Tasks | Scale | Access | Commercial use | Status |
 |---|---|---|---|---|---:|---|---|:---:|
 | [GraphVid-Bench](catalog/video/graphvid-bench.yaml) | University of Illinois Urbana-Champaign and Sony Research India | video | 2026-07-23 | graph conditioned video generation, image to video, object interaction generation, video generation evaluation | ~27.5K | unavailable | unknown | 🟡 |
+| [OpenHumanVid-Talking](catalog/video/openhumanvid-talking.yaml) | Haoson Zhang | video | 2026-07-15 | audio driven avatar, talking head generation, text to video | ~32.2K | open | noncommercial | ✅ |
 | [VITON-HD-edit](catalog/image/viton-hd-edit.yaml) | NXN Labs and KAIST | image | 2026-07-10 | virtual try on, controllable virtual try on, garment instance segmentation, image editing, virtual try on evaluation | 2K | open | noncommercial | ✅ |
 | [GenSyn10](catalog/evaluation/gensyn10.yaml) | University of Western Australia | evaluation | 2026-07-10 | synthetic image detection, image classification, out of distribution evaluation | 60K | unavailable | review required | 🟡 |
 | [ERIA-1K](catalog/evaluation/eria-1k.yaml) | Baidu | evaluation | 2026-05-25 | image aesthetic assessment, aesthetic model evaluation | 1K | unavailable | unknown | 🟡 |
@@ -90,7 +92,9 @@ generated table.
 | [Audiovisual Translation Dubbing Dataset](catalog/video/audiovisual-translation-dub.yaml) | Lightricks and Tel Aviv University | video | 2026-02-08 | video dubbing, audiovisual translation, lip sync training | 288 | open | noncommercial | ✅ |
 | [VGGSound-Omni](catalog/evaluation/vggsound-omni.yaml) | Tsinghua University, Monash University, and Shengshu AI | evaluation | 2026-01-06 | text to audio evaluation, video to audio evaluation, video text to audio evaluation, off screen audio evaluation | ~14K | gated | noncommercial | ✅ |
 | [SoundAtlas](catalog/audio/soundatlas.yaml) | Tsinghua University, Monash University, and Shengshu AI | audio | 2026-01-06 | text to audio, video to audio, video text to audio, audio captioning | ~470K | gated | noncommercial | ✅ |
+| [TalkVerse](catalog/video/talkverse.yaml) | CUHK MMLab and Snap Research | video | 2026-01-02 | audio driven avatar, talking head generation, image to video | ~2.1M | gated | noncommercial | 🟡 |
 | [AudioCaps 2.0](catalog/audio/audiocaps-2-0.yaml) | Seoul National University | audio | 2025-02-24 | audio captioning, text to audio, audio language pretraining, text to audio evaluation | 98.6K | gated | noncommercial | 🟡 |
+| [OpenHumanVid](catalog/video/openhumanvid.yaml) | Fudan University and collaborators | video | 2024-11-28 | text to video, video text pretraining, human centric video generation, pose conditioned generation | ~13.2M | gated | noncommercial | 🟡 |
 | [FineVideo](catalog/video/finevideo.yaml) | Hugging Face | video | 2024-09-23 | video understanding, text to video | ~43K | gated | review required | ✅ |
 | [Re-LAION-5B](catalog/image/re-laion-5b.yaml) | LAION | image | 2024-08-30 | image text pretraining, text to image | ~5.8B | open | review required | 🟡 |
 | [OpenVid-1M](catalog/video/openvid-1m.yaml) | Nanjing University PCALab | video | 2024-07-02 | text to video, image to video | ~1M | open | noncommercial | ✅ |

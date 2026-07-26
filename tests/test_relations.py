@@ -21,6 +21,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
             for reference in model["data"]["datasets"]
         )
         self.assertEqual(len(self.payload["relations"]), expected)
+        self.assertGreaterEqual(len(self.payload["relations"]), 19)
 
     def test_model_and_dataset_backlinks_are_symmetric(self) -> None:
         relation_pairs = {
@@ -49,6 +50,8 @@ class ModelDatasetRelationTests(unittest.TestCase):
             "just-dub-it",
             self.datasets["audiovisual-translation-dub"]["linked_model_ids"],
         )
+        self.assertIn("talkverse", self.models["talkverse-5b"]["linked_dataset_ids"])
+        self.assertIn("talkverse-5b", self.datasets["talkverse"]["linked_model_ids"])
 
     def test_dataset_monitoring_is_joined_by_canonical_catalog_id(self) -> None:
         self.assertEqual(
@@ -70,6 +73,20 @@ class ModelDatasetRelationTests(unittest.TestCase):
             {
                 "priority": "critical",
                 "source_url": "https://huggingface.co/api/datasets/TripVVT/TripVVT-10K",
+            },
+        )
+        self.assertEqual(
+            self.datasets["talkverse"]["monitoring"],
+            {
+                "priority": "critical",
+                "source_url": "https://huggingface.co/api/datasets/zhenzhiwang/TalkVerse",
+            },
+        )
+        self.assertEqual(
+            self.datasets["openhumanvid-talking"]["monitoring"],
+            {
+                "priority": "critical",
+                "source_url": "https://huggingface.co/api/datasets/Haosonnn/OpenHumanVid-Talking",
             },
         )
         self.assertEqual(self.datasets["finevideo"]["monitoring"]["priority"], "high")

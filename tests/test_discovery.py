@@ -114,6 +114,11 @@ class DiscoveryTests(unittest.TestCase):
                 "https://johannakarras.github.io/FIT/",
                 "https://huggingface.co/api/datasets/NXN-Labs/VITON-HD-edit",
                 "https://huggingface.co/api/datasets/TripVVT/TripVVT-10K",
+                "https://zhenzhiwang.github.io/talkverse/",
+                "https://github.com/snap-research/TalkVerse",
+                "https://huggingface.co/api/datasets/zhenzhiwang/TalkVerse",
+                "https://github.com/fudan-generative-vision/OpenHumanVid",
+                "https://huggingface.co/api/datasets/Haosonnn/OpenHumanVid-Talking",
             }.issubset(urls)
         )
         self.assertIn("https://huggingface.co/api/datasets/nkp37/OpenVid-1M", urls)
@@ -131,6 +136,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(impacts["viton-hd-edit"], ("ctrlvton",))
         self.assertEqual(impacts["tripvvt-10k"], ("tripvvt",))
         self.assertEqual(impacts["audiovisual-translation-dub"], ("just-dub-it",))
+        self.assertEqual(impacts["talkverse"], ("talkverse-5b",))
         self.assertEqual(impacts["wavcaps"], ("omni2sound",))
 
     def test_compares_candidates_failures_recoveries_and_known_urls(self) -> None:

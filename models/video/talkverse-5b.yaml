@@ -1,0 +1,103 @@
+id: talkverse-5b
+name: TalkVerse-5B
+organization: CUHK MMLab and Snap Research
+released_at: "2025-12-24"
+modalities:
+  - video
+  - audio
+tasks:
+  - audio-driven-avatar
+  - talking-head-generation
+  - long-video-generation
+  - image-to-video
+  - video-to-video
+  - video-dubbing
+  - audiovisual-translation
+access:
+  status: open-weights
+  license: Snap Inc. Non-Commercial License
+  release_url: https://zhenzhiwang.github.io/talkverse/
+  weights_url: https://huggingface.co/snap-research/talkverse-s2v-5b
+  api_url: null
+architecture:
+  family: Wan2.2-TI2V-5B audio-conditioned diffusion transformer with FramePack history and sparse cross-attention
+  parameters: 5800000000
+  notes: Adds Wav2Vec-conditioned sparse audio cross-attention, reference-image positional conditioning, and FramePack history to a Wan2.2-TI2V-5B backbone; the public checkpoint is a LoRA adapter rather than a merged full model.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Wan2.2-TI2V-5B inherited training mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: TalkVerse inherits the base model's visual prior, but the complete source corpus, rights composition, and mixture are not restated by the project.
+    - name: TalkVerse
+      catalog_id: talkverse
+      role: fine-tuning
+      availability: gated
+      scale: Paper reports 2.3M clips and 6.3K hours; the public metadata repository exposes approximately 2.14M rows
+      notes: Curated from OpenHumanVid and Panda-70M; the public Hugging Face release contains annotations and retrieval metadata rather than redistributable source videos.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-foundation-model
+      scale_disclosed: false
+      strategy: Reuse the Wan2.2-TI2V-5B image-to-video and text-to-video prior without restating its complete training-data lineage.
+    - name: fine-tuning
+      modalities:
+        - video
+        - image
+        - audio
+        - text
+      source_types:
+        - public-web
+        - public-dataset
+      operations:
+        - video-normalization
+        - black-border-removal
+        - shot-boundary-detection
+        - duration-filtering
+        - luminance-filtering
+        - blur-filtering
+        - aesthetic-filtering
+        - image-quality-filtering
+        - motion-filtering
+        - single-person-filtering
+        - subtitle-filtering
+        - audio-video-sync-filtering
+        - language-annotation
+        - visual-captioning
+        - audio-style-captioning
+        - asr-transcription
+        - pose-extraction
+        - deduplication
+        - lora-fine-tuning
+        - roi-loss-weighting
+        - condition-dropout
+      scale_disclosed: true
+      strategy: Curate human-centric OpenHumanVid and Panda-70M clips into synchronized 720p and 1080p audio-video supervision, then LoRA-tune the DiT while fully training the new audio, sparse-attention, and history-conditioning layers.
+  strategy_summary:
+    - Reduce a 30M-clip human-video source pool to a high-quality talking-video mixture using visual, motion, person-count, subtitle, and strict SyncNet gates.
+    - Pair structured Qwen2.5-VL visual descriptions with Qwen3-Omni audio-style captions, ASR transcripts, language labels, and DWPose skeletons.
+    - Use face-and-body region weighting plus image, text, and audio condition dropout to improve identity, motion, synchronization, and controllability.
+    - Enable zero-shot video dubbing by injecting controlled noise into source-video latents while preserving the model's joint audio-driven motion prior.
+  unknowns:
+    - Complete Wan2.2-TI2V-5B training corpus, rights composition, filters, and mixture weights inherited by TalkVerse.
+    - Why the paper reports 2.3M training clips while the public metadata repository exposes approximately 2.14M rows, and whether all training records are represented publicly.
+    - Per-source and per-language mixture weights, rejected-item counts, and item-level media rights or consent status.
+    - Whether the public LoRA adapter exactly reproduces every paper result without unreleased weights or preprocessing assets.
+evidence:
+  release: https://zhenzhiwang.github.io/talkverse/
+  technical_report: https://arxiv.org/abs/2512.14938
+  repository: https://github.com/snap-research/TalkVerse
+status: verified
+last_verified: "2026-07-26"

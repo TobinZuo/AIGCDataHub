@@ -16,7 +16,7 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(validate(), [])
 
     def test_cards_are_present(self) -> None:
-        self.assertGreaterEqual(len(load_cards()), 31)
+        self.assertGreaterEqual(len(load_cards()), 34)
 
     def test_audio_and_3d_coverage_is_present(self) -> None:
         modalities = {card["modality"] for _, card in load_cards()}
@@ -51,12 +51,21 @@ class CatalogTests(unittest.TestCase):
                 "fit-vto-100k",
                 "viton-hd-edit",
                 "tripvvt-10k",
+                "talkverse",
+                "openhumanvid",
+                "openhumanvid-talking",
             }.issubset(cards)
         )
         self.assertIn("video-dubbing", cards["audiovisual-translation-dub"]["tasks"])
         self.assertIn("virtual-try-on", cards["fit-vto-100k"]["tasks"])
         self.assertIn("controllable-virtual-try-on", cards["viton-hd-edit"]["tasks"])
         self.assertIn("video-virtual-try-on", cards["tripvvt-10k"]["tasks"])
+        self.assertIn("audio-driven-avatar", cards["talkverse"]["tasks"])
+        self.assertEqual(cards["talkverse"]["access"]["type"], "metadata")
+        self.assertIn("text-to-video", cards["openhumanvid"]["tasks"])
+        self.assertEqual(cards["openhumanvid"]["access"]["status"], "gated")
+        self.assertIn("talking-head-generation", cards["openhumanvid-talking"]["tasks"])
+        self.assertEqual(cards["openhumanvid-talking"]["scale"]["samples"], 32176)
 
     def test_site_catalog_orders_datasets_by_release_date(self) -> None:
         datasets = build_payload()["datasets"]

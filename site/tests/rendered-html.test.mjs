@@ -67,6 +67,9 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /VITON-HD-edit/);
   assert.match(html, /TripVVT/);
   assert.match(html, /TripVVT-10K/);
+  assert.match(html, /TalkVerse-5B/);
+  assert.match(html, /OpenHumanVid-Talking/);
+  assert.match(html, /OpenHumanVid/);
   assert.match(html, /应用场景/);
   assert.match(html, /数字人/);
   assert.match(html, /视频翻译/);
@@ -112,6 +115,10 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"viton-hd-edit"/);
   assert.match(catalog, /"tripvvt"/);
   assert.match(catalog, /"tripvvt-10k"/);
+  assert.match(catalog, /"talkverse-5b"/);
+  assert.match(catalog, /"talkverse"/);
+  assert.match(catalog, /"openhumanvid"/);
+  assert.match(catalog, /"openhumanvid-talking"/);
   assert.match(catalog, /"clotho-2-1"/);
   assert.match(catalog, /"audioset"/);
   assert.match(catalog, /"vggsound"/);
@@ -145,6 +152,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.deepEqual(models.graphvid.linked_dataset_ids, ["graphvid-bench"]);
   assert.deepEqual(models.ctrlvton.linked_dataset_ids, ["viton-hd-edit"]);
   assert.deepEqual(models.tripvvt.linked_dataset_ids, ["tripvvt-10k"]);
+  assert.deepEqual(models["talkverse-5b"].linked_dataset_ids, ["talkverse"]);
   assert.ok(parsedCatalog.relations.some(
     (relation) => relation.model_id === "graphvid" && relation.dataset_id === "graphvid-bench",
   ));
@@ -154,16 +162,25 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.ok(parsedCatalog.relations.some(
     (relation) => relation.model_id === "tripvvt" && relation.dataset_id === "tripvvt-10k",
   ));
+  assert.ok(parsedCatalog.relations.some(
+    (relation) => relation.model_id === "talkverse-5b" && relation.dataset_id === "talkverse",
+  ));
   const datasets = Object.fromEntries(parsedCatalog.datasets.map((dataset) => [dataset.id, dataset]));
   assert.equal(datasets["fit-vto-100k"].monitoring.priority, "critical");
   assert.equal(datasets["viton-hd-edit"].monitoring.priority, "critical");
   assert.equal(datasets["tripvvt-10k"].monitoring.priority, "critical");
+  assert.equal(datasets.talkverse.monitoring.priority, "critical");
+  assert.equal(datasets["openhumanvid-talking"].monitoring.priority, "critical");
   assert.equal(datasets.finevideo.monitoring.priority, "high");
   assert.equal(datasets["graphvid-bench"].monitoring, null);
   assert.deepEqual(models["fit-vto"].scenario_ids, ["virtual-try-on"]);
   assert.deepEqual(models["flux-vto"].scenario_ids, ["virtual-try-on"]);
   assert.deepEqual(models.ctrlvton.scenario_ids, ["image-generation", "virtual-try-on"]);
   assert.deepEqual(models.tripvvt.scenario_ids, ["video-generation", "virtual-try-on"]);
+  assert.deepEqual(
+    models["talkverse-5b"].scenario_ids,
+    ["video-generation", "digital-human", "video-localization"],
+  );
   assert.deepEqual(models["fit-vto"].strategy_profile.stage_names, ["pretraining", "fine-tuning"]);
   assert.equal(models["fit-vto"].strategy_profile.data_reference_count, 3);
   assert.equal(models["fit-vto"].strategy_profile.linked_dataset_count, 1);

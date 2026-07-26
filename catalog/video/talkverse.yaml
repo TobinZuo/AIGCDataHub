@@ -1,0 +1,75 @@
+id: talkverse
+name: TalkVerse
+organization: CUHK MMLab and Snap Research
+released_at: "2026-01-02"
+release_date_source: https://huggingface.co/api/datasets/zhenzhiwang/TalkVerse
+modality: video
+tasks:
+  - audio-driven-avatar
+  - talking-head-generation
+  - image-to-video
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  The released metadata and annotation layer for TalkVerse's large-scale,
+  human-centric audio-video training corpus, curated from OpenHumanVid and
+  Panda-70M for audio-driven talking-video generation.
+access:
+  status: gated
+  type: metadata
+  url: https://huggingface.co/datasets/zhenzhiwang/TalkVerse
+  requires_account: true
+  notes: Access is automatically gated after accepting the conditions. The repository exposes metadata, captions, transcripts, poses, and source references rather than the underlying source videos; media must be obtained through the upstream datasets or original sources.
+scale:
+  samples: 2136000
+  source_items: 30000000
+  hours: 6300
+  approximate: true
+  notes: The public repository exposes approximately 796K OpenHumanVid rows and 1.34M Panda-70M rows; the paper instead reports 2.3M retained clips and 6.3K hours from a 30M-clip, 60K-hour source pool.
+annotations:
+  types:
+    - structured-visual-caption
+    - audio-style-caption
+    - asr-transcript
+    - language-label
+    - pose-skeleton
+    - audio-video-sync-score
+    - source-reference
+    - quality-metadata
+  source: model-generated
+  languages:
+    - multilingual
+license:
+  metadata: Snap Inc. Non-Commercial License
+  media: Not redistributed; OpenHumanVid, Panda-70M, and original-source terms remain binding
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The repository license applies to its metadata release, while every retrieved media item requires separate review against upstream access rules, licenses, and original-source rights.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - aesthetics
+    - motion
+    - temporal-consistency
+    - deduplication
+    - provenance
+  known_limitations:
+    - The public release contains metadata rather than source media, so it is not a self-contained training corpus.
+    - The approximately 2.14M public rows do not exactly match the paper's 2.3M-clip training count.
+    - Item-level source rights, consent status, demographic composition, and geographic distribution are not normalized in the public card.
+    - Automated person, subtitle, sync, language, caption, and pose models can introduce filtering and annotation bias.
+processing:
+  recipe: Normalize to H.264 at 25 fps, remove borders, split 5-to-50-second shots, filter visual quality, motion, people, subtitles, and audio-video synchronization, then add language, structured visual, audio-style, ASR, pose, and deduplication metadata.
+  recommended_format: parquet
+  notes: Preserve upstream dataset and source identifiers when resolving media; keep the OpenHumanVid and Panda-70M partitions separate so licensing, availability, and scale remain auditable.
+evidence:
+  homepage: https://huggingface.co/datasets/zhenzhiwang/TalkVerse
+  paper: https://arxiv.org/abs/2512.14938
+  used_by:
+    - TalkVerse-5B
+status: partial
+last_verified: "2026-07-26"
