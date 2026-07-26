@@ -1,0 +1,63 @@
+id: journeydb
+name: JourneyDB
+organization: CUHK MMLab and Shanghai AI Laboratory
+released_at: "2023-07-03"
+release_date_source: https://arxiv.org/abs/2307.00716
+modality: image
+tasks:
+  - text-to-image
+  - generative-image-understanding
+  - evaluation
+stages:
+  - fine-tuning
+  - evaluation
+description: >-
+  A dataset of high-resolution Midjourney-generated images paired with prompts,
+  captions, and visual question answering annotations.
+access:
+  status: gated
+  type: request
+  url: https://journeydb.github.io/
+  requires_account: true
+  notes: Access follows the distribution and request flow linked by the project.
+scale:
+  samples: 4429295
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The project page reports 4,429,295 generated images.
+annotations:
+  types:
+    - generation-prompt
+    - caption
+    - visual-question-answer
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Project-specific terms
+  media: Generated-media terms require review
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    Images originate from Midjourney generations and user prompts; review the
+    current dataset agreement and platform terms for the intended use.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - aesthetics
+    - provenance
+  known_limitations:
+    - The corpus reflects the behavior and user distribution of a closed generator.
+    - Generated-image provenance does not by itself establish unrestricted reuse.
+processing:
+  recipe: recipes/image_text
+  recommended_format: parquet
+  notes: Preserve prompt, caption, VQA, and source identifiers as separate fields.
+evidence:
+  homepage: https://journeydb.github.io/
+  paper: https://arxiv.org/abs/2307.00716
+  used_by: []
+status: partial
+last_verified: "2026-07-26"

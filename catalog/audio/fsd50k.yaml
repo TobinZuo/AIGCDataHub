@@ -1,0 +1,70 @@
+id: fsd50k
+name: FSD50K
+organization: Music Technology Group, Universitat Pompeu Fabra
+released_at: "2020-10-02"
+release_date_source: https://zenodo.org/records/4060432
+modality: audio
+tasks:
+  - audio-event-classification
+  - audio-language-pretraining
+  - audio-representation-learning
+  - text-to-audio
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+description: >-
+  An open collection of 51,197 human-labelled Freesound clips totalling 108.3
+  hours, organized into 200 AudioSet-derived sound-event classes with raw audio,
+  metadata, and per-file licenses.
+access:
+  status: open
+  type: hosted
+  url: https://zenodo.org/records/4060432
+  requires_account: false
+  notes: Raw development and evaluation audio, labels, metadata, documentation, and checksums are hosted on Zenodo.
+scale:
+  samples: 51197
+  source_items: 51197
+  hours: 108.3
+  approximate: false
+  notes: The development split has 40,966 clips and the evaluation split 10,231 clips.
+annotations:
+  types:
+    - audio-event-label
+    - freesound-id
+    - uploader
+    - per-file-license
+    - split
+    - ontology-id
+  source: human
+  languages:
+    - multilingual
+license:
+  metadata: CC-BY dataset-level curation license
+  media: Per-clip CC0, CC-BY, CC-BY-NC, or CC Sampling+ license
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    The dataset-level CC BY license does not erase clip-level restrictions;
+    6,041 clips carry CC-BY-NC and 1,777 carry CC Sampling+ terms.
+quality:
+  dimensions:
+    - audio-quality
+    - provenance
+  known_limitations:
+    - Development labels can be correct but incomplete, unlike the exhaustively labelled evaluation set.
+    - Class and uploader distributions are imbalanced.
+    - Commercial reuse requires filtering or separately clearing clips with restrictive licenses.
+processing:
+  recipe: recipes/audio_text
+  recommended_format: parquet
+  notes: Preserve Freesound ID, uploader, clip-level license, label provenance, split, waveform hash, and archive checksum.
+evidence:
+  homepage: https://zenodo.org/records/4060432
+  paper: https://arxiv.org/abs/2010.00475
+  used_by:
+    - Omni2Sound
+status: verified
+last_verified: "2026-07-26"
+

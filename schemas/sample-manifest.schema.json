@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aigcdatahub.example/schemas/sample-manifest.schema.json",
+  "title": "AIGCDataHub canonical manifest row",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sample_id", "modality", "media", "caption", "provenance"],
+  "properties": {
+    "sample_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "modality": {
+      "enum": ["image", "video"]
+    },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["uri"],
+      "properties": {
+        "uri": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+        "mime_type": {"type": "string", "pattern": "^[a-z0-9.+-]+/[a-zA-Z0-9.+-]+$"},
+        "bytes": {"type": "integer", "minimum": 0}
+      }
+    },
+    "caption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "source", "language"],
+      "properties": {
+        "text": {"type": "string", "minLength": 1},
+        "source": {
+          "enum": ["human", "model-generated", "web-metadata", "mixed", "unknown"]
+        },
+        "language": {"type": "string", "minLength": 2}
+      }
+    },
+    "properties": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1},
+        "duration_seconds": {"type": "number", "exclusiveMinimum": 0},
+        "fps": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dataset_id", "source_url", "license", "takedown_id"],
+      "properties": {
+        "dataset_id": {"type": "string", "minLength": 1},
+        "source_url": {"type": "string", "format": "uri"},
+        "license": {"type": "string", "minLength": 1},
+        "takedown_id": {"type": "string", "minLength": 1},
+        "collected_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      }
+    }
+  }
+}
+

@@ -1,0 +1,70 @@
+id: vggsound
+name: VGGSound
+organization: Visual Geometry Group, University of Oxford
+released_at: "2020-04-29"
+release_date_source: https://arxiv.org/abs/2004.14368
+modality: audio
+tasks:
+  - audio-event-classification
+  - audio-visual-learning
+  - video-to-audio
+  - audio-language-pretraining
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+description: >-
+  An automatically curated audiovisual sound-event dataset with more than
+  210,000 ten-second YouTube videos across 310 classes, selected for visible
+  and audible source correspondence.
+access:
+  status: metadata-only
+  type: urls
+  url: https://github.com/hche11/VGGSound
+  requires_account: false
+  notes: The official repository distributes YouTube IDs, offsets, labels, and splits rather than a durable media archive.
+scale:
+  samples: 210000
+  source_items: 210000
+  hours: 583.3
+  approximate: true
+  notes: The paper reports more than 210K ten-second videos; current retrievable media can be substantially smaller.
+annotations:
+  types:
+    - audio-event-label
+    - youtube-id
+    - start-time
+    - split
+    - audio-visual-correspondence
+  source: model-generated
+  languages:
+    - multilingual
+license:
+  metadata: CC-BY-4.0 dataset release
+  media: Copyright remains with the original video owners
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    The repository permits commercial and research use under CC BY 4.0 while
+    explicitly retaining original-owner copyright for the source videos.
+quality:
+  dimensions:
+    - audio-quality
+    - audio-visual-alignment
+    - provenance
+  known_limitations:
+    - Automated visual and audio verification can retain label noise and miss off-screen sources.
+    - YouTube deletions make the effective corpus size dependent on fetch date.
+    - The paper, repository, and later derivatives use slightly different class and sample counts.
+processing:
+  recipe: recipes/audio_text
+  recommended_format: parquet
+  notes: Preserve release CSV, YouTube ID, offset, label, split, fetch time, availability result, and media hash.
+evidence:
+  homepage: https://github.com/hche11/VGGSound
+  paper: https://arxiv.org/abs/2004.14368
+  used_by:
+    - Omni2Sound
+status: partial
+last_verified: "2026-07-26"
+

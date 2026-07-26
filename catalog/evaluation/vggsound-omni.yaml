@@ -1,0 +1,74 @@
+id: vggsound-omni
+name: VGGSound-Omni
+organization: Tsinghua University, Monash University, and Shengshu AI
+released_at: "2026-01-06"
+release_date_source: https://arxiv.org/abs/2601.02731
+modality: evaluation
+tasks:
+  - text-to-audio-evaluation
+  - video-to-audio-evaluation
+  - video-text-to-audio-evaluation
+  - off-screen-audio-evaluation
+stages:
+  - evaluation
+  - data-curation
+description: >-
+  A unified audio-generation benchmark derived from the VGGSound test set with
+  human-verified dense captions for more than 14,000 videos and a dedicated
+  1,613-item off-screen track spanning natural events and synthetic music.
+access:
+  status: gated
+  type: hosted
+  url: https://huggingface.co/datasets/Dalision/Omni2Sound_Benchmark
+  requires_account: true
+  notes: The benchmark is distributed with SoundAtlas after acceptance of the repository access terms.
+scale:
+  samples: 14000
+  source_items: 14000
+  hours: null
+  approximate: true
+  notes: The primary track covers 14,000+ VGGSound test videos; the off-screen track contains 1,613 items.
+annotations:
+  types:
+    - dense-caption
+    - audio-video-modality-label
+    - off-screen-label
+    - human-verification
+    - synthetic-music-provenance
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-NC-4.0
+  media: Source-dependent VGGSound, YouTube, and MusicCaps terms
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: >-
+    The benchmark repository is CC-BY-NC-4.0, while the underlying videos and
+    mixed music retain source-platform and source-dataset conditions.
+quality:
+  dimensions:
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - The benchmark is constructed by the Omni2Sound authors and can share their captioning-style biases.
+    - Human review is targeted through an AI-assisted mismatch audit rather than described as uniform double annotation.
+    - Part of the off-screen track is synthetically mixed and may not match natural background-music distributions.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: Preserve primary versus off-screen track, natural versus synthetic origin, modality labels, and source media ID.
+evidence:
+  homepage: https://omni2sound.github.io/
+  paper: https://arxiv.org/abs/2601.02731
+  used_by:
+    - Omni2Sound
+    - AudioX
+    - MMAudio
+    - HunyuanVideo-Foley
+status: verified
+last_verified: "2026-07-26"
+

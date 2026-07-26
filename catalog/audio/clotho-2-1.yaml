@@ -1,0 +1,70 @@
+id: clotho-2-1
+name: Clotho 2.1
+organization: Tampere University
+released_at: "2021-05-26"
+release_date_source: https://zenodo.org/records/4783391
+modality: audio
+tasks:
+  - audio-captioning
+  - audio-text-retrieval
+  - text-to-audio
+  - audio-language-pretraining
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+description: >-
+  Version 2.1 of the curated audio-captioning dataset, with 6,974 Freesound
+  excerpts and five human-written captions per sample, for 34,870 captions.
+access:
+  status: open
+  type: hosted
+  url: https://zenodo.org/records/4783391
+  requires_account: false
+  notes: Audio archives, caption CSV files, metadata, and checksums are directly hosted on Zenodo.
+scale:
+  samples: 6974
+  source_items: 6974
+  hours: null
+  approximate: false
+  notes: Each sample is 15 to 30 seconds long and has five captions.
+annotations:
+  types:
+    - caption
+    - freesound-id
+    - source-url
+    - uploader
+    - per-file-license
+    - split
+  source: human
+  languages:
+    - en
+license:
+  metadata: Per-file Freesound licenses recorded in the metadata CSV files
+  media: Mostly Creative Commons with attribution; exact license is attached to each audio file
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: >-
+    The captions use Tampere University's mainly attribution and non-commercial
+    license, while every Freesound excerpt retains its own recorded license.
+quality:
+  dimensions:
+    - audio-quality
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Caption wording was constrained to avoid named entities, speech transcription, and split-specific singleton words.
+    - Per-file media terms are not replaced by the dataset-level caption license.
+    - Omni2Sound names Clotho without identifying which release was used.
+processing:
+  recipe: recipes/audio_text
+  recommended_format: parquet
+  notes: Preserve the split, all five captions, Freesound URL, uploader, file license, and archive checksum.
+evidence:
+  homepage: https://zenodo.org/records/4783391
+  paper: https://arxiv.org/abs/1910.09387
+  used_by:
+    - Omni2Sound
+status: partial
+last_verified: "2026-07-26"
+

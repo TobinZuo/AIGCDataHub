@@ -1,0 +1,60 @@
+id: webvid-10m
+name: WebVid-10M
+organization: University of Oxford VGG
+released_at: "2022-05-13"
+release_date_source: https://arxiv.org/abs/2104.00650
+modality: video
+tasks:
+  - video-text-pretraining
+  - text-to-video
+stages:
+  - pretraining
+description: >-
+  A historically influential collection of captioned short stock-footage
+  videos whose original URL and caption distribution has been withdrawn.
+access:
+  status: unavailable
+  type: none
+  url: https://github.com/m-bain/webvid
+  requires_account: false
+  notes: The maintainer states that the dataset is no longer distributed.
+scale:
+  samples: 10000000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The project describes a corpus at roughly ten million video-text pairs.
+annotations:
+  types:
+    - stock-footage-caption
+    - source-url
+  source: web-metadata
+  languages:
+    - en
+license:
+  metadata: Distribution withdrawn
+  media: Third-party stock footage
+  commercial_use: noncommercial
+  redistribution: prohibited
+  notes: >-
+    The original distributor withdrew URLs and captions after a cease-and-desist;
+    the repository mentions only internal non-commercial use of existing copies.
+quality:
+  dimensions:
+    - text-media-alignment
+    - motion
+    - provenance
+  known_limitations:
+    - The canonical dataset cannot currently be obtained from the maintainer.
+    - Stock-site captions can include subjective or non-visual language.
+processing:
+  recipe: recipes/video_text
+  recommended_format: webdataset
+  notes: Kept as historical context; do not treat mirrors as authoritative releases.
+evidence:
+  homepage: https://github.com/m-bain/webvid
+  paper: https://arxiv.org/abs/2104.00650
+  used_by:
+    - Frozen in Time
+status: archived
+last_verified: "2026-07-26"

@@ -1,0 +1,64 @@
+id: coyo-700m
+name: COYO-700M
+organization: Kakao Brain
+released_at: "2022-08-30"
+release_date_source: https://github.com/kakaobrain/coyo-dataset
+modality: image
+tasks:
+  - image-text-pretraining
+  - text-to-image
+stages:
+  - pretraining
+description: >-
+  A large collection of image and text metadata pairs gathered from web pages,
+  with source URLs and filtering signals for multimodal pretraining.
+access:
+  status: open
+  type: urls
+  url: https://huggingface.co/datasets/kakaobrain/coyo-700m
+  requires_account: false
+  notes: The hosted dataset primarily provides metadata and source image URLs.
+scale:
+  samples: 700000000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The public project describes the collection at 700M scale.
+annotations:
+  types:
+    - alt-text
+    - source-url
+    - image-size
+    - clip-score
+  source: web-metadata
+  languages:
+    - multilingual
+license:
+  metadata: CC-BY-4.0
+  media: Source-dependent
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    CC-BY-4.0 covers the COYO dataset release; underlying images remain subject
+    to rights and terms associated with their original sources.
+quality:
+  dimensions:
+    - text-media-alignment
+    - visual-quality
+    - safety
+    - deduplication
+    - provenance
+  known_limitations:
+    - Source URLs can expire or return changed content.
+    - Web alt-text is not a consistently descriptive training caption.
+processing:
+  recipe: recipes/image_text
+  recommended_format: webdataset
+  notes: Download with retries and preserve source provenance and failure reasons.
+evidence:
+  homepage: https://github.com/kakaobrain/coyo-dataset
+  paper: null
+  used_by:
+    - Kakaobrain ALIGN
+status: partial
+last_verified: "2026-07-26"

@@ -1,0 +1,92 @@
+id: flux-3
+name: FLUX 3
+organization: Black Forest Labs
+released_at: "2026-07-23"
+modalities:
+  - multimodal
+  - image
+  - video
+  - audio
+  - action
+tasks:
+  - text-to-image
+  - image-editing
+  - text-to-video
+  - image-to-video
+  - video-to-video
+  - audio-video-generation
+  - action-prediction
+access:
+  status: early-access
+  license: Early-access terms; open-weight FLUX 3 Dev announced
+  release_url: https://bfl.ai/blog/flux-3
+  weights_url: null
+  api_url: https://bfl.ai/blog/flux-3
+architecture:
+  family: Multimodal flow model based on Self-Flow
+  parameters: null
+  notes: A unified backbone jointly models image, video, audio, and later action signals.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: General video training corpus
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: tens of millions of hours
+      notes: Exact sources, filtering, and rights composition are not named.
+    - name: Human and robot manipulation video corpus
+      catalog_id: null
+      role: fine-tuning
+      availability: undisclosed
+      scale: hundreds of thousands of hours
+      notes: Focused on human and robot manipulation tasks for visual intelligence.
+    - name: Robot action demonstrations
+      catalog_id: null
+      role: fine-tuning
+      availability: undisclosed
+      scale: null
+      notes: Used to add action prediction and adapt the FLUX-mimic action decoder.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - audio
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - joint-multimodal-training
+        - self-flow
+      scale_disclosed: true
+      strategy: Jointly learn image, video, and audio from the beginning, with video prediction consuming over 95 percent of training compute.
+    - name: action-adaptation
+      modalities:
+        - video
+        - action
+      source_types:
+        - robot-demonstration
+        - proprietary
+      operations:
+        - curriculum-expansion
+        - action-decoder-training
+      scale_disclosed: false
+      strategy: Add action prediction to the existing video curriculum and train a lightweight decoder over intermediate world-model features.
+  strategy_summary:
+    - Train all perceptual modalities in one backbone instead of separate image, video, and audio models.
+    - Spend most compute on video prediction to learn dynamics, causality, contact, and motion.
+    - Reuse the learned video representation for action prediction with limited task-specific data.
+  unknowns:
+    - Exact image, video, and audio sources and their licenses.
+    - Data mixture ratios, deduplication, safety filters, and captioning pipeline.
+    - Final model size, release license, and post-training recipe.
+evidence:
+  release: https://bfl.ai/blog/flux-3
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-26"
+

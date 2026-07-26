@@ -1,0 +1,65 @@
+id: panda-70m
+name: Panda-70M
+organization: Snap Research
+released_at: "2024-02-29"
+release_date_source: https://arxiv.org/abs/2402.19479
+modality: video
+tasks:
+  - text-to-video
+  - video-text-pretraining
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A large video-caption corpus produced by splitting source videos into
+  semantically consistent clips and captioning them with multiple teachers.
+access:
+  status: open
+  type: metadata
+  url: https://github.com/snap-research/Panda-70M
+  requires_account: false
+  notes: CSV metadata and download tooling are provided for source videos.
+scale:
+  samples: 70723513
+  source_items: 3779763
+  hours: 167000
+  approximate: false
+  notes: Statistics refer to the full training split reported by the project.
+annotations:
+  types:
+    - caption
+    - clip-boundary
+    - aesthetic-score
+    - motion-score
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Project-specific terms
+  media: Source-dependent
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    The maintainers require users to follow the related license of publicly
+    sourced video samples; availability is primarily metadata plus tooling.
+quality:
+  dimensions:
+    - text-media-alignment
+    - visual-quality
+    - aesthetics
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Download success and the resulting corpus vary with source availability.
+    - Machine captions and scores can propagate teacher-model biases.
+processing:
+  recipe: recipes/video_text
+  recommended_format: webdataset
+  notes: Retain source video IDs and clip timestamps through download and sharding.
+evidence:
+  homepage: https://github.com/snap-research/Panda-70M
+  paper: https://arxiv.org/abs/2402.19479
+  used_by: []
+status: verified
+last_verified: "2026-07-26"

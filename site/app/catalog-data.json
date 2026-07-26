@@ -1,0 +1,2986 @@
+{
+  "format_version": 2,
+  "generated_from": [
+    "catalog/**/*.yaml",
+    "models/**/*.yaml"
+  ],
+  "last_verified": "2026-07-26",
+  "datasets": [
+    {
+      "id": "lens-800m",
+      "name": "Lens-800M",
+      "organization": "Microsoft Research",
+      "released_at": "2026-05-20",
+      "release_date_source": "https://arxiv.org/abs/2605.21573",
+      "modality": "image",
+      "tasks": [
+        "text-to-image",
+        "image-text-pretraining"
+      ],
+      "stages": [
+        "pretraining"
+      ],
+      "description": "The 800-million-pair training corpus named in the Microsoft Lens report, featuring long GPT-4.1-generated captions averaging about 109 words.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://www.microsoft.com/en-us/research/publication/lens-rethinking-training-efficiency-for-foundational-text-to-image-models/",
+        "requires_account": false,
+        "notes": "The paper names and characterizes the corpus but does not publish a dataset download."
+      },
+      "scale": {
+        "samples": 800000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "Scale is reported by the Lens authors."
+      },
+      "annotations": {
+        "types": [
+          "dense-caption",
+          "aspect-ratio",
+          "resolution"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "Not disclosed",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The training corpus is described in the paper but its sources and terms are not disclosed."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "visual-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source composition, filtering thresholds, rights, and release plan are undisclosed.",
+          "GPT-4.1-generated captions can propagate model-specific biases or hallucinations."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/image_text",
+        "recommended_format": "webdataset",
+        "notes": "Preserve caption-model version and original text if reproducing this strategy."
+      },
+      "evidence": {
+        "homepage": "https://www.microsoft.com/en-us/research/publication/lens-rethinking-training-efficiency-for-foundational-text-to-image-models/",
+        "paper": "https://arxiv.org/abs/2605.21573",
+        "used_by": [
+          "Lens"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/image/lens-800m.yaml",
+      "scale_label": "800M"
+    },
+    {
+      "id": "vggsound-omni",
+      "name": "VGGSound-Omni",
+      "organization": "Tsinghua University, Monash University, and Shengshu AI",
+      "released_at": "2026-01-06",
+      "release_date_source": "https://arxiv.org/abs/2601.02731",
+      "modality": "evaluation",
+      "tasks": [
+        "text-to-audio-evaluation",
+        "video-to-audio-evaluation",
+        "video-text-to-audio-evaluation",
+        "off-screen-audio-evaluation"
+      ],
+      "stages": [
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A unified audio-generation benchmark derived from the VGGSound test set with human-verified dense captions for more than 14,000 videos and a dedicated 1,613-item off-screen track spanning natural events and synthetic music.",
+      "access": {
+        "status": "gated",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/Dalision/Omni2Sound_Benchmark",
+        "requires_account": true,
+        "notes": "The benchmark is distributed with SoundAtlas after acceptance of the repository access terms."
+      },
+      "scale": {
+        "samples": 14000,
+        "source_items": 14000,
+        "hours": null,
+        "approximate": true,
+        "notes": "The primary track covers 14,000+ VGGSound test videos; the off-screen track contains 1,613 items."
+      },
+      "annotations": {
+        "types": [
+          "dense-caption",
+          "audio-video-modality-label",
+          "off-screen-label",
+          "human-verification",
+          "synthetic-music-provenance"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0",
+        "media": "Source-dependent VGGSound, YouTube, and MusicCaps terms",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The benchmark repository is CC-BY-NC-4.0, while the underlying videos and mixed music retain source-platform and source-dataset conditions."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The benchmark is constructed by the Omni2Sound authors and can share their captioning-style biases.",
+          "Human review is targeted through an AI-assisted mismatch audit rather than described as uniform double annotation.",
+          "Part of the off-screen track is synthetically mixed and may not match natural background-music distributions."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "Preserve primary versus off-screen track, natural versus synthetic origin, modality labels, and source media ID."
+      },
+      "evidence": {
+        "homepage": "https://omni2sound.github.io/",
+        "paper": "https://arxiv.org/abs/2601.02731",
+        "used_by": [
+          "Omni2Sound",
+          "AudioX",
+          "MMAudio",
+          "HunyuanVideo-Foley"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/evaluation/vggsound-omni.yaml",
+      "scale_label": "~14K"
+    },
+    {
+      "id": "soundatlas",
+      "name": "SoundAtlas",
+      "organization": "Tsinghua University, Monash University, and Shengshu AI",
+      "released_at": "2026-01-06",
+      "release_date_source": "https://arxiv.org/abs/2601.02731",
+      "modality": "audio",
+      "tasks": [
+        "text-to-audio",
+        "video-to-audio",
+        "video-text-to-audio",
+        "audio-captioning"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A roughly 470-thousand-pair audio-caption corpus derived from AudioSet and VGGSound with temporally grounded descriptions of audible and visual context.",
+      "access": {
+        "status": "gated",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/Dalision/Omni2Sound_Benchmark",
+        "requires_account": true,
+        "notes": "Access requires accepting the repository terms and sharing contact information."
+      },
+      "scale": {
+        "samples": 470000,
+        "source_items": 470000,
+        "hours": null,
+        "approximate": true,
+        "notes": "The project and paper consistently describe SoundAtlas as about 470K pairs."
+      },
+      "annotations": {
+        "types": [
+          "dense-caption",
+          "temporal-description",
+          "visual-context",
+          "source-dataset",
+          "alignment-score"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0",
+        "media": "Source-dependent AudioSet and VGGSound media terms",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The Hugging Face repository applies CC-BY-NC-4.0 to the release, while the underlying media remains subject to its original source and platform terms."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source media availability and rights can change independently of the released annotations.",
+          "Model-generated captions can retain hallucinations despite multimodal consistency filtering.",
+          "The two upstream collections have different collection processes and label distributions."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/audio_text",
+        "recommended_format": "parquet",
+        "notes": "Retain source identifiers, captioning-agent versions, alignment scores, and media-fetch status."
+      },
+      "evidence": {
+        "homepage": "https://omni2sound.github.io/",
+        "paper": "https://arxiv.org/abs/2601.02731",
+        "used_by": [
+          "Omni2Sound"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/audio/soundatlas.yaml",
+      "scale_label": "~470K"
+    },
+    {
+      "id": "audiocaps-2-0",
+      "name": "AudioCaps 2.0",
+      "organization": "Seoul National University",
+      "released_at": "2025-02-24",
+      "release_date_source": "https://github.com/cdjkim/audiocaps",
+      "modality": "audio",
+      "tasks": [
+        "audio-captioning",
+        "text-to-audio",
+        "audio-language-pretraining",
+        "text-to-audio-evaluation"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "The second AudioCaps release, containing 98,606 human-written caption rows grounded in ten-second AudioSet and YouTube segments, roughly doubling the original audio-caption collection.",
+      "access": {
+        "status": "gated",
+        "type": "request",
+        "url": "https://github.com/cdjkim/audiocaps/tree/master/dataset2.0",
+        "requires_account": true,
+        "notes": "Caption CSV files are public, while raw video and audio access requires submitting the maintainer form."
+      },
+      "scale": {
+        "samples": 98606,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The official v2.0 split counts are 91,256 train, 2,475 validation, and 4,875 test caption rows."
+      },
+      "annotations": {
+        "types": [
+          "caption",
+          "youtube-id",
+          "audioset-offset",
+          "split"
+        ],
+        "source": "human",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Academic use only; no standalone SPDX dataset license stated",
+        "media": "AudioSet and YouTube source terms; raw media supplied by request",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The official repository permits the code and dataset for academic purposes only; its MIT repository license must not be treated as a media license."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The 98,606 count is caption rows and is not documented as a unique-clip count.",
+          "AudioCaps 2.0 is a 2025 data update not evaluated in the original 2019 paper.",
+          "YouTube availability changes over time, so a later fetch can contain fewer usable clips."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/audio_text",
+        "recommended_format": "parquet",
+        "notes": "Preserve YouTube ID, start offset, split, caption row ID, fetch time, and media hash."
+      },
+      "evidence": {
+        "homepage": "https://github.com/cdjkim/audiocaps/tree/master/dataset2.0",
+        "paper": "https://aclanthology.org/N19-1011/",
+        "used_by": [
+          "Omni2Sound"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/audio/audiocaps-2-0.yaml",
+      "scale_label": "98.6K"
+    },
+    {
+      "id": "finevideo",
+      "name": "FineVideo",
+      "organization": "Hugging Face",
+      "released_at": "2024-09-23",
+      "release_date_source": "https://huggingface.co/blog/fine-video",
+      "modality": "video",
+      "tasks": [
+        "video-understanding",
+        "text-to-video"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning"
+      ],
+      "description": "A collection of Creative Commons YouTube videos with rich descriptions, scene-level structure, transcripts, and question-answer annotations.",
+      "access": {
+        "status": "gated",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/HuggingFaceFV/finevideo",
+        "requires_account": true,
+        "notes": "Users must accept dataset terms before accessing the repository."
+      },
+      "scale": {
+        "samples": 43000,
+        "source_items": 43000,
+        "hours": 3425,
+        "approximate": true,
+        "notes": "The maintainers report over 43K videos spanning about 3.4K hours."
+      },
+      "annotations": {
+        "types": [
+          "transcript",
+          "rich-description",
+          "scene-boundary",
+          "question-answer",
+          "provenance"
+        ],
+        "source": "mixed",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY with dataset terms",
+        "media": "Per-video Creative Commons terms",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Users must preserve attribution and provenance, follow current usable versions and removals, and include the dataset terms when sharing access."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "temporal-consistency",
+          "visual-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Long-form videos are not equivalent to generation-ready short clips.",
+          "The usable version can change when validated removal requests are processed."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/video_text",
+        "recommended_format": "parquet",
+        "notes": "Use scene annotations to derive clips and retain attribution per source video."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/HuggingFaceFV/finevideo",
+        "paper": null,
+        "used_by": []
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/video/finevideo.yaml",
+      "scale_label": "~43K"
+    },
+    {
+      "id": "re-laion-5b",
+      "name": "Re-LAION-5B",
+      "organization": "LAION",
+      "released_at": "2024-08-30",
+      "release_date_source": "https://laion.ai/blog/relaion-5b/",
+      "modality": "image",
+      "tasks": [
+        "image-text-pretraining",
+        "text-to-image"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A safety-revised release of LAION-5B metadata intended to remove known harmful links while preserving a reproducible web-scale image-text index.",
+      "access": {
+        "status": "open",
+        "type": "urls",
+        "url": "https://laion.ai/blog/relaion-5b/",
+        "requires_account": false,
+        "notes": "LAION distributes metadata rather than the underlying image files."
+      },
+      "scale": {
+        "samples": 5850000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "Derived from the 5.85B-pair LAION-5B index after safety revisions."
+      },
+      "annotations": {
+        "types": [
+          "alt-text",
+          "source-url",
+          "clip-score",
+          "safety-signals"
+        ],
+        "source": "web-metadata",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "Apache-2.0",
+        "media": "Source-dependent and not distributed by LAION",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Metadata licensing does not grant copyright or other rights to images resolved from third-party URLs. Apply takedowns and current safety lists."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "watermark",
+          "safety",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Web metadata can be noisy, biased, unsafe, or stale.",
+          "The reconstructed media corpus changes as source URLs disappear."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/image_text",
+        "recommended_format": "webdataset",
+        "notes": "Re-check hashes, safety signals, access results, and rights at ingestion time."
+      },
+      "evidence": {
+        "homepage": "https://laion.ai/blog/relaion-5b/",
+        "paper": "https://arxiv.org/abs/2210.08402",
+        "used_by": []
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/image/re-laion-5b.yaml",
+      "scale_label": "~5.8B"
+    },
+    {
+      "id": "openvid-1m",
+      "name": "OpenVid-1M",
+      "organization": "Nanjing University PCALab",
+      "released_at": "2024-07-02",
+      "release_date_source": "https://arxiv.org/abs/2407.02371",
+      "modality": "video",
+      "tasks": [
+        "text-to-video",
+        "image-to-video"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning"
+      ],
+      "description": "A curated collection of one million high-quality video clips with expressive captions, including a large high-definition subset for video generation.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/nkp37/OpenVid-1M",
+        "requires_account": false,
+        "notes": "Videos, CSV metadata, and split archives are hosted on Hugging Face."
+      },
+      "scale": {
+        "samples": 1000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The project reports about 1M clips, including 433K clips at 1080p."
+      },
+      "annotations": {
+        "types": [
+          "caption",
+          "resolution",
+          "aesthetic-score"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0",
+        "media": "Source-dependent with research and non-commercial restrictions stated",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The dataset card asks users to follow licenses of upstream video datasets and states a research and non-commercial intent despite the CC-BY label."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Upstream datasets have different or unknown media terms.",
+          "Curated aesthetic distributions may narrow content diversity."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/video_text",
+        "recommended_format": "webdataset",
+        "notes": "Validate archives, normalize codecs, and preserve upstream dataset provenance."
+      },
+      "evidence": {
+        "homepage": "https://github.com/NJU-PCALab/OpenVid-1M",
+        "paper": "https://arxiv.org/abs/2407.02371",
+        "used_by": [
+          "MVDiT",
+          "Open-Sora"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/video/openvid-1m.yaml",
+      "scale_label": "~1M"
+    },
+    {
+      "id": "panda-70m",
+      "name": "Panda-70M",
+      "organization": "Snap Research",
+      "released_at": "2024-02-29",
+      "release_date_source": "https://arxiv.org/abs/2402.19479",
+      "modality": "video",
+      "tasks": [
+        "text-to-video",
+        "video-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A large video-caption corpus produced by splitting source videos into semantically consistent clips and captioning them with multiple teachers.",
+      "access": {
+        "status": "open",
+        "type": "metadata",
+        "url": "https://github.com/snap-research/Panda-70M",
+        "requires_account": false,
+        "notes": "CSV metadata and download tooling are provided for source videos."
+      },
+      "scale": {
+        "samples": 70723513,
+        "source_items": 3779763,
+        "hours": 167000,
+        "approximate": false,
+        "notes": "Statistics refer to the full training split reported by the project."
+      },
+      "annotations": {
+        "types": [
+          "caption",
+          "clip-boundary",
+          "aesthetic-score",
+          "motion-score"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Project-specific terms",
+        "media": "Source-dependent",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The maintainers require users to follow the related license of publicly sourced video samples; availability is primarily metadata plus tooling."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "visual-quality",
+          "aesthetics",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Download success and the resulting corpus vary with source availability.",
+          "Machine captions and scores can propagate teacher-model biases."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/video_text",
+        "recommended_format": "webdataset",
+        "notes": "Retain source video IDs and clip timestamps through download and sharding."
+      },
+      "evidence": {
+        "homepage": "https://github.com/snap-research/Panda-70M",
+        "paper": "https://arxiv.org/abs/2402.19479",
+        "used_by": []
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/video/panda-70m.yaml",
+      "scale_label": "70.7M"
+    },
+    {
+      "id": "pick-a-pic-v2",
+      "name": "Pick-a-Pic v2",
+      "organization": "Tel Aviv University and Meta AI",
+      "released_at": "2023-09-25",
+      "release_date_source": "https://github.com/yuvalkirstain/PickScore/commit/13048450be2f07160e71eae736113cc9443f191e",
+      "modality": "preference",
+      "tasks": [
+        "text-to-image-preference",
+        "reward-modeling"
+      ],
+      "stages": [
+        "preference-tuning",
+        "evaluation"
+      ],
+      "description": "An open collection of real user choices between pairs of text-to-image model outputs, with prompts and preference labels for alignment research.",
+      "access": {
+        "status": "gated",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/yuvalkirstain/pickapic_v2",
+        "requires_account": true,
+        "notes": "The canonical Hugging Face repository currently requires authenticated access."
+      },
+      "scale": {
+        "samples": 1000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The v2 release is described as containing more than one million examples."
+      },
+      "annotations": {
+        "types": [
+          "prompt",
+          "pairwise-preference",
+          "model-identifier"
+        ],
+        "source": "human",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "MIT",
+        "media": "Model-output and source-term dependent",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Confirm the current dataset card and the terms of image-generating models; a dataset license may not resolve every right in generated outputs."
+      },
+      "quality": {
+        "dimensions": [
+          "human-preference",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Online user preferences are self-selected and not demographically representative.",
+          "Repeated prompts, users, and model versions can create leakage or dependence."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/dataset_audit",
+        "recommended_format": "parquet",
+        "notes": "Split by prompt and user provenance where possible to reduce evaluation leakage."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/yuvalkirstain/pickapic_v2",
+        "paper": "https://arxiv.org/abs/2305.01569",
+        "used_by": [
+          "PickScore"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/preference/pick-a-pic-v2.yaml",
+      "scale_label": "~1M"
+    },
+    {
+      "id": "internvid",
+      "name": "InternVid",
+      "organization": "OpenGVLab",
+      "released_at": "2023-07-13",
+      "release_date_source": "https://arxiv.org/abs/2307.06942",
+      "modality": "video",
+      "tasks": [
+        "video-text-pretraining",
+        "text-to-video"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A web-scale video-text corpus built from millions of source videos and segmented into captioned clips for multimodal understanding and generation.",
+      "access": {
+        "status": "open",
+        "type": "metadata",
+        "url": "https://huggingface.co/datasets/OpenGVLab/InternVid",
+        "requires_account": false,
+        "notes": "Public releases include metadata and filtered subsets such as InternVid-10M-FLT."
+      },
+      "scale": {
+        "samples": 234000000,
+        "source_items": 7000000,
+        "hours": 760000,
+        "approximate": true,
+        "notes": "Paper-level full-corpus statistics; accessible subsets may be much smaller."
+      },
+      "annotations": {
+        "types": [
+          "caption",
+          "clip-boundary",
+          "source-url"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "See InternVid dataset card",
+        "media": "Source-dependent",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The Apache-2.0 repository license covers code, not necessarily third-party web videos. Review the dataset card and each intended media use."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "deduplication",
+          "safety",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Full paper scale and currently downloadable subsets are not equivalent.",
+          "Web video availability, safety, and rights can change over time."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/video_text",
+        "recommended_format": "webdataset",
+        "notes": "Record subset name and version before comparing results or publishing counts."
+      },
+      "evidence": {
+        "homepage": "https://github.com/OpenGVLab/InternVideo",
+        "paper": "https://arxiv.org/abs/2307.06942",
+        "used_by": [
+          "ViCLIP",
+          "InternVideo"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/video/internvid.yaml",
+      "scale_label": "~234M"
+    },
+    {
+      "id": "objaverse-xl",
+      "name": "Objaverse-XL",
+      "organization": "Allen Institute for AI",
+      "released_at": "2023-07-11",
+      "release_date_source": "https://arxiv.org/abs/2307.05663",
+      "modality": "3d",
+      "tasks": [
+        "3d-pretraining",
+        "image-to-3d",
+        "text-to-3d",
+        "novel-view-synthesis"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A web-scale collection of more than ten million deduplicated 3D objects from multiple public sources, designed to support 3D foundation models and large multiview-rendering pipelines.",
+      "access": {
+        "status": "open",
+        "type": "urls",
+        "url": "https://github.com/allenai/objaverse-xl",
+        "requires_account": false,
+        "notes": "Official tooling resolves source assets; some subsets, notably Polycam, require separate access."
+      },
+      "scale": {
+        "samples": 10000000,
+        "source_items": 10000000,
+        "hours": null,
+        "approximate": true,
+        "notes": "The project reports over 10 million 3D objects rather than a fixed frozen count."
+      },
+      "annotations": {
+        "types": [
+          "source-url",
+          "object-format",
+          "source",
+          "license",
+          "object-uid"
+        ],
+        "source": "web-metadata",
+        "languages": [
+          "not-applicable"
+        ]
+      },
+      "license": {
+        "metadata": "ODC-By-1.0",
+        "media": "Per-object source license",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Dataset metadata is ODC-By-1.0, while each object retains its source license; the Polycam contribution is explicitly non-commercial and separately gated."
+      },
+      "quality": {
+        "dimensions": [
+          "geometry-quality",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Asset formats, geometry quality, topology, textures, and metadata vary substantially by source.",
+          "Source objects may disappear or change after a metadata snapshot is published.",
+          "Dataset-level openness does not override non-commercial or custom per-object licenses."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Snapshot metadata first, validate object decodes, deduplicate by UID and content, and retain per-object terms."
+      },
+      "evidence": {
+        "homepage": "https://github.com/allenai/objaverse-xl",
+        "paper": "https://arxiv.org/abs/2307.05663",
+        "used_by": [
+          "Zero123-XL"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/3d/objaverse-xl.yaml",
+      "scale_label": "~10M"
+    },
+    {
+      "id": "journeydb",
+      "name": "JourneyDB",
+      "organization": "CUHK MMLab and Shanghai AI Laboratory",
+      "released_at": "2023-07-03",
+      "release_date_source": "https://arxiv.org/abs/2307.00716",
+      "modality": "image",
+      "tasks": [
+        "text-to-image",
+        "generative-image-understanding",
+        "evaluation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "A dataset of high-resolution Midjourney-generated images paired with prompts, captions, and visual question answering annotations.",
+      "access": {
+        "status": "gated",
+        "type": "request",
+        "url": "https://journeydb.github.io/",
+        "requires_account": true,
+        "notes": "Access follows the distribution and request flow linked by the project."
+      },
+      "scale": {
+        "samples": 4429295,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The project page reports 4,429,295 generated images."
+      },
+      "annotations": {
+        "types": [
+          "generation-prompt",
+          "caption",
+          "visual-question-answer"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Project-specific terms",
+        "media": "Generated-media terms require review",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Images originate from Midjourney generations and user prompts; review the current dataset agreement and platform terms for the intended use."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The corpus reflects the behavior and user distribution of a closed generator.",
+          "Generated-image provenance does not by itself establish unrestricted reuse."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/image_text",
+        "recommended_format": "parquet",
+        "notes": "Preserve prompt, caption, VQA, and source identifiers as separate fields."
+      },
+      "evidence": {
+        "homepage": "https://journeydb.github.io/",
+        "paper": "https://arxiv.org/abs/2307.00716",
+        "used_by": []
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/image/journeydb.yaml",
+      "scale_label": "4.4M"
+    },
+    {
+      "id": "cap3d",
+      "name": "Cap3D",
+      "organization": "University of Michigan",
+      "released_at": "2023-06-12",
+      "release_date_source": "https://arxiv.org/abs/2306.07279",
+      "modality": "3d",
+      "tasks": [
+        "text-to-3d",
+        "image-to-3d",
+        "3d-text-pretraining",
+        "novel-view-synthesis"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A large 3D-text release with automated captions for Objaverse and Objaverse-XL objects plus point clouds, multi-view renders, camera metadata, depth, alpha masks, and Shap-E latents for substantial subsets.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/tiange/Cap3D",
+        "requires_account": false,
+        "notes": "Captions and derived assets are published through Hugging Face and the official repository."
+      },
+      "scale": {
+        "samples": 1604291,
+        "source_items": 1604291,
+        "hours": null,
+        "approximate": false,
+        "notes": "The current full caption CSV reports 785,150 Objaverse objects and the remainder from Objaverse-XL."
+      },
+      "annotations": {
+        "types": [
+          "caption",
+          "point-cloud",
+          "multi-view-render",
+          "camera",
+          "depth",
+          "alpha-mask",
+          "source-object-id"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "ODC-By-1.0",
+        "media": "Per-object source license",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Cap3D licenses its captions and derived release under ODC-By-1.0, but users must also comply with the license attached to each source 3D object."
+      },
+      "quality": {
+        "dimensions": [
+          "geometry-quality",
+          "multi-view-consistency",
+          "text-media-alignment",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Individual source objects can prohibit commercial use or impose additional conditions.",
+          "Automated captions can omit fine geometry or infer attributes that are not visible from all views.",
+          "Not every object has every derived representation in the published asset archives."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Join all derived files by object UID and preserve the original object license beside every sample."
+      },
+      "evidence": {
+        "homepage": "https://github.com/crockwell/Cap3D",
+        "paper": "https://arxiv.org/abs/2306.07279",
+        "used_by": [
+          "Cap3D text-to-3D models"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/3d/cap3d.yaml",
+      "scale_label": "1.6M"
+    },
+    {
+      "id": "datacomp-1b",
+      "name": "DataComp-1B",
+      "organization": "DataComp research consortium",
+      "released_at": "2023-04-27",
+      "release_date_source": "https://arxiv.org/abs/2304.14108",
+      "modality": "image",
+      "tasks": [
+        "image-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A filtered billion-scale image-text subset released with the DataComp benchmark for studying data selection under fixed training settings.",
+      "access": {
+        "status": "open",
+        "type": "urls",
+        "url": "https://github.com/mlfoundations/datacomp",
+        "requires_account": false,
+        "notes": "Metadata and tooling are provided; media is fetched from source URLs."
+      },
+      "scale": {
+        "samples": 1000000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The project uses DataComp-1B as the nominal name for its best xlarge subset."
+      },
+      "annotations": {
+        "types": [
+          "caption",
+          "source-url",
+          "clip-score"
+        ],
+        "source": "web-metadata",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "See DataComp repository and dataset documentation",
+        "media": "Source-dependent",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The repository license does not grant rights to media downloaded from third-party URLs; evaluate the original assets and terms separately."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "deduplication",
+          "safety",
+          "provenance"
+        ],
+        "known_limitations": [
+          "URL decay changes the retrievable corpus over time.",
+          "Web-scale content requires independent safety and rights review."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/image_text",
+        "recommended_format": "webdataset",
+        "notes": "Official tooling downloads URL-backed samples into WebDataset shards."
+      },
+      "evidence": {
+        "homepage": "https://www.datacomp.ai/",
+        "paper": "https://arxiv.org/abs/2304.14108",
+        "used_by": [
+          "OpenCLIP"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/image/datacomp-1b.yaml",
+      "scale_label": "~1B"
+    },
+    {
+      "id": "wavcaps",
+      "name": "WavCaps",
+      "organization": "Centre for Vision, Speech and Signal Processing, University of Surrey",
+      "released_at": "2023-03-30",
+      "release_date_source": "https://arxiv.org/abs/2303.17395",
+      "modality": "audio",
+      "tasks": [
+        "audio-captioning",
+        "audio-text-retrieval",
+        "text-to-audio",
+        "audio-language-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A 403,050-pair weakly labelled audio-caption corpus assembled from FreeSound, BBC Sound Effects, SoundBible, and the strongly labelled AudioSet subset, with noisy source descriptions filtered and rewritten using ChatGPT.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/cvssp/WavCaps",
+        "requires_account": false,
+        "notes": "JSON metadata and FLAC archives are hosted on Hugging Face without an account gate."
+      },
+      "scale": {
+        "samples": 403050,
+        "source_items": 403050,
+        "hours": 7568,
+        "approximate": true,
+        "notes": "The official card reports 403,050 clips averaging 67.59 seconds, or about 7.6K hours."
+      },
+      "annotations": {
+        "types": [
+          "caption",
+          "raw-description",
+          "source",
+          "source-id",
+          "duration"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0 label on Hugging Face",
+        "media": "Academic-use-only project terms plus per-source FreeSound, BBC, SoundBible, and AudioSet terms",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The Hugging Face metadata carries a CC-BY-4.0 label, but the official card also restricts WavCaps audio to academic research and requires source-level attribution; the stricter documented boundary is recorded here."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "text-media-alignment",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "ChatGPT-generated captions can normalize away useful detail or introduce unsupported events.",
+          "Audio duration, recording quality, and description style vary substantially across the four sources.",
+          "Dataset-level metadata and narrative usage terms are not internally consistent about licensing."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/audio_text",
+        "recommended_format": "parquet",
+        "notes": "Keep raw and transformed descriptions, source license, captioning version, duration, and content hash."
+      },
+      "evidence": {
+        "homepage": "https://github.com/XinhaoMei/WavCaps",
+        "paper": "https://arxiv.org/abs/2303.17395",
+        "used_by": [
+          "Omni2Sound"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/audio/wavcaps.yaml",
+      "scale_label": "~403.1K"
+    },
+    {
+      "id": "coyo-700m",
+      "name": "COYO-700M",
+      "organization": "Kakao Brain",
+      "released_at": "2022-08-30",
+      "release_date_source": "https://github.com/kakaobrain/coyo-dataset",
+      "modality": "image",
+      "tasks": [
+        "image-text-pretraining",
+        "text-to-image"
+      ],
+      "stages": [
+        "pretraining"
+      ],
+      "description": "A large collection of image and text metadata pairs gathered from web pages, with source URLs and filtering signals for multimodal pretraining.",
+      "access": {
+        "status": "open",
+        "type": "urls",
+        "url": "https://huggingface.co/datasets/kakaobrain/coyo-700m",
+        "requires_account": false,
+        "notes": "The hosted dataset primarily provides metadata and source image URLs."
+      },
+      "scale": {
+        "samples": 700000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The public project describes the collection at 700M scale."
+      },
+      "annotations": {
+        "types": [
+          "alt-text",
+          "source-url",
+          "image-size",
+          "clip-score"
+        ],
+        "source": "web-metadata",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0",
+        "media": "Source-dependent",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "CC-BY-4.0 covers the COYO dataset release; underlying images remain subject to rights and terms associated with their original sources."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "visual-quality",
+          "safety",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source URLs can expire or return changed content.",
+          "Web alt-text is not a consistently descriptive training caption."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/image_text",
+        "recommended_format": "webdataset",
+        "notes": "Download with retries and preserve source provenance and failure reasons."
+      },
+      "evidence": {
+        "homepage": "https://github.com/kakaobrain/coyo-dataset",
+        "paper": null,
+        "used_by": [
+          "Kakaobrain ALIGN"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/image/coyo-700m.yaml",
+      "scale_label": "~700M"
+    },
+    {
+      "id": "webvid-10m",
+      "name": "WebVid-10M",
+      "organization": "University of Oxford VGG",
+      "released_at": "2022-05-13",
+      "release_date_source": "https://arxiv.org/abs/2104.00650",
+      "modality": "video",
+      "tasks": [
+        "video-text-pretraining",
+        "text-to-video"
+      ],
+      "stages": [
+        "pretraining"
+      ],
+      "description": "A historically influential collection of captioned short stock-footage videos whose original URL and caption distribution has been withdrawn.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://github.com/m-bain/webvid",
+        "requires_account": false,
+        "notes": "The maintainer states that the dataset is no longer distributed."
+      },
+      "scale": {
+        "samples": 10000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The project describes a corpus at roughly ten million video-text pairs."
+      },
+      "annotations": {
+        "types": [
+          "stock-footage-caption",
+          "source-url"
+        ],
+        "source": "web-metadata",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Distribution withdrawn",
+        "media": "Third-party stock footage",
+        "commercial_use": "noncommercial",
+        "redistribution": "prohibited",
+        "notes": "The original distributor withdrew URLs and captions after a cease-and-desist; the repository mentions only internal non-commercial use of existing copies."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "motion",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The canonical dataset cannot currently be obtained from the maintainer.",
+          "Stock-site captions can include subjective or non-visual language."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/video_text",
+        "recommended_format": "webdataset",
+        "notes": "Kept as historical context; do not treat mirrors as authoritative releases."
+      },
+      "evidence": {
+        "homepage": "https://github.com/m-bain/webvid",
+        "paper": "https://arxiv.org/abs/2104.00650",
+        "used_by": [
+          "Frozen in Time"
+        ]
+      },
+      "status": "archived",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/video/webvid-10m.yaml",
+      "scale_label": "~10M"
+    },
+    {
+      "id": "clotho-2-1",
+      "name": "Clotho 2.1",
+      "organization": "Tampere University",
+      "released_at": "2021-05-26",
+      "release_date_source": "https://zenodo.org/records/4783391",
+      "modality": "audio",
+      "tasks": [
+        "audio-captioning",
+        "audio-text-retrieval",
+        "text-to-audio",
+        "audio-language-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "Version 2.1 of the curated audio-captioning dataset, with 6,974 Freesound excerpts and five human-written captions per sample, for 34,870 captions.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://zenodo.org/records/4783391",
+        "requires_account": false,
+        "notes": "Audio archives, caption CSV files, metadata, and checksums are directly hosted on Zenodo."
+      },
+      "scale": {
+        "samples": 6974,
+        "source_items": 6974,
+        "hours": null,
+        "approximate": false,
+        "notes": "Each sample is 15 to 30 seconds long and has five captions."
+      },
+      "annotations": {
+        "types": [
+          "caption",
+          "freesound-id",
+          "source-url",
+          "uploader",
+          "per-file-license",
+          "split"
+        ],
+        "source": "human",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Per-file Freesound licenses recorded in the metadata CSV files",
+        "media": "Mostly Creative Commons with attribution; exact license is attached to each audio file",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The captions use Tampere University's mainly attribution and non-commercial license, while every Freesound excerpt retains its own recorded license."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Caption wording was constrained to avoid named entities, speech transcription, and split-specific singleton words.",
+          "Per-file media terms are not replaced by the dataset-level caption license.",
+          "Omni2Sound names Clotho without identifying which release was used."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/audio_text",
+        "recommended_format": "parquet",
+        "notes": "Preserve the split, all five captions, Freesound URL, uploader, file license, and archive checksum."
+      },
+      "evidence": {
+        "homepage": "https://zenodo.org/records/4783391",
+        "paper": "https://arxiv.org/abs/1910.09387",
+        "used_by": [
+          "Omni2Sound"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/audio/clotho-2-1.yaml",
+      "scale_label": "7K"
+    },
+    {
+      "id": "fsd50k",
+      "name": "FSD50K",
+      "organization": "Music Technology Group, Universitat Pompeu Fabra",
+      "released_at": "2020-10-02",
+      "release_date_source": "https://zenodo.org/records/4060432",
+      "modality": "audio",
+      "tasks": [
+        "audio-event-classification",
+        "audio-language-pretraining",
+        "audio-representation-learning",
+        "text-to-audio"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "An open collection of 51,197 human-labelled Freesound clips totalling 108.3 hours, organized into 200 AudioSet-derived sound-event classes with raw audio, metadata, and per-file licenses.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://zenodo.org/records/4060432",
+        "requires_account": false,
+        "notes": "Raw development and evaluation audio, labels, metadata, documentation, and checksums are hosted on Zenodo."
+      },
+      "scale": {
+        "samples": 51197,
+        "source_items": 51197,
+        "hours": 108.3,
+        "approximate": false,
+        "notes": "The development split has 40,966 clips and the evaluation split 10,231 clips."
+      },
+      "annotations": {
+        "types": [
+          "audio-event-label",
+          "freesound-id",
+          "uploader",
+          "per-file-license",
+          "split",
+          "ontology-id"
+        ],
+        "source": "human",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY dataset-level curation license",
+        "media": "Per-clip CC0, CC-BY, CC-BY-NC, or CC Sampling+ license",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The dataset-level CC BY license does not erase clip-level restrictions; 6,041 clips carry CC-BY-NC and 1,777 carry CC Sampling+ terms."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Development labels can be correct but incomplete, unlike the exhaustively labelled evaluation set.",
+          "Class and uploader distributions are imbalanced.",
+          "Commercial reuse requires filtering or separately clearing clips with restrictive licenses."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/audio_text",
+        "recommended_format": "parquet",
+        "notes": "Preserve Freesound ID, uploader, clip-level license, label provenance, split, waveform hash, and archive checksum."
+      },
+      "evidence": {
+        "homepage": "https://zenodo.org/records/4060432",
+        "paper": "https://arxiv.org/abs/2010.00475",
+        "used_by": [
+          "Omni2Sound"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/audio/fsd50k.yaml",
+      "scale_label": "51.2K"
+    },
+    {
+      "id": "vggsound",
+      "name": "VGGSound",
+      "organization": "Visual Geometry Group, University of Oxford",
+      "released_at": "2020-04-29",
+      "release_date_source": "https://arxiv.org/abs/2004.14368",
+      "modality": "audio",
+      "tasks": [
+        "audio-event-classification",
+        "audio-visual-learning",
+        "video-to-audio",
+        "audio-language-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "An automatically curated audiovisual sound-event dataset with more than 210,000 ten-second YouTube videos across 310 classes, selected for visible and audible source correspondence.",
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://github.com/hche11/VGGSound",
+        "requires_account": false,
+        "notes": "The official repository distributes YouTube IDs, offsets, labels, and splits rather than a durable media archive."
+      },
+      "scale": {
+        "samples": 210000,
+        "source_items": 210000,
+        "hours": 583.3,
+        "approximate": true,
+        "notes": "The paper reports more than 210K ten-second videos; current retrievable media can be substantially smaller."
+      },
+      "annotations": {
+        "types": [
+          "audio-event-label",
+          "youtube-id",
+          "start-time",
+          "split",
+          "audio-visual-correspondence"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0 dataset release",
+        "media": "Copyright remains with the original video owners",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The repository permits commercial and research use under CC BY 4.0 while explicitly retaining original-owner copyright for the source videos."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "audio-visual-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Automated visual and audio verification can retain label noise and miss off-screen sources.",
+          "YouTube deletions make the effective corpus size dependent on fetch date.",
+          "The paper, repository, and later derivatives use slightly different class and sample counts."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/audio_text",
+        "recommended_format": "parquet",
+        "notes": "Preserve release CSV, YouTube ID, offset, label, split, fetch time, availability result, and media hash."
+      },
+      "evidence": {
+        "homepage": "https://github.com/hche11/VGGSound",
+        "paper": "https://arxiv.org/abs/2004.14368",
+        "used_by": [
+          "Omni2Sound"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/audio/vggsound.yaml",
+      "scale_label": "~210K"
+    },
+    {
+      "id": "fma",
+      "name": "FMA",
+      "organization": "École Polytechnique Fédérale de Lausanne",
+      "released_at": "2017-05-09",
+      "release_date_source": "https://github.com/mdeff/fma",
+      "modality": "audio",
+      "tasks": [
+        "music-generation-pretraining",
+        "music-information-retrieval",
+        "music-tagging",
+        "genre-classification"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "A music-analysis dataset with 106,574 Creative Commons-licensed tracks, 343 days of audio, hierarchical genre labels, metadata, free-form text, and precomputed acoustic features.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://github.com/mdeff/fma",
+        "requires_account": false,
+        "notes": "The official repository links full, large, medium, and small audio archives plus metadata and features."
+      },
+      "scale": {
+        "samples": 106574,
+        "source_items": 106574,
+        "hours": 8232,
+        "approximate": true,
+        "notes": "The paper reports 917 GiB and 343 days of audio from 16,341 artists and 14,854 albums."
+      },
+      "annotations": {
+        "types": [
+          "genre",
+          "tag",
+          "artist",
+          "album",
+          "track-metadata",
+          "acoustic-feature",
+          "per-track-license"
+        ],
+        "source": "mixed",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "Dataset code is MIT; metadata and features carry their documented component terms",
+        "media": "Creative Commons license recorded per track",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Tracks that prohibited redistribution were removed during curation, but retained tracks still use differing Creative Commons terms, including licenses that can restrict commercial reuse or require attribution."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Genre and metadata distributions are highly imbalanced and retain real-world outliers.",
+          "The four official subsets differ in duration and genre balance.",
+          "Every training export must retain the original per-track license and attribution fields."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/audio_text",
+        "recommended_format": "parquet",
+        "notes": "Preserve FMA track ID, subset, full metadata, per-track license, original duration, and audio hash."
+      },
+      "evidence": {
+        "homepage": "https://github.com/mdeff/fma",
+        "paper": "https://arxiv.org/abs/1612.01840",
+        "used_by": [
+          "Omni2Sound"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/audio/fma.yaml",
+      "scale_label": "~106.6K"
+    },
+    {
+      "id": "audioset",
+      "name": "AudioSet",
+      "organization": "Google Research",
+      "released_at": "2017-03-30",
+      "release_date_source": "https://research.google/blog/announcing-audioset-a-dataset-for-audio-event-research/",
+      "modality": "audio",
+      "tasks": [
+        "audio-event-classification",
+        "audio-language-pretraining",
+        "audio-representation-learning",
+        "text-to-audio"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "A large human-labelled sound-event corpus of 2,084,320 ten-second YouTube segments spanning 527 active labels, distributed as URL annotations and precomputed audio features rather than raw waveforms.",
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://research.google.com/audioset/download.html",
+        "requires_account": false,
+        "notes": "Google hosts segment CSV files and VGGish features; it does not distribute the source YouTube audio."
+      },
+      "scale": {
+        "samples": 2084320,
+        "source_items": 2084320,
+        "hours": 5789.8,
+        "approximate": true,
+        "notes": "The official explorer reports about 5.8K hours across 2,084,320 ten-second segments."
+      },
+      "annotations": {
+        "types": [
+          "audio-event-label",
+          "youtube-id",
+          "start-time",
+          "end-time",
+          "ontology-id",
+          "split"
+        ],
+        "source": "human",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0 dataset annotations; CC-BY-SA-4.0 ontology",
+        "media": "Raw YouTube audio is not distributed and remains subject to source-platform and uploader rights",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Google's Creative Commons terms cover the released dataset artifacts, not a separately redistributable archive of the underlying YouTube media."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Most labels are weak at the ten-second segment level and can be incomplete.",
+          "Source videos disappear or change, making later raw-audio fetches smaller and non-reproducible.",
+          "The official raw-audio distribution is unavailable; model reports often do not state the fetch snapshot."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/audio_text",
+        "recommended_format": "parquet",
+        "notes": "Preserve YouTube ID, offsets, ontology version, split, fetch timestamp, availability result, and media hash."
+      },
+      "evidence": {
+        "homepage": "https://research.google.com/audioset/",
+        "paper": "https://research.google/pubs/audio-set-an-ontology-and-human-labeled-dataset-for-audio-events/",
+        "used_by": [
+          "Omni2Sound"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/audio/audioset.yaml",
+      "scale_label": "~2.1M"
+    },
+    {
+      "id": "million-song-dataset",
+      "name": "Million Song Dataset",
+      "organization": "The Echo Nest and LabROSA, Columbia University",
+      "released_at": "2011-02-08",
+      "release_date_source": "https://github.com/tbertinmahieux/MSongsDB",
+      "modality": "audio",
+      "tasks": [
+        "music-information-retrieval",
+        "music-representation-learning",
+        "music-metadata-modeling",
+        "music-recommendation"
+      ],
+      "stages": [
+        "pretraining",
+        "evaluation"
+      ],
+      "description": "A 280 GB collection of metadata and derived audio-analysis features for one million popular music tracks, with linked community subsets but no original or listenable audio in the official distribution.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://github.com/tbertinmahieux/MSongsDB",
+        "requires_account": false,
+        "notes": "The stable official repository documents the project, but the legacy distribution paths are no longer reliable and never included raw audio."
+      },
+      "scale": {
+        "samples": 1000000,
+        "source_items": 1000000,
+        "hours": null,
+        "approximate": false,
+        "notes": "Each HDF5 item represents one track and contains Echo Nest metadata and audio-analysis features."
+      },
+      "annotations": {
+        "types": [
+          "track-metadata",
+          "timbre-feature",
+          "chroma-feature",
+          "beat-feature",
+          "artist-tag",
+          "external-id"
+        ],
+        "source": "mixed",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "Mixed Echo Nest API terms, public-domain fields, and linked-dataset licenses",
+        "media": "No raw audio is included in the official dataset",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Echo Nest terms govern core features; MusicBrainz and linked subsets have separate terms, including public-domain and non-commercial components."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The released representation is lossy analysis data and cannot substitute for training on waveforms.",
+          "The corpus contains 944 duplicate tracks representing songs already present in the database.",
+          "Omni2Sound does not explain whether it used official MSD features or separately sourced audio previews."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/audio_text",
+        "recommended_format": "parquet",
+        "notes": "Preserve track and song IDs, feature schema, source subset, linked-dataset license, and conversion provenance."
+      },
+      "evidence": {
+        "homepage": "https://github.com/tbertinmahieux/MSongsDB",
+        "paper": "https://www.ee.columbia.edu/~dpwe/pubs/BertEWL11-msd.pdf",
+        "used_by": [
+          "Omni2Sound"
+        ]
+      },
+      "status": "archived",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/audio/million-song-dataset.yaml",
+      "scale_label": "1M"
+    }
+  ],
+  "models": [
+    {
+      "id": "midjourney-v8-2",
+      "name": "Midjourney V8.2",
+      "organization": "Midjourney",
+      "released_at": "2026-07-24",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-personalization"
+      ],
+      "access": {
+        "status": "product-only",
+        "license": "Midjourney Terms of Service",
+        "release_url": "https://updates.midjourney.com/version-8-2/",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Undisclosed proprietary image generation model",
+        "parameters": null,
+        "notes": "The release focuses on aesthetics, image quality, and preference-conditioned personalization."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "V8.2 personalization ratings and image-selection pool",
+            "catalog_id": null,
+            "role": "preference",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "Midjourney reports stronger profiles for users with many ratings and a larger improved pool of images, without publishing the underlying data."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "unknown"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "The V8.2 announcement describes quality and aesthetic improvements but provides no evidence about base-model training data or construction."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "image"
+            ],
+            "source_types": [
+              "human-feedback"
+            ],
+            "operations": [
+              "preference-profile-modeling",
+              "image-pool-expansion"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Personalization uses user ratings and a larger curated image-selection pool to model individual taste, while the relationship to base-model post-training remains undisclosed."
+          }
+        ],
+        "strategy_summary": [
+          "Use accumulated user ratings as a profile-level signal for stronger personalization.",
+          "Expand the image-selection pool used to create V8.2 personalization profiles.",
+          "Keep the base model's pretraining and post-training data separate from the disclosed personalization behavior because Midjourney does not connect them."
+        ],
+        "unknowns": [
+          "All base-model training dataset identities, sources, rights, sizes, filters, and mixture ratios.",
+          "Whether user ratings or generated images update V8.2 itself or only user-specific personalization profiles.",
+          "Rating retention, sampling, debiasing, privacy controls, and reward-model construction."
+        ]
+      },
+      "evidence": {
+        "release": "https://updates.midjourney.com/version-8-2/",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-26",
+      "source_path": "models/image/midjourney-v8-2.yaml"
+    },
+    {
+      "id": "flux-3",
+      "name": "FLUX 3",
+      "organization": "Black Forest Labs",
+      "released_at": "2026-07-23",
+      "modalities": [
+        "multimodal",
+        "image",
+        "video",
+        "audio",
+        "action"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "text-to-video",
+        "image-to-video",
+        "video-to-video",
+        "audio-video-generation",
+        "action-prediction"
+      ],
+      "access": {
+        "status": "early-access",
+        "license": "Early-access terms; open-weight FLUX 3 Dev announced",
+        "release_url": "https://bfl.ai/blog/flux-3",
+        "weights_url": null,
+        "api_url": "https://bfl.ai/blog/flux-3"
+      },
+      "architecture": {
+        "family": "Multimodal flow model based on Self-Flow",
+        "parameters": null,
+        "notes": "A unified backbone jointly models image, video, audio, and later action signals."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "General video training corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": "tens of millions of hours",
+            "notes": "Exact sources, filtering, and rights composition are not named."
+          },
+          {
+            "name": "Human and robot manipulation video corpus",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "undisclosed",
+            "scale": "hundreds of thousands of hours",
+            "notes": "Focused on human and robot manipulation tasks for visual intelligence."
+          },
+          {
+            "name": "Robot action demonstrations",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "Used to add action prediction and adapt the FLUX-mimic action decoder."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "joint-multimodal-training",
+              "self-flow"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Jointly learn image, video, and audio from the beginning, with video prediction consuming over 95 percent of training compute."
+          },
+          {
+            "name": "action-adaptation",
+            "modalities": [
+              "video",
+              "action"
+            ],
+            "source_types": [
+              "robot-demonstration",
+              "proprietary"
+            ],
+            "operations": [
+              "curriculum-expansion",
+              "action-decoder-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Add action prediction to the existing video curriculum and train a lightweight decoder over intermediate world-model features."
+          }
+        ],
+        "strategy_summary": [
+          "Train all perceptual modalities in one backbone instead of separate image, video, and audio models.",
+          "Spend most compute on video prediction to learn dynamics, causality, contact, and motion.",
+          "Reuse the learned video representation for action prediction with limited task-specific data."
+        ],
+        "unknowns": [
+          "Exact image, video, and audio sources and their licenses.",
+          "Data mixture ratios, deduplication, safety filters, and captioning pipeline.",
+          "Final model size, release license, and post-training recipe."
+        ]
+      },
+      "evidence": {
+        "release": "https://bfl.ai/blog/flux-3",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-26",
+      "source_path": "models/multimodal/flux-3.yaml"
+    },
+    {
+      "id": "muse-video",
+      "name": "Muse Video",
+      "organization": "Meta Superintelligence Labs",
+      "released_at": "2026-07-07",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "text-to-video",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Not announced",
+        "release_url": "https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Media generation model sharing the Muse pretraining base",
+        "parameters": null,
+        "notes": "Previewed with native audio support; architecture and parameter count are not disclosed."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "unknown"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "shared-media-pretraining"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Meta states that Muse Video is built on the same pretraining base as Muse Image, but publishes no dataset identities, source modalities, scale, or mixture details."
+          }
+        ],
+        "strategy_summary": [
+          "Reuse a shared media-generation pretraining base across Muse Image and Muse Video.",
+          "Treat native audio as a released capability, not evidence of any particular audio or video training source."
+        ],
+        "unknowns": [
+          "All video, audio, image, and text training dataset identities, sources, rights, scales, and mixture ratios.",
+          "Captioning, audio-video alignment, shot segmentation, filtering, deduplication, and safety pipelines.",
+          "Post-training, preference optimization, architecture, release access, and license details."
+        ]
+      },
+      "evidence": {
+        "release": "https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-26",
+      "source_path": "models/video/muse-video.yaml"
+    },
+    {
+      "id": "muse-image",
+      "name": "Muse Image",
+      "organization": "Meta Superintelligence Labs",
+      "released_at": "2026-07-07",
+      "modalities": [
+        "multimodal",
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "multi-reference-composition",
+        "agentic-image-generation"
+      ],
+      "access": {
+        "status": "product-only",
+        "license": "Meta AI product terms",
+        "release_url": "https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Agentic image generation model integrated with Muse Spark",
+        "parameters": null,
+        "notes": "The model can invoke search and code tools, self-refine drafts, and scale reasoning and visual generation at inference time."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "unknown"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "shared-media-pretraining"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Meta says Muse Video uses the same pretraining base as Muse Image but does not identify the corpora, source modalities, mixture, or filtering pipeline behind that base."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "synthetic",
+              "undisclosed"
+            ],
+            "operations": [
+              "reinforcement-learning",
+              "tool-use-training",
+              "self-refinement"
+            ],
+            "scale_disclosed": false,
+            "strategy": "During reinforcement learning, Muse Image learns code and search tool use; self-refinement emerges because revised outputs receive higher reward."
+          }
+        ],
+        "strategy_summary": [
+          "Combine a shared media-generation pretraining base with reinforcement learning for agentic image creation.",
+          "Train tool use so rendered code outputs and web search can ground image generation in precise or current information.",
+          "Reward self-refinement, allowing the model to edit, restart, or change tactics when an initial draft is weak."
+        ],
+        "unknowns": [
+          "All pretraining corpus identities, source composition, rights, scale, filtering, deduplication, and captioning methods.",
+          "The origin and composition of reinforcement-learning prompts, tool-use traces, generated drafts, and reward signals.",
+          "Whether human preference labels contribute to rewards and how safety or personalization data is separated from core training."
+        ]
+      },
+      "evidence": {
+        "release": "https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-26",
+      "source_path": "models/multimodal/muse-image.yaml"
+    },
+    {
+      "id": "lens",
+      "name": "Lens",
+      "organization": "Microsoft Research",
+      "released_at": "2026-05-20",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "See the Microsoft Lens model card",
+        "release_url": "https://www.microsoft.com/en-us/research/publication/lens-rethinking-training-efficiency-for-foundational-text-to-image-models/",
+        "weights_url": "https://huggingface.co/microsoft/Lens",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Diffusion transformer with semantic VAE",
+        "parameters": 3800000000,
+        "notes": "Compact T2I model optimized for information-dense batches and fast convergence."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Lens-800M",
+            "catalog_id": "lens-800m",
+            "role": "pretraining",
+            "availability": "not-released",
+            "scale": "800M image-text pairs",
+            "notes": "Dense GPT-4.1 captions average approximately 109 words."
+          },
+          {
+            "name": "Lens-RL-8K",
+            "catalog_id": null,
+            "role": "preference",
+            "availability": "not-released",
+            "scale": "8K prompts",
+            "notes": "Taxonomy-driven prompts paired with structured reward rubrics."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed",
+              "synthetic"
+            ],
+            "operations": [
+              "dense-recaptioning",
+              "multi-resolution-batching",
+              "aspect-ratio-diversification"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Maximize information density with long GPT-4.1 captions and mixed-resolution, diverse-aspect-ratio batches."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "synthetic",
+              "human-feedback"
+            ],
+            "operations": [
+              "taxonomy-driven-prompting",
+              "rubric-based-rewarding"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Apply reinforcement learning on Lens-RL-8K using structured reward rubrics to reduce artifacts and improve visual quality."
+          },
+          {
+            "name": "distillation",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "synthetic"
+            ],
+            "operations": [
+              "step-distillation"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Distill the foundation model into a four-step turbo variant for faster inference."
+          }
+        ],
+        "strategy_summary": [
+          "Increase semantic supervision per sample through unusually long synthetic captions.",
+          "Increase visual diversity per optimization step through mixed resolution and aspect ratio.",
+          "Use a small taxonomy-driven RL set instead of broad undirected post-training data."
+        ],
+        "unknowns": [
+          "Original media sources, rights, and filtering pipeline for Lens-800M.",
+          "Exact pretraining mixture, deduplication policy, and safety filters."
+        ]
+      },
+      "evidence": {
+        "release": "https://www.microsoft.com/en-us/research/publication/lens-rethinking-training-efficiency-for-foundational-text-to-image-models/",
+        "technical_report": "https://arxiv.org/abs/2605.21573",
+        "repository": "https://huggingface.co/microsoft/Lens"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/image/lens.yaml"
+    },
+    {
+      "id": "lance",
+      "name": "Lance",
+      "organization": "ByteDance",
+      "released_at": "2026-05-18",
+      "modalities": [
+        "multimodal",
+        "image",
+        "video"
+      ],
+      "tasks": [
+        "image-understanding",
+        "video-understanding",
+        "text-to-image",
+        "image-editing",
+        "text-to-video",
+        "video-editing"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "See repository and model card",
+        "release_url": "https://lance-project.github.io/",
+        "weights_url": "https://huggingface.co/bytedance-research/Lance",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Dual-stream mixture-of-experts unified multimodal model",
+        "parameters": 3000000000,
+        "notes": "Three billion active parameters with decoupled understanding and generation pathways."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "staged-multitask-training",
+              "adaptive-data-scheduling",
+              "capability-oriented-objectives"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Train from scratch on shared interleaved multimodal sequences, progressively scheduling understanding, generation, and editing objectives."
+          }
+        ],
+        "strategy_summary": [
+          "Use collaborative multi-task training so understanding and generation improve within one model.",
+          "Adaptively schedule capability-oriented objectives instead of using a fixed task mixture.",
+          "Train image and video tasks jointly within a budget of at most 128 A100 GPUs."
+        ],
+        "unknowns": [
+          "Dataset identities, sample counts, licensing, and modality mixture ratios.",
+          "Captioning, filtering, deduplication, safety, and post-training details."
+        ]
+      },
+      "evidence": {
+        "release": "https://lance-project.github.io/",
+        "technical_report": "https://arxiv.org/abs/2605.18678",
+        "repository": "https://github.com/bytedance/Lance"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/multimodal/lance.yaml"
+    },
+    {
+      "id": "ernie-image",
+      "name": "ERNIE-Image",
+      "organization": "Baidu",
+      "released_at": "2026-04-15",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "text-rendering"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0",
+        "release_url": "https://github.com/baidu/ERNIE-Image",
+        "weights_url": "https://huggingface.co/baidu/ERNIE-Image",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Single-stream latent diffusion transformer",
+        "parameters": 8000000000,
+        "notes": "Uses the FLUX.2 VAE, a compact text encoder, and a separate prompt enhancer."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Internal large-scale image pool",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": "large-scale, exact count undisclosed",
+            "notes": "Authors disclose the processing strategy but not source datasets or media terms."
+          },
+          {
+            "name": "ERIA-1K",
+            "catalog_id": null,
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "1K professionally annotated images",
+            "notes": "Held-out aesthetic benchmark released with the ERNIE-Image-Aes resources."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "fine-grained-categorization",
+              "vlm-recaptioning",
+              "aesthetic-scoring",
+              "hierarchical-sampling",
+              "resolution-curriculum"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Partition data into 10,000 visual categories, generate rich captions for all images, score aesthetics, then sample across and within categories."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "domain-curation",
+              "annotation-diversification"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Build top-down high-consistency SFT sets for priority domains and diversify prompt styles to match real users."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "human-feedback"
+            ],
+            "operations": [
+              "stabilized-dpo",
+              "aesthetic-alignment"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Apply a small number of stabilized DPO steps with a strong aesthetic reward model to reduce reward hacking."
+          },
+          {
+            "name": "distillation",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "synthetic"
+            ],
+            "operations": [
+              "multi-teacher-distillation"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Use multiple expert variants as teachers in MT-DMD to limit capability drift in the eight-step Turbo model."
+          }
+        ],
+        "strategy_summary": [
+          "Preserve long-tail concepts by balancing 10,000 fine-grained visual categories.",
+          "Replace noisy web text with structural captions that explicitly transcribe text inside images.",
+          "Combine inter-category quality weighting with intra-category aesthetic sampling.",
+          "Switch from bottom-up broad pretraining data to top-down domain-focused post-training data."
+        ],
+        "unknowns": [
+          "Exact source datasets, total sample count, rights composition, and data mixture.",
+          "Deduplication, safety filtering, and per-stage sample counts."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/baidu/ERNIE-Image",
+        "technical_report": "https://arxiv.org/abs/2605.25347",
+        "repository": "https://github.com/baidu/ERNIE-Image"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/image/ernie-image.yaml"
+    },
+    {
+      "id": "ltx-2-3",
+      "name": "LTX-2.3",
+      "organization": "Lightricks",
+      "released_at": "2026-02-23",
+      "modalities": [
+        "multimodal",
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "video-to-video",
+        "audio-to-video",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "LTX-2 Community License Agreement",
+        "release_url": "https://ltx.io/blog/ltx-2-3-release",
+        "weights_url": "https://huggingface.co/Lightricks/LTX-2.3",
+        "api_url": "https://docs.ltx.io/"
+      },
+      "architecture": {
+        "family": "Asymmetric dual-stream audio-video diffusion transformer",
+        "parameters": 20900000000,
+        "notes": "Jointly models synchronized video and audio with separate latent representations and cross-modal attention."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Audio-informative subset of the LTX-Video training corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "Selected for clips containing significant and informative audio components."
+          },
+          {
+            "name": "Higher-quality VAE training subset",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "Used to rebuild the LTX-2.3 latent space and improve fine detail."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "audio-aware-filtering",
+              "multimodal-recaptioning",
+              "joint-audio-video-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Select clips with informative audio and generate exhaustive factual captions covering visuals, dialogue, music, ambience, and sound events."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "audio"
+            ],
+            "source_types": [
+              "proprietary"
+            ],
+            "operations": [
+              "quality-filtering",
+              "portrait-data-training",
+              "vae-retraining"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Retrain the VAE on higher-quality data, improve audio filtering, and include native portrait-orientation samples rather than crops."
+          }
+        ],
+        "strategy_summary": [
+          "Treat detailed audio description as part of the caption rather than an auxiliary label.",
+          "Filter for clips where audio carries useful information and train audio and video jointly.",
+          "Improve output detail by changing both the VAE architecture and its higher-quality training data."
+        ],
+        "unknowns": [
+          "Exact video sources, sample count, licensing, and mixture ratios.",
+          "Detailed safety, deduplication, and media-quality thresholds."
+        ]
+      },
+      "evidence": {
+        "release": "https://ltx.io/blog/ltx-2-3-release",
+        "technical_report": "https://videos.ltx.io/LTX-2/grants/LTX_2_Technical_Report_compressed.pdf",
+        "repository": "https://github.com/Lightricks/LTX-2"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/multimodal/ltx-2-3.yaml"
+    },
+    {
+      "id": "seedance-2-0",
+      "name": "Seedance 2.0",
+      "organization": "ByteDance Seed",
+      "released_at": "2026-02-12",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "video-editing",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Proprietary service terms",
+        "release_url": "https://seed.bytedance.com/en/blog/official-launch-of-seedance-2-0",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Undisclosed multimodal video generation architecture",
+        "parameters": null,
+        "notes": "Supports text, image, video, and audio references with synchronized stereo output."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "The official launch describes model capabilities but does not disclose training datasets or a data construction pipeline."
+          }
+        ],
+        "strategy_summary": [
+          "Track the absence of data disclosure explicitly rather than inferring sources from output capabilities."
+        ],
+        "unknowns": [
+          "All training dataset identities, sources, licenses, sizes, and mixtures.",
+          "Captioning, multimodal alignment, filtering, deduplication, safety, and post-training strategy."
+        ]
+      },
+      "evidence": {
+        "release": "https://seed.bytedance.com/en/blog/official-launch-of-seedance-2-0",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-26",
+      "source_path": "models/video/seedance-2-0.yaml"
+    },
+    {
+      "id": "omni2sound",
+      "name": "Omni2Sound",
+      "organization": "Tsinghua University, Monash University, and Shengshu AI",
+      "released_at": "2026-01-06",
+      "modalities": [
+        "multimodal",
+        "audio",
+        "video"
+      ],
+      "tasks": [
+        "text-to-audio",
+        "video-to-audio",
+        "video-text-to-audio"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "CC-BY-NC-4.0",
+        "release_url": "https://omni2sound.github.io/",
+        "weights_url": "https://huggingface.co/Dalision/Omni2Sound",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Dual-condition diffusion transformer for audio generation",
+        "parameters": null,
+        "notes": "A standard DiT with a semantic branch using Flan-T5 and CLIP cross-attention plus a Synchformer-conditioned temporal branch injected through AdaLN."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "AudioCaps",
+            "catalog_id": "audiocaps-2-0",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": null,
+            "notes": "Named by the report without a version; the linked card documents current AudioCaps 2.0 rather than claiming that v2.0 was the training snapshot."
+          },
+          {
+            "name": "WavCaps",
+            "catalog_id": "wavcaps",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": null,
+            "notes": "Named by the technical report as part of the large-scale text-to-audio pretraining mixture."
+          },
+          {
+            "name": "Clotho",
+            "catalog_id": "clotho-2-1",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": null,
+            "notes": "Named without a version; the linked card documents current Clotho 2.1 rather than claiming that release was the training snapshot."
+          },
+          {
+            "name": "AudioSet",
+            "catalog_id": "audioset",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": null,
+            "notes": "Named for pretraining and as a SoundAtlas source; the official release provides URL annotations and features, not raw waveforms, so the effective media snapshot remains unknown."
+          },
+          {
+            "name": "VGGSound",
+            "catalog_id": "vggsound",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": null,
+            "notes": "Named for pretraining and used by SoundAtlas and VGGSound-Omni; the report does not disclose the YouTube fetch snapshot."
+          },
+          {
+            "name": "FSD50K",
+            "catalog_id": "fsd50k",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": null,
+            "notes": "Named as part of the large-scale text-to-audio mixture; its raw Freesound clips carry mixed per-file Creative Commons licenses."
+          },
+          {
+            "name": "Million Song Dataset",
+            "catalog_id": "million-song-dataset",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": null,
+            "notes": "Named by the report, but the official MSD contains features and metadata rather than raw audio; the actual Omni2Sound ingestion path is not disclosed."
+          },
+          {
+            "name": "FMA",
+            "catalog_id": "fma",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": null,
+            "notes": "Named as part of the large-scale text-to-audio mixture; commercial eligibility depends on each track's Creative Commons license."
+          },
+          {
+            "name": "SoundAtlas",
+            "catalog_id": "soundatlas",
+            "role": "fine-tuning",
+            "availability": "gated",
+            "scale": "Approximately 470K audio-caption pairs",
+            "notes": "Supplies audio, text, and visual context for multitask interleaved fine-tuning."
+          },
+          {
+            "name": "VGGSound-Omni",
+            "catalog_id": "vggsound-omni",
+            "role": "evaluation",
+            "availability": "gated",
+            "scale": null,
+            "notes": "Released with the benchmark repository for unified T2A, V2A, VT2A, and off-screen audio evaluation."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset"
+            ],
+            "operations": [
+              "multi-dataset-pretraining",
+              "text-to-audio-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Pretrain text-to-audio generation across eight named public audio and music collections before introducing visual conditioning."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "audio",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "synthetic"
+            ],
+            "operations": [
+              "multitask-interleaving",
+              "semantic-bridge-training",
+              "temporal-conditioning"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Interleave text-, video-, and video-text-conditioned audio generation on about 470K SoundAtlas pairs to bridge semantic and temporal controls."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "audio",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "synthetic"
+            ],
+            "operations": [
+              "off-screen-synthesis",
+              "text-dropout",
+              "robustness-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Add synthesized off-screen sound cases and drop text conditioning during a final robustness stage so visual control remains useful when captions are missing."
+          }
+        ],
+        "strategy_summary": [
+          "Start with broad text-to-audio pretraining, then introduce aligned video and dense captions instead of training every condition from scratch.",
+          "Build SoundAtlas with audiovisual routing, agentic captioning, and CLAP plus audiovisual-text consistency filters.",
+          "Use a final off-screen-sound and text-dropout stage to reduce dependence on visible sound sources or complete prompts."
+        ],
+        "unknowns": [
+          "Sampling weights, epoch counts, and exact per-dataset sample totals in the eight-corpus pretraining mixture.",
+          "Media fetch snapshots, removal handling, and effective license composition of the upstream collections.",
+          "Exact thresholds and rejection rates for the stage-one data filters.",
+          "Distribution and quantity of synthesized off-screen examples used in the robustness stage."
+        ]
+      },
+      "evidence": {
+        "release": "https://omni2sound.github.io/",
+        "technical_report": "https://arxiv.org/abs/2601.02731",
+        "repository": "https://github.com/omni2sound/Omni2Sound"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/multimodal/omni2sound.yaml"
+    },
+    {
+      "id": "hunyuanvideo-1-5",
+      "name": "HunyuanVideo 1.5",
+      "organization": "Tencent Hunyuan",
+      "released_at": "2025-11-24",
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "See repository and model card",
+        "release_url": "https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5",
+        "weights_url": "https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Diffusion transformer with selective and sliding tile attention",
+        "parameters": 8300000000,
+        "notes": "Unified consumer-oriented video model with bilingual text conditioning and super-resolution."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "data-curation",
+              "progressive-training",
+              "image-video-joint-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Progressively pretrain with curated image and video data across multiple resolutions and durations."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "progressive-post-training",
+              "bilingual-conditioning"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Apply progressive post-training and glyph-aware bilingual conditioning for Chinese and English prompt fidelity."
+          }
+        ],
+        "strategy_summary": [
+          "Combine curated images and videos so spatial quality and motion can scale together.",
+          "Use progressive pretraining and post-training across durations and resolutions.",
+          "Add glyph-aware bilingual text conditioning for text-rich prompts."
+        ],
+        "unknowns": [
+          "Dataset names, sample counts, source rights, and image-video mixture.",
+          "Captioning, filtering, deduplication, and preference-data details."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5",
+        "technical_report": "https://arxiv.org/abs/2511.18870",
+        "repository": "https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5"
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "models/video/hunyuanvideo-1-5.yaml"
+    }
+  ]
+}

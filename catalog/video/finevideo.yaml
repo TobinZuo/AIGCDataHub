@@ -1,0 +1,64 @@
+id: finevideo
+name: FineVideo
+organization: Hugging Face
+released_at: "2024-09-23"
+release_date_source: https://huggingface.co/blog/fine-video
+modality: video
+tasks:
+  - video-understanding
+  - text-to-video
+stages:
+  - pretraining
+  - fine-tuning
+description: >-
+  A collection of Creative Commons YouTube videos with rich descriptions,
+  scene-level structure, transcripts, and question-answer annotations.
+access:
+  status: gated
+  type: hosted
+  url: https://huggingface.co/datasets/HuggingFaceFV/finevideo
+  requires_account: true
+  notes: Users must accept dataset terms before accessing the repository.
+scale:
+  samples: 43000
+  source_items: 43000
+  hours: 3425
+  approximate: true
+  notes: The maintainers report over 43K videos spanning about 3.4K hours.
+annotations:
+  types:
+    - transcript
+    - rich-description
+    - scene-boundary
+    - question-answer
+    - provenance
+  source: mixed
+  languages:
+    - multilingual
+license:
+  metadata: CC-BY with dataset terms
+  media: Per-video Creative Commons terms
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    Users must preserve attribution and provenance, follow current usable
+    versions and removals, and include the dataset terms when sharing access.
+quality:
+  dimensions:
+    - text-media-alignment
+    - temporal-consistency
+    - visual-quality
+    - provenance
+  known_limitations:
+    - Long-form videos are not equivalent to generation-ready short clips.
+    - The usable version can change when validated removal requests are processed.
+processing:
+  recipe: recipes/video_text
+  recommended_format: parquet
+  notes: Use scene annotations to derive clips and retain attribution per source video.
+evidence:
+  homepage: https://huggingface.co/datasets/HuggingFaceFV/finevideo
+  paper: null
+  used_by: []
+status: verified
+last_verified: "2026-07-26"

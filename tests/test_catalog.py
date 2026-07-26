@@ -1,0 +1,65 @@
+from __future__ import annotations
+
+import sys
+import unittest
+
+sys.path.insert(0, "scripts")
+
+from build_readme import END, MODEL_END, MODEL_START, START, generated_readme, render_dataset_table, render_model_table
+from build_site_data import build_payload
+from catalog import compact_number, load_cards
+from validate_catalog import validate
+
+
+class CatalogTests(unittest.TestCase):
+    def test_catalog_is_valid(self) -> None:
+        self.assertEqual(validate(), [])
+
+    def test_cards_are_present(self) -> None:
+        self.assertGreaterEqual(len(load_cards()), 23)
+
+    def test_audio_and_3d_coverage_is_present(self) -> None:
+        modalities = {card["modality"] for _, card in load_cards()}
+        self.assertTrue({"audio", "3d"}.issubset(modalities))
+
+    def test_audio_lineage_datasets_are_present(self) -> None:
+        ids = {card["id"] for _, card in load_cards()}
+        self.assertTrue(
+            {
+                "audiocaps-2-0",
+                "wavcaps",
+                "clotho-2-1",
+                "audioset",
+                "vggsound",
+                "fsd50k",
+                "million-song-dataset",
+                "fma",
+                "soundatlas",
+                "vggsound-omni",
+            }.issubset(ids)
+        )
+
+    def test_site_catalog_orders_datasets_by_release_date(self) -> None:
+        datasets = build_payload()["datasets"]
+        dates = [card["released_at"] for card in datasets]
+        self.assertEqual(dates, sorted(dates, reverse=True))
+        self.assertEqual(datasets[0]["id"], "lens-800m")
+
+    def test_compact_number(self) -> None:
+        self.assertEqual(compact_number(70_723_513), "70.7M")
+        self.assertEqual(compact_number(1_000_000, approximate=True), "~1M")
+        self.assertEqual(compact_number(None), "unknown")
+
+    def test_readme_generation_is_idempotent(self) -> None:
+        source = (
+            f"before\n{MODEL_START}\nstale models\n{MODEL_END}\n"
+            f"middle\n{START}\nstale datasets\n{END}\nafter\n"
+        )
+        once = generated_readme(source)
+        self.assertEqual(generated_readme(once), once)
+        self.assertIn("| Dataset | Organization | Modality | Released |", render_dataset_table())
+        self.assertIn("| Model | Organization |", render_model_table())
+
+
+if __name__ == "__main__":
+    unittest.main()

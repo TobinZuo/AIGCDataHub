@@ -1,0 +1,66 @@
+id: internvid
+name: InternVid
+organization: OpenGVLab
+released_at: "2023-07-13"
+release_date_source: https://arxiv.org/abs/2307.06942
+modality: video
+tasks:
+  - video-text-pretraining
+  - text-to-video
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A web-scale video-text corpus built from millions of source videos and
+  segmented into captioned clips for multimodal understanding and generation.
+access:
+  status: open
+  type: metadata
+  url: https://huggingface.co/datasets/OpenGVLab/InternVid
+  requires_account: false
+  notes: Public releases include metadata and filtered subsets such as InternVid-10M-FLT.
+scale:
+  samples: 234000000
+  source_items: 7000000
+  hours: 760000
+  approximate: true
+  notes: Paper-level full-corpus statistics; accessible subsets may be much smaller.
+annotations:
+  types:
+    - caption
+    - clip-boundary
+    - source-url
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: See InternVid dataset card
+  media: Source-dependent
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    The Apache-2.0 repository license covers code, not necessarily third-party
+    web videos. Review the dataset card and each intended media use.
+quality:
+  dimensions:
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - deduplication
+    - safety
+    - provenance
+  known_limitations:
+    - Full paper scale and currently downloadable subsets are not equivalent.
+    - Web video availability, safety, and rights can change over time.
+processing:
+  recipe: recipes/video_text
+  recommended_format: webdataset
+  notes: Record subset name and version before comparing results or publishing counts.
+evidence:
+  homepage: https://github.com/OpenGVLab/InternVideo
+  paper: https://arxiv.org/abs/2307.06942
+  used_by:
+    - ViCLIP
+    - InternVideo
+status: partial
+last_verified: "2026-07-26"

@@ -1,0 +1,51 @@
+id: seedance-2-0
+name: Seedance 2.0
+organization: ByteDance Seed
+released_at: "2026-02-12"
+modalities:
+  - video
+  - audio
+tasks:
+  - text-to-video
+  - image-to-video
+  - video-editing
+  - audio-video-generation
+access:
+  status: api-only
+  license: Proprietary service terms
+  release_url: https://seed.bytedance.com/en/blog/official-launch-of-seedance-2-0
+  weights_url: null
+  api_url: null
+architecture:
+  family: Undisclosed multimodal video generation architecture
+  parameters: null
+  notes: Supports text, image, video, and audio references with synchronized stereo output.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - audio
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: The official launch describes model capabilities but does not disclose training datasets or a data construction pipeline.
+  strategy_summary:
+    - Track the absence of data disclosure explicitly rather than inferring sources from output capabilities.
+  unknowns:
+    - All training dataset identities, sources, licenses, sizes, and mixtures.
+    - Captioning, multimodal alignment, filtering, deduplication, safety, and post-training strategy.
+evidence:
+  release: https://seed.bytedance.com/en/blog/official-launch-of-seedance-2-0
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-26"
+

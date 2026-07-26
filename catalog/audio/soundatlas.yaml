@@ -1,0 +1,70 @@
+id: soundatlas
+name: SoundAtlas
+organization: Tsinghua University, Monash University, and Shengshu AI
+released_at: "2026-01-06"
+release_date_source: https://arxiv.org/abs/2601.02731
+modality: audio
+tasks:
+  - text-to-audio
+  - video-to-audio
+  - video-text-to-audio
+  - audio-captioning
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A roughly 470-thousand-pair audio-caption corpus derived from AudioSet and
+  VGGSound with temporally grounded descriptions of audible and visual context.
+access:
+  status: gated
+  type: hosted
+  url: https://huggingface.co/datasets/Dalision/Omni2Sound_Benchmark
+  requires_account: true
+  notes: Access requires accepting the repository terms and sharing contact information.
+scale:
+  samples: 470000
+  source_items: 470000
+  hours: null
+  approximate: true
+  notes: The project and paper consistently describe SoundAtlas as about 470K pairs.
+annotations:
+  types:
+    - dense-caption
+    - temporal-description
+    - visual-context
+    - source-dataset
+    - alignment-score
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: CC-BY-NC-4.0
+  media: Source-dependent AudioSet and VGGSound media terms
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: >-
+    The Hugging Face repository applies CC-BY-NC-4.0 to the release, while the
+    underlying media remains subject to its original source and platform terms.
+quality:
+  dimensions:
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Source media availability and rights can change independently of the released annotations.
+    - Model-generated captions can retain hallucinations despite multimodal consistency filtering.
+    - The two upstream collections have different collection processes and label distributions.
+processing:
+  recipe: recipes/audio_text
+  recommended_format: parquet
+  notes: Retain source identifiers, captioning-agent versions, alignment scores, and media-fetch status.
+evidence:
+  homepage: https://omni2sound.github.io/
+  paper: https://arxiv.org/abs/2601.02731
+  used_by:
+    - Omni2Sound
+status: verified
+last_verified: "2026-07-26"

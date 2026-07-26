@@ -1,0 +1,82 @@
+id: ltx-2-3
+name: LTX-2.3
+organization: Lightricks
+released_at: "2026-02-23"
+modalities:
+  - multimodal
+  - video
+  - audio
+tasks:
+  - text-to-video
+  - image-to-video
+  - video-to-video
+  - audio-to-video
+  - audio-video-generation
+access:
+  status: open-weights
+  license: LTX-2 Community License Agreement
+  release_url: https://ltx.io/blog/ltx-2-3-release
+  weights_url: https://huggingface.co/Lightricks/LTX-2.3
+  api_url: https://docs.ltx.io/
+architecture:
+  family: Asymmetric dual-stream audio-video diffusion transformer
+  parameters: 20900000000
+  notes: Jointly models synchronized video and audio with separate latent representations and cross-modal attention.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Audio-informative subset of the LTX-Video training corpus
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: Selected for clips containing significant and informative audio components.
+    - name: Higher-quality VAE training subset
+      catalog_id: null
+      role: fine-tuning
+      availability: undisclosed
+      scale: null
+      notes: Used to rebuild the LTX-2.3 latent space and improve fine detail.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - proprietary
+        - synthetic
+      operations:
+        - audio-aware-filtering
+        - multimodal-recaptioning
+        - joint-audio-video-training
+      scale_disclosed: false
+      strategy: Select clips with informative audio and generate exhaustive factual captions covering visuals, dialogue, music, ambience, and sound events.
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+      source_types:
+        - proprietary
+      operations:
+        - quality-filtering
+        - portrait-data-training
+        - vae-retraining
+      scale_disclosed: false
+      strategy: Retrain the VAE on higher-quality data, improve audio filtering, and include native portrait-orientation samples rather than crops.
+  strategy_summary:
+    - Treat detailed audio description as part of the caption rather than an auxiliary label.
+    - Filter for clips where audio carries useful information and train audio and video jointly.
+    - Improve output detail by changing both the VAE architecture and its higher-quality training data.
+  unknowns:
+    - Exact video sources, sample count, licensing, and mixture ratios.
+    - Detailed safety, deduplication, and media-quality thresholds.
+evidence:
+  release: https://ltx.io/blog/ltx-2-3-release
+  technical_report: https://videos.ltx.io/LTX-2/grants/LTX_2_Technical_Report_compressed.pdf
+  repository: https://github.com/Lightricks/LTX-2
+status: verified
+last_verified: "2026-07-26"
+

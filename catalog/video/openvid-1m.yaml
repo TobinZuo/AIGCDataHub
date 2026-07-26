@@ -1,0 +1,66 @@
+id: openvid-1m
+name: OpenVid-1M
+organization: Nanjing University PCALab
+released_at: "2024-07-02"
+release_date_source: https://arxiv.org/abs/2407.02371
+modality: video
+tasks:
+  - text-to-video
+  - image-to-video
+stages:
+  - pretraining
+  - fine-tuning
+description: >-
+  A curated collection of one million high-quality video clips with expressive
+  captions, including a large high-definition subset for video generation.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/nkp37/OpenVid-1M
+  requires_account: false
+  notes: Videos, CSV metadata, and split archives are hosted on Hugging Face.
+scale:
+  samples: 1000000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The project reports about 1M clips, including 433K clips at 1080p.
+annotations:
+  types:
+    - caption
+    - resolution
+    - aesthetic-score
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: CC-BY-4.0
+  media: Source-dependent with research and non-commercial restrictions stated
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: >-
+    The dataset card asks users to follow licenses of upstream video datasets
+    and states a research and non-commercial intent despite the CC-BY label.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - aesthetics
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Upstream datasets have different or unknown media terms.
+    - Curated aesthetic distributions may narrow content diversity.
+processing:
+  recipe: recipes/video_text
+  recommended_format: webdataset
+  notes: Validate archives, normalize codecs, and preserve upstream dataset provenance.
+evidence:
+  homepage: https://github.com/NJU-PCALab/OpenVid-1M
+  paper: https://arxiv.org/abs/2407.02371
+  used_by:
+    - MVDiT
+    - Open-Sora
+status: verified
+last_verified: "2026-07-26"

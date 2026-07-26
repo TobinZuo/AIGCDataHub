@@ -1,0 +1,68 @@
+id: objaverse-xl
+name: Objaverse-XL
+organization: Allen Institute for AI
+released_at: "2023-07-11"
+release_date_source: https://arxiv.org/abs/2307.05663
+modality: 3d
+tasks:
+  - 3d-pretraining
+  - image-to-3d
+  - text-to-3d
+  - novel-view-synthesis
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A web-scale collection of more than ten million deduplicated 3D objects from
+  multiple public sources, designed to support 3D foundation models and large
+  multiview-rendering pipelines.
+access:
+  status: open
+  type: urls
+  url: https://github.com/allenai/objaverse-xl
+  requires_account: false
+  notes: Official tooling resolves source assets; some subsets, notably Polycam, require separate access.
+scale:
+  samples: 10000000
+  source_items: 10000000
+  hours: null
+  approximate: true
+  notes: The project reports over 10 million 3D objects rather than a fixed frozen count.
+annotations:
+  types:
+    - source-url
+    - object-format
+    - source
+    - license
+    - object-uid
+  source: web-metadata
+  languages:
+    - not-applicable
+license:
+  metadata: ODC-By-1.0
+  media: Per-object source license
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    Dataset metadata is ODC-By-1.0, while each object retains its source license;
+    the Polycam contribution is explicitly non-commercial and separately gated.
+quality:
+  dimensions:
+    - geometry-quality
+    - deduplication
+    - provenance
+  known_limitations:
+    - Asset formats, geometry quality, topology, textures, and metadata vary substantially by source.
+    - Source objects may disappear or change after a metadata snapshot is published.
+    - Dataset-level openness does not override non-commercial or custom per-object licenses.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Snapshot metadata first, validate object decodes, deduplicate by UID and content, and retain per-object terms.
+evidence:
+  homepage: https://github.com/allenai/objaverse-xl
+  paper: https://arxiv.org/abs/2307.05663
+  used_by:
+    - Zero123-XL
+status: partial
+last_verified: "2026-07-26"

@@ -1,0 +1,63 @@
+id: midjourney-v8-2
+name: Midjourney V8.2
+organization: Midjourney
+released_at: "2026-07-24"
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-personalization
+access:
+  status: product-only
+  license: Midjourney Terms of Service
+  release_url: https://updates.midjourney.com/version-8-2/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Undisclosed proprietary image generation model
+  parameters: null
+  notes: The release focuses on aesthetics, image quality, and preference-conditioned personalization.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: V8.2 personalization ratings and image-selection pool
+      catalog_id: null
+      role: preference
+      availability: undisclosed
+      scale: null
+      notes: Midjourney reports stronger profiles for users with many ratings and a larger improved pool of images, without publishing the underlying data.
+  stages:
+    - name: pretraining
+      modalities:
+        - unknown
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: The V8.2 announcement describes quality and aesthetic improvements but provides no evidence about base-model training data or construction.
+    - name: preference
+      modalities:
+        - image
+      source_types:
+        - human-feedback
+      operations:
+        - preference-profile-modeling
+        - image-pool-expansion
+      scale_disclosed: false
+      strategy: Personalization uses user ratings and a larger curated image-selection pool to model individual taste, while the relationship to base-model post-training remains undisclosed.
+  strategy_summary:
+    - Use accumulated user ratings as a profile-level signal for stronger personalization.
+    - Expand the image-selection pool used to create V8.2 personalization profiles.
+    - Keep the base model's pretraining and post-training data separate from the disclosed personalization behavior because Midjourney does not connect them.
+  unknowns:
+    - All base-model training dataset identities, sources, rights, sizes, filters, and mixture ratios.
+    - Whether user ratings or generated images update V8.2 itself or only user-specific personalization profiles.
+    - Rating retention, sampling, debiasing, privacy controls, and reward-model construction.
+evidence:
+  release: https://updates.midjourney.com/version-8-2/
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-26"

@@ -1,0 +1,69 @@
+id: million-song-dataset
+name: Million Song Dataset
+organization: The Echo Nest and LabROSA, Columbia University
+released_at: "2011-02-08"
+release_date_source: https://github.com/tbertinmahieux/MSongsDB
+modality: audio
+tasks:
+  - music-information-retrieval
+  - music-representation-learning
+  - music-metadata-modeling
+  - music-recommendation
+stages:
+  - pretraining
+  - evaluation
+description: >-
+  A 280 GB collection of metadata and derived audio-analysis features for one
+  million popular music tracks, with linked community subsets but no original
+  or listenable audio in the official distribution.
+access:
+  status: unavailable
+  type: none
+  url: https://github.com/tbertinmahieux/MSongsDB
+  requires_account: false
+  notes: The stable official repository documents the project, but the legacy distribution paths are no longer reliable and never included raw audio.
+scale:
+  samples: 1000000
+  source_items: 1000000
+  hours: null
+  approximate: false
+  notes: Each HDF5 item represents one track and contains Echo Nest metadata and audio-analysis features.
+annotations:
+  types:
+    - track-metadata
+    - timbre-feature
+    - chroma-feature
+    - beat-feature
+    - artist-tag
+    - external-id
+  source: mixed
+  languages:
+    - multilingual
+license:
+  metadata: Mixed Echo Nest API terms, public-domain fields, and linked-dataset licenses
+  media: No raw audio is included in the official dataset
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    Echo Nest terms govern core features; MusicBrainz and linked subsets have
+    separate terms, including public-domain and non-commercial components.
+quality:
+  dimensions:
+    - audio-quality
+    - deduplication
+    - provenance
+  known_limitations:
+    - The released representation is lossy analysis data and cannot substitute for training on waveforms.
+    - The corpus contains 944 duplicate tracks representing songs already present in the database.
+    - Omni2Sound does not explain whether it used official MSD features or separately sourced audio previews.
+processing:
+  recipe: recipes/audio_text
+  recommended_format: parquet
+  notes: Preserve track and song IDs, feature schema, source subset, linked-dataset license, and conversion provenance.
+evidence:
+  homepage: https://github.com/tbertinmahieux/MSongsDB
+  paper: https://www.ee.columbia.edu/~dpwe/pubs/BertEWL11-msd.pdf
+  used_by:
+    - Omni2Sound
+status: archived
+last_verified: "2026-07-26"

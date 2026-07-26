@@ -1,0 +1,100 @@
+id: ernie-image
+name: ERNIE-Image
+organization: Baidu
+released_at: "2026-04-15"
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - text-rendering
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://github.com/baidu/ERNIE-Image
+  weights_url: https://huggingface.co/baidu/ERNIE-Image
+  api_url: null
+architecture:
+  family: Single-stream latent diffusion transformer
+  parameters: 8000000000
+  notes: Uses the FLUX.2 VAE, a compact text encoder, and a separate prompt enhancer.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Internal large-scale image pool
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: large-scale, exact count undisclosed
+      notes: Authors disclose the processing strategy but not source datasets or media terms.
+    - name: ERIA-1K
+      catalog_id: null
+      role: evaluation
+      availability: public
+      scale: 1K professionally annotated images
+      notes: Held-out aesthetic benchmark released with the ERNIE-Image-Aes resources.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - proprietary
+        - synthetic
+      operations:
+        - fine-grained-categorization
+        - vlm-recaptioning
+        - aesthetic-scoring
+        - hierarchical-sampling
+        - resolution-curriculum
+      scale_disclosed: false
+      strategy: Partition data into 10,000 visual categories, generate rich captions for all images, score aesthetics, then sample across and within categories.
+    - name: fine-tuning
+      modalities:
+        - image
+        - text
+      source_types:
+        - proprietary
+        - synthetic
+      operations:
+        - domain-curation
+        - annotation-diversification
+      scale_disclosed: false
+      strategy: Build top-down high-consistency SFT sets for priority domains and diversify prompt styles to match real users.
+    - name: preference
+      modalities:
+        - image
+        - text
+      source_types:
+        - human-feedback
+      operations:
+        - stabilized-dpo
+        - aesthetic-alignment
+      scale_disclosed: false
+      strategy: Apply a small number of stabilized DPO steps with a strong aesthetic reward model to reduce reward hacking.
+    - name: distillation
+      modalities:
+        - image
+        - text
+      source_types:
+        - synthetic
+      operations:
+        - multi-teacher-distillation
+      scale_disclosed: false
+      strategy: Use multiple expert variants as teachers in MT-DMD to limit capability drift in the eight-step Turbo model.
+  strategy_summary:
+    - Preserve long-tail concepts by balancing 10,000 fine-grained visual categories.
+    - Replace noisy web text with structural captions that explicitly transcribe text inside images.
+    - Combine inter-category quality weighting with intra-category aesthetic sampling.
+    - Switch from bottom-up broad pretraining data to top-down domain-focused post-training data.
+  unknowns:
+    - Exact source datasets, total sample count, rights composition, and data mixture.
+    - Deduplication, safety filtering, and per-stage sample counts.
+evidence:
+  release: https://github.com/baidu/ERNIE-Image
+  technical_report: https://arxiv.org/abs/2605.25347
+  repository: https://github.com/baidu/ERNIE-Image
+status: verified
+last_verified: "2026-07-26"
+

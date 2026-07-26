@@ -1,0 +1,62 @@
+id: datacomp-1b
+name: DataComp-1B
+organization: DataComp research consortium
+released_at: "2023-04-27"
+release_date_source: https://arxiv.org/abs/2304.14108
+modality: image
+tasks:
+  - image-text-pretraining
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A filtered billion-scale image-text subset released with the DataComp
+  benchmark for studying data selection under fixed training settings.
+access:
+  status: open
+  type: urls
+  url: https://github.com/mlfoundations/datacomp
+  requires_account: false
+  notes: Metadata and tooling are provided; media is fetched from source URLs.
+scale:
+  samples: 1000000000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The project uses DataComp-1B as the nominal name for its best xlarge subset.
+annotations:
+  types:
+    - caption
+    - source-url
+    - clip-score
+  source: web-metadata
+  languages:
+    - multilingual
+license:
+  metadata: See DataComp repository and dataset documentation
+  media: Source-dependent
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    The repository license does not grant rights to media downloaded from
+    third-party URLs; evaluate the original assets and terms separately.
+quality:
+  dimensions:
+    - text-media-alignment
+    - deduplication
+    - safety
+    - provenance
+  known_limitations:
+    - URL decay changes the retrievable corpus over time.
+    - Web-scale content requires independent safety and rights review.
+processing:
+  recipe: recipes/image_text
+  recommended_format: webdataset
+  notes: Official tooling downloads URL-backed samples into WebDataset shards.
+evidence:
+  homepage: https://www.datacomp.ai/
+  paper: https://arxiv.org/abs/2304.14108
+  used_by:
+    - OpenCLIP
+status: partial
+last_verified: "2026-07-26"

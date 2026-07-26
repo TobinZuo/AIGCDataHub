@@ -1,0 +1,70 @@
+id: audioset
+name: AudioSet
+organization: Google Research
+released_at: "2017-03-30"
+release_date_source: https://research.google/blog/announcing-audioset-a-dataset-for-audio-event-research/
+modality: audio
+tasks:
+  - audio-event-classification
+  - audio-language-pretraining
+  - audio-representation-learning
+  - text-to-audio
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+description: >-
+  A large human-labelled sound-event corpus of 2,084,320 ten-second YouTube
+  segments spanning 527 active labels, distributed as URL annotations and
+  precomputed audio features rather than raw waveforms.
+access:
+  status: metadata-only
+  type: urls
+  url: https://research.google.com/audioset/download.html
+  requires_account: false
+  notes: Google hosts segment CSV files and VGGish features; it does not distribute the source YouTube audio.
+scale:
+  samples: 2084320
+  source_items: 2084320
+  hours: 5789.8
+  approximate: true
+  notes: The official explorer reports about 5.8K hours across 2,084,320 ten-second segments.
+annotations:
+  types:
+    - audio-event-label
+    - youtube-id
+    - start-time
+    - end-time
+    - ontology-id
+    - split
+  source: human
+  languages:
+    - multilingual
+license:
+  metadata: CC-BY-4.0 dataset annotations; CC-BY-SA-4.0 ontology
+  media: Raw YouTube audio is not distributed and remains subject to source-platform and uploader rights
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    Google's Creative Commons terms cover the released dataset artifacts, not
+    a separately redistributable archive of the underlying YouTube media.
+quality:
+  dimensions:
+    - audio-quality
+    - provenance
+  known_limitations:
+    - Most labels are weak at the ten-second segment level and can be incomplete.
+    - Source videos disappear or change, making later raw-audio fetches smaller and non-reproducible.
+    - The official raw-audio distribution is unavailable; model reports often do not state the fetch snapshot.
+processing:
+  recipe: recipes/audio_text
+  recommended_format: parquet
+  notes: Preserve YouTube ID, offsets, ontology version, split, fetch timestamp, availability result, and media hash.
+evidence:
+  homepage: https://research.google.com/audioset/
+  paper: https://research.google/pubs/audio-set-an-ontology-and-human-labeled-dataset-for-audio-events/
+  used_by:
+    - Omni2Sound
+status: partial
+last_verified: "2026-07-26"
+

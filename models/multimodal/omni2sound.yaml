@@ -1,0 +1,143 @@
+id: omni2sound
+name: Omni2Sound
+organization: Tsinghua University, Monash University, and Shengshu AI
+released_at: "2026-01-06"
+modalities:
+  - multimodal
+  - audio
+  - video
+tasks:
+  - text-to-audio
+  - video-to-audio
+  - video-text-to-audio
+access:
+  status: open-weights
+  license: CC-BY-NC-4.0
+  release_url: https://omni2sound.github.io/
+  weights_url: https://huggingface.co/Dalision/Omni2Sound
+  api_url: null
+architecture:
+  family: Dual-condition diffusion transformer for audio generation
+  parameters: null
+  notes: >-
+    A standard DiT with a semantic branch using Flan-T5 and CLIP cross-attention
+    plus a Synchformer-conditioned temporal branch injected through AdaLN.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: AudioCaps
+      catalog_id: audiocaps-2-0
+      role: pretraining
+      availability: public
+      scale: null
+      notes: Named by the report without a version; the linked card documents current AudioCaps 2.0 rather than claiming that v2.0 was the training snapshot.
+    - name: WavCaps
+      catalog_id: wavcaps
+      role: pretraining
+      availability: public
+      scale: null
+      notes: Named by the technical report as part of the large-scale text-to-audio pretraining mixture.
+    - name: Clotho
+      catalog_id: clotho-2-1
+      role: pretraining
+      availability: public
+      scale: null
+      notes: Named without a version; the linked card documents current Clotho 2.1 rather than claiming that release was the training snapshot.
+    - name: AudioSet
+      catalog_id: audioset
+      role: pretraining
+      availability: public
+      scale: null
+      notes: Named for pretraining and as a SoundAtlas source; the official release provides URL annotations and features, not raw waveforms, so the effective media snapshot remains unknown.
+    - name: VGGSound
+      catalog_id: vggsound
+      role: pretraining
+      availability: public
+      scale: null
+      notes: Named for pretraining and used by SoundAtlas and VGGSound-Omni; the report does not disclose the YouTube fetch snapshot.
+    - name: FSD50K
+      catalog_id: fsd50k
+      role: pretraining
+      availability: public
+      scale: null
+      notes: Named as part of the large-scale text-to-audio mixture; its raw Freesound clips carry mixed per-file Creative Commons licenses.
+    - name: Million Song Dataset
+      catalog_id: million-song-dataset
+      role: pretraining
+      availability: public
+      scale: null
+      notes: Named by the report, but the official MSD contains features and metadata rather than raw audio; the actual Omni2Sound ingestion path is not disclosed.
+    - name: FMA
+      catalog_id: fma
+      role: pretraining
+      availability: public
+      scale: null
+      notes: Named as part of the large-scale text-to-audio mixture; commercial eligibility depends on each track's Creative Commons license.
+    - name: SoundAtlas
+      catalog_id: soundatlas
+      role: fine-tuning
+      availability: gated
+      scale: Approximately 470K audio-caption pairs
+      notes: Supplies audio, text, and visual context for multitask interleaved fine-tuning.
+    - name: VGGSound-Omni
+      catalog_id: vggsound-omni
+      role: evaluation
+      availability: gated
+      scale: null
+      notes: Released with the benchmark repository for unified T2A, V2A, VT2A, and off-screen audio evaluation.
+  stages:
+    - name: pretraining
+      modalities:
+        - audio
+        - text
+      source_types:
+        - public-dataset
+      operations:
+        - multi-dataset-pretraining
+        - text-to-audio-training
+      scale_disclosed: false
+      strategy: Pretrain text-to-audio generation across eight named public audio and music collections before introducing visual conditioning.
+    - name: fine-tuning
+      modalities:
+        - audio
+        - video
+        - text
+      source_types:
+        - public-dataset
+        - synthetic
+      operations:
+        - multitask-interleaving
+        - semantic-bridge-training
+        - temporal-conditioning
+      scale_disclosed: true
+      strategy: Interleave text-, video-, and video-text-conditioned audio generation on about 470K SoundAtlas pairs to bridge semantic and temporal controls.
+    - name: fine-tuning
+      modalities:
+        - audio
+        - video
+        - text
+      source_types:
+        - synthetic
+      operations:
+        - off-screen-synthesis
+        - text-dropout
+        - robustness-training
+      scale_disclosed: false
+      strategy: Add synthesized off-screen sound cases and drop text conditioning during a final robustness stage so visual control remains useful when captions are missing.
+  strategy_summary:
+    - Start with broad text-to-audio pretraining, then introduce aligned video and dense captions instead of training every condition from scratch.
+    - Build SoundAtlas with audiovisual routing, agentic captioning, and CLAP plus audiovisual-text consistency filters.
+    - Use a final off-screen-sound and text-dropout stage to reduce dependence on visible sound sources or complete prompts.
+  unknowns:
+    - Sampling weights, epoch counts, and exact per-dataset sample totals in the eight-corpus pretraining mixture.
+    - Media fetch snapshots, removal handling, and effective license composition of the upstream collections.
+    - Exact thresholds and rejection rates for the stage-one data filters.
+    - Distribution and quantity of synthesized off-screen examples used in the robustness stage.
+evidence:
+  release: https://omni2sound.github.io/
+  technical_report: https://arxiv.org/abs/2601.02731
+  repository: https://github.com/omni2sound/Omni2Sound
+status: verified
+last_verified: "2026-07-26"

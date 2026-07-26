@@ -1,0 +1,72 @@
+id: wavcaps
+name: WavCaps
+organization: Centre for Vision, Speech and Signal Processing, University of Surrey
+released_at: "2023-03-30"
+release_date_source: https://arxiv.org/abs/2303.17395
+modality: audio
+tasks:
+  - audio-captioning
+  - audio-text-retrieval
+  - text-to-audio
+  - audio-language-pretraining
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A 403,050-pair weakly labelled audio-caption corpus assembled from FreeSound,
+  BBC Sound Effects, SoundBible, and the strongly labelled AudioSet subset,
+  with noisy source descriptions filtered and rewritten using ChatGPT.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/cvssp/WavCaps
+  requires_account: false
+  notes: JSON metadata and FLAC archives are hosted on Hugging Face without an account gate.
+scale:
+  samples: 403050
+  source_items: 403050
+  hours: 7568
+  approximate: true
+  notes: The official card reports 403,050 clips averaging 67.59 seconds, or about 7.6K hours.
+annotations:
+  types:
+    - caption
+    - raw-description
+    - source
+    - source-id
+    - duration
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: CC-BY-4.0 label on Hugging Face
+  media: Academic-use-only project terms plus per-source FreeSound, BBC, SoundBible, and AudioSet terms
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: >-
+    The Hugging Face metadata carries a CC-BY-4.0 label, but the official card
+    also restricts WavCaps audio to academic research and requires source-level
+    attribution; the stricter documented boundary is recorded here.
+quality:
+  dimensions:
+    - audio-quality
+    - text-media-alignment
+    - deduplication
+    - provenance
+  known_limitations:
+    - ChatGPT-generated captions can normalize away useful detail or introduce unsupported events.
+    - Audio duration, recording quality, and description style vary substantially across the four sources.
+    - Dataset-level metadata and narrative usage terms are not internally consistent about licensing.
+processing:
+  recipe: recipes/audio_text
+  recommended_format: parquet
+  notes: Keep raw and transformed descriptions, source license, captioning version, duration, and content hash.
+evidence:
+  homepage: https://github.com/XinhaoMei/WavCaps
+  paper: https://arxiv.org/abs/2303.17395
+  used_by:
+    - Omni2Sound
+status: partial
+last_verified: "2026-07-26"
+

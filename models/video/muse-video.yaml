@@ -1,0 +1,48 @@
+id: muse-video
+name: Muse Video
+organization: Meta Superintelligence Labs
+released_at: "2026-07-07"
+modalities:
+  - video
+  - audio
+tasks:
+  - text-to-video
+  - audio-video-generation
+access:
+  status: announced
+  license: Not announced
+  release_url: https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Media generation model sharing the Muse pretraining base
+  parameters: null
+  notes: Previewed with native audio support; architecture and parameter count are not disclosed.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - unknown
+      source_types:
+        - undisclosed
+      operations:
+        - shared-media-pretraining
+      scale_disclosed: false
+      strategy: Meta states that Muse Video is built on the same pretraining base as Muse Image, but publishes no dataset identities, source modalities, scale, or mixture details.
+  strategy_summary:
+    - Reuse a shared media-generation pretraining base across Muse Image and Muse Video.
+    - Treat native audio as a released capability, not evidence of any particular audio or video training source.
+  unknowns:
+    - All video, audio, image, and text training dataset identities, sources, rights, scales, and mixture ratios.
+    - Captioning, audio-video alignment, shot segmentation, filtering, deduplication, and safety pipelines.
+    - Post-training, preference optimization, architecture, release access, and license details.
+evidence:
+  release: https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-26"

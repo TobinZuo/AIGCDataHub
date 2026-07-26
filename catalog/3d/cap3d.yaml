@@ -1,0 +1,73 @@
+id: cap3d
+name: Cap3D
+organization: University of Michigan
+released_at: "2023-06-12"
+release_date_source: https://arxiv.org/abs/2306.07279
+modality: 3d
+tasks:
+  - text-to-3d
+  - image-to-3d
+  - 3d-text-pretraining
+  - novel-view-synthesis
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A large 3D-text release with automated captions for Objaverse and
+  Objaverse-XL objects plus point clouds, multi-view renders, camera metadata,
+  depth, alpha masks, and Shap-E latents for substantial subsets.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/tiange/Cap3D
+  requires_account: false
+  notes: Captions and derived assets are published through Hugging Face and the official repository.
+scale:
+  samples: 1604291
+  source_items: 1604291
+  hours: null
+  approximate: false
+  notes: The current full caption CSV reports 785,150 Objaverse objects and the remainder from Objaverse-XL.
+annotations:
+  types:
+    - caption
+    - point-cloud
+    - multi-view-render
+    - camera
+    - depth
+    - alpha-mask
+    - source-object-id
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: ODC-By-1.0
+  media: Per-object source license
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    Cap3D licenses its captions and derived release under ODC-By-1.0, but users
+    must also comply with the license attached to each source 3D object.
+quality:
+  dimensions:
+    - geometry-quality
+    - multi-view-consistency
+    - text-media-alignment
+    - deduplication
+    - provenance
+  known_limitations:
+    - Individual source objects can prohibit commercial use or impose additional conditions.
+    - Automated captions can omit fine geometry or infer attributes that are not visible from all views.
+    - Not every object has every derived representation in the published asset archives.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Join all derived files by object UID and preserve the original object license beside every sample.
+evidence:
+  homepage: https://github.com/crockwell/Cap3D
+  paper: https://arxiv.org/abs/2306.07279
+  used_by:
+    - Cap3D text-to-3D models
+status: verified
+last_verified: "2026-07-26"

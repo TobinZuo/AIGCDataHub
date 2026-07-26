@@ -1,0 +1,73 @@
+id: fma
+name: FMA
+organization: École Polytechnique Fédérale de Lausanne
+released_at: "2017-05-09"
+release_date_source: https://github.com/mdeff/fma
+modality: audio
+tasks:
+  - music-generation-pretraining
+  - music-information-retrieval
+  - music-tagging
+  - genre-classification
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+description: >-
+  A music-analysis dataset with 106,574 Creative Commons-licensed tracks,
+  343 days of audio, hierarchical genre labels, metadata, free-form text, and
+  precomputed acoustic features.
+access:
+  status: open
+  type: hosted
+  url: https://github.com/mdeff/fma
+  requires_account: false
+  notes: The official repository links full, large, medium, and small audio archives plus metadata and features.
+scale:
+  samples: 106574
+  source_items: 106574
+  hours: 8232
+  approximate: true
+  notes: The paper reports 917 GiB and 343 days of audio from 16,341 artists and 14,854 albums.
+annotations:
+  types:
+    - genre
+    - tag
+    - artist
+    - album
+    - track-metadata
+    - acoustic-feature
+    - per-track-license
+  source: mixed
+  languages:
+    - multilingual
+license:
+  metadata: Dataset code is MIT; metadata and features carry their documented component terms
+  media: Creative Commons license recorded per track
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    Tracks that prohibited redistribution were removed during curation, but
+    retained tracks still use differing Creative Commons terms, including
+    licenses that can restrict commercial reuse or require attribution.
+quality:
+  dimensions:
+    - audio-quality
+    - deduplication
+    - provenance
+  known_limitations:
+    - Genre and metadata distributions are highly imbalanced and retain real-world outliers.
+    - The four official subsets differ in duration and genre balance.
+    - Every training export must retain the original per-track license and attribution fields.
+processing:
+  recipe: recipes/audio_text
+  recommended_format: parquet
+  notes: Preserve FMA track ID, subset, full metadata, per-track license, original duration, and audio hash.
+evidence:
+  homepage: https://github.com/mdeff/fma
+  paper: https://arxiv.org/abs/1612.01840
+  used_by:
+    - Omni2Sound
+status: verified
+last_verified: "2026-07-26"
+

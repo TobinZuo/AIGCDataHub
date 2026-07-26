@@ -1,0 +1,62 @@
+id: pick-a-pic-v2
+name: Pick-a-Pic v2
+organization: Tel Aviv University and Meta AI
+released_at: "2023-09-25"
+release_date_source: https://github.com/yuvalkirstain/PickScore/commit/13048450be2f07160e71eae736113cc9443f191e
+modality: preference
+tasks:
+  - text-to-image-preference
+  - reward-modeling
+stages:
+  - preference-tuning
+  - evaluation
+description: >-
+  An open collection of real user choices between pairs of text-to-image model
+  outputs, with prompts and preference labels for alignment research.
+access:
+  status: gated
+  type: hosted
+  url: https://huggingface.co/datasets/yuvalkirstain/pickapic_v2
+  requires_account: true
+  notes: The canonical Hugging Face repository currently requires authenticated access.
+scale:
+  samples: 1000000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The v2 release is described as containing more than one million examples.
+annotations:
+  types:
+    - prompt
+    - pairwise-preference
+    - model-identifier
+  source: human
+  languages:
+    - multilingual
+license:
+  metadata: MIT
+  media: Model-output and source-term dependent
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    Confirm the current dataset card and the terms of image-generating models;
+    a dataset license may not resolve every right in generated outputs.
+quality:
+  dimensions:
+    - human-preference
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Online user preferences are self-selected and not demographically representative.
+    - Repeated prompts, users, and model versions can create leakage or dependence.
+processing:
+  recipe: recipes/dataset_audit
+  recommended_format: parquet
+  notes: Split by prompt and user provenance where possible to reduce evaluation leakage.
+evidence:
+  homepage: https://huggingface.co/datasets/yuvalkirstain/pickapic_v2
+  paper: https://arxiv.org/abs/2305.01569
+  used_by:
+    - PickScore
+status: partial
+last_verified: "2026-07-26"

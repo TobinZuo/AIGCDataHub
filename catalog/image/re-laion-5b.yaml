@@ -1,0 +1,64 @@
+id: re-laion-5b
+name: Re-LAION-5B
+organization: LAION
+released_at: "2024-08-30"
+release_date_source: https://laion.ai/blog/relaion-5b/
+modality: image
+tasks:
+  - image-text-pretraining
+  - text-to-image
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A safety-revised release of LAION-5B metadata intended to remove known
+  harmful links while preserving a reproducible web-scale image-text index.
+access:
+  status: open
+  type: urls
+  url: https://laion.ai/blog/relaion-5b/
+  requires_account: false
+  notes: LAION distributes metadata rather than the underlying image files.
+scale:
+  samples: 5850000000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: Derived from the 5.85B-pair LAION-5B index after safety revisions.
+annotations:
+  types:
+    - alt-text
+    - source-url
+    - clip-score
+    - safety-signals
+  source: web-metadata
+  languages:
+    - multilingual
+license:
+  metadata: Apache-2.0
+  media: Source-dependent and not distributed by LAION
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    Metadata licensing does not grant copyright or other rights to images
+    resolved from third-party URLs. Apply takedowns and current safety lists.
+quality:
+  dimensions:
+    - text-media-alignment
+    - watermark
+    - safety
+    - deduplication
+    - provenance
+  known_limitations:
+    - Web metadata can be noisy, biased, unsafe, or stale.
+    - The reconstructed media corpus changes as source URLs disappear.
+processing:
+  recipe: recipes/image_text
+  recommended_format: webdataset
+  notes: Re-check hashes, safety signals, access results, and rights at ingestion time.
+evidence:
+  homepage: https://laion.ai/blog/relaion-5b/
+  paper: https://arxiv.org/abs/2210.08402
+  used_by: []
+status: partial
+last_verified: "2026-07-26"

@@ -1,0 +1,58 @@
+id: lance
+name: Lance
+organization: ByteDance
+released_at: "2026-05-18"
+modalities:
+  - multimodal
+  - image
+  - video
+tasks:
+  - image-understanding
+  - video-understanding
+  - text-to-image
+  - image-editing
+  - text-to-video
+  - video-editing
+access:
+  status: open-weights
+  license: See repository and model card
+  release_url: https://lance-project.github.io/
+  weights_url: https://huggingface.co/bytedance-research/Lance
+  api_url: null
+architecture:
+  family: Dual-stream mixture-of-experts unified multimodal model
+  parameters: 3000000000
+  notes: Three billion active parameters with decoupled understanding and generation pathways.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - staged-multitask-training
+        - adaptive-data-scheduling
+        - capability-oriented-objectives
+      scale_disclosed: false
+      strategy: Train from scratch on shared interleaved multimodal sequences, progressively scheduling understanding, generation, and editing objectives.
+  strategy_summary:
+    - Use collaborative multi-task training so understanding and generation improve within one model.
+    - Adaptively schedule capability-oriented objectives instead of using a fixed task mixture.
+    - Train image and video tasks jointly within a budget of at most 128 A100 GPUs.
+  unknowns:
+    - Dataset identities, sample counts, licensing, and modality mixture ratios.
+    - Captioning, filtering, deduplication, safety, and post-training details.
+evidence:
+  release: https://lance-project.github.io/
+  technical_report: https://arxiv.org/abs/2605.18678
+  repository: https://github.com/bytedance/Lance
+status: verified
+last_verified: "2026-07-26"
+

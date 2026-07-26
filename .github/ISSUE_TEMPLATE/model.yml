@@ -1,0 +1,50 @@
+name: Propose or update an AIGC model
+description: Add a model or improve its documented data strategy
+title: "[Model]: "
+labels:
+  - model
+  - data-strategy
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Model name and version
+      placeholder: FLUX 3
+    validations:
+      required: true
+  - type: input
+    id: release
+    attributes:
+      label: Official release
+      placeholder: https://...
+    validations:
+      required: true
+  - type: input
+    id: report
+    attributes:
+      label: Technical report or model card
+      placeholder: https://...
+  - type: textarea
+    id: strategy
+    attributes:
+      label: Disclosed data strategy
+      description: Separate training stages, source types, curation operations, and named datasets.
+    validations:
+      required: true
+  - type: textarea
+    id: unknowns
+    attributes:
+      label: Material unknowns
+      description: What data information is not disclosed?
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Verification
+      options:
+        - label: I used primary sources for all factual claims.
+          required: true
+        - label: I did not infer training datasets from model outputs or capabilities.
+          required: true
+

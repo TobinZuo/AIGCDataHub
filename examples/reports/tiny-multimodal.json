@@ -1,0 +1,235 @@
+{
+  "schema_version": "1.0",
+  "tool": {
+    "name": "aigcdatahub-manifest-audit",
+    "version": "0.2.0"
+  },
+  "input": {
+    "path": "examples/manifests/tiny-multimodal.jsonl",
+    "format": "jsonl",
+    "sha256": "482332b8919c0ca21cc67a6f86cfc780cfbfca30bccccfebb97d3b3f597f459d",
+    "rows_seen": 8,
+    "rows_parsed": 8,
+    "blank_rows": 0,
+    "parse_errors": 0,
+    "parse_error_examples": []
+  },
+  "sampling": {
+    "algorithm": "sha256-bottom-k-v1",
+    "seed": 20260726,
+    "requested_rows": 8,
+    "selected_rows": 8
+  },
+  "validation": {
+    "valid_rows": 8,
+    "invalid_rows": 0,
+    "valid_rate": 1.0,
+    "error_counts": {},
+    "invalid_examples": []
+  },
+  "coverage": {
+    "sample_id": {
+      "present_rows": 8,
+      "rate": 1.0
+    },
+    "media.uri": {
+      "present_rows": 8,
+      "rate": 1.0
+    },
+    "media.sha256": {
+      "present_rows": 8,
+      "rate": 1.0
+    },
+    "media.mime_type": {
+      "present_rows": 8,
+      "rate": 1.0
+    },
+    "caption.text": {
+      "present_rows": 8,
+      "rate": 1.0
+    },
+    "caption.source": {
+      "present_rows": 8,
+      "rate": 1.0
+    },
+    "caption.language": {
+      "present_rows": 8,
+      "rate": 1.0
+    },
+    "provenance.dataset_id": {
+      "present_rows": 8,
+      "rate": 1.0
+    },
+    "provenance.source_url": {
+      "present_rows": 8,
+      "rate": 1.0
+    },
+    "provenance.license": {
+      "present_rows": 8,
+      "rate": 1.0
+    },
+    "provenance.takedown_id": {
+      "present_rows": 8,
+      "rate": 1.0
+    },
+    "provenance.collected_at": {
+      "present_rows": 8,
+      "rate": 1.0
+    },
+    "properties.width": {
+      "present_rows": 8,
+      "rate": 1.0
+    },
+    "properties.height": {
+      "present_rows": 8,
+      "rate": 1.0
+    },
+    "properties.duration_seconds": {
+      "present_rows": 4,
+      "rate": 0.5
+    },
+    "properties.fps": {
+      "present_rows": 4,
+      "rate": 0.5
+    },
+    "provenance.core": {
+      "present_rows": 8,
+      "rate": 1.0
+    }
+  },
+  "duplicates": {
+    "sample_id": {
+      "duplicate_values": 0,
+      "excess_rows": 0,
+      "examples": []
+    },
+    "media.uri": {
+      "duplicate_values": 0,
+      "excess_rows": 0,
+      "examples": []
+    },
+    "media.sha256": {
+      "duplicate_values": 0,
+      "excess_rows": 0,
+      "examples": []
+    }
+  },
+  "distributions": {
+    "modality": {
+      "image": 4,
+      "video": 4
+    },
+    "caption_source": {
+      "human": 3,
+      "model-generated": 3,
+      "web-metadata": 2
+    },
+    "caption_language": {
+      "en": 6,
+      "zh": 2
+    },
+    "caption_characters": {
+      "count": 8,
+      "min": 20,
+      "p50": 57,
+      "p95": 72,
+      "max": 72,
+      "mean": 52.375
+    },
+    "media_scheme": {
+      "https": 4,
+      "local": 2,
+      "s3": 2
+    },
+    "media_host": {
+      "media.example.org": 4,
+      "demo-bucket": 2
+    },
+    "source_scheme": {
+      "https": 8
+    },
+    "source_host": {
+      "source.example.org": 8
+    },
+    "license": {
+      "CC-BY-4.0": 4,
+      "CC-BY-SA-4.0": 2,
+      "CC0-1.0": 2
+    },
+    "width": {
+      "count": 8,
+      "min": 768,
+      "p50": 1240,
+      "p95": 2003.2,
+      "max": 2048,
+      "mean": 1333
+    },
+    "height": {
+      "count": 8,
+      "min": 720,
+      "p50": 941,
+      "p95": 1626,
+      "max": 1920,
+      "mean": 1024.25
+    },
+    "aspect_ratio_bucket": {
+      "landscape": 4,
+      "portrait": 2,
+      "panoramic": 1,
+      "square": 1
+    },
+    "duration_seconds": {
+      "count": 4,
+      "min": 5.2,
+      "p50": 7.2,
+      "p95": 9.7,
+      "max": 10,
+      "mean": 7.4
+    },
+    "fps": {
+      "count": 4,
+      "min": 24,
+      "p50": 24.5,
+      "p95": 29.25,
+      "max": 30,
+      "mean": 25.75
+    },
+    "media_bytes": {
+      "count": 8,
+      "min": 184320,
+      "p50": 2353152,
+      "p95": 8703180.8,
+      "max": 9437184,
+      "mean": 3435520
+    },
+    "quality": {
+      "aesthetic": {
+        "count": 4,
+        "min": 0.72,
+        "p50": 0.79,
+        "p95": 0.8355,
+        "max": 0.84,
+        "mean": 0.785
+      },
+      "alignment": {
+        "count": 8,
+        "min": 0.79,
+        "p50": 0.89,
+        "p95": 0.9365,
+        "max": 0.94,
+        "mean": 0.8788
+      },
+      "motion": {
+        "count": 4,
+        "min": 0.68,
+        "p50": 0.77,
+        "p95": 0.878,
+        "max": 0.89,
+        "mean": 0.7775
+      }
+    }
+  },
+  "recommendations": [
+    "No manifest-level issues triggered; proceed to media access and decode probes."
+  ]
+}

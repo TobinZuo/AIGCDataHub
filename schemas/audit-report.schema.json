@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aigcdatahub.example/schemas/audit-report.schema.json",
+  "title": "AIGCDataHub manifest audit report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tool",
+    "input",
+    "sampling",
+    "validation",
+    "coverage",
+    "duplicates",
+    "distributions",
+    "recommendations"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {"const": "aigcdatahub-manifest-audit"},
+        "version": {"type": "string"}
+      }
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "format",
+        "sha256",
+        "rows_seen",
+        "rows_parsed",
+        "blank_rows",
+        "parse_errors",
+        "parse_error_examples"
+      ],
+      "properties": {
+        "path": {"type": "string"},
+        "format": {"enum": ["jsonl", "csv"]},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "rows_seen": {"type": "integer", "minimum": 0},
+        "rows_parsed": {"type": "integer", "minimum": 0},
+        "blank_rows": {"type": "integer", "minimum": 0},
+        "parse_errors": {"type": "integer", "minimum": 0},
+        "parse_error_examples": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["line", "error"],
+            "properties": {
+              "line": {"type": "integer", "minimum": 1},
+              "error": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "sampling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "seed", "requested_rows", "selected_rows"],
+      "properties": {
+        "algorithm": {"const": "sha256-bottom-k-v1"},
+        "seed": {"type": "integer"},
+        "requested_rows": {"type": ["integer", "null"], "minimum": 1},
+        "selected_rows": {"type": "integer", "minimum": 0}
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["valid_rows", "invalid_rows", "valid_rate", "error_counts", "invalid_examples"],
+      "properties": {
+        "valid_rows": {"type": "integer", "minimum": 0},
+        "invalid_rows": {"type": "integer", "minimum": 0},
+        "valid_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "error_counts": {"type": "object", "additionalProperties": {"type": "integer"}},
+        "invalid_examples": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["present_rows", "rate"],
+        "properties": {
+          "present_rows": {"type": "integer", "minimum": 0},
+          "rate": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    },
+    "duplicates": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["duplicate_values", "excess_rows"],
+        "properties": {
+          "duplicate_values": {"type": "integer", "minimum": 0},
+          "excess_rows": {"type": "integer", "minimum": 0},
+          "examples": {"type": "array"}
+        }
+      }
+    },
+    "distributions": {"type": "object"},
+    "recommendations": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}
+

@@ -1,0 +1,69 @@
+id: audiocaps-2-0
+name: AudioCaps 2.0
+organization: Seoul National University
+released_at: "2025-02-24"
+release_date_source: https://github.com/cdjkim/audiocaps
+modality: audio
+tasks:
+  - audio-captioning
+  - text-to-audio
+  - audio-language-pretraining
+  - text-to-audio-evaluation
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+description: >-
+  The second AudioCaps release, containing 98,606 human-written caption rows
+  grounded in ten-second AudioSet and YouTube segments, roughly doubling the
+  original audio-caption collection.
+access:
+  status: gated
+  type: request
+  url: https://github.com/cdjkim/audiocaps/tree/master/dataset2.0
+  requires_account: true
+  notes: Caption CSV files are public, while raw video and audio access requires submitting the maintainer form.
+scale:
+  samples: 98606
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The official v2.0 split counts are 91,256 train, 2,475 validation, and 4,875 test caption rows.
+annotations:
+  types:
+    - caption
+    - youtube-id
+    - audioset-offset
+    - split
+  source: human
+  languages:
+    - en
+license:
+  metadata: Academic use only; no standalone SPDX dataset license stated
+  media: AudioSet and YouTube source terms; raw media supplied by request
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: >-
+    The official repository permits the code and dataset for academic purposes
+    only; its MIT repository license must not be treated as a media license.
+quality:
+  dimensions:
+    - audio-quality
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - The 98,606 count is caption rows and is not documented as a unique-clip count.
+    - AudioCaps 2.0 is a 2025 data update not evaluated in the original 2019 paper.
+    - YouTube availability changes over time, so a later fetch can contain fewer usable clips.
+processing:
+  recipe: recipes/audio_text
+  recommended_format: parquet
+  notes: Preserve YouTube ID, start offset, split, caption row ID, fetch time, and media hash.
+evidence:
+  homepage: https://github.com/cdjkim/audiocaps/tree/master/dataset2.0
+  paper: https://aclanthology.org/N19-1011/
+  used_by:
+    - Omni2Sound
+status: partial
+last_verified: "2026-07-26"
+

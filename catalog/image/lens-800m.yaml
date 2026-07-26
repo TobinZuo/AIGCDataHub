@@ -1,0 +1,59 @@
+id: lens-800m
+name: Lens-800M
+organization: Microsoft Research
+released_at: "2026-05-20"
+release_date_source: https://arxiv.org/abs/2605.21573
+modality: image
+tasks:
+  - text-to-image
+  - image-text-pretraining
+stages:
+  - pretraining
+description: >-
+  The 800-million-pair training corpus named in the Microsoft Lens report,
+  featuring long GPT-4.1-generated captions averaging about 109 words.
+access:
+  status: unavailable
+  type: none
+  url: https://www.microsoft.com/en-us/research/publication/lens-rethinking-training-efficiency-for-foundational-text-to-image-models/
+  requires_account: false
+  notes: The paper names and characterizes the corpus but does not publish a dataset download.
+scale:
+  samples: 800000000
+  source_items: null
+  hours: null
+  approximate: false
+  notes: Scale is reported by the Lens authors.
+annotations:
+  types:
+    - dense-caption
+    - aspect-ratio
+    - resolution
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Not disclosed
+  media: Not disclosed
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The training corpus is described in the paper but its sources and terms are not disclosed.
+quality:
+  dimensions:
+    - text-media-alignment
+    - visual-quality
+    - provenance
+  known_limitations:
+    - Source composition, filtering thresholds, rights, and release plan are undisclosed.
+    - GPT-4.1-generated captions can propagate model-specific biases or hallucinations.
+processing:
+  recipe: recipes/image_text
+  recommended_format: webdataset
+  notes: Preserve caption-model version and original text if reproducing this strategy.
+evidence:
+  homepage: https://www.microsoft.com/en-us/research/publication/lens-rethinking-training-efficiency-for-foundational-text-to-image-models/
+  paper: https://arxiv.org/abs/2605.21573
+  used_by:
+    - Lens
+status: partial
+last_verified: "2026-07-26"

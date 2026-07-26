@@ -1,0 +1,64 @@
+id: muse-image
+name: Muse Image
+organization: Meta Superintelligence Labs
+released_at: "2026-07-07"
+modalities:
+  - multimodal
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - multi-reference-composition
+  - agentic-image-generation
+access:
+  status: product-only
+  license: Meta AI product terms
+  release_url: https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Agentic image generation model integrated with Muse Spark
+  parameters: null
+  notes: The model can invoke search and code tools, self-refine drafts, and scale reasoning and visual generation at inference time.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - unknown
+      source_types:
+        - undisclosed
+      operations:
+        - shared-media-pretraining
+      scale_disclosed: false
+      strategy: Meta says Muse Video uses the same pretraining base as Muse Image but does not identify the corpora, source modalities, mixture, or filtering pipeline behind that base.
+    - name: preference
+      modalities:
+        - image
+        - text
+      source_types:
+        - synthetic
+        - undisclosed
+      operations:
+        - reinforcement-learning
+        - tool-use-training
+        - self-refinement
+      scale_disclosed: false
+      strategy: During reinforcement learning, Muse Image learns code and search tool use; self-refinement emerges because revised outputs receive higher reward.
+  strategy_summary:
+    - Combine a shared media-generation pretraining base with reinforcement learning for agentic image creation.
+    - Train tool use so rendered code outputs and web search can ground image generation in precise or current information.
+    - Reward self-refinement, allowing the model to edit, restart, or change tactics when an initial draft is weak.
+  unknowns:
+    - All pretraining corpus identities, source composition, rights, scale, filtering, deduplication, and captioning methods.
+    - The origin and composition of reinforcement-learning prompts, tool-use traces, generated drafts, and reward signals.
+    - Whether human preference labels contribute to rewards and how safety or personalization data is separated from core training.
+evidence:
+  release: https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-26"

@@ -1,0 +1,56 @@
+name: Propose or update a dataset
+description: Add a dataset or report stale catalog metadata
+title: "[Dataset]: "
+labels:
+  - dataset
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Dataset name
+      placeholder: OpenVid-1M
+    validations:
+      required: true
+  - type: input
+    id: primary_source
+    attributes:
+      label: Primary source
+      description: Maintainer-owned repository, dataset card, paper, or project page
+      placeholder: https://...
+    validations:
+      required: true
+  - type: dropdown
+    id: modality
+    attributes:
+      label: Modality
+      options:
+        - image
+        - video
+        - preference
+        - evaluation
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Proposed addition or correction
+      description: Include scale, access, and material caveats with evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: license
+    attributes:
+      label: Metadata and media terms
+      description: Explain which terms apply to metadata and which apply to media.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Verification
+      options:
+        - label: I checked the claims against primary sources.
+          required: true
+        - label: I did not infer media rights from public accessibility or a code license.
+          required: true
+

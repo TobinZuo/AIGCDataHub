@@ -1,0 +1,85 @@
+schema_version: 1
+cadence: weekly
+lookback_days: 14
+primary_sources_only: true
+
+tracks:
+  - id: image-generation
+    topics:
+      - text-to-image
+      - image-editing
+      - personalized-generation
+      - visual-reasoning-generation
+    official_sources:
+      - https://bfl.ai/blog
+      - https://www.microsoft.com/en-us/research/publications/
+      - https://github.com/baidu
+      - https://github.com/QwenLM
+      - https://stability.ai/news
+      - https://ai.meta.com/blog/
+      - https://updates.midjourney.com/
+      - https://huggingface.co/models?pipeline_tag=text-to-image
+
+  - id: video-and-audio-generation
+    topics:
+      - text-to-video
+      - image-to-video
+      - video-editing
+      - joint-audio-video
+      - video-to-audio
+      - world-model
+    official_sources:
+      - https://seed.bytedance.com/en/blog
+      - https://github.com/Tencent-Hunyuan
+      - https://github.com/Lightricks
+      - https://github.com/Wan-Video
+      - https://deepmind.google/models/veo/
+      - https://openai.com/research/
+      - https://ai.meta.com/blog/
+      - https://github.com/omni2sound/Omni2Sound
+
+  - id: unified-and-physical-ai
+    topics:
+      - unified-multimodal-generation
+      - video-action-model
+      - embodied-generation
+      - synthetic-simulation-data
+    official_sources:
+      - https://bfl.ai/blog
+      - https://github.com/bytedance
+      - https://research.nvidia.com/
+      - https://www.microsoft.com/en-us/research/publications/
+
+  - id: datasets
+    topics:
+      - image-text-dataset
+      - video-text-dataset
+      - audio-generation-dataset
+      - 3d-generation-dataset
+      - preference-dataset
+      - aesthetic-benchmark
+      - multimodal-data-curation
+    official_sources:
+      - https://huggingface.co/datasets
+      - https://arxiv.org/list/cs.CV/recent
+      - https://arxiv.org/list/cs.MM/recent
+      - https://github.com/NVIDIA-NeMo/Curator
+      - https://github.com/omni2sound/Omni2Sound
+      - https://github.com/allenai/objaverse-xl
+      - https://github.com/crockwell/Cap3D
+      - https://github.com/cdjkim/audiocaps
+      - https://github.com/XinhaoMei/WavCaps
+      - https://zenodo.org/records/4783391
+      - https://research.google.com/audioset/
+      - https://github.com/hche11/VGGSound
+      - https://zenodo.org/records/4060432
+      - https://millionsongdataset.com/
+      - https://github.com/mdeff/fma
+
+acceptance_rules:
+  - Require an official release, repository, model card, dataset card, or technical report.
+  - Record publication and release dates separately when they differ.
+  - Never infer exact datasets or licenses from model capabilities.
+  - Record named but unreleased corpora with availability not-released.
+  - Add every material unknown to the card rather than silently omitting it.
+  - Prefer one deeply verified card over many link-only entries.

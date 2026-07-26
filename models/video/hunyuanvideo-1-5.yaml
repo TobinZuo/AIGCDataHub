@@ -1,0 +1,63 @@
+id: hunyuanvideo-1-5
+name: HunyuanVideo 1.5
+organization: Tencent Hunyuan
+released_at: "2025-11-24"
+modalities:
+  - video
+tasks:
+  - text-to-video
+  - image-to-video
+access:
+  status: open-weights
+  license: See repository and model card
+  release_url: https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5
+  weights_url: https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5
+  api_url: null
+architecture:
+  family: Diffusion transformer with selective and sliding tile attention
+  parameters: 8300000000
+  notes: Unified consumer-oriented video model with bilingual text conditioning and super-resolution.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - data-curation
+        - progressive-training
+        - image-video-joint-training
+      scale_disclosed: false
+      strategy: Progressively pretrain with curated image and video data across multiple resolutions and durations.
+    - name: fine-tuning
+      modalities:
+        - video
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - progressive-post-training
+        - bilingual-conditioning
+      scale_disclosed: false
+      strategy: Apply progressive post-training and glyph-aware bilingual conditioning for Chinese and English prompt fidelity.
+  strategy_summary:
+    - Combine curated images and videos so spatial quality and motion can scale together.
+    - Use progressive pretraining and post-training across durations and resolutions.
+    - Add glyph-aware bilingual text conditioning for text-rich prompts.
+  unknowns:
+    - Dataset names, sample counts, source rights, and image-video mixture.
+    - Captioning, filtering, deduplication, and preference-data details.
+evidence:
+  release: https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5
+  technical_report: https://arxiv.org/abs/2511.18870
+  repository: https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5
+status: partial
+last_verified: "2026-07-26"
+
