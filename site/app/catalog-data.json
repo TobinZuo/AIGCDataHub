@@ -1,9 +1,10 @@
 {
-  "format_version": 5,
+  "format_version": 6,
   "generated_from": [
     "catalog/**/*.yaml",
     "models/**/*.yaml",
-    "sources/scenarios.yaml"
+    "sources/scenarios.yaml",
+    "sources/watchlist.yaml"
   ],
   "last_verified": "2026-07-26",
   "scenarios": [
@@ -126,6 +127,7 @@
         "video-generation"
       ],
       "scale_label": "~27.5K",
+      "monitoring": null,
       "linked_model_ids": [
         "graphvid"
       ]
@@ -210,6 +212,7 @@
         "image-generation"
       ],
       "scale_label": "60K",
+      "monitoring": null,
       "linked_model_ids": []
     },
     {
@@ -290,6 +293,7 @@
         "image-generation"
       ],
       "scale_label": "1K",
+      "monitoring": null,
       "linked_model_ids": [
         "ernie-image"
       ]
@@ -373,6 +377,7 @@
         "image-generation"
       ],
       "scale_label": "~8K",
+      "monitoring": null,
       "linked_model_ids": [
         "lens"
       ]
@@ -454,6 +459,7 @@
         "image-generation"
       ],
       "scale_label": "800M",
+      "monitoring": null,
       "linked_model_ids": [
         "lens"
       ]
@@ -542,6 +548,10 @@
         "virtual-try-on"
       ],
       "scale_label": "105K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k"
+      },
       "linked_model_ids": [
         "fit-vto"
       ]
@@ -632,6 +642,10 @@
         "video-localization"
       ],
       "scale_label": "288",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/justdubit/audiovisual_translation_dub"
+      },
       "linked_model_ids": [
         "just-dub-it"
       ]
@@ -722,6 +736,10 @@
       "source_path": "catalog/evaluation/vggsound-omni.yaml",
       "scenario_ids": [],
       "scale_label": "~14K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/Dalision/Omni2Sound_Benchmark"
+      },
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -810,6 +828,7 @@
       "source_path": "catalog/audio/soundatlas.yaml",
       "scenario_ids": [],
       "scale_label": "~470K",
+      "monitoring": null,
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -895,6 +914,7 @@
       "source_path": "catalog/audio/audiocaps-2-0.yaml",
       "scenario_ids": [],
       "scale_label": "98.6K",
+      "monitoring": null,
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -978,6 +998,10 @@
         "video-generation"
       ],
       "scale_label": "~43K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/HuggingFaceFV/finevideo"
+      },
       "linked_model_ids": []
     },
     {
@@ -1059,6 +1083,7 @@
         "image-generation"
       ],
       "scale_label": "~5.8B",
+      "monitoring": null,
       "linked_model_ids": []
     },
     {
@@ -1143,6 +1168,10 @@
         "video-generation"
       ],
       "scale_label": "~1M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/nkp37/OpenVid-1M"
+      },
       "linked_model_ids": []
     },
     {
@@ -1225,6 +1254,7 @@
         "video-generation"
       ],
       "scale_label": "70.7M",
+      "monitoring": null,
       "linked_model_ids": []
     },
     {
@@ -1305,6 +1335,7 @@
         "image-generation"
       ],
       "scale_label": "~1M",
+      "monitoring": null,
       "linked_model_ids": []
     },
     {
@@ -1389,6 +1420,10 @@
         "video-generation"
       ],
       "scale_label": "~234M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/OpenGVLab/InternVid"
+      },
       "linked_model_ids": []
     },
     {
@@ -1472,6 +1507,7 @@
       "source_path": "catalog/3d/objaverse-xl.yaml",
       "scenario_ids": [],
       "scale_label": "~10M",
+      "monitoring": null,
       "linked_model_ids": []
     },
     {
@@ -1552,6 +1588,7 @@
         "image-generation"
       ],
       "scale_label": "4.4M",
+      "monitoring": null,
       "linked_model_ids": []
     },
     {
@@ -1640,6 +1677,10 @@
       "source_path": "catalog/3d/cap3d.yaml",
       "scenario_ids": [],
       "scale_label": "1.6M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/tiange/Cap3D"
+      },
       "linked_model_ids": []
     },
     {
@@ -1720,6 +1761,10 @@
         "image-generation"
       ],
       "scale_label": "~1B",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/mlfoundations/datacomp_1b"
+      },
       "linked_model_ids": []
     },
     {
@@ -1805,6 +1850,10 @@
       "source_path": "catalog/audio/wavcaps.yaml",
       "scenario_ids": [],
       "scale_label": "~403.1K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/cvssp/WavCaps"
+      },
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -1889,6 +1938,10 @@
         "image-generation"
       ],
       "scale_label": "~700M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/kakaobrain/coyo-700m"
+      },
       "linked_model_ids": []
     },
     {
@@ -1967,6 +2020,7 @@
         "video-generation"
       ],
       "scale_label": "~10M",
+      "monitoring": null,
       "linked_model_ids": []
     },
     {
@@ -2052,6 +2106,7 @@
       "source_path": "catalog/audio/clotho-2-1.yaml",
       "scenario_ids": [],
       "scale_label": "7K",
+      "monitoring": null,
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -2138,6 +2193,7 @@
       "source_path": "catalog/audio/fsd50k.yaml",
       "scenario_ids": [],
       "scale_label": "51.2K",
+      "monitoring": null,
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -2224,6 +2280,7 @@
       "source_path": "catalog/audio/vggsound.yaml",
       "scenario_ids": [],
       "scale_label": "~210K",
+      "monitoring": null,
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -2312,6 +2369,7 @@
       "source_path": "catalog/audio/fma.yaml",
       "scenario_ids": [],
       "scale_label": "~106.6K",
+      "monitoring": null,
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -2398,6 +2456,7 @@
       "source_path": "catalog/audio/audioset.yaml",
       "scenario_ids": [],
       "scale_label": "~2.1M",
+      "monitoring": null,
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -2484,6 +2543,7 @@
       "source_path": "catalog/audio/million-song-dataset.yaml",
       "scenario_ids": [],
       "scale_label": "1M",
+      "monitoring": null,
       "linked_model_ids": [
         "omni2sound"
       ]

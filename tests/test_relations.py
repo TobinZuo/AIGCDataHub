@@ -46,6 +46,17 @@ class ModelDatasetRelationTests(unittest.TestCase):
             self.datasets["audiovisual-translation-dub"]["linked_model_ids"],
         )
 
+    def test_dataset_monitoring_is_joined_by_canonical_catalog_id(self) -> None:
+        self.assertEqual(
+            self.datasets["fit-vto-100k"]["monitoring"],
+            {
+                "priority": "critical",
+                "source_url": "https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k",
+            },
+        )
+        self.assertEqual(self.datasets["finevideo"]["monitoring"]["priority"], "high")
+        self.assertIsNone(self.datasets["graphvid-bench"]["monitoring"])
+
 
 if __name__ == "__main__":
     unittest.main()

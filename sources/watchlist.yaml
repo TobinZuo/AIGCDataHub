@@ -158,16 +158,36 @@ tracks:
       - metadata-change
       - license-change
     official_sources:
-      - https://huggingface.co/api/datasets/HuggingFaceFV/finevideo
-      - https://huggingface.co/api/datasets/nkp37/OpenVid-1M
-      - https://huggingface.co/api/datasets/OpenGVLab/InternVid
-      - https://huggingface.co/api/datasets/kakaobrain/coyo-700m
-      - https://huggingface.co/api/datasets/tiange/Cap3D
-      - https://huggingface.co/api/datasets/mlfoundations/datacomp_1b
-      - https://huggingface.co/api/datasets/Dalision/Omni2Sound_Benchmark
-      - https://huggingface.co/api/datasets/justdubit/audiovisual_translation_dub
-      - https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k
-      - https://huggingface.co/api/datasets/cvssp/WavCaps
+      - url: https://huggingface.co/api/datasets/HuggingFaceFV/finevideo
+        catalog_id: finevideo
+        priority: high
+      - url: https://huggingface.co/api/datasets/nkp37/OpenVid-1M
+        catalog_id: openvid-1m
+        priority: high
+      - url: https://huggingface.co/api/datasets/OpenGVLab/InternVid
+        catalog_id: internvid
+        priority: high
+      - url: https://huggingface.co/api/datasets/kakaobrain/coyo-700m
+        catalog_id: coyo-700m
+        priority: high
+      - url: https://huggingface.co/api/datasets/tiange/Cap3D
+        catalog_id: cap3d
+        priority: high
+      - url: https://huggingface.co/api/datasets/mlfoundations/datacomp_1b
+        catalog_id: datacomp-1b
+        priority: high
+      - url: https://huggingface.co/api/datasets/Dalision/Omni2Sound_Benchmark
+        catalog_id: vggsound-omni
+        priority: critical
+      - url: https://huggingface.co/api/datasets/justdubit/audiovisual_translation_dub
+        catalog_id: audiovisual-translation-dub
+        priority: critical
+      - url: https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k
+        catalog_id: fit-vto-100k
+        priority: critical
+      - url: https://huggingface.co/api/datasets/cvssp/WavCaps
+        catalog_id: wavcaps
+        priority: critical
 
 acceptance_rules:
   - Require an official release, repository, model card, dataset card, or technical report.

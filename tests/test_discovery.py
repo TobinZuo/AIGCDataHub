@@ -9,7 +9,9 @@ sys.path.insert(0, "scripts")
 from discover_updates import (
     Candidate,
     SourceSnapshot,
+    WatchSource,
     compare_snapshots,
+    dataset_impact_index,
     extract_candidate_links,
     extract_source_revision,
     load_watchlist,
@@ -102,8 +104,8 @@ class DiscoveryTests(unittest.TestCase):
 
     def test_watchlist_includes_requested_application_tracks(self) -> None:
         _, sources = load_watchlist(Path("sources/watchlist.yaml"))
-        track_ids = {track_id for track_id, _ in sources}
-        urls = {url for _, url in sources}
+        track_ids = {source.track_id for source in sources}
+        urls = {source.source_url for source in sources}
         self.assertTrue({"digital-human-and-localization", "virtual-try-on-and-commerce"}.issubset(track_ids))
         self.assertTrue(
             {
@@ -113,6 +115,19 @@ class DiscoveryTests(unittest.TestCase):
             }.issubset(urls)
         )
         self.assertIn("https://huggingface.co/api/datasets/nkp37/OpenVid-1M", urls)
+        openvid = next(source for source in sources if source.catalog_id == "openvid-1m")
+        self.assertEqual(openvid, WatchSource(
+            "important-dataset-updates",
+            "https://huggingface.co/api/datasets/nkp37/OpenVid-1M",
+            "openvid-1m",
+            "high",
+        ))
+
+    def test_dataset_impact_index_uses_canonical_model_references(self) -> None:
+        impacts = dataset_impact_index()
+        self.assertEqual(impacts["fit-vto-100k"], ("fit-vto",))
+        self.assertEqual(impacts["audiovisual-translation-dub"], ("just-dub-it",))
+        self.assertEqual(impacts["wavcaps"], ("omni2sound",))
 
     def test_compares_candidates_failures_recoveries_and_known_urls(self) -> None:
         baseline = {
@@ -176,9 +191,16 @@ class DiscoveryTests(unittest.TestCase):
                 None,
                 "2026-07-25T10:00:00Z@new",
                 "https://huggingface.co/datasets/nkp37/OpenVid-1M",
+                "openvid-1m",
+                "high",
             ),
         )
-        diff = compare_snapshots(baseline, current, {"https://example.com/known"})
+        diff = compare_snapshots(
+            baseline,
+            current,
+            {"https://example.com/known"},
+            {"openvid-1m": ("video-model",)},
+        )
         self.assertEqual([item["url"] for item in diff.new_candidates], ["https://example.com/new"])
         self.assertEqual([item["error"] for item in diff.failures], ["HTTP 429"])
         self.assertEqual([item["previous_error"] for item in diff.recoveries], ["HTTP 503"])
@@ -186,6 +208,9 @@ class DiscoveryTests(unittest.TestCase):
             [item["url"] for item in diff.source_updates],
             ["https://huggingface.co/datasets/nkp37/OpenVid-1M"],
         )
+        self.assertEqual(diff.source_updates[0]["catalog_id"], "openvid-1m")
+        self.assertEqual(diff.source_updates[0]["priority"], "high")
+        self.assertEqual(diff.source_updates[0]["impacted_model_ids"], ["video-model"])
 
     def test_report_preserves_human_review_contract(self) -> None:
         baseline = {"sources": []}

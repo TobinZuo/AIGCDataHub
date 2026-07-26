@@ -70,6 +70,7 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /10\/10/);
   assert.match(html, /目录关联/);
   assert.match(html, /模型—数据关系/);
+  assert.match(html, /模型 ↔ 数据/);
   assert.match(html, /最新数据集/);
   assert.match(html, /最新模型/);
   assert.match(html, /结构化数据集/);
@@ -114,7 +115,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"mage-flow"/);
   assert.match(catalog, /"relations"/);
   const parsedCatalog = JSON.parse(catalog);
-  assert.equal(parsedCatalog.format_version, 5);
+  assert.equal(parsedCatalog.format_version, 6);
   assert.deepEqual(
     parsedCatalog.scenarios.map((scenario) => scenario.id),
     ["image-generation", "video-generation", "digital-human", "video-localization", "virtual-try-on"],
@@ -137,6 +138,10 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.ok(parsedCatalog.relations.some(
     (relation) => relation.model_id === "graphvid" && relation.dataset_id === "graphvid-bench",
   ));
+  const datasets = Object.fromEntries(parsedCatalog.datasets.map((dataset) => [dataset.id, dataset]));
+  assert.equal(datasets["fit-vto-100k"].monitoring.priority, "critical");
+  assert.equal(datasets.finevideo.monitoring.priority, "high");
+  assert.equal(datasets["graphvid-bench"].monitoring, null);
   assert.deepEqual(models["fit-vto"].scenario_ids, ["virtual-try-on"]);
   assert.deepEqual(models["flux-vto"].scenario_ids, ["virtual-try-on"]);
   assert.deepEqual(models["fit-vto"].strategy_profile.stage_names, ["pretraining", "fine-tuning"]);
@@ -145,6 +150,9 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.equal(models["flux-vto"].strategy_profile.scale_disclosed_stage_count, 0);
   assert.match(page, /CatalogExplorer/);
   assert.match(catalogExplorer, /StrategyMatrix/);
+  assert.match(catalogExplorer, /LineageOverview/);
+  assert.match(catalogExplorer, /模型和数据，不再是两张孤立清单/);
+  assert.match(catalogExplorer, /核心监控/);
   assert.match(catalogExplorer, /同场景数据策略对比/);
   assert.match(catalogExplorer, /不做综合评分/);
   assert.match(catalogExplorer, /打开数据卡/);

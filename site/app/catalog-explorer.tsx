@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-type Mode = "models" | "datasets" | "strategies";
+type Mode = "models" | "datasets" | "lineage" | "strategies";
 
 type ScenarioDefinition = {
   id: string;
@@ -47,6 +47,11 @@ type ModelDatasetRelation = {
   availability: string;
   scale: string | null;
   reference_name: string;
+};
+
+type EnrichedRelation = ModelDatasetRelation & {
+  model: ModelCard;
+  dataset: DatasetCard;
 };
 
 type ModelCard = {
@@ -146,6 +151,10 @@ type DatasetCard = {
   source_path: string;
   scenario_ids: string[];
   linked_model_ids: string[];
+  monitoring: {
+    priority: string;
+    source_url: string;
+  } | null;
 };
 
 type Catalog = {
@@ -159,6 +168,7 @@ type Catalog = {
 const MODE_LABELS: Record<Mode, string> = {
   models: "最新模型",
   datasets: "最新数据集",
+  lineage: "模型 ↔ 数据",
   strategies: "数据策略",
 };
 
@@ -178,6 +188,12 @@ const DISCLOSURE_LABELS: Record<string, string> = {
   partial: "部分披露",
   "high-level": "仅高层策略",
   undisclosed: "未披露",
+};
+
+const MONITORING_LABELS: Record<string, string> = {
+  critical: "核心监控",
+  high: "重点监控",
+  standard: "常规监控",
 };
 
 const STAGE_LABELS: Record<string, string> = {
@@ -212,6 +228,21 @@ const ACCESS_LABELS: Record<string, string> = {
   "early-access": "早期访问",
   "research-preview": "研究预览",
   announced: "已发布预告",
+};
+
+const RELATION_ROLE_LABELS: Record<string, string> = {
+  pretraining: "预训练",
+  "fine-tuning": "微调",
+  preference: "偏好对齐",
+  evaluation: "评测",
+  distillation: "蒸馏",
+};
+
+const DATA_AVAILABILITY_LABELS: Record<string, string> = {
+  public: "公开数据",
+  gated: "受限访问",
+  "not-released": "尚未发布",
+  undisclosed: "未披露",
 };
 
 const STATUS_LABELS: Record<string, string> = {
@@ -404,6 +435,7 @@ function DatasetResult({ dataset, scenarioLabels, linkedModels, expanded, onTogg
             ))}
             <span className="tag">{MODALITY_LABELS[dataset.modality] ?? dataset.modality}</span>
             {dataset.tasks.slice(0, 2).map((item) => <span className="tag" key={item}>{item}</span>)}
+            {dataset.monitoring && <span className="tag tag-monitor">{MONITORING_LABELS[dataset.monitoring.priority]}</span>}
             {linkedModels.length > 0 && <span className="tag tag-relation">{linkedModels.length} 个模型关联</span>}
           </div>
         </div>
@@ -432,6 +464,7 @@ function DatasetResult({ dataset, scenarioLabels, linkedModels, expanded, onTogg
               <div><dt>账号要求</dt><dd>{dataset.access.requires_account ? "需要" : "不需要"}</dd></div>
               <div><dt>首次发布</dt><dd>{formatDate(dataset.released_at)}</dd></div>
               <div><dt>最近核验</dt><dd>{formatDate(dataset.last_verified)}</dd></div>
+              {dataset.monitoring && <div><dt>版本监控</dt><dd>{MONITORING_LABELS[dataset.monitoring.priority]}</dd></div>}
             </dl>
           </section>
           <section>
@@ -479,11 +512,70 @@ function DatasetResult({ dataset, scenarioLabels, linkedModels, expanded, onTogg
               {dataset.evidence.paper && dataset.evidence.paper !== dataset.release_date_source && (
                 <ExternalLink href={dataset.evidence.paper}>论文</ExternalLink>
               )}
+              {dataset.monitoring && <ExternalLink href={dataset.monitoring.source_url}>版本监控源</ExternalLink>}
             </nav>
           </footer>
         </div>
       )}
     </article>
+  );
+}
+
+function LineageOverview({ relations, onOpenModel, onOpenDataset }: {
+  relations: EnrichedRelation[];
+  onOpenModel: (modelId: string) => void;
+  onOpenDataset: (datasetId: string) => void;
+}) {
+  const modelCount = new Set(relations.map((item) => item.model_id)).size;
+  const datasetCount = new Set(relations.map((item) => item.dataset_id)).size;
+
+  return (
+    <section className="lineage-overview" aria-labelledby="lineage-title">
+      <header className="lineage-summary">
+        <div>
+          <p className="comparison-kicker">LINEAGE / CANONICAL</p>
+          <h3 id="lineage-title">模型和数据，不再是两张孤立清单。</h3>
+          <p>每条关系都来自模型卡中经过核验的 <code>catalog_id</code>，角色、可用性和规模保持原始证据边界。</p>
+        </div>
+        <dl>
+          <div><dt>当前关系</dt><dd>{relations.length}</dd></div>
+          <div><dt>关联模型</dt><dd>{modelCount}</dd></div>
+          <div><dt>关联数据集</dt><dd>{datasetCount}</dd></div>
+        </dl>
+      </header>
+      <div className="lineage-grid">
+        {relations.map((relation) => (
+          <article className="lineage-row" key={`${relation.model_id}-${relation.dataset_id}-${relation.role}`}>
+            <button
+              className="lineage-entity lineage-model"
+              onClick={() => onOpenModel(relation.model_id)}
+              aria-label={`打开模型 ${relation.model.name}`}
+            >
+              <span>M</span>
+              <strong>{relation.model.name}</strong>
+              <small>{relation.model.organization}</small>
+            </button>
+            <div className="lineage-edge">
+              <strong>{taxonomyLabel(relation.role, RELATION_ROLE_LABELS)}</strong>
+              <span>{taxonomyLabel(relation.availability, DATA_AVAILABILITY_LABELS)}</span>
+              <small>{relation.scale ?? "规模未披露"}</small>
+            </div>
+            <button
+              className="lineage-entity lineage-dataset"
+              onClick={() => onOpenDataset(relation.dataset_id)}
+              aria-label={`打开数据集 ${relation.dataset.name}`}
+            >
+              <span>D</span>
+              <strong>{relation.dataset.name}</strong>
+              <small>
+                {MODALITY_LABELS[relation.dataset.modality] ?? relation.dataset.modality} · {ACCESS_LABELS[relation.dataset.access.status] ?? relation.dataset.access.status}
+                {relation.dataset.monitoring ? ` · ${MONITORING_LABELS[relation.dataset.monitoring.priority]}` : ""}
+              </small>
+            </button>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -652,6 +744,18 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
     () => new Map(catalog.models.map((item) => [item.id, item])),
     [catalog.models],
   );
+  const datasetById = useMemo(
+    () => new Map(catalog.datasets.map((item) => [item.id, item])),
+    [catalog.datasets],
+  );
+  const lineageRecords = useMemo(
+    () => catalog.relations.flatMap((relation): EnrichedRelation[] => {
+      const model = modelById.get(relation.model_id);
+      const dataset = datasetById.get(relation.dataset_id);
+      return model && dataset ? [{ ...relation, model, dataset }] : [];
+    }),
+    [catalog.relations, datasetById, modelById],
+  );
 
   const modelResults = useMemo(() => {
     const search = normalize(query.trim());
@@ -684,28 +788,76 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         ...dataset.tasks,
         ...dataset.annotations.types,
         ...dataset.evidence.used_by,
+        dataset.monitoring?.priority ?? "",
+        dataset.monitoring ? MONITORING_LABELS[dataset.monitoring.priority] : "",
         ...dataset.linked_model_ids.map((id) => modelById.get(id)?.name ?? id),
       ].join(" "));
       return inModality && inScenario && (!search || haystack.includes(search));
     });
   }, [catalog.datasets, modality, modelById, query, scenario]);
 
+  const lineageResults = useMemo(() => {
+    const search = normalize(query.trim());
+    return lineageRecords.filter((relation) => {
+      const inModality = modality === "all"
+        || relation.model.modalities.includes(modality)
+        || relation.dataset.modality === modality;
+      const inScenario = scenario === "all"
+        || relation.model.scenario_ids.includes(scenario)
+        || relation.dataset.scenario_ids.includes(scenario);
+      const haystack = normalize([
+        relation.model.name,
+        relation.model.organization,
+        relation.dataset.name,
+        relation.dataset.organization,
+        relation.reference_name,
+        relation.role,
+        relation.availability,
+        relation.scale ?? "",
+        relation.dataset.monitoring?.priority ?? "",
+        relation.dataset.monitoring ? MONITORING_LABELS[relation.dataset.monitoring.priority] : "",
+        ...relation.model.tasks,
+        ...relation.dataset.tasks,
+      ].join(" "));
+      return inModality && inScenario && (!search || haystack.includes(search));
+    });
+  }, [lineageRecords, modality, query, scenario]);
+
   const visibleModalities = mode === "datasets"
     ? ["all", "image", "video", "audio", "3d", "preference"]
     : ["all", "image", "video", "audio", "3d", "multimodal", "action"];
-  const visibleCount = mode === "datasets" ? datasetResults.length : modelResults.length;
+  const visibleCount = mode === "datasets"
+    ? datasetResults.length
+    : mode === "lineage"
+      ? lineageResults.length
+      : modelResults.length;
   const activeScenario = scenario === "all"
     ? null
     : catalog.scenarios.find((item) => item.id === scenario) ?? null;
   const exactDatasetModels = catalog.models.filter((item) => item.data.exact_datasets_disclosed).length;
   const openDatasets = catalog.datasets.filter((item) => item.access.status === "open").length;
   const scenarioCounts = useMemo(() => {
+    if (mode === "lineage") {
+      return Object.fromEntries(catalog.scenarios.map((item) => [
+        item.id,
+        lineageRecords.filter((relation) => (
+          relation.model.scenario_ids.includes(item.id)
+          || relation.dataset.scenario_ids.includes(item.id)
+        )).length,
+      ]));
+    }
     const items = mode === "datasets" ? catalog.datasets : catalog.models;
     return Object.fromEntries(catalog.scenarios.map((item) => [
       item.id,
       items.filter((entry) => entry.scenario_ids.includes(item.id)).length,
     ]));
-  }, [catalog.datasets, catalog.models, catalog.scenarios, mode]);
+  }, [catalog.datasets, catalog.models, catalog.scenarios, lineageRecords, mode]);
+
+  function totalForMode(item: Mode) {
+    if (item === "datasets") return catalog.datasets.length;
+    if (item === "lineage") return catalog.relations.length;
+    return catalog.models.length;
+  }
 
   function switchMode(nextMode: Mode) {
     setMode(nextMode);
@@ -797,7 +949,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
               aria-selected={mode === item}
             >
               <span>{MODE_LABELS[item]}</span>
-              <small>{item === "datasets" ? catalog.datasets.length : catalog.models.length}</small>
+              <small>{totalForMode(item)}</small>
             </button>
           ))}
         </div>
@@ -811,7 +963,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
               aria-pressed={scenario === "all"}
             >
               <span>全部场景</span>
-              <small>{mode === "datasets" ? catalog.datasets.length : catalog.models.length}</small>
+              <small>{totalForMode(mode)}</small>
             </button>
             {catalog.scenarios.map((item) => (
               <button
@@ -836,7 +988,11 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder={mode === "datasets" ? "搜索数据集、任务、标注类型…" : "搜索模型、机构、数据集或训练操作…"}
+              placeholder={mode === "datasets"
+                ? "搜索数据集、任务、标注类型…"
+                : mode === "lineage"
+                  ? "搜索模型、数据集、训练角色或可用性…"
+                  : "搜索模型、机构、数据集或训练操作…"}
             />
             {query && <button onClick={() => setQuery("")} aria-label="清空搜索">×</button>}
           </label>
@@ -853,6 +1009,13 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         <div className="result-list" role="tabpanel">
           {mode === "strategies" && (
             <StrategyMatrix models={modelResults} scenario={activeScenario} />
+          )}
+          {mode === "lineage" && lineageResults.length > 0 && (
+            <LineageOverview
+              relations={lineageResults}
+              onOpenModel={(id) => openRelation("models", id)}
+              onOpenDataset={(id) => openRelation("datasets", id)}
+            />
           )}
           {mode === "models" && modelResults.map((model) => (
             <ModelResult

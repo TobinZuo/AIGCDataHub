@@ -1,6 +1,6 @@
 {
-  "schema_version": 2,
-  "generated_at": "2026-07-26T10:31:18Z",
+  "schema_version": 3,
+  "generated_at": "2026-07-26T10:50:46Z",
   "sources": [
     {
       "track_id": "datasets",
@@ -10,7 +10,9 @@
       "candidates": [],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "datasets",
@@ -53,7 +55,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "datasets",
@@ -88,7 +92,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "datasets",
@@ -98,7 +104,9 @@
       "candidates": [],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "datasets",
@@ -113,7 +121,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "datasets",
@@ -144,7 +154,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "datasets",
@@ -187,7 +199,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -197,7 +211,9 @@
       "candidates": [],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -216,7 +232,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -247,7 +265,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -286,7 +306,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -305,7 +327,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -328,7 +352,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -351,7 +377,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "image-generation",
@@ -414,7 +442,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "image-generation",
@@ -429,7 +459,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "image-generation",
@@ -496,7 +528,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "image-generation",
@@ -539,7 +573,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "image-generation",
@@ -554,7 +590,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "image-generation",
@@ -564,7 +602,9 @@
       "candidates": [],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "image-generation",
@@ -595,7 +635,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "image-generation",
@@ -674,7 +716,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "image-generation",
@@ -705,7 +749,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "image-generation",
@@ -715,7 +761,9 @@
       "candidates": [],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "image-generation",
@@ -725,7 +773,9 @@
       "candidates": [],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -735,7 +785,9 @@
       "candidates": [],
       "error": null,
       "revision": "2026-04-24T14:54:54.000Z@4f2b6bbd41976b32a9cfb6157af62c7b4924e303",
-      "revision_url": "https://huggingface.co/datasets/Dalision/Omni2Sound_Benchmark"
+      "revision_url": "https://huggingface.co/datasets/Dalision/Omni2Sound_Benchmark",
+      "catalog_id": "vggsound-omni",
+      "priority": "critical"
     },
     {
       "track_id": "important-dataset-updates",
@@ -745,7 +797,9 @@
       "candidates": [],
       "error": null,
       "revision": "2026-04-30T18:21:00.000Z@84c74091e1c6ee7a5dffabfafb5c9033e4718883",
-      "revision_url": "https://huggingface.co/datasets/HuggingFaceFV/finevideo"
+      "revision_url": "https://huggingface.co/datasets/HuggingFaceFV/finevideo",
+      "catalog_id": "finevideo",
+      "priority": "high"
     },
     {
       "track_id": "important-dataset-updates",
@@ -755,7 +809,9 @@
       "candidates": [],
       "error": null,
       "revision": "2024-08-13T02:04:22.000Z@8f8e0138bd89103a914e8c97ae124ab0c4a78fcf",
-      "revision_url": "https://huggingface.co/datasets/OpenGVLab/InternVid"
+      "revision_url": "https://huggingface.co/datasets/OpenGVLab/InternVid",
+      "catalog_id": "internvid",
+      "priority": "high"
     },
     {
       "track_id": "important-dataset-updates",
@@ -765,7 +821,9 @@
       "candidates": [],
       "error": null,
       "revision": "2026-06-14T10:51:28.000Z@5563646729edf148ed2b32c4b9c794d51a1bc828",
-      "revision_url": "https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k"
+      "revision_url": "https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k",
+      "catalog_id": "fit-vto-100k",
+      "priority": "critical"
     },
     {
       "track_id": "important-dataset-updates",
@@ -775,7 +833,9 @@
       "candidates": [],
       "error": null,
       "revision": "2023-07-06T13:28:10.000Z@0930ec11ded28fa0eaa910fde2f6fc3538acbeac",
-      "revision_url": "https://huggingface.co/datasets/cvssp/WavCaps"
+      "revision_url": "https://huggingface.co/datasets/cvssp/WavCaps",
+      "catalog_id": "wavcaps",
+      "priority": "critical"
     },
     {
       "track_id": "important-dataset-updates",
@@ -785,7 +845,9 @@
       "candidates": [],
       "error": null,
       "revision": "2026-02-08T14:09:47.000Z@5b9a84788df7bad0e27a9e5091c64c650a85535e",
-      "revision_url": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub"
+      "revision_url": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub",
+      "catalog_id": "audiovisual-translation-dub",
+      "priority": "critical"
     },
     {
       "track_id": "important-dataset-updates",
@@ -795,7 +857,9 @@
       "candidates": [],
       "error": null,
       "revision": "2022-08-30T19:07:52.000Z@54ee2d8c64d3d80a5e10ef6952a4466551834fc1",
-      "revision_url": "https://huggingface.co/datasets/kakaobrain/coyo-700m"
+      "revision_url": "https://huggingface.co/datasets/kakaobrain/coyo-700m",
+      "catalog_id": "coyo-700m",
+      "priority": "high"
     },
     {
       "track_id": "important-dataset-updates",
@@ -805,7 +869,9 @@
       "candidates": [],
       "error": null,
       "revision": "2023-08-21T21:43:05.000Z@086ebeee20d4cc3b3e7c05ae703fcf278ae3a759",
-      "revision_url": "https://huggingface.co/datasets/mlfoundations/datacomp_1b"
+      "revision_url": "https://huggingface.co/datasets/mlfoundations/datacomp_1b",
+      "catalog_id": "datacomp-1b",
+      "priority": "high"
     },
     {
       "track_id": "important-dataset-updates",
@@ -815,7 +881,9 @@
       "candidates": [],
       "error": null,
       "revision": "2026-03-31T03:50:30.000Z@d8a63bd22989c80b5734ec2bb989f4e1b61a5807",
-      "revision_url": "https://huggingface.co/datasets/nkp37/OpenVid-1M"
+      "revision_url": "https://huggingface.co/datasets/nkp37/OpenVid-1M",
+      "catalog_id": "openvid-1m",
+      "priority": "high"
     },
     {
       "track_id": "important-dataset-updates",
@@ -825,7 +893,9 @@
       "candidates": [],
       "error": null,
       "revision": "2026-02-06T05:33:20.000Z@0f05a726ff7eb3db93444a4efc65f0552bce84a4",
-      "revision_url": "https://huggingface.co/datasets/tiange/Cap3D"
+      "revision_url": "https://huggingface.co/datasets/tiange/Cap3D",
+      "catalog_id": "cap3d",
+      "priority": "high"
     },
     {
       "track_id": "video-and-audio-generation",
@@ -860,7 +930,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -895,7 +967,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -942,7 +1016,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -952,7 +1028,9 @@
       "candidates": [],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -975,7 +1053,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -994,7 +1074,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -1017,7 +1099,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -1032,7 +1116,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -1055,7 +1141,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -1070,7 +1158,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -1137,7 +1227,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -1152,7 +1244,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -1162,7 +1256,9 @@
       "candidates": [],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -1181,7 +1277,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -1208,7 +1306,9 @@
       ],
       "error": null,
       "revision": null,
-      "revision_url": null
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null
     }
   ]
 }

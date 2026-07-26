@@ -172,7 +172,11 @@ virtual try-on, and commerce-oriented conditional generation. It opens or
 updates one GitHub Issue when it finds new candidates, source failures, or an
 important dataset revision. For selected Hugging Face datasets it records both
 `lastModified` and the repository commit SHA, so a changed release is surfaced
-even when its URL stays the same. It closes the Issue when the queue is clear.
+even when its URL stays the same. Every important revision probe also declares
+a dataset `catalog_id` and monitoring priority. The Issue therefore identifies
+the catalog card and lists every model currently linked to that dataset, making
+the review impact-aware instead of reporting an isolated URL change. It closes
+the Issue when the queue is clear.
 This is triage rather than automatic fact generation: a card, license
 conclusion, or `last_verified` date changes only through a reviewed PR.
 
@@ -187,7 +191,9 @@ cross-model matrix without adding an inferred score.
 Model-to-dataset relationships have one canonical source: a model data
 reference with a non-null `catalog_id`. Site generation converts those reviewed
 references into a relation index plus model and dataset backlinks, so users can
-navigate in either direction without maintaining two editable copies. A
+use the dedicated **模型 ↔ 数据** view or navigate in either direction without
+maintaining two editable copies. Dataset cards covered by the revision scanner
+also expose their monitoring tier and probe source. A
 dataset card's `evidence.used_by` remains an upstream claim and is never
 silently promoted to a canonical relationship.
 
