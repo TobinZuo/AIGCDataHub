@@ -990,7 +990,7 @@
       "scale_label": "60K",
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://export.arxiv.org/api/query?id_list=2607.16283"
+        "source_url": "https://arxiv.org/html/2607.16283"
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
@@ -2154,6 +2154,105 @@
       ]
     },
     {
+      "id": "videocof-50k",
+      "name": "VideoCoF-50K",
+      "organization": "University of Technology Sydney and Zhejiang University",
+      "released_at": "2026-01-02",
+      "release_date_source": "https://github.com/knightyxp/VideoCoF",
+      "modality": "video",
+      "tasks": [
+        "instruction-guided-video-editing",
+        "video-to-video",
+        "object-removal",
+        "object-addition",
+        "object-swap",
+        "local-style-transfer"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "The public training corpus for VideoCoF, pairing source videos, edit-region reasoning videos, edited targets, and natural-language instructions across object addition, removal, swap, and local style transfer.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/XiangpengYang/VideoCoF-50k",
+        "requires_account": false,
+        "notes": "Hugging Face hosts JSON metadata and four task archives containing 49,177 rows and approximately 85.6 GB of released files."
+      },
+      "scale": {
+        "samples": 49177,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The hosted release contains 49,177 rows; the paper reports the curated training mixture as 50,000 pairs split 10K addition, 15K removal, 15K swap, and 10K local style."
+      },
+      "annotations": {
+        "types": [
+          "original-video",
+          "edited-video",
+          "edit-region-reasoning-video",
+          "natural-language-edit-instruction",
+          "edit-task-type",
+          "sample-id"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0",
+        "media": "CC-BY-NC-4.0 release terms plus upstream source and generator dependencies",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The official dataset card is non-commercial; downstream users should also review the source-video and synthetic-teacher terms before redistributing media or derivatives."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The released 49,177 rows are slightly fewer than the paper's rounded 50K task mixture, and the per-task release delta is not explained.",
+          "Synthetic edits can inherit artifacts, safety issues, or biases from MiniMax-Remover, VACE-14B, GPT-4o, and Grounding DINO.",
+          "The four local editing tasks do not cover global edits, identity-driven edits, audio edits, or the full professional editing distribution.",
+          "Source-video provenance and rights are not enumerated per sample in the public card."
+        ]
+      },
+      "processing": {
+        "recipe": "Filter Señorita source clips; synthesize addition and removal pairs with MiniMax-Remover; generate swap and local-style pairs with VACE-14B, GPT-4o prompts, and Grounding DINO masks; create soft grayscale reasoning frames; then filter with DOVER and VIE scores.",
+        "recommended_format": "native",
+        "notes": "Keep original, reasoning, and edited videos joined to the instruction and task type; pin the Hugging Face revision and retain the task archive manifest."
+      },
+      "evidence": {
+        "homepage": "https://github.com/knightyxp/VideoCoF",
+        "paper": "https://arxiv.org/abs/2512.07469",
+        "used_by": [
+          "VideoCoF"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/videocof-50k.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "49.2K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/XiangpengYang/VideoCoF-50k"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "videocof"
+      ]
+    },
+    {
       "id": "talkverse",
       "name": "TalkVerse",
       "organization": "CUHK MMLab and Snap Research",
@@ -2271,6 +2370,114 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "talkverse-5b"
+      ]
+    },
+    {
+      "id": "humoset",
+      "name": "HuMoSet",
+      "organization": "Tsinghua University and ByteDance Intelligent Creation Team",
+      "released_at": "2025-12-23",
+      "release_date_source": "https://github.com/Phantom-video/HuMo",
+      "modality": "video",
+      "tasks": [
+        "multimodal-human-video-generation",
+        "audio-driven-avatar",
+        "talking-head-generation",
+        "subject-consistent-video-generation",
+        "text-image-audio-to-video"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A human-centric multimodal video corpus pairing each target video with a same-identity but visually distinct reference image, a Qwen2.5-VL dense caption, and strictly processed synchronized audio for controllable generation.",
+      "derived_from": [
+        {
+          "catalog_id": "openhumanvid",
+          "relationship": "source-component",
+          "contribution": "A documented source of public human-centric videos and reference imagery",
+          "notes": "The official card names OpenHumanVid as one example among multiple open-source source datasets; it does not disclose the exact contribution or full source mixture."
+        }
+      ],
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://modelscope.cn/datasets/leoniuschen/HuMoSet",
+        "requires_account": false,
+        "notes": "ModelScope provides direct CLI and Git LFS download instructions for target videos, reference images, and video_caption.parquet; its API reports approximately 708 GB of repository storage."
+      },
+      "scale": {
+        "samples": 670000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The official release reports about 670,000 video samples, each with a distinct same-identity reference image and a dense video caption."
+      },
+      "annotations": {
+        "types": [
+          "target-video",
+          "synchronized-audio",
+          "same-identity-reference-image",
+          "dense-video-caption",
+          "sample-id"
+        ],
+        "source": "mixed",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-ND (version not specified by ModelScope)",
+        "media": "CC-BY-NC-ND release label layered on the licenses and rights of source datasets",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "ModelScope exposes the label CC-BY-NC-ND without a version; users must inspect the repository LICENSE and every upstream dataset's terms before training, adapting, or redistributing the media."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The full source-dataset list, source proportions, deduplication method, and per-sample provenance are not published on the card.",
+          "Qwen2.5-VL captions and automated audio-visual synchronization filters can contain hallucinations, exclusions, or alignment errors.",
+          "Speaker language, demographic, consent, safety, and identity distributions are not documented.",
+          "The license version is not specified and upstream source rights remain layered, so commercial use and derivative redistribution require review."
+        ]
+      },
+      "processing": {
+        "recipe": "Curate videos and distinct same-identity reference images from public datasets, generate dense descriptions with Qwen2.5-VL, enhance and filter speech segments, and retain samples that pass audio-visual synchronization processing.",
+        "recommended_format": "native",
+        "notes": "Download with the ModelScope CLI or Git LFS, join video and reference_image files through video_caption.parquet, and preserve source and license metadata when available."
+      },
+      "evidence": {
+        "homepage": "https://modelscope.cn/datasets/leoniuschen/HuMoSet",
+        "paper": "https://arxiv.org/abs/2509.08519",
+        "used_by": [
+          "HuMo-17B"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/humoset.yaml",
+      "scenario_ids": [
+        "digital-human"
+      ],
+      "scale_label": "~670K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://modelscope.cn/api/v1/datasets/leoniuschen/HuMoSet"
+      },
+      "upstream_dataset_ids": [
+        "openhumanvid"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "humo-17b"
       ]
     },
     {
@@ -2468,6 +2675,110 @@
       ],
       "linked_model_ids": [
         "openve-edit"
+      ]
+    },
+    {
+      "id": "phantom-data",
+      "name": "Phantom-Data (Koala-36M release)",
+      "organization": "ByteDance Intelligent Creation Lab",
+      "released_at": "2025-09-30",
+      "release_date_source": "https://huggingface.co/datasets/ZhuoweiChen/Phantom-data-Koala36M",
+      "modality": "video",
+      "tasks": [
+        "subject-consistent-video-generation",
+        "reference-image-conditioned-video",
+        "identity-preservation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A cross-pair subject-to-video training release built on Koala-36M metadata, linking target clips and captions to same-identity or same-category reference frames drawn from different visual contexts to reduce copy-paste behavior.",
+      "derived_from": [
+        {
+          "catalog_id": "koala-36m",
+          "relationship": "annotation-derivative",
+          "contribution": "Source clip URLs, timestamps, captions, and clip-quality metadata",
+          "notes": "Phantom-Data adds cross-context subject detections, bounding boxes, reference-frame matches, and identity-verification results to Koala-36M clip metadata."
+        }
+      ],
+      "access": {
+        "status": "metadata-only",
+        "type": "metadata",
+        "url": "https://huggingface.co/datasets/ZhuoweiChen/Phantom-data-Koala36M",
+        "requires_account": false,
+        "notes": "The open Hugging Face repository hosts two Parquet metadata files totaling about 1.15 GB; source clips must be resolved separately from YouTube URLs and timestamps, and reference images are extracted from referenced frames."
+      },
+      "scale": {
+        "samples": 1000000,
+        "source_items": 53000000,
+        "hours": null,
+        "approximate": true,
+        "notes": "The paper reports approximately one million identity-consistent pairs retrieved from more than 53 million videos and three billion candidate images."
+      },
+      "annotations": {
+        "types": [
+          "video-caption",
+          "clip-url",
+          "clip-timestamp",
+          "cross-pair-subject-map",
+          "reference-frame-index",
+          "subject-bounding-box",
+          "identity-verification"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Apache-2.0",
+        "media": "Source-dependent Koala-36M and YouTube terms and uploader rights",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "Hugging Face labels the metadata Apache-2.0, while the official repository restricts the dataset to non-commercial research; neither label grants rights to source videos or uploader content."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The release contains metadata and frame references rather than redistributable source videos or ready-to-train image files.",
+          "Source URLs can disappear or become restricted, and availability depends on the upstream Koala-36M and YouTube records.",
+          "Automated subject detection, retrieval, and prior-guided identity verification can introduce false matches and category or demographic bias.",
+          "The repository's non-commercial disclaimer is stricter than the Apache metadata tag and requires legal review before use or redistribution."
+        ]
+      },
+      "processing": {
+        "recipe": "Detect instruction-aligned subjects, retrieve cross-context candidates from large video and image pools, verify identity consistency with model priors, and publish target-to-reference mappings over Koala-36M metadata.",
+        "recommended_format": "parquet",
+        "notes": "Download both Parquet files, resolve clips only after rights review, extract the referenced frame and bounding box, and preserve the Koala-36M source identifiers."
+      },
+      "evidence": {
+        "homepage": "https://github.com/Phantom-video/Phantom-Data",
+        "paper": "https://arxiv.org/abs/2506.18851",
+        "used_by": [
+          "HuMo-17B"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/phantom-data.yaml",
+      "scenario_ids": [],
+      "scale_label": "~1M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/ZhuoweiChen/Phantom-data-Koala36M"
+      },
+      "upstream_dataset_ids": [
+        "koala-36m"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "humo-17b"
       ]
     },
     {
@@ -2861,7 +3172,7 @@
       "scale_label": "~645M",
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://api.github.com/repos/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus/commits/main"
+        "source_url": "https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus/commits/main.atom"
       },
       "upstream_dataset_ids": [
         "mvhumannet"
@@ -2960,7 +3271,7 @@
       "scale_label": "98.6K",
       "monitoring": {
         "priority": "high",
-        "source_url": "https://api.github.com/repos/cdjkim/audiocaps/commits/master"
+        "source_url": "https://github.com/cdjkim/audiocaps/commits/master.atom"
       },
       "upstream_dataset_ids": [
         "audioset"
@@ -3157,12 +3468,13 @@
       "scale_label": "~13.2M",
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://api.github.com/repos/fudan-generative-vision/OpenHumanVid/commits/main"
+        "source_url": "https://github.com/fudan-generative-vision/OpenHumanVid/commits/main.atom"
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [
         "openhumanvid-talking",
-        "talkverse"
+        "talkverse",
+        "humoset"
       ],
       "linked_model_ids": [
         "skyreels-v4"
@@ -3256,7 +3568,9 @@
         "source_url": "https://huggingface.co/api/datasets/Koala-36M/Koala-36M-v1"
       },
       "upstream_dataset_ids": [],
-      "downstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "phantom-data"
+      ],
       "linked_model_ids": [
         "skyreels-v4"
       ]
@@ -3801,7 +4115,7 @@
       "scale_label": "~645M",
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://api.github.com/repos/GAP-LAB-CUHK-SZ/MVHumanNet/commits/main"
+        "source_url": "https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet/commits/main.atom"
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [
@@ -3891,7 +4205,7 @@
       "scale_label": "70.7M",
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://api.github.com/repos/snap-research/Panda-70M/commits/main"
+        "source_url": "https://github.com/snap-research/Panda-70M/commits/main.atom"
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [
@@ -4083,7 +4397,7 @@
       "scale_label": "~1M",
       "monitoring": {
         "priority": "high",
-        "source_url": "https://api.github.com/repos/yuvalkirstain/PickScore/commits/main"
+        "source_url": "https://github.com/yuvalkirstain/PickScore/commits/main.atom"
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
@@ -4352,7 +4666,7 @@
       "scale_label": "~10M",
       "monitoring": {
         "priority": "high",
-        "source_url": "https://api.github.com/repos/allenai/objaverse-xl/commits/main"
+        "source_url": "https://github.com/allenai/objaverse-xl/commits/main.atom"
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [
@@ -4915,7 +5229,7 @@
       "scale_label": "35.7K",
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://api.github.com/repos/CelebV-HQ/CelebV-HQ/commits/main"
+        "source_url": "https://github.com/CelebV-HQ/CelebV-HQ/commits/main.atom"
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [
@@ -5003,7 +5317,7 @@
       "scale_label": "~10M",
       "monitoring": {
         "priority": "high",
-        "source_url": "https://api.github.com/repos/m-bain/webvid/commits/main"
+        "source_url": "https://github.com/m-bain/webvid/commits/main.atom"
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
@@ -5192,7 +5506,7 @@
       "scale_label": "~362",
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://api.github.com/repos/MRzzm/HDTF/commits/main"
+        "source_url": "https://github.com/MRzzm/HDTF/commits/main.atom"
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
@@ -5377,7 +5691,7 @@
       "scale_label": "~210K",
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://api.github.com/repos/hche11/VGGSound/commits/master"
+        "source_url": "https://github.com/hche11/VGGSound/commits/master.atom"
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [
@@ -5475,7 +5789,7 @@
       "scale_label": "~106.6K",
       "monitoring": {
         "priority": "high",
-        "source_url": "https://api.github.com/repos/mdeff/fma/commits/master"
+        "source_url": "https://github.com/mdeff/fma/commits/master.atom"
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
@@ -5850,7 +6164,7 @@
       "scale_label": "1M",
       "monitoring": {
         "priority": "high",
-        "source_url": "https://api.github.com/repos/tbertinmahieux/MSongsDB/commits/master"
+        "source_url": "https://github.com/tbertinmahieux/MSongsDB/commits/master.atom"
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
@@ -6982,7 +7296,7 @@
       },
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://api.github.com/repos/nxnai/CtrlVTON/commits/main"
+        "source_url": "https://github.com/nxnai/CtrlVTON/commits/main.atom"
       },
       "ranking_positions": [],
       "linked_dataset_ids": [
@@ -9311,7 +9625,7 @@
       },
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://api.github.com/repos/HiDream-ai/HiDream-O1-Image/commits/main"
+        "source_url": "https://github.com/HiDream-ai/HiDream-O1-Image/commits/main.atom"
       },
       "ranking_positions": [
         {
@@ -10357,7 +10671,7 @@
       },
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://api.github.com/repos/HarryWang355/FIT-VTO/commits/main"
+        "source_url": "https://github.com/HarryWang355/FIT-VTO/commits/main.atom"
       },
       "ranking_positions": [],
       "linked_dataset_ids": [
@@ -13697,6 +14011,134 @@
       "linked_dataset_ids": []
     },
     {
+      "id": "videocof",
+      "name": "VideoCoF",
+      "organization": "University of Technology Sydney and Zhejiang University",
+      "released_at": "2025-12-08",
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "instruction-guided-video-editing",
+        "video-to-video",
+        "object-removal",
+        "object-addition",
+        "object-swap",
+        "local-style-transfer"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0",
+        "release_url": "https://github.com/knightyxp/VideoCoF",
+        "weights_url": "https://huggingface.co/XiangpengYang/VideoCoF",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Wan2.1-T2V-14B diffusion transformer with Chain-of-Frames temporal reasoning and RoPE alignment",
+        "parameters": 14000000000,
+        "notes": "The model concatenates source, soft grayscale edit-region reasoning, and target tokens so it predicts where to edit before generating the result; aligned rotary positions preserve source motion and support longer inference sequences."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": true,
+        "datasets": [
+          {
+            "name": "VideoCoF-50K",
+            "catalog_id": "videocof-50k",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "49,177 released rows; paper mixture of 50K pairs across four editing tasks",
+            "notes": "The public release includes source, reasoning, and edited videos plus instructions; the paper discloses a 10K/15K/15K/10K task mixture for addition, removal, swap, and local style."
+          }
+        ],
+        "stages": [
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "synthetic"
+            ],
+            "operations": [
+              "source-video-filtering",
+              "object-removal-synthesis",
+              "object-addition-pair-reversal",
+              "vace-edit-synthesis",
+              "gpt-4o-prompt-generation",
+              "grounding-dino-mask-extraction",
+              "reasoning-frame-generation",
+              "dover-quality-filtering",
+              "vie-edit-fidelity-filtering",
+              "resolution-bucketing",
+              "lora-fine-tuning"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Fine-tune Wan2.1-T2V-14B with LoRA on 33-frame source-reasoning-target sequences, balancing four local edit tasks and filtering synthetic results for aesthetics, fidelity, and coherence."
+          }
+        ],
+        "strategy_summary": [
+          "Distill 50K edit pairs from filtered Señorita clips and synthetic MiniMax-Remover or VACE-14B transformations instead of large-scale generic pretraining.",
+          "Supervise a soft grayscale edit-region video before the target video so the diffusion model learns a see-reason-edit sequence without requiring a user mask.",
+          "Align source and target RoPE positions, bucket multiple aspect ratios, and train at 33 frames so motion alignment can extrapolate to substantially longer sequences."
+        ],
+        "unknowns": [
+          "The upstream Wan2.1 pretraining mixture, complete Señorita sample provenance, synthetic-service terms, and per-sample source licenses.",
+          "The reason the hosted release has 49,177 rows rather than the paper's 50,000 samples, plus exact filter thresholds and rejection rates.",
+          "Full optimizer, hardware, compute, and randomization details beyond the released LoRA training path."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/knightyxp/VideoCoF",
+        "technical_report": "https://arxiv.org/abs/2512.07469",
+        "repository": "https://github.com/knightyxp/VideoCoF"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/videocof.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "fine-tuning"
+        ],
+        "source_types": [
+          "public-dataset",
+          "synthetic"
+        ],
+        "operations": [
+          "source-video-filtering",
+          "object-removal-synthesis",
+          "object-addition-pair-reversal",
+          "vace-edit-synthesis",
+          "gpt-4o-prompt-generation",
+          "grounding-dino-mask-extraction",
+          "reasoning-frame-generation",
+          "dover-quality-filtering",
+          "vie-edit-fidelity-filtering",
+          "resolution-bucketing",
+          "lora-fine-tuning"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 1,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/XiangpengYang/VideoCoF"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "videocof-50k"
+      ]
+    },
+    {
       "id": "openve-edit",
       "name": "OpenVE-Edit",
       "organization": "Zhejiang University and ByteDance",
@@ -14035,7 +14477,7 @@
       },
       "monitoring": {
         "priority": "high",
-        "source_url": "https://api.github.com/repos/Tencent-Hunyuan/HunyuanVideo-1.5/commits/main"
+        "source_url": "https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5/commits/main.atom"
       },
       "ranking_positions": [],
       "linked_dataset_ids": []
@@ -14292,6 +14734,186 @@
         }
       ],
       "linked_dataset_ids": []
+    },
+    {
+      "id": "humo-17b",
+      "name": "HuMo-17B",
+      "organization": "Tsinghua University and ByteDance Intelligent Creation Team",
+      "released_at": "2025-09-10",
+      "modalities": [
+        "video",
+        "audio",
+        "image",
+        "multimodal"
+      ],
+      "tasks": [
+        "multimodal-human-video-generation",
+        "text-image-to-video",
+        "text-audio-to-video",
+        "text-image-audio-to-video",
+        "audio-driven-avatar",
+        "subject-consistent-video-generation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0",
+        "release_url": "https://github.com/Phantom-video/HuMo",
+        "weights_url": "https://huggingface.co/bytedance-research/HuMo",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Wan2.1-based diffusion transformer with reference-image latent concatenation and frame-aligned audio cross-attention",
+        "parameters": 17000000000,
+        "notes": "The flagship HuMo checkpoint extends a DiT text-to-video backbone with minimally invasive reference-image injection, Whisper audio features, focus-by-predicting face supervision, and time-adaptive multimodal CFG; the same repository also hosts a 1.7B sibling."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Phantom-Data (Koala-36M release)",
+            "catalog_id": "phantom-data",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "Approximately one million cross-pair subject-video examples",
+            "notes": "The official HuMo repository identifies Phantom-Data as the released Stage-1 subject-preservation dataset; it distributes metadata and references rather than source video files."
+          },
+          {
+            "name": "HuMoSet",
+            "catalog_id": "humoset",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "Approximately 670,000 human-centric video samples",
+            "notes": "The official companion release contains same-identity reference images, dense captions, and synchronized audio; the mapping between its aggregate rows and the paper's Stage-1 and Stage-2 subsets is not published."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "foundational-text-to-video-pretraining"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Reuse the pretrained Wan2.1 text-to-video backbone as Stage 0; its upstream data mixture is outside the HuMo disclosure."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset"
+            ],
+            "operations": [
+              "vlm-dense-captioning",
+              "sparse-frame-sampling",
+              "cross-context-reference-retrieval",
+              "identity-verification",
+              "minimal-invasive-image-injection",
+              "self-attention-only-fine-tuning"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Stage 1 trains subject preservation on roughly one million text-video-reference examples, placing cross-context reference latents after video latents and updating self-attention while freezing text-visual cross-attention."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "image",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset"
+            ],
+            "operations": [
+              "speech-segment-filtering",
+              "speech-enhancement",
+              "lip-sync-estimation",
+              "audio-cross-attention",
+              "whisper-audio-encoding",
+              "face-mask-supervision",
+              "focus-by-predicting",
+              "progressive-task-mixing"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Stage 2 adds roughly 50K temporally aligned audio samples, moving from an 80/20 subject-preservation versus audio-sync task ratio toward 50/50 while updating self-attention and audio modules for 40K steps."
+          }
+        ],
+        "strategy_summary": [
+          "Build cross-context reference pairs so identity is preserved without copying clothing, pose, makeup, age, background, or other editable attributes from the target clip.",
+          "Filter speech and lip synchronization, then progressively add audio supervision so text following and subject preservation are not erased by the audio-driven task.",
+          "Use face-mask prediction as a soft attention regularizer and time-adaptive CFG to balance text, reference image, and audio at different denoising stages."
+        ],
+        "unknowns": [
+          "The exact public-source mixture, per-source sample counts, deduplication, consent, demographic and language distribution, and sample-level license mapping.",
+          "How the 670K public HuMoSet release maps to the paper's roughly one-million Stage-1 samples and roughly 50K Stage-2 audio-aligned samples.",
+          "Wan2.1 pretraining data, total compute, full optimizer settings, data rejection rates, and whether the 1.7B and 17B checkpoints use identical mixtures."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/Phantom-video/HuMo",
+        "technical_report": "https://arxiv.org/abs/2509.08519",
+        "repository": "https://github.com/Phantom-video/HuMo"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/multimodal/humo-17b.yaml",
+      "scenario_ids": [
+        "digital-human"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed",
+          "public-dataset"
+        ],
+        "operations": [
+          "foundational-text-to-video-pretraining",
+          "vlm-dense-captioning",
+          "sparse-frame-sampling",
+          "cross-context-reference-retrieval",
+          "identity-verification",
+          "minimal-invasive-image-injection",
+          "self-attention-only-fine-tuning",
+          "speech-segment-filtering",
+          "speech-enhancement",
+          "lip-sync-estimation",
+          "audio-cross-attention",
+          "whisper-audio-encoding",
+          "face-mask-supervision",
+          "focus-by-predicting",
+          "progressive-task-mixing"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 2,
+        "scale_disclosed_stage_count": 2,
+        "stage_count": 3,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/bytedance-research/HuMo"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "phantom-data",
+        "humoset"
+      ]
     },
     {
       "id": "runway-aleph",
@@ -15073,6 +15695,22 @@
       "reference_name": "GraphVid-Bench"
     },
     {
+      "model_id": "humo-17b",
+      "dataset_id": "humoset",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "Approximately 670,000 human-centric video samples",
+      "reference_name": "HuMoSet"
+    },
+    {
+      "model_id": "humo-17b",
+      "dataset_id": "phantom-data",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "Approximately one million cross-pair subject-video examples",
+      "reference_name": "Phantom-Data (Koala-36M release)"
+    },
+    {
       "model_id": "hunyuanvideo-avatar",
       "dataset_id": "celebv-hq",
       "role": "evaluation",
@@ -15311,6 +15949,14 @@
       "availability": "gated",
       "scale": "9,931 training triplets and 100 held-out benchmark triplets",
       "reference_name": "TripVVT-10K"
+    },
+    {
+      "model_id": "videocof",
+      "dataset_id": "videocof-50k",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "49,177 released rows; paper mixture of 50K pairs across four editing tasks",
+      "reference_name": "VideoCoF-50K"
     }
   ],
   "dataset_relations": [
@@ -15343,6 +15989,13 @@
       "notes": "CelebV-HQ supplies driving signals for synthetic clips and real-video controls; identities are separated from source portraits and evaluation splits."
     },
     {
+      "source_dataset_id": "koala-36m",
+      "derived_dataset_id": "phantom-data",
+      "relationship": "annotation-derivative",
+      "contribution": "Source clip URLs, timestamps, captions, and clip-quality metadata",
+      "notes": "Phantom-Data adds cross-context subject detections, bounding boxes, reference-frame matches, and identity-verification results to Koala-36M clip metadata."
+    },
+    {
       "source_dataset_id": "mvhumannet",
       "derived_dataset_id": "mvhumannet-plus-plus",
       "relationship": "annotation-derivative",
@@ -15355,6 +16008,13 @@
       "relationship": "source-component",
       "contribution": "Source 3D objects outside the original Objaverse partition",
       "notes": "The current Cap3D release combines 785,150 original Objaverse objects with additional Objaverse-XL objects and adds captions plus derived 3D representations."
+    },
+    {
+      "source_dataset_id": "openhumanvid",
+      "derived_dataset_id": "humoset",
+      "relationship": "source-component",
+      "contribution": "A documented source of public human-centric videos and reference imagery",
+      "notes": "The official card names OpenHumanVid as one example among multiple open-source source datasets; it does not disclose the exact contribution or full source mixture."
     },
     {
       "source_dataset_id": "openhumanvid",

@@ -1,0 +1,74 @@
+id: phantom-data
+name: Phantom-Data (Koala-36M release)
+organization: ByteDance Intelligent Creation Lab
+released_at: "2025-09-30"
+release_date_source: https://huggingface.co/datasets/ZhuoweiChen/Phantom-data-Koala36M
+modality: video
+tasks:
+  - subject-consistent-video-generation
+  - reference-image-conditioned-video
+  - identity-preservation
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  A cross-pair subject-to-video training release built on Koala-36M metadata,
+  linking target clips and captions to same-identity or same-category reference
+  frames drawn from different visual contexts to reduce copy-paste behavior.
+derived_from:
+  - catalog_id: koala-36m
+    relationship: annotation-derivative
+    contribution: Source clip URLs, timestamps, captions, and clip-quality metadata
+    notes: Phantom-Data adds cross-context subject detections, bounding boxes, reference-frame matches, and identity-verification results to Koala-36M clip metadata.
+access:
+  status: metadata-only
+  type: metadata
+  url: https://huggingface.co/datasets/ZhuoweiChen/Phantom-data-Koala36M
+  requires_account: false
+  notes: The open Hugging Face repository hosts two Parquet metadata files totaling about 1.15 GB; source clips must be resolved separately from YouTube URLs and timestamps, and reference images are extracted from referenced frames.
+scale:
+  samples: 1000000
+  source_items: 53000000
+  hours: null
+  approximate: true
+  notes: The paper reports approximately one million identity-consistent pairs retrieved from more than 53 million videos and three billion candidate images.
+annotations:
+  types:
+    - video-caption
+    - clip-url
+    - clip-timestamp
+    - cross-pair-subject-map
+    - reference-frame-index
+    - subject-bounding-box
+    - identity-verification
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Apache-2.0
+  media: Source-dependent Koala-36M and YouTube terms and uploader rights
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: Hugging Face labels the metadata Apache-2.0, while the official repository restricts the dataset to non-commercial research; neither label grants rights to source videos or uploader content.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - The release contains metadata and frame references rather than redistributable source videos or ready-to-train image files.
+    - Source URLs can disappear or become restricted, and availability depends on the upstream Koala-36M and YouTube records.
+    - Automated subject detection, retrieval, and prior-guided identity verification can introduce false matches and category or demographic bias.
+    - The repository's non-commercial disclaimer is stricter than the Apache metadata tag and requires legal review before use or redistribution.
+processing:
+  recipe: Detect instruction-aligned subjects, retrieve cross-context candidates from large video and image pools, verify identity consistency with model priors, and publish target-to-reference mappings over Koala-36M metadata.
+  recommended_format: parquet
+  notes: Download both Parquet files, resolve clips only after rights review, extract the referenced frame and bounding box, and preserve the Koala-36M source identifiers.
+evidence:
+  homepage: https://github.com/Phantom-video/Phantom-Data
+  paper: https://arxiv.org/abs/2506.18851
+  used_by:
+    - HuMo-17B
+status: partial
+last_verified: "2026-07-27"

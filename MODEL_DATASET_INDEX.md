@@ -2,8 +2,8 @@
 
 Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; unreleased or undisclosed data must state why no card exists.
 
-- Models: 65
-- References linked to catalog cards: 36
+- Models: 67
+- References linked to catalog cards: 39
 - References without a card, with an explicit evidence boundary: 79
 - Ordering: model release date, newest first
 
@@ -106,12 +106,15 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [Wan 2.6](models/video/wan-2-6.yaml) | 2025-12-16 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [GPT Image 1.5](models/image/gpt-image-1-5.yaml) | 2025-12-16 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [FLUX.2 [max]](models/image/flux-2-max.yaml) | 2025-12-16 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
+| [VideoCoF](models/video/videocof.yaml) | 2025-12-08 | VideoCoF-50K | public | [`videocof-50k`](catalog/video/videocof-50k.yaml) | fine-tuning | The public release includes source, reasoning, and edited videos plus instructions; the paper discloses a 10K/15K/15K/10K task mixture for addition, removal, swap, and local style. |
 | [OpenVE-Edit](models/video/openve-edit.yaml) | 2025-12-08 | OpenVE-3M | public | [`openve-3m`](catalog/video/openve-3m.yaml) | fine-tuning | The project states OpenVE-Edit is trained on OpenVE-3M; category-level mixture weights and teacher-generation details are not fully released. |
 | [OpenVE-Edit](models/video/openve-edit.yaml) | 2025-12-08 | OpenVE-Bench | public | [`openve-bench`](catalog/evaluation/openve-bench.yaml) | evaluation | The project reports state-of-the-art results on the companion benchmark but has not yet published a complete reproducibility package for the model. |
 | [Kling O1](models/image/kling-o1.yaml) | 2025-12-01 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [HunyuanVideo 1.5](models/video/hunyuanvideo-1-5.yaml) | 2025-11-24 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Gemini 3 Pro Image (Nano Banana Pro)](models/image/gemini-3-pro-image.yaml) | 2025-11-20 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Sora 2](models/video/sora-2.yaml) | 2025-09-30 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
+| [HuMo-17B](models/multimodal/humo-17b.yaml) | 2025-09-10 | Phantom-Data (Koala-36M release) | public | [`phantom-data`](catalog/video/phantom-data.yaml) | fine-tuning | The official HuMo repository identifies Phantom-Data as the released Stage-1 subject-preservation dataset; it distributes metadata and references rather than source video files. |
+| [HuMo-17B](models/multimodal/humo-17b.yaml) | 2025-09-10 | HuMoSet | public | [`humoset`](catalog/video/humoset.yaml) | fine-tuning | The official companion release contains same-identity reference images, dense captions, and synchronized audio; the mapping between its aggregate rows and the paper's Stage-1 and Stage-2 subsets is not published. |
 | [Runway Aleph](models/video/runway-aleph.yaml) | 2025-07-25 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Seedance 1.0 Pro](models/video/seedance-1-0-pro.yaml) | 2025-06-11 | Large-scale multi-source video corpus | undisclosed | — exact source is not disclosed | pretraining | The report describes diverse durations, resolutions, subjects, scenes, styles, and camera movements but names no source dataset or mixture weight. |
 | [Seedance 1.0 Pro](models/video/seedance-1-0-pro.yaml) | 2025-06-11 | High-quality video-text SFT mixture | undisclosed | — exact source is not disclosed | fine-tuning | Curated video-text pairs with precise captions cover diverse styles and scenes; dataset identity and size are not published. |

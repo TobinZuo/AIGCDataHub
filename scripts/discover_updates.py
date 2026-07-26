@@ -514,6 +514,32 @@ def extract_source_revision(payload: str, source_url: str) -> tuple[str | None, 
         stable_url = html_url if isinstance(html_url, str) else doi_url if isinstance(doi_url, str) else None
         return revision, stable_url
 
+    if parsed_url.hostname in {"modelscope.cn", "www.modelscope.cn"} and re.fullmatch(
+        r"/api/v1/datasets/[^/]+/[^/]+", parsed_url.path
+    ):
+        dataset = metadata.get("Data")
+        if not isinstance(dataset, dict):
+            return None, None
+        namespace = dataset.get("Namespace")
+        name = dataset.get("Name")
+        dataset_id = dataset.get("Id")
+        modified = dataset.get("GmtModified")
+        if (
+            not isinstance(namespace, str)
+            or not namespace
+            or not isinstance(name, str)
+            or not name
+            or not isinstance(dataset_id, (int, str))
+            or not str(dataset_id)
+            or not isinstance(modified, (int, str))
+            or not str(modified)
+        ):
+            return None, None
+        return (
+            f"{modified}@dataset-{dataset_id}",
+            f"https://modelscope.cn/datasets/{namespace}/{name}",
+        )
+
     return None, None
 
 

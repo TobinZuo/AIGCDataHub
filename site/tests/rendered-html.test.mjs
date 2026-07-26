@@ -194,6 +194,11 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"celebv-hq"/);
   assert.match(catalog, /"talkvid"/);
   assert.match(catalog, /"mv-fashion"/);
+  assert.match(catalog, /"videocof-50k"/);
+  assert.match(catalog, /"phantom-data"/);
+  assert.match(catalog, /"humoset"/);
+  assert.match(catalog, /"videocof"/);
+  assert.match(catalog, /"humo-17b"/);
   assert.match(catalog, /"relations"/);
   assert.match(catalog, /"dataset_relations"/);
   const parsedCatalog = JSON.parse(catalog);
@@ -246,6 +251,8 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.deepEqual(models["openve-edit"].linked_dataset_ids, ["openve-3m", "openve-bench"]);
   assert.deepEqual(models["hunyuanvideo-avatar"].linked_dataset_ids, ["hdtf", "celebv-hq"]);
   assert.deepEqual(models["musetalk-1-5"].linked_dataset_ids, ["hdtf"]);
+  assert.deepEqual(models.videocof.linked_dataset_ids, ["videocof-50k"]);
+  assert.deepEqual(models["humo-17b"].linked_dataset_ids, ["phantom-data", "humoset"]);
   assert.equal(models["hunyuanvideo-avatar"].monitoring.priority, "critical");
   assert.equal(models["musetalk-1-5"].monitoring.priority, "critical");
   assert.equal(models["fashn-vton-1-5"].monitoring.priority, "critical");
@@ -269,6 +276,12 @@ test("uses generated catalog data and removes starter preview assets", async () 
   ));
   assert.ok(parsedCatalog.dataset_relations.some(
     (relation) => relation.source_dataset_id === "openhumanvid" && relation.derived_dataset_id === "openhumanvid-talking",
+  ));
+  assert.ok(parsedCatalog.dataset_relations.some(
+    (relation) => relation.source_dataset_id === "openhumanvid" && relation.derived_dataset_id === "humoset",
+  ));
+  assert.ok(parsedCatalog.dataset_relations.some(
+    (relation) => relation.source_dataset_id === "koala-36m" && relation.derived_dataset_id === "phantom-data",
   ));
   assert.ok(parsedCatalog.dataset_relations.some(
     (relation) => relation.source_dataset_id === "yfcc100m" && relation.derived_dataset_id === "commoncatalog",
@@ -306,7 +319,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.deepEqual(datasets.talkverse.upstream_dataset_ids, ["openhumanvid", "panda-70m"]);
   assert.deepEqual(
     datasets.openhumanvid.downstream_dataset_ids,
-    ["openhumanvid-talking", "talkverse"],
+    ["openhumanvid-talking", "talkverse", "humoset"],
   );
   assert.deepEqual(datasets.yfcc100m.downstream_dataset_ids, ["commoncatalog"]);
   assert.deepEqual(datasets.mvhumannet.downstream_dataset_ids, ["mvhumannet-plus-plus"]);

@@ -1,0 +1,103 @@
+id: humo-17b
+name: HuMo-17B
+organization: Tsinghua University and ByteDance Intelligent Creation Team
+released_at: "2025-09-10"
+modalities:
+  - video
+  - audio
+  - image
+  - multimodal
+tasks:
+  - multimodal-human-video-generation
+  - text-image-to-video
+  - text-audio-to-video
+  - text-image-audio-to-video
+  - audio-driven-avatar
+  - subject-consistent-video-generation
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://github.com/Phantom-video/HuMo
+  weights_url: https://huggingface.co/bytedance-research/HuMo
+  api_url: null
+architecture:
+  family: Wan2.1-based diffusion transformer with reference-image latent concatenation and frame-aligned audio cross-attention
+  parameters: 17000000000
+  notes: The flagship HuMo checkpoint extends a DiT text-to-video backbone with minimally invasive reference-image injection, Whisper audio features, focus-by-predicting face supervision, and time-adaptive multimodal CFG; the same repository also hosts a 1.7B sibling.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Phantom-Data (Koala-36M release)
+      catalog_id: phantom-data
+      role: fine-tuning
+      availability: public
+      scale: Approximately one million cross-pair subject-video examples
+      notes: The official HuMo repository identifies Phantom-Data as the released Stage-1 subject-preservation dataset; it distributes metadata and references rather than source video files.
+    - name: HuMoSet
+      catalog_id: humoset
+      role: fine-tuning
+      availability: public
+      scale: Approximately 670,000 human-centric video samples
+      notes: The official companion release contains same-identity reference images, dense captions, and synchronized audio; the mapping between its aggregate rows and the paper's Stage-1 and Stage-2 subsets is not published.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - foundational-text-to-video-pretraining
+      scale_disclosed: false
+      strategy: Reuse the pretrained Wan2.1 text-to-video backbone as Stage 0; its upstream data mixture is outside the HuMo disclosure.
+    - name: fine-tuning
+      modalities:
+        - video
+        - image
+        - text
+      source_types:
+        - public-dataset
+      operations:
+        - vlm-dense-captioning
+        - sparse-frame-sampling
+        - cross-context-reference-retrieval
+        - identity-verification
+        - minimal-invasive-image-injection
+        - self-attention-only-fine-tuning
+      scale_disclosed: true
+      strategy: Stage 1 trains subject preservation on roughly one million text-video-reference examples, placing cross-context reference latents after video latents and updating self-attention while freezing text-visual cross-attention.
+    - name: fine-tuning
+      modalities:
+        - video
+        - image
+        - audio
+        - text
+      source_types:
+        - public-dataset
+      operations:
+        - speech-segment-filtering
+        - speech-enhancement
+        - lip-sync-estimation
+        - audio-cross-attention
+        - whisper-audio-encoding
+        - face-mask-supervision
+        - focus-by-predicting
+        - progressive-task-mixing
+      scale_disclosed: true
+      strategy: Stage 2 adds roughly 50K temporally aligned audio samples, moving from an 80/20 subject-preservation versus audio-sync task ratio toward 50/50 while updating self-attention and audio modules for 40K steps.
+  strategy_summary:
+    - Build cross-context reference pairs so identity is preserved without copying clothing, pose, makeup, age, background, or other editable attributes from the target clip.
+    - Filter speech and lip synchronization, then progressively add audio supervision so text following and subject preservation are not erased by the audio-driven task.
+    - Use face-mask prediction as a soft attention regularizer and time-adaptive CFG to balance text, reference image, and audio at different denoising stages.
+  unknowns:
+    - The exact public-source mixture, per-source sample counts, deduplication, consent, demographic and language distribution, and sample-level license mapping.
+    - How the 670K public HuMoSet release maps to the paper's roughly one-million Stage-1 samples and roughly 50K Stage-2 audio-aligned samples.
+    - Wan2.1 pretraining data, total compute, full optimizer settings, data rejection rates, and whether the 1.7B and 17B checkpoints use identical mixtures.
+evidence:
+  release: https://github.com/Phantom-video/HuMo
+  technical_report: https://arxiv.org/abs/2509.08519
+  repository: https://github.com/Phantom-video/HuMo
+status: verified
+last_verified: "2026-07-27"

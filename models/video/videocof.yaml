@@ -1,0 +1,70 @@
+id: videocof
+name: VideoCoF
+organization: University of Technology Sydney and Zhejiang University
+released_at: "2025-12-08"
+modalities:
+  - video
+tasks:
+  - instruction-guided-video-editing
+  - video-to-video
+  - object-removal
+  - object-addition
+  - object-swap
+  - local-style-transfer
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://github.com/knightyxp/VideoCoF
+  weights_url: https://huggingface.co/XiangpengYang/VideoCoF
+  api_url: null
+architecture:
+  family: Wan2.1-T2V-14B diffusion transformer with Chain-of-Frames temporal reasoning and RoPE alignment
+  parameters: 14000000000
+  notes: The model concatenates source, soft grayscale edit-region reasoning, and target tokens so it predicts where to edit before generating the result; aligned rotary positions preserve source motion and support longer inference sequences.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: true
+  datasets:
+    - name: VideoCoF-50K
+      catalog_id: videocof-50k
+      role: fine-tuning
+      availability: public
+      scale: 49,177 released rows; paper mixture of 50K pairs across four editing tasks
+      notes: The public release includes source, reasoning, and edited videos plus instructions; the paper discloses a 10K/15K/15K/10K task mixture for addition, removal, swap, and local style.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - video
+        - text
+      source_types:
+        - public-dataset
+        - synthetic
+      operations:
+        - source-video-filtering
+        - object-removal-synthesis
+        - object-addition-pair-reversal
+        - vace-edit-synthesis
+        - gpt-4o-prompt-generation
+        - grounding-dino-mask-extraction
+        - reasoning-frame-generation
+        - dover-quality-filtering
+        - vie-edit-fidelity-filtering
+        - resolution-bucketing
+        - lora-fine-tuning
+      scale_disclosed: true
+      strategy: Fine-tune Wan2.1-T2V-14B with LoRA on 33-frame source-reasoning-target sequences, balancing four local edit tasks and filtering synthetic results for aesthetics, fidelity, and coherence.
+  strategy_summary:
+    - Distill 50K edit pairs from filtered Señorita clips and synthetic MiniMax-Remover or VACE-14B transformations instead of large-scale generic pretraining.
+    - Supervise a soft grayscale edit-region video before the target video so the diffusion model learns a see-reason-edit sequence without requiring a user mask.
+    - Align source and target RoPE positions, bucket multiple aspect ratios, and train at 33 frames so motion alignment can extrapolate to substantially longer sequences.
+  unknowns:
+    - The upstream Wan2.1 pretraining mixture, complete Señorita sample provenance, synthetic-service terms, and per-sample source licenses.
+    - The reason the hosted release has 49,177 rows rather than the paper's 50,000 samples, plus exact filter thresholds and rejection rates.
+    - Full optimizer, hardware, compute, and randomization details beyond the released LoRA training path.
+evidence:
+  release: https://github.com/knightyxp/VideoCoF
+  technical_report: https://arxiv.org/abs/2512.07469
+  repository: https://github.com/knightyxp/VideoCoF
+status: verified
+last_verified: "2026-07-27"

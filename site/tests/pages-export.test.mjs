@@ -51,6 +51,11 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /CelebV-HQ/);
   assert.match(html, /TalkVid/);
   assert.match(html, /MV-Fashion/);
+  assert.match(html, /VideoCoF-50K/);
+  assert.match(html, /VideoCoF/);
+  assert.match(html, /Phantom-Data/);
+  assert.match(html, /HuMoSet/);
+  assert.match(html, /HuMo-17B/);
   assert.match(html, /应用场景/);
   assert.match(html, /数字人/);
   assert.match(html, /视频翻译/);

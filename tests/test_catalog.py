@@ -60,6 +60,9 @@ class CatalogTests(unittest.TestCase):
                 "celebv-hq",
                 "talkvid",
                 "mv-fashion",
+                "videocof-50k",
+                "phantom-data",
+                "humoset",
             }.issubset(cards)
         )
         self.assertIn("video-dubbing", cards["audiovisual-translation-dub"]["tasks"])
@@ -78,6 +81,10 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(cards["mv-fashion"]["access"]["status"], "gated")
         self.assertIn("audio-driven-avatar", cards["hdtf"]["tasks"])
         self.assertEqual(cards["celebv-hq"]["access"]["type"], "urls")
+        self.assertEqual(cards["videocof-50k"]["scale"]["samples"], 49177)
+        self.assertEqual(cards["phantom-data"]["access"]["status"], "metadata-only")
+        self.assertEqual(cards["humoset"]["scale"]["samples"], 670000)
+        self.assertEqual(cards["humoset"]["access"]["type"], "hosted")
 
     def test_reference_wiki_candidates_are_backed_by_public_sources(self) -> None:
         cards = {card["id"]: card for _, card in load_cards()}
@@ -146,6 +153,14 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(
             cards["talkingheadbench"]["derived_from"][0]["catalog_id"],
             "celebv-hq",
+        )
+        self.assertEqual(
+            cards["phantom-data"]["derived_from"][0]["catalog_id"],
+            "koala-36m",
+        )
+        self.assertEqual(
+            cards["humoset"]["derived_from"][0]["catalog_id"],
+            "openhumanvid",
         )
 
     def test_site_catalog_orders_datasets_by_release_date(self) -> None:

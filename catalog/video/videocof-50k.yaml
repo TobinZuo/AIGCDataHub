@@ -1,0 +1,72 @@
+id: videocof-50k
+name: VideoCoF-50K
+organization: University of Technology Sydney and Zhejiang University
+released_at: "2026-01-02"
+release_date_source: https://github.com/knightyxp/VideoCoF
+modality: video
+tasks:
+  - instruction-guided-video-editing
+  - video-to-video
+  - object-removal
+  - object-addition
+  - object-swap
+  - local-style-transfer
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  The public training corpus for VideoCoF, pairing source videos, edit-region
+  reasoning videos, edited targets, and natural-language instructions across
+  object addition, removal, swap, and local style transfer.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/XiangpengYang/VideoCoF-50k
+  requires_account: false
+  notes: Hugging Face hosts JSON metadata and four task archives containing 49,177 rows and approximately 85.6 GB of released files.
+scale:
+  samples: 49177
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The hosted release contains 49,177 rows; the paper reports the curated training mixture as 50,000 pairs split 10K addition, 15K removal, 15K swap, and 10K local style.
+annotations:
+  types:
+    - original-video
+    - edited-video
+    - edit-region-reasoning-video
+    - natural-language-edit-instruction
+    - edit-task-type
+    - sample-id
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-NC-4.0
+  media: CC-BY-NC-4.0 release terms plus upstream source and generator dependencies
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The official dataset card is non-commercial; downstream users should also review the source-video and synthetic-teacher terms before redistributing media or derivatives.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - The released 49,177 rows are slightly fewer than the paper's rounded 50K task mixture, and the per-task release delta is not explained.
+    - Synthetic edits can inherit artifacts, safety issues, or biases from MiniMax-Remover, VACE-14B, GPT-4o, and Grounding DINO.
+    - The four local editing tasks do not cover global edits, identity-driven edits, audio edits, or the full professional editing distribution.
+    - Source-video provenance and rights are not enumerated per sample in the public card.
+processing:
+  recipe: Filter Señorita source clips; synthesize addition and removal pairs with MiniMax-Remover; generate swap and local-style pairs with VACE-14B, GPT-4o prompts, and Grounding DINO masks; create soft grayscale reasoning frames; then filter with DOVER and VIE scores.
+  recommended_format: native
+  notes: Keep original, reasoning, and edited videos joined to the instruction and task type; pin the Hugging Face revision and retain the task archive manifest.
+evidence:
+  homepage: https://github.com/knightyxp/VideoCoF
+  paper: https://arxiv.org/abs/2512.07469
+  used_by:
+    - VideoCoF
+status: verified
+last_verified: "2026-07-27"
