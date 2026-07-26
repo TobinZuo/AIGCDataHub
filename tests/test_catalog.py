@@ -139,12 +139,12 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(dates, sorted(dates, reverse=True))
         self.assertEqual(models[0]["id"], "midjourney-v8-2")
 
-    def test_every_ranking_top_ten_entry_maps_to_a_model_card(self) -> None:
+    def test_every_ranking_top_fifteen_entry_maps_to_a_model_card(self) -> None:
         rankings = build_payload()["rankings"]
         self.assertEqual(len(rankings), 5)
         for board in rankings:
             with self.subTest(board=board["id"]):
-                required = min(10, len(board["entries"]))
+                required = min(15, len(board["entries"]))
                 self.assertGreaterEqual(required, 6)
                 self.assertTrue(all(entry["model_id"] for entry in board["entries"][:required]))
 

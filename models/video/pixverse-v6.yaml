@@ -1,0 +1,54 @@
+id: pixverse-v6
+name: PixVerse V6
+organization: PixVerse
+released_at: "2026-03-30"
+ranking_names:
+  - PixVerse V6
+modalities:
+  - video
+  - audio
+tasks:
+  - text-to-video
+  - image-to-video
+  - reference-to-video
+  - video-extension
+  - storyboard-video-generation
+  - audio-video-generation
+access:
+  status: api-only
+  license: PixVerse platform terms
+  release_url: https://pixverse.ai/en/blog/pixverse-launches-v6-advancing-ai-video-generation
+  weights_url: null
+  api_url: https://docs.platform.pixverse.ai/v6-released-2056814m0
+architecture:
+  family: Undisclosed audiovisual video generation model
+  parameters: null
+  notes: PixVerse documents multi-shot generation, native audio, reference inputs, extension, and output controls but not architecture or parameter count.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - audio
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: The official launch and platform documentation describe generation workflows and native audio without any model-development dataset or processing details.
+  strategy_summary:
+    - V6 is publicly usable through product and developer interfaces, but its video, image, audio, and text data strategy is undisclosed.
+  unknowns:
+    - Dataset identities, provenance, rights, scale, language mix, captions, filtering, deduplication, and modality ratios.
+    - Multi-shot, native-audio, reference-conditioning, preference, safety, and post-training supervision.
+evidence:
+  release: https://pixverse.ai/en/blog/pixverse-launches-v6-advancing-ai-video-generation
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-27"

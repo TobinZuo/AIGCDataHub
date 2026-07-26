@@ -1,0 +1,182 @@
+schema_version: 1
+policy:
+  boundary: Candidate content-source platforms are not dataset releases and do not provide a repository download action.
+  rights: Every platform requires source-specific review of platform terms, rightsholder permissions, privacy, regional access, and the intended training use before collection.
+  internal_notes: Operational assessments from non-public planning material are intentionally excluded from the public registry.
+platforms:
+  - id: youtube
+    name: YouTube
+    homepage: https://www.youtube.com/
+    category: video-platform
+    modalities: [video, audio, image, text]
+    relevant_scenarios: [video-generation, digital-human, video-localization]
+    content_scope: User-published video, audio, thumbnails, captions, and metadata.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
+  - id: vimeo
+    name: Vimeo
+    homepage: https://vimeo.com/
+    category: video-platform
+    modalities: [video, audio, image, text]
+    relevant_scenarios: [video-generation, digital-human, video-localization]
+    content_scope: Publisher and creator video, audio, thumbnails, captions, and metadata.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
+  - id: bilibili
+    name: Bilibili
+    homepage: https://www.bilibili.com/
+    category: video-platform
+    modalities: [video, audio, image, text]
+    relevant_scenarios: [video-generation, digital-human, video-localization]
+    content_scope: User and publisher video, audio, covers, subtitles, and metadata.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
+  - id: dailymotion
+    name: Dailymotion
+    homepage: https://www.dailymotion.com/
+    category: video-platform
+    modalities: [video, audio, image, text]
+    relevant_scenarios: [video-generation, digital-human, video-localization]
+    content_scope: Publisher and user video, audio, thumbnails, captions, and metadata.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
+  - id: netflix
+    name: Netflix
+    homepage: https://www.netflix.com/
+    category: streaming-and-studio
+    modalities: [video, audio, image, text]
+    relevant_scenarios: [video-generation, video-localization]
+    content_scope: Subscription film and episodic media plus associated artwork and localization assets.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
+  - id: disney
+    name: Disney
+    homepage: https://www.disney.com/
+    category: streaming-and-studio
+    modalities: [video, audio, image, text]
+    relevant_scenarios: [video-generation, video-localization]
+    content_scope: Studio film, episodic, promotional, artwork, and localization assets.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
+  - id: warner-bros
+    name: Warner Bros.
+    homepage: https://www.warnerbros.com/
+    category: streaming-and-studio
+    modalities: [video, audio, image, text]
+    relevant_scenarios: [video-generation, video-localization]
+    content_scope: Studio film, episodic, promotional, artwork, and localization assets.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
+  - id: paramount
+    name: Paramount
+    homepage: https://www.paramount.com/
+    category: streaming-and-studio
+    modalities: [video, audio, image, text]
+    relevant_scenarios: [video-generation, video-localization]
+    content_scope: Studio film, episodic, promotional, artwork, and localization assets.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
+  - id: vcg
+    name: VCG
+    homepage: https://www.vcg.com/
+    category: stock-media
+    modalities: [image, video, text]
+    relevant_scenarios: [image-generation, video-generation]
+    content_scope: Commercial stock imagery, footage, descriptions, and collection metadata.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
+  - id: shutterstock
+    name: Shutterstock
+    homepage: https://www.shutterstock.com/
+    category: stock-media
+    modalities: [image, video, audio, text]
+    relevant_scenarios: [image-generation, video-generation]
+    content_scope: Commercial stock images, footage, audio, descriptions, and collection metadata.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
+  - id: tuchong
+    name: Tuchong
+    homepage: https://tuchong.com/
+    category: stock-media
+    modalities: [image, text]
+    relevant_scenarios: [image-generation]
+    content_scope: Photographer images, descriptions, and collection metadata.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
+  - id: tiktok-shop
+    name: TikTok Shop
+    homepage: https://shop.tiktok.com/
+    category: ecommerce
+    modalities: [image, video, text]
+    relevant_scenarios: [image-generation, video-generation, virtual-try-on]
+    content_scope: Product imagery, commerce video, listings, and product metadata.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
+  - id: amazon
+    name: Amazon
+    homepage: https://www.amazon.com/
+    category: ecommerce
+    modalities: [image, video, text]
+    relevant_scenarios: [image-generation, video-generation, virtual-try-on]
+    content_scope: Product imagery, commerce video, listings, and product metadata.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
+  - id: shopee
+    name: Shopee
+    homepage: https://shopee.com/
+    category: ecommerce
+    modalities: [image, video, text]
+    relevant_scenarios: [image-generation, video-generation, virtual-try-on]
+    content_scope: Product imagery, commerce video, listings, and product metadata.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
+  - id: temu
+    name: Temu
+    homepage: https://www.temu.com/
+    category: ecommerce
+    modalities: [image, video, text]
+    relevant_scenarios: [image-generation, video-generation, virtual-try-on]
+    content_scope: Product imagery, commerce video, listings, and product metadata.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
+  - id: shein
+    name: SHEIN
+    homepage: https://www.shein.com/
+    category: ecommerce
+    modalities: [image, video, text]
+    relevant_scenarios: [image-generation, video-generation, virtual-try-on]
+    content_scope: Fashion product imagery, commerce video, listings, and product metadata.
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"

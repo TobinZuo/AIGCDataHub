@@ -1,9 +1,10 @@
 {
-  "format_version": 9,
+  "format_version": 10,
   "generated_from": [
     "catalog/**/*.yaml",
     "models/**/*.yaml",
     "sources/scenarios.yaml",
+    "sources/source-platforms.yaml",
     "sources/watchlist.yaml",
     "sources/discovery-state.json"
   ],
@@ -38,6 +39,344 @@
       "label": "试穿与服装生成",
       "short_label": "Try-On",
       "description": "人物与服装条件生成、尺寸感知试穿、多服装组合和服装迁移。"
+    }
+  ],
+  "source_platforms": [
+    {
+      "id": "amazon",
+      "name": "Amazon",
+      "homepage": "https://www.amazon.com/",
+      "category": "ecommerce",
+      "modalities": [
+        "image",
+        "video",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "image-generation",
+        "video-generation",
+        "virtual-try-on"
+      ],
+      "content_scope": "Product imagery, commerce video, listings, and product metadata.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
+      "id": "shein",
+      "name": "SHEIN",
+      "homepage": "https://www.shein.com/",
+      "category": "ecommerce",
+      "modalities": [
+        "image",
+        "video",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "image-generation",
+        "video-generation",
+        "virtual-try-on"
+      ],
+      "content_scope": "Fashion product imagery, commerce video, listings, and product metadata.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
+      "id": "shopee",
+      "name": "Shopee",
+      "homepage": "https://shopee.com/",
+      "category": "ecommerce",
+      "modalities": [
+        "image",
+        "video",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "image-generation",
+        "video-generation",
+        "virtual-try-on"
+      ],
+      "content_scope": "Product imagery, commerce video, listings, and product metadata.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
+      "id": "temu",
+      "name": "Temu",
+      "homepage": "https://www.temu.com/",
+      "category": "ecommerce",
+      "modalities": [
+        "image",
+        "video",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "image-generation",
+        "video-generation",
+        "virtual-try-on"
+      ],
+      "content_scope": "Product imagery, commerce video, listings, and product metadata.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
+      "id": "tiktok-shop",
+      "name": "TikTok Shop",
+      "homepage": "https://shop.tiktok.com/",
+      "category": "ecommerce",
+      "modalities": [
+        "image",
+        "video",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "image-generation",
+        "video-generation",
+        "virtual-try-on"
+      ],
+      "content_scope": "Product imagery, commerce video, listings, and product metadata.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
+      "id": "shutterstock",
+      "name": "Shutterstock",
+      "homepage": "https://www.shutterstock.com/",
+      "category": "stock-media",
+      "modalities": [
+        "image",
+        "video",
+        "audio",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "image-generation",
+        "video-generation"
+      ],
+      "content_scope": "Commercial stock images, footage, audio, descriptions, and collection metadata.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
+      "id": "tuchong",
+      "name": "Tuchong",
+      "homepage": "https://tuchong.com/",
+      "category": "stock-media",
+      "modalities": [
+        "image",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "image-generation"
+      ],
+      "content_scope": "Photographer images, descriptions, and collection metadata.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
+      "id": "vcg",
+      "name": "VCG",
+      "homepage": "https://www.vcg.com/",
+      "category": "stock-media",
+      "modalities": [
+        "image",
+        "video",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "image-generation",
+        "video-generation"
+      ],
+      "content_scope": "Commercial stock imagery, footage, descriptions, and collection metadata.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
+      "id": "disney",
+      "name": "Disney",
+      "homepage": "https://www.disney.com/",
+      "category": "streaming-and-studio",
+      "modalities": [
+        "video",
+        "audio",
+        "image",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "video-generation",
+        "video-localization"
+      ],
+      "content_scope": "Studio film, episodic, promotional, artwork, and localization assets.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
+      "id": "netflix",
+      "name": "Netflix",
+      "homepage": "https://www.netflix.com/",
+      "category": "streaming-and-studio",
+      "modalities": [
+        "video",
+        "audio",
+        "image",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "video-generation",
+        "video-localization"
+      ],
+      "content_scope": "Subscription film and episodic media plus associated artwork and localization assets.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
+      "id": "paramount",
+      "name": "Paramount",
+      "homepage": "https://www.paramount.com/",
+      "category": "streaming-and-studio",
+      "modalities": [
+        "video",
+        "audio",
+        "image",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "video-generation",
+        "video-localization"
+      ],
+      "content_scope": "Studio film, episodic, promotional, artwork, and localization assets.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
+      "id": "warner-bros",
+      "name": "Warner Bros.",
+      "homepage": "https://www.warnerbros.com/",
+      "category": "streaming-and-studio",
+      "modalities": [
+        "video",
+        "audio",
+        "image",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "video-generation",
+        "video-localization"
+      ],
+      "content_scope": "Studio film, episodic, promotional, artwork, and localization assets.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
+      "id": "bilibili",
+      "name": "Bilibili",
+      "homepage": "https://www.bilibili.com/",
+      "category": "video-platform",
+      "modalities": [
+        "video",
+        "audio",
+        "image",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "video-generation",
+        "digital-human",
+        "video-localization"
+      ],
+      "content_scope": "User and publisher video, audio, covers, subtitles, and metadata.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
+      "id": "dailymotion",
+      "name": "Dailymotion",
+      "homepage": "https://www.dailymotion.com/",
+      "category": "video-platform",
+      "modalities": [
+        "video",
+        "audio",
+        "image",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "video-generation",
+        "digital-human",
+        "video-localization"
+      ],
+      "content_scope": "Publisher and user video, audio, thumbnails, captions, and metadata.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
+      "id": "vimeo",
+      "name": "Vimeo",
+      "homepage": "https://vimeo.com/",
+      "category": "video-platform",
+      "modalities": [
+        "video",
+        "audio",
+        "image",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "video-generation",
+        "digital-human",
+        "video-localization"
+      ],
+      "content_scope": "Publisher and creator video, audio, thumbnails, captions, and metadata.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "homepage": "https://www.youtube.com/",
+      "category": "video-platform",
+      "modalities": [
+        "video",
+        "audio",
+        "image",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "video-generation",
+        "digital-human",
+        "video-localization"
+      ],
+      "content_scope": "User-published video, audio, thumbnails, captions, and metadata.",
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
     }
   ],
   "datasets": [
@@ -6882,7 +7221,7 @@
       },
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://api.github.com/repos/HiDream-ai/HiDream-O1-Image/commits/main"
+        "source_url": "https://www.hidream.ai/"
       },
       "ranking_positions": [
         {
@@ -7680,6 +8019,256 @@
         "source_url": "https://huggingface.co/api/models/bytedance-research/Lance"
       },
       "ranking_positions": [],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "recraft-v4-1",
+      "name": "Recraft V4.1",
+      "organization": "Recraft",
+      "released_at": "2026-05-14",
+      "ranking_names": [
+        "Recraft V4.1 Utility",
+        "Recraft V4.1 Utility Pro"
+      ],
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "product-visualization",
+        "text-rendering",
+        "vector-image-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Recraft API terms",
+        "release_url": "https://www.recraft.ai/blog/recraft-v4-1-more-beautiful-by-nature",
+        "weights_url": null,
+        "api_url": "https://www.recraft.ai/docs/api-reference/getting-started"
+      },
+      "architecture": {
+        "family": "Undisclosed proprietary image generation model family",
+        "parameters": null,
+        "notes": "Recraft documents raster, vector, Utility, and Pro serving variants but does not publish architecture or parameter counts."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "Official release and API pages describe aesthetic, photoreal, illustration, vector, and predictable Utility behavior without a training-data recipe."
+          }
+        ],
+        "strategy_summary": [
+          "Treat Utility and Utility Pro as serving variants of one V4.1 family; no first-party corpus or post-training inventory is public."
+        ],
+        "unknowns": [
+          "Dataset identities, source rights, scale, mixture, filtering, deduplication, captions, typography supervision, and vector supervision.",
+          "Differences in training or distillation among V4.1, Utility, Vector, and Pro variants."
+        ]
+      },
+      "evidence": {
+        "release": "https://www.recraft.ai/blog/recraft-v4-1-more-beautiful-by-nature",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/image/recraft-v4-1.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://www.recraft.ai/blog/recraft-v4-1-more-beautiful-by-nature"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "text-to-image",
+          "rank": 13,
+          "elo": 1203
+        },
+        {
+          "ranking_id": "text-to-image",
+          "rank": 14,
+          "elo": 1199
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "hidream-o1-image",
+      "name": "HiDream-O1-Image",
+      "organization": "HiDream.ai",
+      "released_at": "2026-05-08",
+      "ranking_names": [
+        "HiDream-O1-Image"
+      ],
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "subject-driven-generation",
+        "reference-image-generation",
+        "text-rendering"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "MIT",
+        "release_url": "https://huggingface.co/HiDream-ai/HiDream-O1-Image",
+        "weights_url": "https://huggingface.co/HiDream-ai/HiDream-O1-Image",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "8B Pixel-level Unified Transformer",
+        "parameters": 8000000000,
+        "notes": "Raw pixels, text, and task conditions share one token space without an external VAE or disjoint text encoder; the release includes a separate reasoning-driven prompt agent."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "HiDream O1 heterogeneous visual corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "The report describes source classes and constructed supervision but does not name component datasets or publish the compiled corpus."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "public-web",
+              "licensed",
+              "synthetic"
+            ],
+            "operations": [
+              "visual-deduplication",
+              "quality-filtering",
+              "safety-filtering",
+              "vlm-captioning",
+              "editing-pair-construction",
+              "video-frame-mining"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Combine public-web and licensed images with synthetic edits, video-derived changes, subject-reference groups, and multi-panel samples, then apply clustered near-duplicate removal, quality and safety filters, and VLM prompt construction."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "instruction-tuning",
+              "prompt-agent-training",
+              "task-balancing"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Unify generation, editing, personalization, typography, layout, and storyboard supervision while training a separate reasoning-driven prompt agent to resolve knowledge and composition."
+          }
+        ],
+        "strategy_summary": [
+          "Expand beyond image-text pairs with editing triplets, multi-reference subject groups, video-derived changes, and multi-panel layouts.",
+          "Cluster SSCD features, perform local similarity search, filter quality and safety, and construct prompts with vision-language models.",
+          "Keep the open 8B checkpoint separate from the later closed 1.5 service variant."
+        ],
+        "unknowns": [
+          "Exact named datasets, licenses, total scale, per-source mixture, geographic coverage, and language distribution.",
+          "Per-task fine-tuning scale, preference data, safety thresholds, and the prompt agent's complete training set."
+        ]
+      },
+      "evidence": {
+        "release": "https://huggingface.co/HiDream-ai/HiDream-O1-Image",
+        "technical_report": "https://arxiv.org/abs/2605.11061",
+        "repository": "https://github.com/HiDream-ai/HiDream-O1-Image"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/image/hidream-o1-image.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "public-web",
+          "licensed",
+          "synthetic",
+          "proprietary"
+        ],
+        "operations": [
+          "visual-deduplication",
+          "quality-filtering",
+          "safety-filtering",
+          "vlm-captioning",
+          "editing-pair-construction",
+          "video-frame-mining",
+          "instruction-tuning",
+          "prompt-agent-training",
+          "task-balancing"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://api.github.com/repos/HiDream-ai/HiDream-O1-Image/commits/main"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "image-editing",
+          "rank": 15,
+          "elo": 1203
+        }
+      ],
       "linked_dataset_ids": []
     },
     {
@@ -8969,6 +9558,200 @@
       "linked_dataset_ids": []
     },
     {
+      "id": "veo-3-1-lite",
+      "name": "Veo 3.1 Lite",
+      "organization": "Google DeepMind",
+      "released_at": "2026-03-31",
+      "ranking_names": [
+        "Veo 3.1 Lite"
+      ],
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Google Gemini API terms",
+        "release_url": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/",
+        "weights_url": null,
+        "api_url": "https://ai.google.dev/gemini-api/docs/video"
+      },
+      "architecture": {
+        "family": "Undisclosed cost-optimized Veo 3.1 family variant",
+        "parameters": null,
+        "notes": "Google positions Lite as a same-speed, lower-cost family variant supporting text-to-video and image-to-video, but publishes no variant-specific topology or parameter count."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "The Lite release documents cost, speed, resolutions, durations, and input modes without identifying any training or post-training data."
+          }
+        ],
+        "strategy_summary": [
+          "Keep Lite separate from Veo 3.1 and Fast because its March release date and exact training delta are not represented by the January family endpoint."
+        ],
+        "unknowns": [
+          "Dataset identities, provenance, licenses, scale, mixture, captions, filtering, deduplication, and safety processing.",
+          "Distillation or efficiency recipe, relationship to Veo 3.1/Fast weights, post-training data, and whether audio data is used."
+        ]
+      },
+      "evidence": {
+        "release": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/veo-3-1-lite.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "text-to-video",
+          "rank": 14,
+          "elo": 1092
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "pixverse-v6",
+      "name": "PixVerse V6",
+      "organization": "PixVerse",
+      "released_at": "2026-03-30",
+      "ranking_names": [
+        "PixVerse V6"
+      ],
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "reference-to-video",
+        "video-extension",
+        "storyboard-video-generation",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "PixVerse platform terms",
+        "release_url": "https://pixverse.ai/en/blog/pixverse-launches-v6-advancing-ai-video-generation",
+        "weights_url": null,
+        "api_url": "https://docs.platform.pixverse.ai/v6-released-2056814m0"
+      },
+      "architecture": {
+        "family": "Undisclosed audiovisual video generation model",
+        "parameters": null,
+        "notes": "PixVerse documents multi-shot generation, native audio, reference inputs, extension, and output controls but not architecture or parameter count."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "The official launch and platform documentation describe generation workflows and native audio without any model-development dataset or processing details."
+          }
+        ],
+        "strategy_summary": [
+          "V6 is publicly usable through product and developer interfaces, but its video, image, audio, and text data strategy is undisclosed."
+        ],
+        "unknowns": [
+          "Dataset identities, provenance, rights, scale, language mix, captions, filtering, deduplication, and modality ratios.",
+          "Multi-shot, native-audio, reference-conditioning, preference, safety, and post-training supervision."
+        ]
+      },
+      "evidence": {
+        "release": "https://pixverse.ai/en/blog/pixverse-launches-v6-advancing-ai-video-generation",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/pixverse-v6.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://pixverse.ai/en/blog/pixverse-launches-v6-advancing-ai-video-generation"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "image-to-video",
+          "rank": 12,
+          "elo": 1073
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
       "id": "gemini-3-1-flash-image",
       "name": "Gemini 3.1 Flash Image (Nano Banana 2)",
       "organization": "Google DeepMind",
@@ -9721,6 +10504,8 @@
       "organization": "Kuaishou Technology",
       "released_at": "2026-02-05",
       "ranking_names": [
+        "Kling Image 3.0 Omni",
+        "Kling Image 3.0",
         "Kling 3.0 1080p (Pro)",
         "Kling 3.0 1080p Pro",
         "Kling 3.0 720p (Standard)",
@@ -9728,6 +10513,7 @@
         "Kling 3.0 Omni 1080p",
         "Kling 3.0 Omni 1080p (Pro)",
         "Kling 3.0 Omni 720p",
+        "Kling 3.0 Omni 720p (Standard)",
         "Kling 3.0 Pro"
       ],
       "modalities": [
@@ -9813,6 +10599,16 @@
       "monitoring": null,
       "ranking_positions": [
         {
+          "ranking_id": "image-editing",
+          "rank": 11,
+          "elo": 1215
+        },
+        {
+          "ranking_id": "image-editing",
+          "rank": 14,
+          "elo": 1203
+        },
+        {
           "ranking_id": "image-to-video",
           "rank": 11,
           "elo": 1075
@@ -9841,6 +10637,11 @@
           "ranking_id": "text-to-video",
           "rank": 10,
           "elo": 1098
+        },
+        {
+          "ranking_id": "text-to-video",
+          "rank": 12,
+          "elo": 1093
         },
         {
           "ranking_id": "video-editing",
@@ -9946,6 +10747,205 @@
           "ranking_id": "image-to-video",
           "rank": 9,
           "elo": 1082
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "grok-imagine-image",
+      "name": "Grok Imagine Image",
+      "organization": "xAI",
+      "released_at": "2026-01-28",
+      "ranking_names": [
+        "grok-imagine-image"
+      ],
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "multi-image-editing"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "xAI terms of service",
+        "release_url": "https://x.ai/news/grok-imagine-api",
+        "weights_url": null,
+        "api_url": "https://docs.x.ai/developers/models/grok-imagine-image"
+      },
+      "architecture": {
+        "family": "Undisclosed image generation and editing model",
+        "parameters": null,
+        "notes": "xAI publishes the endpoint, dated serving alias, input/output modalities, and pricing but not the architecture or parameter count."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "The Imagine API launch and model documentation do not identify training, editing, preference, or safety datasets for this endpoint."
+          }
+        ],
+        "strategy_summary": [
+          "Track the base endpoint separately from Quality Mode; xAI has not published a current model-specific data recipe."
+        ],
+        "unknowns": [
+          "Image and text sources, provenance, rights, scale, filtering, deduplication, captions, and mixture weights.",
+          "Editing, preference, safety, and post-training data, plus the relationship to the earlier Aurora model."
+        ]
+      },
+      "evidence": {
+        "release": "https://x.ai/news/grok-imagine-api",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/image/grok-imagine-image.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://docs.x.ai/developers/models/grok-imagine-image"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "image-editing",
+          "rank": 12,
+          "elo": 1213
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "vidu-q3-pro",
+      "name": "Vidu Q3 Pro",
+      "organization": "ShengShu Technology",
+      "released_at": "2026-01-27",
+      "ranking_names": [
+        "Vidu Q3 Pro"
+      ],
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "first-last-frame-video",
+        "reference-to-video",
+        "storyboard-video-generation",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Vidu API platform terms",
+        "release_url": "https://platform.vidu.com/docs/update",
+        "weights_url": null,
+        "api_url": "https://platform.vidu.com/docs/model-map"
+      },
+      "architecture": {
+        "family": "Undisclosed Vidu Q3 native audiovisual generation model",
+        "parameters": null,
+        "notes": "The Q3 Pro API supports synchronized audio/video, smart scene cuts, and up to 16-second output, but its exact architecture and parameter count are not published."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "Vidu's release notes, product page, and API documentation expose capabilities and serving parameters without a Q3 Pro training-data recipe."
+          }
+        ],
+        "strategy_summary": [
+          "Do not inherit the original 2024 Vidu technical report's architecture or data claims into Q3 Pro without version-specific evidence."
+        ],
+        "unknowns": [
+          "Video, image, audio, and text source identities, rights, scale, mixture, language coverage, captions, filtering, and deduplication.",
+          "Storyboard, synchronization, preference, safety, and industry-specialization post-training data."
+        ]
+      },
+      "evidence": {
+        "release": "https://platform.vidu.com/docs/update",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/vidu-q3-pro.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://platform.vidu.com/docs/update"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "image-to-video",
+          "rank": 14,
+          "elo": 1066
+        },
+        {
+          "ranking_id": "text-to-video",
+          "rank": 15,
+          "elo": 1083
         }
       ],
       "linked_dataset_ids": []
@@ -10935,6 +11935,102 @@
       "linked_dataset_ids": []
     },
     {
+      "id": "flux-2-max",
+      "name": "FLUX.2 [max]",
+      "organization": "Black Forest Labs",
+      "released_at": "2025-12-16",
+      "ranking_names": [
+        "FLUX.2 [max]"
+      ],
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "multi-reference-image-editing",
+        "grounded-image-generation",
+        "text-rendering"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "FLUX API service terms",
+        "release_url": "https://docs.bfl.ai/release-notes",
+        "weights_url": null,
+        "api_url": "https://docs.bfl.ai/flux_2/flux2_overview"
+      },
+      "architecture": {
+        "family": "Undisclosed highest-quality FLUX.2 service variant",
+        "parameters": null,
+        "notes": "BFL documents unified generation/editing, multi-reference conditioning, and grounding search but not the Max parameter count or complete architecture."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "The Max launch and FLUX.2 family overview publish capabilities and serving behavior without identifying training sources, scale, curation, or post-training data."
+          }
+        ],
+        "strategy_summary": [
+          "Keep the closed Max endpoint separate from the open-weight Dev and Klein variants; family membership does not establish a shared exact corpus."
+        ],
+        "unknowns": [
+          "Dataset identities, provenance, licenses, scale, mixture, filtering, deduplication, captions, and safety processing.",
+          "Max-specific training changes, editing and preference data, grounding-search training, and its relationship to other FLUX.2 checkpoints."
+        ]
+      },
+      "evidence": {
+        "release": "https://docs.bfl.ai/release-notes",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/image/flux-2-max.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://docs.bfl.ai/release-notes"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "text-to-image",
+          "rank": 15,
+          "elo": 1194
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
       "id": "openve-edit",
       "name": "OpenVE-Edit",
       "organization": "Zhejiang University and ByteDance",
@@ -11052,6 +12148,107 @@
         "openve-3m",
         "openve-bench"
       ]
+    },
+    {
+      "id": "kling-o1",
+      "name": "Kling O1",
+      "organization": "Kuaishou Technology",
+      "released_at": "2025-12-01",
+      "ranking_names": [
+        "Kling Image O1"
+      ],
+      "modalities": [
+        "image",
+        "video"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "reference-image-generation",
+        "text-to-video",
+        "image-to-video",
+        "video-editing",
+        "reference-to-video"
+      ],
+      "access": {
+        "status": "product-only",
+        "license": "Kling AI service terms",
+        "release_url": "https://ir.kuaishou.com/news-releases/news-release-details/kling-o1-launches-worlds-first-unified-multimodal-video-model-0/",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Multimodal Visual Language unified generation and editing framework",
+        "parameters": null,
+        "notes": "Kuaishou describes one engine that accepts text, image, video, and subject inputs across image and video generation/editing, but does not publish its parameter count or full topology."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "The first-party launch explains the unified multimodal task surface without identifying training sources, curation, scale, or post-training data."
+          }
+        ],
+        "strategy_summary": [
+          "Map the leaderboard's Image O1 label to the first-party Kling O1 family while keeping its undisclosed data boundary explicit."
+        ],
+        "unknowns": [
+          "Dataset identities, provenance, rights, scale, mixture, captions, filtering, deduplication, and safety processing.",
+          "Image-specific versus video-specific training stages, preference data, and product checkpoint changes."
+        ]
+      },
+      "evidence": {
+        "release": "https://ir.kuaishou.com/news-releases/news-release-details/kling-o1-launches-worlds-first-unified-multimodal-video-model-0/",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/image/kling-o1.yaml",
+      "scenario_ids": [
+        "image-generation",
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://ir.kuaishou.com/news-releases/news-release-details/kling-o1-launches-worlds-first-unified-multimodal-video-model-0/"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "image-editing",
+          "rank": 13,
+          "elo": 1203
+        }
+      ],
+      "linked_dataset_ids": []
     },
     {
       "id": "hunyuanvideo-1-5",
@@ -12185,7 +13382,7 @@
           "samples": 8424,
           "released": "Feb 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "kling-3"
         },
         {
           "rank": 12,
@@ -12196,7 +13393,7 @@
           "samples": 8857,
           "released": "Jan 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "grok-imagine-image"
         },
         {
           "rank": 13,
@@ -12207,7 +13404,7 @@
           "samples": 7450,
           "released": "Dec 2025",
           "open_weights": false,
-          "model_id": null
+          "model_id": "kling-o1"
         },
         {
           "rank": 14,
@@ -12218,7 +13415,7 @@
           "samples": 8142,
           "released": "Feb 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "kling-3"
         },
         {
           "rank": 15,
@@ -12229,7 +13426,7 @@
           "samples": 5931,
           "released": "May 2026",
           "open_weights": true,
-          "model_id": null
+          "model_id": "hidream-o1-image"
         }
       ]
     },
@@ -12367,7 +13564,7 @@
           "samples": 8354,
           "released": "Mar 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "pixverse-v6"
         },
         {
           "rank": 13,
@@ -12389,7 +13586,7 @@
           "samples": 8684,
           "released": "Jan 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "vidu-q3-pro"
         },
         {
           "rank": 15,
@@ -12549,7 +13746,7 @@
           "samples": 5388,
           "released": "May 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "recraft-v4-1"
         },
         {
           "rank": 14,
@@ -12560,7 +13757,7 @@
           "samples": 14861,
           "released": "May 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "recraft-v4-1"
         },
         {
           "rank": 15,
@@ -12571,7 +13768,7 @@
           "samples": 11234,
           "released": "Dec 2025",
           "open_weights": false,
-          "model_id": null
+          "model_id": "flux-2-max"
         }
       ]
     },
@@ -12709,7 +13906,7 @@
           "samples": 7568,
           "released": "Feb 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "kling-3"
         },
         {
           "rank": 13,
@@ -12731,7 +13928,7 @@
           "samples": 7271,
           "released": "Mar 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "veo-3-1-lite"
         },
         {
           "rank": 15,
@@ -12742,7 +13939,7 @@
           "samples": 10993,
           "released": "Jan 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "vidu-q3-pro"
         }
       ]
     },

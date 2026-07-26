@@ -7,6 +7,7 @@ import argparse
 import concurrent.futures
 import hashlib
 import json
+import os
 import re
 import urllib.error
 import urllib.parse
@@ -505,6 +506,11 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
         "User-Agent": USER_AGENT,
         "Accept": "application/vnd.github+json,application/json,text/html;q=0.9,*/*;q=0.5",
     }
+    hostname = (urllib.parse.urlsplit(source_url).hostname or "").lower()
+    github_token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    if hostname == "api.github.com" and github_token:
+        headers["Authorization"] = f"Bearer {github_token}"
+        headers["X-GitHub-Api-Version"] = "2022-11-28"
     request = urllib.request.Request(source_url, headers=headers)
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
@@ -568,6 +574,8 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
         error = "timeout"
     except urllib.error.URLError as exc:
         error = f"network-{type(exc.reason).__name__}"
+    except OSError as exc:
+        error = f"network-{type(exc).__name__}"
     except (UnicodeError, ValueError) as exc:
         error = f"parse-{type(exc).__name__}"
     return SourceSnapshot(

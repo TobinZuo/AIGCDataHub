@@ -12,6 +12,7 @@ from dataclasses import dataclass
 
 from catalog import load_cards
 from models import load_models
+from source_platforms import load_source_platforms
 
 HARD_FAILURES = {"HTTP 404", "HTTP 410"}
 
@@ -41,6 +42,8 @@ def links() -> list[Link]:
         for field_name in ("release", "technical_report", "repository"):
             if card["evidence"][field_name]:
                 result.add(Link(card["id"], f"evidence.{field_name}", card["evidence"][field_name]))
+    for platform in load_source_platforms():
+        result.add(Link(platform["id"], "homepage", platform["homepage"]))
     return sorted(result, key=lambda item: (item.url, item.entity_id, item.field))
 
 

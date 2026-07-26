@@ -26,10 +26,16 @@ jobs:
         run: python scripts/validate_catalog.py
       - name: Validate model and data-strategy cards
         run: python scripts/validate_models.py
+      - name: Validate candidate source platforms
+        run: python scripts/validate_source_platforms.py
       - name: Check catalog freshness
         run: python scripts/check_freshness.py
       - name: Check generated README
         run: python scripts/build_readme.py --check
+      - name: Check dataset access index
+        run: python scripts/build_dataset_access_index.py --check
+      - name: Check candidate source-platform index
+        run: python scripts/build_source_platform_index.py --check
       - name: Check model-dataset audit index
         run: python scripts/build_model_dataset_index.py --check
       - name: Check generated site data

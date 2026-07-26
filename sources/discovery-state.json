@@ -1,6 +1,6 @@
 {
   "schema_version": 6,
-  "generated_at": "2026-07-26T16:26:32Z",
+  "generated_at": "2026-07-26T16:56:08Z",
   "sources": [
     {
       "track_id": "dataset-release-feeds",
@@ -1765,7 +1765,7 @@
           "url": "https://huggingface.co/models?pipeline_tag=text-to-video"
         },
         {
-          "title": "nvidia/Qwen-Image-Flash Text-to-Image • 20B • Updated 3 days ago • 238 • 44",
+          "title": "nvidia/Qwen-Image-Flash Text-to-Image • 20B • Updated 4 days ago • 238 • 44",
           "url": "https://huggingface.co/nvidia/Qwen-Image-Flash"
         },
         {
@@ -2363,7 +2363,7 @@
       "revision_url": "https://github.com/HiDream-ai/HiDream-O1-Image/commit/2c2d29ff729e48f33e41f49edfdbd81d5ac103b4",
       "catalog_id": null,
       "priority": "critical",
-      "model_id": "hidream-o1-image-1-5",
+      "model_id": "hidream-o1-image",
       "ranking_id": null,
       "rankings": []
     },
@@ -2414,6 +2414,110 @@
     },
     {
       "track_id": "important-model-updates",
+      "source_url": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/",
+      "resolved_url": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "developer documentation",
+          "url": "https://ai.google.dev/gemini-api/docs/models/veo-3.1-lite-generate-preview"
+        },
+        {
+          "title": "Google AI Studio",
+          "url": "https://aistudio.google.com/prompts/new_video?model=veo-3.1-lite-generate-preview"
+        },
+        {
+          "title": "Google Workspace Create, edit and star in videos with two Google Vids updates By Justin Luk",
+          "url": "https://blog.google/products-and-platforms/products/workspace/gemini-omni-personal-avatars"
+        },
+        {
+          "title": "x.com",
+          "url": "https://twitter.com/intent/tweet?text=Build+with+Veo+3.1+Lite%2C+our+most+cost-effective+video+generation+model+%40google&url=https%3A%2F%2Fblog.google%2Finnovation-and-ai%2Ftechnology%2Fai%2Fveo-3-1-lite%2F"
+        },
+        {
+          "title": "Facebook",
+          "url": "https://www.facebook.com/sharer/sharer.php?caption=Build+with+Veo+3.1+Lite%2C+our+most+cost-effective+video+generation+model&u=https%3A%2F%2Fblog.google%2Finnovation-and-ai%2Ftechnology%2Fai%2Fveo-3-1-lite%2F"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/shareArticle?mini=true&title=Build+with+Veo+3.1+Lite%2C+our+most+cost-effective+video+generation+model&url=https%3A%2F%2Fblog.google%2Finnovation-and-ai%2Ftechnology%2Fai%2Fveo-3-1-lite%2F"
+        }
+      ],
+      "error": null,
+      "revision": "sha256:6dabc7242f6f629bdfd03e6044d625296501f2ead385dd26cf9ff919d3d30221",
+      "revision_url": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "veo-3-1-lite",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://docs.bfl.ai/release-notes",
+      "resolved_url": "https://docs.bfl.ai/release-notes",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "announcement",
+          "url": "https://bfl.ai/blog/flux-erase-remove-anything-leave-no-trace"
+        },
+        {
+          "title": "Flux API Service Terms",
+          "url": "https://bfl.ai/legal/flux-api-service-terms"
+        },
+        {
+          "title": "Preview Endpoint documentation",
+          "url": "https://docs.bfl.ai/flux_2/flux2_overview"
+        },
+        {
+          "title": "API documentation",
+          "url": "https://docs.bfl.ai/flux_2/flux2_text_to_image"
+        },
+        {
+          "title": "FLUX1.1 [pro] documentation",
+          "url": "https://docs.bfl.ai/flux_models/flux_1_1_pro"
+        },
+        {
+          "title": "FLUX Erase documentation",
+          "url": "https://docs.bfl.ai/flux_tools/flux_erase"
+        },
+        {
+          "title": "FLUX Outpainting documentation",
+          "url": "https://docs.bfl.ai/flux_tools/flux_outpainting"
+        },
+        {
+          "title": "FLUX Virtual Try-On documentation",
+          "url": "https://docs.bfl.ai/flux_tools/flux_vto"
+        },
+        {
+          "title": "FLUX.1 Kontext [pro] documentation",
+          "url": "https://docs.bfl.ai/kontext/kontext_text_to_image"
+        },
+        {
+          "title": "public demo",
+          "url": "https://flux-tools.bfl.ai/erase"
+        },
+        {
+          "title": "public demo",
+          "url": "https://flux-tools.bfl.ai/outpainting"
+        },
+        {
+          "title": "public demo",
+          "url": "https://flux-tools.bfl.ai/virtual-try-on"
+        }
+      ],
+      "error": null,
+      "revision": "sha256:924cfa788bcc1824e68bf72647eaf8405600723cce4cfb1216d16a45f0611c6d",
+      "revision_url": "https://docs.bfl.ai/release-notes",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "flux-2-max",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
       "source_url": "https://docs.byteplus.com/en/docs/ModelArk/2582775",
       "resolved_url": "https://docs.byteplus.com/en/docs/ModelArk/2582775",
       "status": 200,
@@ -2456,11 +2560,71 @@
         }
       ],
       "error": null,
-      "revision": "sha256:6f25002d7522d7eb61914e4e2b0e5e2e7c777067642f7a52f1925cd7a8e3f68d",
+      "revision": "sha256:43fe396ee4a5c4a72849e92c4966a345fb3c01e226c80df39a949f321692880a",
       "revision_url": "https://docs.byteplus.com/en/docs/ModelArk/2582775",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "seedream-5-0-pro",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://docs.x.ai/developers/models/grok-imagine-image",
+      "resolved_url": "https://docs.x.ai/developers/models/grok-imagine-image",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Try in playground",
+          "url": "https://console.x.ai/team/default/image?model=grok-imagine-image"
+        },
+        {
+          "title": "Image Editing",
+          "url": "https://docs.x.ai/developers/model-capabilities/images/editing"
+        },
+        {
+          "title": "Image Generation",
+          "url": "https://docs.x.ai/developers/model-capabilities/images/generation"
+        },
+        {
+          "title": "Multi-Image Editing",
+          "url": "https://docs.x.ai/developers/model-capabilities/images/multi-image-editing"
+        },
+        {
+          "title": "Video Editing",
+          "url": "https://docs.x.ai/developers/model-capabilities/video/editing"
+        },
+        {
+          "title": "Video Extension",
+          "url": "https://docs.x.ai/developers/model-capabilities/video/extension"
+        },
+        {
+          "title": "Video Generation",
+          "url": "https://docs.x.ai/developers/model-capabilities/video/generation"
+        },
+        {
+          "title": "Image-to-Video",
+          "url": "https://docs.x.ai/developers/model-capabilities/video/image-to-video"
+        },
+        {
+          "title": "Reference-to-Video",
+          "url": "https://docs.x.ai/developers/model-capabilities/video/reference-to-video"
+        },
+        {
+          "title": "View as Markdown",
+          "url": "https://docs.x.ai/developers/models/grok-imagine-image.md"
+        },
+        {
+          "title": "Learn more Generate images Use Grok to generate images.",
+          "url": "https://docs.x.ai/docs/guides/image-generation"
+        }
+      ],
+      "error": null,
+      "revision": "sha256:f4373eab82b3c3fdf0ed3837c117a263040dd85f36302ef15368d35f44a00447",
+      "revision_url": "https://docs.x.ai/developers/models/grok-imagine-image",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "grok-imagine-image",
       "ranking_id": null,
       "rankings": []
     },
@@ -2516,7 +2680,7 @@
         }
       ],
       "error": null,
-      "revision": "sha256:2433dcdf9e9d9fecf7c10b5811d8775a7020e2ddc923d9c8d8b15e2e76904c88",
+      "revision": "sha256:ff4db6dc15766aebf63083925870ecd7fa94188d08272b6a6c634d8b727b2454",
       "revision_url": "https://docs.x.ai/developers/models/grok-imagine-image-quality",
       "catalog_id": null,
       "priority": "critical",
@@ -2576,7 +2740,7 @@
         }
       ],
       "error": null,
-      "revision": "sha256:66ebfcab757f5f1cc1ef6a757d97a8e9f26694e57405e153664c34c4b903ced1",
+      "revision": "sha256:26ac8031b3bb5d9fb14353f9c3fa3f842fc151049ffd8cc91b0f4a83979b5b36",
       "revision_url": "https://docs.x.ai/developers/models/grok-imagine-video",
       "catalog_id": null,
       "priority": "critical",
@@ -2766,6 +2930,21 @@
     },
     {
       "track_id": "important-model-updates",
+      "source_url": "https://ir.kuaishou.com/news-releases/news-release-details/kling-o1-launches-worlds-first-unified-multimodal-video-model-0/",
+      "resolved_url": "https://ir.kuaishou.com/news-releases/news-release-details/kling-o1-launches-worlds-first-unified-multimodal-video-model-0",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:6c983027b35c288f4b2a0ccec65235cec08319f1496891c80971107a2d310223",
+      "revision_url": "https://ir.kuaishou.com/news-releases/news-release-details/kling-o1-launches-worlds-first-unified-multimodal-video-model-0",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "kling-o1",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
       "source_url": "https://lumalabs.ai/news/uni-1-1-api",
       "resolved_url": "https://lumalabs.ai/news/uni-1-1-api",
       "status": 200,
@@ -2780,11 +2959,50 @@
         }
       ],
       "error": null,
-      "revision": "sha256:f0195d29eb49184e09eb411b73d8d83aefc8318f357bf13583bfa5796a7ba776",
+      "revision": "sha256:3ecfc4903622452dbc49f68bc11dfb940bd2e7ffd2da66a144046d1f9723da67",
       "revision_url": "https://lumalabs.ai/news/uni-1-1-api",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "luma-uni-1-max",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://pixverse.ai/en/blog/pixverse-launches-v6-advancing-ai-video-generation",
+      "resolved_url": "https://pixverse.ai/en/blog/pixverse-launches-v6-advancing-ai-video-generation",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "PixVerse V6 Review",
+          "url": "https://pixverse.ai/en/blog/pixverse-v6-ai-video-generator-review"
+        },
+        {
+          "title": "AI Video Generator",
+          "url": "https://pixverse.ai/en/product/ai-video-generator"
+        }
+      ],
+      "error": null,
+      "revision": "sha256:076dc6232ced8380f930b6cb11c21df0aae0f883c72cbc807afa527f12367900",
+      "revision_url": "https://pixverse.ai/en/blog/pixverse-launches-v6-advancing-ai-video-generation",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "pixverse-v6",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://platform.vidu.com/docs/update",
+      "resolved_url": "https://platform.vidu.com/docs/update",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:68d7dd45442ed3f0792770f9ea0184d987cf078f00b3dc3d23ed4a2953dc7bc7",
+      "revision_url": "https://platform.vidu.com/docs/update",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "vidu-q3-pro",
       "ranking_id": null,
       "rankings": []
     },
@@ -2800,6 +3018,142 @@
       "catalog_id": null,
       "priority": "critical",
       "model_id": "veo-3-1",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://www.hidream.ai/",
+      "resolved_url": "https://hidreamai.com/home",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "No.1 in China! No.2 Globally! HiDream-O1-Image-1.5 Large Model Sets New Records",
+          "url": "https://mp.weixin.qq.com/s/VyPXh-hexlW189gwJpA1og"
+        },
+        {
+          "title": "HiDream.ai × SenseTime Large Device: Full-Stack Empowers the World's First Openly Accessible Video-Generating DiT Model",
+          "url": "https://mp.weixin.qq.com/s/bQ3yMfHkznxk7xSwsVowpw"
+        },
+        {
+          "title": "Once Again on the Artificial Analysis List! HiDream.ai Releases Latest Open-Source Image Editing Model HiDream-E1.1",
+          "url": "https://mp.weixin.qq.com/s/cQsLtDpiML4w57eWmRf-Mg"
+        },
+        {
+          "title": "HiDream.ai Joins Hands with Tencent Cloud to Launch a Joint Journey of AI Visual Multi-Modal Innovation",
+          "url": "https://mp.weixin.qq.com/s/uuJ4zM7foqaWofhebocSmg"
+        },
+        {
+          "title": "HiDream.ai’s Image Model Tops the Artificial Analysis Text to Image Leaderboard",
+          "url": "https://www.geekpark.net/news/364320"
+        }
+      ],
+      "error": null,
+      "revision": "sha256:ef33d5222a70facd22e8131cf0df3f53739310880e145efb7f2defd0a0d32239",
+      "revision_url": "https://hidreamai.com/home",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "hidream-o1-image-1-5",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://www.recraft.ai/blog/recraft-v4-1-more-beautiful-by-nature",
+      "resolved_url": "https://www.recraft.ai/blog/recraft-v4-1-more-beautiful-by-nature",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "AI image generator",
+          "url": "https://www.recraft.ai/ai-image-generator"
+        },
+        {
+          "title": "Flux",
+          "url": "https://www.recraft.ai/ai-models/flux"
+        },
+        {
+          "title": "GPT Image",
+          "url": "https://www.recraft.ai/ai-models/gpt-image"
+        },
+        {
+          "title": "Grok Image",
+          "url": "https://www.recraft.ai/ai-models/grok-image"
+        },
+        {
+          "title": "Imagen",
+          "url": "https://www.recraft.ai/ai-models/imagen"
+        },
+        {
+          "title": "Nano Banana",
+          "url": "https://www.recraft.ai/ai-models/nano-banana"
+        },
+        {
+          "title": "Qwen Image",
+          "url": "https://www.recraft.ai/ai-models/qwen-image"
+        },
+        {
+          "title": "Grok Video",
+          "url": "https://www.recraft.ai/ai-video-models/grok-video"
+        },
+        {
+          "title": "Hailuo",
+          "url": "https://www.recraft.ai/ai-video-models/hailuo"
+        },
+        {
+          "title": "Kling",
+          "url": "https://www.recraft.ai/ai-video-models/kling"
+        },
+        {
+          "title": "Pixverse",
+          "url": "https://www.recraft.ai/ai-video-models/pixverse"
+        },
+        {
+          "title": "Ray",
+          "url": "https://www.recraft.ai/ai-video-models/ray"
+        },
+        {
+          "title": "Seedance",
+          "url": "https://www.recraft.ai/ai-video-models/seedance"
+        },
+        {
+          "title": "Sora",
+          "url": "https://www.recraft.ai/ai-video-models/sora"
+        },
+        {
+          "title": "Veo",
+          "url": "https://www.recraft.ai/ai-video-models/veo"
+        },
+        {
+          "title": "Wan",
+          "url": "https://www.recraft.ai/ai-video-models/wan"
+        },
+        {
+          "title": "Exploration Mode Explore first, refine later: a new way to generate images",
+          "url": "https://www.recraft.ai/blog/exploration-mode"
+        },
+        {
+          "title": "Gemini Omni Flash and Nano Banana 2 Lite Land in Recraft Studio",
+          "url": "https://www.recraft.ai/blog/gemini-omni-flash-and-nano-banana-2-lite-land-in-recraft-studio"
+        },
+        {
+          "title": "Introducing Recraft V4",
+          "url": "https://www.recraft.ai/blog/introducing-recraft-v4-design-taste-meets-image-generation"
+        },
+        {
+          "title": "Stock images",
+          "url": "https://www.recraft.ai/generate/stock-images"
+        },
+        {
+          "title": "AI image editor with prompt",
+          "url": "https://www.recraft.ai/prompt-based-ai-image-editing"
+        }
+      ],
+      "error": null,
+      "revision": "sha256:64a2439925c47d5cb77a0ef08fcc03a2fe37a88dcc3b903f775d3b58e598213c",
+      "revision_url": "https://www.recraft.ai/blog/recraft-v4-1-more-beautiful-by-nature",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "recraft-v4-1",
       "ranking_id": null,
       "rankings": []
     },

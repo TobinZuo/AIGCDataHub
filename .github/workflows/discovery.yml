@@ -26,6 +26,8 @@ jobs:
       - name: Install development dependencies
         run: python -m pip install -r requirements-dev.txt
       - name: Compare official sources with the reviewed baseline
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: >-
           python scripts/discover_updates.py
           --json-out ${{ runner.temp }}/discovery.json

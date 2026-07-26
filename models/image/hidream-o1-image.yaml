@@ -1,0 +1,80 @@
+id: hidream-o1-image
+name: HiDream-O1-Image
+organization: HiDream.ai
+released_at: "2026-05-08"
+ranking_names:
+  - HiDream-O1-Image
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - subject-driven-generation
+  - reference-image-generation
+  - text-rendering
+access:
+  status: open-weights
+  license: MIT
+  release_url: https://huggingface.co/HiDream-ai/HiDream-O1-Image
+  weights_url: https://huggingface.co/HiDream-ai/HiDream-O1-Image
+  api_url: null
+architecture:
+  family: 8B Pixel-level Unified Transformer
+  parameters: 8000000000
+  notes: Raw pixels, text, and task conditions share one token space without an external VAE or disjoint text encoder; the release includes a separate reasoning-driven prompt agent.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: HiDream O1 heterogeneous visual corpus
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: The report describes source classes and constructed supervision but does not name component datasets or publish the compiled corpus.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - public-web
+        - licensed
+        - synthetic
+      operations:
+        - visual-deduplication
+        - quality-filtering
+        - safety-filtering
+        - vlm-captioning
+        - editing-pair-construction
+        - video-frame-mining
+      scale_disclosed: false
+      strategy: Combine public-web and licensed images with synthetic edits, video-derived changes, subject-reference groups, and multi-panel samples, then apply clustered near-duplicate removal, quality and safety filters, and VLM prompt construction.
+    - name: fine-tuning
+      modalities:
+        - image
+        - text
+      source_types:
+        - proprietary
+        - synthetic
+      operations:
+        - instruction-tuning
+        - prompt-agent-training
+        - task-balancing
+      scale_disclosed: false
+      strategy: Unify generation, editing, personalization, typography, layout, and storyboard supervision while training a separate reasoning-driven prompt agent to resolve knowledge and composition.
+  strategy_summary:
+    - Expand beyond image-text pairs with editing triplets, multi-reference subject groups, video-derived changes, and multi-panel layouts.
+    - Cluster SSCD features, perform local similarity search, filter quality and safety, and construct prompts with vision-language models.
+    - Keep the open 8B checkpoint separate from the later closed 1.5 service variant.
+  unknowns:
+    - Exact named datasets, licenses, total scale, per-source mixture, geographic coverage, and language distribution.
+    - Per-task fine-tuning scale, preference data, safety thresholds, and the prompt agent's complete training set.
+evidence:
+  release: https://huggingface.co/HiDream-ai/HiDream-O1-Image
+  technical_report: https://arxiv.org/abs/2605.11061
+  repository: https://github.com/HiDream-ai/HiDream-O1-Image
+status: verified
+last_verified: "2026-07-27"
