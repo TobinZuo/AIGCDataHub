@@ -22,9 +22,10 @@ import yaml
 
 from catalog import load_cards
 from models import load_models
+from source_platforms import load_source_platforms
 
 
-SCHEMA_VERSION = 6
+SCHEMA_VERSION = 7
 USER_AGENT = "AIGCDataHub-discovery/0.1 (+https://github.com/TobinZuo/AIGCDataHub)"
 MEDIA_TERMS = (
     "image",
@@ -201,6 +202,8 @@ class WatchSource:
     model_id: str | None = None
     ranking_id: str | None = None
     ranking_limit: int | None = None
+    platform_id: str | None = None
+    revision_mode: str | None = None
 
 
 @dataclass(frozen=True)
@@ -218,6 +221,8 @@ class SourceSnapshot:
     model_id: str | None = None
     ranking_id: str | None = None
     rankings: tuple[RankingEntry, ...] = ()
+    platform_id: str | None = None
+    revision_mode: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         payload = asdict(self)
@@ -312,6 +317,47 @@ class TableParser(HTMLParser):
             self._row = []
 
 
+class RevisionTextParser(HTMLParser):
+    """Collect stable human-visible page text while excluding executable payloads."""
+
+    SKIP_TAGS = {"script", "style", "noscript", "svg", "template"}
+    META_FIELDS = {
+        "description",
+        "og:title",
+        "og:description",
+        "twitter:title",
+        "twitter:description",
+    }
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self._skipped: list[str] = []
+        self.parts: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        tag = tag.lower()
+        if tag in self.SKIP_TAGS:
+            self._skipped.append(tag)
+            return
+        if self._skipped or tag != "meta":
+            return
+        attributes = {key.lower(): value for key, value in attrs if value is not None}
+        field = (attributes.get("name") or attributes.get("property") or "").lower()
+        content = attributes.get("content")
+        if field in self.META_FIELDS and content:
+            self.parts.append(content)
+
+    def handle_endtag(self, tag: str) -> None:
+        tag = tag.lower()
+        if tag in self.SKIP_TAGS and tag in self._skipped:
+            reverse_index = self._skipped[::-1].index(tag)
+            del self._skipped[len(self._skipped) - reverse_index - 1]
+
+    def handle_data(self, data: str) -> None:
+        if not self._skipped:
+            self.parts.append(data)
+
+
 def normalize_text(value: str) -> str:
     return re.sub(r"\s+", " ", value).strip()
 
@@ -398,9 +444,36 @@ def extract_source_revision(payload: str, source_url: str) -> tuple[str | None, 
     return None, None
 
 
+def canonical_revision_payload(payload: bytes) -> bytes:
+    """Remove transport and hydration noise before hashing official page content."""
+    stripped = payload.lstrip()
+    if stripped.startswith(b"%PDF"):
+        return payload
+
+    text = payload.decode("utf-8", errors="replace")
+    try:
+        value = json.loads(text)
+    except (json.JSONDecodeError, TypeError):
+        value = None
+    if value is not None:
+        return json.dumps(
+            value, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+        ).encode("utf-8")
+
+    lowered = stripped[:512].lower()
+    if b"<html" in lowered or b"<!doctype html" in lowered:
+        parser = RevisionTextParser()
+        parser.feed(text)
+        visible_text = normalize_text(" ".join(parser.parts))
+        if visible_text:
+            return visible_text.encode("utf-8")
+    return payload
+
+
 def content_revision(payload: bytes) -> str:
-    """Return a deterministic fallback revision for official pages and PDFs."""
-    return f"sha256:{hashlib.sha256(payload).hexdigest()}"
+    """Return a stable revision for JSON, visible HTML content, and binary files."""
+    canonical = canonical_revision_payload(payload)
+    return f"sha256:{hashlib.sha256(canonical).hexdigest()}"
 
 
 def extract_candidate_links(html: str, base_url: str, contextual: bool = False) -> tuple[Candidate, ...]:
@@ -527,6 +600,8 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
                     priority=source.priority,
                     model_id=source.model_id,
                     ranking_id=source.ranking_id,
+                    platform_id=source.platform_id,
+                    revision_mode=source.revision_mode,
                 )
             charset = response.headers.get_content_charset() or "utf-8"
             html = payload.decode(charset, errors="replace")
@@ -538,7 +613,17 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
             }:
                 revision = content_revision(payload)
                 revision_url = normalize_url(response.url)
-            if source.ranking_id:
+            elif track_id == "source-platform-updates":
+                revision = (
+                    content_revision(payload)
+                    if source.revision_mode == "content-revision"
+                    else "reachable"
+                )
+                revision_url = normalize_url(response.url)
+            if track_id == "source-platform-updates":
+                rankings = ()
+                candidates = ()
+            elif source.ranking_id:
                 rankings = extract_ranking_entries(html, source.ranking_limit or 15)
                 candidates: tuple[Candidate, ...] = ()
                 if not rankings:
@@ -567,8 +652,28 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
                 model_id=source.model_id,
                 ranking_id=source.ranking_id,
                 rankings=rankings,
+                platform_id=source.platform_id,
+                revision_mode=source.revision_mode,
             )
     except urllib.error.HTTPError as exc:
+        if (
+            track_id == "source-platform-updates"
+            and source.revision_mode == "availability"
+            and exc.code in {401, 403, 405, 429}
+        ):
+            return SourceSnapshot(
+                track_id=track_id,
+                source_url=source_url,
+                resolved_url=normalize_url(exc.url),
+                status=exc.code,
+                candidates=(),
+                error=None,
+                revision="reachable",
+                revision_url=normalize_url(exc.url),
+                priority=source.priority,
+                platform_id=source.platform_id,
+                revision_mode=source.revision_mode,
+            )
         error = f"HTTP {exc.code}"
     except TimeoutError:
         error = "timeout"
@@ -589,6 +694,8 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
         priority=source.priority,
         model_id=source.model_id,
         ranking_id=source.ranking_id,
+        platform_id=source.platform_id,
+        revision_mode=source.revision_mode,
     )
 
 
@@ -684,6 +791,32 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
                     ranking_limit,
                 )
             )
+    if not included or "source-platform-updates" in included:
+        platform_ids: set[str] = set()
+        for platform in load_source_platforms():
+            platform_id = platform["id"]
+            monitoring = platform["monitoring"]
+            url = monitoring["url"]
+            normalized = normalize_url(url) or url
+            if platform_id in platform_ids:
+                raise ValueError(f"duplicate source platform monitor id: {platform_id!r}")
+            if normalized in excluded:
+                continue
+            if normalized in seen_urls:
+                raise ValueError(
+                    f"source platform monitor duplicates another watch URL: {url!r}"
+                )
+            platform_ids.add(platform_id)
+            seen_urls.add(normalized)
+            sources.append(
+                WatchSource(
+                    track_id="source-platform-updates",
+                    source_url=url,
+                    priority=monitoring["priority"],
+                    platform_id=platform_id,
+                    revision_mode=monitoring["mode"],
+                )
+            )
     return watchlist, sorted(sources)
 
 
@@ -714,6 +847,13 @@ def declared_urls() -> set[str]:
     for _, card in load_models():
         values = list(card["access"].values()) + list(card["evidence"].values())
         urls.update(url for value in values if isinstance(value, str) and (url := normalize_url(value)))
+    for platform in load_source_platforms():
+        values = [
+            platform["homepage"],
+            platform["data_access"]["interface_url"],
+            platform["monitoring"]["url"],
+        ]
+        urls.update(url for value in values if value and (url := normalize_url(value)))
     return urls
 
 
@@ -803,6 +943,17 @@ def source_entity_payload(
             "priority": source.priority or "standard",
             "impacted_dataset_ids": list(impact.get("dataset_ids", ())),
             "impacted_model_ids": list(impact.get("model_ids", (source.model_id,))),
+        }
+    if source.platform_id:
+        return {
+            "entity_type": "source-platform",
+            "entity_id": source.platform_id,
+            "catalog_id": None,
+            "model_id": None,
+            "platform_id": source.platform_id,
+            "priority": source.priority or "standard",
+            "impacted_dataset_ids": [],
+            "impacted_model_ids": [],
         }
     return {}
 
@@ -974,6 +1125,12 @@ def render_report(report: dict[str, Any], limit: int = 100) -> str:
     if report["source_updates"]:
         lines.extend(["## Important catalog revisions", ""])
         for item in report["source_updates"]:
+            if item["entity_type"] == "source-platform":
+                lines.append(
+                    f"- [ ] [`{item['entity_id']}`]({item['url']}) — **{item['priority']}** "
+                    f"source-platform access signal; `{item['previous_revision']}` → `{item['revision']}`"
+                )
+                continue
             empty_dataset_impact = (
                 "no linked catalog dataset"
                 if item["entity_type"] == "model"

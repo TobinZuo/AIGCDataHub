@@ -6,7 +6,7 @@
   "additionalProperties": false,
   "required": ["schema_version", "policy", "platforms"],
   "properties": {
-    "schema_version": {"const": 1},
+    "schema_version": {"const": 2},
     "policy": {
       "type": "object",
       "additionalProperties": false,
@@ -25,8 +25,8 @@
         "additionalProperties": false,
         "required": [
           "id", "name", "homepage", "category", "modalities",
-          "relevant_scenarios", "content_scope", "source_status",
-          "access_boundary", "rights_review", "last_reviewed"
+          "relevant_scenarios", "content_scope", "data_access", "monitoring",
+          "source_status", "access_boundary", "rights_review", "last_reviewed"
         ],
         "properties": {
           "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
@@ -46,6 +46,43 @@
             "items": {"enum": ["image-generation", "video-generation", "digital-human", "video-localization", "virtual-try-on"]}
           },
           "content_scope": {"type": "string", "minLength": 20},
+          "data_access": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status", "interface_name", "interface_url", "scope",
+              "requirements", "training_rights"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "documented-api", "partner-api", "partner-portal",
+                  "licensed-service", "not-cataloged"
+                ]
+              },
+              "interface_name": {"type": ["string", "null"], "minLength": 2},
+              "interface_url": {
+                "anyOf": [
+                  {"type": "string", "format": "uri", "pattern": "^https://"},
+                  {"type": "null"}
+                ]
+              },
+              "scope": {"type": "string", "minLength": 20},
+              "requirements": {"type": "string", "minLength": 10},
+              "training_rights": {"const": "not-granted-by-interface"}
+            }
+          },
+          "monitoring": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["url", "mode", "focus", "priority"],
+            "properties": {
+              "url": {"type": "string", "format": "uri", "pattern": "^https://"},
+              "mode": {"enum": ["content-revision", "availability"]},
+              "focus": {"type": "string", "minLength": 10},
+              "priority": {"enum": ["high", "standard"]}
+            }
+          },
           "source_status": {"const": "candidate"},
           "access_boundary": {"const": "source-platform-not-dataset"},
           "rights_review": {"const": "required"},

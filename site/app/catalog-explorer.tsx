@@ -104,6 +104,20 @@ type SourcePlatform = {
   modalities: string[];
   relevant_scenarios: string[];
   content_scope: string;
+  data_access: {
+    status: string;
+    interface_name: string | null;
+    interface_url: string | null;
+    scope: string;
+    requirements: string;
+    training_rights: string;
+  };
+  monitoring: {
+    url: string;
+    mode: string;
+    focus: string;
+    priority: string;
+  };
   source_status: string;
   access_boundary: string;
   rights_review: string;
@@ -266,6 +280,14 @@ const SOURCE_PLATFORM_CATEGORY_LABELS: Record<string, string> = {
   "streaming-and-studio": "流媒体与影视",
   "stock-media": "素材平台",
   ecommerce: "电商平台",
+};
+
+const SOURCE_PLATFORM_ACCESS_LABELS: Record<string, string> = {
+  "documented-api": "公开文档 API",
+  "partner-api": "合作方 API",
+  "partner-portal": "合作方门户",
+  "licensed-service": "授权服务",
+  "not-cataloged": "尚未确认接口",
 };
 
 const DISCLOSURE_LABELS: Record<string, string> = {
@@ -873,7 +895,8 @@ function SourcePlatformOverview({
     "stock-media",
     "ecommerce",
   ];
-  const modalityCount = new Set(platforms.flatMap((item) => item.modalities)).size;
+  const interfaceCount = platforms.filter((item) => item.data_access.interface_url).length;
+  const highPriorityCount = platforms.filter((item) => item.monitoring.priority === "high").length;
 
   return (
     <section className="source-platform-overview" aria-labelledby="source-platform-title">
@@ -884,8 +907,8 @@ function SourcePlatformOverview({
         </div>
         <dl>
           <div><dt>候选平台</dt><dd>{platforms.length}</dd></div>
-          <div><dt>平台类别</dt><dd>{new Set(platforms.map((item) => item.category)).size}</dd></div>
-          <div><dt>涉及模态</dt><dd>{modalityCount}</dd></div>
+          <div><dt>已登记接口</dt><dd>{interfaceCount}</dd></div>
+          <div><dt>重点监控</dt><dd>{highPriorityCount}</dd></div>
         </dl>
       </header>
       <div className="source-platform-groups">
@@ -906,6 +929,18 @@ function SourcePlatformOverview({
                       <span>{formatDate(platform.last_reviewed)} 复核</span>
                     </div>
                     <p>{platform.content_scope}</p>
+                    <div className="source-platform-access">
+                      <span>{SOURCE_PLATFORM_ACCESS_LABELS[platform.data_access.status] ?? platform.data_access.status}</span>
+                      {platform.data_access.interface_url && platform.data_access.interface_name ? (
+                        <ExternalLink href={platform.data_access.interface_url}>
+                          {platform.data_access.interface_name}
+                        </ExternalLink>
+                      ) : (
+                        <strong>仅登记官方站点</strong>
+                      )}
+                    </div>
+                    <p className="source-platform-scope">可访问范围：{platform.data_access.scope}</p>
+                    <p className="source-platform-requirements">准入条件：{platform.data_access.requirements}</p>
                     <div className="tag-row">
                       {platform.modalities.map((item) => (
                         <span className="tag" key={item}>{MODALITY_LABELS[item] ?? item}</span>
@@ -916,7 +951,7 @@ function SourcePlatformOverview({
                     </div>
                     <footer>
                       <span>来源平台，不是数据集</span>
-                      <strong>权利需逐源审核</strong>
+                      <strong>{platform.monitoring.priority === "high" ? "重点监控" : "标准监控"} · 权利需逐源审核</strong>
                     </footer>
                   </section>
                 ))}
@@ -1245,6 +1280,11 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         platform.category,
         SOURCE_PLATFORM_CATEGORY_LABELS[platform.category] ?? "",
         platform.content_scope,
+        platform.data_access.status,
+        platform.data_access.interface_name ?? "",
+        platform.data_access.scope,
+        platform.data_access.requirements,
+        platform.monitoring.focus,
         ...platform.modalities,
         ...platform.relevant_scenarios,
         ...platform.relevant_scenarios.map((item) => scenarioLabels.get(item) ?? item),

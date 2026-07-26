@@ -17,6 +17,13 @@ CATEGORY_LABELS = {
     "stock-media": "Stock media",
     "ecommerce": "E-commerce",
 }
+ACCESS_LABELS = {
+    "documented-api": "Documented API",
+    "partner-api": "Partner API",
+    "partner-portal": "Partner portal",
+    "licensed-service": "Licensed service",
+    "not-cataloged": "No interface cataloged",
+}
 
 
 def escape(value: object) -> str:
@@ -29,14 +36,25 @@ def render_index() -> str:
         load_source_platforms(), key=lambda item: (item["category"], item["name"].lower())
     )
     policy = registry["policy"]
-    rows = [
-        "| "
-        f"[{escape(item['name'])}]({item['homepage']}) | "
-        f"{CATEGORY_LABELS[item['category']]} | {', '.join(item['modalities'])} | "
-        f"{', '.join(item['relevant_scenarios'])} | {escape(item['content_scope'])} | "
-        f"{item['access_boundary']} | {item['rights_review']} | {item['last_reviewed']} |"
-        for item in platforms
-    ]
+    rows = []
+    for item in platforms:
+        access = item["data_access"]
+        monitoring = item["monitoring"]
+        interface = (
+            f"[{escape(access['interface_name'])}]({access['interface_url']})"
+            if access["interface_url"]
+            else "Not cataloged"
+        )
+        rows.append(
+            "| "
+            f"[{escape(item['name'])}]({item['homepage']}) | "
+            f"{CATEGORY_LABELS[item['category']]} | {', '.join(item['modalities'])} | "
+            f"{', '.join(item['relevant_scenarios'])} | "
+            f"{ACCESS_LABELS[access['status']]} | {interface} | "
+            f"{escape(access['scope'])} | {escape(access['requirements'])} | "
+            f"[{monitoring['mode']}]({monitoring['url']}) / {monitoring['priority']} | "
+            f"{item['last_reviewed']} |"
+        )
     lines = [
         "# Candidate content-source platform index",
         "",
@@ -46,9 +64,10 @@ def render_index() -> str:
         f"- Catalog boundary: {policy['boundary']}",
         f"- Rights boundary: {policy['rights']}",
         f"- Publication boundary: {policy['internal_notes']}",
+        "- Interface boundary: an API, portal, or licensed service exposes only its documented scope; it does not grant model-training or redistribution rights.",
         "",
-        "| Platform | Category | Modalities | Relevant scenarios | Public content scope | Access boundary | Rights review | Reviewed |",
-        "|---|---|---|---|---|---|---|---:|",
+        "| Platform | Category | Modalities | Relevant scenarios | Data access | Official interface | Accessible scope | Requirements | Monitoring | Reviewed |",
+        "|---|---|---|---|---|---|---|---|---|---:|",
         *rows,
         "",
     ]

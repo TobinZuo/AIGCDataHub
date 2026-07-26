@@ -1404,7 +1404,7 @@ input:focus-visible {
 
 .source-platform-item {
   display: flex;
-  min-height: 230px;
+  min-height: 390px;
   flex-direction: column;
   padding: 21px;
   background: var(--white);
@@ -1433,6 +1433,43 @@ input:focus-visible {
   color: #5d6058;
   font-size: 10px;
   line-height: 1.65;
+}
+
+.source-platform-access {
+  display: grid;
+  grid-template-columns: minmax(92px, 0.42fr) minmax(0, 1fr);
+  gap: 12px;
+  margin-top: 17px;
+  padding: 11px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.source-platform-access > span {
+  color: var(--signal);
+  font-family: "SFMono-Regular", Consolas, monospace;
+}
+
+.source-platform-access > strong {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.source-platform-access .text-link {
+  font-size: 10px;
+}
+
+.source-platform-item > .source-platform-scope,
+.source-platform-item > .source-platform-requirements {
+  margin-top: 10px;
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+.source-platform-item > .source-platform-requirements {
+  color: var(--muted);
 }
 
 .source-platform-item .tag-row {

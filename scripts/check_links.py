@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check primary-source URLs declared by dataset and model cards."""
+"""Check primary-source URLs declared by datasets, models, and source platforms."""
 
 from __future__ import annotations
 
@@ -44,6 +44,10 @@ def links() -> list[Link]:
                 result.add(Link(card["id"], f"evidence.{field_name}", card["evidence"][field_name]))
     for platform in load_source_platforms():
         result.add(Link(platform["id"], "homepage", platform["homepage"]))
+        interface_url = platform["data_access"]["interface_url"]
+        if interface_url:
+            result.add(Link(platform["id"], "data_access.interface_url", interface_url))
+        result.add(Link(platform["id"], "monitoring.url", platform["monitoring"]["url"]))
     return sorted(result, key=lambda item: (item.url, item.entity_id, item.field))
 
 
