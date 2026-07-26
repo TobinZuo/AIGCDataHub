@@ -34,7 +34,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
                 self.assertIn(model_id, self.datasets[dataset_id]["linked_model_ids"])
 
     def test_dataset_lineage_index_and_backlinks_are_symmetric(self) -> None:
-        self.assertEqual(len(self.payload["dataset_relations"]), 16)
+        self.assertEqual(len(self.payload["dataset_relations"]), 17)
         relation_pairs = {
             (relation["source_dataset_id"], relation["derived_dataset_id"])
             for relation in self.payload["dataset_relations"]
@@ -51,6 +51,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn(("koala-36m", "phantom-data"), relation_pairs)
         self.assertIn(("openhumanvid", "humoset"), relation_pairs)
         self.assertIn(("senorita-2m", "videocof-50k"), relation_pairs)
+        self.assertIn(("videomatte240k", "vera-layered-video"), relation_pairs)
 
         for source_id, derived_id in relation_pairs:
             with self.subTest(source=source_id, derived=derived_id):
@@ -131,11 +132,27 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn("humo-17b", self.datasets["phantom-data"]["linked_model_ids"])
         self.assertIn("humo-17b", self.datasets["humoset"]["linked_model_ids"])
         self.assertIn("phantom-wan-14b", self.datasets["panda-70m"]["linked_model_ids"])
+        self.assertEqual(
+            set(self.models["vera-14b"]["linked_dataset_ids"]),
+            {"vera-layered-video", "videomatte240k"},
+        )
+        self.assertEqual(
+            set(self.models["mova-720p"]["linked_dataset_ids"]),
+            {
+                "autorecap-xl", "chronomagic-pro", "acav100m", "openhumanvid",
+                "speakervid-5m", "openvid-1m", "vggsound", "wavcaps",
+                "jamendomaxcaps", "avgen-bench",
+            },
+        )
+        self.assertEqual(
+            set(self.datasets["avgen-bench"]["linked_model_ids"]),
+            {"seedance-2-0", "veo-3-1", "sora-2", "wan-2-6", "ltx-2-3", "mova-720p"},
+        )
 
     def test_dataset_monitoring_is_joined_by_canonical_catalog_id(self) -> None:
         self.assertEqual(
             sum(dataset["monitoring"] is not None for dataset in self.datasets.values()),
-            59,
+            67,
         )
         self.assertEqual(
             self.datasets["fit-vto-100k"]["monitoring"],
@@ -196,6 +213,10 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.datasets["phantom-data"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["senorita-2m"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["spatialvid"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["avgen-bench"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["vera-layered-video"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["videomatte240k"]["monitoring"]["priority"], "high")
+        self.assertEqual(self.datasets["jamendomaxcaps"]["monitoring"]["priority"], "critical")
         self.assertEqual(
             self.datasets["humoset"]["monitoring"]["source_url"],
             "https://modelscope.cn/api/v1/datasets/leoniuschen/HuMoSet",
@@ -210,7 +231,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
     def test_model_monitoring_is_joined_by_canonical_model_id(self) -> None:
         self.assertEqual(
             sum(model["monitoring"] is not None for model in self.models.values()),
-            57,
+            59,
         )
         self.assertEqual(
             self.models["hunyuanvideo-avatar"]["monitoring"],
@@ -247,6 +268,8 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.models["videocof"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["humo-17b"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["phantom-wan-14b"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.models["mova-720p"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.models["vera-14b"]["monitoring"]["priority"], "critical")
         self.assertIsNone(self.models["graphvid"]["monitoring"])
 
 

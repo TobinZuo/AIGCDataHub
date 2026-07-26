@@ -1,0 +1,66 @@
+id: autorecap-xl
+name: AutoReCap-XL
+organization: Snap Research and collaborators
+released_at: "2024-06-27"
+release_date_source: https://arxiv.org/abs/2406.19388
+modality: audio
+tasks:
+  - text-to-audio
+  - audio-captioning
+  - audio-text-pretraining
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A large automatically recaptioned audio-text corpus derived from YouTube
+  video segments, with a 47M-pair released XL set and progressively filtered
+  MQ, MQ-L, and HQ subsets based on CLAP alignment and duration.
+access:
+  status: metadata-only
+  type: metadata
+  url: https://huggingface.co/datasets/mali6/autocap
+  requires_account: false
+  notes: About 17.4 GB of JSON metadata is hosted on Hugging Face; the official scripts reconstruct audio from referenced source videos rather than distributing raw media.
+scale:
+  samples: 47000000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The released variants contain 47M XL, 20.7M MQ, 14.7M MQ-L, and 10.7M HQ pairs; the original paper describes a 57M-candidate collection before the final release filtering.
+annotations:
+  types:
+    - youtube-id
+    - clip-timestamp
+    - generated-caption
+    - automatic-transcript
+    - clap-score
+    - subset-membership
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: No dataset-card license declared
+  media: Source-dependent YouTube and rightsholder terms
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The project limits the release to non-commercial research; raw audio is reconstructed from YouTube and remains subject to source rights and platform terms.
+quality:
+  dimensions:
+    - audio-quality
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Automatic speech and music keyword removal can suppress useful mixed or ambiguous sound events.
+    - Generated captions and CLAP thresholds can reinforce the teacher model's vocabulary and alignment biases.
+    - Source videos can disappear or change, and the released metadata does not convey media rights.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: Preserve source ID, timestamps, original transcript signal, generated caption, CLAP score, subset membership, retrieval date, and rights decision.
+evidence:
+  homepage: https://snap-research.github.io/GenAU/dataset.html
+  paper: https://arxiv.org/abs/2406.19388
+  used_by:
+    - MOVA-720p
+status: partial
+last_verified: "2026-07-27"

@@ -1,0 +1,67 @@
+id: jamendomaxcaps
+name: JamendoMaxCaps
+organization: AMAAI Lab and collaborators
+released_at: "2025-02-11"
+release_date_source: https://arxiv.org/abs/2502.07461
+modality: audio
+tasks:
+  - text-to-music
+  - music-captioning
+  - music-text-pretraining
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A large music-caption corpus built from freely licensed Jamendo tracks, with
+  generated natural-language descriptions and imputed metadata designed for
+  text-to-music training and retrieval.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/amaai-lab/JamendoMaxCaps
+  requires_account: false
+  notes: The current Hugging Face release exposes 362,298 records and about 1.66 TB of stored audio and metadata without an account gate.
+scale:
+  samples: 362298
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The paper describes more than 200K freely licensed instrumental tracks; the current hosted revision exposes 362,298 dataset rows, so track and row units should remain distinct.
+annotations:
+  types:
+    - music-caption
+    - genre
+    - instrumentation
+    - mood
+    - tempo
+    - imputed-metadata
+    - source-license
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: CC-BY-SA-3.0
+  media: Jamendo track-specific Creative Commons licenses plus CC-BY-SA-3.0 dataset terms
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Individual Jamendo tracks can carry different Creative Commons conditions; filter and attribute per track before commercial training or redistribution.
+quality:
+  dimensions:
+    - audio-quality
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Generated captions and retrieved metadata can contain hallucinations or overgeneralized genre and mood labels.
+    - Instrumental and Creative-Commons availability constraints make the distribution unlike mainstream commercial music catalogs.
+    - Hosted row count is not necessarily the number of unique tracks described in the paper.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: Preserve track ID, audio, generated caption, original and imputed metadata, exact per-track license, attribution, and dataset revision.
+evidence:
+  homepage: https://huggingface.co/datasets/amaai-lab/JamendoMaxCaps
+  paper: https://arxiv.org/abs/2502.07461
+  used_by:
+    - MOVA-720p
+status: partial
+last_verified: "2026-07-27"

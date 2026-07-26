@@ -28,7 +28,13 @@ data:
   disclosure_level: high-level
   exact_datasets_disclosed: false
   exact_mixture_disclosed: false
-  datasets: []
+  datasets:
+    - name: AVGen-Bench
+      catalog_id: avgen-bench
+      role: evaluation
+      availability: public
+      scale: 235 prompts and 3,009 generated examples
+      notes: The official benchmark evaluates the Sora 2 service snapshot; this does not identify or imply any Sora training data.
   stages:
     - name: pretraining
       modalities:

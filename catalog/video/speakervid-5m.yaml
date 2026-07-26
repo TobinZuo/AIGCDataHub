@@ -1,0 +1,75 @@
+id: speakervid-5m
+name: SpeakerVid-5M
+organization: Nanjing University and collaborators
+released_at: "2025-07-14"
+release_date_source: https://arxiv.org/abs/2507.09862
+modality: video
+tasks:
+  - talking-head-generation
+  - listening-head-generation
+  - dyadic-conversation-generation
+  - audio-driven-video-generation
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A 5.2M-clip, 8,743-hour speaker-video metadata corpus covering monadic
+  speaking, listening, and dyadic conversation, with captions, transcripts,
+  poses, face boxes, quality scores, and audio-video synchronization signals.
+access:
+  status: metadata-only
+  type: metadata
+  url: https://huggingface.co/datasets/dorni/SpeakerVid-5M-Dataset
+  requires_account: false
+  notes: About 58.9 GB of annotations and YouTube identifiers are hosted openly; users reconstruct clips from source videos, and the optional pose archive is not part of the standard hosted media release.
+scale:
+  samples: 5200000
+  source_items: null
+  hours: 8743
+  approximate: true
+  notes: The project reports 5.2M clips and 8,743 hours across pretraining and higher-quality fine-tuning partitions.
+annotations:
+  types:
+    - youtube-id
+    - clip-timestamp
+    - transcript
+    - video-caption
+    - face-bounding-box
+    - body-pose
+    - visual-quality-score
+    - audio-video-sync-score
+    - interaction-type
+  source: mixed
+  languages:
+    - multilingual
+license:
+  metadata: No dataset-card license declared
+  media: Source-dependent YouTube and rightsholder terms
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Hosted annotations do not grant rights to the referenced YouTube videos; verify creator permission, privacy, biometric use, and intended training rights separately.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Source-video deletion and regional availability can make metadata records unreconstructable.
+    - Face and pose filtering can bias identity, age, culture, accessibility, camera framing, and speaking-style coverage.
+    - Transcript, caption, pose, and synchronization signals are automatically produced and can contain correlated errors.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: Preserve branch, interaction type, source ID, timestamps, transcript, caption, face and pose metadata, DOVER and sync scores, retrieval status, and rights review.
+evidence:
+  homepage: https://dorniwang.github.io/SpeakerVid-5M/
+  paper: https://arxiv.org/abs/2507.09862
+  used_by:
+    - MOVA-720p
+status: partial
+last_verified: "2026-07-27"

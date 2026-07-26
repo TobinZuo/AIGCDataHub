@@ -1,0 +1,67 @@
+id: videomatte240k
+name: VideoMatte240K
+organization: University of Washington
+released_at: "2021-04-21"
+release_date_source: https://github.com/PeterL1n/BackgroundMattingV2
+modality: video
+tasks:
+  - video-matting
+  - foreground-extraction
+  - background-replacement
+  - layered-video-generation
+stages:
+  - pretraining
+  - fine-tuning
+description: >-
+  A high-resolution green-screen video matting dataset with 240,709 foreground
+  and alpha-matte frames extracted from 484 stock or royalty-free human clips,
+  including 384 4K clips and 100 HD clips.
+access:
+  status: open
+  type: hosted
+  url: https://grail.cs.washington.edu/projects/background-matting-v2/#/datasets
+  requires_account: false
+  notes: The official project provides downloadable dataset archives; Robust Video Matting also documents 6 GB SD and 60 GB HD preprocessed variants.
+scale:
+  samples: 240709
+  source_items: 484
+  hours: null
+  approximate: false
+  notes: The paper reports a 479-to-5 train-validation split, 497.3 average frames per clip, and clip lengths from 124 to 1,500 frames.
+annotations:
+  types:
+    - foreground-rgb
+    - alpha-matte
+    - video-sequence
+    - resolution
+    - train-validation-split
+  source: human
+  languages:
+    - none
+license:
+  metadata: MIT
+  media: MIT project license for released foregrounds and alpha mattes
+  commercial_use: allowed
+  redistribution: allowed
+  notes: The official repository states MIT and commercial use; the paper says source clips were purchased stock or royalty-free, so downstream users should retain provenance when redistributing derivatives.
+quality:
+  dimensions:
+    - visual-quality
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - All source footage is green-screen human video, limiting backgrounds, camera styles, non-human objects, and natural interaction effects.
+    - Chroma-key extraction can retain spill or edge artifacts despite high-quality alpha boundaries.
+    - The validation split contains only five source clips.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Preserve sequential frame order, foreground RGB, alpha precision, source clip ID, resolution, and train-validation split; composite backgrounds only as a derived view.
+evidence:
+  homepage: https://grail.cs.washington.edu/projects/background-matting-v2/
+  paper: https://arxiv.org/abs/2012.07810
+  used_by:
+    - Vera Layered Video Dataset
+    - Vera-14B
+status: verified
+last_verified: "2026-07-27"

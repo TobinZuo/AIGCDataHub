@@ -27,7 +27,13 @@ data:
   disclosure_level: undisclosed
   exact_datasets_disclosed: false
   exact_mixture_disclosed: false
-  datasets: []
+  datasets:
+    - name: AVGen-Bench
+      catalog_id: avgen-bench
+      role: evaluation
+      availability: public
+      scale: 235 prompts and 3,009 generated examples
+      notes: The official AVGen-Bench leaderboard reports Seedance 2.0 as the leading evaluated system in the current snapshot; this is evaluation evidence, not training disclosure.
   stages:
     - name: pretraining
       modalities:

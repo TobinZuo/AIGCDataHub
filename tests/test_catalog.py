@@ -130,6 +130,28 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(cards["maven-multicultural-video"]["scale"]["samples"], 972)
         self.assertEqual(cards["seedance-1-pro-human-preference"]["scale"]["samples"], 198)
 
+    def test_joint_audio_video_and_layered_editing_datasets_are_actionable(self) -> None:
+        cards = {card["id"]: card for _, card in load_cards()}
+        expected = {
+            "avgen-bench",
+            "vera-layered-video",
+            "videomatte240k",
+            "chronomagic-pro",
+            "acav100m",
+            "speakervid-5m",
+            "autorecap-xl",
+            "jamendomaxcaps",
+        }
+        self.assertTrue(expected.issubset(cards))
+        self.assertEqual(cards["avgen-bench"]["scale"]["samples"], 3009)
+        self.assertEqual(cards["vera-layered-video"]["access"]["type"], "hosted")
+        self.assertEqual(cards["videomatte240k"]["scale"]["samples"], 240709)
+        self.assertEqual(cards["chronomagic-pro"]["access"]["type"], "hosted")
+        self.assertEqual(cards["acav100m"]["access"]["status"], "metadata-only")
+        self.assertEqual(cards["speakervid-5m"]["access"]["type"], "metadata")
+        self.assertEqual(cards["autorecap-xl"]["access"]["type"], "metadata")
+        self.assertEqual(cards["jamendomaxcaps"]["access"]["type"], "hosted")
+
     def test_dataset_lineage_uses_canonical_catalog_ids(self) -> None:
         cards = {card["id"]: card for _, card in load_cards()}
         self.assertEqual(
@@ -171,6 +193,10 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(
             cards["videocof-50k"]["derived_from"][0]["catalog_id"],
             "senorita-2m",
+        )
+        self.assertEqual(
+            cards["vera-layered-video"]["derived_from"][0]["catalog_id"],
+            "videomatte240k",
         )
 
     def test_site_catalog_orders_datasets_by_release_date(self) -> None:

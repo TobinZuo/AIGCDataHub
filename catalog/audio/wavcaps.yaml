@@ -72,5 +72,6 @@ evidence:
   paper: https://arxiv.org/abs/2303.17395
   used_by:
     - Omni2Sound
+    - MOVA-720p
 status: partial
 last_verified: "2026-07-26"

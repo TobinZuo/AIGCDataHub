@@ -1,0 +1,64 @@
+id: acav100m
+name: ACAV100M
+organization: Facebook AI Research and Inria
+released_at: "2021-01-26"
+release_date_source: https://arxiv.org/abs/2101.10803
+modality: video
+tasks:
+  - audio-visual-pretraining
+  - audio-visual-representation-learning
+  - video-text-pretraining
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A 100M-clip audio-visual corpus automatically curated from 140M long-form
+  videos by selecting 10-second segments that maximize estimated mutual
+  information between audio and visual embeddings.
+access:
+  status: metadata-only
+  type: metadata
+  url: https://acav100m.github.io/
+  requires_account: false
+  notes: The official project releases CSV files with YouTube video IDs and start times for 20K, 200K, 2M, 10M, and 100M subsets rather than redistributing media.
+scale:
+  samples: 100000000
+  source_items: 140000000
+  hours: 277777.8
+  approximate: true
+  notes: Each selected sample is 10 seconds; the source pool is described as 140M full-length videos and the 100M subset totals about 31 years.
+annotations:
+  types:
+    - youtube-id
+    - start-time
+    - subset-membership
+    - audio-visual-selection-score
+  source: model-generated
+  languages:
+    - multilingual
+license:
+  metadata: No standardized dataset license declared on the project page
+  media: Source-dependent YouTube and rightsholder terms
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Released CSVs identify source clips but do not grant rights to download, train on, or redistribute the underlying YouTube media.
+quality:
+  dimensions:
+    - audio-visual-alignment
+    - motion
+    - provenance
+  known_limitations:
+    - YouTube videos can be removed, region-blocked, or altered, reducing reproducibility over time.
+    - Mutual-information sampling favors coincident audio and visual events and may underrepresent off-screen sound or abstract audiovisual relationships.
+    - The multilingual, safety, copyright, privacy, and demographic distributions are not exhaustively documented.
+processing:
+  recipe: null
+  recommended_format: csv
+  notes: Keep YouTube ID, start second, subset size, retrieval date, availability result, and a source-rights decision; never treat the CSV as a media license.
+evidence:
+  homepage: https://acav100m.github.io/
+  paper: https://arxiv.org/abs/2101.10803
+  used_by:
+    - MOVA-720p
+status: partial
+last_verified: "2026-07-27"

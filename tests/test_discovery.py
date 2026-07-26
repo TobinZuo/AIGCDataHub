@@ -414,15 +414,15 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            59,
+            67,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            57,
+            59,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
-            17,
+            18,
         )
         self.assertTrue(
             {
@@ -437,7 +437,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 10)
-        self.assertEqual(len(sources), 208)
+        self.assertEqual(len(sources), 219)
         self.assertEqual(
             {source.ranking_id for source in sources if source.ranking_id},
             {
@@ -506,7 +506,7 @@ class DiscoveryTests(unittest.TestCase):
                 "https://pixverse.ai/en/blog/pixverse-launches-v6-advancing-ai-video-generation",
                 "https://platform.vidu.com/docs/update",
                 "https://docs.bfl.ai/release-notes",
-                "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/",
+                "https://ai.google.dev/gemini-api/docs/models/veo-3.1-lite-generate-preview",
                 "https://developers.google.com/youtube/v3/docs",
                 "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction",
                 "https://partner.temu.com/documentation",
@@ -515,6 +515,17 @@ class DiscoveryTests(unittest.TestCase):
                 "https://modelscope.cn/api/v1/datasets/leoniuschen/HuMoSet",
                 "https://huggingface.co/api/models/XiangpengYang/VideoCoF",
                 "https://huggingface.co/api/models/bytedance-research/HuMo",
+                "https://huggingface.co/api/datasets/microsoft/AVGen-Bench",
+                "https://huggingface.co/api/datasets/netflix/Vera-Layered-Video-Dataset?expand=lastModified&expand=sha",
+                "https://github.com/PeterL1n/BackgroundMattingV2/commits/master.atom",
+                "https://huggingface.co/api/datasets/BestWishYsh/ChronoMagic-Pro",
+                "https://acav100m.github.io/",
+                "https://huggingface.co/api/datasets/dorni/SpeakerVid-5M-Dataset",
+                "https://huggingface.co/api/datasets/mali6/autocap",
+                "https://huggingface.co/api/datasets/amaai-lab/JamendoMaxCaps",
+                "https://huggingface.co/api/models/OpenMOSS-Team/MOVA-720p",
+                "https://vera-layered-diffusion.github.io/",
+                "https://mixkit.co/license/",
             }.issubset(urls)
         )
         self.assertIn("https://huggingface.co/api/datasets/nkp37/OpenVid-1M", urls)
@@ -544,7 +555,11 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(impacts["tripvvt-10k"]["model_ids"], ("tripvvt",))
         self.assertEqual(impacts["audiovisual-translation-dub"]["model_ids"], ("just-dub-it",))
         self.assertEqual(impacts["talkverse"]["model_ids"], ("talkverse-5b",))
-        self.assertEqual(impacts["wavcaps"]["model_ids"], ("omni2sound",))
+        self.assertEqual(impacts["wavcaps"]["model_ids"], ("mova-720p", "omni2sound"))
+        self.assertEqual(
+            impacts["avgen-bench"]["model_ids"],
+            ("ltx-2-3", "mova-720p", "seedance-2-0", "sora-2", "veo-3-1", "wan-2-6"),
+        )
         self.assertEqual(impacts["commoncatalog"]["model_ids"], ("commoncanvas-xl-c",))
         self.assertEqual(impacts["gpic"]["model_ids"], ("gpic-baselines",))
         self.assertEqual(impacts["openve-bench"]["model_ids"], ("openve-edit",))
@@ -557,7 +572,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(
             impacts["openhumanvid"]["model_ids"],
-            ("humo-17b", "skyreels-v4", "talkverse-5b"),
+            ("humo-17b", "mova-720p", "skyreels-v4", "talkverse-5b"),
         )
         self.assertEqual(impacts["panda-70m"]["dataset_ids"], ("talkverse",))
         self.assertEqual(
@@ -570,7 +585,10 @@ class DiscoveryTests(unittest.TestCase):
             impacts["audioset"]["dataset_ids"],
             ("audiocaps-2-0", "soundatlas", "wavcaps"),
         )
-        self.assertEqual(impacts["audioset"]["model_ids"], ("omni2sound", "skyreels-v4"))
+        self.assertEqual(
+            impacts["audioset"]["model_ids"],
+            ("mova-720p", "omni2sound", "skyreels-v4"),
+        )
         self.assertEqual(impacts["yfcc100m"]["dataset_ids"], ("commoncatalog",))
         self.assertEqual(impacts["yfcc100m"]["model_ids"], ("commoncanvas-xl-c",))
         self.assertEqual(
@@ -584,6 +602,11 @@ class DiscoveryTests(unittest.TestCase):
             impacts["koala-36m"]["model_ids"],
             ("humo-17b", "skyreels-v4"),
         )
+        self.assertEqual(
+            impacts["videomatte240k"]["dataset_ids"],
+            ("vera-layered-video",),
+        )
+        self.assertEqual(impacts["videomatte240k"]["model_ids"], ("vera-14b",))
 
     def test_model_impact_index_uses_direct_dataset_links(self) -> None:
         impacts = model_impact_index()

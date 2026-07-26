@@ -104,6 +104,11 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /Señorita-2M/);
   assert.match(html, /SpatialVID/);
   assert.match(html, /Phantom-Wan-14B/);
+  assert.match(html, /MOVA-720p/);
+  assert.match(html, /Vera-14B/);
+  assert.match(html, /AVGen-Bench/);
+  assert.match(html, /Vera Layered Video Dataset/);
+  assert.match(html, /VideoMatte240K/);
   assert.match(html, /应用场景/);
   assert.match(html, /数字人/);
   assert.match(html, /视频翻译/);
@@ -205,19 +210,25 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"senorita-2m"/);
   assert.match(catalog, /"spatialvid"/);
   assert.match(catalog, /"phantom-wan-14b"/);
+  assert.match(catalog, /"mova-720p"/);
+  assert.match(catalog, /"vera-14b"/);
+  assert.match(catalog, /"avgen-bench"/);
+  assert.match(catalog, /"vera-layered-video"/);
+  assert.match(catalog, /"videomatte240k"/);
+  assert.match(catalog, /"name": "Mixkit"/);
   assert.match(catalog, /"relations"/);
   assert.match(catalog, /"dataset_relations"/);
   const parsedCatalog = JSON.parse(catalog);
   assert.equal(parsedCatalog.format_version, 12);
   assert.equal(parsedCatalog.rankings.length, 10);
-  assert.equal(parsedCatalog.source_platforms.length, 17);
+  assert.equal(parsedCatalog.source_platforms.length, 18);
   assert.equal(
     parsedCatalog.source_platforms.filter((platform) => platform.data_access.interface_url).length,
-    14,
+    15,
   );
   assert.equal(
     parsedCatalog.source_platforms.filter((platform) => platform.monitoring.priority === "high").length,
-    14,
+    15,
   );
   assert.equal(
     parsedCatalog.rankings.find((board) => board.id === "text-to-image").entries[0].model_id,

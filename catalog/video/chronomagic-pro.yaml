@@ -1,0 +1,68 @@
+id: chronomagic-pro
+name: ChronoMagic-Pro
+organization: Peking University and Yuan Group
+released_at: "2024-06-26"
+release_date_source: https://arxiv.org/abs/2406.18522
+modality: video
+tasks:
+  - text-to-video
+  - time-lapse-video-generation
+  - video-text-pretraining
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A 460K-example time-lapse video-text corpus for learning physical processes
+  and long-range metamorphic motion, with a 150K-example high-quality ProH
+  subset selected for visual quality and caption alignment.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/BestWishYsh/ChronoMagic-Pro
+  requires_account: false
+  notes: Roughly 2.06 TB of videos and metadata are hosted on Hugging Face without a gate.
+scale:
+  samples: 460000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The official project reports 460K time-lapse videos and a 150K high-quality ChronoMagic-ProH subset.
+annotations:
+  types:
+    - video-caption
+    - time-lapse-category
+    - visual-quality-score
+    - text-video-alignment-score
+    - source-metadata
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-4.0
+  media: CC-BY-4.0 dataset label plus source-video terms
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The hosted card is tagged CC-BY-4.0, but original video rights and any source-platform conditions should be checked before commercial training or redistribution.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Time-lapse capture and web sourcing bias the corpus toward visible processes and popular subjects.
+    - Automated captioning and quality scoring can miss subtle process direction, duration, or causal details.
+    - The headline corpus and ProH subset should not be combined as independent samples.
+processing:
+  recipe: recipes/video_text
+  recommended_format: webdataset
+  notes: Preserve full versus ProH membership, time-lapse category, original duration and frame rate, caption, quality scores, and source identifier.
+evidence:
+  homepage: https://github.com/PKU-YuanGroup/ChronoMagic-Bench
+  paper: https://arxiv.org/abs/2406.18522
+  used_by:
+    - MOVA-720p
+status: verified
+last_verified: "2026-07-27"

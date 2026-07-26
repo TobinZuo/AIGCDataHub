@@ -31,7 +31,13 @@ data:
   disclosure_level: undisclosed
   exact_datasets_disclosed: false
   exact_mixture_disclosed: false
-  datasets: []
+  datasets:
+    - name: AVGen-Bench
+      catalog_id: avgen-bench
+      role: evaluation
+      availability: public
+      scale: 235 prompts and 3,009 generated examples
+      notes: The official benchmark evaluates Wan2.6; the benchmark is not part of the undisclosed training corpus.
   stages:
     - name: pretraining
       modalities:
