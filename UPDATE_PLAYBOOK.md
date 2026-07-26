@@ -87,6 +87,8 @@ advance `last_verified`, merge a PR, or deploy unreviewed data.
 
 ## Freshness policy
 
+- The default review date is calculated in `Asia/Shanghai`, independent of the
+  CI host timezone. Use `--today YYYY-MM-DD` for deterministic historical audits.
 - `watch` model cards: verify at least every 14 days;
 - other model cards: verify at least every 45 days;
 - dataset cards: verify at least every 90 days;

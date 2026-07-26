@@ -6,10 +6,22 @@ from __future__ import annotations
 import argparse
 import sys
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime
+from zoneinfo import ZoneInfo
 
 from catalog import load_cards
 from models import load_models
+
+
+CATALOG_TIMEZONE = ZoneInfo("Asia/Shanghai")
+
+
+def catalog_today(now: datetime | None = None) -> date:
+    """Return the catalog's editorial date independent of the host timezone."""
+    instant = now or datetime.now(tz=CATALOG_TIMEZONE)
+    if instant.tzinfo is None:
+        raise ValueError("catalog_today requires a timezone-aware datetime")
+    return instant.astimezone(CATALOG_TIMEZONE).date()
 
 
 @dataclass(frozen=True)
@@ -54,7 +66,7 @@ def freshness_issues(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--today", type=date.fromisoformat, default=date.today())
+    parser.add_argument("--today", type=date.fromisoformat, default=catalog_today())
     parser.add_argument("--dataset-days", type=int, default=90)
     parser.add_argument("--model-days", type=int, default=45)
     parser.add_argument("--watch-days", type=int, default=14)
@@ -86,4 +98,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
