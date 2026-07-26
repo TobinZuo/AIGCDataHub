@@ -4,6 +4,7 @@ organization: Luma AI
 released_at: "2026-05-05"
 ranking_names:
   - Luma UNI 1 Max
+  - uni-1.1-max
 modalities:
   - image
 tasks:

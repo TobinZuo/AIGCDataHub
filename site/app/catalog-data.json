@@ -1,5 +1,5 @@
 {
-  "format_version": 11,
+  "format_version": 12,
   "generated_from": [
     "catalog/**/*.yaml",
     "models/**/*.yaml",
@@ -6216,7 +6216,8 @@
       "organization": "ByteDance Seed",
       "released_at": "2026-07-17",
       "ranking_names": [
-        "Seedream 5.0 Pro"
+        "Seedream 5.0 Pro",
+        "seedream-5.0-pro"
       ],
       "modalities": [
         "image"
@@ -6298,14 +6299,32 @@
       },
       "ranking_positions": [
         {
+          "ranking_id": "arena-image-edit",
+          "provider": "Arena",
+          "rank": 4,
+          "score": 1392.7,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-image",
+          "provider": "Arena",
+          "rank": 11,
+          "score": 1231.2,
+          "score_label": "Arena"
+        },
+        {
           "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
           "rank": 6,
-          "elo": 1238
+          "score": 1238,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
           "rank": 8,
-          "elo": 1239
+          "score": 1239,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -6535,7 +6554,8 @@
       "organization": "Reve",
       "released_at": "2026-07-09",
       "ranking_names": [
-        "Reve 2.1"
+        "Reve 2.1",
+        "reve-2.1"
       ],
       "modalities": [
         "image"
@@ -6613,9 +6633,25 @@
       "monitoring": null,
       "ranking_positions": [
         {
-          "ranking_id": "text-to-image",
+          "ranking_id": "arena-image-edit",
+          "provider": "Arena",
+          "rank": 10,
+          "score": 1383.2,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-image",
+          "provider": "Arena",
           "rank": 2,
-          "elo": 1301
+          "score": 1302.1,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
+          "rank": 2,
+          "score": 1301,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -6625,6 +6661,9 @@
       "name": "Muse Video",
       "organization": "Meta Superintelligence Labs",
       "released_at": "2026-07-07",
+      "ranking_names": [
+        "muse-video"
+      ],
       "modalities": [
         "video",
         "audio"
@@ -6704,7 +6743,15 @@
         "unknown_count": 3
       },
       "monitoring": null,
-      "ranking_positions": [],
+      "ranking_positions": [
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
+          "rank": 3,
+          "score": 1458.6,
+          "score_label": "Arena"
+        }
+      ],
       "linked_dataset_ids": []
     },
     {
@@ -6712,6 +6759,9 @@
       "name": "Muse Image",
       "organization": "Meta Superintelligence Labs",
       "released_at": "2026-07-07",
+      "ranking_names": [
+        "muse-image"
+      ],
       "modalities": [
         "multimodal",
         "image"
@@ -6817,7 +6867,22 @@
         "unknown_count": 3
       },
       "monitoring": null,
-      "ranking_positions": [],
+      "ranking_positions": [
+        {
+          "ranking_id": "arena-image-edit",
+          "provider": "Arena",
+          "rank": 2,
+          "score": 1402.4,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-image",
+          "provider": "Arena",
+          "rank": 3,
+          "score": 1280.4,
+          "score_label": "Arena"
+        }
+      ],
       "linked_dataset_ids": []
     },
     {
@@ -6826,7 +6891,8 @@
       "organization": "Google DeepMind",
       "released_at": "2026-06-30",
       "ranking_names": [
-        "Gemini Omni Flash"
+        "Gemini Omni Flash",
+        "gemini-omni-flash"
       ],
       "modalities": [
         "video",
@@ -6933,14 +6999,39 @@
       "monitoring": null,
       "ranking_positions": [
         {
-          "ranking_id": "image-to-video",
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
+          "rank": 2,
+          "score": 1469.3,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
           "rank": 1,
-          "elo": 1200
+          "score": 1527.5,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-video-edit",
+          "provider": "Arena",
+          "rank": 2,
+          "score": 1346.6,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
+          "rank": 1,
+          "score": 1200,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
           "rank": 1,
-          "elo": 1246
+          "score": 1246,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -6951,7 +7042,8 @@
       "organization": "Google DeepMind",
       "released_at": "2026-06-30",
       "ranking_names": [
-        "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)"
+        "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
+        "gemini-3.1-flash-lite-image (nano-banana-2-lite)"
       ],
       "modalities": [
         "image"
@@ -7107,9 +7199,18 @@
       "monitoring": null,
       "ranking_positions": [
         {
+          "ranking_id": "arena-text-to-image",
+          "provider": "Arena",
+          "rank": 7,
+          "score": 1249.7,
+          "score_label": "Arena"
+        },
+        {
           "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
           "rank": 4,
-          "elo": 1262
+          "score": 1262,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -7203,13 +7304,17 @@
       "ranking_positions": [
         {
           "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
           "rank": 4,
-          "elo": 1110
+          "score": 1110,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
           "rank": 4,
-          "elo": 1153
+          "score": 1153,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -7221,7 +7326,8 @@
       "released_at": "2026-06-16",
       "ranking_names": [
         "grok-imagine-video-1.5-preview",
-        "grok-imagine-video-1.5"
+        "grok-imagine-video-1.5",
+        "grok-imagine-video-1.5-preview-720p"
       ],
       "modalities": [
         "video",
@@ -7301,9 +7407,18 @@
       "monitoring": null,
       "ranking_positions": [
         {
-          "ranking_id": "image-to-video",
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
           "rank": 3,
-          "elo": 1118
+          "score": 1466.4,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
+          "rank": 3,
+          "score": 1118,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -7450,8 +7565,10 @@
       "ranking_positions": [
         {
           "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
           "rank": 7,
-          "elo": 1246
+          "score": 1246,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -7540,24 +7657,46 @@
       "monitoring": null,
       "ranking_positions": [
         {
-          "ranking_id": "image-editing",
-          "rank": 4,
-          "elo": 1243
-        },
-        {
-          "ranking_id": "image-editing",
-          "rank": 7,
-          "elo": 1230
-        },
-        {
-          "ranking_id": "text-to-image",
+          "ranking_id": "arena-image-edit",
+          "provider": "Arena",
           "rank": 3,
-          "elo": 1269
+          "score": 1401.4,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-image",
+          "provider": "Arena",
+          "rank": 6,
+          "score": 1256.6,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
+          "rank": 4,
+          "score": 1243,
+          "score_label": "Elo"
+        },
+        {
+          "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
+          "rank": 7,
+          "score": 1230,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
+          "rank": 3,
+          "score": 1269,
+          "score_label": "Elo"
+        },
+        {
+          "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
           "rank": 11,
-          "elo": 1206
+          "score": 1206,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -7691,8 +7830,10 @@
       "ranking_positions": [
         {
           "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
           "rank": 10,
-          "elo": 1218
+          "score": 1218,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -7988,8 +8129,10 @@
       "ranking_positions": [
         {
           "ranking_id": "video-editing",
+          "provider": "Artificial Analysis",
           "rank": 4,
-          "elo": 1013
+          "score": 1013,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -8335,13 +8478,17 @@
       "ranking_positions": [
         {
           "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
           "rank": 13,
-          "elo": 1203
+          "score": 1203,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
           "rank": 14,
-          "elo": 1199
+          "score": 1199,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -8489,8 +8636,10 @@
       "ranking_positions": [
         {
           "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
           "rank": 15,
-          "elo": 1203
+          "score": 1203,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -8501,7 +8650,8 @@
       "organization": "xAI",
       "released_at": "2026-05-06",
       "ranking_names": [
-        "grok-imagine-image-quality"
+        "grok-imagine-image-quality",
+        "grok-imagine-image-quality (20260519)"
       ],
       "modalities": [
         "image"
@@ -8582,14 +8732,39 @@
       },
       "ranking_positions": [
         {
+          "ranking_id": "arena-image-edit",
+          "provider": "Arena",
+          "rank": 6,
+          "score": 1389.2,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-image-edit",
+          "provider": "Arena",
+          "rank": 12,
+          "score": 1359.0,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-image",
+          "provider": "Arena",
+          "rank": 12,
+          "score": 1229.3,
+          "score_label": "Arena"
+        },
+        {
           "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
           "rank": 8,
-          "elo": 1230
+          "score": 1230,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
           "rank": 12,
-          "elo": 1203
+          "score": 1203,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -8600,7 +8775,8 @@
       "organization": "Luma AI",
       "released_at": "2026-05-05",
       "ranking_names": [
-        "Luma UNI 1 Max"
+        "Luma UNI 1 Max",
+        "uni-1.1-max"
       ],
       "modalities": [
         "image"
@@ -8699,9 +8875,25 @@
       },
       "ranking_positions": [
         {
+          "ranking_id": "arena-image-edit",
+          "provider": "Arena",
+          "rank": 14,
+          "score": 1333.6,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-image",
+          "provider": "Arena",
+          "rank": 15,
+          "score": 1188.1,
+          "score_label": "Arena"
+        },
+        {
           "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
           "rank": 10,
-          "elo": 1221
+          "score": 1221,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -8999,19 +9191,46 @@
       "monitoring": null,
       "ranking_positions": [
         {
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
+          "rank": 4,
+          "score": 1444.2,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
+          "rank": 4,
+          "score": 1429.5,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-video-edit",
+          "provider": "Arena",
+          "rank": 3,
+          "score": 1307.8,
+          "score_label": "Arena"
+        },
+        {
           "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
           "rank": 6,
-          "elo": 1093
+          "score": 1093,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
           "rank": 5,
-          "elo": 1132
+          "score": 1132,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "video-editing",
+          "provider": "Artificial Analysis",
           "rank": 1,
-          "elo": 1102
+          "score": 1102,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -9022,7 +9241,8 @@
       "organization": "OpenAI",
       "released_at": "2026-04-21",
       "ranking_names": [
-        "GPT Image 2 (high)"
+        "GPT Image 2 (high)",
+        "gpt-image-2 (medium)"
       ],
       "modalities": [
         "image"
@@ -9100,14 +9320,32 @@
       "monitoring": null,
       "ranking_positions": [
         {
-          "ranking_id": "image-editing",
+          "ranking_id": "arena-image-edit",
+          "provider": "Arena",
           "rank": 1,
-          "elo": 1258
+          "score": 1465.3,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-image",
+          "provider": "Arena",
+          "rank": 1,
+          "score": 1384.8,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
+          "rank": 1,
+          "score": 1258,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
           "rank": 1,
-          "elo": 1338
+          "score": 1338,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -9677,7 +9915,9 @@
       "ranking_names": [
         "Wan2.7-260612",
         "Wan 2.7",
-        "Wan2.7"
+        "Wan2.7",
+        "wan2.7-t2v",
+        "wan2.7-i2v"
       ],
       "modalities": [
         "video",
@@ -9759,24 +9999,46 @@
       "monitoring": null,
       "ranking_positions": [
         {
-          "ranking_id": "image-to-video",
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
           "rank": 5,
-          "elo": 1099
+          "score": 1434.1,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
+          "rank": 11,
+          "score": 1347.9,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
+          "rank": 5,
+          "score": 1099,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
           "rank": 3,
-          "elo": 1164
+          "score": 1164,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
           "rank": 8,
-          "elo": 1109
+          "score": 1109,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "video-editing",
+          "provider": "Artificial Analysis",
           "rank": 2,
-          "elo": 1089
+          "score": 1089,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -9869,8 +10131,10 @@
       "ranking_positions": [
         {
           "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
           "rank": 14,
-          "elo": 1092
+          "score": 1092,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -9969,8 +10233,10 @@
       "ranking_positions": [
         {
           "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
           "rank": 12,
-          "elo": 1073
+          "score": 1073,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -9982,7 +10248,8 @@
       "released_at": "2026-02-26",
       "ranking_names": [
         "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-        "Nano Banana 2"
+        "Nano Banana 2",
+        "gemini-3.1-flash-image (nano-banana-2) [web-search]"
       ],
       "modalities": [
         "image"
@@ -10060,14 +10327,32 @@
       "monitoring": null,
       "ranking_positions": [
         {
+          "ranking_id": "arena-image-edit",
+          "provider": "Arena",
+          "rank": 9,
+          "score": 1384.8,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-image",
+          "provider": "Arena",
+          "rank": 5,
+          "score": 1260.8,
+          "score_label": "Arena"
+        },
+        {
           "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
           "rank": 3,
-          "elo": 1248
+          "score": 1248,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
           "rank": 5,
-          "elo": 1261
+          "score": 1261,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -10307,18 +10592,24 @@
       "ranking_positions": [
         {
           "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
           "rank": 8,
-          "elo": 1085
+          "score": 1085,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
           "rank": 7,
-          "elo": 1112
+          "score": 1112,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "video-editing",
+          "provider": "Artificial Analysis",
           "rank": 6,
-          "elo": 952
+          "score": 952,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": [
@@ -10479,7 +10770,8 @@
       "organization": "ByteDance Seed",
       "released_at": "2026-02-12",
       "ranking_names": [
-        "Dreamina Seedance 2.0 720p"
+        "Dreamina Seedance 2.0 720p",
+        "dreamina-seedance-2.0-720p"
       ],
       "modalities": [
         "video",
@@ -10561,19 +10853,46 @@
       "monitoring": null,
       "ranking_positions": [
         {
-          "ranking_id": "image-to-video",
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
+          "rank": 1,
+          "score": 1473.7,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
           "rank": 2,
-          "elo": 1198
+          "score": 1481.9,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-video-edit",
+          "provider": "Arena",
+          "rank": 1,
+          "score": 1377.1,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
+          "rank": 2,
+          "score": 1198,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
           "rank": 2,
-          "elo": 1228
+          "score": 1228,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "video-editing",
+          "provider": "Artificial Analysis",
           "rank": 3,
-          "elo": 1039
+          "score": 1039,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -10738,7 +11057,8 @@
         "Kling 3.0 Omni 1080p (Pro)",
         "Kling 3.0 Omni 720p",
         "Kling 3.0 Omni 720p (Standard)",
-        "Kling 3.0 Pro"
+        "Kling 3.0 Pro",
+        "kling-v3-pro"
       ],
       "modalities": [
         "video",
@@ -10823,54 +11143,81 @@
       "monitoring": null,
       "ranking_positions": [
         {
-          "ranking_id": "image-editing",
-          "rank": 11,
-          "elo": 1215
-        },
-        {
-          "ranking_id": "image-editing",
-          "rank": 14,
-          "elo": 1203
-        },
-        {
-          "ranking_id": "image-to-video",
-          "rank": 11,
-          "elo": 1075
-        },
-        {
-          "ranking_id": "image-to-video",
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
           "rank": 13,
-          "elo": 1070
+          "score": 1360.3,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
+          "rank": 11,
+          "score": 1215,
+          "score_label": "Elo"
+        },
+        {
+          "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
+          "rank": 14,
+          "score": 1203,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
+          "rank": 11,
+          "score": 1075,
+          "score_label": "Elo"
+        },
+        {
+          "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
+          "rank": 13,
+          "score": 1070,
+          "score_label": "Elo"
+        },
+        {
+          "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
           "rank": 15,
-          "elo": 1063
+          "score": 1063,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
           "rank": 6,
-          "elo": 1113
+          "score": 1113,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
           "rank": 9,
-          "elo": 1102
+          "score": 1102,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
           "rank": 10,
-          "elo": 1098
+          "score": 1098,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
           "rank": 12,
-          "elo": 1093
+          "score": 1093,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "video-editing",
+          "provider": "Artificial Analysis",
           "rank": 5,
-          "elo": 1000
+          "score": 1000,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -10881,7 +11228,9 @@
       "organization": "xAI",
       "released_at": "2026-01-28",
       "ranking_names": [
-        "grok-imagine-video"
+        "grok-imagine-video",
+        "grok-imagine-video-720p",
+        "grok-imagine-video-480p"
       ],
       "modalities": [
         "video",
@@ -10968,9 +11317,39 @@
       },
       "ranking_positions": [
         {
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
+          "rank": 6,
+          "score": 1421.6,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
+          "rank": 10,
+          "score": 1383.5,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
+          "rank": 10,
+          "score": 1351.8,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-video-edit",
+          "provider": "Arena",
+          "rank": 4,
+          "score": 1264.0,
+          "score_label": "Arena"
+        },
+        {
           "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
           "rank": 9,
-          "elo": 1082
+          "score": 1082,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -11062,9 +11441,18 @@
       },
       "ranking_positions": [
         {
+          "ranking_id": "arena-image-edit",
+          "provider": "Arena",
+          "rank": 15,
+          "score": 1329.2,
+          "score_label": "Arena"
+        },
+        {
           "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
           "rank": 12,
-          "elo": 1213
+          "score": 1213,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -11075,7 +11463,8 @@
       "organization": "ShengShu Technology",
       "released_at": "2026-01-27",
       "ranking_names": [
-        "Vidu Q3 Pro"
+        "Vidu Q3 Pro",
+        "vidu-q3-pro"
       ],
       "modalities": [
         "video",
@@ -11162,14 +11551,25 @@
       },
       "ranking_positions": [
         {
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
+          "rank": 12,
+          "score": 1361.3,
+          "score_label": "Arena"
+        },
+        {
           "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
           "rank": 14,
-          "elo": 1066
+          "score": 1066,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
           "rank": 15,
-          "elo": 1083
+          "score": 1083,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -11362,8 +11762,10 @@
       "ranking_positions": [
         {
           "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
           "rank": 9,
-          "elo": 1224
+          "score": 1224,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -11515,7 +11917,13 @@
       "released_at": "2026-01-13",
       "ranking_names": [
         "Veo 3.1",
-        "Veo 3.1 Fast"
+        "Veo 3.1 Fast",
+        "veo-3.1-audio",
+        "veo-3.1-audio-1080p",
+        "veo-3.1-fast-audio",
+        "veo-3.1-fast-audio-1080p",
+        "veo-3-audio",
+        "veo-3-fast-audio"
       ],
       "modalities": [
         "video",
@@ -11625,24 +12033,116 @@
       },
       "ranking_positions": [
         {
-          "ranking_id": "image-to-video",
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
           "rank": 7,
-          "elo": 1088
+          "score": 1397.7,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
+          "rank": 8,
+          "score": 1391.4,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
+          "rank": 9,
+          "score": 1384.8,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
+          "rank": 11,
+          "score": 1373.8,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
+          "rank": 14,
+          "score": 1330.4,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
+          "rank": 15,
+          "score": 1324.5,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
+          "rank": 6,
+          "score": 1364.2,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
+          "rank": 7,
+          "score": 1363.9,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
+          "rank": 8,
+          "score": 1362.0,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
+          "rank": 9,
+          "score": 1359.5,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
+          "rank": 12,
+          "score": 1346.9,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
+          "rank": 13,
+          "score": 1339.0,
+          "score_label": "Arena"
         },
         {
           "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
+          "rank": 7,
+          "score": 1088,
+          "score_label": "Elo"
+        },
+        {
+          "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
           "rank": 10,
-          "elo": 1079
+          "score": 1079,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
           "rank": 11,
-          "elo": 1096
+          "score": 1096,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
           "rank": 13,
-          "elo": 1093
+          "score": 1093,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -12069,7 +12569,9 @@
       "organization": "OpenAI",
       "released_at": "2025-12-16",
       "ranking_names": [
-        "GPT Image 1.5 (high)"
+        "GPT Image 1.5 (high)",
+        "gpt-image-1.5-high-fidelity",
+        "chatgpt-image-latest-high-fidelity (20251216)"
       ],
       "modalities": [
         "image"
@@ -12146,14 +12648,39 @@
       "monitoring": null,
       "ranking_positions": [
         {
+          "ranking_id": "arena-image-edit",
+          "provider": "Arena",
+          "rank": 5,
+          "score": 1389.4,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-image-edit",
+          "provider": "Arena",
+          "rank": 11,
+          "score": 1372.1,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-image",
+          "provider": "Arena",
+          "rank": 9,
+          "score": 1240.5,
+          "score_label": "Arena"
+        },
+        {
           "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
           "rank": 2,
-          "elo": 1254
+          "score": 1254,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
           "rank": 6,
-          "elo": 1260
+          "score": 1260,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -12248,8 +12775,10 @@
       "ranking_positions": [
         {
           "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
           "rank": 15,
-          "elo": 1194
+          "score": 1194,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -12379,7 +12908,8 @@
       "organization": "Kuaishou Technology",
       "released_at": "2025-12-01",
       "ranking_names": [
-        "Kling Image O1"
+        "Kling Image O1",
+        "kling-o1-pro"
       ],
       "modalities": [
         "image",
@@ -12467,9 +12997,18 @@
       },
       "ranking_positions": [
         {
+          "ranking_id": "arena-video-edit",
+          "provider": "Arena",
+          "rank": 6,
+          "score": 1203.1,
+          "score_label": "Arena"
+        },
+        {
           "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
           "rank": 13,
-          "elo": 1203
+          "score": 1203,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -12594,7 +13133,9 @@
       "organization": "Google DeepMind",
       "released_at": "2025-11-20",
       "ranking_names": [
-        "Nano Banana Pro (Gemini 3 Pro Image)"
+        "Nano Banana Pro (Gemini 3 Pro Image)",
+        "gemini-3-pro-image-2k (nano-banana-pro)",
+        "gemini-3-pro-image-preview (nano-banana-pro)"
       ],
       "modalities": [
         "image"
@@ -12672,14 +13213,46 @@
       "monitoring": null,
       "ranking_positions": [
         {
+          "ranking_id": "arena-image-edit",
+          "provider": "Arena",
+          "rank": 7,
+          "score": 1387.8,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-image-edit",
+          "provider": "Arena",
+          "rank": 8,
+          "score": 1385.0,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-image",
+          "provider": "Arena",
+          "rank": 8,
+          "score": 1244.6,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-image",
+          "provider": "Arena",
+          "rank": 10,
+          "score": 1232.0,
+          "score_label": "Arena"
+        },
+        {
           "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
           "rank": 5,
-          "elo": 1240
+          "score": 1240,
+          "score_label": "Elo"
         },
         {
           "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
           "rank": 9,
-          "elo": 1223
+          "score": 1223,
+          "score_label": "Elo"
         }
       ],
       "linked_dataset_ids": []
@@ -13484,757 +14057,1727 @@
   ],
   "rankings": [
     {
+      "id": "arena-image-edit",
+      "provider": "Arena",
+      "label": "图片编辑",
+      "modality": "image",
+      "score_label": "Arena",
+      "date_label": "榜单快照",
+      "coverage_policy": "monitor",
+      "source_url": "https://arena.ai/leaderboard/image-edit",
+      "fetch_url": "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=image_edit&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100",
+      "entries": [
+        {
+          "rank": 1,
+          "creator": "openai",
+          "model": "gpt-image-2 (medium)",
+          "score": 1465.3,
+          "confidence_interval": "1461–1470",
+          "samples": 145970,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "gpt-image-2"
+        },
+        {
+          "rank": 2,
+          "creator": "meta",
+          "model": "muse-image",
+          "score": 1402.4,
+          "confidence_interval": "1396–1409",
+          "samples": 16932,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "muse-image"
+        },
+        {
+          "rank": 3,
+          "creator": "microsoft-ai",
+          "model": "mai-image-2.5",
+          "score": 1401.4,
+          "confidence_interval": "1398–1405",
+          "samples": 100526,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "mai-image-2-5"
+        },
+        {
+          "rank": 4,
+          "creator": "bytedance",
+          "model": "seedream-5.0-pro",
+          "score": 1392.7,
+          "confidence_interval": "1383–1402",
+          "samples": 4299,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "seedream-5-0-pro"
+        },
+        {
+          "rank": 5,
+          "creator": "openai",
+          "model": "chatgpt-image-latest-high-fidelity (20251216)",
+          "score": 1389.4,
+          "confidence_interval": "1386–1393",
+          "samples": 457021,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "gpt-image-1-5"
+        },
+        {
+          "rank": 6,
+          "creator": "xai",
+          "model": "grok-imagine-image-quality (20260519)",
+          "score": 1389.2,
+          "confidence_interval": "1384–1394",
+          "samples": 34756,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "grok-imagine-image-quality"
+        },
+        {
+          "rank": 7,
+          "creator": "google",
+          "model": "gemini-3-pro-image-2k (nano-banana-pro)",
+          "score": 1387.8,
+          "confidence_interval": "1385–1391",
+          "samples": 459237,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "gemini-3-pro-image"
+        },
+        {
+          "rank": 8,
+          "creator": "google",
+          "model": "gemini-3-pro-image-preview (nano-banana-pro)",
+          "score": 1385.0,
+          "confidence_interval": "1382–1388",
+          "samples": 518398,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "gemini-3-pro-image"
+        },
+        {
+          "rank": 9,
+          "creator": "google",
+          "model": "gemini-3.1-flash-image (nano-banana-2) [web-search]",
+          "score": 1384.8,
+          "confidence_interval": "1380–1389",
+          "samples": 60941,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "gemini-3-1-flash-image"
+        },
+        {
+          "rank": 10,
+          "creator": "reve",
+          "model": "reve-2.1",
+          "score": 1383.2,
+          "confidence_interval": "1374–1392",
+          "samples": 5165,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "reve-2-1"
+        },
+        {
+          "rank": 11,
+          "creator": "openai",
+          "model": "gpt-image-1.5-high-fidelity",
+          "score": 1372.1,
+          "confidence_interval": "1369–1375",
+          "samples": 478581,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "gpt-image-1-5"
+        },
+        {
+          "rank": 12,
+          "creator": "xai",
+          "model": "grok-imagine-image-quality",
+          "score": 1359.0,
+          "confidence_interval": "1355–1363",
+          "samples": 111066,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "grok-imagine-image-quality"
+        },
+        {
+          "rank": 13,
+          "creator": "reve",
+          "model": "reve-2.0",
+          "score": 1357.9,
+          "confidence_interval": "1351–1364",
+          "samples": 14513,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": null
+        },
+        {
+          "rank": 14,
+          "creator": "luma-ai",
+          "model": "uni-1.1-max",
+          "score": 1333.6,
+          "confidence_interval": "1329–1339",
+          "samples": 40859,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "luma-uni-1-max"
+        },
+        {
+          "rank": 15,
+          "creator": "xai",
+          "model": "grok-imagine-image",
+          "score": 1329.2,
+          "confidence_interval": "1326–1332",
+          "samples": 478004,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "grok-imagine-image"
+        }
+      ]
+    },
+    {
+      "id": "arena-image-to-video",
+      "provider": "Arena",
+      "label": "图生视频",
+      "modality": "video",
+      "score_label": "Arena",
+      "date_label": "榜单快照",
+      "coverage_policy": "monitor",
+      "source_url": "https://arena.ai/leaderboard/image-to-video",
+      "fetch_url": "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=image_to_video&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100",
+      "entries": [
+        {
+          "rank": 1,
+          "creator": "bytedance",
+          "model": "dreamina-seedance-2.0-720p",
+          "score": 1473.7,
+          "confidence_interval": "1463–1484",
+          "samples": 81746,
+          "released": "2026-06-23",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "seedance-2-0"
+        },
+        {
+          "rank": 2,
+          "creator": "google",
+          "model": "gemini-omni-flash",
+          "score": 1469.3,
+          "confidence_interval": "1458–1480",
+          "samples": 5373,
+          "released": "2026-06-23",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "gemini-omni-flash"
+        },
+        {
+          "rank": 3,
+          "creator": "xai",
+          "model": "grok-imagine-video-1.5-preview-720p",
+          "score": 1466.4,
+          "confidence_interval": "1461–1472",
+          "samples": 44400,
+          "released": "2026-06-23",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "grok-imagine-video-1-5"
+        },
+        {
+          "rank": 4,
+          "creator": "aorizon",
+          "model": "happyhorse-1.0",
+          "score": 1444.2,
+          "confidence_interval": "1434–1454",
+          "samples": 61051,
+          "released": "2026-06-23",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "happyhorse-1-0"
+        },
+        {
+          "rank": 5,
+          "creator": "wan",
+          "model": "wan2.7-i2v",
+          "score": 1434.1,
+          "confidence_interval": "1426–1442",
+          "samples": 14113,
+          "released": "2026-06-23",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "wan-2-7"
+        },
+        {
+          "rank": 6,
+          "creator": "xai",
+          "model": "grok-imagine-video-720p",
+          "score": 1421.6,
+          "confidence_interval": "1416–1427",
+          "samples": 462748,
+          "released": "2026-06-23",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "grok-imagine-video"
+        },
+        {
+          "rank": 7,
+          "creator": "google",
+          "model": "veo-3.1-audio",
+          "score": 1397.7,
+          "confidence_interval": "1387–1408",
+          "samples": 25112,
+          "released": "2026-06-23",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "veo-3-1"
+        },
+        {
+          "rank": 8,
+          "creator": "google",
+          "model": "veo-3.1-audio-1080p",
+          "score": 1391.4,
+          "confidence_interval": "1382–1400",
+          "samples": 38881,
+          "released": "2026-06-23",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "veo-3-1"
+        },
+        {
+          "rank": 9,
+          "creator": "google",
+          "model": "veo-3.1-fast-audio",
+          "score": 1384.8,
+          "confidence_interval": "1376–1394",
+          "samples": 99804,
+          "released": "2026-06-23",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "veo-3-1"
+        },
+        {
+          "rank": 10,
+          "creator": "xai",
+          "model": "grok-imagine-video-480p",
+          "score": 1383.5,
+          "confidence_interval": "1375–1392",
+          "samples": 19417,
+          "released": "2026-06-23",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "grok-imagine-video"
+        },
+        {
+          "rank": 11,
+          "creator": "google",
+          "model": "veo-3.1-fast-audio-1080p",
+          "score": 1373.8,
+          "confidence_interval": "1364–1384",
+          "samples": 39253,
+          "released": "2026-06-23",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "veo-3-1"
+        },
+        {
+          "rank": 12,
+          "creator": "shengshu",
+          "model": "vidu-q3-pro",
+          "score": 1361.3,
+          "confidence_interval": "1353–1369",
+          "samples": 36677,
+          "released": "2026-06-23",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "vidu-q3-pro"
+        },
+        {
+          "rank": 13,
+          "creator": "kling",
+          "model": "kling-v3-pro",
+          "score": 1360.3,
+          "confidence_interval": "1352–1368",
+          "samples": 115181,
+          "released": "2026-06-23",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "kling-3"
+        },
+        {
+          "rank": 14,
+          "creator": "google",
+          "model": "veo-3-audio",
+          "score": 1330.4,
+          "confidence_interval": "1319–1342",
+          "samples": 32383,
+          "released": "2026-06-23",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "veo-3-1"
+        },
+        {
+          "rank": 15,
+          "creator": "google",
+          "model": "veo-3-fast-audio",
+          "score": 1324.5,
+          "confidence_interval": "1315–1334",
+          "samples": 41215,
+          "released": "2026-06-23",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "veo-3-1"
+        }
+      ]
+    },
+    {
+      "id": "arena-text-to-image",
+      "provider": "Arena",
+      "label": "文生图",
+      "modality": "image",
+      "score_label": "Arena",
+      "date_label": "榜单快照",
+      "coverage_policy": "monitor",
+      "source_url": "https://arena.ai/leaderboard/text-to-image",
+      "fetch_url": "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=text_to_image&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100",
+      "entries": [
+        {
+          "rank": 1,
+          "creator": "openai",
+          "model": "gpt-image-2 (medium)",
+          "score": 1384.8,
+          "confidence_interval": "1380–1390",
+          "samples": 60382,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "gpt-image-2"
+        },
+        {
+          "rank": 2,
+          "creator": "reve",
+          "model": "reve-2.1",
+          "score": 1302.1,
+          "confidence_interval": "1290–1314",
+          "samples": 2432,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "reve-2-1"
+        },
+        {
+          "rank": 3,
+          "creator": "meta",
+          "model": "muse-image",
+          "score": 1280.4,
+          "confidence_interval": "1272–1288",
+          "samples": 8384,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "muse-image"
+        },
+        {
+          "rank": 4,
+          "creator": "reve",
+          "model": "reve-2.0",
+          "score": 1270.7,
+          "confidence_interval": "1264–1277",
+          "samples": 13675,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": null
+        },
+        {
+          "rank": 5,
+          "creator": "google",
+          "model": "gemini-3.1-flash-image (nano-banana-2) [web-search]",
+          "score": 1260.8,
+          "confidence_interval": "1254–1268",
+          "samples": 18502,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "gemini-3-1-flash-image"
+        },
+        {
+          "rank": 6,
+          "creator": "microsoft-ai",
+          "model": "mai-image-2.5",
+          "score": 1256.6,
+          "confidence_interval": "1252–1261",
+          "samples": 34416,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "mai-image-2-5"
+        },
+        {
+          "rank": 7,
+          "creator": "google",
+          "model": "gemini-3.1-flash-lite-image (nano-banana-2-lite)",
+          "score": 1249.7,
+          "confidence_interval": "1242–1257",
+          "samples": 9392,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "gemini-3-1-flash-lite-image"
+        },
+        {
+          "rank": 8,
+          "creator": "google",
+          "model": "gemini-3-pro-image-2k (nano-banana-pro)",
+          "score": 1244.6,
+          "confidence_interval": "1241–1248",
+          "samples": 129467,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "gemini-3-pro-image"
+        },
+        {
+          "rank": 9,
+          "creator": "openai",
+          "model": "gpt-image-1.5-high-fidelity",
+          "score": 1240.5,
+          "confidence_interval": "1237–1244",
+          "samples": 133306,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "gpt-image-1-5"
+        },
+        {
+          "rank": 10,
+          "creator": "google",
+          "model": "gemini-3-pro-image-preview (nano-banana-pro)",
+          "score": 1232.0,
+          "confidence_interval": "1227–1237",
+          "samples": 82565,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "gemini-3-pro-image"
+        },
+        {
+          "rank": 11,
+          "creator": "bytedance",
+          "model": "seedream-5.0-pro",
+          "score": 1231.2,
+          "confidence_interval": "1220–1242",
+          "samples": 2865,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "seedream-5-0-pro"
+        },
+        {
+          "rank": 12,
+          "creator": "xai",
+          "model": "grok-imagine-image-quality",
+          "score": 1229.3,
+          "confidence_interval": "1225–1234",
+          "samples": 39467,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "grok-imagine-image-quality"
+        },
+        {
+          "rank": 13,
+          "creator": "ideogram",
+          "model": "ideogram-4.0-quality",
+          "score": 1206.8,
+          "confidence_interval": "1201–1212",
+          "samples": 18547,
+          "released": "2026-07-10",
+          "open_weights": true,
+          "license": "Ideogram Open Model",
+          "model_id": null
+        },
+        {
+          "rank": 14,
+          "creator": "alibaba",
+          "model": "qwen-image-2.0-pro-2026-06-22",
+          "score": 1192.7,
+          "confidence_interval": "1186–1200",
+          "samples": 8419,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": null
+        },
+        {
+          "rank": 15,
+          "creator": "luma-ai",
+          "model": "uni-1.1-max",
+          "score": 1188.1,
+          "confidence_interval": "1182–1194",
+          "samples": 13458,
+          "released": "2026-07-10",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "luma-uni-1-max"
+        }
+      ]
+    },
+    {
+      "id": "arena-text-to-video",
+      "provider": "Arena",
+      "label": "文生视频",
+      "modality": "video",
+      "score_label": "Arena",
+      "date_label": "榜单快照",
+      "coverage_policy": "monitor",
+      "source_url": "https://arena.ai/leaderboard/text-to-video",
+      "fetch_url": "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=text_to_video&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100",
+      "entries": [
+        {
+          "rank": 1,
+          "creator": "google",
+          "model": "gemini-omni-flash",
+          "score": 1527.5,
+          "confidence_interval": "1514–1541",
+          "samples": 5449,
+          "released": "2026-07-07",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "gemini-omni-flash"
+        },
+        {
+          "rank": 2,
+          "creator": "bytedance",
+          "model": "dreamina-seedance-2.0-720p",
+          "score": 1481.9,
+          "confidence_interval": "1472–1492",
+          "samples": 41953,
+          "released": "2026-07-07",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "seedance-2-0"
+        },
+        {
+          "rank": 3,
+          "creator": "meta",
+          "model": "muse-video",
+          "score": 1458.6,
+          "confidence_interval": "1444–1474",
+          "samples": 2152,
+          "released": "2026-07-07",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "muse-video"
+        },
+        {
+          "rank": 4,
+          "creator": "aorizon",
+          "model": "happyhorse-1.0",
+          "score": 1429.5,
+          "confidence_interval": "1417–1442",
+          "samples": 21985,
+          "released": "2026-07-07",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "happyhorse-1-0"
+        },
+        {
+          "rank": 5,
+          "creator": "openai",
+          "model": "sora-2-pro",
+          "score": 1365.6,
+          "confidence_interval": "1358–1374",
+          "samples": 39773,
+          "released": "2026-07-07",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": null
+        },
+        {
+          "rank": 6,
+          "creator": "google",
+          "model": "veo-3.1-audio-1080p",
+          "score": 1364.2,
+          "confidence_interval": "1354–1375",
+          "samples": 23200,
+          "released": "2026-07-07",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "veo-3-1"
+        },
+        {
+          "rank": 7,
+          "creator": "google",
+          "model": "veo-3.1-audio",
+          "score": 1363.9,
+          "confidence_interval": "1350–1378",
+          "samples": 13691,
+          "released": "2026-07-07",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "veo-3-1"
+        },
+        {
+          "rank": 8,
+          "creator": "google",
+          "model": "veo-3.1-fast-audio",
+          "score": 1362.0,
+          "confidence_interval": "1351–1373",
+          "samples": 39333,
+          "released": "2026-07-07",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "veo-3-1"
+        },
+        {
+          "rank": 9,
+          "creator": "google",
+          "model": "veo-3.1-fast-audio-1080p",
+          "score": 1359.5,
+          "confidence_interval": "1349–1370",
+          "samples": 23506,
+          "released": "2026-07-07",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "veo-3-1"
+        },
+        {
+          "rank": 10,
+          "creator": "xai",
+          "model": "grok-imagine-video-720p",
+          "score": 1351.8,
+          "confidence_interval": "1344–1360",
+          "samples": 144437,
+          "released": "2026-07-07",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "grok-imagine-video"
+        },
+        {
+          "rank": 11,
+          "creator": "wan",
+          "model": "wan2.7-t2v",
+          "score": 1347.9,
+          "confidence_interval": "1338–1358",
+          "samples": 8092,
+          "released": "2026-07-07",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "wan-2-7"
+        },
+        {
+          "rank": 12,
+          "creator": "google",
+          "model": "veo-3-fast-audio",
+          "score": 1346.9,
+          "confidence_interval": "1336–1358",
+          "samples": 25153,
+          "released": "2026-07-07",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "veo-3-1"
+        },
+        {
+          "rank": 13,
+          "creator": "google",
+          "model": "veo-3-audio",
+          "score": 1339.0,
+          "confidence_interval": "1327–1351",
+          "samples": 18961,
+          "released": "2026-07-07",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "veo-3-1"
+        },
+        {
+          "rank": 14,
+          "creator": "openai",
+          "model": "sora-2",
+          "score": 1337.1,
+          "confidence_interval": "1330–1344",
+          "samples": 53767,
+          "released": "2026-07-07",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": null
+        },
+        {
+          "rank": 15,
+          "creator": "alibaba",
+          "model": "wan2.6-t2v",
+          "score": 1333.3,
+          "confidence_interval": "1323–1343",
+          "samples": 34624,
+          "released": "2026-07-07",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": null
+        }
+      ]
+    },
+    {
+      "id": "arena-video-edit",
+      "provider": "Arena",
+      "label": "视频编辑",
+      "modality": "video",
+      "score_label": "Arena",
+      "date_label": "榜单快照",
+      "coverage_policy": "monitor",
+      "source_url": "https://arena.ai/leaderboard/video-edit",
+      "fetch_url": "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=video_edit&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100",
+      "entries": [
+        {
+          "rank": 1,
+          "creator": "bytedance",
+          "model": "dreamina-seedance-2.0-720p",
+          "score": 1377.1,
+          "confidence_interval": "1366–1389",
+          "samples": 3010,
+          "released": "2026-06-30",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "seedance-2-0"
+        },
+        {
+          "rank": 2,
+          "creator": "google",
+          "model": "gemini-omni-flash",
+          "score": 1346.6,
+          "confidence_interval": "1331–1362",
+          "samples": 998,
+          "released": "2026-06-30",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "gemini-omni-flash"
+        },
+        {
+          "rank": 3,
+          "creator": "aorizon",
+          "model": "happyhorse-1.0",
+          "score": 1307.8,
+          "confidence_interval": "1296–1320",
+          "samples": 2681,
+          "released": "2026-06-30",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "happyhorse-1-0"
+        },
+        {
+          "rank": 4,
+          "creator": "xai",
+          "model": "grok-imagine-video",
+          "score": 1264.0,
+          "confidence_interval": "1256–1272",
+          "samples": 11736,
+          "released": "2026-06-30",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "grok-imagine-video"
+        },
+        {
+          "rank": 5,
+          "creator": "kling",
+          "model": "kling-o3-pro",
+          "score": 1251.2,
+          "confidence_interval": "1241–1261",
+          "samples": 6165,
+          "released": "2026-06-30",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": null
+        },
+        {
+          "rank": 6,
+          "creator": "kling",
+          "model": "kling-o1-pro",
+          "score": 1203.1,
+          "confidence_interval": "1194–1212",
+          "samples": 8322,
+          "released": "2026-06-30",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": "kling-o1"
+        },
+        {
+          "rank": 7,
+          "creator": "runway",
+          "model": "runway-gen4-aleph",
+          "score": 1194.0,
+          "confidence_interval": "1186–1202",
+          "samples": 8368,
+          "released": "2026-06-30",
+          "open_weights": false,
+          "license": "Proprietary",
+          "model_id": null
+        }
+      ]
+    },
+    {
       "id": "image-editing",
+      "provider": "Artificial Analysis",
+      "label": "图片编辑",
+      "modality": "image",
+      "score_label": "Elo",
+      "date_label": "模型发布",
+      "coverage_policy": "required",
       "source_url": "https://artificialanalysis.ai/image/leaderboard/editing/",
+      "fetch_url": "https://artificialanalysis.ai/image/leaderboard/editing/",
       "entries": [
         {
           "rank": 1,
           "creator": "OpenAI",
           "model": "GPT Image 2 (high)",
-          "elo": 1258,
+          "score": 1258,
           "confidence_interval": "-7/7",
           "samples": 16309,
           "released": "Apr 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "gpt-image-2"
         },
         {
           "rank": 2,
           "creator": "OpenAI",
           "model": "GPT Image 1.5 (high)",
-          "elo": 1254,
+          "score": 1254,
           "confidence_interval": "-8/8",
           "samples": 9748,
           "released": "Dec 2025",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "gpt-image-1-5"
         },
         {
           "rank": 3,
           "creator": "Google",
           "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-          "elo": 1248,
+          "score": 1248,
           "confidence_interval": "-8/8",
           "samples": 10757,
           "released": "Feb 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "gemini-3-1-flash-image"
         },
         {
           "rank": 4,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5",
-          "elo": 1243,
+          "score": 1243,
           "confidence_interval": "-9/9",
           "samples": 6503,
           "released": "Jun 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "mai-image-2-5"
         },
         {
           "rank": 5,
           "creator": "Google",
           "model": "Nano Banana Pro (Gemini 3 Pro Image)",
-          "elo": 1240,
+          "score": 1240,
           "confidence_interval": "-8/8",
           "samples": 9037,
           "released": "Nov 2025",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "gemini-3-pro-image"
         },
         {
           "rank": 6,
           "creator": "Bytedance",
           "model": "Seedream 5.0 Pro",
-          "elo": 1238,
+          "score": 1238,
           "confidence_interval": "-11/11",
           "samples": 2739,
           "released": "Jul 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "seedream-5-0-pro"
         },
         {
           "rank": 7,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5-Flash",
-          "elo": 1230,
+          "score": 1230,
           "confidence_interval": "-9/9",
           "samples": 4358,
           "released": "Jun 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "mai-image-2-5"
         },
         {
           "rank": 8,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image-quality",
-          "elo": 1230,
+          "score": 1230,
           "confidence_interval": "-8/8",
           "samples": 8285,
           "released": "Apr 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "grok-imagine-image-quality"
         },
         {
           "rank": 9,
           "creator": "Tencent",
           "model": "HunyuanImage 3.0 Instruct (Fal)",
-          "elo": 1224,
+          "score": 1224,
           "confidence_interval": "-8/8",
           "samples": 8618,
           "released": "Jan 2026",
           "open_weights": true,
+          "license": "Open weights",
           "model_id": "hunyuanimage-3-instruct"
         },
         {
           "rank": 10,
           "creator": "Luma Labs",
           "model": "Luma UNI 1 Max",
-          "elo": 1221,
+          "score": 1221,
           "confidence_interval": "-9/9",
           "samples": 5651,
           "released": "May 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "luma-uni-1-max"
         },
         {
           "rank": 11,
           "creator": "KlingAI",
           "model": "Kling Image 3.0 Omni",
-          "elo": 1215,
+          "score": 1215,
           "confidence_interval": "-7/7",
           "samples": 8424,
           "released": "Feb 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "kling-3"
         },
         {
           "rank": 12,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image",
-          "elo": 1213,
+          "score": 1213,
           "confidence_interval": "-8/8",
           "samples": 8857,
           "released": "Jan 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "grok-imagine-image"
         },
         {
           "rank": 13,
           "creator": "KlingAI",
           "model": "Kling Image O1",
-          "elo": 1203,
+          "score": 1203,
           "confidence_interval": "-8/8",
           "samples": 7450,
           "released": "Dec 2025",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "kling-o1"
         },
         {
           "rank": 14,
           "creator": "KlingAI",
           "model": "Kling Image 3.0",
-          "elo": 1203,
+          "score": 1203,
           "confidence_interval": "-8/8",
           "samples": 8142,
           "released": "Feb 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "kling-3"
         },
         {
           "rank": 15,
           "creator": "HiDream",
           "model": "HiDream-O1-Image",
-          "elo": 1203,
+          "score": 1203,
           "confidence_interval": "-9/9",
           "samples": 5931,
           "released": "May 2026",
           "open_weights": true,
+          "license": "Open weights",
           "model_id": "hidream-o1-image"
         }
       ]
     },
     {
       "id": "image-to-video",
+      "provider": "Artificial Analysis",
+      "label": "图生视频",
+      "modality": "video",
+      "score_label": "Elo",
+      "date_label": "模型发布",
+      "coverage_policy": "required",
       "source_url": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "fetch_url": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
       "entries": [
         {
           "rank": 1,
           "creator": "Google",
           "model": "Gemini Omni Flash",
-          "elo": 1200,
+          "score": 1200,
           "confidence_interval": "-11/11",
           "samples": 3059,
           "released": "May 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "gemini-omni-flash"
         },
         {
           "rank": 2,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
-          "elo": 1198,
+          "score": 1198,
           "confidence_interval": "-8/8",
           "samples": 9072,
           "released": "Mar 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "seedance-2-0"
         },
         {
           "rank": 3,
           "creator": "SpaceXAI",
           "model": "grok-imagine-video-1.5-preview",
-          "elo": 1118,
+          "score": 1118,
           "confidence_interval": "-10/10",
           "samples": 3849,
           "released": "May 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "grok-imagine-video-1-5"
         },
         {
           "rank": 4,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.1",
-          "elo": 1110,
+          "score": 1110,
           "confidence_interval": "-10/10",
           "samples": 3311,
           "released": "Jun 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "happyhorse-1-1"
         },
         {
           "rank": 5,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "elo": 1099,
+          "score": 1099,
           "confidence_interval": "-10/10",
           "samples": 3283,
           "released": "Apr 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "wan-2-7"
         },
         {
           "rank": 6,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.0",
-          "elo": 1093,
+          "score": 1093,
           "confidence_interval": "-9/9",
           "samples": 6625,
           "released": "Apr 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "happyhorse-1-0"
         },
         {
           "rank": 7,
           "creator": "Google",
           "model": "Veo 3.1",
-          "elo": 1088,
+          "score": 1088,
           "confidence_interval": "-8/8",
           "samples": 7021,
           "released": "Jan 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "veo-3-1"
         },
         {
           "rank": 8,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "elo": 1085,
+          "score": 1085,
           "confidence_interval": "-10/10",
           "samples": 3581,
           "released": "Mar 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "skyreels-v4"
         },
         {
           "rank": 9,
           "creator": "SpaceXAI",
           "model": "grok-imagine-video",
-          "elo": 1082,
+          "score": 1082,
           "confidence_interval": "-8/8",
           "samples": 8483,
           "released": "Jan 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "grok-imagine-video"
         },
         {
           "rank": 10,
           "creator": "Google",
           "model": "Veo 3.1 Fast",
-          "elo": 1079,
+          "score": 1079,
           "confidence_interval": "-8/8",
           "samples": 7574,
           "released": "Jan 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "veo-3-1"
         },
         {
           "rank": 11,
           "creator": "KlingAI",
           "model": "Kling 3.0 1080p (Pro)",
-          "elo": 1075,
+          "score": 1075,
           "confidence_interval": "-8/8",
           "samples": 8063,
           "released": "Feb 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "kling-3"
         },
         {
           "rank": 12,
           "creator": "PixVerse",
           "model": "PixVerse V6",
-          "elo": 1073,
+          "score": 1073,
           "confidence_interval": "-8/8",
           "samples": 8354,
           "released": "Mar 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "pixverse-v6"
         },
         {
           "rank": 13,
           "creator": "KlingAI",
           "model": "Kling 3.0 720p (Standard)",
-          "elo": 1070,
+          "score": 1070,
           "confidence_interval": "-8/8",
           "samples": 8115,
           "released": "Feb 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "kling-3"
         },
         {
           "rank": 14,
           "creator": "Vidu",
           "model": "Vidu Q3 Pro",
-          "elo": 1066,
+          "score": 1066,
           "confidence_interval": "-8/8",
           "samples": 8684,
           "released": "Jan 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "vidu-q3-pro"
         },
         {
           "rank": 15,
           "creator": "KlingAI",
           "model": "Kling 3.0 Omni 1080p (Pro)",
-          "elo": 1063,
+          "score": 1063,
           "confidence_interval": "-8/8",
           "samples": 6286,
           "released": "Feb 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "kling-3"
         }
       ]
     },
     {
       "id": "text-to-image",
+      "provider": "Artificial Analysis",
+      "label": "文生图",
+      "modality": "image",
+      "score_label": "Elo",
+      "date_label": "模型发布",
+      "coverage_policy": "required",
       "source_url": "https://artificialanalysis.ai/image/leaderboard/text-to-image/",
+      "fetch_url": "https://artificialanalysis.ai/image/leaderboard/text-to-image/",
       "entries": [
         {
           "rank": 1,
           "creator": "OpenAI",
           "model": "GPT Image 2 (high)",
-          "elo": 1338,
+          "score": 1338,
           "confidence_interval": "-7/7",
           "samples": 21060,
           "released": "Apr 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "gpt-image-2"
         },
         {
           "rank": 2,
           "creator": "Reve",
           "model": "Reve 2.1",
-          "elo": 1301,
+          "score": 1301,
           "confidence_interval": "-11/11",
           "samples": 9322,
           "released": "Jul 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "reve-2-1"
         },
         {
           "rank": 3,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5",
-          "elo": 1269,
+          "score": 1269,
           "confidence_interval": "-9/9",
           "samples": 9313,
           "released": "Jun 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "mai-image-2-5"
         },
         {
           "rank": 4,
           "creator": "Google",
           "model": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
-          "elo": 1262,
+          "score": 1262,
           "confidence_interval": "-10/10",
           "samples": 9231,
           "released": "Jun 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "gemini-3-1-flash-lite-image"
         },
         {
           "rank": 5,
           "creator": "Google",
           "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-          "elo": 1261,
+          "score": 1261,
           "confidence_interval": "-7/7",
           "samples": 19334,
           "released": "Feb 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "gemini-3-1-flash-image"
         },
         {
           "rank": 6,
           "creator": "OpenAI",
           "model": "GPT Image 1.5 (high)",
-          "elo": 1260,
+          "score": 1260,
           "confidence_interval": "-8/8",
           "samples": 12172,
           "released": "Dec 2025",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "gpt-image-1-5"
         },
         {
           "rank": 7,
           "creator": "HiDream",
           "model": "HiDream-O1-Image-1.5",
-          "elo": 1246,
+          "score": 1246,
           "confidence_interval": "-8/8",
           "samples": 12374,
           "released": "Jun 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "hidream-o1-image-1-5"
         },
         {
           "rank": 8,
           "creator": "Bytedance",
           "model": "Seedream 5.0 Pro",
-          "elo": 1239,
+          "score": 1239,
           "confidence_interval": "-10/10",
           "samples": 8118,
           "released": "Jul 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "seedream-5-0-pro"
         },
         {
           "rank": 9,
           "creator": "Google",
           "model": "Nano Banana Pro (Gemini 3 Pro Image)",
-          "elo": 1223,
+          "score": 1223,
           "confidence_interval": "-7/7",
           "samples": 11470,
           "released": "Nov 2025",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "gemini-3-pro-image"
         },
         {
           "rank": 10,
           "creator": "NVIDIA",
           "model": "Cosmos3-Super-Text2Image (agentic)",
-          "elo": 1218,
+          "score": 1218,
           "confidence_interval": "-8/8",
           "samples": 9748,
           "released": "May 2026",
           "open_weights": true,
+          "license": "Open weights",
           "model_id": "cosmos3-super-text2image"
         },
         {
           "rank": 11,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5-Flash",
-          "elo": 1206,
+          "score": 1206,
           "confidence_interval": "-9/9",
           "samples": 4817,
           "released": "Jun 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "mai-image-2-5"
         },
         {
           "rank": 12,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image-quality",
-          "elo": 1203,
+          "score": 1203,
           "confidence_interval": "-7/7",
           "samples": 15425,
           "released": "Apr 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "grok-imagine-image-quality"
         },
         {
           "rank": 13,
           "creator": "Recraft",
           "model": "Recraft V4.1 Utility",
-          "elo": 1203,
+          "score": 1203,
           "confidence_interval": "-8/8",
           "samples": 5388,
           "released": "May 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "recraft-v4-1"
         },
         {
           "rank": 14,
           "creator": "Recraft",
           "model": "Recraft V4.1 Utility Pro",
-          "elo": 1199,
+          "score": 1199,
           "confidence_interval": "-7/7",
           "samples": 14861,
           "released": "May 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "recraft-v4-1"
         },
         {
           "rank": 15,
           "creator": "Black Forest Labs",
           "model": "FLUX.2 [max]",
-          "elo": 1194,
+          "score": 1194,
           "confidence_interval": "-7/7",
           "samples": 11234,
           "released": "Dec 2025",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "flux-2-max"
         }
       ]
     },
     {
       "id": "text-to-video",
+      "provider": "Artificial Analysis",
+      "label": "文生视频",
+      "modality": "video",
+      "score_label": "Elo",
+      "date_label": "模型发布",
+      "coverage_policy": "required",
       "source_url": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "fetch_url": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
       "entries": [
         {
           "rank": 1,
           "creator": "Google",
           "model": "Gemini Omni Flash",
-          "elo": 1246,
+          "score": 1246,
           "confidence_interval": "-10/10",
           "samples": 4582,
           "released": "May 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "gemini-omni-flash"
         },
         {
           "rank": 2,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
-          "elo": 1228,
+          "score": 1228,
           "confidence_interval": "-8/8",
           "samples": 11556,
           "released": "Mar 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "seedance-2-0"
         },
         {
           "rank": 3,
           "creator": "Alibaba",
           "model": "Wan2.7-260612",
-          "elo": 1164,
+          "score": 1164,
           "confidence_interval": "-9/9",
           "samples": 4805,
           "released": "Jun 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "wan-2-7"
         },
         {
           "rank": 4,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.1",
-          "elo": 1153,
+          "score": 1153,
           "confidence_interval": "-9/9",
           "samples": 5286,
           "released": "Jun 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "happyhorse-1-1"
         },
         {
           "rank": 5,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.0",
-          "elo": 1132,
+          "score": 1132,
           "confidence_interval": "-8/8",
           "samples": 7341,
           "released": "Apr 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "happyhorse-1-0"
         },
         {
           "rank": 6,
           "creator": "KlingAI",
           "model": "Kling 3.0 1080p (Pro)",
-          "elo": 1113,
+          "score": 1113,
           "confidence_interval": "-7/7",
           "samples": 10912,
           "released": "Feb 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "kling-3"
         },
         {
           "rank": 7,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "elo": 1112,
+          "score": 1112,
           "confidence_interval": "-9/9",
           "samples": 4497,
           "released": "Mar 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "skyreels-v4"
         },
         {
           "rank": 8,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "elo": 1109,
+          "score": 1109,
           "confidence_interval": "-9/9",
           "samples": 4000,
           "released": "Apr 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "wan-2-7"
         },
         {
           "rank": 9,
           "creator": "KlingAI",
           "model": "Kling 3.0 720p (Standard)",
-          "elo": 1102,
+          "score": 1102,
           "confidence_interval": "-7/7",
           "samples": 10875,
           "released": "Feb 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "kling-3"
         },
         {
           "rank": 10,
           "creator": "KlingAI",
           "model": "Kling 3.0 Omni 1080p (Pro)",
-          "elo": 1098,
+          "score": 1098,
           "confidence_interval": "-8/8",
           "samples": 7682,
           "released": "Feb 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "kling-3"
         },
         {
           "rank": 11,
           "creator": "Google",
           "model": "Veo 3.1",
-          "elo": 1096,
+          "score": 1096,
           "confidence_interval": "-8/8",
           "samples": 7882,
           "released": "Jan 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "veo-3-1"
         },
         {
           "rank": 12,
           "creator": "KlingAI",
           "model": "Kling 3.0 Omni 720p (Standard)",
-          "elo": 1093,
+          "score": 1093,
           "confidence_interval": "-8/8",
           "samples": 7568,
           "released": "Feb 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "kling-3"
         },
         {
           "rank": 13,
           "creator": "Google",
           "model": "Veo 3.1 Fast",
-          "elo": 1093,
+          "score": 1093,
           "confidence_interval": "-7/7",
           "samples": 10235,
           "released": "Jan 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "veo-3-1"
         },
         {
           "rank": 14,
           "creator": "Google",
           "model": "Veo 3.1 Lite",
-          "elo": 1092,
+          "score": 1092,
           "confidence_interval": "-8/8",
           "samples": 7271,
           "released": "Mar 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "veo-3-1-lite"
         },
         {
           "rank": 15,
           "creator": "Vidu",
           "model": "Vidu Q3 Pro",
-          "elo": 1083,
+          "score": 1083,
           "confidence_interval": "-7/7",
           "samples": 10993,
           "released": "Jan 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "vidu-q3-pro"
         }
       ]
     },
     {
       "id": "video-editing",
+      "provider": "Artificial Analysis",
+      "label": "视频编辑",
+      "modality": "video",
+      "score_label": "Elo",
+      "date_label": "模型发布",
+      "coverage_policy": "required",
       "source_url": "https://artificialanalysis.ai/video/leaderboard/video-editing",
+      "fetch_url": "https://artificialanalysis.ai/video/leaderboard/video-editing",
       "entries": [
         {
           "rank": 1,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.0",
-          "elo": 1102,
+          "score": 1102,
           "confidence_interval": "-5/5",
           "samples": 15821,
           "released": "Apr 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "happyhorse-1-0"
         },
         {
           "rank": 2,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "elo": 1089,
+          "score": 1089,
           "confidence_interval": "-6/6",
           "samples": 11744,
           "released": "Apr 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "wan-2-7"
         },
         {
           "rank": 3,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
-          "elo": 1039,
+          "score": 1039,
           "confidence_interval": "-5/5",
           "samples": 15613,
           "released": "Mar 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "seedance-2-0"
         },
         {
           "rank": 4,
           "creator": "Runway",
           "model": "Aleph 2.0",
-          "elo": 1013,
+          "score": 1013,
           "confidence_interval": "-5/5",
           "samples": 15590,
           "released": "May 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "runway-aleph-2"
         },
         {
           "rank": 5,
           "creator": "KlingAI",
           "model": "Kling 3.0 Omni 1080p (Pro)",
-          "elo": 1000,
+          "score": 1000,
           "confidence_interval": "0/0",
           "samples": 14852,
           "released": "Feb 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "kling-3"
         },
         {
           "rank": 6,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "elo": 952,
+          "score": 952,
           "confidence_interval": "-6/6",
           "samples": 13737,
           "released": "Mar 2026",
           "open_weights": false,
+          "license": "Proprietary / service",
           "model_id": "skyreels-v4"
         }
       ]

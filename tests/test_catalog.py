@@ -141,12 +141,19 @@ class CatalogTests(unittest.TestCase):
 
     def test_every_ranking_top_fifteen_entry_maps_to_a_model_card(self) -> None:
         rankings = build_payload()["rankings"]
-        self.assertEqual(len(rankings), 5)
-        for board in rankings:
+        self.assertEqual(len(rankings), 10)
+        self.assertEqual({board["provider"] for board in rankings}, {"Artificial Analysis", "Arena"})
+        required_boards = [board for board in rankings if board["coverage_policy"] == "required"]
+        self.assertEqual(len(required_boards), 5)
+        for board in required_boards:
             with self.subTest(board=board["id"]):
                 required = min(15, len(board["entries"]))
                 self.assertGreaterEqual(required, 6)
                 self.assertTrue(all(entry["model_id"] for entry in board["entries"][:required]))
+
+        monitored_boards = [board for board in rankings if board["coverage_policy"] == "monitor"]
+        self.assertEqual(len(monitored_boards), 5)
+        self.assertTrue(any(not entry["model_id"] for board in monitored_boards for entry in board["entries"]))
 
     def test_compact_number(self) -> None:
         self.assertEqual(compact_number(70_723_513), "70.7M")

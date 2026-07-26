@@ -4,6 +4,7 @@ organization: Google DeepMind
 released_at: "2026-06-30"
 ranking_names:
   - Gemini Omni Flash
+  - gemini-omni-flash
 modalities:
   - video
   - audio

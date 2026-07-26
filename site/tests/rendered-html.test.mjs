@@ -197,8 +197,8 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"relations"/);
   assert.match(catalog, /"dataset_relations"/);
   const parsedCatalog = JSON.parse(catalog);
-  assert.equal(parsedCatalog.format_version, 11);
-  assert.equal(parsedCatalog.rankings.length, 5);
+  assert.equal(parsedCatalog.format_version, 12);
+  assert.equal(parsedCatalog.rankings.length, 10);
   assert.equal(parsedCatalog.source_platforms.length, 16);
   assert.equal(
     parsedCatalog.source_platforms.filter((platform) => platform.data_access.interface_url).length,

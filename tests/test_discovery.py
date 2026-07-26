@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import sys
 import unittest
 import urllib.error
@@ -18,11 +19,13 @@ from discover_updates import (
     content_revision,
     dataset_impact_index,
     extract_candidate_links,
+    extract_arena_ranking_entries,
     extract_huggingface_dataset_candidates,
     extract_ranking_entries,
     extract_source_revision,
     load_watchlist,
     model_impact_index,
+    model_ranking_aliases,
     normalize_url,
     render_report,
     report_payload,
@@ -149,13 +152,59 @@ class DiscoveryTests(unittest.TestCase):
         candidates = extract_huggingface_dataset_candidates(
             '[{"id":"org/NewVideoSet"},{"id":"invalid"},{"id":"org/SecondSet"}]'
         )
-        self.assertEqual(
-            candidates,
-            (
-                Candidate("org/NewVideoSet", "https://huggingface.co/datasets/org/NewVideoSet"),
-                Candidate("org/SecondSet", "https://huggingface.co/datasets/org/SecondSet"),
-            ),
-        )
+        self.assertEqual([item.title for item in candidates], ["org/NewVideoSet", "org/SecondSet"])
+        self.assertTrue(all(item.review_priority == "low" for item in candidates))
+
+    def test_hugging_face_candidate_priority_is_transparent_and_non_filtering(self) -> None:
+        payload = json.dumps([
+            {
+                "id": "lab/Strong-Text-to-Video-Dataset",
+                "createdAt": "2026-07-26T00:00:00Z",
+                "downloads": 500,
+                "likes": 4,
+                "gated": False,
+                "tags": [
+                    "modality:video", "license:cc-by-4.0", "size_categories:10K<n<100K",
+                    "arxiv:2607.12345",
+                ],
+                "description": "A text-to-video generation dataset.",
+                "cardData": {"dataset_info": {"splits": [{"name": "train"}]}},
+            },
+            {"id": "user/model.zip", "downloads": 0, "likes": 0, "tags": []},
+        ])
+        candidates = extract_huggingface_dataset_candidates(payload)
+        self.assertEqual([item.title for item in candidates], [
+            "lab/Strong-Text-to-Video-Dataset", "user/model.zip",
+        ])
+        self.assertEqual(candidates[0].review_priority, "high")
+        self.assertGreaterEqual(candidates[0].priority_score, 7)
+        self.assertIn("paper-linked", candidates[0].priority_signals)
+        self.assertEqual(candidates[1].review_priority, "low")
+        self.assertIn("archive-like-name", candidates[1].priority_signals)
+
+    def test_extracts_arena_official_dataset_ranking(self) -> None:
+        payload = json.dumps({"rows": [
+            {"row": {
+                "model_name": "gpt-image-2 (medium)", "organization": "openai",
+                "license": "Proprietary", "rating": 1384.8, "rating_lower": 1379.7,
+                "rating_upper": 1389.9, "vote_count": 60382, "rank": 1,
+                "category": "overall", "leaderboard_publish_date": "2026-07-10",
+            }},
+            {"row": {
+                "model_name": "open-image", "organization": "example", "license": "Apache 2.0",
+                "rating": 1300.2, "rating_lower": 1290.0, "rating_upper": 1310.0,
+                "vote_count": 1200, "rank": 2, "category": "overall",
+                "leaderboard_publish_date": "2026-07-10",
+            }},
+            {"row": {"model_name": "other-category", "organization": "example",
+                "license": "Proprietary", "rating": 1400, "rank": 1, "category": "portrait"}},
+        ]})
+        entries = extract_arena_ranking_entries(payload, limit=2)
+        self.assertEqual([item.model for item in entries], ["gpt-image-2 (medium)", "open-image"])
+        self.assertEqual(entries[0].score, 1384.8)
+        self.assertEqual(entries[0].confidence_interval, "1380–1390")
+        self.assertFalse(entries[0].open_weights)
+        self.assertTrue(entries[1].open_weights)
 
     def test_extracts_top_ranking_entries_and_open_weight_status(self) -> None:
         html = """
@@ -249,12 +298,21 @@ class DiscoveryTests(unittest.TestCase):
             }.issubset(track_ids)
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
-        self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 5)
-        self.assertEqual(len(sources), 151)
+        self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 10)
+        self.assertEqual(len(sources), 156)
         self.assertEqual(
             {source.ranking_id for source in sources if source.ranking_id},
-            {"text-to-image", "image-editing", "text-to-video", "image-to-video", "video-editing"},
+            {
+                "text-to-image", "image-editing", "text-to-video", "image-to-video", "video-editing",
+                "arena-text-to-image", "arena-image-edit", "arena-text-to-video",
+                "arena-image-to-video", "arena-video-edit",
+            },
         )
+        arena = next(source for source in sources if source.ranking_id == "arena-text-to-image")
+        self.assertEqual(arena.ranking_provider, "Arena")
+        self.assertEqual(arena.ranking_parser, "arena-hf-dataset")
+        self.assertEqual(arena.ranking_coverage_policy, "monitor")
+        self.assertEqual(arena.ranking_modality, "image")
         self.assertTrue(
             {
                 "https://www.heygen.com/research/avatar-v-data",
@@ -606,6 +664,31 @@ class DiscoveryTests(unittest.TestCase):
             ),
         )
         self.assertFalse(compare_snapshots(baseline, unchanged_order, set()).ranking_updates)
+
+    def test_ranking_coverage_gaps_remain_in_the_review_queue(self) -> None:
+        current = (
+            SourceSnapshot(
+                track_id="industry-model-rankings",
+                source_url="https://example.com/api",
+                resolved_url="https://example.com/api",
+                status=200,
+                candidates=(),
+                error=None,
+                ranking_id="arena-text-to-image",
+                rankings=(RankingEntry(1, "Lab", "Unmapped Model", 1300, "", 100, "2026-07-10", False),),
+                ranking_provider="Arena",
+                ranking_coverage_policy="monitor",
+                ranking_page_url="https://example.com/leaderboard",
+            ),
+        )
+        diff = compare_snapshots({"sources": []}, current, set(), ranking_aliases=model_ranking_aliases())
+        self.assertEqual(len(diff.ranking_coverage_gaps), 1)
+        self.assertEqual(diff.ranking_coverage_gaps[0]["model"], "Unmapped Model")
+        self.assertTrue(diff.has_updates)
+        markdown = render_report(
+            report_payload(diff, "2026-07-27T00:00:00Z", "Discovery", 1, ["image"])
+        )
+        self.assertIn("Ranked models awaiting catalog cards", markdown)
 
     def test_issue_body_links_to_the_actions_run(self) -> None:
         body = issue_body(

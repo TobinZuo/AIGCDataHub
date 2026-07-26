@@ -115,14 +115,16 @@ catalog card; unreleased and undisclosed references explain why no card exists.
 
 ## Ranking and release monitoring
 
-The weekly discovery workflow watches the Top 15 positions across five
-Artificial Analysis boards: text-to-image, image editing, text-to-video,
-image-to-video, and video editing. Open-weight and closed/API models are treated
-equally. Membership or ordering changes trigger review; Elo-only fluctuations
-do not. The generated site maps leaderboard aliases back to canonical model
-cards and shows unmapped entries as monitored card candidates. Every available
-Top 15 seat on the five boards must resolve to a model card, including
-open-weight, API-only, and product-only releases.
+The weekly discovery workflow watches ten generated-media boards from two
+independent providers. Artificial Analysis contributes five Top 15 snapshots;
+Arena contributes the same five tasks through its official public leaderboard
+dataset on Hugging Face. Open-weight and closed/API models are treated equally.
+Membership or ordering changes trigger review; score-only fluctuations do not.
+The generated site maps provider-specific aliases back to canonical model cards
+and shows unmatched ranked entries as a persistent review queue. The five
+Artificial Analysis boards have required full card coverage; the newer Arena
+boards remain monitored while first-party evidence is verified for missing
+cards.
 
 New dataset discovery is not limited to existing cards. Eight Hugging Face API
 feeds are sorted by `createdAt` for image generation, video generation,
@@ -130,6 +132,10 @@ image-to-video, talking heads, video dubbing, and virtual try-on, alongside the
 recent arXiv CS.CV and CS.MM feeds and official project sources. These are
 triage signals only: a dataset enters the catalog after its primary source,
 release date, access, license, scale, and evidence boundaries are verified.
+Hugging Face candidates are retained rather than filtered out, then ordered by
+a transparent review-priority score using generative-media relevance, modality,
+paper linkage, dataset-card metadata, declared license/scale, and adoption
+signals. A high priority is not a quality certification.
 
 ## Dataset catalog
 
@@ -280,6 +286,11 @@ revision probe declares either a dataset `catalog_id` or model `model_id` plus a
 monitoring priority. Dataset changes propagate through derived datasets into
 affected models; model changes list the model's directly linked catalog
 datasets. It closes the Issue when the queue is clear.
+Ranking entries that do not yet resolve to a verified model card also keep the
+Issue open, so newly ranked closed or open models cannot disappear between
+weekly scans. Arena snapshots use its official Hugging Face leaderboard dataset
+rather than a bot-protected web page.
+
 The same workflow checks all 16 candidate source platforms through their
 official API documentation, partner portal, licensed-service terms, or a
 conservative availability probe when no public data interface is cataloged.

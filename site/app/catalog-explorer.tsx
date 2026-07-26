@@ -74,25 +74,35 @@ type Monitoring = {
 
 type RankingPosition = {
   ranking_id: string;
+  provider: string;
   rank: number;
-  elo: number;
+  score: number;
+  score_label: string;
 };
 
 type RankingEntry = {
   rank: number;
   creator: string;
   model: string;
-  elo: number;
+  score: number;
   confidence_interval: string;
   samples: number | null;
   released: string;
   open_weights: boolean;
+  license: string | null;
   model_id: string | null;
 };
 
 type RankingBoard = {
   id: string;
+  provider: string;
+  label: string;
+  modality: string;
+  score_label: string;
+  date_label: string;
+  coverage_policy: string;
   source_url: string;
+  fetch_url: string;
   entries: RankingEntry[];
 };
 
@@ -261,6 +271,11 @@ const RANKING_LABELS: Record<string, string> = {
   "text-to-video": "文生视频",
   "image-to-video": "图生视频",
   "video-editing": "视频编辑",
+  "arena-text-to-image": "Arena 文生图",
+  "arena-image-edit": "Arena 图片编辑",
+  "arena-text-to-video": "Arena 文生视频",
+  "arena-image-to-video": "Arena 图生视频",
+  "arena-video-edit": "Arena 视频编辑",
 };
 
 const MODALITY_LABELS: Record<string, string> = {
@@ -840,7 +855,7 @@ function RankingOverview({ boards, onOpenModel }: {
         <div>
           <p className="comparison-kicker">RANKING / TOP 15 / OPEN + CLOSED</p>
           <h3 id="ranking-title">头部模型不是凭印象补录，而是跟着榜单持续复核。</h3>
-          <p>每周抓取 Artificial Analysis 的五个生成媒体榜单；成员或名次变化会进入复核队列，Elo 的日常小波动不会制造提醒。</p>
+          <p>每周同步 Artificial Analysis 与 Arena 的十个生成媒体榜单。成员或名次变化进入复核队列，分数的小幅波动不单独提醒。</p>
         </div>
         <dl>
           <div><dt>榜单</dt><dd>{boards.length}</dd></div>
@@ -852,7 +867,7 @@ function RankingOverview({ boards, onOpenModel }: {
         {boards.map((board) => (
           <article className="ranking-board" key={board.id}>
             <header>
-              <div><span>{board.id.toUpperCase()}</span><h4>{RANKING_LABELS[board.id] ?? board.id}</h4></div>
+              <div><span>{board.provider.toUpperCase()}</span><h4>{board.label}</h4></div>
               <ExternalLink href={board.source_url}>榜单原页</ExternalLink>
             </header>
             <ol>
@@ -861,11 +876,11 @@ function RankingOverview({ boards, onOpenModel }: {
                   <strong className="ranking-rank">{String(entry.rank).padStart(2, "0")}</strong>
                   <div>
                     <b>{entry.model}</b>
-                    <span>{entry.creator} · {entry.released || "发布日期未列"}</span>
+                    <span>{entry.creator} · {entry.released ? `${board.date_label} ${entry.released}` : "发布日期未列"}</span>
                   </div>
-                  <div className="ranking-score"><strong>{entry.elo}</strong><span>Elo</span></div>
+                  <div className="ranking-score"><strong>{Number.isInteger(entry.score) ? entry.score : entry.score.toFixed(1)}</strong><span>{board.score_label}</span></div>
                   <span className={`ranking-access ${entry.open_weights ? "is-open" : ""}`}>
-                    {entry.open_weights ? "开放权重" : "闭源 / 服务"}
+                    {entry.open_weights ? entry.license || "开放权重" : entry.license || "闭源 / 服务"}
                   </span>
                   {entry.model_id ? (
                     <button onClick={() => onOpenModel(entry.model_id!)}>模型卡 →</button>
@@ -1256,13 +1271,14 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
   const rankingResults = useMemo(() => {
     const search = normalize(query.trim());
     return catalog.rankings.flatMap((board): RankingBoard[] => {
-      const boardModality = board.id.includes("image") ? "image" : "video";
-      if (modality !== "all" && modality !== boardModality) return [];
+      if (modality !== "all" && modality !== board.modality) return [];
       const entries = board.entries.filter((entry) => !search || normalize([
         board.id,
-        RANKING_LABELS[board.id] ?? "",
+        board.provider,
+        board.label,
         entry.model,
         entry.creator,
+        entry.license ?? "",
         entry.open_weights ? "open weights 开放权重" : "closed 闭源",
       ].join(" ")).includes(search));
       return entries.length ? [{ ...board, entries }] : [];

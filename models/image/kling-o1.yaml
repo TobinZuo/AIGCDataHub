@@ -4,6 +4,7 @@ organization: Kuaishou Technology
 released_at: "2025-12-01"
 ranking_names:
   - Kling Image O1
+  - kling-o1-pro
 modalities:
   - image
   - video

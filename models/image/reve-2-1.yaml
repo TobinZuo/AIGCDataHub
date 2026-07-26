@@ -4,6 +4,7 @@ organization: Reve
 released_at: "2026-07-09"
 ranking_names:
   - Reve 2.1
+  - reve-2.1
 modalities:
   - image
 tasks:
