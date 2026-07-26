@@ -65,6 +65,11 @@ class CatalogTests(unittest.TestCase):
                 "humoset",
                 "senorita-2m",
                 "spatialvid",
+                "voxceleb2",
+                "lrs3",
+                "celebv-text",
+                "celebv-dub",
+                "holidub-bench",
             }.issubset(cards)
         )
         self.assertIn("video-dubbing", cards["audiovisual-translation-dub"]["tasks"])
@@ -91,6 +96,12 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(cards["senorita-2m"]["access"]["status"], "open")
         self.assertEqual(cards["spatialvid"]["scale"]["hours"], 7089)
         self.assertEqual(cards["spatialvid"]["access"]["status"], "gated")
+        self.assertEqual(cards["voxceleb2"]["access"]["status"], "unavailable")
+        self.assertEqual(cards["lrs3"]["access"]["status"], "unavailable")
+        self.assertEqual(cards["celebv-text"]["access"]["type"], "urls")
+        self.assertEqual(cards["celebv-dub"]["access"]["type"], "hosted")
+        self.assertEqual(cards["holidub-bench"]["access"]["status"], "unavailable")
+        self.assertEqual(cards["emilia"]["access"]["status"], "gated")
 
     def test_reference_wiki_candidates_are_backed_by_public_sources(self) -> None:
         cards = {card["id"]: card for _, card in load_cards()}

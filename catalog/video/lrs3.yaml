@@ -1,0 +1,69 @@
+id: lrs3
+name: LRS3-TED
+organization: University of Oxford Visual Geometry Group
+released_at: "2018-09-03"
+release_date_source: https://arxiv.org/abs/1809.00496
+modality: video
+tasks:
+  - audio-visual-speech-recognition
+  - automatic-speech-recognition
+  - lip-sync-training
+  - video-dubbing
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+description: >-
+  An English audio-visual speech corpus built from TED and TEDx videos, with
+  face tracks, utterance transcripts, source references, and word-alignment
+  boundaries for large-scale lip-reading and speech-generation research.
+access:
+  status: unavailable
+  type: none
+  url: https://mmai.io/datasets/lip_reading/
+  requires_account: false
+  notes: The official LRS3 page now states that both URL/timestamp metadata and video downloads are no longer available from the website.
+scale:
+  samples: 151819
+  source_items: 9506
+  hours: 439
+  approximate: true
+  notes: Official tables list 118,516 pre-train, 31,982 trainval, and 1,321 test utterances across 9,506 split-level videos; VoiceCraft-Dub reports approximately 439 hours.
+annotations:
+  types:
+    - transcript
+    - word-boundary
+    - youtube-url
+    - temporal-boundary
+    - face-bounding-box
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-4.0 research-purpose release
+  media: Copyright remains with the original TED, TEDx, and video rightsholders
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The official page states CC-BY-4.0 for the dataset while separately preserving copyright in the source videos; downstream media use still needs review.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Official acquisition files are no longer available from the publisher's site.
+    - VoiceCraft-Dub reports 1,174 held-out utterances while the current official table lists 1,321 test utterances, indicating a version or subset boundary that should not be silently merged.
+    - TED-style frontal speakers and English-only speech do not represent the full range of cinematic dubbing domains, languages, or expressive motion.
+processing:
+  recipe: Reconstruct declared TED and TEDx intervals, extract 25 FPS face tracks, and preserve utterance transcripts, face boxes, and word boundaries.
+  recommended_format: native
+  notes: Keep the dataset split and release snapshot attached to every result because published test-set counts differ across downstream papers.
+evidence:
+  homepage: https://mmai.io/datasets/lip_reading/
+  paper: https://arxiv.org/abs/1809.00496
+  used_by:
+    - VoiceCraft-Dub
+status: partial
+last_verified: "2026-07-27"

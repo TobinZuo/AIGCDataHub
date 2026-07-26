@@ -1,0 +1,72 @@
+id: celebv-text
+name: CelebV-Text
+organization: University of Sydney, CUHK MMLab, and SenseTime Research
+released_at: "2023-03-26"
+release_date_source: https://arxiv.org/abs/2303.14717
+modality: video
+tasks:
+  - text-to-video
+  - face-video-generation
+  - talking-head-generation
+  - video-text-pretraining
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A face-centric text-video collection of 70,000 in-the-wild clips, each paired
+  with twenty descriptions spanning appearance, action, emotion, lighting, and
+  other static and dynamic facial attributes.
+access:
+  status: metadata-only
+  type: urls
+  url: https://github.com/CelebV-Text/CelebV-Text
+  requires_account: false
+  notes: The official repository releases annotations, YouTube reconstruction metadata, and a downloader; the project asks users to contact the authors for a hosted full copy when links fail.
+scale:
+  samples: 70000
+  source_items: null
+  hours: 279
+  approximate: true
+  notes: The official project reports 70,000 clips, roughly 279 hours, and twenty text descriptions per clip across six attribute groups.
+annotations:
+  types:
+    - text-description
+    - appearance-attribute
+    - action-attribute
+    - emotion-attribute
+    - lighting-attribute
+    - youtube-url
+    - temporal-boundary
+    - face-bounding-box
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CelebV-Text non-commercial research agreement
+  media: Original Internet video rightsholders and platform terms remain applicable
+  commercial_use: noncommercial
+  redistribution: prohibited
+  notes: The official agreement limits use to non-commercial research and prohibits reproducing, selling, publishing, or redistributing the dataset outside permitted internal copies.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - YouTube removals, regional restrictions, and downloader drift can reduce the reconstructable corpus.
+    - Semi-automatic descriptions and predefined attribute groups can contain labeling errors and omit nuanced facial behavior.
+    - Celebrity and influencer footage raises consent, privacy, publicity-right, and demographic-bias concerns.
+processing:
+  recipe: Reconstruct YouTube intervals from the released JSON, crop the declared face boxes, and join twenty semi-automatically generated descriptions per clip.
+  recommended_format: native
+  notes: Preserve source URLs, reconstruction status, and every annotation group; do not redistribute reconstructed source media under the metadata agreement alone.
+evidence:
+  homepage: https://celebv-text.github.io/
+  paper: https://arxiv.org/abs/2303.14717
+  used_by: []
+status: partial
+last_verified: "2026-07-27"

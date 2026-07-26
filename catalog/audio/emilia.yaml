@@ -18,11 +18,11 @@ description: >-
   preprocessing system, covering roughly 101,000 hours across English, Chinese,
   Japanese, French, German, and Korean.
 access:
-  status: open
-  type: hosted
+  status: gated
+  type: request
   url: https://huggingface.co/datasets/amphion/Emilia-Dataset
-  requires_account: false
-  notes: Hosted WebDataset archives and preprocessing code are available from the official Amphion repository; review the dataset card before downloading at scale.
+  requires_account: true
+  notes: The current Hugging Face repository is automatically gated and requires a signed-in user to submit the publisher's access fields and accept the dataset terms before downloading its WebDataset archives.
 scale:
   samples: null
   hours: 101000
@@ -71,5 +71,6 @@ evidence:
   paper: https://arxiv.org/abs/2407.05361
   used_by:
     - SkyReels V4
+    - HoliDubber
 status: partial
 last_verified: "2026-07-27"

@@ -1,0 +1,106 @@
+id: voicecraft-dub
+name: VoiceCraft-Dub
+organization: KAIST, MIT, University of Oxford, and Adobe Research
+released_at: "2025-04-03"
+modalities:
+  - video
+  - audio
+tasks:
+  - video-dubbing
+  - voice-preserving-video-localization
+  - lip-sync
+  - video-to-speech
+access:
+  status: open-weights
+  license: CC-BY-NC-SA-4.0 code; Coqui Public Model License 1.0.0 weights
+  release_url: https://voicecraft-dub.github.io/
+  weights_url: https://drive.google.com/file/d/1HKsGQ4KyCpm2MJfaO3leYDi_9Ea7oKlL/view?usp=sharing
+  api_url: null
+architecture:
+  family: VoiceCraft neural-codec language model with audio-visual fusion and facial-feature adapters
+  parameters: null
+  notes: Fine-tunes a 16-layer VoiceCraft Transformer decoder while training lip and face adapters plus audio-visual fusion layers around frozen AV-HuBERT, EmoFAN, and Encodec components.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: VoiceCraft pretrained checkpoint lineage
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: The Transformer decoder is initialized from the public VoiceCraft giga830.pth checkpoint, but the VoiceCraft-Dub paper does not restate a complete, versioned base-data lineage.
+    - name: LRS3-TED
+      catalog_id: lrs3
+      role: fine-tuning
+      availability: not-released
+      scale: Approximately 439 hours; pre-train split used
+      notes: The paper trains on the LRS3 pre-train split; the publisher's current page says official URL and video downloads are no longer available.
+    - name: CelebV-Dub
+      catalog_id: celebv-dub
+      role: fine-tuning
+      availability: public
+      scale: 67,549 training clips; approximately 86 hours total
+      notes: The CelebV-Dub model variant starts from the LRS3-trained model and fine-tunes on expressive English clips curated from CelebV-HQ and CelebV-Text.
+    - name: LRS3-TED
+      catalog_id: lrs3
+      role: evaluation
+      availability: not-released
+      scale: 1,174 test utterances in the paper
+      notes: The paper reserves 1,174 LRS3 utterances, while the current official LRS3 table lists 1,321 test utterances; the exact evaluation subset/version must therefore remain attached.
+    - name: CelebV-Dub
+      catalog_id: celebv-dub
+      role: evaluation
+      availability: public
+      scale: 216 test clips
+      notes: The official CelebV-Dub split contains 216 held-out clips from 33 speaker clusters.
+    - name: VoxCeleb2
+      catalog_id: voxceleb2
+      role: evaluation
+      availability: not-released
+      scale: 200 generalization samples
+      notes: The appendix evaluates an LRS3-trained model on 200 VoxCeleb2 test samples with Whisper-generated pseudo ground-truth text; official VoxCeleb2 downloads are now withdrawn.
+  stages:
+    - name: pretraining
+      modalities:
+        - audio
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-voicecraft-checkpoint
+        - neural-codec-language-modeling
+      scale_disclosed: false
+      strategy: Initialize the autoregressive Transformer decoder from VoiceCraft while leaving the exact inherited corpus and checkpoint-data version outside the VoiceCraft-Dub disclosure.
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - public-dataset
+      operations:
+        - av-hubert-feature-extraction
+        - facial-feature-adaptation
+        - audio-visual-fusion
+        - neural-codec-token-prediction
+        - sequential-dataset-adaptation
+        - early-stopping
+      scale_disclosed: true
+      strategy: Train the decoder and new audio-visual modules on LRS3, then initialize the CelebV-Dub variant from that model and adapt it to expressive in-the-wild speakers for 100K-step training runs with early stopping.
+  strategy_summary:
+    - Extend a pretrained neural-codec speech model with lip and full-face cues so generated speech follows target timing and expression while retaining source-speaker characteristics.
+    - Use LRS3 for broad in-the-wild audio-visual alignment, then adapt sequentially to the more expressive CelebV-Dub distribution.
+    - Curate CelebV-Dub with English detection, pseudo-transcription, utterance trimming, pose filtering, active-speaker detection, music suppression, and speaker clustering.
+  unknowns:
+    - Complete inherited training lineage and version for the VoiceCraft giga830.pth initialization checkpoint.
+    - A standalone CelebV-Dub dataset license resolving how its public archive composes with CelebV-HQ, CelebV-Text, and source-media restrictions.
+    - Exact cause of the LRS3 evaluation-count difference between the paper's 1,174 utterances and the current official table's 1,321 utterances.
+    - Whether future checkpoint releases will cover both lip-only and full-face variants with reproducible dataset-specific training states.
+evidence:
+  release: https://voicecraft-dub.github.io/
+  technical_report: https://arxiv.org/abs/2504.02386
+  repository: https://github.com/kaist-ami/voicecraft-dub
+status: verified
+last_verified: "2026-07-27"

@@ -1,0 +1,79 @@
+id: holidub-bench
+name: HoliDub-Bench
+organization: HoliDubber research team
+released_at: "2026-06-08"
+release_date_source: https://arxiv.org/abs/2606.09098
+modality: evaluation
+tasks:
+  - video-dubbing
+  - voice-preserving-video-localization
+  - audio-video-generation
+  - lip-sync-training
+stages:
+  - evaluation
+  - data-curation
+derived_from:
+  - catalog_id: voxceleb2
+    relationship: benchmark-derivative
+    contribution: 641 acoustically complex clips
+    notes: VoxCeleb2 samples are selected for music, ambient noise, overlapping audio, and other challenging acoustic environments.
+  - catalog_id: celebv-dub
+    relationship: benchmark-derivative
+    contribution: 359 emotionally expressive clips
+    notes: CelebV-Dub samples are selected for pronounced changes in tone, intensity, emotion, and expressive facial movement.
+description: >-
+  A 1,000-clip holistic video-dubbing benchmark with synchronized video, text,
+  and audio plus structured speaker, prosody, background-music, environment,
+  and sound-event annotations for complex acoustic scenes.
+access:
+  status: unavailable
+  type: none
+  url: https://holidubber.github.io/
+  requires_account: false
+  notes: The paper and project describe the benchmark and show examples, but no dataset files, metadata archive, repository, or request form are currently published.
+scale:
+  samples: 1000
+  source_items: null
+  hours: 2.4
+  approximate: true
+  notes: The paper reports 641 VoxCeleb2 clips plus 359 CelebV-Dub clips, totaling 1,000 clips and approximately 2.4 hours.
+annotations:
+  types:
+    - transcript
+    - speaker-profile
+    - speech-instruction
+    - audio-caption
+    - background-music-presence
+    - acoustic-environment
+    - sound-event
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Not published
+  media: Inherits VoxCeleb2, CelebV-Dub, and original source-media rights
+  commercial_use: unknown
+  redistribution: unknown
+  notes: No benchmark license or release terms are public; the upstream VoxCeleb2 and CelebV-Dub rights boundaries would still apply to any eventual release.
+quality:
+  dimensions:
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - No files are currently available for independent reproduction of the benchmark or its reported metrics.
+    - Qwen3-Omni and Whisper generated structured captions and transcripts, so annotation hallucinations and recognition errors remain possible.
+    - The benchmark is English-centric and formed from celebrity/interview-style source datasets rather than multilingual cinematic translation data.
+processing:
+  recipe: Select acoustically difficult VoxCeleb2 and emotionally expressive CelebV-Dub clips, separate speech, transcribe with Whisper, and generate structured acoustic fields with Qwen3-Omni.
+  recommended_format: native
+  notes: Preserve the 641/359 source split, upstream sample provenance, caption-model version, and any human review decisions if files are released.
+evidence:
+  homepage: https://holidubber.github.io/
+  paper: https://arxiv.org/abs/2606.09098
+  used_by:
+    - HoliDubber
+status: partial
+last_verified: "2026-07-27"

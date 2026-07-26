@@ -1,0 +1,133 @@
+id: holidubber
+name: HoliDubber
+organization: HoliDubber research team
+released_at: "2026-06-08"
+modalities:
+  - video
+  - audio
+tasks:
+  - video-dubbing
+  - voice-preserving-video-localization
+  - lip-sync
+  - audio-video-generation
+  - text-to-audio
+access:
+  status: announced
+  license: Paper and project demo only; code, weights, and model license not released
+  release_url: https://holidubber.github.io/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Patch-based autoregressive diffusion Transformer with audio-visual cross-attention and a continuous Audio-VAE
+  parameters: null
+  notes: A causal language model predicts aggregated audio-visual patch embeddings and a local Diffusion Transformer generates continuous audio latents, jointly synthesizing speech, sound effects, and ambience.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: HoliDubber Audio-VAE heterogeneous mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: Approximately 30,000 hours
+      notes: Speech, general audio including music and environmental sound, and natural speech-background mixtures are balanced 1:1:1, but no source dataset identities are published.
+    - name: Emilia
+      catalog_id: emilia
+      role: pretraining
+      availability: gated
+      scale: 80,000 hours used
+      notes: Emilia supplies plain-transcript multilingual speech within the 130,000-hour text-guided audio pretraining stage; the current repository requires acceptance of access terms.
+    - name: HoliDubber structured audio pretraining mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: 50,000 hours
+      notes: The remaining TTA mixture contains 20,000 hours of naturally mixed speech/audio, 20,000 hours of speaker-profile and speech-instruction annotated speech, and 10,000 hours of non-speech audio/music; source identities are not named.
+    - name: VoxCeleb2
+      catalog_id: voxceleb2
+      role: fine-tuning
+      availability: not-released
+      scale: More than 1M utterances and approximately 2,442 hours before held-out selection
+      notes: The model jointly trains on the remaining VoxCeleb2 clips after reserving 641 for HoliDub-Bench and 350 for a standard test set; official dataset files are no longer distributed.
+    - name: CelebV-Dub
+      catalog_id: celebv-dub
+      role: fine-tuning
+      availability: public
+      scale: Approximately 86 hours before held-out selection
+      notes: The combined training split excludes 359 HoliDub-Bench clips and 118 standard-test clips from CelebV-Dub, then trains jointly with VoxCeleb2 for 50 epochs.
+    - name: VoxCeleb2
+      catalog_id: voxceleb2
+      role: evaluation
+      availability: not-released
+      scale: 350 standard-test clips plus 641 HoliDub-Bench source clips
+      notes: Standard zero-shot and prompt-guided results use 350 random test clips; a separate acoustically complex subset feeds HoliDub-Bench.
+    - name: CelebV-Dub
+      catalog_id: celebv-dub
+      role: evaluation
+      availability: public
+      scale: 118 standard-test clips plus 359 HoliDub-Bench source clips
+      notes: Standard evaluation uses 118 clips and the benchmark draws 359 expressive clips under a separately curated split.
+    - name: HoliDub-Bench
+      catalog_id: holidub-bench
+      role: evaluation
+      availability: not-released
+      scale: 1,000 clips; approximately 2.4 hours
+      notes: The structured video-text-audio benchmark evaluates joint speech and background-sound generation, but no files or license are currently published.
+  stages:
+    - name: pretraining
+      modalities:
+        - audio
+      source_types:
+        - undisclosed
+      operations:
+        - audio-vae-training
+        - heterogeneous-audio-balancing
+        - waveform-resampling
+        - adversarial-reconstruction
+      scale_disclosed: true
+      strategy: Train a continuous Audio-VAE on 30,000 balanced hours of speech, general audio, and naturally mixed recordings so one latent space covers dialogue and environmental sound.
+    - name: midtraining
+      modalities:
+        - audio
+        - text
+      source_types:
+        - public-dataset
+        - undisclosed
+      operations:
+        - text-to-audio-pretraining
+        - qwen-language-model-initialization
+        - structured-audio-captioning
+        - multi-source-mixture
+      scale_disclosed: true
+      strategy: Pretrain a text-guided audio backbone for ten epochs on 130,000 hours, combining 80,000 Emilia hours with three unnamed speech, mixed-audio, and non-speech components totaling 50,000 hours.
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - public-dataset
+      operations:
+        - av-hubert-feature-extraction
+        - patch-level-cross-attention
+        - structured-prompt-conditioning
+        - selective-field-dropout
+        - joint-speech-sound-generation
+      scale_disclosed: true
+      strategy: Jointly train the VoxCeleb2 and CelebV-Dub training splits for 50 epochs, using Qwen3-Omni/Whisper structured captions and 50% auxiliary-field dropout to support reference-audio and prompt-guided modes.
+  strategy_summary:
+    - Build a shared audio latent space, then a large text-guided audio prior, before adding visual articulation conditioning for holistic dubbing.
+    - Combine named public speech/video datasets with 80,000 Emilia hours and 80,000 hours of unnamed Audio-VAE/TTA components whose exact sources remain undisclosed.
+    - Generate structured speaker, prosody, transcript, music, ambience, and sound-event supervision with Qwen3-Omni and Whisper, then use selective field dropout for two inference modes.
+  unknowns:
+    - Source identities, licenses, provenance, language mix, and deduplication for the 30,000-hour Audio-VAE corpus and 50,000 unnamed TTA hours.
+    - Code, checkpoints, model license, benchmark files, and release schedule; the project currently labels code as coming soon.
+    - Exact sample counts retained in the combined VoxCeleb2 and CelebV-Dub training split after every rejection and holdout step.
+    - Multilingual dubbing capability; the paper lists multilingual support as future work rather than a current evaluated feature.
+evidence:
+  release: https://holidubber.github.io/
+  technical_report: https://arxiv.org/abs/2606.09098
+  repository: null
+status: partial
+last_verified: "2026-07-27"

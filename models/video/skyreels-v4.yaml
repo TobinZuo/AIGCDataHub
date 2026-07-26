@@ -62,9 +62,9 @@ data:
     - name: Emilia
       catalog_id: emilia
       role: pretraining
-      availability: public
+      availability: gated
       scale: approximately 101K hours
-      notes: Named as an example speech/audio source in the SkyReels V4 data pipeline.
+      notes: Named as an example speech/audio source in the SkyReels V4 data pipeline; the current repository requires acceptance of publisher access terms.
     - name: AudioSet
       catalog_id: audioset
       role: pretraining

@@ -181,6 +181,8 @@ class ModelCatalogTests(unittest.TestCase):
         avatar_stages = {stage["name"] for stage in cards["avatar-v"]["data"]["stages"]}
         just_dub_it_ids = {item["catalog_id"] for item in cards["just-dub-it"]["data"]["datasets"]}
         talkverse_ids = {item["catalog_id"] for item in cards["talkverse-5b"]["data"]["datasets"]}
+        voicecraft_ids = {item["catalog_id"] for item in cards["voicecraft-dub"]["data"]["datasets"]}
+        holidubber_ids = {item["catalog_id"] for item in cards["holidubber"]["data"]["datasets"]}
         talkverse_ops = {
             operation
             for stage in cards["talkverse-5b"]["data"]["stages"]
@@ -189,6 +191,14 @@ class ModelCatalogTests(unittest.TestCase):
         self.assertEqual(avatar_stages, {"pretraining", "fine-tuning", "distillation", "preference"})
         self.assertEqual(just_dub_it_ids, {None, "audiovisual-translation-dub"})
         self.assertEqual(talkverse_ids, {None, "talkverse"})
+        self.assertEqual(voicecraft_ids, {None, "lrs3", "celebv-dub", "voxceleb2"})
+        self.assertEqual(
+            holidubber_ids,
+            {None, "emilia", "voxceleb2", "celebv-dub", "holidub-bench"},
+        )
+        self.assertEqual(cards["voicecraft-dub"]["access"]["status"], "open-weights")
+        self.assertEqual(cards["holidubber"]["access"]["status"], "announced")
+        self.assertTrue(cards["holidubber"]["data"]["stages"][1]["scale_disclosed"])
         self.assertTrue(
             {
                 "audio-video-sync-filtering",

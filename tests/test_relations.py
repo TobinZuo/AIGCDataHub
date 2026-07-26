@@ -34,7 +34,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
                 self.assertIn(model_id, self.datasets[dataset_id]["linked_model_ids"])
 
     def test_dataset_lineage_index_and_backlinks_are_symmetric(self) -> None:
-        self.assertEqual(len(self.payload["dataset_relations"]), 21)
+        self.assertEqual(len(self.payload["dataset_relations"]), 25)
         relation_pairs = {
             (relation["source_dataset_id"], relation["derived_dataset_id"])
             for relation in self.payload["dataset_relations"]
@@ -56,6 +56,10 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn(("omniobject3d", "considvid"), relation_pairs)
         self.assertIn(("objectron", "considvid"), relation_pairs)
         self.assertIn(("mvimgnet-2-0", "considvid"), relation_pairs)
+        self.assertIn(("celebv-hq", "celebv-dub"), relation_pairs)
+        self.assertIn(("celebv-text", "celebv-dub"), relation_pairs)
+        self.assertIn(("voxceleb2", "holidub-bench"), relation_pairs)
+        self.assertIn(("celebv-dub", "holidub-bench"), relation_pairs)
 
         for source_id, derived_id in relation_pairs:
             with self.subTest(source=source_id, derived=derived_id):
@@ -101,6 +105,20 @@ class ModelDatasetRelationTests(unittest.TestCase):
             "just-dub-it",
             self.datasets["audiovisual-translation-dub"]["linked_model_ids"],
         )
+        self.assertEqual(
+            set(self.models["voicecraft-dub"]["linked_dataset_ids"]),
+            {"lrs3", "celebv-dub", "voxceleb2"},
+        )
+        self.assertEqual(
+            set(self.models["holidubber"]["linked_dataset_ids"]),
+            {"emilia", "voxceleb2", "celebv-dub", "holidub-bench"},
+        )
+        self.assertIn("voicecraft-dub", self.datasets["lrs3"]["linked_model_ids"])
+        self.assertEqual(
+            set(self.datasets["celebv-dub"]["linked_model_ids"]),
+            {"voicecraft-dub", "holidubber"},
+        )
+        self.assertIn("holidubber", self.datasets["holidub-bench"]["linked_model_ids"])
         self.assertIn("talkverse", self.models["talkverse-5b"]["linked_dataset_ids"])
         self.assertIn("talkverse-5b", self.datasets["talkverse"]["linked_model_ids"])
         self.assertIn(
@@ -251,6 +269,10 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.datasets["vera-layered-video"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["videomatte240k"]["monitoring"]["priority"], "high")
         self.assertEqual(self.datasets["jamendomaxcaps"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["voxceleb2"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["lrs3"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["celebv-dub"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["holidub-bench"]["monitoring"]["priority"], "critical")
         self.assertEqual(
             self.datasets["humoset"]["monitoring"]["source_url"],
             "https://modelscope.cn/api/v1/datasets/leoniuschen/HuMoSet",
@@ -315,6 +337,8 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.models["vera-14b"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["graphvid"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["consid-gen"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.models["voicecraft-dub"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.models["holidubber"]["monitoring"]["priority"], "critical")
         self.assertEqual(
             self.models["openve-edit"]["monitoring"]["source_url"],
             "https://github.com/OpenVE-Team/OpenVE-3M/commits/main.atom",

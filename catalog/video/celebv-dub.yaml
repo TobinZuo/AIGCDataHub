@@ -1,0 +1,81 @@
+id: celebv-dub
+name: CelebV-Dub
+organization: KAIST, MIT, University of Oxford, and Adobe Research
+released_at: "2025-04-03"
+release_date_source: https://arxiv.org/abs/2504.02386
+modality: video
+tasks:
+  - video-dubbing
+  - voice-preserving-video-localization
+  - lip-sync-training
+  - talking-head-evaluation
+stages:
+  - fine-tuning
+  - evaluation
+  - data-curation
+derived_from:
+  - catalog_id: celebv-hq
+    relationship: filtered-subset
+    contribution: Expressive in-the-wild source videos
+    notes: CelebV-HQ clips are filtered for English, frontal faces, active speakers, clean speech, and speaker-consistent utterances.
+  - catalog_id: celebv-text
+    relationship: filtered-subset
+    contribution: Expressive text-video source videos
+    notes: CelebV-Text contributes videos and source metadata that pass the same dubbing-specific curation pipeline.
+description: >-
+  An expressive English video-dubbing corpus derived from CelebV-HQ and
+  CelebV-Text, with utterance-level clips, pseudo-transcripts, speaker groups,
+  frontal active speakers, and reduced background music.
+access:
+  status: open
+  type: hosted
+  url: https://drive.google.com/file/d/1pL4C4sRiQimbsFHXQKYx6NNyjOhPvR3l/view?usp=sharing
+  requires_account: true
+  notes: The official VoiceCraft-Dub repository links a hosted datas.tar.gz archive on Google Drive; sign-in, quota, or automated-download restrictions may apply.
+scale:
+  samples: 67765
+  source_items: 6563
+  hours: 86
+  approximate: true
+  notes: The paper reports 67,549 training and 216 test clips, 6,563 speaker clusters, an average duration of 4.57 seconds, and approximately 86 hours.
+annotations:
+  types:
+    - pseudo-transcript
+    - utterance-boundary
+    - active-speaker
+    - speaker-cluster
+    - face-pose
+    - train-test-split
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: No standalone dataset license published
+  media: Inherits CelebV-HQ, CelebV-Text, source-platform, and original-rightsholder restrictions
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: Public file access is not a grant of broad reuse rights; both upstream datasets impose non-commercial or redistribution restrictions and the derived archive has no separate dataset license.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - motion
+    - provenance
+  known_limitations:
+    - WhisperX pseudo-transcripts, language detection, TalkNet filtering, and speaker clustering can retain automated errors.
+    - English-only frontal active-speaker filtering narrows language, pose, interaction, and multi-speaker coverage.
+    - Celebrity and influencer source material carries consent, privacy, publicity-right, and upstream licensing risks.
+processing:
+  recipe: Detect English and transcribe with WhisperX, cut utterances, filter pose with MediaPipe, retain active speakers with TalkNet, suppress music with Spleeter, and cluster speaker identities.
+  recommended_format: native
+  notes: Preserve upstream dataset identity, original source reference, automated filter scores, pseudo-transcript provenance, and the published train/test split.
+evidence:
+  homepage: https://github.com/kaist-ami/voicecraft-dub
+  paper: https://arxiv.org/abs/2504.02386
+  used_by:
+    - VoiceCraft-Dub
+    - HoliDubber
+status: partial
+last_verified: "2026-07-27"

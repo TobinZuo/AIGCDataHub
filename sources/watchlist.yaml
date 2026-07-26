@@ -566,6 +566,21 @@ tracks:
       - url: https://huggingface.co/api/datasets/amphion/Emilia-Dataset
         catalog_id: emilia
         priority: critical
+      - url: https://www.robots.ox.ac.uk/~vgg/data/voxceleb/vox2.html
+        catalog_id: voxceleb2
+        priority: critical
+      - url: https://www.robots.ox.ac.uk/~vgg/data/lip_reading/
+        catalog_id: lrs3
+        priority: critical
+      - url: https://github.com/CelebV-Text/CelebV-Text/commits/main.atom
+        catalog_id: celebv-text
+        priority: high
+      - url: https://raw.githubusercontent.com/kaist-ami/voicecraft-dub/main/README.md
+        catalog_id: celebv-dub
+        priority: critical
+      - url: https://holidubber.github.io/
+        catalog_id: holidub-bench
+        priority: critical
       - url: https://projects.csail.mit.edu/soundnet/
         catalog_id: soundnet
         priority: critical
@@ -730,6 +745,12 @@ tracks:
         priority: critical
       - url: https://huggingface.co/api/models/justdubit/justdubit
         model_id: just-dub-it
+        priority: critical
+      - url: https://github.com/kaist-ami/voicecraft-dub/commits/main.atom
+        model_id: voicecraft-dub
+        priority: critical
+      - url: https://export.arxiv.org/api/query?id_list=2606.09098
+        model_id: holidubber
         priority: critical
       - url: https://github.com/nxnai/CtrlVTON/commits/main.atom
         model_id: ctrlvton

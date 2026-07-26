@@ -1306,6 +1306,122 @@
       ]
     },
     {
+      "id": "holidub-bench",
+      "name": "HoliDub-Bench",
+      "organization": "HoliDubber research team",
+      "released_at": "2026-06-08",
+      "release_date_source": "https://arxiv.org/abs/2606.09098",
+      "modality": "evaluation",
+      "tasks": [
+        "video-dubbing",
+        "voice-preserving-video-localization",
+        "audio-video-generation",
+        "lip-sync-training"
+      ],
+      "stages": [
+        "evaluation",
+        "data-curation"
+      ],
+      "derived_from": [
+        {
+          "catalog_id": "voxceleb2",
+          "relationship": "benchmark-derivative",
+          "contribution": "641 acoustically complex clips",
+          "notes": "VoxCeleb2 samples are selected for music, ambient noise, overlapping audio, and other challenging acoustic environments."
+        },
+        {
+          "catalog_id": "celebv-dub",
+          "relationship": "benchmark-derivative",
+          "contribution": "359 emotionally expressive clips",
+          "notes": "CelebV-Dub samples are selected for pronounced changes in tone, intensity, emotion, and expressive facial movement."
+        }
+      ],
+      "description": "A 1,000-clip holistic video-dubbing benchmark with synchronized video, text, and audio plus structured speaker, prosody, background-music, environment, and sound-event annotations for complex acoustic scenes.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://holidubber.github.io/",
+        "requires_account": false,
+        "notes": "The paper and project describe the benchmark and show examples, but no dataset files, metadata archive, repository, or request form are currently published."
+      },
+      "scale": {
+        "samples": 1000,
+        "source_items": null,
+        "hours": 2.4,
+        "approximate": true,
+        "notes": "The paper reports 641 VoxCeleb2 clips plus 359 CelebV-Dub clips, totaling 1,000 clips and approximately 2.4 hours."
+      },
+      "annotations": {
+        "types": [
+          "transcript",
+          "speaker-profile",
+          "speech-instruction",
+          "audio-caption",
+          "background-music-presence",
+          "acoustic-environment",
+          "sound-event"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not published",
+        "media": "Inherits VoxCeleb2, CelebV-Dub, and original source-media rights",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "No benchmark license or release terms are public; the upstream VoxCeleb2 and CelebV-Dub rights boundaries would still apply to any eventual release."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "No files are currently available for independent reproduction of the benchmark or its reported metrics.",
+          "Qwen3-Omni and Whisper generated structured captions and transcripts, so annotation hallucinations and recognition errors remain possible.",
+          "The benchmark is English-centric and formed from celebrity/interview-style source datasets rather than multilingual cinematic translation data."
+        ]
+      },
+      "processing": {
+        "recipe": "Select acoustically difficult VoxCeleb2 and emotionally expressive CelebV-Dub clips, separate speech, transcribe with Whisper, and generate structured acoustic fields with Qwen3-Omni.",
+        "recommended_format": "native",
+        "notes": "Preserve the 641/359 source split, upstream sample provenance, caption-model version, and any human review decisions if files are released."
+      },
+      "evidence": {
+        "homepage": "https://holidubber.github.io/",
+        "paper": "https://arxiv.org/abs/2606.09098",
+        "used_by": [
+          "HoliDubber"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/evaluation/holidub-bench.yaml",
+      "scenario_ids": [
+        "video-generation",
+        "digital-human",
+        "video-localization"
+      ],
+      "scale_label": "~1K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://holidubber.github.io/"
+      },
+      "upstream_dataset_ids": [
+        "voxceleb2",
+        "celebv-dub"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "holidubber"
+      ]
+    },
+    {
       "id": "tryany-bench",
       "name": "TryAny-Bench",
       "organization": "Xi'an Jiaotong University",
@@ -4315,6 +4431,126 @@
       "linked_model_ids": []
     },
     {
+      "id": "celebv-dub",
+      "name": "CelebV-Dub",
+      "organization": "KAIST, MIT, University of Oxford, and Adobe Research",
+      "released_at": "2025-04-03",
+      "release_date_source": "https://arxiv.org/abs/2504.02386",
+      "modality": "video",
+      "tasks": [
+        "video-dubbing",
+        "voice-preserving-video-localization",
+        "lip-sync-training",
+        "talking-head-evaluation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation",
+        "data-curation"
+      ],
+      "derived_from": [
+        {
+          "catalog_id": "celebv-hq",
+          "relationship": "filtered-subset",
+          "contribution": "Expressive in-the-wild source videos",
+          "notes": "CelebV-HQ clips are filtered for English, frontal faces, active speakers, clean speech, and speaker-consistent utterances."
+        },
+        {
+          "catalog_id": "celebv-text",
+          "relationship": "filtered-subset",
+          "contribution": "Expressive text-video source videos",
+          "notes": "CelebV-Text contributes videos and source metadata that pass the same dubbing-specific curation pipeline."
+        }
+      ],
+      "description": "An expressive English video-dubbing corpus derived from CelebV-HQ and CelebV-Text, with utterance-level clips, pseudo-transcripts, speaker groups, frontal active speakers, and reduced background music.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://drive.google.com/file/d/1pL4C4sRiQimbsFHXQKYx6NNyjOhPvR3l/view?usp=sharing",
+        "requires_account": true,
+        "notes": "The official VoiceCraft-Dub repository links a hosted datas.tar.gz archive on Google Drive; sign-in, quota, or automated-download restrictions may apply."
+      },
+      "scale": {
+        "samples": 67765,
+        "source_items": 6563,
+        "hours": 86,
+        "approximate": true,
+        "notes": "The paper reports 67,549 training and 216 test clips, 6,563 speaker clusters, an average duration of 4.57 seconds, and approximately 86 hours."
+      },
+      "annotations": {
+        "types": [
+          "pseudo-transcript",
+          "utterance-boundary",
+          "active-speaker",
+          "speaker-cluster",
+          "face-pose",
+          "train-test-split"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "No standalone dataset license published",
+        "media": "Inherits CelebV-HQ, CelebV-Text, source-platform, and original-rightsholder restrictions",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "Public file access is not a grant of broad reuse rights; both upstream datasets impose non-commercial or redistribution restrictions and the derived archive has no separate dataset license."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "motion",
+          "provenance"
+        ],
+        "known_limitations": [
+          "WhisperX pseudo-transcripts, language detection, TalkNet filtering, and speaker clustering can retain automated errors.",
+          "English-only frontal active-speaker filtering narrows language, pose, interaction, and multi-speaker coverage.",
+          "Celebrity and influencer source material carries consent, privacy, publicity-right, and upstream licensing risks."
+        ]
+      },
+      "processing": {
+        "recipe": "Detect English and transcribe with WhisperX, cut utterances, filter pose with MediaPipe, retain active speakers with TalkNet, suppress music with Spleeter, and cluster speaker identities.",
+        "recommended_format": "native",
+        "notes": "Preserve upstream dataset identity, original source reference, automated filter scores, pseudo-transcript provenance, and the published train/test split."
+      },
+      "evidence": {
+        "homepage": "https://github.com/kaist-ami/voicecraft-dub",
+        "paper": "https://arxiv.org/abs/2504.02386",
+        "used_by": [
+          "VoiceCraft-Dub",
+          "HoliDubber"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/celebv-dub.yaml",
+      "scenario_ids": [
+        "digital-human",
+        "video-localization"
+      ],
+      "scale_label": "~67.8K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://raw.githubusercontent.com/kaist-ami/voicecraft-dub/main/README.md"
+      },
+      "upstream_dataset_ids": [
+        "celebv-hq",
+        "celebv-text"
+      ],
+      "downstream_dataset_ids": [
+        "holidub-bench"
+      ],
+      "linked_model_ids": [
+        "holidubber",
+        "voicecraft-dub"
+      ]
+    },
+    {
       "id": "audiocaps-2-0",
       "name": "AudioCaps 2.0",
       "organization": "Seoul National University",
@@ -5286,11 +5522,11 @@
       ],
       "description": "A large multilingual in-the-wild speech dataset produced with the Emilia-Pipe preprocessing system, covering roughly 101,000 hours across English, Chinese, Japanese, French, German, and Korean.",
       "access": {
-        "status": "open",
-        "type": "hosted",
+        "status": "gated",
+        "type": "request",
         "url": "https://huggingface.co/datasets/amphion/Emilia-Dataset",
-        "requires_account": false,
-        "notes": "Hosted WebDataset archives and preprocessing code are available from the official Amphion repository; review the dataset card before downloading at scale."
+        "requires_account": true,
+        "notes": "The current Hugging Face repository is automatically gated and requires a signed-in user to submit the publisher's access fields and accept the dataset terms before downloading its WebDataset archives."
       },
       "scale": {
         "samples": null,
@@ -5345,7 +5581,8 @@
         "homepage": "https://huggingface.co/datasets/amphion/Emilia-Dataset",
         "paper": "https://arxiv.org/abs/2407.05361",
         "used_by": [
-          "SkyReels V4"
+          "SkyReels V4",
+          "HoliDubber"
         ]
       },
       "status": "partial",
@@ -5360,6 +5597,7 @@
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
       "linked_model_ids": [
+        "holidubber",
         "skyreels-v4"
       ]
     },
@@ -6968,6 +7206,105 @@
       ]
     },
     {
+      "id": "celebv-text",
+      "name": "CelebV-Text",
+      "organization": "University of Sydney, CUHK MMLab, and SenseTime Research",
+      "released_at": "2023-03-26",
+      "release_date_source": "https://arxiv.org/abs/2303.14717",
+      "modality": "video",
+      "tasks": [
+        "text-to-video",
+        "face-video-generation",
+        "talking-head-generation",
+        "video-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A face-centric text-video collection of 70,000 in-the-wild clips, each paired with twenty descriptions spanning appearance, action, emotion, lighting, and other static and dynamic facial attributes.",
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://github.com/CelebV-Text/CelebV-Text",
+        "requires_account": false,
+        "notes": "The official repository releases annotations, YouTube reconstruction metadata, and a downloader; the project asks users to contact the authors for a hosted full copy when links fail."
+      },
+      "scale": {
+        "samples": 70000,
+        "source_items": null,
+        "hours": 279,
+        "approximate": true,
+        "notes": "The official project reports 70,000 clips, roughly 279 hours, and twenty text descriptions per clip across six attribute groups."
+      },
+      "annotations": {
+        "types": [
+          "text-description",
+          "appearance-attribute",
+          "action-attribute",
+          "emotion-attribute",
+          "lighting-attribute",
+          "youtube-url",
+          "temporal-boundary",
+          "face-bounding-box"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CelebV-Text non-commercial research agreement",
+        "media": "Original Internet video rightsholders and platform terms remain applicable",
+        "commercial_use": "noncommercial",
+        "redistribution": "prohibited",
+        "notes": "The official agreement limits use to non-commercial research and prohibits reproducing, selling, publishing, or redistributing the dataset outside permitted internal copies."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "YouTube removals, regional restrictions, and downloader drift can reduce the reconstructable corpus.",
+          "Semi-automatic descriptions and predefined attribute groups can contain labeling errors and omit nuanced facial behavior.",
+          "Celebrity and influencer footage raises consent, privacy, publicity-right, and demographic-bias concerns."
+        ]
+      },
+      "processing": {
+        "recipe": "Reconstruct YouTube intervals from the released JSON, crop the declared face boxes, and join twenty semi-automatically generated descriptions per clip.",
+        "recommended_format": "native",
+        "notes": "Preserve source URLs, reconstruction status, and every annotation group; do not redistribute reconstructed source media under the metadata agreement alone."
+      },
+      "evidence": {
+        "homepage": "https://celebv-text.github.io/",
+        "paper": "https://arxiv.org/abs/2303.14717",
+        "used_by": []
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/celebv-text.yaml",
+      "scenario_ids": [
+        "video-generation",
+        "digital-human"
+      ],
+      "scale_label": "~70K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://github.com/CelebV-Text/CelebV-Text/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "celebv-dub"
+      ],
+      "linked_model_ids": []
+    },
+    {
       "id": "omniobject3d",
       "name": "OmniObject3D",
       "organization": "Shanghai AI Laboratory, CUHK, and SenseTime Research",
@@ -7246,7 +7583,8 @@
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [
-        "talkingheadbench"
+        "talkingheadbench",
+        "celebv-dub"
       ],
       "linked_model_ids": [
         "hunyuanvideo-avatar"
@@ -8274,6 +8612,205 @@
         "mova-720p",
         "omni2sound",
         "hunyuanvideo-foley"
+      ]
+    },
+    {
+      "id": "lrs3",
+      "name": "LRS3-TED",
+      "organization": "University of Oxford Visual Geometry Group",
+      "released_at": "2018-09-03",
+      "release_date_source": "https://arxiv.org/abs/1809.00496",
+      "modality": "video",
+      "tasks": [
+        "audio-visual-speech-recognition",
+        "automatic-speech-recognition",
+        "lip-sync-training",
+        "video-dubbing"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "An English audio-visual speech corpus built from TED and TEDx videos, with face tracks, utterance transcripts, source references, and word-alignment boundaries for large-scale lip-reading and speech-generation research.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://mmai.io/datasets/lip_reading/",
+        "requires_account": false,
+        "notes": "The official LRS3 page now states that both URL/timestamp metadata and video downloads are no longer available from the website."
+      },
+      "scale": {
+        "samples": 151819,
+        "source_items": 9506,
+        "hours": 439,
+        "approximate": true,
+        "notes": "Official tables list 118,516 pre-train, 31,982 trainval, and 1,321 test utterances across 9,506 split-level videos; VoiceCraft-Dub reports approximately 439 hours."
+      },
+      "annotations": {
+        "types": [
+          "transcript",
+          "word-boundary",
+          "youtube-url",
+          "temporal-boundary",
+          "face-bounding-box"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0 research-purpose release",
+        "media": "Copyright remains with the original TED, TEDx, and video rightsholders",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The official page states CC-BY-4.0 for the dataset while separately preserving copyright in the source videos; downstream media use still needs review."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Official acquisition files are no longer available from the publisher's site.",
+          "VoiceCraft-Dub reports 1,174 held-out utterances while the current official table lists 1,321 test utterances, indicating a version or subset boundary that should not be silently merged.",
+          "TED-style frontal speakers and English-only speech do not represent the full range of cinematic dubbing domains, languages, or expressive motion."
+        ]
+      },
+      "processing": {
+        "recipe": "Reconstruct declared TED and TEDx intervals, extract 25 FPS face tracks, and preserve utterance transcripts, face boxes, and word boundaries.",
+        "recommended_format": "native",
+        "notes": "Keep the dataset split and release snapshot attached to every result because published test-set counts differ across downstream papers."
+      },
+      "evidence": {
+        "homepage": "https://mmai.io/datasets/lip_reading/",
+        "paper": "https://arxiv.org/abs/1809.00496",
+        "used_by": [
+          "VoiceCraft-Dub"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/lrs3.yaml",
+      "scenario_ids": [
+        "digital-human",
+        "video-localization"
+      ],
+      "scale_label": "~151.8K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://www.robots.ox.ac.uk/~vgg/data/lip_reading/"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "voicecraft-dub"
+      ]
+    },
+    {
+      "id": "voxceleb2",
+      "name": "VoxCeleb2",
+      "organization": "University of Oxford Visual Geometry Group",
+      "released_at": "2018-06-14",
+      "release_date_source": "https://arxiv.org/abs/1806.05622",
+      "modality": "video",
+      "tasks": [
+        "audio-visual-speaker-recognition",
+        "video-dubbing",
+        "lip-sync-training",
+        "voice-preserving-video-localization"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A large in-the-wild audio-visual speaker corpus collected from YouTube, covering more than one million utterances from 6,112 speakers across varied recording, pose, lighting, motion, and acoustic conditions.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://www.robots.ox.ac.uk/~vgg/data/voxceleb/vox2.html",
+        "requires_account": false,
+        "notes": "The official site now states that URL/timestamp lists, audio, video, and identifying metadata are no longer available from the website."
+      },
+      "scale": {
+        "samples": 1128246,
+        "source_items": 150480,
+        "hours": 2442,
+        "approximate": true,
+        "notes": "Official split tables total 1,128,246 utterances and 150,480 source videos; HoliDubber reports approximately 2,442 hours."
+      },
+      "annotations": {
+        "types": [
+          "youtube-url",
+          "temporal-boundary",
+          "speaker-identity",
+          "face-track",
+          "audio-visual-utterance"
+        ],
+        "source": "mixed",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-SA-4.0",
+        "media": "Original YouTube uploader and platform terms remain applicable",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The official CC-BY-SA-4.0 statement covers the supplied metadata, not a transfer of rights in the underlying YouTube media."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The official acquisition files have been withdrawn, so the published corpus cannot currently be reconstructed from its original site.",
+          "Celebrity speech and faces raise privacy, publicity-right, consent, and demographic-bias considerations.",
+          "In-the-wild audio includes noise, reverberation, overlapping speech, music, and other uncontrolled acoustic content."
+        ]
+      },
+      "processing": {
+        "recipe": "Use the official URL and timestamp index to reconstruct utterances, then retain speaker, face-track, and split metadata with every sample.",
+        "recommended_format": "native",
+        "notes": "The original acquisition index is no longer distributed; do not substitute unofficial mirrors without an independent provenance and rights review."
+      },
+      "evidence": {
+        "homepage": "https://www.robots.ox.ac.uk/~vgg/data/voxceleb/vox2.html",
+        "paper": "https://arxiv.org/abs/1806.05622",
+        "used_by": [
+          "VoiceCraft-Dub",
+          "HoliDubber"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/voxceleb2.yaml",
+      "scenario_ids": [
+        "digital-human",
+        "video-localization"
+      ],
+      "scale_label": "~1.1M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://www.robots.ox.ac.uk/~vgg/data/voxceleb/vox2.html"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "holidub-bench"
+      ],
+      "linked_model_ids": [
+        "holidubber",
+        "voicecraft-dub"
       ]
     },
     {
@@ -11416,6 +11953,230 @@
         }
       ],
       "linked_dataset_ids": []
+    },
+    {
+      "id": "holidubber",
+      "name": "HoliDubber",
+      "organization": "HoliDubber research team",
+      "released_at": "2026-06-08",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "video-dubbing",
+        "voice-preserving-video-localization",
+        "lip-sync",
+        "audio-video-generation",
+        "text-to-audio"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Paper and project demo only; code, weights, and model license not released",
+        "release_url": "https://holidubber.github.io/",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Patch-based autoregressive diffusion Transformer with audio-visual cross-attention and a continuous Audio-VAE",
+        "parameters": null,
+        "notes": "A causal language model predicts aggregated audio-visual patch embeddings and a local Diffusion Transformer generates continuous audio latents, jointly synthesizing speech, sound effects, and ambience."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "HoliDubber Audio-VAE heterogeneous mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": "Approximately 30,000 hours",
+            "notes": "Speech, general audio including music and environmental sound, and natural speech-background mixtures are balanced 1:1:1, but no source dataset identities are published."
+          },
+          {
+            "name": "Emilia",
+            "catalog_id": "emilia",
+            "role": "pretraining",
+            "availability": "gated",
+            "scale": "80,000 hours used",
+            "notes": "Emilia supplies plain-transcript multilingual speech within the 130,000-hour text-guided audio pretraining stage; the current repository requires acceptance of access terms."
+          },
+          {
+            "name": "HoliDubber structured audio pretraining mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": "50,000 hours",
+            "notes": "The remaining TTA mixture contains 20,000 hours of naturally mixed speech/audio, 20,000 hours of speaker-profile and speech-instruction annotated speech, and 10,000 hours of non-speech audio/music; source identities are not named."
+          },
+          {
+            "name": "VoxCeleb2",
+            "catalog_id": "voxceleb2",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "More than 1M utterances and approximately 2,442 hours before held-out selection",
+            "notes": "The model jointly trains on the remaining VoxCeleb2 clips after reserving 641 for HoliDub-Bench and 350 for a standard test set; official dataset files are no longer distributed."
+          },
+          {
+            "name": "CelebV-Dub",
+            "catalog_id": "celebv-dub",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "Approximately 86 hours before held-out selection",
+            "notes": "The combined training split excludes 359 HoliDub-Bench clips and 118 standard-test clips from CelebV-Dub, then trains jointly with VoxCeleb2 for 50 epochs."
+          },
+          {
+            "name": "VoxCeleb2",
+            "catalog_id": "voxceleb2",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "350 standard-test clips plus 641 HoliDub-Bench source clips",
+            "notes": "Standard zero-shot and prompt-guided results use 350 random test clips; a separate acoustically complex subset feeds HoliDub-Bench."
+          },
+          {
+            "name": "CelebV-Dub",
+            "catalog_id": "celebv-dub",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "118 standard-test clips plus 359 HoliDub-Bench source clips",
+            "notes": "Standard evaluation uses 118 clips and the benchmark draws 359 expressive clips under a separately curated split."
+          },
+          {
+            "name": "HoliDub-Bench",
+            "catalog_id": "holidub-bench",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "1,000 clips; approximately 2.4 hours",
+            "notes": "The structured video-text-audio benchmark evaluates joint speech and background-sound generation, but no files or license are currently published."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "audio"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "audio-vae-training",
+              "heterogeneous-audio-balancing",
+              "waveform-resampling",
+              "adversarial-reconstruction"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train a continuous Audio-VAE on 30,000 balanced hours of speech, general audio, and naturally mixed recordings so one latent space covers dialogue and environmental sound."
+          },
+          {
+            "name": "midtraining",
+            "modalities": [
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "undisclosed"
+            ],
+            "operations": [
+              "text-to-audio-pretraining",
+              "qwen-language-model-initialization",
+              "structured-audio-captioning",
+              "multi-source-mixture"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Pretrain a text-guided audio backbone for ten epochs on 130,000 hours, combining 80,000 Emilia hours with three unnamed speech, mixed-audio, and non-speech components totaling 50,000 hours."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset"
+            ],
+            "operations": [
+              "av-hubert-feature-extraction",
+              "patch-level-cross-attention",
+              "structured-prompt-conditioning",
+              "selective-field-dropout",
+              "joint-speech-sound-generation"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Jointly train the VoxCeleb2 and CelebV-Dub training splits for 50 epochs, using Qwen3-Omni/Whisper structured captions and 50% auxiliary-field dropout to support reference-audio and prompt-guided modes."
+          }
+        ],
+        "strategy_summary": [
+          "Build a shared audio latent space, then a large text-guided audio prior, before adding visual articulation conditioning for holistic dubbing.",
+          "Combine named public speech/video datasets with 80,000 Emilia hours and 80,000 hours of unnamed Audio-VAE/TTA components whose exact sources remain undisclosed.",
+          "Generate structured speaker, prosody, transcript, music, ambience, and sound-event supervision with Qwen3-Omni and Whisper, then use selective field dropout for two inference modes."
+        ],
+        "unknowns": [
+          "Source identities, licenses, provenance, language mix, and deduplication for the 30,000-hour Audio-VAE corpus and 50,000 unnamed TTA hours.",
+          "Code, checkpoints, model license, benchmark files, and release schedule; the project currently labels code as coming soon.",
+          "Exact sample counts retained in the combined VoxCeleb2 and CelebV-Dub training split after every rejection and holdout step.",
+          "Multilingual dubbing capability; the paper lists multilingual support as future work rather than a current evaluated feature."
+        ]
+      },
+      "evidence": {
+        "release": "https://holidubber.github.io/",
+        "technical_report": "https://arxiv.org/abs/2606.09098",
+        "repository": null
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/holidubber.yaml",
+      "scenario_ids": [
+        "video-generation",
+        "digital-human",
+        "video-localization"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "midtraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed",
+          "public-dataset"
+        ],
+        "operations": [
+          "audio-vae-training",
+          "heterogeneous-audio-balancing",
+          "waveform-resampling",
+          "adversarial-reconstruction",
+          "text-to-audio-pretraining",
+          "qwen-language-model-initialization",
+          "structured-audio-captioning",
+          "multi-source-mixture",
+          "av-hubert-feature-extraction",
+          "patch-level-cross-attention",
+          "structured-prompt-conditioning",
+          "selective-field-dropout",
+          "joint-speech-sound-generation"
+        ],
+        "data_reference_count": 8,
+        "linked_dataset_count": 4,
+        "scale_disclosed_stage_count": 3,
+        "stage_count": 3,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://export.arxiv.org/api/query?id_list=2606.09098"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "emilia",
+        "voxceleb2",
+        "celebv-dub",
+        "holidub-bench"
+      ]
     },
     {
       "id": "omnitryon",
@@ -15007,9 +15768,9 @@
             "name": "Emilia",
             "catalog_id": "emilia",
             "role": "pretraining",
-            "availability": "public",
+            "availability": "gated",
             "scale": "approximately 101K hours",
-            "notes": "Named as an example speech/audio source in the SkyReels V4 data pipeline."
+            "notes": "Named as an example speech/audio source in the SkyReels V4 data pipeline; the current repository requires acceptance of publisher access terms."
           },
           {
             "name": "AudioSet",
@@ -21017,6 +21778,186 @@
       ]
     },
     {
+      "id": "voicecraft-dub",
+      "name": "VoiceCraft-Dub",
+      "organization": "KAIST, MIT, University of Oxford, and Adobe Research",
+      "released_at": "2025-04-03",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "video-dubbing",
+        "voice-preserving-video-localization",
+        "lip-sync",
+        "video-to-speech"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "CC-BY-NC-SA-4.0 code; Coqui Public Model License 1.0.0 weights",
+        "release_url": "https://voicecraft-dub.github.io/",
+        "weights_url": "https://drive.google.com/file/d/1HKsGQ4KyCpm2MJfaO3leYDi_9Ea7oKlL/view?usp=sharing",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "VoiceCraft neural-codec language model with audio-visual fusion and facial-feature adapters",
+        "parameters": null,
+        "notes": "Fine-tunes a 16-layer VoiceCraft Transformer decoder while training lip and face adapters plus audio-visual fusion layers around frozen AV-HuBERT, EmoFAN, and Encodec components."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "VoiceCraft pretrained checkpoint lineage",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "The Transformer decoder is initialized from the public VoiceCraft giga830.pth checkpoint, but the VoiceCraft-Dub paper does not restate a complete, versioned base-data lineage."
+          },
+          {
+            "name": "LRS3-TED",
+            "catalog_id": "lrs3",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "Approximately 439 hours; pre-train split used",
+            "notes": "The paper trains on the LRS3 pre-train split; the publisher's current page says official URL and video downloads are no longer available."
+          },
+          {
+            "name": "CelebV-Dub",
+            "catalog_id": "celebv-dub",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "67,549 training clips; approximately 86 hours total",
+            "notes": "The CelebV-Dub model variant starts from the LRS3-trained model and fine-tunes on expressive English clips curated from CelebV-HQ and CelebV-Text."
+          },
+          {
+            "name": "LRS3-TED",
+            "catalog_id": "lrs3",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "1,174 test utterances in the paper",
+            "notes": "The paper reserves 1,174 LRS3 utterances, while the current official LRS3 table lists 1,321 test utterances; the exact evaluation subset/version must therefore remain attached."
+          },
+          {
+            "name": "CelebV-Dub",
+            "catalog_id": "celebv-dub",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "216 test clips",
+            "notes": "The official CelebV-Dub split contains 216 held-out clips from 33 speaker clusters."
+          },
+          {
+            "name": "VoxCeleb2",
+            "catalog_id": "voxceleb2",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "200 generalization samples",
+            "notes": "The appendix evaluates an LRS3-trained model on 200 VoxCeleb2 test samples with Whisper-generated pseudo ground-truth text; official VoxCeleb2 downloads are now withdrawn."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-voicecraft-checkpoint",
+              "neural-codec-language-modeling"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Initialize the autoregressive Transformer decoder from VoiceCraft while leaving the exact inherited corpus and checkpoint-data version outside the VoiceCraft-Dub disclosure."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset"
+            ],
+            "operations": [
+              "av-hubert-feature-extraction",
+              "facial-feature-adaptation",
+              "audio-visual-fusion",
+              "neural-codec-token-prediction",
+              "sequential-dataset-adaptation",
+              "early-stopping"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train the decoder and new audio-visual modules on LRS3, then initialize the CelebV-Dub variant from that model and adapt it to expressive in-the-wild speakers for 100K-step training runs with early stopping."
+          }
+        ],
+        "strategy_summary": [
+          "Extend a pretrained neural-codec speech model with lip and full-face cues so generated speech follows target timing and expression while retaining source-speaker characteristics.",
+          "Use LRS3 for broad in-the-wild audio-visual alignment, then adapt sequentially to the more expressive CelebV-Dub distribution.",
+          "Curate CelebV-Dub with English detection, pseudo-transcription, utterance trimming, pose filtering, active-speaker detection, music suppression, and speaker clustering."
+        ],
+        "unknowns": [
+          "Complete inherited training lineage and version for the VoiceCraft giga830.pth initialization checkpoint.",
+          "A standalone CelebV-Dub dataset license resolving how its public archive composes with CelebV-HQ, CelebV-Text, and source-media restrictions.",
+          "Exact cause of the LRS3 evaluation-count difference between the paper's 1,174 utterances and the current official table's 1,321 utterances.",
+          "Whether future checkpoint releases will cover both lip-only and full-face variants with reproducible dataset-specific training states."
+        ]
+      },
+      "evidence": {
+        "release": "https://voicecraft-dub.github.io/",
+        "technical_report": "https://arxiv.org/abs/2504.02386",
+        "repository": "https://github.com/kaist-ami/voicecraft-dub"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/voicecraft-dub.yaml",
+      "scenario_ids": [
+        "digital-human",
+        "video-localization"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed",
+          "public-dataset"
+        ],
+        "operations": [
+          "inherited-voicecraft-checkpoint",
+          "neural-codec-language-modeling",
+          "av-hubert-feature-extraction",
+          "facial-feature-adaptation",
+          "audio-visual-fusion",
+          "neural-codec-token-prediction",
+          "sequential-dataset-adaptation",
+          "early-stopping"
+        ],
+        "data_reference_count": 6,
+        "linked_dataset_count": 3,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/kaist-ami/voicecraft-dub/commits/main.atom"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "lrs3",
+        "celebv-dub",
+        "voxceleb2"
+      ]
+    },
+    {
       "id": "musetalk-1-5",
       "name": "MuseTalk 1.5",
       "organization": "Tencent Music Entertainment Lyra Lab",
@@ -21478,6 +22419,54 @@
       "reference_name": "GraphVid-Bench"
     },
     {
+      "model_id": "holidubber",
+      "dataset_id": "celebv-dub",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "118 standard-test clips plus 359 HoliDub-Bench source clips",
+      "reference_name": "CelebV-Dub"
+    },
+    {
+      "model_id": "holidubber",
+      "dataset_id": "celebv-dub",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "Approximately 86 hours before held-out selection",
+      "reference_name": "CelebV-Dub"
+    },
+    {
+      "model_id": "holidubber",
+      "dataset_id": "emilia",
+      "role": "pretraining",
+      "availability": "gated",
+      "scale": "80,000 hours used",
+      "reference_name": "Emilia"
+    },
+    {
+      "model_id": "holidubber",
+      "dataset_id": "holidub-bench",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "1,000 clips; approximately 2.4 hours",
+      "reference_name": "HoliDub-Bench"
+    },
+    {
+      "model_id": "holidubber",
+      "dataset_id": "voxceleb2",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "350 standard-test clips plus 641 HoliDub-Bench source clips",
+      "reference_name": "VoxCeleb2"
+    },
+    {
+      "model_id": "holidubber",
+      "dataset_id": "voxceleb2",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "More than 1M utterances and approximately 2,442 hours before held-out selection",
+      "reference_name": "VoxCeleb2"
+    },
+    {
       "model_id": "humo-17b",
       "dataset_id": "humoset",
       "role": "fine-tuning",
@@ -21857,7 +22846,7 @@
       "model_id": "skyreels-v4",
       "dataset_id": "emilia",
       "role": "pretraining",
-      "availability": "public",
+      "availability": "gated",
       "scale": "approximately 101K hours",
       "reference_name": "Emilia"
     },
@@ -21974,6 +22963,46 @@
       "reference_name": "VideoCoF-50K"
     },
     {
+      "model_id": "voicecraft-dub",
+      "dataset_id": "celebv-dub",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "216 test clips",
+      "reference_name": "CelebV-Dub"
+    },
+    {
+      "model_id": "voicecraft-dub",
+      "dataset_id": "celebv-dub",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "67,549 training clips; approximately 86 hours total",
+      "reference_name": "CelebV-Dub"
+    },
+    {
+      "model_id": "voicecraft-dub",
+      "dataset_id": "lrs3",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "1,174 test utterances in the paper",
+      "reference_name": "LRS3-TED"
+    },
+    {
+      "model_id": "voicecraft-dub",
+      "dataset_id": "lrs3",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "Approximately 439 hours; pre-train split used",
+      "reference_name": "LRS3-TED"
+    },
+    {
+      "model_id": "voicecraft-dub",
+      "dataset_id": "voxceleb2",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "200 generalization samples",
+      "reference_name": "VoxCeleb2"
+    },
+    {
       "model_id": "wan-2-2",
       "dataset_id": "avgen-bench",
       "role": "evaluation",
@@ -22013,11 +23042,32 @@
       "notes": "AudioSet contributes one of four source partitions; WavCaps filters its descriptions and rewrites them into captions alongside three independently sourced partitions."
     },
     {
+      "source_dataset_id": "celebv-dub",
+      "derived_dataset_id": "holidub-bench",
+      "relationship": "benchmark-derivative",
+      "contribution": "359 emotionally expressive clips",
+      "notes": "CelebV-Dub samples are selected for pronounced changes in tone, intensity, emotion, and expressive facial movement."
+    },
+    {
+      "source_dataset_id": "celebv-hq",
+      "derived_dataset_id": "celebv-dub",
+      "relationship": "filtered-subset",
+      "contribution": "Expressive in-the-wild source videos",
+      "notes": "CelebV-HQ clips are filtered for English, frontal faces, active speakers, clean speech, and speaker-consistent utterances."
+    },
+    {
       "source_dataset_id": "celebv-hq",
       "derived_dataset_id": "talkingheadbench",
       "relationship": "source-component",
       "contribution": "Driving video and audio signals plus a distinct subset of real videos",
       "notes": "CelebV-HQ supplies driving signals for synthetic clips and real-video controls; identities are separated from source portraits and evaluation splits."
+    },
+    {
+      "source_dataset_id": "celebv-text",
+      "derived_dataset_id": "celebv-dub",
+      "relationship": "filtered-subset",
+      "contribution": "Expressive text-video source videos",
+      "notes": "CelebV-Text contributes videos and source metadata that pass the same dubbing-specific curation pipeline."
     },
     {
       "source_dataset_id": "co3d",
@@ -22130,6 +23180,13 @@
       "relationship": "transformed-derivative",
       "contribution": "Accurately alpha-matted human foregrounds for synthetic composites",
       "notes": "VideoMatte240K foregrounds and alpha mattes are paired with generated backgrounds and transformed into layered object-addition and background-change training tuples."
+    },
+    {
+      "source_dataset_id": "voxceleb2",
+      "derived_dataset_id": "holidub-bench",
+      "relationship": "benchmark-derivative",
+      "contribution": "641 acoustically complex clips",
+      "notes": "VoxCeleb2 samples are selected for music, ambient noise, overlapping audio, and other challenging acoustic environments."
     },
     {
       "source_dataset_id": "yfcc100m",

@@ -501,11 +501,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            86,
+            91,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            80,
+            82,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -524,7 +524,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
-        self.assertEqual(len(sources), 260)
+        self.assertEqual(len(sources), 267)
         self.assertEqual(
             {source.ranking_id for source in sources if source.ranking_id},
             {
@@ -575,6 +575,13 @@ class DiscoveryTests(unittest.TestCase):
                 "https://huggingface.co/api/models/TMElyralab/MuseTalk",
                 "https://huggingface.co/api/models/fashn-ai/fashn-vton-1.5",
                 "https://huggingface.co/api/datasets/amphion/Emilia-Dataset",
+                "https://www.robots.ox.ac.uk/~vgg/data/voxceleb/vox2.html",
+                "https://www.robots.ox.ac.uk/~vgg/data/lip_reading/",
+                "https://github.com/CelebV-Text/CelebV-Text/commits/main.atom",
+                "https://raw.githubusercontent.com/kaist-ami/voicecraft-dub/main/README.md",
+                "https://holidubber.github.io/",
+                "https://github.com/kaist-ami/voicecraft-dub/commits/main.atom",
+                "https://export.arxiv.org/api/query?id_list=2606.09098",
                 "https://projects.csail.mit.edu/soundnet/",
                 "https://arxiv.org/abs/2607.21580",
                 "https://arxiv.org/html/2607.16283",

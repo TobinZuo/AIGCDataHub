@@ -1,0 +1,71 @@
+id: voxceleb2
+name: VoxCeleb2
+organization: University of Oxford Visual Geometry Group
+released_at: "2018-06-14"
+release_date_source: https://arxiv.org/abs/1806.05622
+modality: video
+tasks:
+  - audio-visual-speaker-recognition
+  - video-dubbing
+  - lip-sync-training
+  - voice-preserving-video-localization
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A large in-the-wild audio-visual speaker corpus collected from YouTube,
+  covering more than one million utterances from 6,112 speakers across varied
+  recording, pose, lighting, motion, and acoustic conditions.
+access:
+  status: unavailable
+  type: none
+  url: https://www.robots.ox.ac.uk/~vgg/data/voxceleb/vox2.html
+  requires_account: false
+  notes: The official site now states that URL/timestamp lists, audio, video, and identifying metadata are no longer available from the website.
+scale:
+  samples: 1128246
+  source_items: 150480
+  hours: 2442
+  approximate: true
+  notes: Official split tables total 1,128,246 utterances and 150,480 source videos; HoliDubber reports approximately 2,442 hours.
+annotations:
+  types:
+    - youtube-url
+    - temporal-boundary
+    - speaker-identity
+    - face-track
+    - audio-visual-utterance
+  source: mixed
+  languages:
+    - multilingual
+license:
+  metadata: CC-BY-SA-4.0
+  media: Original YouTube uploader and platform terms remain applicable
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The official CC-BY-SA-4.0 statement covers the supplied metadata, not a transfer of rights in the underlying YouTube media.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - The official acquisition files have been withdrawn, so the published corpus cannot currently be reconstructed from its original site.
+    - Celebrity speech and faces raise privacy, publicity-right, consent, and demographic-bias considerations.
+    - In-the-wild audio includes noise, reverberation, overlapping speech, music, and other uncontrolled acoustic content.
+processing:
+  recipe: Use the official URL and timestamp index to reconstruct utterances, then retain speaker, face-track, and split metadata with every sample.
+  recommended_format: native
+  notes: The original acquisition index is no longer distributed; do not substitute unofficial mirrors without an independent provenance and rights review.
+evidence:
+  homepage: https://www.robots.ox.ac.uk/~vgg/data/voxceleb/vox2.html
+  paper: https://arxiv.org/abs/1806.05622
+  used_by:
+    - VoiceCraft-Dub
+    - HoliDubber
+status: partial
+last_verified: "2026-07-27"

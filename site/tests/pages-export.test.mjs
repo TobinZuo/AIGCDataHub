@@ -21,6 +21,12 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /Avatar V/);
   assert.match(html, /JUST-DUB-IT/);
   assert.match(html, /Audiovisual Translation Dubbing Dataset/);
+  assert.match(html, /VoiceCraft-Dub/);
+  assert.match(html, /HoliDubber/);
+  assert.match(html, /VoxCeleb2/);
+  assert.match(html, /LRS3-TED/);
+  assert.match(html, /CelebV-Dub/);
+  assert.match(html, /HoliDub-Bench/);
   assert.match(html, /FIT-VTO-100K/);
   assert.match(html, /Fit-VTO/);
   assert.match(html, /FLUX VTO/);

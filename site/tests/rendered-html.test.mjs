@@ -217,6 +217,12 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"videomatte240k"/);
   assert.match(catalog, /"consid-gen"/);
   assert.match(catalog, /"considvid"/);
+  assert.match(catalog, /"voicecraft-dub"/);
+  assert.match(catalog, /"holidubber"/);
+  assert.match(catalog, /"voxceleb2"/);
+  assert.match(catalog, /"lrs3"/);
+  assert.match(catalog, /"celebv-dub"/);
+  assert.match(catalog, /"holidub-bench"/);
   assert.match(catalog, /"name": "Mixkit"/);
   assert.match(catalog, /"relations"/);
   assert.match(catalog, /"dataset_relations"/);
@@ -272,6 +278,14 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.deepEqual(models["openve-edit"].linked_dataset_ids, ["openve-3m", "openve-bench"]);
   assert.deepEqual(models["hunyuanvideo-avatar"].linked_dataset_ids, ["hdtf", "celebv-hq"]);
   assert.deepEqual(models["musetalk-1-5"].linked_dataset_ids, ["hdtf"]);
+  assert.deepEqual(
+    new Set(models["voicecraft-dub"].linked_dataset_ids),
+    new Set(["lrs3", "celebv-dub", "voxceleb2"]),
+  );
+  assert.deepEqual(
+    new Set(models.holidubber.linked_dataset_ids),
+    new Set(["emilia", "voxceleb2", "celebv-dub", "holidub-bench"]),
+  );
   assert.deepEqual(models.videocof.linked_dataset_ids, ["videocof-50k"]);
   assert.deepEqual(models["humo-17b"].linked_dataset_ids, ["phantom-data", "humoset"]);
   assert.deepEqual(models["phantom-wan-14b"].linked_dataset_ids, ["panda-70m"]);
