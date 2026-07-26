@@ -1,5 +1,5 @@
 {
-  "format_version": 12,
+  "format_version": 13,
   "generated_from": [
     "catalog/**/*.yaml",
     "models/**/*.yaml",
@@ -277,7 +277,7 @@
         "training_rights": "not-granted-by-interface"
       },
       "monitoring": {
-        "url": "https://help.pexels.com/api/v2/help_center/en-us/articles/900005880463.json",
+        "url": "https://help.pexels.com/api/v2/help_center/en-us/categories/900001326143/articles.json",
         "mode": "content-revision",
         "focus": "API access, bulk collection, dataset construction, ML and AI use, attribution, redistribution, and license changes.",
         "priority": "high"
@@ -9075,28 +9075,36 @@
           "provider": "Arena",
           "rank": 4,
           "score": 1392.7,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "seedream-5.0-pro",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-image",
           "provider": "Arena",
           "rank": 11,
           "score": 1231.2,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "seedream-5.0-pro",
+          "component_count": 1
         },
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 6,
           "score": 1238,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Seedream 5.0 Pro",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 8,
           "score": 1239,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Seedream 5.0 Pro",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -9412,21 +9420,27 @@
           "provider": "Arena",
           "rank": 10,
           "score": 1383.2,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "reve-2.1",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-image",
           "provider": "Arena",
           "rank": 2,
           "score": 1302.1,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "reve-2.1",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 2,
           "score": 1300,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Reve 2.1",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -9527,7 +9541,9 @@
           "provider": "Arena",
           "rank": 3,
           "score": 1458.6,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "muse-video",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -9654,14 +9670,18 @@
           "provider": "Arena",
           "rank": 2,
           "score": 1402.4,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "muse-image",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-image",
           "provider": "Arena",
           "rank": 3,
           "score": 1280.4,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "muse-image",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -9787,35 +9807,45 @@
           "provider": "Arena",
           "rank": 2,
           "score": 1469.3,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "gemini-omni-flash",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 1,
           "score": 1527.5,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "gemini-omni-flash",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-video-edit",
           "provider": "Arena",
           "rank": 2,
           "score": 1346.6,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "gemini-omni-flash",
+          "component_count": 1
         },
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 1,
           "score": 1199,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Gemini Omni Flash",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 1,
           "score": 1247,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Gemini Omni Flash",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -9990,14 +10020,18 @@
           "provider": "Arena",
           "rank": 7,
           "score": 1249.7,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "gemini-3.1-flash-lite-image (nano-banana-2-lite)",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 4,
           "score": 1262,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -10261,14 +10295,18 @@
           "provider": "Artificial Analysis",
           "rank": 4,
           "score": 1110,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "HappyHorse-1.1",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 4,
           "score": 1153,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "HappyHorse-1.1",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -10368,14 +10406,18 @@
           "provider": "Arena",
           "rank": 3,
           "score": 1466.4,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "grok-imagine-video-1.5-preview-720p",
+          "component_count": 1
         },
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 3,
           "score": 1118,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "grok-imagine-video-1.5-preview",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -10525,7 +10567,9 @@
           "provider": "Artificial Analysis",
           "rank": 7,
           "score": 1246,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "HiDream-O1-Image-1.5",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -10622,14 +10666,18 @@
           "provider": "Arena",
           "rank": 13,
           "score": 1357.9,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "reve-2.0",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-image",
           "provider": "Arena",
           "rank": 4,
           "score": 1270.7,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "reve-2.0",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -10737,7 +10785,9 @@
           "provider": "Arena",
           "rank": 13,
           "score": 1206.8,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "ideogram-4.0-quality",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -10833,42 +10883,54 @@
           "provider": "Arena",
           "rank": 3,
           "score": 1401.4,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "mai-image-2.5",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-image",
           "provider": "Arena",
           "rank": 6,
           "score": 1256.6,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "mai-image-2.5",
+          "component_count": 1
         },
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 4,
           "score": 1243,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "MAI-Image-2.5",
+          "component_count": 1
         },
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 7,
           "score": 1230,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "MAI-Image-2.5-Flash",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 3,
           "score": 1269,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "MAI-Image-2.5",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 11,
           "score": 1206,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "MAI-Image-2.5-Flash",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -11005,7 +11067,9 @@
           "provider": "Artificial Analysis",
           "rank": 10,
           "score": 1218,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Cosmos3-Super-Text2Image (agentic)",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -11307,7 +11371,9 @@
           "provider": "Artificial Analysis",
           "rank": 4,
           "score": 1013,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Aleph 2.0",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -11656,14 +11722,18 @@
           "provider": "Artificial Analysis",
           "rank": 13,
           "score": 1203,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Recraft V4.1 Utility",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 14,
           "score": 1199,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Recraft V4.1 Utility Pro",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -11814,7 +11884,9 @@
           "provider": "Artificial Analysis",
           "rank": 15,
           "score": 1203,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "HiDream-O1-Image",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -11911,35 +11983,45 @@
           "provider": "Arena",
           "rank": 6,
           "score": 1389.2,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "grok-imagine-image-quality (20260519)",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
           "rank": 12,
           "score": 1359.0,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "grok-imagine-image-quality",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-image",
           "provider": "Arena",
           "rank": 12,
           "score": 1229.3,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "grok-imagine-image-quality",
+          "component_count": 1
         },
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 8,
           "score": 1230,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "grok-imagine-image-quality",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 12,
           "score": 1203,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "grok-imagine-image-quality",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -12054,21 +12136,27 @@
           "provider": "Arena",
           "rank": 14,
           "score": 1333.6,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "uni-1.1-max",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-image",
           "provider": "Arena",
           "rank": 15,
           "score": 1188.1,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "uni-1.1-max",
+          "component_count": 1
         },
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 10,
           "score": 1221,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Luma UNI 1 Max",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -12373,42 +12461,54 @@
           "provider": "Arena",
           "rank": 4,
           "score": 1444.2,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "happyhorse-1.0",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 4,
           "score": 1429.5,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "happyhorse-1.0",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-video-edit",
           "provider": "Arena",
           "rank": 3,
           "score": 1307.8,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "happyhorse-1.0",
+          "component_count": 1
         },
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 6,
           "score": 1093,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "HappyHorse-1.0",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 5,
           "score": 1132,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "HappyHorse-1.0",
+          "component_count": 1
         },
         {
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 1,
           "score": 1102,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "HappyHorse-1.0",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -12505,28 +12605,36 @@
           "provider": "Arena",
           "rank": 1,
           "score": 1465.3,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "gpt-image-2 (medium)",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-image",
           "provider": "Arena",
           "rank": 1,
           "score": 1384.8,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "gpt-image-2 (medium)",
+          "component_count": 1
         },
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 1,
           "score": 1258,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "GPT Image 2 (high)",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 1,
           "score": 1337,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "GPT Image 2 (high)",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -13187,42 +13295,54 @@
           "provider": "Arena",
           "rank": 5,
           "score": 1434.1,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "wan2.7-i2v",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 11,
           "score": 1347.9,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "wan2.7-t2v",
+          "component_count": 1
         },
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 5,
           "score": 1099,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Wan 2.7",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 3,
           "score": 1165,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Wan2.7-260612",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 8,
           "score": 1109,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Wan 2.7",
+          "component_count": 1
         },
         {
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 2,
           "score": 1089,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Wan 2.7",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -13318,7 +13438,9 @@
           "provider": "Artificial Analysis",
           "rank": 14,
           "score": 1092,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Veo 3.1 Lite",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -13420,7 +13542,9 @@
           "provider": "Artificial Analysis",
           "rank": 12,
           "score": 1073,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "PixVerse V6",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -13433,6 +13557,7 @@
       "ranking_names": [
         "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
         "Nano Banana 2",
+        "NanoBanana2",
         "gemini-3.1-flash-image (nano-banana-2) [web-search]"
       ],
       "modalities": [
@@ -13527,28 +13652,45 @@
           "provider": "Arena",
           "rank": 9,
           "score": 1384.8,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "gemini-3.1-flash-image (nano-banana-2) [web-search]",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-image",
           "provider": "Arena",
           "rank": 5,
           "score": 1260.8,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "gemini-3.1-flash-image (nano-banana-2) [web-search]",
+          "component_count": 1
+        },
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 9,
+          "score": 58.1,
+          "score_label": "Total",
+          "entry_model": "NanoBanana2 + MOVA",
+          "component_count": 2
         },
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 3,
           "score": 1247,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 5,
           "score": 1261,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": [
@@ -13793,21 +13935,27 @@
           "provider": "Artificial Analysis",
           "rank": 8,
           "score": 1085,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "SkyReels V4",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 7,
           "score": 1112,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "SkyReels V4",
+          "component_count": 1
         },
         {
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 6,
           "score": 952,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "SkyReels V4",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": [
@@ -13973,7 +14121,9 @@
           "provider": "AVGen-Bench",
           "rank": 8,
           "score": 59.97,
-          "score_label": "Total"
+          "score_label": "Total",
+          "entry_model": "LTX-2.3",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": [
@@ -14085,49 +14235,63 @@
           "provider": "Arena",
           "rank": 1,
           "score": 1473.7,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "dreamina-seedance-2.0-720p",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 2,
           "score": 1481.9,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "dreamina-seedance-2.0-720p",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-video-edit",
           "provider": "Arena",
           "rank": 1,
           "score": 1377.1,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "dreamina-seedance-2.0-720p",
+          "component_count": 1
         },
         {
           "ranking_id": "avgen-text-to-audio-video",
           "provider": "AVGen-Bench",
           "rank": 1,
           "score": 72.07,
-          "score_label": "Total"
+          "score_label": "Total",
+          "entry_model": "Seedance 2.0",
+          "component_count": 1
         },
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 2,
           "score": 1199,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Dreamina Seedance 2.0 720p",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 2,
           "score": 1229,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Dreamina Seedance 2.0 720p",
+          "component_count": 1
         },
         {
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 3,
           "score": 1039,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Dreamina Seedance 2.0 720p",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": [
@@ -14227,7 +14391,9 @@
           "provider": "Arena",
           "rank": 14,
           "score": 1192.7,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "qwen-image-2.0-pro-2026-06-22",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -14487,84 +14653,108 @@
           "provider": "Arena",
           "rank": 13,
           "score": 1360.3,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "kling-v3-pro",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-video-edit",
           "provider": "Arena",
           "rank": 5,
           "score": 1251.2,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "kling-o3-pro",
+          "component_count": 1
         },
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 11,
           "score": 1214,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Kling Image 3.0 Omni",
+          "component_count": 1
         },
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 13,
           "score": 1203,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Kling Image 3.0",
+          "component_count": 1
         },
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 11,
           "score": 1075,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Kling 3.0 1080p (Pro)",
+          "component_count": 1
         },
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 13,
           "score": 1070,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Kling 3.0 720p (Standard)",
+          "component_count": 1
         },
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 15,
           "score": 1063,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Kling 3.0 Omni 1080p (Pro)",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 6,
           "score": 1113,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Kling 3.0 1080p (Pro)",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 9,
           "score": 1102,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Kling 3.0 720p (Standard)",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 10,
           "score": 1098,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Kling 3.0 Omni 1080p (Pro)",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 12,
           "score": 1093,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Kling 3.0 Omni 720p (Standard)",
+          "component_count": 1
         },
         {
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 5,
           "score": 1000,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Kling 3.0 Omni 1080p (Pro)",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -14827,7 +15017,18 @@
           "provider": "AVGen-Bench",
           "rank": 9,
           "score": 58.1,
-          "score_label": "Total"
+          "score_label": "Total",
+          "entry_model": "NanoBanana2 + MOVA",
+          "component_count": 2
+        },
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 11,
+          "score": 56.12,
+          "score_label": "Total",
+          "entry_model": "Emu3.5 + MOVA",
+          "component_count": 2
         }
       ],
       "linked_dataset_ids": [
@@ -14942,35 +15143,45 @@
           "provider": "Arena",
           "rank": 6,
           "score": 1421.6,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "grok-imagine-video-720p",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
           "rank": 10,
           "score": 1383.5,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "grok-imagine-video-480p",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 10,
           "score": 1351.8,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "grok-imagine-video-720p",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-video-edit",
           "provider": "Arena",
           "rank": 4,
           "score": 1264.0,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "grok-imagine-video",
+          "component_count": 1
         },
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 9,
           "score": 1082,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "grok-imagine-video",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -15066,14 +15277,18 @@
           "provider": "Arena",
           "rank": 15,
           "score": 1329.2,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "grok-imagine-image",
+          "component_count": 1
         },
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 12,
           "score": 1213,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "grok-imagine-image",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -15176,21 +15391,27 @@
           "provider": "Arena",
           "rank": 12,
           "score": 1361.3,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "vidu-q3-pro",
+          "component_count": 1
         },
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 14,
           "score": 1066,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Vidu Q3 Pro",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 15,
           "score": 1083,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Vidu Q3 Pro",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -15386,7 +15607,9 @@
           "provider": "Artificial Analysis",
           "rank": 9,
           "score": 1224,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "HunyuanImage 3.0 Instruct (Fal)",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -15668,126 +15891,162 @@
           "provider": "Arena",
           "rank": 7,
           "score": 1397.7,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "veo-3.1-audio",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
           "rank": 8,
           "score": 1391.4,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "veo-3.1-audio-1080p",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
           "rank": 9,
           "score": 1384.8,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "veo-3.1-fast-audio",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
           "rank": 11,
           "score": 1373.8,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "veo-3.1-fast-audio-1080p",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
           "rank": 14,
           "score": 1330.4,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "veo-3-audio",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
           "rank": 15,
           "score": 1324.5,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "veo-3-fast-audio",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 6,
           "score": 1364.2,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "veo-3.1-audio-1080p",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 7,
           "score": 1363.9,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "veo-3.1-audio",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 8,
           "score": 1362.0,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "veo-3.1-fast-audio",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 9,
           "score": 1359.5,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "veo-3.1-fast-audio-1080p",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 12,
           "score": 1346.9,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "veo-3-fast-audio",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 13,
           "score": 1339.0,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "veo-3-audio",
+          "component_count": 1
         },
         {
           "ranking_id": "avgen-text-to-audio-video",
           "provider": "AVGen-Bench",
           "rank": 2,
           "score": 67.87,
-          "score_label": "Total"
+          "score_label": "Total",
+          "entry_model": "Veo 3.1-fast",
+          "component_count": 1
         },
         {
           "ranking_id": "avgen-text-to-audio-video",
           "provider": "AVGen-Bench",
           "rank": 3,
           "score": 66.28,
-          "score_label": "Total"
+          "score_label": "Total",
+          "entry_model": "Veo 3.1-quality",
+          "component_count": 1
         },
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 7,
           "score": 1088,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Veo 3.1",
+          "component_count": 1
         },
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 10,
           "score": 1079,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Veo 3.1 Fast",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 11,
           "score": 1096,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Veo 3.1",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 13,
           "score": 1092,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Veo 3.1 Fast",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": [
@@ -16173,7 +16432,9 @@
           "provider": "AVGen-Bench",
           "rank": 10,
           "score": 56.62,
-          "score_label": "Total"
+          "score_label": "Total",
+          "entry_model": "LTX-2",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": [
@@ -16472,14 +16733,18 @@
           "provider": "Arena",
           "rank": 15,
           "score": 1333.3,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "wan2.6-t2v",
+          "component_count": 1
         },
         {
           "ranking_id": "avgen-text-to-audio-video",
           "provider": "AVGen-Bench",
           "rank": 5,
           "score": 62.97,
-          "score_label": "Total"
+          "score_label": "Total",
+          "entry_model": "Wan2.6",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": [
@@ -16637,7 +16902,9 @@
           "provider": "AVGen-Bench",
           "rank": 6,
           "score": 62.55,
-          "score_label": "Total"
+          "score_label": "Total",
+          "entry_model": "Seedance-1.5 Pro",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": [
@@ -16736,35 +17003,45 @@
           "provider": "Arena",
           "rank": 5,
           "score": 1389.4,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "chatgpt-image-latest-high-fidelity (20251216)",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
           "rank": 11,
           "score": 1372.1,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "gpt-image-1.5-high-fidelity",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-image",
           "provider": "Arena",
           "rank": 9,
           "score": 1240.5,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "gpt-image-1.5-high-fidelity",
+          "component_count": 1
         },
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 2,
           "score": 1254,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "GPT Image 1.5 (high)",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 6,
           "score": 1260,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "GPT Image 1.5 (high)",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -16862,7 +17139,9 @@
           "provider": "Artificial Analysis",
           "rank": 15,
           "score": 1194,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "FLUX.2 [max]",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -17219,7 +17498,9 @@
           "provider": "AVGen-Bench",
           "rank": 7,
           "score": 61.82,
-          "score_label": "Total"
+          "score_label": "Total",
+          "entry_model": "Kling-V2.6",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": [
@@ -17325,14 +17606,18 @@
           "provider": "Arena",
           "rank": 6,
           "score": 1203.1,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "kling-o1-pro",
+          "component_count": 1
         },
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 14,
           "score": 1203,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Kling Image O1",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -17544,42 +17829,54 @@
           "provider": "Arena",
           "rank": 7,
           "score": 1387.8,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "gemini-3-pro-image-2k (nano-banana-pro)",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
           "rank": 8,
           "score": 1385.0,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "gemini-3-pro-image-preview (nano-banana-pro)",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-image",
           "provider": "Arena",
           "rank": 8,
           "score": 1244.6,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "gemini-3-pro-image-2k (nano-banana-pro)",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-image",
           "provider": "Arena",
           "rank": 10,
           "score": 1232.0,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "gemini-3-pro-image-preview (nano-banana-pro)",
+          "component_count": 1
         },
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 5,
           "score": 1240,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Nano Banana Pro (Gemini 3 Pro Image)",
+          "component_count": 1
         },
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 9,
           "score": 1223,
-          "score_label": "Elo"
+          "score_label": "Elo",
+          "entry_model": "Nano Banana Pro (Gemini 3 Pro Image)",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -17860,7 +18157,9 @@
           "provider": "AVGen-Bench",
           "rank": 11,
           "score": 56.12,
-          "score_label": "Total"
+          "score_label": "Total",
+          "entry_model": "Emu3.5 + MOVA",
+          "component_count": 2
         }
       ],
       "linked_dataset_ids": [
@@ -17996,21 +18295,27 @@
           "provider": "Arena",
           "rank": 5,
           "score": 1365.6,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "sora-2-pro",
+          "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 14,
           "score": 1337.1,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "sora-2",
+          "component_count": 1
         },
         {
           "ranking_id": "avgen-text-to-audio-video",
           "provider": "AVGen-Bench",
           "rank": 4,
           "score": 64.16,
-          "score_label": "Total"
+          "score_label": "Total",
+          "entry_model": "Sora-2",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": [
@@ -18165,7 +18470,9 @@
           "provider": "AVGen-Bench",
           "rank": 13,
           "score": 52.02,
-          "score_label": "Total"
+          "score_label": "Total",
+          "entry_model": "Ovi",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": [
@@ -18511,7 +18818,9 @@
           "provider": "AVGen-Bench",
           "rank": 12,
           "score": 53.29,
-          "score_label": "Total"
+          "score_label": "Total",
+          "entry_model": "Wan2.2 + HunyuanVideo-Foley",
+          "component_count": 2
         }
       ],
       "linked_dataset_ids": [
@@ -18633,7 +18942,17 @@
         "priority": "critical",
         "source_url": "https://huggingface.co/api/models/Wan-AI/Wan2.2-T2V-A14B"
       },
-      "ranking_positions": [],
+      "ranking_positions": [
+        {
+          "ranking_id": "avgen-text-to-audio-video",
+          "provider": "AVGen-Bench",
+          "rank": 12,
+          "score": 53.29,
+          "score_label": "Total",
+          "entry_model": "Wan2.2 + HunyuanVideo-Foley",
+          "component_count": 2
+        }
+      ],
       "linked_dataset_ids": [
         "avgen-bench"
       ]
@@ -18729,7 +19048,9 @@
           "provider": "Arena",
           "rank": 7,
           "score": 1194.0,
-          "score_label": "Arena"
+          "score_label": "Arena",
+          "entry_model": "runway-gen4-aleph",
+          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -20282,6 +20603,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "gpt-image-2 (medium)",
+              "model_id": "gpt-image-2"
+            }
+          ],
+          "model_ids": [
+            "gpt-image-2"
+          ],
           "model_id": "gpt-image-2"
         },
         {
@@ -20294,6 +20625,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "muse-image",
+              "model_id": "muse-image"
+            }
+          ],
+          "model_ids": [
+            "muse-image"
+          ],
           "model_id": "muse-image"
         },
         {
@@ -20306,6 +20647,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "mai-image-2.5",
+              "model_id": "mai-image-2-5"
+            }
+          ],
+          "model_ids": [
+            "mai-image-2-5"
+          ],
           "model_id": "mai-image-2-5"
         },
         {
@@ -20318,6 +20669,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "seedream-5.0-pro",
+              "model_id": "seedream-5-0-pro"
+            }
+          ],
+          "model_ids": [
+            "seedream-5-0-pro"
+          ],
           "model_id": "seedream-5-0-pro"
         },
         {
@@ -20330,6 +20691,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "chatgpt-image-latest-high-fidelity (20251216)",
+              "model_id": "gpt-image-1-5"
+            }
+          ],
+          "model_ids": [
+            "gpt-image-1-5"
+          ],
           "model_id": "gpt-image-1-5"
         },
         {
@@ -20342,6 +20713,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-image-quality (20260519)",
+              "model_id": "grok-imagine-image-quality"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-image-quality"
+          ],
           "model_id": "grok-imagine-image-quality"
         },
         {
@@ -20354,6 +20735,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "gemini-3-pro-image-2k (nano-banana-pro)",
+              "model_id": "gemini-3-pro-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-pro-image"
+          ],
           "model_id": "gemini-3-pro-image"
         },
         {
@@ -20366,6 +20757,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "gemini-3-pro-image-preview (nano-banana-pro)",
+              "model_id": "gemini-3-pro-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-pro-image"
+          ],
           "model_id": "gemini-3-pro-image"
         },
         {
@@ -20378,6 +20779,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "gemini-3.1-flash-image (nano-banana-2) [web-search]",
+              "model_id": "gemini-3-1-flash-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-1-flash-image"
+          ],
           "model_id": "gemini-3-1-flash-image"
         },
         {
@@ -20390,6 +20801,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "reve-2.1",
+              "model_id": "reve-2-1"
+            }
+          ],
+          "model_ids": [
+            "reve-2-1"
+          ],
           "model_id": "reve-2-1"
         },
         {
@@ -20402,6 +20823,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "gpt-image-1.5-high-fidelity",
+              "model_id": "gpt-image-1-5"
+            }
+          ],
+          "model_ids": [
+            "gpt-image-1-5"
+          ],
           "model_id": "gpt-image-1-5"
         },
         {
@@ -20414,6 +20845,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-image-quality",
+              "model_id": "grok-imagine-image-quality"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-image-quality"
+          ],
           "model_id": "grok-imagine-image-quality"
         },
         {
@@ -20426,6 +20867,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "reve-2.0",
+              "model_id": "reve-2"
+            }
+          ],
+          "model_ids": [
+            "reve-2"
+          ],
           "model_id": "reve-2"
         },
         {
@@ -20438,6 +20889,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "uni-1.1-max",
+              "model_id": "luma-uni-1-max"
+            }
+          ],
+          "model_ids": [
+            "luma-uni-1-max"
+          ],
           "model_id": "luma-uni-1-max"
         },
         {
@@ -20450,6 +20911,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-image",
+              "model_id": "grok-imagine-image"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-image"
+          ],
           "model_id": "grok-imagine-image"
         }
       ]
@@ -20475,6 +20946,16 @@
           "released": "2026-06-23",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "dreamina-seedance-2.0-720p",
+              "model_id": "seedance-2-0"
+            }
+          ],
+          "model_ids": [
+            "seedance-2-0"
+          ],
           "model_id": "seedance-2-0"
         },
         {
@@ -20487,6 +20968,16 @@
           "released": "2026-06-23",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "gemini-omni-flash",
+              "model_id": "gemini-omni-flash"
+            }
+          ],
+          "model_ids": [
+            "gemini-omni-flash"
+          ],
           "model_id": "gemini-omni-flash"
         },
         {
@@ -20499,6 +20990,16 @@
           "released": "2026-06-23",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-video-1.5-preview-720p",
+              "model_id": "grok-imagine-video-1-5"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-video-1-5"
+          ],
           "model_id": "grok-imagine-video-1-5"
         },
         {
@@ -20511,6 +21012,16 @@
           "released": "2026-06-23",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "happyhorse-1.0",
+              "model_id": "happyhorse-1-0"
+            }
+          ],
+          "model_ids": [
+            "happyhorse-1-0"
+          ],
           "model_id": "happyhorse-1-0"
         },
         {
@@ -20523,6 +21034,16 @@
           "released": "2026-06-23",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "wan2.7-i2v",
+              "model_id": "wan-2-7"
+            }
+          ],
+          "model_ids": [
+            "wan-2-7"
+          ],
           "model_id": "wan-2-7"
         },
         {
@@ -20535,6 +21056,16 @@
           "released": "2026-06-23",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-video-720p",
+              "model_id": "grok-imagine-video"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-video"
+          ],
           "model_id": "grok-imagine-video"
         },
         {
@@ -20547,6 +21078,16 @@
           "released": "2026-06-23",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "veo-3.1-audio",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -20559,6 +21100,16 @@
           "released": "2026-06-23",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "veo-3.1-audio-1080p",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -20571,6 +21122,16 @@
           "released": "2026-06-23",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "veo-3.1-fast-audio",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -20583,6 +21144,16 @@
           "released": "2026-06-23",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-video-480p",
+              "model_id": "grok-imagine-video"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-video"
+          ],
           "model_id": "grok-imagine-video"
         },
         {
@@ -20595,6 +21166,16 @@
           "released": "2026-06-23",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "veo-3.1-fast-audio-1080p",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -20607,6 +21188,16 @@
           "released": "2026-06-23",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "vidu-q3-pro",
+              "model_id": "vidu-q3-pro"
+            }
+          ],
+          "model_ids": [
+            "vidu-q3-pro"
+          ],
           "model_id": "vidu-q3-pro"
         },
         {
@@ -20619,6 +21210,16 @@
           "released": "2026-06-23",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "kling-v3-pro",
+              "model_id": "kling-3"
+            }
+          ],
+          "model_ids": [
+            "kling-3"
+          ],
           "model_id": "kling-3"
         },
         {
@@ -20631,6 +21232,16 @@
           "released": "2026-06-23",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "veo-3-audio",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -20643,6 +21254,16 @@
           "released": "2026-06-23",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "veo-3-fast-audio",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         }
       ]
@@ -20668,6 +21289,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "gpt-image-2 (medium)",
+              "model_id": "gpt-image-2"
+            }
+          ],
+          "model_ids": [
+            "gpt-image-2"
+          ],
           "model_id": "gpt-image-2"
         },
         {
@@ -20680,6 +21311,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "reve-2.1",
+              "model_id": "reve-2-1"
+            }
+          ],
+          "model_ids": [
+            "reve-2-1"
+          ],
           "model_id": "reve-2-1"
         },
         {
@@ -20692,6 +21333,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "muse-image",
+              "model_id": "muse-image"
+            }
+          ],
+          "model_ids": [
+            "muse-image"
+          ],
           "model_id": "muse-image"
         },
         {
@@ -20704,6 +21355,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "reve-2.0",
+              "model_id": "reve-2"
+            }
+          ],
+          "model_ids": [
+            "reve-2"
+          ],
           "model_id": "reve-2"
         },
         {
@@ -20716,6 +21377,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "gemini-3.1-flash-image (nano-banana-2) [web-search]",
+              "model_id": "gemini-3-1-flash-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-1-flash-image"
+          ],
           "model_id": "gemini-3-1-flash-image"
         },
         {
@@ -20728,6 +21399,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "mai-image-2.5",
+              "model_id": "mai-image-2-5"
+            }
+          ],
+          "model_ids": [
+            "mai-image-2-5"
+          ],
           "model_id": "mai-image-2-5"
         },
         {
@@ -20740,6 +21421,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "gemini-3.1-flash-lite-image (nano-banana-2-lite)",
+              "model_id": "gemini-3-1-flash-lite-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-1-flash-lite-image"
+          ],
           "model_id": "gemini-3-1-flash-lite-image"
         },
         {
@@ -20752,6 +21443,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "gemini-3-pro-image-2k (nano-banana-pro)",
+              "model_id": "gemini-3-pro-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-pro-image"
+          ],
           "model_id": "gemini-3-pro-image"
         },
         {
@@ -20764,6 +21465,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "gpt-image-1.5-high-fidelity",
+              "model_id": "gpt-image-1-5"
+            }
+          ],
+          "model_ids": [
+            "gpt-image-1-5"
+          ],
           "model_id": "gpt-image-1-5"
         },
         {
@@ -20776,6 +21487,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "gemini-3-pro-image-preview (nano-banana-pro)",
+              "model_id": "gemini-3-pro-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-pro-image"
+          ],
           "model_id": "gemini-3-pro-image"
         },
         {
@@ -20788,6 +21509,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "seedream-5.0-pro",
+              "model_id": "seedream-5-0-pro"
+            }
+          ],
+          "model_ids": [
+            "seedream-5-0-pro"
+          ],
           "model_id": "seedream-5-0-pro"
         },
         {
@@ -20800,6 +21531,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-image-quality",
+              "model_id": "grok-imagine-image-quality"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-image-quality"
+          ],
           "model_id": "grok-imagine-image-quality"
         },
         {
@@ -20812,6 +21553,16 @@
           "released": "2026-07-10",
           "open_weights": true,
           "license": "Ideogram Open Model",
+          "component_models": [],
+          "components": [
+            {
+              "name": "ideogram-4.0-quality",
+              "model_id": "ideogram-4"
+            }
+          ],
+          "model_ids": [
+            "ideogram-4"
+          ],
           "model_id": "ideogram-4"
         },
         {
@@ -20824,6 +21575,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "qwen-image-2.0-pro-2026-06-22",
+              "model_id": "qwen-image-2"
+            }
+          ],
+          "model_ids": [
+            "qwen-image-2"
+          ],
           "model_id": "qwen-image-2"
         },
         {
@@ -20836,6 +21597,16 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "uni-1.1-max",
+              "model_id": "luma-uni-1-max"
+            }
+          ],
+          "model_ids": [
+            "luma-uni-1-max"
+          ],
           "model_id": "luma-uni-1-max"
         }
       ]
@@ -20861,6 +21632,16 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "gemini-omni-flash",
+              "model_id": "gemini-omni-flash"
+            }
+          ],
+          "model_ids": [
+            "gemini-omni-flash"
+          ],
           "model_id": "gemini-omni-flash"
         },
         {
@@ -20873,6 +21654,16 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "dreamina-seedance-2.0-720p",
+              "model_id": "seedance-2-0"
+            }
+          ],
+          "model_ids": [
+            "seedance-2-0"
+          ],
           "model_id": "seedance-2-0"
         },
         {
@@ -20885,6 +21676,16 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "muse-video",
+              "model_id": "muse-video"
+            }
+          ],
+          "model_ids": [
+            "muse-video"
+          ],
           "model_id": "muse-video"
         },
         {
@@ -20897,6 +21698,16 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "happyhorse-1.0",
+              "model_id": "happyhorse-1-0"
+            }
+          ],
+          "model_ids": [
+            "happyhorse-1-0"
+          ],
           "model_id": "happyhorse-1-0"
         },
         {
@@ -20909,6 +21720,16 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "sora-2-pro",
+              "model_id": "sora-2"
+            }
+          ],
+          "model_ids": [
+            "sora-2"
+          ],
           "model_id": "sora-2"
         },
         {
@@ -20921,6 +21742,16 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "veo-3.1-audio-1080p",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -20933,6 +21764,16 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "veo-3.1-audio",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -20945,6 +21786,16 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "veo-3.1-fast-audio",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -20957,6 +21808,16 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "veo-3.1-fast-audio-1080p",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -20969,6 +21830,16 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-video-720p",
+              "model_id": "grok-imagine-video"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-video"
+          ],
           "model_id": "grok-imagine-video"
         },
         {
@@ -20981,6 +21852,16 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "wan2.7-t2v",
+              "model_id": "wan-2-7"
+            }
+          ],
+          "model_ids": [
+            "wan-2-7"
+          ],
           "model_id": "wan-2-7"
         },
         {
@@ -20993,6 +21874,16 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "veo-3-fast-audio",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -21005,6 +21896,16 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "veo-3-audio",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -21017,6 +21918,16 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "sora-2",
+              "model_id": "sora-2"
+            }
+          ],
+          "model_ids": [
+            "sora-2"
+          ],
           "model_id": "sora-2"
         },
         {
@@ -21029,6 +21940,16 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "wan2.6-t2v",
+              "model_id": "wan-2-6"
+            }
+          ],
+          "model_ids": [
+            "wan-2-6"
+          ],
           "model_id": "wan-2-6"
         }
       ]
@@ -21054,6 +21975,16 @@
           "released": "2026-06-30",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "dreamina-seedance-2.0-720p",
+              "model_id": "seedance-2-0"
+            }
+          ],
+          "model_ids": [
+            "seedance-2-0"
+          ],
           "model_id": "seedance-2-0"
         },
         {
@@ -21066,6 +21997,16 @@
           "released": "2026-06-30",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "gemini-omni-flash",
+              "model_id": "gemini-omni-flash"
+            }
+          ],
+          "model_ids": [
+            "gemini-omni-flash"
+          ],
           "model_id": "gemini-omni-flash"
         },
         {
@@ -21078,6 +22019,16 @@
           "released": "2026-06-30",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "happyhorse-1.0",
+              "model_id": "happyhorse-1-0"
+            }
+          ],
+          "model_ids": [
+            "happyhorse-1-0"
+          ],
           "model_id": "happyhorse-1-0"
         },
         {
@@ -21090,6 +22041,16 @@
           "released": "2026-06-30",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-video",
+              "model_id": "grok-imagine-video"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-video"
+          ],
           "model_id": "grok-imagine-video"
         },
         {
@@ -21102,6 +22063,16 @@
           "released": "2026-06-30",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "kling-o3-pro",
+              "model_id": "kling-3"
+            }
+          ],
+          "model_ids": [
+            "kling-3"
+          ],
           "model_id": "kling-3"
         },
         {
@@ -21114,6 +22085,16 @@
           "released": "2026-06-30",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "kling-o1-pro",
+              "model_id": "kling-o1"
+            }
+          ],
+          "model_ids": [
+            "kling-o1"
+          ],
           "model_id": "kling-o1"
         },
         {
@@ -21126,6 +22107,16 @@
           "released": "2026-06-30",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "runway-gen4-aleph",
+              "model_id": "runway-aleph"
+            }
+          ],
+          "model_ids": [
+            "runway-aleph"
+          ],
           "model_id": "runway-aleph"
         }
       ]
@@ -21151,6 +22142,18 @@
           "released": "",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [
+            "Seedance 2.0"
+          ],
+          "components": [
+            {
+              "name": "Seedance 2.0",
+              "model_id": "seedance-2-0"
+            }
+          ],
+          "model_ids": [
+            "seedance-2-0"
+          ],
           "model_id": "seedance-2-0"
         },
         {
@@ -21163,6 +22166,18 @@
           "released": "",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [
+            "Veo 3.1-fast"
+          ],
+          "components": [
+            {
+              "name": "Veo 3.1-fast",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -21175,6 +22190,18 @@
           "released": "",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [
+            "Veo 3.1-quality"
+          ],
+          "components": [
+            {
+              "name": "Veo 3.1-quality",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -21187,6 +22214,18 @@
           "released": "",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [
+            "Sora-2"
+          ],
+          "components": [
+            {
+              "name": "Sora-2",
+              "model_id": "sora-2"
+            }
+          ],
+          "model_ids": [
+            "sora-2"
+          ],
           "model_id": "sora-2"
         },
         {
@@ -21199,6 +22238,18 @@
           "released": "",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [
+            "Wan2.6"
+          ],
+          "components": [
+            {
+              "name": "Wan2.6",
+              "model_id": "wan-2-6"
+            }
+          ],
+          "model_ids": [
+            "wan-2-6"
+          ],
           "model_id": "wan-2-6"
         },
         {
@@ -21211,6 +22262,18 @@
           "released": "",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [
+            "Seedance-1.5 Pro"
+          ],
+          "components": [
+            {
+              "name": "Seedance-1.5 Pro",
+              "model_id": "seedance-1-5-pro"
+            }
+          ],
+          "model_ids": [
+            "seedance-1-5-pro"
+          ],
           "model_id": "seedance-1-5-pro"
         },
         {
@@ -21223,6 +22286,18 @@
           "released": "",
           "open_weights": false,
           "license": "Proprietary",
+          "component_models": [
+            "Kling-V2.6"
+          ],
+          "components": [
+            {
+              "name": "Kling-V2.6",
+              "model_id": "kling-2-6"
+            }
+          ],
+          "model_ids": [
+            "kling-2-6"
+          ],
           "model_id": "kling-2-6"
         },
         {
@@ -21235,6 +22310,18 @@
           "released": "",
           "open_weights": true,
           "license": "Open-source",
+          "component_models": [
+            "LTX-2.3"
+          ],
+          "components": [
+            {
+              "name": "LTX-2.3",
+              "model_id": "ltx-2-3"
+            }
+          ],
+          "model_ids": [
+            "ltx-2-3"
+          ],
           "model_id": "ltx-2-3"
         },
         {
@@ -21247,6 +22334,24 @@
           "released": "",
           "open_weights": false,
           "license": "Mixed pipeline",
+          "component_models": [
+            "NanoBanana2",
+            "MOVA"
+          ],
+          "components": [
+            {
+              "name": "NanoBanana2",
+              "model_id": "gemini-3-1-flash-image"
+            },
+            {
+              "name": "MOVA",
+              "model_id": "mova-720p"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-1-flash-image",
+            "mova-720p"
+          ],
           "model_id": "mova-720p"
         },
         {
@@ -21259,6 +22364,18 @@
           "released": "",
           "open_weights": true,
           "license": "Open-source",
+          "component_models": [
+            "LTX-2"
+          ],
+          "components": [
+            {
+              "name": "LTX-2",
+              "model_id": "ltx-2"
+            }
+          ],
+          "model_ids": [
+            "ltx-2"
+          ],
           "model_id": "ltx-2"
         },
         {
@@ -21271,6 +22388,24 @@
           "released": "",
           "open_weights": true,
           "license": "Open-source",
+          "component_models": [
+            "Emu3.5",
+            "MOVA"
+          ],
+          "components": [
+            {
+              "name": "Emu3.5",
+              "model_id": "emu3-5"
+            },
+            {
+              "name": "MOVA",
+              "model_id": "mova-720p"
+            }
+          ],
+          "model_ids": [
+            "emu3-5",
+            "mova-720p"
+          ],
           "model_id": "emu3-5"
         },
         {
@@ -21283,6 +22418,24 @@
           "released": "",
           "open_weights": true,
           "license": "Open-source",
+          "component_models": [
+            "Wan2.2",
+            "HunyuanVideo-Foley"
+          ],
+          "components": [
+            {
+              "name": "Wan2.2",
+              "model_id": "wan-2-2"
+            },
+            {
+              "name": "HunyuanVideo-Foley",
+              "model_id": "hunyuanvideo-foley"
+            }
+          ],
+          "model_ids": [
+            "wan-2-2",
+            "hunyuanvideo-foley"
+          ],
           "model_id": "hunyuanvideo-foley"
         },
         {
@@ -21295,6 +22448,18 @@
           "released": "",
           "open_weights": true,
           "license": "Open-source",
+          "component_models": [
+            "Ovi"
+          ],
+          "components": [
+            {
+              "name": "Ovi",
+              "model_id": "ovi"
+            }
+          ],
+          "model_ids": [
+            "ovi"
+          ],
           "model_id": "ovi"
         }
       ]
@@ -21320,6 +22485,16 @@
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "GPT Image 2 (high)",
+              "model_id": "gpt-image-2"
+            }
+          ],
+          "model_ids": [
+            "gpt-image-2"
+          ],
           "model_id": "gpt-image-2"
         },
         {
@@ -21332,6 +22507,16 @@
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "GPT Image 1.5 (high)",
+              "model_id": "gpt-image-1-5"
+            }
+          ],
+          "model_ids": [
+            "gpt-image-1-5"
+          ],
           "model_id": "gpt-image-1-5"
         },
         {
@@ -21344,6 +22529,16 @@
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
+              "model_id": "gemini-3-1-flash-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-1-flash-image"
+          ],
           "model_id": "gemini-3-1-flash-image"
         },
         {
@@ -21356,6 +22551,16 @@
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "MAI-Image-2.5",
+              "model_id": "mai-image-2-5"
+            }
+          ],
+          "model_ids": [
+            "mai-image-2-5"
+          ],
           "model_id": "mai-image-2-5"
         },
         {
@@ -21368,6 +22573,16 @@
           "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Nano Banana Pro (Gemini 3 Pro Image)",
+              "model_id": "gemini-3-pro-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-pro-image"
+          ],
           "model_id": "gemini-3-pro-image"
         },
         {
@@ -21380,6 +22595,16 @@
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Seedream 5.0 Pro",
+              "model_id": "seedream-5-0-pro"
+            }
+          ],
+          "model_ids": [
+            "seedream-5-0-pro"
+          ],
           "model_id": "seedream-5-0-pro"
         },
         {
@@ -21392,6 +22617,16 @@
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "MAI-Image-2.5-Flash",
+              "model_id": "mai-image-2-5"
+            }
+          ],
+          "model_ids": [
+            "mai-image-2-5"
+          ],
           "model_id": "mai-image-2-5"
         },
         {
@@ -21404,6 +22639,16 @@
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-image-quality",
+              "model_id": "grok-imagine-image-quality"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-image-quality"
+          ],
           "model_id": "grok-imagine-image-quality"
         },
         {
@@ -21416,6 +22661,16 @@
           "released": "Jan 2026",
           "open_weights": true,
           "license": "Open weights",
+          "component_models": [],
+          "components": [
+            {
+              "name": "HunyuanImage 3.0 Instruct (Fal)",
+              "model_id": "hunyuanimage-3-instruct"
+            }
+          ],
+          "model_ids": [
+            "hunyuanimage-3-instruct"
+          ],
           "model_id": "hunyuanimage-3-instruct"
         },
         {
@@ -21428,6 +22683,16 @@
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Luma UNI 1 Max",
+              "model_id": "luma-uni-1-max"
+            }
+          ],
+          "model_ids": [
+            "luma-uni-1-max"
+          ],
           "model_id": "luma-uni-1-max"
         },
         {
@@ -21440,6 +22705,16 @@
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Kling Image 3.0 Omni",
+              "model_id": "kling-3"
+            }
+          ],
+          "model_ids": [
+            "kling-3"
+          ],
           "model_id": "kling-3"
         },
         {
@@ -21452,6 +22727,16 @@
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-image",
+              "model_id": "grok-imagine-image"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-image"
+          ],
           "model_id": "grok-imagine-image"
         },
         {
@@ -21464,6 +22749,16 @@
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Kling Image 3.0",
+              "model_id": "kling-3"
+            }
+          ],
+          "model_ids": [
+            "kling-3"
+          ],
           "model_id": "kling-3"
         },
         {
@@ -21476,6 +22771,16 @@
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Kling Image O1",
+              "model_id": "kling-o1"
+            }
+          ],
+          "model_ids": [
+            "kling-o1"
+          ],
           "model_id": "kling-o1"
         },
         {
@@ -21488,6 +22793,16 @@
           "released": "May 2026",
           "open_weights": true,
           "license": "Open weights",
+          "component_models": [],
+          "components": [
+            {
+              "name": "HiDream-O1-Image",
+              "model_id": "hidream-o1-image"
+            }
+          ],
+          "model_ids": [
+            "hidream-o1-image"
+          ],
           "model_id": "hidream-o1-image"
         }
       ]
@@ -21513,6 +22828,16 @@
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Gemini Omni Flash",
+              "model_id": "gemini-omni-flash"
+            }
+          ],
+          "model_ids": [
+            "gemini-omni-flash"
+          ],
           "model_id": "gemini-omni-flash"
         },
         {
@@ -21525,6 +22850,16 @@
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Dreamina Seedance 2.0 720p",
+              "model_id": "seedance-2-0"
+            }
+          ],
+          "model_ids": [
+            "seedance-2-0"
+          ],
           "model_id": "seedance-2-0"
         },
         {
@@ -21537,6 +22872,16 @@
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-video-1.5-preview",
+              "model_id": "grok-imagine-video-1-5"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-video-1-5"
+          ],
           "model_id": "grok-imagine-video-1-5"
         },
         {
@@ -21549,6 +22894,16 @@
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "HappyHorse-1.1",
+              "model_id": "happyhorse-1-1"
+            }
+          ],
+          "model_ids": [
+            "happyhorse-1-1"
+          ],
           "model_id": "happyhorse-1-1"
         },
         {
@@ -21561,6 +22916,16 @@
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Wan 2.7",
+              "model_id": "wan-2-7"
+            }
+          ],
+          "model_ids": [
+            "wan-2-7"
+          ],
           "model_id": "wan-2-7"
         },
         {
@@ -21573,6 +22938,16 @@
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "HappyHorse-1.0",
+              "model_id": "happyhorse-1-0"
+            }
+          ],
+          "model_ids": [
+            "happyhorse-1-0"
+          ],
           "model_id": "happyhorse-1-0"
         },
         {
@@ -21585,6 +22960,16 @@
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Veo 3.1",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -21597,6 +22982,16 @@
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "SkyReels V4",
+              "model_id": "skyreels-v4"
+            }
+          ],
+          "model_ids": [
+            "skyreels-v4"
+          ],
           "model_id": "skyreels-v4"
         },
         {
@@ -21609,6 +23004,16 @@
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-video",
+              "model_id": "grok-imagine-video"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-video"
+          ],
           "model_id": "grok-imagine-video"
         },
         {
@@ -21621,6 +23026,16 @@
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Veo 3.1 Fast",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -21633,6 +23048,16 @@
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Kling 3.0 1080p (Pro)",
+              "model_id": "kling-3"
+            }
+          ],
+          "model_ids": [
+            "kling-3"
+          ],
           "model_id": "kling-3"
         },
         {
@@ -21645,6 +23070,16 @@
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "PixVerse V6",
+              "model_id": "pixverse-v6"
+            }
+          ],
+          "model_ids": [
+            "pixverse-v6"
+          ],
           "model_id": "pixverse-v6"
         },
         {
@@ -21657,6 +23092,16 @@
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Kling 3.0 720p (Standard)",
+              "model_id": "kling-3"
+            }
+          ],
+          "model_ids": [
+            "kling-3"
+          ],
           "model_id": "kling-3"
         },
         {
@@ -21669,6 +23114,16 @@
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Vidu Q3 Pro",
+              "model_id": "vidu-q3-pro"
+            }
+          ],
+          "model_ids": [
+            "vidu-q3-pro"
+          ],
           "model_id": "vidu-q3-pro"
         },
         {
@@ -21681,6 +23136,16 @@
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Kling 3.0 Omni 1080p (Pro)",
+              "model_id": "kling-3"
+            }
+          ],
+          "model_ids": [
+            "kling-3"
+          ],
           "model_id": "kling-3"
         }
       ]
@@ -21706,6 +23171,16 @@
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "GPT Image 2 (high)",
+              "model_id": "gpt-image-2"
+            }
+          ],
+          "model_ids": [
+            "gpt-image-2"
+          ],
           "model_id": "gpt-image-2"
         },
         {
@@ -21718,6 +23193,16 @@
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Reve 2.1",
+              "model_id": "reve-2-1"
+            }
+          ],
+          "model_ids": [
+            "reve-2-1"
+          ],
           "model_id": "reve-2-1"
         },
         {
@@ -21730,6 +23215,16 @@
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "MAI-Image-2.5",
+              "model_id": "mai-image-2-5"
+            }
+          ],
+          "model_ids": [
+            "mai-image-2-5"
+          ],
           "model_id": "mai-image-2-5"
         },
         {
@@ -21742,6 +23237,16 @@
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
+              "model_id": "gemini-3-1-flash-lite-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-1-flash-lite-image"
+          ],
           "model_id": "gemini-3-1-flash-lite-image"
         },
         {
@@ -21754,6 +23259,16 @@
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
+              "model_id": "gemini-3-1-flash-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-1-flash-image"
+          ],
           "model_id": "gemini-3-1-flash-image"
         },
         {
@@ -21766,6 +23281,16 @@
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "GPT Image 1.5 (high)",
+              "model_id": "gpt-image-1-5"
+            }
+          ],
+          "model_ids": [
+            "gpt-image-1-5"
+          ],
           "model_id": "gpt-image-1-5"
         },
         {
@@ -21778,6 +23303,16 @@
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "HiDream-O1-Image-1.5",
+              "model_id": "hidream-o1-image-1-5"
+            }
+          ],
+          "model_ids": [
+            "hidream-o1-image-1-5"
+          ],
           "model_id": "hidream-o1-image-1-5"
         },
         {
@@ -21790,6 +23325,16 @@
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Seedream 5.0 Pro",
+              "model_id": "seedream-5-0-pro"
+            }
+          ],
+          "model_ids": [
+            "seedream-5-0-pro"
+          ],
           "model_id": "seedream-5-0-pro"
         },
         {
@@ -21802,6 +23347,16 @@
           "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Nano Banana Pro (Gemini 3 Pro Image)",
+              "model_id": "gemini-3-pro-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-pro-image"
+          ],
           "model_id": "gemini-3-pro-image"
         },
         {
@@ -21814,6 +23369,16 @@
           "released": "May 2026",
           "open_weights": true,
           "license": "Open weights",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Cosmos3-Super-Text2Image (agentic)",
+              "model_id": "cosmos3-super-text2image"
+            }
+          ],
+          "model_ids": [
+            "cosmos3-super-text2image"
+          ],
           "model_id": "cosmos3-super-text2image"
         },
         {
@@ -21826,6 +23391,16 @@
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "MAI-Image-2.5-Flash",
+              "model_id": "mai-image-2-5"
+            }
+          ],
+          "model_ids": [
+            "mai-image-2-5"
+          ],
           "model_id": "mai-image-2-5"
         },
         {
@@ -21838,6 +23413,16 @@
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-image-quality",
+              "model_id": "grok-imagine-image-quality"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-image-quality"
+          ],
           "model_id": "grok-imagine-image-quality"
         },
         {
@@ -21850,6 +23435,16 @@
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Recraft V4.1 Utility",
+              "model_id": "recraft-v4-1"
+            }
+          ],
+          "model_ids": [
+            "recraft-v4-1"
+          ],
           "model_id": "recraft-v4-1"
         },
         {
@@ -21862,6 +23457,16 @@
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Recraft V4.1 Utility Pro",
+              "model_id": "recraft-v4-1"
+            }
+          ],
+          "model_ids": [
+            "recraft-v4-1"
+          ],
           "model_id": "recraft-v4-1"
         },
         {
@@ -21874,6 +23479,16 @@
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "FLUX.2 [max]",
+              "model_id": "flux-2-max"
+            }
+          ],
+          "model_ids": [
+            "flux-2-max"
+          ],
           "model_id": "flux-2-max"
         }
       ]
@@ -21899,6 +23514,16 @@
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Gemini Omni Flash",
+              "model_id": "gemini-omni-flash"
+            }
+          ],
+          "model_ids": [
+            "gemini-omni-flash"
+          ],
           "model_id": "gemini-omni-flash"
         },
         {
@@ -21911,6 +23536,16 @@
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Dreamina Seedance 2.0 720p",
+              "model_id": "seedance-2-0"
+            }
+          ],
+          "model_ids": [
+            "seedance-2-0"
+          ],
           "model_id": "seedance-2-0"
         },
         {
@@ -21923,6 +23558,16 @@
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Wan2.7-260612",
+              "model_id": "wan-2-7"
+            }
+          ],
+          "model_ids": [
+            "wan-2-7"
+          ],
           "model_id": "wan-2-7"
         },
         {
@@ -21935,6 +23580,16 @@
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "HappyHorse-1.1",
+              "model_id": "happyhorse-1-1"
+            }
+          ],
+          "model_ids": [
+            "happyhorse-1-1"
+          ],
           "model_id": "happyhorse-1-1"
         },
         {
@@ -21947,6 +23602,16 @@
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "HappyHorse-1.0",
+              "model_id": "happyhorse-1-0"
+            }
+          ],
+          "model_ids": [
+            "happyhorse-1-0"
+          ],
           "model_id": "happyhorse-1-0"
         },
         {
@@ -21959,6 +23624,16 @@
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Kling 3.0 1080p (Pro)",
+              "model_id": "kling-3"
+            }
+          ],
+          "model_ids": [
+            "kling-3"
+          ],
           "model_id": "kling-3"
         },
         {
@@ -21971,6 +23646,16 @@
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "SkyReels V4",
+              "model_id": "skyreels-v4"
+            }
+          ],
+          "model_ids": [
+            "skyreels-v4"
+          ],
           "model_id": "skyreels-v4"
         },
         {
@@ -21983,6 +23668,16 @@
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Wan 2.7",
+              "model_id": "wan-2-7"
+            }
+          ],
+          "model_ids": [
+            "wan-2-7"
+          ],
           "model_id": "wan-2-7"
         },
         {
@@ -21995,6 +23690,16 @@
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Kling 3.0 720p (Standard)",
+              "model_id": "kling-3"
+            }
+          ],
+          "model_ids": [
+            "kling-3"
+          ],
           "model_id": "kling-3"
         },
         {
@@ -22007,6 +23712,16 @@
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Kling 3.0 Omni 1080p (Pro)",
+              "model_id": "kling-3"
+            }
+          ],
+          "model_ids": [
+            "kling-3"
+          ],
           "model_id": "kling-3"
         },
         {
@@ -22019,6 +23734,16 @@
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Veo 3.1",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -22031,6 +23756,16 @@
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Kling 3.0 Omni 720p (Standard)",
+              "model_id": "kling-3"
+            }
+          ],
+          "model_ids": [
+            "kling-3"
+          ],
           "model_id": "kling-3"
         },
         {
@@ -22043,6 +23778,16 @@
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Veo 3.1 Fast",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
           "model_id": "veo-3-1"
         },
         {
@@ -22055,6 +23800,16 @@
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Veo 3.1 Lite",
+              "model_id": "veo-3-1-lite"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1-lite"
+          ],
           "model_id": "veo-3-1-lite"
         },
         {
@@ -22067,6 +23822,16 @@
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Vidu Q3 Pro",
+              "model_id": "vidu-q3-pro"
+            }
+          ],
+          "model_ids": [
+            "vidu-q3-pro"
+          ],
           "model_id": "vidu-q3-pro"
         }
       ]
@@ -22092,6 +23857,16 @@
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "HappyHorse-1.0",
+              "model_id": "happyhorse-1-0"
+            }
+          ],
+          "model_ids": [
+            "happyhorse-1-0"
+          ],
           "model_id": "happyhorse-1-0"
         },
         {
@@ -22104,6 +23879,16 @@
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Wan 2.7",
+              "model_id": "wan-2-7"
+            }
+          ],
+          "model_ids": [
+            "wan-2-7"
+          ],
           "model_id": "wan-2-7"
         },
         {
@@ -22116,6 +23901,16 @@
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Dreamina Seedance 2.0 720p",
+              "model_id": "seedance-2-0"
+            }
+          ],
+          "model_ids": [
+            "seedance-2-0"
+          ],
           "model_id": "seedance-2-0"
         },
         {
@@ -22128,6 +23923,16 @@
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Aleph 2.0",
+              "model_id": "runway-aleph-2"
+            }
+          ],
+          "model_ids": [
+            "runway-aleph-2"
+          ],
           "model_id": "runway-aleph-2"
         },
         {
@@ -22140,6 +23945,16 @@
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Kling 3.0 Omni 1080p (Pro)",
+              "model_id": "kling-3"
+            }
+          ],
+          "model_ids": [
+            "kling-3"
+          ],
           "model_id": "kling-3"
         },
         {
@@ -22152,6 +23967,16 @@
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "SkyReels V4",
+              "model_id": "skyreels-v4"
+            }
+          ],
+          "model_ids": [
+            "skyreels-v4"
+          ],
           "model_id": "skyreels-v4"
         }
       ]

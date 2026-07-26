@@ -227,9 +227,30 @@ def build_payload() -> dict[str, Any]:
     model_by_id = {item["id"]: item for item in models}
     for board in rankings:
         for entry in board["entries"]:
-            model_id = model_aliases.get(ranking_key(entry["model"]))
-            entry["model_id"] = model_id
-            if model_id:
+            component_names = [
+                value
+                for value in entry.get("component_models", [])
+                if isinstance(value, str) and value
+            ] or [entry["model"]]
+            components = [
+                {
+                    "name": name,
+                    "model_id": model_aliases.get(ranking_key(name)),
+                }
+                for name in component_names
+            ]
+            model_ids = list(dict.fromkeys(
+                component["model_id"]
+                for component in components
+                if component["model_id"]
+            ))
+            primary_model_id = model_aliases.get(ranking_key(entry["model"]))
+            if primary_model_id and primary_model_id not in model_ids:
+                model_ids.insert(0, primary_model_id)
+            entry["components"] = components
+            entry["model_ids"] = model_ids
+            entry["model_id"] = primary_model_id or (model_ids[0] if model_ids else None)
+            for model_id in model_ids:
                 model_by_id[model_id]["ranking_positions"].append(
                     {
                         "ranking_id": board["id"],
@@ -237,6 +258,8 @@ def build_payload() -> dict[str, Any]:
                         "rank": entry["rank"],
                         "score": entry.get("score", entry.get("elo")),
                         "score_label": board["score_label"],
+                        "entry_model": entry["model"],
+                        "component_count": len(components),
                     }
                 )
     dataset_by_id = {item["id"]: item for item in datasets}
@@ -316,7 +339,7 @@ def build_payload() -> dict[str, Any]:
     verified_dates = [item["last_verified"] for item in [*datasets, *models]]
 
     return {
-        "format_version": 12,
+        "format_version": 13,
         "generated_from": [
             "catalog/**/*.yaml",
             "models/**/*.yaml",

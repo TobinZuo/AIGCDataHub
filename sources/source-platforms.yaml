@@ -111,7 +111,7 @@ platforms:
       requirements: Pexels account, API key, attribution and rate-limit compliance, plus explicit Pexels permission for dataset construction or ML and AI use.
       training_rights: not-granted-by-interface
     monitoring:
-      url: https://help.pexels.com/api/v2/help_center/en-us/articles/900005880463.json
+      url: https://help.pexels.com/api/v2/help_center/en-us/categories/900001326143/articles.json
       mode: content-revision
       focus: API access, bulk collection, dataset construction, ML and AI use, attribution, redistribution, and license changes.
       priority: high

@@ -78,6 +78,13 @@ type RankingPosition = {
   rank: number;
   score: number;
   score_label: string;
+  entry_model: string;
+  component_count: number;
+};
+
+type RankingComponent = {
+  name: string;
+  model_id: string | null;
 };
 
 type RankingEntry = {
@@ -91,6 +98,8 @@ type RankingEntry = {
   open_weights: boolean;
   license: string | null;
   model_id: string | null;
+  model_ids: string[];
+  components: RankingComponent[];
 };
 
 type RankingBoard = {
@@ -468,7 +477,7 @@ function ModelResult({ model, scenarioLabels, expanded, onToggle, onOpenDataset 
             ))}
             {model.ranking_positions.slice(0, 2).map((item) => (
               <span className="tag tag-ranking" key={`${item.ranking_id}-${item.rank}`}>
-                {RANKING_LABELS[item.ranking_id] ?? item.ranking_id} #{item.rank}
+                {RANKING_LABELS[item.ranking_id] ?? item.ranking_id} #{item.rank}{item.component_count > 1 ? " · 组合" : ""}
               </span>
             ))}
             {model.monitoring && <span className="tag tag-monitor">{MONITORING_LABELS[model.monitoring.priority]}</span>}
@@ -840,13 +849,25 @@ function LineageOverview({ modelRelations, datasetRelations, onOpenModel, onOpen
   );
 }
 
-function RankingOverview({ boards, onOpenModel }: {
+function RankingOverview({ boards, modelById, onOpenModel }: {
   boards: RankingBoard[];
+  modelById: Map<string, ModelCard>;
   onOpenModel: (modelId: string) => void;
 }) {
   const monitored = boards.reduce((count, board) => count + board.entries.length, 0);
   const cataloged = boards.reduce(
     (count, board) => count + board.entries.filter((entry) => entry.model_id).length,
+    0,
+  );
+  const componentCount = boards.reduce(
+    (count, board) => count + board.entries.reduce((total, entry) => total + entry.components.length, 0),
+    0,
+  );
+  const catalogedComponents = boards.reduce(
+    (count, board) => count + board.entries.reduce(
+      (total, entry) => total + entry.components.filter((component) => component.model_id).length,
+      0,
+    ),
     0,
   );
   return (
@@ -860,7 +881,8 @@ function RankingOverview({ boards, onOpenModel }: {
         <dl>
           <div><dt>榜单</dt><dd>{boards.length}</dd></div>
           <div><dt>监控席位</dt><dd>{monitored}</dd></div>
-          <div><dt>已映射模型卡</dt><dd>{cataloged}</dd></div>
+          <div><dt>席位映射</dt><dd>{cataloged}/{monitored}</dd></div>
+          <div><dt>组件关系</dt><dd>{catalogedComponents}/{componentCount}</dd></div>
         </dl>
       </header>
       <div className="ranking-boards">
@@ -877,16 +899,30 @@ function RankingOverview({ boards, onOpenModel }: {
                   <div>
                     <b>{entry.model}</b>
                     <span>{entry.creator} · {entry.released ? `${board.date_label} ${entry.released}` : "发布日期未列"}</span>
+                    {entry.components.length > 1 && <small>组合管线: {entry.components.length} 个组件模型</small>}
                   </div>
                   <div className="ranking-score"><strong>{Number.isInteger(entry.score) ? entry.score : entry.score.toFixed(1)}</strong><span>{board.score_label}</span></div>
                   <span className={`ranking-access ${entry.open_weights ? "is-open" : ""}`}>
                     {entry.open_weights ? entry.license || "开放权重" : entry.license || "闭源 / 服务"}
                   </span>
-                  {entry.model_id ? (
-                    <button onClick={() => onOpenModel(entry.model_id!)}>模型卡 →</button>
-                  ) : (
-                    <small>已监控 · 待建卡</small>
-                  )}
+                  <div className="ranking-model-links" aria-label={`${entry.model} 组件模型`}>
+                    {entry.components.map((component) => {
+                      const model = component.model_id ? modelById.get(component.model_id) : undefined;
+                      return model ? (
+                        <button
+                          type="button"
+                          title={`打开 ${model.name} 模型卡`}
+                          onClick={() => onOpenModel(model.id)}
+                          key={`${entry.rank}-${component.name}`}
+                        >
+                          <strong>{entry.components.length > 1 ? component.name : "模型卡"}</strong>
+                          <small>{model.strategy_profile.linked_dataset_count}/{model.strategy_profile.data_reference_count} 数据卡</small>
+                        </button>
+                      ) : (
+                        <small key={`${entry.rank}-${component.name}`}>{component.name}: 待建卡</small>
+                      );
+                    })}
+                  </div>
                 </li>
               ))}
             </ol>
@@ -1360,6 +1396,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         board.label,
         entry.model,
         entry.creator,
+        ...entry.components.map((component) => component.name),
         entry.license ?? "",
         entry.open_weights ? "open weights 开放权重" : "closed 闭源",
       ].join(" ")).includes(search));
@@ -1625,6 +1662,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
           {mode === "rankings" && visibleCount > 0 && (
             <RankingOverview
               boards={rankingResults}
+              modelById={modelById}
               onOpenModel={(id) => openRelation("models", id)}
             />
           )}

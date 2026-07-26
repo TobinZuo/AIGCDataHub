@@ -26,7 +26,7 @@ from models import load_models
 from source_platforms import load_source_platforms
 
 
-SCHEMA_VERSION = 8
+SCHEMA_VERSION = 9
 USER_AGENT = "AIGCDataHub-discovery/0.1 (+https://github.com/TobinZuo/AIGCDataHub)"
 MEDIA_TERMS = (
     "image",
@@ -208,6 +208,7 @@ class RankingEntry:
     released: str
     open_weights: bool
     license: str | None = None
+    component_models: tuple[str, ...] = ()
 
     @property
     def elo(self) -> int:
@@ -852,6 +853,16 @@ def extract_avgen_ranking_entries(payload: str, limit: int = 15) -> tuple[Rankin
                 released="",
                 open_weights=open_weights,
                 license=license_name,
+                component_models=tuple(
+                    re.sub(
+                        r"\s*\((?:open-source|proprietary)\)\s*$",
+                        "",
+                        component,
+                        flags=re.IGNORECASE,
+                    ).strip()
+                    for component in re.split(r"\s+\+\s+", components)
+                    if component.strip()
+                ),
             )
         )
         if len(entries) >= limit:
@@ -1470,19 +1481,22 @@ def compare_snapshots(
 
         if source.ranking_id and not source.error and ranking_aliases is not None:
             for entry in source.rankings:
-                if normalize_ranking_name(entry.model) in ranking_aliases:
-                    continue
-                ranking_coverage_gaps.append(
-                    {
-                        "ranking_id": source.ranking_id,
-                        "ranking_provider": source.ranking_provider,
-                        "coverage_policy": source.ranking_coverage_policy,
-                        "rank": entry.rank,
-                        "model": entry.model,
-                        "creator": entry.creator,
-                        "source_url": source.ranking_page_url or source.source_url,
-                    }
-                )
+                component_models = entry.component_models or (entry.model,)
+                for component_model in component_models:
+                    if normalize_ranking_name(component_model) in ranking_aliases:
+                        continue
+                    ranking_coverage_gaps.append(
+                        {
+                            "ranking_id": source.ranking_id,
+                            "ranking_provider": source.ranking_provider,
+                            "coverage_policy": source.ranking_coverage_policy,
+                            "rank": entry.rank,
+                            "model": component_model,
+                            "ranking_entry": entry.model,
+                            "creator": entry.creator,
+                            "source_url": source.ranking_page_url or source.source_url,
+                        }
+                    )
 
     priority_order = {"high": 0, "standard": 1, "low": 2}
     return DiscoveryDiff(

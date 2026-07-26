@@ -60,6 +60,11 @@ class DiscoveryTests(unittest.TestCase):
             "Proprietary", "Mixed pipeline", "Open-source",
         ])
         self.assertEqual([entry.open_weights for entry in entries], [False, False, True])
+        self.assertEqual([entry.component_models for entry in entries], [
+            ("Seedance 2.0",),
+            ("NanoBanana2", "MOVA"),
+            ("Ovi",),
+        ])
 
     def test_reviewed_exclusions_are_known_candidate_urls(self) -> None:
         watchlist, _ = load_watchlist(Path("sources/watchlist.yaml"))
