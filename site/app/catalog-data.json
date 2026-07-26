@@ -7,7 +7,7 @@
     "sources/watchlist.yaml",
     "sources/discovery-state.json"
   ],
-  "last_verified": "2026-07-26",
+  "last_verified": "2026-07-27",
   "scenarios": [
     {
       "id": "image-generation",
@@ -2120,7 +2120,7 @@
       "access": {
         "status": "gated",
         "type": "request",
-        "url": "https://github.com/fudan-generative-vision/OpenHumanVid",
+        "url": "https://forms.gle/moqec5Qod7mz9pfD6",
         "requires_account": true,
         "notes": "Applicants submit the official form and wait for manual review before receiving the current downloadable release; access is not suitable for unattended CI retrieval."
       },
@@ -2198,7 +2198,9 @@
         "openhumanvid-talking",
         "talkverse"
       ],
-      "linked_model_ids": []
+      "linked_model_ids": [
+        "skyreels-v4"
+      ]
     },
     {
       "id": "koala-36m",
@@ -2289,7 +2291,9 @@
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
-      "linked_model_ids": []
+      "linked_model_ids": [
+        "skyreels-v4"
+      ]
     },
     {
       "id": "finevideo",
@@ -2460,7 +2464,196 @@
       "monitoring": null,
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
-      "linked_model_ids": []
+      "linked_model_ids": [
+        "skyreels-v4"
+      ]
+    },
+    {
+      "id": "emilia",
+      "name": "Emilia",
+      "organization": "Amphion / OpenMMLab",
+      "released_at": "2024-08-27",
+      "release_date_source": "https://huggingface.co/datasets/amphion/Emilia-Dataset/blob/main/README.md",
+      "modality": "audio",
+      "tasks": [
+        "text-to-speech",
+        "speech-generation-pretraining",
+        "automatic-speech-recognition",
+        "audio-language-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A large multilingual in-the-wild speech dataset produced with the Emilia-Pipe preprocessing system, covering roughly 101,000 hours across English, Chinese, Japanese, French, German, and Korean.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/amphion/Emilia-Dataset",
+        "requires_account": false,
+        "notes": "Hosted WebDataset archives and preprocessing code are available from the official Amphion repository; review the dataset card before downloading at scale."
+      },
+      "scale": {
+        "samples": null,
+        "hours": 101000,
+        "approximate": true,
+        "notes": "The official release announcement reports 101K hours; shard and utterance counts can change with repository revisions."
+      },
+      "annotations": {
+        "types": [
+          "speech-transcript",
+          "language",
+          "speaker-segment",
+          "audio-quality-score"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "English",
+          "Chinese",
+          "Japanese",
+          "French",
+          "German",
+          "Korean"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0 as declared in the official dataset card metadata",
+        "media": "Review source-media rights and the official dataset terms for each use",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The repository UI and card history have shown inconsistent CC-BY and CC-BY-NC labels; this card uses the stricter CC-BY-NC-4.0 declaration and requires a fresh license review before redistribution."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "text-media-alignment",
+          "safety",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Automated source discovery, diarization, recognition, and filtering can retain transcription and speaker-boundary errors.",
+          "In-the-wild speech can contain personal, copyrighted, biased, or sensitive content.",
+          "License metadata has been inconsistent across repository renderings and must be rechecked for downstream releases."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/audio_text",
+        "recommended_format": "webdataset",
+        "notes": "Preserve language, source and shard provenance, validate transcripts and speaker boundaries, run privacy and rights screening, and document excluded samples."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/amphion/Emilia-Dataset",
+        "paper": "https://arxiv.org/abs/2407.05361",
+        "used_by": [
+          "SkyReels V4"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/audio/emilia.yaml",
+      "scenario_ids": [],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/amphion/Emilia-Dataset"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "skyreels-v4"
+      ]
+    },
+    {
+      "id": "flickr-5b",
+      "name": "Flickr 5B metadata",
+      "organization": "hlky / bigdata-pw",
+      "released_at": "2024-08-15",
+      "release_date_source": "https://huggingface.co/datasets/bigdata-pw/Flickr",
+      "modality": "image",
+      "tasks": [
+        "image-text-pretraining",
+        "text-to-image",
+        "image-retrieval",
+        "geospatial-image-analysis"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A very large Flickr metadata collection whose rows provide image URLs at multiple resolutions plus available license, geolocation, date, description, and machine-tag fields; it does not redistribute a canonical media archive.",
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://huggingface.co/datasets/bigdata-pw/Flickr",
+        "requires_account": true,
+        "notes": "The Hugging Face repository distributes sharded URL metadata; an account or authentication may be required, and each source image can disappear independently."
+      },
+      "scale": {
+        "samples": 5000000000,
+        "source_items": 5000000000,
+        "approximate": true,
+        "notes": "The current dataset description says approximately 5B Flickr images; earlier snapshots and mirrors reported smaller row counts."
+      },
+      "annotations": {
+        "types": [
+          "image-url",
+          "description",
+          "machine-tags",
+          "license-metadata",
+          "geolocation",
+          "capture-date"
+        ],
+        "source": "web-metadata",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "Open Data Commons Attribution License 1.0",
+        "media": "Rights and Creative Commons terms vary by the original Flickr item",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "ODC-By applies to the metadata database, not automatically to every linked image; users must preserve item-level licenses and verify current source rights."
+      },
+      "quality": {
+        "dimensions": [
+          "provenance",
+          "deduplication",
+          "text-media-alignment"
+        ],
+        "known_limitations": [
+          "URL survival, rate limits, and access permissions change over time.",
+          "Web descriptions and tags are noisy and are not guaranteed to describe visible content.",
+          "The repository-scale count has changed across published snapshots and should be treated as approximate."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/image_text",
+        "recommended_format": "parquet",
+        "notes": "Stream metadata shards, retain the original row and item license, fetch only permitted media, record fetch time and result, hash payloads, and deduplicate before use."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/bigdata-pw/Flickr",
+        "paper": null,
+        "used_by": [
+          "SkyReels V4"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/image/flickr-5b.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~5B",
+      "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "skyreels-v4"
+      ]
     },
     {
       "id": "openvid-1m",
@@ -3831,7 +4024,9 @@
       "monitoring": null,
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
-      "linked_model_ids": []
+      "linked_model_ids": [
+        "skyreels-v4"
+      ]
     },
     {
       "id": "clotho-2-1",
@@ -4198,6 +4393,7 @@
         "soundatlas"
       ],
       "linked_model_ids": [
+        "skyreels-v4",
         "omni2sound"
       ]
     },
@@ -4382,7 +4578,97 @@
         "wavcaps"
       ],
       "linked_model_ids": [
+        "skyreels-v4",
         "omni2sound"
+      ]
+    },
+    {
+      "id": "soundnet",
+      "name": "SoundNet Flickr video dataset",
+      "organization": "Massachusetts Institute of Technology",
+      "released_at": "2016-10-28",
+      "release_date_source": "https://arxiv.org/abs/1610.09001",
+      "modality": "audio",
+      "tasks": [
+        "audio-visual-learning",
+        "audio-representation-learning",
+        "audio-event-classification",
+        "video-to-audio"
+      ],
+      "stages": [
+        "pretraining",
+        "evaluation"
+      ],
+      "description": "The roughly two-million-video Flickr corpus released with SoundNet for cross-modal acoustic representation learning, including audio, image features, optional frames, URL lists, and train/validation splits.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://projects.csail.mit.edu/soundnet/",
+        "requires_account": false,
+        "notes": "The official project page links the MP3, image-feature, frame, URL-list, and split downloads; the large archives should be fetched selectively and checksummed."
+      },
+      "scale": {
+        "samples": 2000000,
+        "source_items": 2000000,
+        "approximate": true,
+        "notes": "The paper and project page describe two million unlabeled videos; the audio archive is listed as 359 GB."
+      },
+      "annotations": {
+        "types": [
+          "video-url",
+          "train-validation-split",
+          "image-features",
+          "unlabeled-audio"
+        ],
+        "source": "web-metadata",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "Not clearly stated on the project page",
+        "media": "Flickr item rights vary; part of the corpus derives from Yahoo Flickr Creative Commons data",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The project publishes downloadable archives but does not provide one uniform media license covering every source; verify item-level rights and institutional terms before commercial use or redistribution."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "audio-visual-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Videos were collected without task labels, so content, language, and recording quality vary widely.",
+          "Flickr URLs and rights can change after the archived release.",
+          "The two collection components use different acquisition paths and may have uneven provenance metadata."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/audio_text",
+        "recommended_format": "native",
+        "notes": "Record which official archive supplied each item, retain URL and split metadata, validate decompression and duration, hash files, and apply current safety and rights filters."
+      },
+      "evidence": {
+        "homepage": "https://projects.csail.mit.edu/soundnet/",
+        "paper": "https://arxiv.org/abs/1610.09001",
+        "used_by": [
+          "SkyReels V4"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/audio/soundnet.yaml",
+      "scenario_ids": [],
+      "scale_label": "~2M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://projects.csail.mit.edu/soundnet/"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "skyreels-v4"
       ]
     },
     {
@@ -5359,6 +5645,106 @@
       },
       "monitoring": null,
       "ranking_positions": [],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "seedream-5-0-pro",
+      "name": "Seedream 5.0 Pro",
+      "organization": "ByteDance Seed",
+      "released_at": "2026-07-17",
+      "ranking_names": [
+        "Seedream 5.0 Pro"
+      ],
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "reference-image-generation",
+        "text-rendering"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "BytePlus ModelArk service terms",
+        "release_url": "https://docs.byteplus.com/en/docs/ModelArk/2582775",
+        "weights_url": null,
+        "api_url": "https://docs.byteplus.com/en/docs/ModelArk/2582775"
+      },
+      "architecture": {
+        "family": "Undisclosed unified image generation and editing model",
+        "parameters": null,
+        "notes": "Official product material describes a reasoning-oriented unified image workflow, but does not disclose the network architecture or parameter count."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "Official Dreamina and BytePlus pages document capabilities and API usage without identifying training corpora, processing, or post-training data."
+          }
+        ],
+        "strategy_summary": [
+          "Track the Pro endpoint separately from Seedream 5.0 Lite; no first-party dataset inventory has been published for this version."
+        ],
+        "unknowns": [
+          "Training sources, rights, sample scale, language mix, filtering, deduplication, captioning, and mixture ratios.",
+          "Preference, editing, reasoning, and safety post-training data."
+        ]
+      },
+      "evidence": {
+        "release": "https://docs.byteplus.com/en/docs/ModelArk/2582775",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/image/seedream-5-0-pro.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://docs.byteplus.com/en/docs/ModelArk/2582775"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "image-editing",
+          "rank": 6,
+          "elo": 1238
+        },
+        {
+          "ranking_id": "text-to-image",
+          "rank": 8,
+          "elo": 1239
+        }
+      ],
       "linked_dataset_ids": []
     },
     {
@@ -6360,6 +6746,154 @@
       "linked_dataset_ids": []
     },
     {
+      "id": "hidream-o1-image-1-5",
+      "name": "HiDream-O1-Image-1.5",
+      "organization": "HiDream.ai",
+      "released_at": "2026-06-09",
+      "ranking_names": [
+        "HiDream-O1-Image-1.5"
+      ],
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "subject-driven-generation",
+        "text-rendering"
+      ],
+      "access": {
+        "status": "product-only",
+        "license": "HiDream service terms",
+        "release_url": "https://hidream.ai/",
+        "weights_url": null,
+        "api_url": "https://hidream.ai/"
+      },
+      "architecture": {
+        "family": "Pixel-level Unified Transformer",
+        "parameters": null,
+        "notes": "The O1 family maps raw pixels, text, and task conditions into a shared token space without an external VAE or disjoint text encoder; 1.5's exact serving scale is not stated."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "HiDream O1 heterogeneous visual corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "The family report describes public-web and internally licensed pools but does not name the component datasets or tie an exact mixture to version 1.5."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "public-web",
+              "licensed",
+              "synthetic"
+            ],
+            "operations": [
+              "visual-deduplication",
+              "quality-filtering",
+              "safety-filtering",
+              "vlm-captioning",
+              "editing-pair-construction",
+              "video-frame-mining"
+            ],
+            "scale_disclosed": false,
+            "strategy": "The O1 family combines public-web and licensed images with synthesized editing pairs, video-derived changes, subject-reference sets, and multi-panel samples, then applies clustered near-duplicate removal and VLM prompt construction."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "instruction-tuning",
+              "prompt-agent-training",
+              "task-balancing"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Unify text-to-image, editing, personalization, typography, and multi-panel workflows with task-specific supervision and a reasoning-driven prompt agent."
+          }
+        ],
+        "strategy_summary": [
+          "The O1 family expands beyond image-text pairs with editing triplets, subject-reference groups, video-derived changes, and multi-panel layouts.",
+          "It clusters SSCD features, performs local similarity search, filters quality and safety, and constructs prompts with vision-language models.",
+          "Version 1.5 is a closed commercial variant, so the family report does not establish its exact corpus or training delta."
+        ],
+        "unknowns": [
+          "Exact named datasets, licenses, total scale, per-source mixture, and 1.5-specific training changes.",
+          "Exact parameter count and post-training or preference-data recipe for the commercial 1.5 endpoint."
+        ]
+      },
+      "evidence": {
+        "release": "https://hidream.ai/",
+        "technical_report": "https://arxiv.org/abs/2605.11061",
+        "repository": "https://github.com/HiDream-ai/HiDream-O1-Image"
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "models/image/hidream-o1-image-1-5.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "public-web",
+          "licensed",
+          "synthetic",
+          "proprietary"
+        ],
+        "operations": [
+          "visual-deduplication",
+          "quality-filtering",
+          "safety-filtering",
+          "vlm-captioning",
+          "editing-pair-construction",
+          "video-frame-mining",
+          "instruction-tuning",
+          "prompt-agent-training",
+          "task-balancing"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://api.github.com/repos/HiDream-ai/HiDream-O1-Image/commits/main"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "text-to-image",
+          "rank": 7,
+          "elo": 1246
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
       "id": "mai-image-2-5",
       "name": "MAI-Image-2.5",
       "organization": "Microsoft AI",
@@ -6461,6 +6995,141 @@
           "ranking_id": "text-to-image",
           "rank": 11,
           "elo": 1206
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "cosmos3-super-text2image",
+      "name": "Cosmos3-Super-Text2Image",
+      "organization": "NVIDIA",
+      "released_at": "2026-05-31",
+      "ranking_names": [
+        "Cosmos3-Super-Text2Image (agentic)"
+      ],
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "world-generation",
+        "physical-ai-generation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "OpenMDW-1.1",
+        "release_url": "https://github.com/NVIDIA/cosmos/blob/main/RELEASE.md",
+        "weights_url": "https://huggingface.co/nvidia/Cosmos3-Super-Text2Image",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "64B Mixture-of-Transformers with autoregressive reasoner and diffusion generator towers",
+        "parameters": 64000000000,
+        "notes": "The two towers share token representations while using next-token decoding for discrete text and iterative denoising for continuous media."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Cosmos 3 multimodal generator corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": "billions of image, video, audio, and action samples",
+            "notes": "NVIDIA discloses modalities and curriculum structure, but not the exact component datasets or rights mixture for this checkpoint."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "audio",
+              "action",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "multimodal-reconstruction",
+              "multi-stage-curriculum",
+              "paired-vision-language-training"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train the reasoner on paired vision-language data and the generator on large-scale image, video, audio, and action corpora with reconstruction objectives, evolving the mixture across stages."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "text-to-image-specialization",
+              "agentic-prompt-upsampling"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Specialize the Super generator for high-fidelity text-to-image output and pair it with structured agentic prompt upsampling at inference."
+          }
+        ],
+        "strategy_summary": [
+          "Separate complementary reasoner and generator curricula while sharing a unified multimodal representation.",
+          "Use paired vision-language supervision for reasoning and reconstruction-based multimodal learning for generation.",
+          "NVIDIA reports billions of samples but does not publish an exact dataset inventory or mixture for this checkpoint."
+        ],
+        "unknowns": [
+          "Named datasets, source licenses, modality proportions, filtering, deduplication, and safety thresholds.",
+          "Text-to-image specialization scale and the boundary between model training and agentic prompt-upsampling behavior."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/NVIDIA/cosmos/blob/main/RELEASE.md",
+        "technical_report": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+        "repository": "https://github.com/NVIDIA/cosmos"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/image/cosmos3-super-text2image.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [
+          "multimodal-reconstruction",
+          "multi-stage-curriculum",
+          "paired-vision-language-training",
+          "text-to-image-specialization",
+          "agentic-prompt-upsampling"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/nvidia/Cosmos3-Super-Text2Image"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "text-to-image",
+          "rank": 10,
+          "elo": 1218
         }
       ],
       "linked_dataset_ids": []
@@ -7011,6 +7680,217 @@
         "source_url": "https://huggingface.co/api/models/bytedance-research/Lance"
       },
       "ranking_positions": [],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "grok-imagine-image-quality",
+      "name": "Grok Imagine Image Quality",
+      "organization": "xAI",
+      "released_at": "2026-05-06",
+      "ranking_names": [
+        "grok-imagine-image-quality"
+      ],
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "multi-image-editing"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "xAI terms of service",
+        "release_url": "https://x.ai/news/grok-imagine-quality-mode",
+        "weights_url": null,
+        "api_url": "https://docs.x.ai/developers/models/grok-imagine-image-quality"
+      },
+      "architecture": {
+        "family": "Undisclosed image generation and editing model",
+        "parameters": null,
+        "notes": "xAI publishes the quality endpoint, dated checkpoint alias, and product behavior but not its architecture or parameter count."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "xAI's launch and API documentation do not identify any training or post-training dataset for the quality endpoint."
+          }
+        ],
+        "strategy_summary": [
+          "The official model alias identifies an April 3 checkpoint, while the public quality-mode launch is dated May 6; neither source discloses training data."
+        ],
+        "unknowns": [
+          "Image and text sources, provenance, rights, scale, filtering, deduplication, captions, and mixture weights.",
+          "Editing, preference, safety, and quality-mode post-training data."
+        ]
+      },
+      "evidence": {
+        "release": "https://x.ai/news/grok-imagine-quality-mode",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/image/grok-imagine-image-quality.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://docs.x.ai/developers/models/grok-imagine-image-quality"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "image-editing",
+          "rank": 8,
+          "elo": 1230
+        },
+        {
+          "ranking_id": "text-to-image",
+          "rank": 12,
+          "elo": 1203
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "luma-uni-1-max",
+      "name": "Luma UNI 1 Max",
+      "organization": "Luma AI",
+      "released_at": "2026-05-05",
+      "ranking_names": [
+        "Luma UNI 1 Max"
+      ],
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "reference-image-generation",
+        "visual-reasoning-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Luma service terms",
+        "release_url": "https://lumalabs.ai/news/uni-1-1-api",
+        "weights_url": null,
+        "api_url": "https://lumalabs.ai/news/uni-1-1-api"
+      },
+      "architecture": {
+        "family": "Decoder-only autoregressive unified image-text transformer",
+        "parameters": null,
+        "notes": "Text and image tokens share one interleaved input/output sequence; Luma does not publish the parameter count for the Max service variant."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Luma UNI creative training corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "Luma says Uni was trained in collaboration with cinematographers, VFX artists, and artists, but does not identify a distributable dataset."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "human-feedback"
+            ],
+            "operations": [
+              "expert-collaboration",
+              "unified-token-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Train a shared image-text sequence model with creative-domain collaboration; the source corpus and curation details remain undisclosed."
+          }
+        ],
+        "strategy_summary": [
+          "Luma exposes a unified autoregressive image-text architecture and creative-expert collaboration, but no named dataset or mixture."
+        ],
+        "unknowns": [
+          "Dataset identities, provenance, rights, scale, filtering, deduplication, captions, and mixture weights.",
+          "Differences between Uni-1, Uni-1.1, and the leaderboard Max serving variant's training data."
+        ]
+      },
+      "evidence": {
+        "release": "https://lumalabs.ai/news/uni-1-1-api",
+        "technical_report": "https://lumalabs.ai/uni-1/tech-specs",
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/image/luma-uni-1-max.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "proprietary",
+          "human-feedback"
+        ],
+        "operations": [
+          "expert-collaboration",
+          "unified-token-training"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://lumalabs.ai/news/uni-1-1-api"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "image-editing",
+          "rank": 10,
+          "elo": 1221
+        }
+      ],
       "linked_dataset_ids": []
     },
     {
@@ -8186,6 +9066,267 @@
       "linked_dataset_ids": []
     },
     {
+      "id": "skyreels-v4",
+      "name": "SkyReels V4",
+      "organization": "Skywork AI",
+      "released_at": "2026-02-25",
+      "ranking_names": [
+        "SkyReels V4"
+      ],
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "video-editing",
+        "reference-to-video",
+        "video-inpainting",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "SkyReels service terms",
+        "release_url": "https://arxiv.org/abs/2602.21818",
+        "weights_url": null,
+        "api_url": "https://www.skyreels.ai/api-platform"
+      },
+      "architecture": {
+        "family": "Dual-stream Multimodal Diffusion Transformer for joint video-audio generation",
+        "parameters": null,
+        "notes": "Symmetric video and audio MMDiT branches use bidirectional cross-attention, a shared frozen MLLM encoder, channel-concatenation inpainting, and low-resolution plus high-resolution keyframe refinement."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "LAION (version not specified)",
+            "catalog_id": "re-laion-5b",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": null,
+            "notes": "The paper names LAION without a version; the linked card documents the maintained Re-LAION-5B lineage and does not assert the exact snapshot used."
+          },
+          {
+            "name": "Flickr",
+            "catalog_id": "flickr-5b",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "approximately 5B URL records",
+            "notes": "The paper directly cites the bigdata-pw/Flickr metadata repository."
+          },
+          {
+            "name": "WebVid-10M",
+            "catalog_id": "webvid-10m",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "approximately 10M videos in the original release",
+            "notes": "Named as an example public video source; the original media distribution is no longer durable."
+          },
+          {
+            "name": "Koala-36M",
+            "catalog_id": "koala-36m",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "approximately 36M metadata rows",
+            "notes": "Named as an example public video source; the catalog card records its metadata-only access boundary."
+          },
+          {
+            "name": "OpenHumanVid",
+            "catalog_id": "openhumanvid",
+            "role": "pretraining",
+            "availability": "gated",
+            "scale": "approximately 13.2M clips",
+            "notes": "Named as an example public video source; access requires the publisher's agreement."
+          },
+          {
+            "name": "Emilia",
+            "catalog_id": "emilia",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "approximately 101K hours",
+            "notes": "Named as an example speech/audio source in the SkyReels V4 data pipeline."
+          },
+          {
+            "name": "AudioSet",
+            "catalog_id": "audioset",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "approximately 2.1M labeled segments",
+            "notes": "Named as an example public audio source; only metadata and source identifiers are distributed."
+          },
+          {
+            "name": "VGGSound",
+            "catalog_id": "vggsound",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "more than 210K source segments in the original release",
+            "notes": "Named as an example public audio-visual source; media availability changes with upstream videos."
+          },
+          {
+            "name": "SoundNet",
+            "catalog_id": "soundnet",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "approximately 2M videos",
+            "notes": "Named as an example public audio source; the official project distributes audio, features, frames, and URL lists."
+          },
+          {
+            "name": "Licensed SkyReels film and web-video corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "not-released",
+            "scale": null,
+            "notes": "Authorized movies, TV series, short videos, and web series are described but not distributed."
+          },
+          {
+            "name": "Synthetic multilingual and editing corpora",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": null,
+            "notes": "Includes rendered text, multilingual TTS, and synthetic inpainting and editing pairs produced with segmentation and controllable generation pipelines."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "licensed",
+              "synthetic"
+            ],
+            "operations": [
+              "strict-deduplication",
+              "quality-filtering",
+              "watermark-filtering",
+              "embedding-cluster-balancing",
+              "multimodal-captioning",
+              "shot-boundary-detection",
+              "audio-video-alignment"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Mix named public datasets with authorized film and web video, deduplicate and filter each modality, balance image clusters, segment videos into shots, and create structured visual and acoustic captions."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "licensed",
+              "synthetic",
+              "proprietary"
+            ],
+            "operations": [
+              "multilingual-text-synthesis",
+              "multilingual-tts",
+              "editing-pair-synthesis",
+              "inpainting-pair-synthesis",
+              "joint-audio-video-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Add synthetic multilingual typography, speech, visual editing, and inpainting supervision, then jointly fine-tune the audio and video streams for instruction following and synchronized output."
+          }
+        ],
+        "strategy_summary": [
+          "Combine public image, video, and audio datasets with licensed film, television, short-video, and web-series content.",
+          "Build missing supervision synthetically for multilingual text, multilingual speech, inpainting, and editing.",
+          "Apply modality-specific deduplication, quality and watermark filters, balancing, shot segmentation, and structured multimodal captioning."
+        ],
+        "unknowns": [
+          "Complete dataset inventory behind each “etc.”, exact snapshots, licenses applied by Skywork, sample counts, and mixture ratios.",
+          "Exact SFT mixture, rater or preference data, and whether the API checkpoint differs from the report."
+        ]
+      },
+      "evidence": {
+        "release": "https://arxiv.org/abs/2602.21818",
+        "technical_report": "https://arxiv.org/html/2602.21818v3",
+        "repository": null
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/skyreels-v4.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "public-dataset",
+          "licensed",
+          "synthetic",
+          "proprietary"
+        ],
+        "operations": [
+          "strict-deduplication",
+          "quality-filtering",
+          "watermark-filtering",
+          "embedding-cluster-balancing",
+          "multimodal-captioning",
+          "shot-boundary-detection",
+          "audio-video-alignment",
+          "multilingual-text-synthesis",
+          "multilingual-tts",
+          "editing-pair-synthesis",
+          "inpainting-pair-synthesis",
+          "joint-audio-video-training"
+        ],
+        "data_reference_count": 11,
+        "linked_dataset_count": 9,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2602.21818"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "image-to-video",
+          "rank": 8,
+          "elo": 1085
+        },
+        {
+          "ranking_id": "text-to-video",
+          "rank": 7,
+          "elo": 1112
+        },
+        {
+          "ranking_id": "video-editing",
+          "rank": 6,
+          "elo": 952
+        }
+      ],
+      "linked_dataset_ids": [
+        "re-laion-5b",
+        "flickr-5b",
+        "webvid-10m",
+        "koala-36m",
+        "openhumanvid",
+        "emilia",
+        "audioset",
+        "vggsound",
+        "soundnet"
+      ]
+    },
+    {
       "id": "ltx-2-3",
       "name": "LTX-2.3",
       "organization": "Lightricks",
@@ -8580,7 +9721,9 @@
       "organization": "Kuaishou Technology",
       "released_at": "2026-02-05",
       "ranking_names": [
+        "Kling 3.0 1080p (Pro)",
         "Kling 3.0 1080p Pro",
+        "Kling 3.0 720p (Standard)",
         "Kling 3.0 720p",
         "Kling 3.0 Omni 1080p",
         "Kling 3.0 Omni 1080p (Pro)",
@@ -8671,8 +9814,28 @@
       "ranking_positions": [
         {
           "ranking_id": "image-to-video",
+          "rank": 11,
+          "elo": 1075
+        },
+        {
+          "ranking_id": "image-to-video",
+          "rank": 13,
+          "elo": 1070
+        },
+        {
+          "ranking_id": "image-to-video",
           "rank": 15,
           "elo": 1063
+        },
+        {
+          "ranking_id": "text-to-video",
+          "rank": 6,
+          "elo": 1113
+        },
+        {
+          "ranking_id": "text-to-video",
+          "rank": 9,
+          "elo": 1102
         },
         {
           "ranking_id": "text-to-video",
@@ -8683,6 +9846,300 @@
           "ranking_id": "video-editing",
           "rank": 5,
           "elo": 1000
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "grok-imagine-video",
+      "name": "Grok Imagine Video",
+      "organization": "xAI",
+      "released_at": "2026-01-28",
+      "ranking_names": [
+        "grok-imagine-video"
+      ],
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "video-editing",
+        "reference-to-video",
+        "video-extension",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "xAI terms of service",
+        "release_url": "https://x.ai/news/grok-imagine-api",
+        "weights_url": null,
+        "api_url": "https://docs.x.ai/developers/models/grok-imagine-video"
+      },
+      "architecture": {
+        "family": "Undisclosed unified video-audio generation and editing model",
+        "parameters": null,
+        "notes": "xAI documents multimodal inputs, synchronized audio output, and a common API surface but does not disclose architecture or parameter count."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "The launch and API documentation describe generation, editing, extension, reference conditioning, and native audio but publish no data recipe."
+          }
+        ],
+        "strategy_summary": [
+          "Treat the original Grok Imagine Video endpoint separately from the 1.5 preview; its training corpus remains undisclosed."
+        ],
+        "unknowns": [
+          "Video, image, audio, and text source identities, rights, scale, language mix, captions, filtering, and deduplication.",
+          "Editing, preference, synchronization, safety, and post-training datasets."
+        ]
+      },
+      "evidence": {
+        "release": "https://x.ai/news/grok-imagine-api",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/grok-imagine-video.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://docs.x.ai/developers/models/grok-imagine-video"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "image-to-video",
+          "rank": 9,
+          "elo": 1082
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "hunyuanimage-3-instruct",
+      "name": "HunyuanImage 3.0 Instruct",
+      "organization": "Tencent Hunyuan",
+      "released_at": "2026-01-26",
+      "ranking_names": [
+        "HunyuanImage 3.0 Instruct (Fal)",
+        "HunyuanImage 3.0 Instruct"
+      ],
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "text-rendering",
+        "reasoning-image-generation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Tencent Hunyuan Community License",
+        "release_url": "https://huggingface.co/tencent/HunyuanImage-3.0-Instruct",
+        "weights_url": "https://huggingface.co/tencent/HunyuanImage-3.0-Instruct",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Native multimodal autoregressive Mixture-of-Experts with diffusion image tokens",
+        "parameters": 80000000000,
+        "notes": "The Hunyuan-A13B backbone has more than 80B total parameters, 13B activated per token, 64 experts, a VAE and vision encoder, and generalized causal attention for text and image sequences."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Filtered Hunyuan image corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": "nearly 5B images",
+            "notes": "The report discloses the retained scale and curation pipeline but not the source collections or licenses."
+          },
+          {
+            "name": "Hunyuan interleaved image-pair corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": "more than 100M image pairs and multi-image samples",
+            "notes": "Constructed from image clustering, internet interleaved data, and video-frame mining; exact source identities are not listed."
+          },
+          {
+            "name": "Hunyuan reasoning and editing corpora",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": null,
+            "notes": "Includes T2T, T2TI, and TI2TI reasoning traces plus Wikipedia infographics, but the compiled corpora were not released."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "public-web",
+              "proprietary"
+            ],
+            "operations": [
+              "md5-deduplication",
+              "embedding-deduplication",
+              "quality-filtering",
+              "watermark-filtering",
+              "aigc-filtering",
+              "bilingual-captioning",
+              "entity-verification",
+              "video-frame-mining"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Filter more than 10B raw images to nearly 5B, mine more than 100M related image pairs, and generate hierarchical English and Chinese captions with OCR/entity agents and bidirectional verification."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "synthetic",
+              "human-feedback"
+            ],
+            "operations": [
+              "reasoning-trace-annotation",
+              "progressive-resolution-training",
+              "supervised-fine-tuning",
+              "editing-pair-curation"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Add T2T, T2TI, and TI2TI reasoning traces, human-annotated high-quality samples, editing pairs, and progressively higher-fidelity image subsets."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "human-feedback",
+              "synthetic"
+            ],
+            "operations": [
+              "direct-preference-optimization",
+              "reward-model-training",
+              "online-reinforcement-learning"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Apply two-stage DPO, MixGRPO, SRPO, and Reward Distribution Alignment to reduce artifacts and improve realism, aesthetics, alignment, and identity preservation."
+          }
+        ],
+        "strategy_summary": [
+          "Retain less than 45 percent of more than 10B raw images through technical, semantic, quality, safety, and duplicate filtering.",
+          "Build bilingual 30-to-1,000-word captions and validate OCR and named entities before admitting samples.",
+          "Combine progressive multimodal pretraining with reasoning traces, editing data, preference optimization, and online reinforcement learning."
+        ],
+        "unknowns": [
+          "Exact source datasets, provenance, licenses, domain composition, and mixture weights for the nearly 5B-image corpus.",
+          "Scale and release status of the human-annotated SFT, DPO, reward-model, and editing datasets."
+        ]
+      },
+      "evidence": {
+        "release": "https://huggingface.co/tencent/HunyuanImage-3.0-Instruct",
+        "technical_report": "https://arxiv.org/abs/2509.23951",
+        "repository": "https://github.com/Tencent-Hunyuan/HunyuanImage-3.0"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/image/hunyuanimage-3-instruct.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "preference"
+        ],
+        "source_types": [
+          "public-web",
+          "proprietary",
+          "synthetic",
+          "human-feedback"
+        ],
+        "operations": [
+          "md5-deduplication",
+          "embedding-deduplication",
+          "quality-filtering",
+          "watermark-filtering",
+          "aigc-filtering",
+          "bilingual-captioning",
+          "entity-verification",
+          "video-frame-mining",
+          "reasoning-trace-annotation",
+          "progressive-resolution-training",
+          "supervised-fine-tuning",
+          "editing-pair-curation",
+          "direct-preference-optimization",
+          "reward-model-training",
+          "online-reinforcement-learning"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 3,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/tencent/HunyuanImage-3.0-Instruct"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "image-editing",
+          "rank": 9,
+          "elo": 1224
         }
       ],
       "linked_dataset_ids": []
@@ -8825,6 +10282,145 @@
         "source_url": "https://huggingface.co/api/models/fashn-ai/fashn-vton-1.5"
       },
       "ranking_positions": [],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "veo-3-1",
+      "name": "Veo 3.1",
+      "organization": "Google DeepMind",
+      "released_at": "2026-01-13",
+      "ranking_names": [
+        "Veo 3.1",
+        "Veo 3.1 Fast"
+      ],
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "reference-to-video",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Google Gemini API and Vertex AI terms",
+        "release_url": "https://blog.google/innovation-and-ai/technology/developers-tools/veo-3-1-gemini-api/",
+        "weights_url": null,
+        "api_url": "https://ai.google.dev/gemini-api/docs/video"
+      },
+      "architecture": {
+        "family": "Joint latent audio-video diffusion model",
+        "parameters": null,
+        "notes": "The model card describes diffusion over temporal audio latents and spatiotemporal video latents, but does not publish parameter count or full network topology."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Veo 3 multimodal training corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "Google names the audio, video, and image modalities and processing steps but not the source datasets or licenses."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed",
+              "synthetic"
+            ],
+            "operations": [
+              "multilevel-captioning",
+              "pii-filtering",
+              "safety-filtering",
+              "quality-filtering",
+              "semantic-deduplication"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Annotate audio and video with multi-level Gemini captions, remove unsafe captions and personal information, filter videos for compliance, safety, and quality, and deduplicate semantically across sources."
+          }
+        ],
+        "strategy_summary": [
+          "Train jointly on audio, video, and image data while using Gemini-generated captions at multiple levels of detail.",
+          "Apply compliance, safety, quality, PII, and semantic duplicate filters before training.",
+          "Google does not identify the underlying datasets, corpus scale, rights mixture, or Fast-variant training delta."
+        ],
+        "unknowns": [
+          "Source dataset identities, licenses, scale, geographic and language mix, and modality ratios.",
+          "Post-training data and differences among Veo 3.1, Fast, and product-specific serving variants."
+        ]
+      },
+      "evidence": {
+        "release": "https://blog.google/innovation-and-ai/technology/developers-tools/veo-3-1-gemini-api/",
+        "technical_report": "https://storage.googleapis.com/deepmind-media/Model-Cards/Veo-3-Model-Card.pdf",
+        "repository": null
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/veo-3-1.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed",
+          "synthetic"
+        ],
+        "operations": [
+          "multilevel-captioning",
+          "pii-filtering",
+          "safety-filtering",
+          "quality-filtering",
+          "semantic-deduplication"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Veo-3-Model-Card.pdf"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "image-to-video",
+          "rank": 7,
+          "elo": 1088
+        },
+        {
+          "ranking_id": "image-to-video",
+          "rank": 10,
+          "elo": 1079
+        },
+        {
+          "ranking_id": "text-to-video",
+          "rank": 11,
+          "elo": 1096
+        },
+        {
+          "ranking_id": "text-to-video",
+          "rank": 13,
+          "elo": 1093
+        }
+      ],
       "linked_dataset_ids": []
     },
     {
@@ -10291,6 +11887,78 @@
       "reference_name": "OpenVE-Bench"
     },
     {
+      "model_id": "skyreels-v4",
+      "dataset_id": "audioset",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "approximately 2.1M labeled segments",
+      "reference_name": "AudioSet"
+    },
+    {
+      "model_id": "skyreels-v4",
+      "dataset_id": "emilia",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "approximately 101K hours",
+      "reference_name": "Emilia"
+    },
+    {
+      "model_id": "skyreels-v4",
+      "dataset_id": "flickr-5b",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "approximately 5B URL records",
+      "reference_name": "Flickr"
+    },
+    {
+      "model_id": "skyreels-v4",
+      "dataset_id": "koala-36m",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "approximately 36M metadata rows",
+      "reference_name": "Koala-36M"
+    },
+    {
+      "model_id": "skyreels-v4",
+      "dataset_id": "openhumanvid",
+      "role": "pretraining",
+      "availability": "gated",
+      "scale": "approximately 13.2M clips",
+      "reference_name": "OpenHumanVid"
+    },
+    {
+      "model_id": "skyreels-v4",
+      "dataset_id": "re-laion-5b",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": null,
+      "reference_name": "LAION (version not specified)"
+    },
+    {
+      "model_id": "skyreels-v4",
+      "dataset_id": "soundnet",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "approximately 2M videos",
+      "reference_name": "SoundNet"
+    },
+    {
+      "model_id": "skyreels-v4",
+      "dataset_id": "vggsound",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "more than 210K source segments in the original release",
+      "reference_name": "VGGSound"
+    },
+    {
+      "model_id": "skyreels-v4",
+      "dataset_id": "webvid-10m",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "approximately 10M videos in the original release",
+      "reference_name": "WebVid-10M"
+    },
+    {
       "model_id": "talkverse-5b",
       "dataset_id": "talkverse",
       "role": "fine-tuning",
@@ -10462,7 +12130,7 @@
           "samples": 2739,
           "released": "Jul 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "seedream-5-0-pro"
         },
         {
           "rank": 7,
@@ -10484,7 +12152,7 @@
           "samples": 8285,
           "released": "Apr 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "grok-imagine-image-quality"
         },
         {
           "rank": 9,
@@ -10495,7 +12163,7 @@
           "samples": 8618,
           "released": "Jan 2026",
           "open_weights": true,
-          "model_id": null
+          "model_id": "hunyuanimage-3-instruct"
         },
         {
           "rank": 10,
@@ -10506,7 +12174,7 @@
           "samples": 5651,
           "released": "May 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "luma-uni-1-max"
         },
         {
           "rank": 11,
@@ -10644,7 +12312,7 @@
           "samples": 7021,
           "released": "Jan 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "veo-3-1"
         },
         {
           "rank": 8,
@@ -10655,7 +12323,7 @@
           "samples": 3581,
           "released": "Mar 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "skyreels-v4"
         },
         {
           "rank": 9,
@@ -10666,7 +12334,7 @@
           "samples": 8483,
           "released": "Jan 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "grok-imagine-video"
         },
         {
           "rank": 10,
@@ -10677,7 +12345,7 @@
           "samples": 7574,
           "released": "Jan 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "veo-3-1"
         },
         {
           "rank": 11,
@@ -10688,7 +12356,7 @@
           "samples": 8063,
           "released": "Feb 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "kling-3"
         },
         {
           "rank": 12,
@@ -10710,7 +12378,7 @@
           "samples": 8115,
           "released": "Feb 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "kling-3"
         },
         {
           "rank": 14,
@@ -10815,7 +12483,7 @@
           "samples": 12374,
           "released": "Jun 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "hidream-o1-image-1-5"
         },
         {
           "rank": 8,
@@ -10826,7 +12494,7 @@
           "samples": 8118,
           "released": "Jul 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "seedream-5-0-pro"
         },
         {
           "rank": 9,
@@ -10848,7 +12516,7 @@
           "samples": 9748,
           "released": "May 2026",
           "open_weights": true,
-          "model_id": null
+          "model_id": "cosmos3-super-text2image"
         },
         {
           "rank": 11,
@@ -10870,7 +12538,7 @@
           "samples": 15425,
           "released": "Apr 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "grok-imagine-image-quality"
         },
         {
           "rank": 13,
@@ -10975,7 +12643,7 @@
           "samples": 10912,
           "released": "Feb 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "kling-3"
         },
         {
           "rank": 7,
@@ -10986,7 +12654,7 @@
           "samples": 4497,
           "released": "Mar 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "skyreels-v4"
         },
         {
           "rank": 8,
@@ -11008,7 +12676,7 @@
           "samples": 10875,
           "released": "Feb 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "kling-3"
         },
         {
           "rank": 10,
@@ -11030,7 +12698,7 @@
           "samples": 7882,
           "released": "Jan 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "veo-3-1"
         },
         {
           "rank": 12,
@@ -11052,7 +12720,7 @@
           "samples": 10235,
           "released": "Jan 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "veo-3-1"
         },
         {
           "rank": 14,
@@ -11146,7 +12814,7 @@
           "samples": 13737,
           "released": "Mar 2026",
           "open_weights": false,
-          "model_id": null
+          "model_id": "skyreels-v4"
         }
       ]
     }

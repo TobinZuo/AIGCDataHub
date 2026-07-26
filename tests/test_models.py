@@ -18,7 +18,7 @@ class ModelCatalogTests(unittest.TestCase):
     def test_representative_modalities_are_present(self) -> None:
         cards = [card for _, card in load_models()]
         modalities = {modality for card in cards for modality in card["modalities"]}
-        self.assertGreaterEqual(len(cards), 41)
+        self.assertGreaterEqual(len(cards), 50)
         self.assertTrue({"image", "video", "audio", "multimodal"}.issubset(modalities))
 
     def test_product_only_releases_are_representable(self) -> None:
@@ -41,10 +41,41 @@ class ModelCatalogTests(unittest.TestCase):
                 "grok-imagine-video-1-5",
                 "runway-aleph-2",
                 "kling-3",
+                "seedream-5-0-pro",
+                "grok-imagine-image-quality",
+                "hunyuanimage-3-instruct",
+                "luma-uni-1-max",
+                "hidream-o1-image-1-5",
+                "cosmos3-super-text2image",
+                "veo-3-1",
+                "skyreels-v4",
+                "grok-imagine-video",
             }.issubset(cards)
         )
         self.assertIn("GPT Image 2 (high)", cards["gpt-image-2"]["ranking_names"])
         self.assertIn("HappyHorse-1.0", cards["happyhorse-1-0"]["ranking_names"])
+
+    def test_skyreels_disclosed_public_data_resolves_to_download_cards(self) -> None:
+        cards = {card["id"]: card for _, card in load_models()}
+        linked = {
+            item["catalog_id"]
+            for item in cards["skyreels-v4"]["data"]["datasets"]
+            if item["catalog_id"]
+        }
+        self.assertEqual(
+            linked,
+            {
+                "re-laion-5b",
+                "flickr-5b",
+                "webvid-10m",
+                "koala-36m",
+                "openhumanvid",
+                "emilia",
+                "audioset",
+                "vggsound",
+                "soundnet",
+            },
+        )
 
     def test_public_and_gated_named_data_always_resolve_to_catalog_cards(self) -> None:
         for _, card in load_models():

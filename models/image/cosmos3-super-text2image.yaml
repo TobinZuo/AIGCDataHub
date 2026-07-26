@@ -1,0 +1,73 @@
+id: cosmos3-super-text2image
+name: Cosmos3-Super-Text2Image
+organization: NVIDIA
+released_at: "2026-05-31"
+ranking_names:
+  - Cosmos3-Super-Text2Image (agentic)
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - world-generation
+  - physical-ai-generation
+access:
+  status: open-weights
+  license: OpenMDW-1.1
+  release_url: https://github.com/NVIDIA/cosmos/blob/main/RELEASE.md
+  weights_url: https://huggingface.co/nvidia/Cosmos3-Super-Text2Image
+  api_url: null
+architecture:
+  family: 64B Mixture-of-Transformers with autoregressive reasoner and diffusion generator towers
+  parameters: 64000000000
+  notes: The two towers share token representations while using next-token decoding for discrete text and iterative denoising for continuous media.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Cosmos 3 multimodal generator corpus
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: billions of image, video, audio, and action samples
+      notes: NVIDIA discloses modalities and curriculum structure, but not the exact component datasets or rights mixture for this checkpoint.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - audio
+        - action
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - multimodal-reconstruction
+        - multi-stage-curriculum
+        - paired-vision-language-training
+      scale_disclosed: true
+      strategy: Train the reasoner on paired vision-language data and the generator on large-scale image, video, audio, and action corpora with reconstruction objectives, evolving the mixture across stages.
+    - name: fine-tuning
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - text-to-image-specialization
+        - agentic-prompt-upsampling
+      scale_disclosed: false
+      strategy: Specialize the Super generator for high-fidelity text-to-image output and pair it with structured agentic prompt upsampling at inference.
+  strategy_summary:
+    - Separate complementary reasoner and generator curricula while sharing a unified multimodal representation.
+    - Use paired vision-language supervision for reasoning and reconstruction-based multimodal learning for generation.
+    - NVIDIA reports billions of samples but does not publish an exact dataset inventory or mixture for this checkpoint.
+  unknowns:
+    - Named datasets, source licenses, modality proportions, filtering, deduplication, and safety thresholds.
+    - Text-to-image specialization scale and the boundary between model training and agentic prompt-upsampling behavior.
+evidence:
+  release: https://github.com/NVIDIA/cosmos/blob/main/RELEASE.md
+  technical_report: https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf
+  repository: https://github.com/NVIDIA/cosmos
+status: verified
+last_verified: "2026-07-27"

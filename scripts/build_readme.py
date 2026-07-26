@@ -20,6 +20,18 @@ STATUS = {"verified": "✅", "partial": "🟡", "archived": "🗄️"}
 MODEL_STATUS = {"verified": "✅", "partial": "🟡", "watch": "👀"}
 
 
+def dataset_access_label(card: dict) -> str:
+    access = card["access"]
+    actions = {
+        "hosted": "download / browse",
+        "urls": "URLs / downloader",
+        "metadata": "metadata / tooling",
+        "request": "request access",
+        "none": "availability notice",
+    }
+    return f"{actions[access['type']]} ({access['status'].replace('-', ' ')})"
+
+
 def render_dataset_table() -> str:
     rows = [
         "| Dataset | Organization | Modality | Released | Tasks | Scale | Access | Commercial use | Status |",
@@ -31,7 +43,7 @@ def render_dataset_table() -> str:
         name = f"[{card['name']}]({relative_path})"
         tasks = ", ".join(task.replace("-", " ") for task in card["tasks"])
         scale = compact_number(card["scale"]["samples"], card["scale"]["approximate"])
-        access = card["access"]["status"].replace("-", " ")
+        access = f"[{dataset_access_label(card)}]({card['access']['url']})"
         commercial = card["license"]["commercial_use"].replace("-", " ")
         rows.append(
             f"| {name} | {card['organization']} | {card['modality']} | {card['released_at']} | "

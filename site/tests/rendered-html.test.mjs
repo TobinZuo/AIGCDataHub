@@ -260,6 +260,11 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.equal(datasets["celebv-hq"].monitoring.priority, "critical");
   assert.equal(datasets.talkvid.monitoring.priority, "critical");
   assert.equal(datasets["mv-fashion"].monitoring.priority, "critical");
+  assert.equal(
+    datasets.openhumanvid.access.url,
+    "https://forms.gle/moqec5Qod7mz9pfD6",
+  );
+  assert.ok(parsedCatalog.datasets.every((dataset) => /^https?:\/\//.test(dataset.access.url)));
   assert.deepEqual(datasets.talkverse.upstream_dataset_ids, ["openhumanvid", "panda-70m"]);
   assert.deepEqual(
     datasets.openhumanvid.downstream_dataset_ids,
@@ -290,6 +295,8 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalogExplorer, /同场景数据策略对比/);
   assert.match(catalogExplorer, /不做综合评分/);
   assert.match(catalogExplorer, /打开数据卡/);
+  assert.match(catalogExplorer, /数据获取入口/);
+  assert.match(catalogExplorer, /datasetAccessAction\(dataset\)/);
   assert.match(catalogExplorer, /目录内反向链接只由模型卡/);
   assert.match(catalogExplorer, /DATASET → DATASET/);
   assert.match(catalogExplorer, /上游数据如何形成衍生集/);

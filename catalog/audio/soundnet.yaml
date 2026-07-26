@@ -1,0 +1,67 @@
+id: soundnet
+name: SoundNet Flickr video dataset
+organization: Massachusetts Institute of Technology
+released_at: "2016-10-28"
+release_date_source: https://arxiv.org/abs/1610.09001
+modality: audio
+tasks:
+  - audio-visual-learning
+  - audio-representation-learning
+  - audio-event-classification
+  - video-to-audio
+stages:
+  - pretraining
+  - evaluation
+description: >-
+  The roughly two-million-video Flickr corpus released with SoundNet for
+  cross-modal acoustic representation learning, including audio, image features,
+  optional frames, URL lists, and train/validation splits.
+access:
+  status: open
+  type: hosted
+  url: https://projects.csail.mit.edu/soundnet/
+  requires_account: false
+  notes: The official project page links the MP3, image-feature, frame, URL-list, and split downloads; the large archives should be fetched selectively and checksummed.
+scale:
+  samples: 2000000
+  source_items: 2000000
+  approximate: true
+  notes: The paper and project page describe two million unlabeled videos; the audio archive is listed as 359 GB.
+annotations:
+  types:
+    - video-url
+    - train-validation-split
+    - image-features
+    - unlabeled-audio
+  source: web-metadata
+  languages:
+    - multilingual
+license:
+  metadata: Not clearly stated on the project page
+  media: Flickr item rights vary; part of the corpus derives from Yahoo Flickr Creative Commons data
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    The project publishes downloadable archives but does not provide one uniform
+    media license covering every source; verify item-level rights and institutional
+    terms before commercial use or redistribution.
+quality:
+  dimensions:
+    - audio-quality
+    - audio-visual-alignment
+    - provenance
+  known_limitations:
+    - Videos were collected without task labels, so content, language, and recording quality vary widely.
+    - Flickr URLs and rights can change after the archived release.
+    - The two collection components use different acquisition paths and may have uneven provenance metadata.
+processing:
+  recipe: recipes/audio_text
+  recommended_format: native
+  notes: Record which official archive supplied each item, retain URL and split metadata, validate decompression and duration, hash files, and apply current safety and rights filters.
+evidence:
+  homepage: https://projects.csail.mit.edu/soundnet/
+  paper: https://arxiv.org/abs/1610.09001
+  used_by:
+    - SkyReels V4
+status: partial
+last_verified: "2026-07-27"

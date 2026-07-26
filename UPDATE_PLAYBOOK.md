@@ -10,8 +10,9 @@ as an exhaustive list.
    The scanner compares official-source links with
    `sources/discovery-state.json`; it prioritizes image and video generation.
    It also compares stable revisions for selected important models and
-   datasets. A changed Hugging Face `lastModified` or repository commit SHA
-   requires reviewing access, files, scale, terms, and affected relationships.
+   datasets. A changed Hugging Face `lastModified`, repository commit SHA, or
+   content hash of an official page/PDF requires reviewing access, files,
+   scale, terms, and affected relationships.
    Review `entity_type`, `entity_id`, `priority`, `impacted_dataset_ids`, and
    `impacted_model_ids` first. For a dataset, the scanner follows reviewed
    `derived_from` edges and canonical model-side `catalog_id` references. For a
@@ -62,9 +63,13 @@ When adding an important revision probe, use a structured object with an
 official HTTPS API `url` and `priority: critical|high|standard`. Dataset probes
 belong in `important-dataset-updates` and require an existing `catalog_id`;
 model probes belong in `important-model-updates` and require an existing
-`model_id`. Hugging Face dataset/model APIs and official GitHub commit APIs are
-supported. Do not monitor by URL alone: the canonical ID connects a revision to
-the site card and its reviewed relationships.
+`model_id`. Hugging Face dataset/model APIs and official GitHub commit APIs
+expose stable revision identifiers. For publishers without such an API, the
+scanner records a SHA-256 content revision of the official page or PDF. Do not
+monitor by URL alone: the canonical ID connects a revision to the site card and
+its reviewed relationships. An access-controlled source that always returns
+401 to anonymous CI stays linked from its card but is not presented as a
+healthy revision probe.
 
 Ranking sources belong in `industry-model-rankings` and require a unique
 `ranking_id` plus `ranking_limit`. A leaderboard is authoritative only for its

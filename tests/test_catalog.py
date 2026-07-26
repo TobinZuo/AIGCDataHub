@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import sys
 import unittest
+from pathlib import Path
 
 sys.path.insert(0, "scripts")
 
 from build_readme import END, MODEL_END, MODEL_START, START, generated_readme, render_dataset_table, render_model_table
+from build_dataset_access_index import render_index as render_access_index
 from build_site_data import build_payload
 from catalog import compact_number, load_cards
 from validate_catalog import validate
@@ -16,7 +18,7 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(validate(), [])
 
     def test_cards_are_present(self) -> None:
-        self.assertGreaterEqual(len(load_cards()), 48)
+        self.assertGreaterEqual(len(load_cards()), 51)
 
     def test_audio_and_3d_coverage_is_present(self) -> None:
         modalities = {card["modality"] for _, card in load_cards()}
@@ -137,13 +139,14 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(dates, sorted(dates, reverse=True))
         self.assertEqual(models[0]["id"], "midjourney-v8-2")
 
-    def test_every_ranking_top_five_entry_maps_to_a_model_card(self) -> None:
+    def test_every_ranking_top_ten_entry_maps_to_a_model_card(self) -> None:
         rankings = build_payload()["rankings"]
         self.assertEqual(len(rankings), 5)
         for board in rankings:
             with self.subTest(board=board["id"]):
-                self.assertGreaterEqual(len(board["entries"]), 5)
-                self.assertTrue(all(entry["model_id"] for entry in board["entries"][:5]))
+                required = min(10, len(board["entries"]))
+                self.assertGreaterEqual(required, 6)
+                self.assertTrue(all(entry["model_id"] for entry in board["entries"][:required]))
 
     def test_compact_number(self) -> None:
         self.assertEqual(compact_number(70_723_513), "70.7M")
@@ -158,7 +161,15 @@ class CatalogTests(unittest.TestCase):
         once = generated_readme(source)
         self.assertEqual(generated_readme(once), once)
         self.assertIn("| Dataset | Organization | Modality | Released |", render_dataset_table())
+        self.assertIn("[download / browse (open)](https://", render_dataset_table())
         self.assertIn("| Model | Organization |", render_model_table())
+
+    def test_repository_dataset_access_index_is_current_and_has_every_card(self) -> None:
+        rendered = render_access_index()
+        self.assertEqual(rendered, Path("DATASET_ACCESS_INDEX.md").read_text(encoding="utf-8"))
+        self.assertEqual(rendered.count("\n| ["), len(load_cards()))
+        self.assertIn("Get data / access evidence", rendered)
+        self.assertIn("Download / browse files", rendered)
 
 
 if __name__ == "__main__":

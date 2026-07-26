@@ -1,0 +1,79 @@
+id: hidream-o1-image-1-5
+name: HiDream-O1-Image-1.5
+organization: HiDream.ai
+released_at: "2026-06-09"
+ranking_names:
+  - HiDream-O1-Image-1.5
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - subject-driven-generation
+  - text-rendering
+access:
+  status: product-only
+  license: HiDream service terms
+  release_url: https://hidream.ai/
+  weights_url: null
+  api_url: https://hidream.ai/
+architecture:
+  family: Pixel-level Unified Transformer
+  parameters: null
+  notes: The O1 family maps raw pixels, text, and task conditions into a shared token space without an external VAE or disjoint text encoder; 1.5's exact serving scale is not stated.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: HiDream O1 heterogeneous visual corpus
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: The family report describes public-web and internally licensed pools but does not name the component datasets or tie an exact mixture to version 1.5.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - public-web
+        - licensed
+        - synthetic
+      operations:
+        - visual-deduplication
+        - quality-filtering
+        - safety-filtering
+        - vlm-captioning
+        - editing-pair-construction
+        - video-frame-mining
+      scale_disclosed: false
+      strategy: The O1 family combines public-web and licensed images with synthesized editing pairs, video-derived changes, subject-reference sets, and multi-panel samples, then applies clustered near-duplicate removal and VLM prompt construction.
+    - name: fine-tuning
+      modalities:
+        - image
+        - text
+      source_types:
+        - proprietary
+        - synthetic
+      operations:
+        - instruction-tuning
+        - prompt-agent-training
+        - task-balancing
+      scale_disclosed: false
+      strategy: Unify text-to-image, editing, personalization, typography, and multi-panel workflows with task-specific supervision and a reasoning-driven prompt agent.
+  strategy_summary:
+    - The O1 family expands beyond image-text pairs with editing triplets, subject-reference groups, video-derived changes, and multi-panel layouts.
+    - It clusters SSCD features, performs local similarity search, filters quality and safety, and constructs prompts with vision-language models.
+    - Version 1.5 is a closed commercial variant, so the family report does not establish its exact corpus or training delta.
+  unknowns:
+    - Exact named datasets, licenses, total scale, per-source mixture, and 1.5-specific training changes.
+    - Exact parameter count and post-training or preference-data recipe for the commercial 1.5 endpoint.
+evidence:
+  release: https://hidream.ai/
+  technical_report: https://arxiv.org/abs/2605.11061
+  repository: https://github.com/HiDream-ai/HiDream-O1-Image
+status: partial
+last_verified: "2026-07-27"

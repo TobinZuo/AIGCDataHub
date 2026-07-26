@@ -1,0 +1,75 @@
+id: emilia
+name: Emilia
+organization: Amphion / OpenMMLab
+released_at: "2024-08-27"
+release_date_source: https://huggingface.co/datasets/amphion/Emilia-Dataset/blob/main/README.md
+modality: audio
+tasks:
+  - text-to-speech
+  - speech-generation-pretraining
+  - automatic-speech-recognition
+  - audio-language-pretraining
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A large multilingual in-the-wild speech dataset produced with the Emilia-Pipe
+  preprocessing system, covering roughly 101,000 hours across English, Chinese,
+  Japanese, French, German, and Korean.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/amphion/Emilia-Dataset
+  requires_account: false
+  notes: Hosted WebDataset archives and preprocessing code are available from the official Amphion repository; review the dataset card before downloading at scale.
+scale:
+  samples: null
+  hours: 101000
+  approximate: true
+  notes: The official release announcement reports 101K hours; shard and utterance counts can change with repository revisions.
+annotations:
+  types:
+    - speech-transcript
+    - language
+    - speaker-segment
+    - audio-quality-score
+  source: model-generated
+  languages:
+    - English
+    - Chinese
+    - Japanese
+    - French
+    - German
+    - Korean
+license:
+  metadata: CC-BY-NC-4.0 as declared in the official dataset card metadata
+  media: Review source-media rights and the official dataset terms for each use
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: >-
+    The repository UI and card history have shown inconsistent CC-BY and
+    CC-BY-NC labels; this card uses the stricter CC-BY-NC-4.0 declaration and
+    requires a fresh license review before redistribution.
+quality:
+  dimensions:
+    - audio-quality
+    - text-media-alignment
+    - safety
+    - deduplication
+    - provenance
+  known_limitations:
+    - Automated source discovery, diarization, recognition, and filtering can retain transcription and speaker-boundary errors.
+    - In-the-wild speech can contain personal, copyrighted, biased, or sensitive content.
+    - License metadata has been inconsistent across repository renderings and must be rechecked for downstream releases.
+processing:
+  recipe: recipes/audio_text
+  recommended_format: webdataset
+  notes: Preserve language, source and shard provenance, validate transcripts and speaker boundaries, run privacy and rights screening, and document excluded samples.
+evidence:
+  homepage: https://huggingface.co/datasets/amphion/Emilia-Dataset
+  paper: https://arxiv.org/abs/2407.05361
+  used_by:
+    - SkyReels V4
+status: partial
+last_verified: "2026-07-27"

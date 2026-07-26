@@ -12,6 +12,7 @@ from discover_updates import (
     SourceSnapshot,
     WatchSource,
     compare_snapshots,
+    content_revision,
     dataset_impact_index,
     extract_candidate_links,
     extract_huggingface_dataset_candidates,
@@ -27,6 +28,11 @@ from upsert_discovery_issue import issue_action, issue_body
 
 
 class DiscoveryTests(unittest.TestCase):
+    def test_content_revision_is_stable_and_change_sensitive(self) -> None:
+        self.assertEqual(content_revision(b"official page"), content_revision(b"official page"))
+        self.assertNotEqual(content_revision(b"official page"), content_revision(b"updated page"))
+        self.assertTrue(content_revision(b"official page").startswith("sha256:"))
+
     def test_normalize_url_removes_tracking_and_fragment(self) -> None:
         self.assertEqual(
             normalize_url("http://Example.com/releases/model/?utm_source=x&version=2#details"),
@@ -157,11 +163,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            29,
+            31,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            13,
+            22,
         )
         self.assertTrue(
             {
@@ -209,6 +215,11 @@ class DiscoveryTests(unittest.TestCase):
                 "https://huggingface.co/api/models/tencent/HunyuanVideo-Avatar",
                 "https://huggingface.co/api/models/TMElyralab/MuseTalk",
                 "https://huggingface.co/api/models/fashn-ai/fashn-vton-1.5",
+                "https://huggingface.co/api/datasets/amphion/Emilia-Dataset",
+                "https://projects.csail.mit.edu/soundnet/",
+                "https://huggingface.co/api/models/tencent/HunyuanImage-3.0-Instruct",
+                "https://huggingface.co/api/models/nvidia/Cosmos3-Super-Text2Image",
+                "https://arxiv.org/abs/2602.21818",
             }.issubset(urls)
         )
         self.assertIn("https://huggingface.co/api/datasets/nkp37/OpenVid-1M", urls)
@@ -249,14 +260,14 @@ class DiscoveryTests(unittest.TestCase):
             impacts["openhumanvid"]["dataset_ids"],
             ("openhumanvid-talking", "talkverse"),
         )
-        self.assertEqual(impacts["openhumanvid"]["model_ids"], ("talkverse-5b",))
+        self.assertEqual(impacts["openhumanvid"]["model_ids"], ("skyreels-v4", "talkverse-5b"))
         self.assertEqual(impacts["panda-70m"]["dataset_ids"], ("talkverse",))
         self.assertEqual(impacts["panda-70m"]["model_ids"], ("talkverse-5b",))
         self.assertEqual(
             impacts["audioset"]["dataset_ids"],
             ("audiocaps-2-0", "soundatlas", "wavcaps"),
         )
-        self.assertEqual(impacts["audioset"]["model_ids"], ("omni2sound",))
+        self.assertEqual(impacts["audioset"]["model_ids"], ("omni2sound", "skyreels-v4"))
         self.assertEqual(impacts["yfcc100m"]["dataset_ids"], ("commoncatalog",))
         self.assertEqual(impacts["yfcc100m"]["model_ids"], ("commoncanvas-xl-c",))
         self.assertEqual(

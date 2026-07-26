@@ -50,7 +50,7 @@ tracks:
       - visual-reasoning-generation
     official_sources:
       - https://bfl.ai/blog
-      - https://blog.reve.com/posts
+      - https://blog.reve.com/
       - https://techcommunity.microsoft.com/category/azure-ai-foundry/blog/azure-ai-foundry-blog
       - https://www.microsoft.com/en-us/research/publications/
       - https://github.com/baidu
@@ -86,7 +86,7 @@ tracks:
       - https://github.com/omni2sound/Omni2Sound
       - https://x.ai/news
       - https://runwayml.com/news
-      - https://ir.kuaishou.com/news-releases
+      - https://ir.kuaishou.com/news-events/company-news/
       - https://help.aliyun.com/en/model-studio/newly-released-models
 
   - id: digital-human-and-localization
@@ -331,6 +331,12 @@ tracks:
       - url: https://huggingface.co/api/datasets/MV-Fashion/MV-Fashion
         catalog_id: mv-fashion
         priority: critical
+      - url: https://huggingface.co/api/datasets/amphion/Emilia-Dataset
+        catalog_id: emilia
+        priority: critical
+      - url: https://projects.csail.mit.edu/soundnet/
+        catalog_id: soundnet
+        priority: critical
 
   - id: important-model-updates
     topics:
@@ -378,6 +384,33 @@ tracks:
       - url: https://huggingface.co/api/models/common-canvas/CommonCanvas-XL-C
         model_id: commoncanvas-xl-c
         priority: high
+      - url: https://docs.byteplus.com/en/docs/ModelArk/2582775
+        model_id: seedream-5-0-pro
+        priority: critical
+      - url: https://docs.x.ai/developers/models/grok-imagine-image-quality
+        model_id: grok-imagine-image-quality
+        priority: critical
+      - url: https://huggingface.co/api/models/tencent/HunyuanImage-3.0-Instruct
+        model_id: hunyuanimage-3-instruct
+        priority: critical
+      - url: https://lumalabs.ai/news/uni-1-1-api
+        model_id: luma-uni-1-max
+        priority: critical
+      - url: https://api.github.com/repos/HiDream-ai/HiDream-O1-Image/commits/main
+        model_id: hidream-o1-image-1-5
+        priority: critical
+      - url: https://huggingface.co/api/models/nvidia/Cosmos3-Super-Text2Image
+        model_id: cosmos3-super-text2image
+        priority: critical
+      - url: https://storage.googleapis.com/deepmind-media/Model-Cards/Veo-3-Model-Card.pdf
+        model_id: veo-3-1
+        priority: critical
+      - url: https://arxiv.org/abs/2602.21818
+        model_id: skyreels-v4
+        priority: critical
+      - url: https://docs.x.ai/developers/models/grok-imagine-video
+        model_id: grok-imagine-video
+        priority: critical
 
 acceptance_rules:
   - Require an official release, repository, model card, dataset card, or technical report.

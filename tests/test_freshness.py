@@ -11,7 +11,7 @@ from check_freshness import freshness_issues
 
 class FreshnessTests(unittest.TestCase):
     def test_current_catalog_is_fresh_on_reference_date(self) -> None:
-        self.assertEqual(freshness_issues(date(2026, 7, 26)), [])
+        self.assertEqual(freshness_issues(date(2026, 7, 27)), [])
 
     def test_watch_cards_expire_quickly(self) -> None:
         issues = freshness_issues(date(2026, 8, 11))
@@ -22,4 +22,3 @@ class FreshnessTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

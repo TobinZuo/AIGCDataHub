@@ -337,6 +337,17 @@ function taxonomyLabel(value: string, labels: Record<string, string>) {
   return labels[value] ?? value.replaceAll("-", " ");
 }
 
+function datasetAccessAction(dataset: DatasetCard) {
+  const labels: Record<string, string> = {
+    hosted: dataset.access.status === "gated" ? "登录并获取数据" : "下载 / 浏览数据文件",
+    urls: "获取源 URL 与下载工具",
+    metadata: "获取元数据与工具",
+    request: "申请数据访问",
+    none: "查看不可用说明",
+  };
+  return labels[dataset.access.type] ?? "查看数据访问入口";
+}
+
 function disclosureScore(level: string) {
   return ({ full: 4, partial: 3, "high-level": 2, undisclosed: 1 }[level] ?? 0);
 }
@@ -556,6 +567,11 @@ function DatasetResult({
 
       {expanded && (
         <div className="card-detail dataset-detail">
+          <section className="access-panel">
+            <p className="detail-label">数据获取入口</p>
+            <ExternalLink href={dataset.access.url}>{datasetAccessAction(dataset)}</ExternalLink>
+            <p>{dataset.access.notes}</p>
+          </section>
           <section>
             <p className="detail-label">数据与标注</p>
             <dl className="fact-grid">
@@ -640,6 +656,7 @@ function DatasetResult({
           <footer className="detail-footer">
             <span>{dataset.access.notes}</span>
             <nav aria-label={`${dataset.name} 来源`}>
+              <ExternalLink href={dataset.access.url}>{datasetAccessAction(dataset)}</ExternalLink>
               <ExternalLink href={dataset.evidence.homepage}>项目主页</ExternalLink>
               {dataset.release_date_source !== dataset.evidence.homepage && (
                 <ExternalLink href={dataset.release_date_source}>发布日期证据</ExternalLink>

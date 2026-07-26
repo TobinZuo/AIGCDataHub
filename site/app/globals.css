@@ -847,6 +847,35 @@ input:focus-visible {
   border-right: 0;
 }
 
+.card-detail > .access-panel {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 28px;
+  border-right: 0;
+  background: color-mix(in srgb, var(--acid) 24%, var(--white));
+}
+
+.access-panel .detail-label {
+  grid-column: 1 / -1;
+  margin-bottom: 8px;
+}
+
+.access-panel .text-link {
+  justify-self: start;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 19px;
+}
+
+.access-panel > p:last-child {
+  max-width: 720px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
 .detail-label {
   margin: 0 0 20px;
 }
@@ -2231,6 +2260,11 @@ input:focus-visible {
   .card-detail > section:nth-child(2n) {
     padding: 24px 20px;
     border-right: 0;
+  }
+
+  .card-detail > .access-panel {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .detail-footer {
