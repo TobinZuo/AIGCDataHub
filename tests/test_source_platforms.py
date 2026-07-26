@@ -16,13 +16,13 @@ class SourcePlatformTests(unittest.TestCase):
         self.assertEqual(validate_source_platforms(), [])
         self.assertEqual(load_source_platform_registry()["schema_version"], 2)
         platforms = load_source_platforms()
-        self.assertEqual(len(platforms), 16)
+        self.assertEqual(len(platforms), 17)
         self.assertEqual(
             {item["id"] for item in platforms},
             {
                 "youtube", "vimeo", "bilibili", "dailymotion", "netflix",
                 "disney", "warner-bros", "paramount", "vcg", "shutterstock",
-                "tuchong", "tiktok-shop", "amazon", "shopee", "temu", "shein",
+                "tuchong", "pexels", "tiktok-shop", "amazon", "shopee", "temu", "shein",
             },
         )
 
@@ -57,6 +57,14 @@ class SourcePlatformTests(unittest.TestCase):
             "licensed-service",
         )
         self.assertEqual(
+            platforms["pexels"]["data_access"]["interface_name"],
+            "Pexels API",
+        )
+        self.assertIn(
+            "explicit Pexels permission",
+            platforms["pexels"]["data_access"]["requirements"],
+        )
+        self.assertEqual(
             platforms["netflix"]["data_access"]["status"],
             "partner-portal",
         )
@@ -65,7 +73,7 @@ class SourcePlatformTests(unittest.TestCase):
     def test_generated_index_and_site_payload_include_source_platforms(self) -> None:
         self.assertEqual(OUTPUT_PATH.read_text(encoding="utf-8"), render_index())
         payload = build_payload()
-        self.assertEqual(len(payload["source_platforms"]), 16)
+        self.assertEqual(len(payload["source_platforms"]), 17)
         self.assertEqual(
             {item["category"] for item in payload["source_platforms"]},
             {"video-platform", "streaming-and-studio", "stock-media", "ecommerce"},

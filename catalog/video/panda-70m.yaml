@@ -60,6 +60,7 @@ processing:
 evidence:
   homepage: https://github.com/snap-research/Panda-70M
   paper: https://arxiv.org/abs/2402.19479
-  used_by: []
+  used_by:
+    - Phantom-Wan-14B
 status: verified
 last_verified: "2026-07-26"

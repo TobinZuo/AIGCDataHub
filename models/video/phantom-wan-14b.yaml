@@ -1,0 +1,90 @@
+id: phantom-wan-14b
+name: Phantom-Wan-14B
+organization: ByteDance Intelligent Creation Team
+released_at: "2025-05-27"
+modalities:
+  - video
+  - image
+tasks:
+  - subject-consistent-video-generation
+  - reference-image-conditioned-video
+  - multi-subject-video-generation
+  - identity-preservation
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://github.com/Phantom-video/Phantom
+  weights_url: https://huggingface.co/bytedance-research/Phantom
+  api_url: null
+architecture:
+  family: Wan2.1 14B diffusion transformer adapted with Phantom cross-modal reference injection
+  parameters: 14000000000
+  notes: The model jointly injects reference-image VAE and CLIP features with text and video tokens, using dynamic attention windows to support one to four reference subjects while preserving prompt control.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Panda-70M
+      catalog_id: panda-70m
+      role: fine-tuning
+      availability: public
+      scale: Part of the long-video source pool; exact Phantom subset size is not disclosed
+      notes: The Phantom technical report names Panda-70M alongside in-house video as the input to scene cutting, quality filtering, captioning, subject detection, and cross-video matching.
+    - name: In-house video sources
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: Included in an approximately one-million cross-pair corpus
+      notes: The report does not identify the sources, license composition, sample count, or mixture with Panda-70M.
+    - name: Subject200K
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: A portion of paired image data; exact count and mixture are not disclosed
+      notes: The report names Subject200K from the UniReal work as extra paired-image data, but no standalone public training release is linked.
+    - name: OmniGen paired image data
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: A portion of paired image data; exact count and mixture are not disclosed
+      notes: The report names OmniGen as an additional paired-image source without identifying a public dataset artifact or exact subset.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - video
+        - image
+        - text
+      source_types:
+        - public-dataset
+        - proprietary
+      operations:
+        - scene-cutting
+        - visual-quality-filtering
+        - motion-filtering
+        - subtitle-filtering
+        - gemini-video-captioning
+        - llm-subject-extraction
+        - vlm-subject-detection
+        - clip-cross-video-matching
+        - in-pair-reference-sampling
+        - cross-pair-reference-sampling
+        - identity-deduplication
+        - cross-modal-alignment
+      scale_disclosed: true
+      strategy: Build text-image-video triplets from filtered video, combine same-clip in-pair references with roughly one million cross-video subject pairs, and fine-tune the Wan2.1 backbone with joint low-level and semantic reference injection.
+  strategy_summary:
+    - Mix in-pair frames with cross-video subject matches so the model preserves identity without learning to copy the reference frame.
+    - Align detailed subject descriptions, reference detections, CLIP features, and video latents before dynamic multi-subject injection.
+    - Add face-specific ArcFace matching, deduplication, and paired-image sources to improve human identity consistency and data diversity.
+  unknowns:
+    - The exact Phantom-Wan-14B subset, Panda-70M versus in-house mixture, image-data mixture, sampling weights, and rejection rates.
+    - Whether the released Wan adaptation used the identical corpus described for the paper's Phantom model or a revised internal version.
+    - Training code, optimizer schedule, hardware, compute, safety filtering, consent handling, and per-source license distribution.
+    - The planned Phantom-Wan-14B Pro and further 720p-trained checkpoint remain unreleased.
+evidence:
+  release: https://github.com/Phantom-video/Phantom
+  technical_report: https://arxiv.org/abs/2502.11079
+  repository: https://github.com/Phantom-video/Phantom
+status: partial
+last_verified: "2026-07-27"

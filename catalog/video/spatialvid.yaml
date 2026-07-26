@@ -1,0 +1,83 @@
+id: spatialvid
+name: SpatialVID
+organization: Nanjing University and Institute of Automation, Chinese Academy of Sciences
+released_at: "2025-09-18"
+release_date_source: https://github.com/NJU-3DV/SpatialVID
+modality: video
+tasks:
+  - camera-controlled-video-generation
+  - world-modeling
+  - video-to-3d
+  - camera-pose-estimation
+  - novel-view-synthesis
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A large spatially annotated video corpus derived from 33,443 manually
+  screened YouTube videos, providing 2.7 million 720p clips with camera poses,
+  depth, dynamic masks, structured captions, and serialized motion
+  instructions for controllable generation and geometric learning.
+access:
+  status: gated
+  type: request
+  url: https://huggingface.co/datasets/SpatialVID/SpatialVID
+  requires_account: true
+  notes: Access is automatically gated behind a Hugging Face form and acceptance of the non-commercial share-alike license; official download scripts cover video and annotation archives.
+scale:
+  samples: 2700000
+  source_items: 33443
+  hours: 7089
+  approximate: true
+  notes: The paper reports 2.7M clips and 7,089 hours after filtering 21,789 hours of source video; SpatialVID-HQ is a balanced 1,111-hour subset used in downstream experiments.
+annotations:
+  types:
+    - camera-extrinsics
+    - camera-intrinsics
+    - depth-map
+    - dynamic-mask
+    - structured-caption
+    - camera-motion-instruction
+    - scene-category
+    - lighting-weather-time-tags
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-NC-SA-4.0
+  media: CC-BY-NC-SA-4.0 release terms plus YouTube and uploader rights
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: >-
+    The project requires attribution, non-commercial use, and share-alike
+    derivatives. Those terms do not replace YouTube platform terms, uploader
+    rights, privacy review, or clip-level permissions for the underlying media.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - Camera poses and depth are model-generated rather than metric ground truth and can fail under severe distortion, changing focal length, occlusion, or object-dominated scenes.
+    - Dynamic masks derived from motion probabilities can underperform in complex scenes.
+    - The motion-keyword collection and manual screening pipeline favor smooth, reconstructable camera trajectories and may narrow geographic, cultural, subject, and motion diversity.
+    - Source-video availability and legal usability remain dependent on YouTube and uploader rights despite the hosted release.
+processing:
+  recipe: Query YouTube with motion-oriented keywords; manually screen long videos; cut 3 to 15 second scenes; normalize to 1280x720 H.265; apply hierarchical quality and motion filtering; reconstruct camera motion and depth; generate dynamic masks, structured captions, and serialized motion instructions; then balance SpatialVID-HQ by motion and scene category.
+  recommended_format: native
+  notes: Use the official downloader and per-clip annotation folders; retain the source video ID, pose convention, depth representation, dynamic mask, caption fields, and license acceptance record.
+evidence:
+  homepage: https://nju-3dv.github.io/projects/SpatialVID/
+  paper: https://arxiv.org/abs/2509.09676
+  used_by:
+    - SpatialVID Wan2.2 camera-control baseline
+    - CUT3R
+    - VGGT
+    - GS-LRM
+status: partial
+last_verified: "2026-07-27"

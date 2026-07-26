@@ -83,12 +83,27 @@ class ModelCatalogTests(unittest.TestCase):
                 "veo-3-1-lite",
                 "videocof",
                 "humo-17b",
+                "phantom-wan-14b",
             }.issubset(cards)
         )
         self.assertIn("GPT Image 2 (high)", cards["gpt-image-2"]["ranking_names"])
         self.assertIn("HappyHorse-1.0", cards["happyhorse-1-0"]["ranking_names"])
         self.assertIn("Kling Image 3.0 Omni", cards["kling-3"]["ranking_names"])
         self.assertIn("Recraft V4.1 Utility Pro", cards["recraft-v4-1"]["ranking_names"])
+
+    def test_phantom_wan_links_only_disclosed_training_sources(self) -> None:
+        cards = {card["id"]: card for _, card in load_models()}
+        phantom = cards["phantom-wan-14b"]
+        self.assertEqual(
+            {item["catalog_id"] for item in phantom["data"]["datasets"]},
+            {"panda-70m", None},
+        )
+        self.assertNotIn(
+            "phantom-data",
+            {item["catalog_id"] for item in phantom["data"]["datasets"]},
+        )
+        self.assertEqual(phantom["access"]["status"], "open-weights")
+        self.assertEqual(phantom["architecture"]["parameters"], 14000000000)
 
     def test_skyreels_disclosed_public_data_resolves_to_download_cards(self) -> None:
         cards = {card["id"]: card for _, card in load_models()}

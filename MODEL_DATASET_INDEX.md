@@ -2,9 +2,9 @@
 
 Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; unreleased or undisclosed data must state why no card exists.
 
-- Models: 67
-- References linked to catalog cards: 39
-- References without a card, with an explicit evidence boundary: 79
+- Models: 68
+- References linked to catalog cards: 40
+- References without a card, with an explicit evidence boundary: 82
 - Ordering: model release date, newest first
 
 | Model | Released | Dataset or corpus named by source | Availability | Catalog resolution | Role | Evidence boundary |
@@ -123,6 +123,10 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [HunyuanVideo-Avatar](models/video/hunyuanvideo-avatar.yaml) | 2025-05-28 | HunyuanVideo-Avatar character-audio training corpus | not-released | — publisher has not released it | fine-tuning | The report discloses aggregate scale and filtering but not source identities, licensing composition, speaker consent, or a public artifact. |
 | [HunyuanVideo-Avatar](models/video/hunyuanvideo-avatar.yaml) | 2025-05-28 | HDTF | public | [`hdtf`](catalog/video/hdtf.yaml) | evaluation | Used as a public talking-head evaluation set; this relationship is not a claim that HDTF was included in the private training corpus. |
 | [HunyuanVideo-Avatar](models/video/hunyuanvideo-avatar.yaml) | 2025-05-28 | CelebV-HQ | public | [`celebv-hq`](catalog/video/celebv-hq.yaml) | evaluation | Used as a public face-video evaluation set; this relationship is not a claim that CelebV-HQ was included in the private training corpus. |
+| [Phantom-Wan-14B](models/video/phantom-wan-14b.yaml) | 2025-05-27 | Panda-70M | public | [`panda-70m`](catalog/video/panda-70m.yaml) | fine-tuning | The Phantom technical report names Panda-70M alongside in-house video as the input to scene cutting, quality filtering, captioning, subject detection, and cross-video matching. |
+| [Phantom-Wan-14B](models/video/phantom-wan-14b.yaml) | 2025-05-27 | In-house video sources | not-released | — publisher has not released it | fine-tuning | The report does not identify the sources, license composition, sample count, or mixture with Panda-70M. |
+| [Phantom-Wan-14B](models/video/phantom-wan-14b.yaml) | 2025-05-27 | Subject200K | not-released | — publisher has not released it | fine-tuning | The report names Subject200K from the UniReal work as extra paired-image data, but no standalone public training release is linked. |
+| [Phantom-Wan-14B](models/video/phantom-wan-14b.yaml) | 2025-05-27 | OmniGen paired image data | not-released | — publisher has not released it | fine-tuning | The report names OmniGen as an additional paired-image source without identifying a public dataset artifact or exact subset. |
 | [MuseTalk 1.5](models/video/musetalk-1-5.yaml) | 2025-03-28 | Stable Diffusion 1.4 inherited training mixture | undisclosed | — exact source is not disclosed | pretraining | MuseTalk initializes its UNet from Stable Diffusion 1.4 but does not restate the foundation model's complete data lineage. |
 | [MuseTalk 1.5](models/video/musetalk-1-5.yaml) | 2025-03-28 | HDTF | public | [`hdtf`](catalog/video/hdtf.yaml) | fine-tuning | The official repository explicitly says the released checkpoint was trained on HDTF together with a private dataset. |
 | [MuseTalk 1.5](models/video/musetalk-1-5.yaml) | 2025-03-28 | MuseTalk private talking-face dataset | not-released | — publisher has not released it | fine-tuning | The repository names a private component but does not disclose its size, sources, language distribution, rights, or release plan. |

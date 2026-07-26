@@ -41,6 +41,11 @@ discovery:
     - https://huggingface.co/datasets/stanford-vision-lab/gpic
     - https://huggingface.co/datasets/Lewandofski/OpenVE-3M
     - https://huggingface.co/datasets/Lewandofski/OpenVE-Bench
+    - https://huggingface.co/datasets/SENORITADATASET/Senorita
+    - https://huggingface.co/datasets/SpatialVID/SpatialVID
+    - https://huggingface.co/bytedance-research/Phantom
+    - https://github.com/Wan-Video/Wan2.1
+    - https://github.com/hpcaitech/Open-Sora
 
 tracks:
   - id: image-generation
@@ -75,6 +80,8 @@ tracks:
       - https://github.com/Tencent-Hunyuan
       - https://github.com/Lightricks
       - https://github.com/Wan-Video
+      - https://github.com/Phantom-video/Phantom
+      - https://github.com/NJU-3DV/SpatialVID
       - https://deepmind.google/models/veo/
       - https://deepmind.google/models/gemini-omni/
       - https://openai.com/sitemap.xml/sora/
@@ -184,6 +191,8 @@ tracks:
       - https://huggingface.co/datasets/stanford-vision-lab/gpic
       - https://huggingface.co/datasets/Lewandofski/OpenVE-3M
       - https://huggingface.co/datasets/Lewandofski/OpenVE-Bench
+      - https://huggingface.co/datasets/SENORITADATASET/Senorita
+      - https://huggingface.co/datasets/SpatialVID/SpatialVID
       - https://github.com/MRzzm/HDTF
       - https://github.com/CelebV-HQ/CelebV-HQ
       - https://huggingface.co/datasets/FreedomIntelligence/TalkVid
@@ -436,6 +445,12 @@ tracks:
       - url: https://huggingface.co/api/datasets/ZhuoweiChen/Phantom-data-Koala36M
         catalog_id: phantom-data
         priority: critical
+      - url: https://huggingface.co/api/datasets/SENORITADATASET/Senorita
+        catalog_id: senorita-2m
+        priority: critical
+      - url: https://huggingface.co/api/datasets/SpatialVID/SpatialVID
+        catalog_id: spatialvid
+        priority: critical
       - url: https://modelscope.cn/api/v1/datasets/leoniuschen/HuMoSet
         catalog_id: humoset
         priority: critical
@@ -530,6 +545,9 @@ tracks:
         priority: critical
       - url: https://huggingface.co/api/models/bytedance-research/HuMo
         model_id: humo-17b
+        priority: critical
+      - url: https://huggingface.co/api/models/bytedance-research/Phantom
+        model_id: phantom-wan-14b
         priority: critical
       - url: https://huggingface.co/api/models/tencent/HunyuanVideo-Avatar
         model_id: hunyuanvideo-avatar

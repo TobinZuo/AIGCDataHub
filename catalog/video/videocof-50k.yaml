@@ -18,6 +18,11 @@ description: >-
   The public training corpus for VideoCoF, pairing source videos, edit-region
   reasoning videos, edited targets, and natural-language instructions across
   object addition, removal, swap, and local style transfer.
+derived_from:
+  - catalog_id: senorita-2m
+    relationship: transformed-derivative
+    contribution: Filtered source videos for the four released local-edit task archives
+    notes: VideoCoF-50K selects Señorita source clips, creates new synthetic edits and edit-region reasoning videos, and applies DOVER and VIE filtering rather than copying Señorita pairs unchanged.
 access:
   status: open
   type: hosted

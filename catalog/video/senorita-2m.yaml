@@ -1,0 +1,77 @@
+id: senorita-2m
+name: Señorita-2M
+organization: CUHK, PolyU, Tsinghua University, IntelliFusion, HKU, and UESTC
+released_at: "2025-02-10"
+release_date_source: https://huggingface.co/datasets/SENORITADATASET/Senorita
+modality: video
+tasks:
+  - instruction-guided-video-editing
+  - video-to-video
+  - local-video-editing
+  - global-video-editing
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  An instruction-based video-editing corpus built from roughly 389,000 Pexels
+  source videos and six specialist editing or vision pipelines, yielding about
+  1.95 million released source-target-instruction examples across local,
+  global, conditional, grounding, inpainting, and outpainting tasks.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/SENORITADATASET/Senorita
+  requires_account: false
+  notes: Hugging Face hosts approximately 1.6 TB of WebDataset archives and task-level JSON metadata without a login gate.
+scale:
+  samples: 1950021
+  source_items: 388909
+  hours: null
+  approximate: true
+  notes: Hugging Face estimates 1,950,021 rows; the paper rounds this to 2M edited pairs produced from 388,909 Pexels source videos.
+annotations:
+  types:
+    - source-video
+    - edited-video
+    - natural-language-edit-instruction
+    - edit-task-type
+    - object-mask
+    - visual-quality-score
+    - text-alignment-score
+    - source-target-similarity
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-NC-2.0
+  media: CC-BY-NC-2.0 dataset terms plus Pexels contributor and platform terms
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: >-
+    The Hugging Face card applies CC-BY-NC-2.0, but the source media came from
+    Pexels. Pexels' current terms prohibit using its API to build datasets or
+    train ML systems without explicit permission, so the original collection
+    authorization and per-asset rights require separate review.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - temporal-consistency
+    - motion
+    - provenance
+  known_limitations:
+    - Most target videos are synthetic edits and can inherit artifacts, failure modes, or biases from the six specialist pipelines and language models.
+    - The public row estimate, paper-level 2M count, and task archive composition use different counting surfaces and should not be treated as exact equivalents.
+    - Pexels source provenance and the permission basis for the original authenticated API collection are not enumerated per sample on the dataset card.
+    - The corpus focuses on short, mostly visual edits and does not cover audio editing, localization, long-form continuity, or the full professional editing distribution.
+processing:
+  recipe: Crawl high-resolution Pexels videos through authenticated APIs; caption and detect objects; create local, global, conditional, grounding, inpainting, and outpainting pairs with specialist models; generate instructions; then filter on visual quality, instruction alignment, and source-target similarity.
+  recommended_format: webdataset
+  notes: Preserve the task archive, source-target orientation, instruction, source identifier, and model-generated mask or condition; pin the Hugging Face revision before sharding.
+evidence:
+  homepage: https://senorita-2m-dataset.github.io/
+  paper: https://arxiv.org/abs/2502.06734
+  used_by:
+    - VideoCoF-50K
+status: partial
+last_verified: "2026-07-27"
