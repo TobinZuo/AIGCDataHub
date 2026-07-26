@@ -1,0 +1,54 @@
+id: ideogram-4
+name: Ideogram 4.0
+organization: Ideogram
+released_at: "2026-06-03"
+ranking_names:
+  - Ideogram 4.0
+  - ideogram-4.0-quality
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - text-rendering
+  - layout-controlled-generation
+access:
+  status: gated-weights
+  license: Ideogram 4 Non-Commercial License; separate commercial terms available
+  release_url: https://ideogram.ai/blog/ideogram-4.0/
+  weights_url: https://huggingface.co/ideogram-ai/ideogram-4-fp8
+  api_url: https://developer.ideogram.ai/
+architecture:
+  family: 9.3B single-stream flow-matching Diffusion Transformer with Qwen3-VL text encoder
+  parameters: 9300000000
+  notes: A 34-layer DiT jointly processes text and image tokens, consumes intermediate Qwen3-VL-8B-Instruct states, and generates from structured JSON prompts with optional layout boxes and palettes.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - structured-captioning
+        - bounding-box-conditioning
+        - color-palette-conditioning
+        - safety-filtering
+      scale_disclosed: false
+      strategy: Ideogram says the model was trained from scratch exclusively on exhaustive structured JSON captions, optionally carrying per-element bounding boxes and palettes, and that pretraining data was screened with NSFW classifiers.
+  strategy_summary:
+    - "Structure-rich captions are the main disclosed data strategy: each image is paired with an exhaustive JSON description rather than a plain caption."
+    - Dataset identities, provenance, rights composition, sample counts, mixture weights, and the form of the mentioned post-training procedures remain unpublished despite the detailed architecture and processing disclosure.
+  unknowns:
+    - Image-source identities, collection method, licenses, geography and language distribution, corpus size, deduplication, and train-test contamination controls.
+    - Caption-authoring models or annotators, quality thresholds, post-training dataset construction and objective, and mixture weights.
+evidence:
+  release: https://ideogram.ai/blog/ideogram-4.0/
+  technical_report: https://ideogram.ai/blog/ideogram-4.0/
+  repository: https://github.com/ideogram-oss/ideogram4
+status: verified
+last_verified: "2026-07-27"

@@ -7574,6 +7574,218 @@
       "linked_dataset_ids": []
     },
     {
+      "id": "reve-2",
+      "name": "Reve 2.0",
+      "organization": "Reve",
+      "released_at": "2026-06-03",
+      "ranking_names": [
+        "Reve 2.0",
+        "reve-2.0"
+      ],
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "text-rendering"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Proprietary service terms",
+        "release_url": "https://blog.reve.com/posts/announcing-reve-2.0/",
+        "weights_url": null,
+        "api_url": "https://blog.reve.com/posts/the-reve-api/"
+      },
+      "architecture": {
+        "family": "Undisclosed layout-oriented image generation and editing model",
+        "parameters": null,
+        "notes": "Reve describes a structured layout representation for objects, text, and regions, but does not publish the network architecture or parameter count."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "The launch describes layout-aware generation and editing plus lower compute use, but it does not identify the training corpus or data-processing recipe."
+          }
+        ],
+        "strategy_summary": [
+          "Keep the model's layout representation separate from data evidence; Reve has not published named training datasets for version 2.0."
+        ],
+        "unknowns": [
+          "Training and editing dataset identities, provenance, rights, scale, filtering, deduplication, captioning, and mixture weights.",
+          "Fine-tuning, preference, and safety-training data."
+        ]
+      },
+      "evidence": {
+        "release": "https://blog.reve.com/posts/announcing-reve-2.0/",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/image/reve-2.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://blog.reve.com/posts/announcing-reve-2.0/"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "arena-image-edit",
+          "provider": "Arena",
+          "rank": 13,
+          "score": 1357.9,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-image",
+          "provider": "Arena",
+          "rank": 4,
+          "score": 1270.7,
+          "score_label": "Arena"
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "ideogram-4",
+      "name": "Ideogram 4.0",
+      "organization": "Ideogram",
+      "released_at": "2026-06-03",
+      "ranking_names": [
+        "Ideogram 4.0",
+        "ideogram-4.0-quality"
+      ],
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "text-rendering",
+        "layout-controlled-generation"
+      ],
+      "access": {
+        "status": "gated-weights",
+        "license": "Ideogram 4 Non-Commercial License; separate commercial terms available",
+        "release_url": "https://ideogram.ai/blog/ideogram-4.0/",
+        "weights_url": "https://huggingface.co/ideogram-ai/ideogram-4-fp8",
+        "api_url": "https://developer.ideogram.ai/"
+      },
+      "architecture": {
+        "family": "9.3B single-stream flow-matching Diffusion Transformer with Qwen3-VL text encoder",
+        "parameters": 9300000000,
+        "notes": "A 34-layer DiT jointly processes text and image tokens, consumes intermediate Qwen3-VL-8B-Instruct states, and generates from structured JSON prompts with optional layout boxes and palettes."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "structured-captioning",
+              "bounding-box-conditioning",
+              "color-palette-conditioning",
+              "safety-filtering"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Ideogram says the model was trained from scratch exclusively on exhaustive structured JSON captions, optionally carrying per-element bounding boxes and palettes, and that pretraining data was screened with NSFW classifiers."
+          }
+        ],
+        "strategy_summary": [
+          "Structure-rich captions are the main disclosed data strategy: each image is paired with an exhaustive JSON description rather than a plain caption.",
+          "Dataset identities, provenance, rights composition, sample counts, mixture weights, and the form of the mentioned post-training procedures remain unpublished despite the detailed architecture and processing disclosure."
+        ],
+        "unknowns": [
+          "Image-source identities, collection method, licenses, geography and language distribution, corpus size, deduplication, and train-test contamination controls.",
+          "Caption-authoring models or annotators, quality thresholds, post-training dataset construction and objective, and mixture weights."
+        ]
+      },
+      "evidence": {
+        "release": "https://ideogram.ai/blog/ideogram-4.0/",
+        "technical_report": "https://ideogram.ai/blog/ideogram-4.0/",
+        "repository": "https://github.com/ideogram-oss/ideogram4"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/image/ideogram-4.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [
+          "structured-captioning",
+          "bounding-box-conditioning",
+          "color-palette-conditioning",
+          "safety-filtering"
+        ],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/ideogram-ai/ideogram-4-fp8"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "arena-text-to-image",
+          "provider": "Arena",
+          "rank": 13,
+          "score": 1206.8,
+          "score_label": "Arena"
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
       "id": "mai-image-2-5",
       "name": "MAI-Image-2.5",
       "organization": "Microsoft AI",
@@ -10898,6 +11110,104 @@
       "linked_dataset_ids": []
     },
     {
+      "id": "qwen-image-2",
+      "name": "Qwen-Image 2.0",
+      "organization": "Qwen Team",
+      "released_at": "2026-02-10",
+      "ranking_names": [
+        "Qwen-Image 2.0 Pro",
+        "qwen-image-2.0-pro",
+        "qwen-image-2.0-pro-2026-06-22"
+      ],
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "text-rendering"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Alibaba Cloud Model Studio service terms",
+        "release_url": "https://qwen.ai/blog?id=qwen-image-2.0",
+        "weights_url": null,
+        "api_url": "https://help.aliyun.com/en/model-studio/qwen-image-api"
+      },
+      "architecture": {
+        "family": "Undisclosed unified image generation and editing foundation model",
+        "parameters": null,
+        "notes": "Qwen describes a smaller unified generation-and-editing model with native 2K output and long-instruction support, without publishing its architecture or parameter count."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "The launch and API documentation describe a unified generation-and-editing model and successive dated snapshots, but publish no identifiable training datasets or reproducible data pipeline."
+          }
+        ],
+        "strategy_summary": [
+          "Track the Pro and dated API snapshots as variants of Qwen-Image 2.0 while keeping the training corpus explicitly undisclosed."
+        ],
+        "unknowns": [
+          "Dataset identities, collection sources, licenses, scale, language mix, captions, filtering, deduplication, and mixture weights.",
+          "Editing-pair construction, fine-tuning, preference, synthetic, and safety-training data."
+        ]
+      },
+      "evidence": {
+        "release": "https://qwen.ai/blog?id=qwen-image-2.0",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/image/qwen-image-2.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://help.aliyun.com/en/model-studio/qwen-image-api"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "arena-text-to-image",
+          "provider": "Arena",
+          "rank": 14,
+          "score": 1192.7,
+          "score_label": "Arena"
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
       "id": "just-dub-it",
       "name": "JUST-DUB-IT",
       "organization": "Lightricks and Tel Aviv University",
@@ -11058,7 +11368,9 @@
         "Kling 3.0 Omni 720p",
         "Kling 3.0 Omni 720p (Standard)",
         "Kling 3.0 Pro",
-        "kling-v3-pro"
+        "kling-v3-pro",
+        "Kling O3 Pro",
+        "kling-o3-pro"
       ],
       "modalities": [
         "video",
@@ -11140,13 +11452,23 @@
         "stage_count": 1,
         "unknown_count": 1
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://ir.kuaishou.com/news-releases/news-release-details/kling-ai-launches-30-model-ushering-era-where-everyone-can-be"
+      },
       "ranking_positions": [
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
           "rank": 13,
           "score": 1360.3,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-video-edit",
+          "provider": "Arena",
+          "rank": 5,
+          "score": 1251.2,
           "score_label": "Arena"
         },
         {
@@ -12564,6 +12886,111 @@
       ]
     },
     {
+      "id": "wan-2-6",
+      "name": "Wan 2.6",
+      "organization": "Alibaba Cloud",
+      "released_at": "2025-12-16",
+      "ranking_names": [
+        "Wan 2.6",
+        "Wan2.6",
+        "wan2.6-t2v",
+        "wan2.6-i2v",
+        "wan2.6-r2v"
+      ],
+      "modalities": [
+        "video",
+        "audio",
+        "image"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "reference-to-video",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Alibaba Cloud Model Studio service terms",
+        "release_url": "https://help.aliyun.com/en/model-studio/newly-released-models",
+        "weights_url": null,
+        "api_url": "https://help.aliyun.com/en/model-studio/legacy-wan-text-to-video-api-reference"
+      },
+      "architecture": {
+        "family": "Undisclosed multimodal Wan video architecture",
+        "parameters": null,
+        "notes": "The API family supports text, image, reference, and audio conditioning with multi-shot video generation, but Alibaba Cloud does not publish architecture details or parameter count."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "audio",
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "Model Studio documents the 2.6 service variants, capabilities, deployment regions, and release dates but does not publish training datasets or processing stages."
+          }
+        ],
+        "strategy_summary": [
+          "Treat the text-to-video, image-to-video, and reference-to-video endpoints as one Wan 2.6 service family while keeping its training corpus undisclosed."
+        ],
+        "unknowns": [
+          "Training dataset identities, provenance, licenses, sizes, modality and language mix, captions, filtering, deduplication, and mixture weights.",
+          "Fine-tuning, audio-alignment, preference, synthetic, and safety-training data."
+        ]
+      },
+      "evidence": {
+        "release": "https://help.aliyun.com/en/model-studio/newly-released-models",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/wan-2-6.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://help.aliyun.com/en/model-studio/legacy-wan-text-to-video-api-reference"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
+          "rank": 15,
+          "score": 1333.3,
+          "score_label": "Arena"
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
       "id": "gpt-image-1-5",
       "name": "GPT Image 1.5",
       "organization": "OpenAI",
@@ -13253,6 +13680,222 @@
           "rank": 9,
           "score": 1223,
           "score_label": "Elo"
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "sora-2",
+      "name": "Sora 2",
+      "organization": "OpenAI",
+      "released_at": "2025-09-30",
+      "ranking_names": [
+        "Sora 2",
+        "Sora 2 Pro",
+        "sora-2",
+        "sora-2-pro"
+      ],
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "OpenAI Services Agreement",
+        "release_url": "https://openai.com/index/sora-2/",
+        "weights_url": null,
+        "api_url": "https://developers.openai.com/api/docs/models/sora-2"
+      },
+      "architecture": {
+        "family": "Undisclosed video-audio generation and world-simulation architecture",
+        "parameters": null,
+        "notes": "OpenAI describes synchronized audio, improved physical simulation, multi-shot steerability, and persistent world state without publishing architecture or parameter count."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "audio",
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "public-web",
+              "licensed",
+              "proprietary"
+            ],
+            "operations": [
+              "quality-filtering",
+              "safety-filtering"
+            ],
+            "scale_disclosed": false,
+            "strategy": "OpenAI states that Sora 2 uses publicly available internet information, third-party partnership data, and information supplied or generated by users, human trainers, and researchers, followed by quality and safety filtering."
+          }
+        ],
+        "strategy_summary": [
+          "The source classes and filtering boundary are public, but OpenAI does not identify any constituent dataset, provider, sample count, or mixture ratio.",
+          "Keep Sora 2 and Sora 2 Pro as deployment variants of the same documented model family."
+        ],
+        "unknowns": [
+          "Named training datasets, partner identities, rights composition, corpus sizes, modality and language mix, deduplication, captions, and mixture weights.",
+          "Pretraining versus post-training allocation, synthetic-data contribution, preference data, and opt-out effects."
+        ]
+      },
+      "evidence": {
+        "release": "https://openai.com/index/sora-2/",
+        "technical_report": "https://deploymentsafety.openai.com/sora-2/overview-of-sora-2",
+        "repository": null
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/sora-2.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "public-web",
+          "licensed",
+          "proprietary"
+        ],
+        "operations": [
+          "quality-filtering",
+          "safety-filtering"
+        ],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://deploymentsafety.openai.com/sora-2/overview-of-sora-2"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
+          "rank": 5,
+          "score": 1365.6,
+          "score_label": "Arena"
+        },
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
+          "rank": 14,
+          "score": 1337.1,
+          "score_label": "Arena"
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "runway-aleph",
+      "name": "Runway Aleph",
+      "organization": "Runway",
+      "released_at": "2025-07-25",
+      "ranking_names": [
+        "Runway Aleph",
+        "runway-gen4-aleph"
+      ],
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "video-editing",
+        "reference-to-video"
+      ],
+      "access": {
+        "status": "product-only",
+        "license": "Runway Terms of Use",
+        "release_url": "https://runwayml.com/research/introducing-runway-aleph",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Undisclosed in-context video editing model",
+        "parameters": null,
+        "notes": "Aleph performs prompt-conditioned addition, removal, transformation, view generation, relighting, and restyling over input video without a published architecture or parameter count."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "Runway's official research release describes in-context video editing capabilities but publishes no training-data identities, source classes, scale, or construction stages."
+          }
+        ],
+        "strategy_summary": [
+          "Preserve the leaderboard's Gen-4 Aleph alias while keeping the original Aleph release distinct from the later Aleph 2.0 model."
+        ],
+        "unknowns": [
+          "Training sources, licenses, corpus scale, edit-pair construction, captions, filtering, deduplication, mixtures, and post-training data."
+        ]
+      },
+      "evidence": {
+        "release": "https://runwayml.com/research/introducing-runway-aleph",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/runway-aleph.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 1
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://runwayml.com/research/introducing-runway-aleph"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "arena-video-edit",
+          "provider": "Arena",
+          "rank": 7,
+          "score": 1194.0,
+          "score_label": "Arena"
         }
       ],
       "linked_dataset_ids": []
@@ -14063,7 +14706,7 @@
       "modality": "image",
       "score_label": "Arena",
       "date_label": "榜单快照",
-      "coverage_policy": "monitor",
+      "coverage_policy": "required",
       "source_url": "https://arena.ai/leaderboard/image-edit",
       "fetch_url": "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=image_edit&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100",
       "entries": [
@@ -14221,7 +14864,7 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
-          "model_id": null
+          "model_id": "reve-2"
         },
         {
           "rank": 14,
@@ -14256,7 +14899,7 @@
       "modality": "video",
       "score_label": "Arena",
       "date_label": "榜单快照",
-      "coverage_policy": "monitor",
+      "coverage_policy": "required",
       "source_url": "https://arena.ai/leaderboard/image-to-video",
       "fetch_url": "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=image_to_video&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100",
       "entries": [
@@ -14449,7 +15092,7 @@
       "modality": "image",
       "score_label": "Arena",
       "date_label": "榜单快照",
-      "coverage_policy": "monitor",
+      "coverage_policy": "required",
       "source_url": "https://arena.ai/leaderboard/text-to-image",
       "fetch_url": "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=text_to_image&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100",
       "entries": [
@@ -14499,7 +15142,7 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
-          "model_id": null
+          "model_id": "reve-2"
         },
         {
           "rank": 5,
@@ -14607,7 +15250,7 @@
           "released": "2026-07-10",
           "open_weights": true,
           "license": "Ideogram Open Model",
-          "model_id": null
+          "model_id": "ideogram-4"
         },
         {
           "rank": 14,
@@ -14619,7 +15262,7 @@
           "released": "2026-07-10",
           "open_weights": false,
           "license": "Proprietary",
-          "model_id": null
+          "model_id": "qwen-image-2"
         },
         {
           "rank": 15,
@@ -14642,7 +15285,7 @@
       "modality": "video",
       "score_label": "Arena",
       "date_label": "榜单快照",
-      "coverage_policy": "monitor",
+      "coverage_policy": "required",
       "source_url": "https://arena.ai/leaderboard/text-to-video",
       "fetch_url": "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=text_to_video&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100",
       "entries": [
@@ -14704,7 +15347,7 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
-          "model_id": null
+          "model_id": "sora-2"
         },
         {
           "rank": 6,
@@ -14812,7 +15455,7 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
-          "model_id": null
+          "model_id": "sora-2"
         },
         {
           "rank": 15,
@@ -14824,7 +15467,7 @@
           "released": "2026-07-07",
           "open_weights": false,
           "license": "Proprietary",
-          "model_id": null
+          "model_id": "wan-2-6"
         }
       ]
     },
@@ -14835,7 +15478,7 @@
       "modality": "video",
       "score_label": "Arena",
       "date_label": "榜单快照",
-      "coverage_policy": "monitor",
+      "coverage_policy": "required",
       "source_url": "https://arena.ai/leaderboard/video-edit",
       "fetch_url": "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=video_edit&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100",
       "entries": [
@@ -14897,7 +15540,7 @@
           "released": "2026-06-30",
           "open_weights": false,
           "license": "Proprietary",
-          "model_id": null
+          "model_id": "kling-3"
         },
         {
           "rank": 6,
@@ -14921,7 +15564,7 @@
           "released": "2026-06-30",
           "open_weights": false,
           "license": "Proprietary",
-          "model_id": null
+          "model_id": "runway-aleph"
         }
       ]
     },

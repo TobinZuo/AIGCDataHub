@@ -144,7 +144,7 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(len(rankings), 10)
         self.assertEqual({board["provider"] for board in rankings}, {"Artificial Analysis", "Arena"})
         required_boards = [board for board in rankings if board["coverage_policy"] == "required"]
-        self.assertEqual(len(required_boards), 5)
+        self.assertEqual(len(required_boards), 10)
         for board in required_boards:
             with self.subTest(board=board["id"]):
                 required = min(15, len(board["entries"]))
@@ -152,8 +152,7 @@ class CatalogTests(unittest.TestCase):
                 self.assertTrue(all(entry["model_id"] for entry in board["entries"][:required]))
 
         monitored_boards = [board for board in rankings if board["coverage_policy"] == "monitor"]
-        self.assertEqual(len(monitored_boards), 5)
-        self.assertTrue(any(not entry["model_id"] for board in monitored_boards for entry in board["entries"]))
+        self.assertEqual(monitored_boards, [])
 
     def test_compact_number(self) -> None:
         self.assertEqual(compact_number(70_723_513), "70.7M")

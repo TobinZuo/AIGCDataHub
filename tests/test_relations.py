@@ -152,7 +152,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
     def test_model_monitoring_is_joined_by_canonical_model_id(self) -> None:
         self.assertEqual(
             sum(model["monitoring"] is not None for model in self.models.values()),
-            30,
+            37,
         )
         self.assertEqual(
             self.models["hunyuanvideo-avatar"]["monitoring"],
