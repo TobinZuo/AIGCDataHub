@@ -1,0 +1,70 @@
+id: omniobject3d
+name: OmniObject3D
+organization: Shanghai AI Laboratory, CUHK, and SenseTime Research
+released_at: "2023-01-18"
+release_date_source: https://arxiv.org/abs/2301.07525
+modality: 3d
+tasks:
+  - object-centric-video
+  - multi-view-reconstruction
+  - novel-view-synthesis
+  - 3d-object-generation
+stages:
+  - pretraining
+  - evaluation
+  - data-curation
+description: >-
+  A large-vocabulary real-scanned object collection with textured meshes,
+  point clouds, multi-view renders, and real-captured videos for realistic 3D
+  perception, reconstruction, generation, and object-consistent video research.
+access:
+  status: gated
+  type: request
+  url: https://github.com/omniobject3d/OmniObject3D
+  requires_account: true
+  notes: The official repository directs users to register with OpenDataLab/OpenXLab and provides CLI instructions for downloading the full or selected data.
+scale:
+  samples: 6000
+  source_items: 6000
+  hours: null
+  approximate: true
+  notes: The paper describes roughly 6,000 professionally scanned objects across 190 daily-object categories, with multiple 2D and 3D representations per object.
+annotations:
+  types:
+    - textured-mesh
+    - point-cloud
+    - multi-view-rgb
+    - depth-map
+    - surface-normal
+    - camera-pose
+    - language-annotation
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-4.0
+  media: CC-BY-4.0 per the official dataset repository
+  commercial_use: allowed
+  redistribution: allowed
+  notes: Attribution is required; users must still review any rights or restrictions attached to depicted physical objects and downstream transformations.
+quality:
+  dimensions:
+    - visual-quality
+    - geometry-quality
+    - multi-view-consistency
+    - provenance
+  known_limitations:
+    - The category and geographic composition of professionally scanned household objects may not match production product catalogs.
+    - Full acquisition is account-gated and requires roughly 1.2 TB compressed storage.
+    - Rendered views and real-captured videos have different appearance and camera distributions.
+processing:
+  recipe: Download selected raw scans, renders, videos, or point-cloud subsets with the official CLI and preserve object, category, capture, and representation identifiers.
+  recommended_format: native
+  notes: Keep raw scans, real videos, rendered views, and derived point clouds as separate modalities rather than treating them as interchangeable samples.
+evidence:
+  homepage: https://github.com/omniobject3d/OmniObject3D
+  paper: https://arxiv.org/abs/2301.07525
+  used_by:
+    - ConsID-Gen
+status: verified
+last_verified: "2026-07-27"

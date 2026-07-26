@@ -1166,6 +1166,9 @@ function StrategyResult({
 }) {
   const disclosed = disclosureScore(model.data.disclosure_level);
   const profile = model.strategy_profile;
+  const linkedDatasets = model.linked_dataset_ids
+    .map((datasetId) => datasetById.get(datasetId))
+    .filter((dataset): dataset is DatasetCard => Boolean(dataset));
 
   return (
     <article className="strategy-card" id={`strategy-${model.id}`}>
@@ -1185,6 +1188,22 @@ function StrategyResult({
         </div>
       </header>
       <p className="strategy-lead">{model.data.strategy_summary[0]}</p>
+      {linkedDatasets.length > 0 && (
+        <nav className="strategy-linked-strip" aria-label={`${model.name} 已关联数据集`}>
+          <div className="strategy-linked-label">
+            <span>已关联数据集</span>
+            <strong>{linkedDatasets.length} 张数据卡</strong>
+          </div>
+          <div className="strategy-linked-actions">
+            {linkedDatasets.map((dataset) => (
+              <button type="button" onClick={() => onOpenDataset(dataset.id)} key={dataset.id}>
+                {dataset.name} <span aria-hidden="true">→</span>
+              </button>
+            ))}
+          </div>
+          <a href={`#strategy-datasets-${model.id}`}>完整引用与下载入口 ↓</a>
+        </nav>
+      )}
       <div className="pipeline" aria-label="训练阶段">
         {model.data.stages.map((stage, index) => (
           <div className="pipeline-stage" key={`${model.id}-${index}-${stage.name}`}>

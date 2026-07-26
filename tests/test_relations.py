@@ -34,7 +34,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
                 self.assertIn(model_id, self.datasets[dataset_id]["linked_model_ids"])
 
     def test_dataset_lineage_index_and_backlinks_are_symmetric(self) -> None:
-        self.assertEqual(len(self.payload["dataset_relations"]), 17)
+        self.assertEqual(len(self.payload["dataset_relations"]), 21)
         relation_pairs = {
             (relation["source_dataset_id"], relation["derived_dataset_id"])
             for relation in self.payload["dataset_relations"]
@@ -52,6 +52,10 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn(("openhumanvid", "humoset"), relation_pairs)
         self.assertIn(("senorita-2m", "videocof-50k"), relation_pairs)
         self.assertIn(("videomatte240k", "vera-layered-video"), relation_pairs)
+        self.assertIn(("co3d", "considvid"), relation_pairs)
+        self.assertIn(("omniobject3d", "considvid"), relation_pairs)
+        self.assertIn(("objectron", "considvid"), relation_pairs)
+        self.assertIn(("mvimgnet-2-0", "considvid"), relation_pairs)
 
         for source_id, derived_id in relation_pairs:
             with self.subTest(source=source_id, derived=derived_id):
@@ -132,6 +136,11 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn("humo-17b", self.datasets["phantom-data"]["linked_model_ids"])
         self.assertIn("humo-17b", self.datasets["humoset"]["linked_model_ids"])
         self.assertIn("phantom-wan-14b", self.datasets["panda-70m"]["linked_model_ids"])
+        self.assertEqual(
+            set(self.models["consid-gen"]["linked_dataset_ids"]),
+            {"co3d", "omniobject3d", "objectron", "mvimgnet-2-0", "considvid"},
+        )
+        self.assertIn("consid-gen", self.datasets["considvid"]["linked_model_ids"])
         self.assertEqual(
             set(self.models["vera-14b"]["linked_dataset_ids"]),
             {"vera-layered-video", "videomatte240k"},
@@ -294,6 +303,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.models["mova-720p"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["vera-14b"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["graphvid"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.models["consid-gen"]["monitoring"]["priority"], "critical")
         self.assertEqual(
             self.models["openve-edit"]["monitoring"]["source_url"],
             "https://github.com/OpenVE-Team/OpenVE-3M/commits/main.atom",

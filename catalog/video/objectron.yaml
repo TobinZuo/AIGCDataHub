@@ -1,0 +1,69 @@
+id: objectron
+name: Objectron
+organization: Google Research
+released_at: "2020-12-18"
+release_date_source: https://arxiv.org/abs/2012.09988
+modality: video
+tasks:
+  - object-centric-video
+  - multi-view-reconstruction
+  - 3d-object-detection
+  - camera-pose-estimation
+stages:
+  - pretraining
+  - evaluation
+  - data-curation
+description: >-
+  A collection of short object-centric videos with camera motion, AR session
+  metadata, sparse point clouds, planes, and manually annotated oriented 3D
+  bounding boxes for multi-view object understanding.
+access:
+  status: open
+  type: hosted
+  url: https://github.com/google-research-datasets/Objectron
+  requires_account: false
+  notes: The official repository links the public Google Cloud Storage bucket, download notebook, sample indexes, train/test splits, raw videos, annotations, and processed records.
+scale:
+  samples: 15000
+  source_items: 4000000
+  hours: null
+  approximate: true
+  notes: The release contains about 15K annotated video clips and 4M annotated frames across nine object categories; raw videos and annotations occupy about 1.9 TB.
+annotations:
+  types:
+    - object-centric-video
+    - camera-pose
+    - sparse-point-cloud
+    - plane
+    - oriented-3d-bounding-box
+    - train-test-split
+  source: human
+  languages:
+    - none
+license:
+  metadata: C-UDA-1.0
+  media: Computational Use of Data Agreement 1.0
+  commercial_use: review-required
+  redistribution: allowed
+  notes: The agreement allows computational use and conditional redistribution with attribution and downstream C-UDA terms; it disclaims that the provider holds all underlying rights, so commercial deployment needs review.
+quality:
+  dimensions:
+    - visual-quality
+    - geometry-quality
+    - multi-view-consistency
+    - provenance
+  known_limitations:
+    - Nine object categories and mobile AR capture conditions limit domain coverage.
+    - Camera, point-cloud, plane, and 3D-box accuracy vary across sessions.
+    - The license is computational-use specific and does not itself resolve all underlying rights.
+processing:
+  recipe: Use the official indexes and download notebook to fetch raw or processed sequences, retain AR metadata and annotations, and verify video-to-geometry joins before filtering clips.
+  recommended_format: native
+  notes: Preserve original sequence ids, categories, country metadata when available, camera calibration, and C-UDA attribution through every derived release.
+evidence:
+  homepage: https://github.com/google-research-datasets/Objectron
+  paper: https://arxiv.org/abs/2012.09988
+  used_by:
+    - ConsID-Gen
+status: verified
+last_verified: "2026-07-27"

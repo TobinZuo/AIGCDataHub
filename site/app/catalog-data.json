@@ -1067,6 +1067,136 @@
       "linked_model_ids": []
     },
     {
+      "id": "considvid",
+      "name": "ConsIDVid Public Release",
+      "organization": "Texas A&M University and eBay",
+      "released_at": "2026-07-07",
+      "release_date_source": "https://huggingface.co/api/datasets/mingyang-wu/ConsIDVid/commits/main",
+      "modality": "video",
+      "tasks": [
+        "image-to-video",
+        "object-centric-video",
+        "identity-preserving-video-generation",
+        "multi-view-consistency-evaluation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "The publicly downloadable portion of ConsIDVid, containing processed object-centric videos and two-level appearance and motion captions for identity-preserving I2V research.",
+      "derived_from": [
+        {
+          "catalog_id": "co3d",
+          "relationship": "source-component",
+          "contribution": "Real-world object-centric multi-view video source",
+          "notes": "The paper explicitly names CO3D among the public candidate sources filtered and recaptioned for ConsIDVid."
+        },
+        {
+          "catalog_id": "omniobject3d",
+          "relationship": "source-component",
+          "contribution": "Real-scanned objects with multi-view videos and geometry",
+          "notes": "OmniObject3D supplies public object-centric video and multi-view geometry before ConsIDVid selection and captioning."
+        },
+        {
+          "catalog_id": "objectron",
+          "relationship": "source-component",
+          "contribution": "Mobile object-centric video with camera and 3D annotations",
+          "notes": "Objectron is explicitly listed as a candidate source; ConsIDVid retains selected processed object videos rather than redistributing the entire source dataset."
+        },
+        {
+          "catalog_id": "mvimgnet-2-0",
+          "relationship": "transformed-derivative",
+          "contribution": "Start and end views for synthetic identity-preserving videos",
+          "notes": "The pipeline selects MVImgNet 2.0 keyframes, uses an extended FramePack generator to interpolate video, and captions the result with Qwen2.5-VL."
+        }
+      ],
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/mingyang-wu/ConsIDVid",
+        "requires_account": false,
+        "notes": "The public Hugging Face repository is ungated and reports approximately 148 GB of total storage; the data card's sample download command currently uses a different repository id, so use the linked ConsIDVid repository itself. The repository also enumerates undocumented paths outside the release directory described by its card, so review selected paths before downloading the entire repository."
+      },
+      "scale": {
+        "samples": 8298,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The 2026-07-07 repository revision exposes 8,298 MP4 files and 32,816 TXT caption files under datasets/public. The API also enumerates 58,735 JPG files under undocumented datasets/first-frames paths; those are not counted as the documented ConsIDVid release. The released files do not reproduce the full training mixture."
+      },
+      "annotations": {
+        "types": [
+          "processed-video",
+          "appearance-caption",
+          "motion-caption",
+          "source-family"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not declared on the official Hugging Face dataset card",
+        "media": "Not declared; upstream CO3D, OmniObject3D, Objectron, and MVImgNet 2.0 terms differ",
+        "commercial_use": "unknown",
+        "redistribution": "review-required",
+        "notes": "Public file access is not a license grant; users must review each upstream source's terms and obtain clarification for ConsIDVid-specific captions, synthetic videos, and packaged derivatives."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "geometry-quality",
+          "multi-view-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The public release excludes additional data still under internal review and does not reproduce the complete training mixture.",
+          "The official dataset card does not declare a dataset license and its example CLI command names a different repository id.",
+          "The repository API enumerates undocumented datasets/first-frames paths outside the public and public_synthesis directory contract described by the data card.",
+          "Source-derived and FramePack-generated clips have different realism, camera, geometry, and licensing distributions.",
+          "ConsIDVid-Bench also contains an unreleased 241-video proprietary e-commerce subset."
+        ]
+      },
+      "processing": {
+        "recipe": "Filter public object-centric sequences, generate selected MVImgNet 2.0 interpolations with FramePack, create appearance and motion captions with Qwen2.5-VL, and package processed videos with hierarchical caption files.",
+        "recommended_format": "native",
+        "notes": "Preserve upstream dataset id, real versus synthetic status, both caption levels, selected repository paths, and the exact Hugging Face revision during training or evaluation."
+      },
+      "evidence": {
+        "homepage": "https://myangwu.github.io/ConsID-Gen/",
+        "paper": "https://arxiv.org/abs/2602.10113",
+        "used_by": [
+          "ConsID-Gen"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/considvid.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "8.3K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/mingyang-wu/ConsIDVid?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [
+        "co3d",
+        "omniobject3d",
+        "objectron",
+        "mvimgnet-2-0"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "consid-gen"
+      ]
+    },
+    {
       "id": "vera-layered-video",
       "name": "Vera Layered Video Dataset",
       "organization": "Netflix and California Institute of Technology",
@@ -4079,6 +4209,101 @@
       ]
     },
     {
+      "id": "mvimgnet-2-0",
+      "name": "MVImgNet 2.0",
+      "organization": "CUHK-Shenzhen GAP-Lab and Alibaba Group",
+      "released_at": "2025-02-20",
+      "release_date_source": "https://github.com/GAP-LAB-CUHK-SZ/MVImgNet",
+      "modality": "3d",
+      "tasks": [
+        "multi-view-reconstruction",
+        "novel-view-synthesis",
+        "object-centric-video",
+        "synthetic-video-source"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A large-scale real-world multi-view object collection extending MVImgNet with additional categories, improved object masks and camera poses, and dense point clouds for 3D-aware learning and synthetic video construction.",
+      "access": {
+        "status": "gated",
+        "type": "request",
+        "url": "https://github.com/GAP-LAB-CUHK-SZ/MVImgNet2.0",
+        "requires_account": true,
+        "notes": "The official repository requires a request form to obtain download links and a password; it reports that the first approximately 180K-video part is available while the remaining expansion is pending."
+      },
+      "scale": {
+        "samples": 180000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The currently described public part contains about 180K videos; the complete MVImgNet 2.0 expansion targets roughly 300K new objects and 520K total objects when combined with MVImgNet."
+      },
+      "annotations": {
+        "types": [
+          "multi-view-rgb",
+          "foreground-mask",
+          "camera-pose",
+          "sparse-point-cloud",
+          "dense-point-cloud",
+          "object-category"
+        ],
+        "source": "mixed",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "MVImgNet 2.0 Terms of Use",
+        "media": "MVImgNet 2.0 Terms of Use; repository code is CC-BY-NC-4.0",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The repository distinguishes bespoke data terms from the non-commercial code license; the requested terms and source media rights must be reviewed before training or redistribution."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "geometry-quality",
+          "multi-view-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Only the first reported release part is currently available, so the full 520K-object headline should not be treated as downloadable.",
+          "Form-gated SharePoint distribution and passwords complicate automated reproducibility and revision checks.",
+          "Object masks, camera poses, and point clouds are reconstructed annotations and can contain estimation errors."
+        ]
+      },
+      "processing": {
+        "recipe": "Request official access, download versioned archives, retain multi-view sequence identity, and keep images, masks, COLMAP cameras, and point clouds aligned per object.",
+        "recommended_format": "native",
+        "notes": "Record whether each sample comes from original MVImgNet or the 2.0 expansion and retain the specific released part, archive checksum, and Terms of Use accepted."
+      },
+      "evidence": {
+        "homepage": "https://luyues.github.io/mvimgnet2/",
+        "paper": "https://arxiv.org/abs/2412.01430",
+        "used_by": [
+          "ConsID-Gen"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/3d/mvimgnet-2-0.yaml",
+      "scenario_ids": [],
+      "scale_label": "~180K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/GAP-LAB-CUHK-SZ/MVImgNet2.0/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "considvid"
+      ],
+      "linked_model_ids": [
+        "consid-gen"
+      ]
+    },
+    {
       "id": "videoufo",
       "name": "VideoUFO",
       "organization": "ReLER Lab, University of Technology Sydney",
@@ -6433,6 +6658,103 @@
       ]
     },
     {
+      "id": "omniobject3d",
+      "name": "OmniObject3D",
+      "organization": "Shanghai AI Laboratory, CUHK, and SenseTime Research",
+      "released_at": "2023-01-18",
+      "release_date_source": "https://arxiv.org/abs/2301.07525",
+      "modality": "3d",
+      "tasks": [
+        "object-centric-video",
+        "multi-view-reconstruction",
+        "novel-view-synthesis",
+        "3d-object-generation"
+      ],
+      "stages": [
+        "pretraining",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A large-vocabulary real-scanned object collection with textured meshes, point clouds, multi-view renders, and real-captured videos for realistic 3D perception, reconstruction, generation, and object-consistent video research.",
+      "access": {
+        "status": "gated",
+        "type": "request",
+        "url": "https://github.com/omniobject3d/OmniObject3D",
+        "requires_account": true,
+        "notes": "The official repository directs users to register with OpenDataLab/OpenXLab and provides CLI instructions for downloading the full or selected data."
+      },
+      "scale": {
+        "samples": 6000,
+        "source_items": 6000,
+        "hours": null,
+        "approximate": true,
+        "notes": "The paper describes roughly 6,000 professionally scanned objects across 190 daily-object categories, with multiple 2D and 3D representations per object."
+      },
+      "annotations": {
+        "types": [
+          "textured-mesh",
+          "point-cloud",
+          "multi-view-rgb",
+          "depth-map",
+          "surface-normal",
+          "camera-pose",
+          "language-annotation"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0",
+        "media": "CC-BY-4.0 per the official dataset repository",
+        "commercial_use": "allowed",
+        "redistribution": "allowed",
+        "notes": "Attribution is required; users must still review any rights or restrictions attached to depicted physical objects and downstream transformations."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "geometry-quality",
+          "multi-view-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The category and geographic composition of professionally scanned household objects may not match production product catalogs.",
+          "Full acquisition is account-gated and requires roughly 1.2 TB compressed storage.",
+          "Rendered views and real-captured videos have different appearance and camera distributions."
+        ]
+      },
+      "processing": {
+        "recipe": "Download selected raw scans, renders, videos, or point-cloud subsets with the official CLI and preserve object, category, capture, and representation identifiers.",
+        "recommended_format": "native",
+        "notes": "Keep raw scans, real videos, rendered views, and derived point clouds as separate modalities rather than treating them as interchangeable samples."
+      },
+      "evidence": {
+        "homepage": "https://github.com/omniobject3d/OmniObject3D",
+        "paper": "https://arxiv.org/abs/2301.07525",
+        "used_by": [
+          "ConsID-Gen"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/3d/omniobject3d.yaml",
+      "scenario_ids": [],
+      "scale_label": "~6K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/omniobject3d/OmniObject3D/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "considvid"
+      ],
+      "linked_model_ids": [
+        "consid-gen"
+      ]
+    },
+    {
       "id": "coyo-700m",
       "name": "COYO-700M",
       "organization": "Kakao Brain",
@@ -6795,6 +7117,102 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "emu3-5"
+      ]
+    },
+    {
+      "id": "co3d",
+      "name": "CO3D",
+      "organization": "Meta AI",
+      "released_at": "2021-09-01",
+      "release_date_source": "https://arxiv.org/abs/2109.00512",
+      "modality": "video",
+      "tasks": [
+        "object-centric-video",
+        "multi-view-reconstruction",
+        "novel-view-synthesis",
+        "camera-pose-estimation"
+      ],
+      "stages": [
+        "pretraining",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A real-world collection of object-centric multi-view videos covering common object categories, with camera poses, foreground masks, depth estimates, and reconstructed point clouds for 3D-aware learning and view synthesis.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://github.com/facebookresearch/co3d/tree/v1",
+        "requires_account": false,
+        "notes": "The official v1 repository provides download manifests and tooling for the original CO3D release; the repository's default branch now documents the larger CO3Dv2 separately."
+      },
+      "scale": {
+        "samples": 18619,
+        "source_items": 1500000,
+        "hours": null,
+        "approximate": true,
+        "notes": "The original paper reports nearly 19K object videos and about 1.5M frames across 50 MS-COCO categories; CO3Dv2 is a distinct, larger revision."
+      },
+      "annotations": {
+        "types": [
+          "multi-view-rgb",
+          "camera-pose",
+          "foreground-mask",
+          "depth-map",
+          "point-cloud",
+          "object-category"
+        ],
+        "source": "mixed",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0",
+        "media": "CC-BY-NC-4.0 official repository terms",
+        "commercial_use": "noncommercial",
+        "redistribution": "allowed",
+        "notes": "Reuse and redistribution require attribution and must remain non-commercial; privacy, depicted-property, and downstream derivative rights still require review."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "geometry-quality",
+          "multi-view-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Crowd-captured sequences vary in lighting, blur, framing, occlusion, and reconstruction quality.",
+          "The object-category distribution is limited to common categories and is not representative of all products or environments.",
+          "CO3D and CO3Dv2 differ in sequence count, frame quality, masks, and packaging and should not be mixed without version tracking."
+        ]
+      },
+      "processing": {
+        "recipe": "Download the official category archives, preserve sequence and frame identifiers, and keep RGB, masks, depth, camera, and point-cloud annotations aligned.",
+        "recommended_format": "native",
+        "notes": "Retain the CO3D version and source manifest with every derived clip because the original and v2 releases have different content and geometry annotations."
+      },
+      "evidence": {
+        "homepage": "https://ai.meta.com/datasets/co3d-dataset/",
+        "paper": "https://arxiv.org/abs/2109.00512",
+        "used_by": [
+          "ConsID-Gen"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/co3d.yaml",
+      "scenario_ids": [],
+      "scale_label": "~18.6K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/facebookresearch/co3d/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "considvid"
+      ],
+      "linked_model_ids": [
+        "consid-gen"
       ]
     },
     {
@@ -7258,6 +7676,102 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "mova-720p"
+      ]
+    },
+    {
+      "id": "objectron",
+      "name": "Objectron",
+      "organization": "Google Research",
+      "released_at": "2020-12-18",
+      "release_date_source": "https://arxiv.org/abs/2012.09988",
+      "modality": "video",
+      "tasks": [
+        "object-centric-video",
+        "multi-view-reconstruction",
+        "3d-object-detection",
+        "camera-pose-estimation"
+      ],
+      "stages": [
+        "pretraining",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A collection of short object-centric videos with camera motion, AR session metadata, sparse point clouds, planes, and manually annotated oriented 3D bounding boxes for multi-view object understanding.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://github.com/google-research-datasets/Objectron",
+        "requires_account": false,
+        "notes": "The official repository links the public Google Cloud Storage bucket, download notebook, sample indexes, train/test splits, raw videos, annotations, and processed records."
+      },
+      "scale": {
+        "samples": 15000,
+        "source_items": 4000000,
+        "hours": null,
+        "approximate": true,
+        "notes": "The release contains about 15K annotated video clips and 4M annotated frames across nine object categories; raw videos and annotations occupy about 1.9 TB."
+      },
+      "annotations": {
+        "types": [
+          "object-centric-video",
+          "camera-pose",
+          "sparse-point-cloud",
+          "plane",
+          "oriented-3d-bounding-box",
+          "train-test-split"
+        ],
+        "source": "human",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "C-UDA-1.0",
+        "media": "Computational Use of Data Agreement 1.0",
+        "commercial_use": "review-required",
+        "redistribution": "allowed",
+        "notes": "The agreement allows computational use and conditional redistribution with attribution and downstream C-UDA terms; it disclaims that the provider holds all underlying rights, so commercial deployment needs review."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "geometry-quality",
+          "multi-view-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Nine object categories and mobile AR capture conditions limit domain coverage.",
+          "Camera, point-cloud, plane, and 3D-box accuracy vary across sessions.",
+          "The license is computational-use specific and does not itself resolve all underlying rights."
+        ]
+      },
+      "processing": {
+        "recipe": "Use the official indexes and download notebook to fetch raw or processed sequences, retain AR metadata and annotations, and verify video-to-geometry joins before filtering clips.",
+        "recommended_format": "native",
+        "notes": "Preserve original sequence ids, categories, country metadata when available, camera calibration, and C-UDA attribution through every derived release."
+      },
+      "evidence": {
+        "homepage": "https://github.com/google-research-datasets/Objectron",
+        "paper": "https://arxiv.org/abs/2012.09988",
+        "used_by": [
+          "ConsID-Gen"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/objectron.yaml",
+      "scenario_ids": [],
+      "scale_label": "~15K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/google-research-datasets/Objectron/commits/master.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "considvid"
+      ],
+      "linked_model_ids": [
+        "consid-gen"
       ]
     },
     {
@@ -14577,6 +15091,216 @@
       ]
     },
     {
+      "id": "consid-gen",
+      "name": "ConsID-Gen",
+      "organization": "Texas A&M University and eBay",
+      "released_at": "2026-02-10",
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "image-to-video",
+        "reference-to-video",
+        "identity-preserving-video-generation",
+        "product-video-generation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0 per the official Hugging Face model card",
+        "release_url": "https://myangwu.github.io/ConsID-Gen/",
+        "weights_url": "https://huggingface.co/mingyang-wu/ConsID-Gen",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Wan2.1-Fun-1.3B-InP DiT with dual visual-geometric encoding and text-visual fusion",
+        "parameters": null,
+        "notes": "The public 3.7 GB adapter/checkpoint builds on Wan2.1-Fun-1.3B-InP, augments the first frame with unposed auxiliary views, encodes semantic appearance and VGGT geometry in parallel, and pre-aligns visual and text features before diffusion; the complete parameter total is not stated."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Wan2.1-Fun-1.3B-InP inherited pretraining mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "ConsID-Gen inherits the base model's video prior; the paper does not restate its complete source corpus, licensing composition, or mixture."
+          },
+          {
+            "name": "CO3D",
+            "catalog_id": "co3d",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "Selected sequences; exact retained count not disclosed",
+            "notes": "One of three named public object-centric candidate sources processed into ConsIDVid for identity-preserving training and evaluation."
+          },
+          {
+            "name": "OmniObject3D",
+            "catalog_id": "omniobject3d",
+            "role": "fine-tuning",
+            "availability": "gated",
+            "scale": "Selected sequences; exact retained count not disclosed",
+            "notes": "Supplies real-scanned objects, videos, and geometry before the ConsIDVid selection and hierarchical captioning pipeline."
+          },
+          {
+            "name": "Objectron",
+            "catalog_id": "objectron",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "Selected sequences; exact retained count not disclosed",
+            "notes": "Supplies short object-centric videos with mobile camera motion and 3D annotations before ConsIDVid filtering."
+          },
+          {
+            "name": "MVImgNet 2.0",
+            "catalog_id": "mvimgnet-2-0",
+            "role": "fine-tuning",
+            "availability": "gated",
+            "scale": "Selected object views; exact retained count not disclosed",
+            "notes": "Start and end keyframes seed synthetic videos generated with an extended FramePack pipeline and captioned by Qwen2.5-VL."
+          },
+          {
+            "name": "ConsIDVid Public Release",
+            "catalog_id": "considvid",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "8,298 released videos plus 32,816 caption files under the documented public path",
+            "notes": "The downloadable public subset packages processed source videos and hierarchical captions; the repository also contains undocumented paths that are excluded from this release-scale count."
+          },
+          {
+            "name": "Unreleased e-commerce UGC supplement",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "More than 80 hours before filtering",
+            "notes": "The paper describes object-centric monocular UGC from public e-commerce platforms, but the processed training files, source inventory, rights, and retained count are not released."
+          },
+          {
+            "name": "ConsIDVid-Bench proprietary subset",
+            "catalog_id": null,
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "241 videos",
+            "notes": "The proprietary benchmark subset depicts products from popular e-commerce listings; only aggregate evaluation details are public."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-foundation-model"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Initialize from Wan2.1-Fun-1.3B-InP while leaving its inherited pretraining sources and mixture undisclosed in this release."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "video",
+              "text",
+              "3d"
+            ],
+            "source_types": [
+              "public-dataset",
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "object-centric-filtering",
+              "quality-filtering",
+              "multi-view-frame-selection",
+              "synthetic-video-generation",
+              "hierarchical-video-captioning",
+              "appearance-aware-captioning",
+              "motion-aware-captioning",
+              "view-assisted-conditioning",
+              "geometry-aware-conditioning",
+              "text-visual-prealignment"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Curate real public and unreleased e-commerce object videos, synthesize additional view-consistent clips from MVImgNet 2.0, caption appearance and motion separately, and fine-tune a view-assisted I2V model for stable object identity."
+          }
+        ],
+        "strategy_summary": [
+          "Build ConsIDVid from named public object-centric sources, an unreleased e-commerce supplement, and MVImgNet 2.0 views transformed into smooth synthetic clips.",
+          "Separate high-resolution appearance captioning from motion-aware captioning so fine details and temporal dynamics are represented without forcing one caption pass to optimize both.",
+          "Condition generation on the first frame plus unposed auxiliary views and learned geometry, then align visual and textual signals before the diffusion backbone.",
+          "Release the model checkpoint and 8,298-video public data subset while retaining part of the training mixture and the 241-video proprietary benchmark subset."
+        ],
+        "unknowns": [
+          "Complete Wan2.1-Fun-1.3B-InP pretraining data, licensing mix, filtering, and inherited weights.",
+          "Exact per-source retained counts, mixture ratios, deduplication, rejection rates, and train/validation partition for the full ConsIDVid mixture.",
+          "Source identities and rights clearance for the more than 80 hours of unreleased e-commerce UGC.",
+          "Dataset-specific license for the public ConsIDVid package and relationship between the released subset and every reported training run.",
+          "Total parameter count, training compute, and whether the public checkpoint exactly matches every paper evaluation."
+        ]
+      },
+      "evidence": {
+        "release": "https://myangwu.github.io/ConsID-Gen/",
+        "technical_report": "https://arxiv.org/abs/2602.10113",
+        "repository": "https://github.com/eBay/ConsID-Gen"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/consid-gen.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed",
+          "public-dataset",
+          "proprietary",
+          "synthetic"
+        ],
+        "operations": [
+          "inherited-foundation-model",
+          "object-centric-filtering",
+          "quality-filtering",
+          "multi-view-frame-selection",
+          "synthetic-video-generation",
+          "hierarchical-video-captioning",
+          "appearance-aware-captioning",
+          "motion-aware-captioning",
+          "view-assisted-conditioning",
+          "geometry-aware-conditioning",
+          "text-visual-prealignment"
+        ],
+        "data_reference_count": 8,
+        "linked_dataset_count": 5,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 5
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/mingyang-wu/ConsID-Gen"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "co3d",
+        "omniobject3d",
+        "objectron",
+        "mvimgnet-2-0",
+        "considvid"
+      ]
+    },
+    {
       "id": "kling-3",
       "name": "Kling AI 3.0",
       "organization": "Kuaishou Technology",
@@ -19889,6 +20613,46 @@
       "reference_name": "CommonCatalog commercial subset"
     },
     {
+      "model_id": "consid-gen",
+      "dataset_id": "co3d",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "Selected sequences; exact retained count not disclosed",
+      "reference_name": "CO3D"
+    },
+    {
+      "model_id": "consid-gen",
+      "dataset_id": "considvid",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "8,298 released videos plus 32,816 caption files under the documented public path",
+      "reference_name": "ConsIDVid Public Release"
+    },
+    {
+      "model_id": "consid-gen",
+      "dataset_id": "mvimgnet-2-0",
+      "role": "fine-tuning",
+      "availability": "gated",
+      "scale": "Selected object views; exact retained count not disclosed",
+      "reference_name": "MVImgNet 2.0"
+    },
+    {
+      "model_id": "consid-gen",
+      "dataset_id": "objectron",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "Selected sequences; exact retained count not disclosed",
+      "reference_name": "Objectron"
+    },
+    {
+      "model_id": "consid-gen",
+      "dataset_id": "omniobject3d",
+      "role": "fine-tuning",
+      "availability": "gated",
+      "scale": "Selected sequences; exact retained count not disclosed",
+      "reference_name": "OmniObject3D"
+    },
+    {
       "model_id": "ctrlvton",
       "dataset_id": "viton-hd-edit",
       "role": "evaluation",
@@ -20527,6 +21291,13 @@
       "notes": "CelebV-HQ supplies driving signals for synthetic clips and real-video controls; identities are separated from source portraits and evaluation splits."
     },
     {
+      "source_dataset_id": "co3d",
+      "derived_dataset_id": "considvid",
+      "relationship": "source-component",
+      "contribution": "Real-world object-centric multi-view video source",
+      "notes": "The paper explicitly names CO3D among the public candidate sources filtered and recaptioned for ConsIDVid."
+    },
+    {
       "source_dataset_id": "koala-36m",
       "derived_dataset_id": "phantom-data",
       "relationship": "annotation-derivative",
@@ -20541,11 +21312,32 @@
       "notes": "MVHumanNet++ retains the MVHumanNet capture corpus and publishes newly processed geometry and segmentation annotations."
     },
     {
+      "source_dataset_id": "mvimgnet-2-0",
+      "derived_dataset_id": "considvid",
+      "relationship": "transformed-derivative",
+      "contribution": "Start and end views for synthetic identity-preserving videos",
+      "notes": "The pipeline selects MVImgNet 2.0 keyframes, uses an extended FramePack generator to interpolate video, and captions the result with Qwen2.5-VL."
+    },
+    {
       "source_dataset_id": "objaverse-xl",
       "derived_dataset_id": "cap3d",
       "relationship": "source-component",
       "contribution": "Source 3D objects outside the original Objaverse partition",
       "notes": "The current Cap3D release combines 785,150 original Objaverse objects with additional Objaverse-XL objects and adds captions plus derived 3D representations."
+    },
+    {
+      "source_dataset_id": "objectron",
+      "derived_dataset_id": "considvid",
+      "relationship": "source-component",
+      "contribution": "Mobile object-centric video with camera and 3D annotations",
+      "notes": "Objectron is explicitly listed as a candidate source; ConsIDVid retains selected processed object videos rather than redistributing the entire source dataset."
+    },
+    {
+      "source_dataset_id": "omniobject3d",
+      "derived_dataset_id": "considvid",
+      "relationship": "source-component",
+      "contribution": "Real-scanned objects with multi-view videos and geometry",
+      "notes": "OmniObject3D supplies public object-centric video and multi-view geometry before ConsIDVid selection and captioning."
     },
     {
       "source_dataset_id": "openhumanvid",

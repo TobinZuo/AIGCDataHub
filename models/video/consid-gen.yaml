@@ -1,0 +1,126 @@
+id: consid-gen
+name: ConsID-Gen
+organization: Texas A&M University and eBay
+released_at: "2026-02-10"
+modalities:
+  - video
+tasks:
+  - image-to-video
+  - reference-to-video
+  - identity-preserving-video-generation
+  - product-video-generation
+access:
+  status: open-weights
+  license: Apache-2.0 per the official Hugging Face model card
+  release_url: https://myangwu.github.io/ConsID-Gen/
+  weights_url: https://huggingface.co/mingyang-wu/ConsID-Gen
+  api_url: null
+architecture:
+  family: Wan2.1-Fun-1.3B-InP DiT with dual visual-geometric encoding and text-visual fusion
+  parameters: null
+  notes: The public 3.7 GB adapter/checkpoint builds on Wan2.1-Fun-1.3B-InP, augments the first frame with unposed auxiliary views, encodes semantic appearance and VGGT geometry in parallel, and pre-aligns visual and text features before diffusion; the complete parameter total is not stated.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Wan2.1-Fun-1.3B-InP inherited pretraining mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: ConsID-Gen inherits the base model's video prior; the paper does not restate its complete source corpus, licensing composition, or mixture.
+    - name: CO3D
+      catalog_id: co3d
+      role: fine-tuning
+      availability: public
+      scale: Selected sequences; exact retained count not disclosed
+      notes: One of three named public object-centric candidate sources processed into ConsIDVid for identity-preserving training and evaluation.
+    - name: OmniObject3D
+      catalog_id: omniobject3d
+      role: fine-tuning
+      availability: gated
+      scale: Selected sequences; exact retained count not disclosed
+      notes: Supplies real-scanned objects, videos, and geometry before the ConsIDVid selection and hierarchical captioning pipeline.
+    - name: Objectron
+      catalog_id: objectron
+      role: fine-tuning
+      availability: public
+      scale: Selected sequences; exact retained count not disclosed
+      notes: Supplies short object-centric videos with mobile camera motion and 3D annotations before ConsIDVid filtering.
+    - name: MVImgNet 2.0
+      catalog_id: mvimgnet-2-0
+      role: fine-tuning
+      availability: gated
+      scale: Selected object views; exact retained count not disclosed
+      notes: Start and end keyframes seed synthetic videos generated with an extended FramePack pipeline and captioned by Qwen2.5-VL.
+    - name: ConsIDVid Public Release
+      catalog_id: considvid
+      role: fine-tuning
+      availability: public
+      scale: 8,298 released videos plus 32,816 caption files under the documented public path
+      notes: The downloadable public subset packages processed source videos and hierarchical captions; the repository also contains undocumented paths that are excluded from this release-scale count.
+    - name: Unreleased e-commerce UGC supplement
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: More than 80 hours before filtering
+      notes: The paper describes object-centric monocular UGC from public e-commerce platforms, but the processed training files, source inventory, rights, and retained count are not released.
+    - name: ConsIDVid-Bench proprietary subset
+      catalog_id: null
+      role: evaluation
+      availability: not-released
+      scale: 241 videos
+      notes: The proprietary benchmark subset depicts products from popular e-commerce listings; only aggregate evaluation details are public.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-foundation-model
+      scale_disclosed: false
+      strategy: Initialize from Wan2.1-Fun-1.3B-InP while leaving its inherited pretraining sources and mixture undisclosed in this release.
+    - name: fine-tuning
+      modalities:
+        - image
+        - video
+        - text
+        - 3d
+      source_types:
+        - public-dataset
+        - proprietary
+        - synthetic
+      operations:
+        - object-centric-filtering
+        - quality-filtering
+        - multi-view-frame-selection
+        - synthetic-video-generation
+        - hierarchical-video-captioning
+        - appearance-aware-captioning
+        - motion-aware-captioning
+        - view-assisted-conditioning
+        - geometry-aware-conditioning
+        - text-visual-prealignment
+      scale_disclosed: false
+      strategy: Curate real public and unreleased e-commerce object videos, synthesize additional view-consistent clips from MVImgNet 2.0, caption appearance and motion separately, and fine-tune a view-assisted I2V model for stable object identity.
+  strategy_summary:
+    - Build ConsIDVid from named public object-centric sources, an unreleased e-commerce supplement, and MVImgNet 2.0 views transformed into smooth synthetic clips.
+    - Separate high-resolution appearance captioning from motion-aware captioning so fine details and temporal dynamics are represented without forcing one caption pass to optimize both.
+    - Condition generation on the first frame plus unposed auxiliary views and learned geometry, then align visual and textual signals before the diffusion backbone.
+    - Release the model checkpoint and 8,298-video public data subset while retaining part of the training mixture and the 241-video proprietary benchmark subset.
+  unknowns:
+    - Complete Wan2.1-Fun-1.3B-InP pretraining data, licensing mix, filtering, and inherited weights.
+    - Exact per-source retained counts, mixture ratios, deduplication, rejection rates, and train/validation partition for the full ConsIDVid mixture.
+    - Source identities and rights clearance for the more than 80 hours of unreleased e-commerce UGC.
+    - Dataset-specific license for the public ConsIDVid package and relationship between the released subset and every reported training run.
+    - Total parameter count, training compute, and whether the public checkpoint exactly matches every paper evaluation.
+evidence:
+  release: https://myangwu.github.io/ConsID-Gen/
+  technical_report: https://arxiv.org/abs/2602.10113
+  repository: https://github.com/eBay/ConsID-Gen
+status: verified
+last_verified: "2026-07-27"

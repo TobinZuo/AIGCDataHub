@@ -1,0 +1,89 @@
+id: considvid
+name: ConsIDVid Public Release
+organization: Texas A&M University and eBay
+released_at: "2026-07-07"
+release_date_source: https://huggingface.co/api/datasets/mingyang-wu/ConsIDVid/commits/main
+modality: video
+tasks:
+  - image-to-video
+  - object-centric-video
+  - identity-preserving-video-generation
+  - multi-view-consistency-evaluation
+stages:
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  The publicly downloadable portion of ConsIDVid, containing processed
+  object-centric videos and two-level appearance and motion captions for
+  identity-preserving I2V research.
+derived_from:
+  - catalog_id: co3d
+    relationship: source-component
+    contribution: Real-world object-centric multi-view video source
+    notes: The paper explicitly names CO3D among the public candidate sources filtered and recaptioned for ConsIDVid.
+  - catalog_id: omniobject3d
+    relationship: source-component
+    contribution: Real-scanned objects with multi-view videos and geometry
+    notes: OmniObject3D supplies public object-centric video and multi-view geometry before ConsIDVid selection and captioning.
+  - catalog_id: objectron
+    relationship: source-component
+    contribution: Mobile object-centric video with camera and 3D annotations
+    notes: Objectron is explicitly listed as a candidate source; ConsIDVid retains selected processed object videos rather than redistributing the entire source dataset.
+  - catalog_id: mvimgnet-2-0
+    relationship: transformed-derivative
+    contribution: Start and end views for synthetic identity-preserving videos
+    notes: The pipeline selects MVImgNet 2.0 keyframes, uses an extended FramePack generator to interpolate video, and captions the result with Qwen2.5-VL.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/mingyang-wu/ConsIDVid
+  requires_account: false
+  notes: The public Hugging Face repository is ungated and reports approximately 148 GB of total storage; the data card's sample download command currently uses a different repository id, so use the linked ConsIDVid repository itself. The repository also enumerates undocumented paths outside the release directory described by its card, so review selected paths before downloading the entire repository.
+scale:
+  samples: 8298
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The 2026-07-07 repository revision exposes 8,298 MP4 files and 32,816 TXT caption files under datasets/public. The API also enumerates 58,735 JPG files under undocumented datasets/first-frames paths; those are not counted as the documented ConsIDVid release. The released files do not reproduce the full training mixture.
+annotations:
+  types:
+    - processed-video
+    - appearance-caption
+    - motion-caption
+    - source-family
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Not declared on the official Hugging Face dataset card
+  media: Not declared; upstream CO3D, OmniObject3D, Objectron, and MVImgNet 2.0 terms differ
+  commercial_use: unknown
+  redistribution: review-required
+  notes: Public file access is not a license grant; users must review each upstream source's terms and obtain clarification for ConsIDVid-specific captions, synthetic videos, and packaged derivatives.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - multi-view-consistency
+    - provenance
+  known_limitations:
+    - The public release excludes additional data still under internal review and does not reproduce the complete training mixture.
+    - The official dataset card does not declare a dataset license and its example CLI command names a different repository id.
+    - The repository API enumerates undocumented datasets/first-frames paths outside the public and public_synthesis directory contract described by the data card.
+    - Source-derived and FramePack-generated clips have different realism, camera, geometry, and licensing distributions.
+    - ConsIDVid-Bench also contains an unreleased 241-video proprietary e-commerce subset.
+processing:
+  recipe: Filter public object-centric sequences, generate selected MVImgNet 2.0 interpolations with FramePack, create appearance and motion captions with Qwen2.5-VL, and package processed videos with hierarchical caption files.
+  recommended_format: native
+  notes: Preserve upstream dataset id, real versus synthetic status, both caption levels, selected repository paths, and the exact Hugging Face revision during training or evaluation.
+evidence:
+  homepage: https://myangwu.github.io/ConsID-Gen/
+  paper: https://arxiv.org/abs/2602.10113
+  used_by:
+    - ConsID-Gen
+status: partial
+last_verified: "2026-07-27"

@@ -2,9 +2,9 @@
 
 Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; unreleased or undisclosed data must state why no card exists.
 
-- Models: 77
-- References linked to catalog cards: 77
-- References without a card, with an explicit evidence boundary: 86
+- Models: 78
+- References linked to catalog cards: 82
+- References without a card, with an explicit evidence boundary: 89
 - Ordering: model release date, newest first
 
 | Model | Released | Dataset or corpus named by source | Availability | Catalog resolution | Role | Evidence boundary |
@@ -85,6 +85,14 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [Qwen-Image 2.0](models/image/qwen-image-2.yaml) | 2026-02-10 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [JUST-DUB-IT](models/video/just-dub-it.yaml) | 2026-02-10 | LTX-2 base-model training mixture | undisclosed | — exact source is not disclosed | pretraining | The adapter inherits the foundation model prior; its exact base-model corpus and mixture are not restated by JUST-DUB-IT. |
 | [JUST-DUB-IT](models/video/just-dub-it.yaml) | 2026-02-10 | Audiovisual Translation Dubbing Dataset | public | [`audiovisual-translation-dub`](catalog/video/audiovisual-translation-dub.yaml) | fine-tuning | Each record pairs a reference video with a dubbed target, structured caption, and optional face mask. |
+| [ConsID-Gen](models/video/consid-gen.yaml) | 2026-02-10 | Wan2.1-Fun-1.3B-InP inherited pretraining mixture | undisclosed | — exact source is not disclosed | pretraining | ConsID-Gen inherits the base model's video prior; the paper does not restate its complete source corpus, licensing composition, or mixture. |
+| [ConsID-Gen](models/video/consid-gen.yaml) | 2026-02-10 | CO3D | public | [`co3d`](catalog/video/co3d.yaml) | fine-tuning | One of three named public object-centric candidate sources processed into ConsIDVid for identity-preserving training and evaluation. |
+| [ConsID-Gen](models/video/consid-gen.yaml) | 2026-02-10 | OmniObject3D | gated | [`omniobject3d`](catalog/3d/omniobject3d.yaml) | fine-tuning | Supplies real-scanned objects, videos, and geometry before the ConsIDVid selection and hierarchical captioning pipeline. |
+| [ConsID-Gen](models/video/consid-gen.yaml) | 2026-02-10 | Objectron | public | [`objectron`](catalog/video/objectron.yaml) | fine-tuning | Supplies short object-centric videos with mobile camera motion and 3D annotations before ConsIDVid filtering. |
+| [ConsID-Gen](models/video/consid-gen.yaml) | 2026-02-10 | MVImgNet 2.0 | gated | [`mvimgnet-2-0`](catalog/3d/mvimgnet-2-0.yaml) | fine-tuning | Start and end keyframes seed synthetic videos generated with an extended FramePack pipeline and captioned by Qwen2.5-VL. |
+| [ConsID-Gen](models/video/consid-gen.yaml) | 2026-02-10 | ConsIDVid Public Release | public | [`considvid`](catalog/video/considvid.yaml) | fine-tuning | The downloadable public subset packages processed source videos and hierarchical captions; the repository also contains undocumented paths that are excluded from this release-scale count. |
+| [ConsID-Gen](models/video/consid-gen.yaml) | 2026-02-10 | Unreleased e-commerce UGC supplement | not-released | — publisher has not released it | fine-tuning | The paper describes object-centric monocular UGC from public e-commerce platforms, but the processed training files, source inventory, rights, and retained count are not released. |
+| [ConsID-Gen](models/video/consid-gen.yaml) | 2026-02-10 | ConsIDVid-Bench proprietary subset | not-released | — publisher has not released it | evaluation | The proprietary benchmark subset depicts products from popular e-commerce listings; only aggregate evaluation details are public. |
 | [Kling AI 3.0](models/video/kling-3.yaml) | 2026-02-05 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [MOVA-720p](models/video/mova-720p.yaml) | 2026-01-29 | AutoReCap-XL | public | [`autorecap-xl`](catalog/audio/autorecap-xl.yaml) | pretraining | Used among the public audio-video and audio-language sources; only metadata and source-video reconstruction instructions are released. |
 | [MOVA-720p](models/video/mova-720p.yaml) | 2026-01-29 | ChronoMagic-Pro | public | [`chronomagic-pro`](catalog/video/chronomagic-pro.yaml) | pretraining | Contributes long-range and time-lapse motion examples to the public portion of the video mixture. |

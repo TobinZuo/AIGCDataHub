@@ -1,0 +1,68 @@
+id: mvimgnet-2-0
+name: MVImgNet 2.0
+organization: CUHK-Shenzhen GAP-Lab and Alibaba Group
+released_at: "2025-02-20"
+release_date_source: https://github.com/GAP-LAB-CUHK-SZ/MVImgNet
+modality: 3d
+tasks:
+  - multi-view-reconstruction
+  - novel-view-synthesis
+  - object-centric-video
+  - synthetic-video-source
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A large-scale real-world multi-view object collection extending MVImgNet with
+  additional categories, improved object masks and camera poses, and dense
+  point clouds for 3D-aware learning and synthetic video construction.
+access:
+  status: gated
+  type: request
+  url: https://github.com/GAP-LAB-CUHK-SZ/MVImgNet2.0
+  requires_account: true
+  notes: The official repository requires a request form to obtain download links and a password; it reports that the first approximately 180K-video part is available while the remaining expansion is pending.
+scale:
+  samples: 180000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The currently described public part contains about 180K videos; the complete MVImgNet 2.0 expansion targets roughly 300K new objects and 520K total objects when combined with MVImgNet.
+annotations:
+  types:
+    - multi-view-rgb
+    - foreground-mask
+    - camera-pose
+    - sparse-point-cloud
+    - dense-point-cloud
+    - object-category
+  source: mixed
+  languages:
+    - none
+license:
+  metadata: MVImgNet 2.0 Terms of Use
+  media: MVImgNet 2.0 Terms of Use; repository code is CC-BY-NC-4.0
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The repository distinguishes bespoke data terms from the non-commercial code license; the requested terms and source media rights must be reviewed before training or redistribution.
+quality:
+  dimensions:
+    - visual-quality
+    - geometry-quality
+    - multi-view-consistency
+    - provenance
+  known_limitations:
+    - Only the first reported release part is currently available, so the full 520K-object headline should not be treated as downloadable.
+    - Form-gated SharePoint distribution and passwords complicate automated reproducibility and revision checks.
+    - Object masks, camera poses, and point clouds are reconstructed annotations and can contain estimation errors.
+processing:
+  recipe: Request official access, download versioned archives, retain multi-view sequence identity, and keep images, masks, COLMAP cameras, and point clouds aligned per object.
+  recommended_format: native
+  notes: Record whether each sample comes from original MVImgNet or the 2.0 expansion and retain the specific released part, archive checksum, and Terms of Use accepted.
+evidence:
+  homepage: https://luyues.github.io/mvimgnet2/
+  paper: https://arxiv.org/abs/2412.01430
+  used_by:
+    - ConsID-Gen
+status: partial
+last_verified: "2026-07-27"

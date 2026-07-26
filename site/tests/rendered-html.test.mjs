@@ -215,6 +215,8 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"avgen-bench"/);
   assert.match(catalog, /"vera-layered-video"/);
   assert.match(catalog, /"videomatte240k"/);
+  assert.match(catalog, /"consid-gen"/);
+  assert.match(catalog, /"considvid"/);
   assert.match(catalog, /"name": "Mixkit"/);
   assert.match(catalog, /"relations"/);
   assert.match(catalog, /"dataset_relations"/);
@@ -273,6 +275,10 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.deepEqual(models.videocof.linked_dataset_ids, ["videocof-50k"]);
   assert.deepEqual(models["humo-17b"].linked_dataset_ids, ["phantom-data", "humoset"]);
   assert.deepEqual(models["phantom-wan-14b"].linked_dataset_ids, ["panda-70m"]);
+  assert.deepEqual(
+    new Set(models["consid-gen"].linked_dataset_ids),
+    new Set(["co3d", "omniobject3d", "objectron", "mvimgnet-2-0", "considvid"]),
+  );
   assert.equal(models["hunyuanvideo-avatar"].monitoring.priority, "critical");
   assert.equal(models["musetalk-1-5"].monitoring.priority, "critical");
   assert.equal(models["fashn-vton-1-5"].monitoring.priority, "critical");
@@ -315,6 +321,9 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.ok(parsedCatalog.dataset_relations.some(
     (relation) => relation.source_dataset_id === "openve-3m" && relation.derived_dataset_id === "openve-bench",
   ));
+  assert.ok(parsedCatalog.dataset_relations.some(
+    (relation) => relation.source_dataset_id === "mvimgnet-2-0" && relation.derived_dataset_id === "considvid",
+  ));
   const datasets = Object.fromEntries(parsedCatalog.datasets.map((dataset) => [dataset.id, dataset]));
   assert.equal(datasets["flickr-5b"].monitoring.mode, "availability");
   assert.equal(
@@ -322,6 +331,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
     "https://huggingface.co/api/datasets/bigdata-pw/Flickr",
   );
   assert.equal(datasets["fit-vto-100k"].monitoring.priority, "critical");
+  assert.equal(datasets.considvid.monitoring.priority, "critical");
   assert.equal(datasets["viton-hd-edit"].monitoring.priority, "critical");
   assert.equal(datasets["tripvvt-10k"].monitoring.priority, "critical");
   assert.equal(datasets.talkverse.monitoring.priority, "critical");
@@ -381,6 +391,10 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalogExplorer, /comparison-dataset-links/);
   assert.match(catalogExplorer, /对应数据集/);
   assert.match(catalogExplorer, /查看完整引用/);
+  assert.match(catalogExplorer, /strategy-linked-strip/);
+  assert.match(catalogExplorer, /已关联数据集/);
+  assert.match(catalogExplorer, /完整引用与下载入口/);
+  assert.match(catalogExplorer, /model\.linked_dataset_ids/);
   assert.match(catalogExplorer, /strategy-datasets-\$\{model\.id\}/);
   assert.match(catalogExplorer, /onOpenDataset=\{\(id\) => openRelation\("datasets", id\)\}/);
   assert.match(catalogExplorer, /数据获取入口/);

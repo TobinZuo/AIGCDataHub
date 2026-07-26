@@ -198,6 +198,13 @@ class CatalogTests(unittest.TestCase):
             cards["vera-layered-video"]["derived_from"][0]["catalog_id"],
             "videomatte240k",
         )
+        self.assertEqual(
+            {item["catalog_id"] for item in cards["considvid"]["derived_from"]},
+            {"co3d", "omniobject3d", "objectron", "mvimgnet-2-0"},
+        )
+        self.assertEqual(cards["considvid"]["scale"]["samples"], 8298)
+        self.assertEqual(cards["considvid"]["access"]["type"], "hosted")
+        self.assertIn("license", cards["considvid"]["license"]["notes"].lower())
 
     def test_site_catalog_orders_datasets_by_release_date(self) -> None:
         datasets = build_payload()["datasets"]

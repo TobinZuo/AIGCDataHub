@@ -1,0 +1,69 @@
+id: co3d
+name: CO3D
+organization: Meta AI
+released_at: "2021-09-01"
+release_date_source: https://arxiv.org/abs/2109.00512
+modality: video
+tasks:
+  - object-centric-video
+  - multi-view-reconstruction
+  - novel-view-synthesis
+  - camera-pose-estimation
+stages:
+  - pretraining
+  - evaluation
+  - data-curation
+description: >-
+  A real-world collection of object-centric multi-view videos covering common
+  object categories, with camera poses, foreground masks, depth estimates, and
+  reconstructed point clouds for 3D-aware learning and view synthesis.
+access:
+  status: open
+  type: hosted
+  url: https://github.com/facebookresearch/co3d/tree/v1
+  requires_account: false
+  notes: The official v1 repository provides download manifests and tooling for the original CO3D release; the repository's default branch now documents the larger CO3Dv2 separately.
+scale:
+  samples: 18619
+  source_items: 1500000
+  hours: null
+  approximate: true
+  notes: The original paper reports nearly 19K object videos and about 1.5M frames across 50 MS-COCO categories; CO3Dv2 is a distinct, larger revision.
+annotations:
+  types:
+    - multi-view-rgb
+    - camera-pose
+    - foreground-mask
+    - depth-map
+    - point-cloud
+    - object-category
+  source: mixed
+  languages:
+    - none
+license:
+  metadata: CC-BY-NC-4.0
+  media: CC-BY-NC-4.0 official repository terms
+  commercial_use: noncommercial
+  redistribution: allowed
+  notes: Reuse and redistribution require attribution and must remain non-commercial; privacy, depicted-property, and downstream derivative rights still require review.
+quality:
+  dimensions:
+    - visual-quality
+    - geometry-quality
+    - multi-view-consistency
+    - provenance
+  known_limitations:
+    - Crowd-captured sequences vary in lighting, blur, framing, occlusion, and reconstruction quality.
+    - The object-category distribution is limited to common categories and is not representative of all products or environments.
+    - CO3D and CO3Dv2 differ in sequence count, frame quality, masks, and packaging and should not be mixed without version tracking.
+processing:
+  recipe: Download the official category archives, preserve sequence and frame identifiers, and keep RGB, masks, depth, camera, and point-cloud annotations aligned.
+  recommended_format: native
+  notes: Retain the CO3D version and source manifest with every derived clip because the original and v2 releases have different content and geometry annotations.
+evidence:
+  homepage: https://ai.meta.com/datasets/co3d-dataset/
+  paper: https://arxiv.org/abs/2109.00512
+  used_by:
+    - ConsID-Gen
+status: verified
+last_verified: "2026-07-27"

@@ -58,6 +58,8 @@ class ScenarioTaxonomyTests(unittest.TestCase):
                 datasets["openhumanvid-talking"]["scenario_ids"]
             )
         )
+        self.assertIn("video-generation", models["consid-gen"]["scenario_ids"])
+        self.assertIn("video-generation", datasets["considvid"]["scenario_ids"])
 
     def test_generated_assignments_come_from_task_matches(self) -> None:
         scenarios = load_scenarios()

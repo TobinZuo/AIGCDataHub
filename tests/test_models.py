@@ -275,6 +275,27 @@ class ModelCatalogTests(unittest.TestCase):
         self.assertTrue(cards["videocof"]["data"]["exact_mixture_disclosed"])
         self.assertEqual(cards["humo-17b"]["architecture"]["parameters"], 17000000000)
 
+    def test_consid_gen_resolves_public_sources_and_preserves_private_boundaries(self) -> None:
+        model = {card["id"]: card for _, card in load_models()}["consid-gen"]
+        self.assertEqual(
+            {item["catalog_id"] for item in model["data"]["datasets"]},
+            {None, "co3d", "omniobject3d", "objectron", "mvimgnet-2-0", "considvid"},
+        )
+        self.assertEqual(model["access"]["status"], "open-weights")
+        operations = {
+            operation
+            for stage in model["data"]["stages"]
+            for operation in stage["operations"]
+        }
+        self.assertTrue(
+            {
+                "synthetic-video-generation",
+                "hierarchical-video-captioning",
+                "geometry-aware-conditioning",
+            }.issubset(operations)
+        )
+        self.assertFalse(model["data"]["exact_mixture_disclosed"])
+
     def test_mova_and_vera_resolve_public_training_data_and_external_evaluation(self) -> None:
         cards = {card["id"]: card for _, card in load_models()}
         mova = cards["mova-720p"]

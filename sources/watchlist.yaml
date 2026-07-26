@@ -452,6 +452,21 @@ tracks:
       - url: https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k
         catalog_id: fit-vto-100k
         priority: critical
+      - url: https://github.com/facebookresearch/co3d/commits/main.atom
+        catalog_id: co3d
+        priority: critical
+      - url: https://github.com/omniobject3d/OmniObject3D/commits/main.atom
+        catalog_id: omniobject3d
+        priority: critical
+      - url: https://github.com/google-research-datasets/Objectron/commits/master.atom
+        catalog_id: objectron
+        priority: critical
+      - url: https://github.com/GAP-LAB-CUHK-SZ/MVImgNet2.0/commits/main.atom
+        catalog_id: mvimgnet-2-0
+        priority: critical
+      - url: "https://huggingface.co/api/datasets/mingyang-wu/ConsIDVid?expand=lastModified&expand=sha"
+        catalog_id: considvid
+        priority: critical
       - url: https://huggingface.co/api/datasets/cvssp/WavCaps
         catalog_id: wavcaps
         priority: critical
@@ -706,6 +721,9 @@ tracks:
         priority: critical
       - url: https://github.com/HarryWang355/FIT-VTO/commits/main.atom
         model_id: fit-vto
+        priority: critical
+      - url: https://huggingface.co/api/models/mingyang-wu/ConsID-Gen
+        model_id: consid-gen
         priority: critical
       - url: https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5/commits/main.atom
         model_id: hunyuanvideo-1-5
