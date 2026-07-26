@@ -1096,6 +1096,97 @@
       "linked_model_ids": []
     },
     {
+      "id": "maven-multicultural-video",
+      "name": "MAVEN Multicultural Multiagent Videos",
+      "organization": "Sichuan University and University of Washington",
+      "released_at": "2026-05-29",
+      "release_date_source": "https://huggingface.co/datasets/AIM-SCU/MAVEN_Multicultura_Text-to-Video_Generation",
+      "modality": "evaluation",
+      "tasks": [
+        "text-to-video-evaluation",
+        "multicultural-generation-evaluation",
+        "prompt-refinement-evaluation"
+      ],
+      "stages": [
+        "evaluation"
+      ],
+      "description": "A compact benchmark of original and agent-refined prompts paired with generated videos for measuring mono-cultural and cross-cultural fidelity in text-to-video systems across Chinese, American, and Romanian settings.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/AIM-SCU/MAVEN_Multicultura_Text-to-Video_Generation",
+        "requires_account": false,
+        "notes": "The complete 676 MB dataset is directly hosted as five-second MP4 videos and structured prompt metadata."
+      },
+      "scale": {
+        "samples": 972,
+        "source_items": 243,
+        "hours": 1.35,
+        "approximate": false,
+        "notes": "There are 243 prompt scenarios rendered through four pipelines, producing 972 five-second videos."
+      },
+      "annotations": {
+        "types": [
+          "original-prompt",
+          "refined-prompt",
+          "culture",
+          "cross-culture-flag",
+          "action-type",
+          "generation-pipeline"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC0-1.0",
+        "media": "CC0-1.0",
+        "commercial_use": "allowed",
+        "redistribution": "allowed",
+        "notes": "The official dataset card releases the dataset under CC0 1.0."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Coverage is limited to three cultures and three action categories and cannot represent within-culture diversity.",
+          "Four outputs per scenario share prompts and generation pipelines, so rows are not statistically independent.",
+          "Synthetic outputs inherit biases and artifacts from the evaluated video generator and prompt-refinement agents."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/dataset_audit",
+        "recommended_format": "parquet",
+        "notes": "Group evaluations by the 243 underlying scenarios and report mono-cultural and cross-cultural results separately."
+      },
+      "evidence": {
+        "homepage": "https://github.com/AIM-SCU/CRAFT",
+        "paper": "https://arxiv.org/abs/2605.16716",
+        "used_by": [
+          "MAVEN"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/evaluation/maven-multicultural-video.yaml",
+      "scenario_ids": [],
+      "scale_label": "972",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/AIM-SCU/MAVEN_Multicultura_Text-to-Video_Generation"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
+    },
+    {
       "id": "gpic",
       "name": "GPIC",
       "organization": "Stanford Vision Lab and collaborators",
@@ -2478,6 +2569,202 @@
       "linked_model_ids": []
     },
     {
+      "id": "seedance-1-pro-human-preference",
+      "name": "Seedance 1 Pro Human Preferences",
+      "organization": "Rapidata",
+      "released_at": "2025-08-08",
+      "release_date_source": "https://huggingface.co/datasets/Rapidata/image-to-video-human-preference-seedance-1-pro",
+      "modality": "preference",
+      "tasks": [
+        "image-to-video-evaluation",
+        "video-generation-preference",
+        "pairwise-model-comparison"
+      ],
+      "stages": [
+        "evaluation"
+      ],
+      "description": "An open set of paired image-to-video outputs and human judgments comparing Seedance 1 Pro with Hailuo-02 and Marey on prompt alignment, visual coherence, and aesthetic preference.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/Rapidata/image-to-video-human-preference-seedance-1-pro",
+        "requires_account": false,
+        "notes": "Hugging Face hosts the 198-row Parquet table, prompt images, preview assets, and full-resolution model outputs."
+      },
+      "scale": {
+        "samples": 198,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The card reports about 6,000 responses from about 2,000 annotators aggregated into 198 paired comparisons."
+      },
+      "annotations": {
+        "types": [
+          "prompt",
+          "prompt-image",
+          "paired-video-output",
+          "alignment-preference",
+          "coherence-preference",
+          "aesthetic-preference",
+          "individual-response"
+        ],
+        "source": "human",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Apache-2.0",
+        "media": "Generated-output rights depend on Seedance 1 Pro, Hailuo-02, and Marey service terms",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Apache-2.0 covers the published repository metadata; users should separately review the terms governing model outputs and prompt images."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "motion",
+          "temporal-consistency",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The 198 comparison rows are too small to represent the full prompt and motion distribution of the compared services.",
+          "The card reports approximate annotator and response counts without demographic or sampling details.",
+          "Model versions are fixed historical service snapshots and may not match current production behavior."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/dataset_audit",
+        "recommended_format": "parquet",
+        "notes": "Keep individual responses separate from weighted aggregates and group splits by prompt asset to prevent leakage."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/Rapidata/image-to-video-human-preference-seedance-1-pro",
+        "paper": null,
+        "used_by": [
+          "Seedance 1.0 Pro"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/preference/seedance-1-pro-human-preference.yaml",
+      "scenario_ids": [],
+      "scale_label": "198",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/Rapidata/image-to-video-human-preference-seedance-1-pro"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "seedance-1-0-pro"
+      ]
+    },
+    {
+      "id": "talkingheadbench",
+      "name": "TalkingHeadBench",
+      "organization": "University of North Carolina at Chapel Hill and Michigan State University",
+      "released_at": "2025-05-15",
+      "release_date_source": "https://huggingface.co/datasets/luchaoqi/TalkingHeadBench",
+      "modality": "evaluation",
+      "tasks": [
+        "talking-head-deepfake-detection",
+        "audio-visual-deepfake-detection",
+        "cross-generator-generalization"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "A manually curated audio-video benchmark for detecting modern talking-head deepfakes, with identity-separated splits, six core academic generators, two held-out generators, synchronized audio, and real-video controls.",
+      "derived_from": [
+        {
+          "catalog_id": "celebv-hq",
+          "relationship": "source-component",
+          "contribution": "Driving video and audio signals plus a distinct subset of real videos",
+          "notes": "CelebV-HQ supplies driving signals for synthetic clips and real-video controls; identities are separated from source portraits and evaluation splits."
+        }
+      ],
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/luchaoqi/TalkingHeadBench",
+        "requires_account": false,
+        "notes": "Hugging Face hosts fake and real video splits, extracted audio, source-driving audio, and split manifests."
+      },
+      "scale": {
+        "samples": 5306,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The paper reports 2,994 curated fake videos and 2,312 real videos; more than 60 percent of initially generated fakes were removed."
+      },
+      "annotations": {
+        "types": [
+          "real-or-fake-label",
+          "generator-label",
+          "identity-separated-split",
+          "audio-track",
+          "driving-signal-provenance"
+        ],
+        "source": "mixed",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "MIT on the Hugging Face card; CC-BY-4.0 in the paper supplement",
+        "media": "Component-dependent, including FFHQ CC-BY-NC-SA-4.0 and CelebV-HQ and FaceForensics++ terms",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The repository metadata and paper supplement declare different top-level licenses, while source datasets retain their own terms; review every component license before commercial use or redistribution."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "temporal-consistency",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The benchmark covers a finite set of generators and identities, so results may not generalize to newer commercial systems.",
+          "Audio was corrected in March and April 2026; scores from earlier snapshots are not directly comparable.",
+          "The default real-data split differs from the official FaceForensics++ protocol, and the two split variants should not be mixed."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/dataset_audit",
+        "recommended_format": "native",
+        "notes": "Pin a dataset revision, keep the selected real-data protocol explicit, and preserve identity separation and audio-version provenance in every run."
+      },
+      "evidence": {
+        "homepage": "https://anaxqx.github.io/talkingheadbench.github.io/",
+        "paper": "https://arxiv.org/abs/2505.24866",
+        "used_by": [
+          "TalkingHeadBench detector baselines"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/evaluation/talkingheadbench.yaml",
+      "scenario_ids": [],
+      "scale_label": "5.3K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/luchaoqi/TalkingHeadBench"
+      },
+      "upstream_dataset_ids": [
+        "celebv-hq"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
+    },
+    {
       "id": "mvhumannet-plus-plus",
       "name": "MVHumanNet++",
       "organization": "GAP-Lab, CUHK-Shenzhen",
@@ -2682,6 +2969,101 @@
       "linked_model_ids": [
         "omni2sound"
       ]
+    },
+    {
+      "id": "videoufo",
+      "name": "VideoUFO",
+      "organization": "ReLER Lab, University of Technology Sydney",
+      "released_at": "2025-02-18",
+      "release_date_source": "https://huggingface.co/datasets/WenhaoWang/VideoUFO",
+      "modality": "video",
+      "tasks": [
+        "text-to-video",
+        "video-text-pretraining",
+        "user-focused-video-generation"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A user-focused text-to-video corpus with more than 1.09 million Creative Commons video clips, short and detailed captions, topic labels, temporal boundaries, middle frames, and six VBench-derived quality signals.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/WenhaoWang/VideoUFO",
+        "requires_account": false,
+        "notes": "Hugging Face hosts the metadata and middle-frame dataset plus 200 compressed video archives; the official card estimates the full video download at approximately 800 GB."
+      },
+      "scale": {
+        "samples": 1091712,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The hosted Full split reports 1,091,712 examples spanning 1,291 topics."
+      },
+      "annotations": {
+        "types": [
+          "brief-caption",
+          "detailed-caption",
+          "user-focused-topic",
+          "source-time-boundary",
+          "middle-frame",
+          "vbench-quality-scores"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0",
+        "media": "CC-BY-4.0",
+        "commercial_use": "allowed",
+        "redistribution": "allowed",
+        "notes": "The official card states that released videos are CC BY 4.0; downstream copies and derivatives must preserve attribution and license notices."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Topic selection is derived from VidProM prompts and may inherit the preferences and geographic skew of that user population.",
+          "Captions and quality scores are model-generated signals rather than exhaustive human annotations.",
+          "The 800 GB archive footprint makes full-corpus validation and local deduplication expensive."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/video_text",
+        "recommended_format": "webdataset",
+        "notes": "Preserve topic, time-boundary, caption, quality-score, and source-ID fields; verify archive checksums and split by source video to reduce leakage."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/WenhaoWang/VideoUFO",
+        "paper": "https://arxiv.org/abs/2503.01739",
+        "used_by": [
+          "MVDiT-VideoUFO"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/videoufo.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "1.1M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/WenhaoWang/VideoUFO"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
     },
     {
       "id": "openhumanvid",
@@ -4536,7 +4918,9 @@
         "source_url": "https://api.github.com/repos/CelebV-HQ/CelebV-HQ/commits/main"
       },
       "upstream_dataset_ids": [],
-      "downstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "talkingheadbench"
+      ],
       "linked_model_ids": [
         "hunyuanvideo-avatar"
       ]
@@ -14006,6 +14390,210 @@
       "linked_dataset_ids": []
     },
     {
+      "id": "seedance-1-0-pro",
+      "name": "Seedance 1.0 Pro",
+      "organization": "ByteDance Seed",
+      "released_at": "2025-06-11",
+      "ranking_names": [
+        "Seedance 1.0 Pro",
+        "Doubao-Seedance-1.0-pro"
+      ],
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "multi-shot-video-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Proprietary service terms",
+        "release_url": "https://seed.bytedance.com/en/blog/tech-report-of-seedance-1-0-is-now-publicly-available",
+        "weights_url": null,
+        "api_url": "https://seed.bytedance.com/en/seedance"
+      },
+      "architecture": {
+        "family": "Diffusion transformer with decoupled spatial-temporal layers and multimodal rotary position encoding",
+        "parameters": null,
+        "notes": "The unified T2V and I2V design uses interleaved multimodal position encoding, a video VAE, and native multi-shot sequences; parameter count is not disclosed."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Large-scale multi-source video corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": "undisclosed",
+            "notes": "The report describes diverse durations, resolutions, subjects, scenes, styles, and camera movements but names no source dataset or mixture weight."
+          },
+          {
+            "name": "High-quality video-text SFT mixture",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "undisclosed",
+            "scale": "undisclosed",
+            "notes": "Curated video-text pairs with precise captions cover diverse styles and scenes; dataset identity and size are not published."
+          },
+          {
+            "name": "Seedance 1 Pro Human Preferences",
+            "catalog_id": "seedance-1-pro-human-preference",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "198 paired comparisons and about 6,000 human responses",
+            "notes": "This is an independent post-release Rapidata benchmark, not a ByteDance training-data disclosure."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed",
+              "synthetic"
+            ],
+            "operations": [
+              "shot-boundary-detection",
+              "adaptive-cropping",
+              "heuristic-filtering",
+              "object-detector-filtering",
+              "multi-source-balancing",
+              "dense-video-captioning",
+              "unified-task-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Segment and filter a diverse multi-source video corpus, generate captions that separate dynamic and static detail, and jointly learn T2V and I2V with interleaved multi-shot sequences."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "high-quality-pair-selection",
+              "subset-specialization",
+              "model-merging"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Fine-tune separate models on high-quality, precisely captioned subsets covering different strengths, then merge them into one service model."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "human-feedback",
+              "undisclosed"
+            ],
+            "operations": [
+              "dimension-specific-reward-modeling",
+              "video-rlhf",
+              "feedback-driven-learning"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Apply video-specific RLHF with dimension-specific reward models to improve motion vividness, structural stability, and visual quality."
+          },
+          {
+            "name": "distillation",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "synthetic",
+              "human-feedback"
+            ],
+            "operations": [
+              "trajectory-segmented-consistency-distillation",
+              "score-distillation",
+              "adversarial-multistep-distillation"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Combine consistency, score, and adversarial multi-step distillation with preference supervision to reduce sampling steps while retaining quality."
+          }
+        ],
+        "strategy_summary": [
+          "Build a broad video prior through shot segmentation, adaptive cropping, rule and detector filtering, balancing, and precise dense captioning.",
+          "Unify text-to-video, image-to-video, and multi-shot learning through conditional masks and interleaved multimodal position encoding.",
+          "Use specialized SFT subsets, model merging, video RLHF, and multi-stage distillation for quality, controllability, and speed."
+        ],
+        "unknowns": [
+          "Exact source datasets, collection permissions, media licenses, mixture weights, retained sample counts, and deduplication policy.",
+          "Caption-model identity and training data, filter thresholds, safety taxonomy, annotator composition, and reward-model datasets.",
+          "Model parameter count, production checkpoint versioning, and service retention or output-rights terms."
+        ]
+      },
+      "evidence": {
+        "release": "https://seed.bytedance.com/en/blog/tech-report-of-seedance-1-0-is-now-publicly-available",
+        "technical_report": "https://arxiv.org/abs/2506.09113",
+        "repository": null
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/seedance-1-0-pro.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "preference",
+          "distillation"
+        ],
+        "source_types": [
+          "undisclosed",
+          "synthetic",
+          "human-feedback"
+        ],
+        "operations": [
+          "shot-boundary-detection",
+          "adaptive-cropping",
+          "heuristic-filtering",
+          "object-detector-filtering",
+          "multi-source-balancing",
+          "dense-video-captioning",
+          "unified-task-training",
+          "high-quality-pair-selection",
+          "subset-specialization",
+          "model-merging",
+          "dimension-specific-reward-modeling",
+          "video-rlhf",
+          "feedback-driven-learning",
+          "trajectory-segmented-consistency-distillation",
+          "score-distillation",
+          "adversarial-multistep-distillation"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 4,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://seed.bytedance.com/en/blog/tech-report-of-seedance-1-0-is-now-publicly-available"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "seedance-1-pro-human-preference"
+      ]
+    },
+    {
       "id": "hunyuanvideo-avatar",
       "name": "HunyuanVideo-Avatar",
       "organization": "Tencent Hunyuan",
@@ -14629,6 +15217,14 @@
       "reference_name": "OpenVE-Bench"
     },
     {
+      "model_id": "seedance-1-0-pro",
+      "dataset_id": "seedance-1-pro-human-preference",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "198 paired comparisons and about 6,000 human responses",
+      "reference_name": "Seedance 1 Pro Human Preferences"
+    },
+    {
       "model_id": "skyreels-v4",
       "dataset_id": "audioset",
       "role": "pretraining",
@@ -14738,6 +15334,13 @@
       "relationship": "source-component",
       "contribution": "Strongly labelled AudioSet subset",
       "notes": "AudioSet contributes one of four source partitions; WavCaps filters its descriptions and rewrites them into captions alongside three independently sourced partitions."
+    },
+    {
+      "source_dataset_id": "celebv-hq",
+      "derived_dataset_id": "talkingheadbench",
+      "relationship": "source-component",
+      "contribution": "Driving video and audio signals plus a distinct subset of real videos",
+      "notes": "CelebV-HQ supplies driving signals for synthetic clips and real-video controls; identities are separated from source portraits and evaluation splits."
     },
     {
       "source_dataset_id": "mvhumannet",

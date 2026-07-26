@@ -1,0 +1,117 @@
+id: seedance-1-0-pro
+name: Seedance 1.0 Pro
+organization: ByteDance Seed
+released_at: "2025-06-11"
+ranking_names:
+  - Seedance 1.0 Pro
+  - Doubao-Seedance-1.0-pro
+modalities:
+  - video
+tasks:
+  - text-to-video
+  - image-to-video
+  - multi-shot-video-generation
+access:
+  status: api-only
+  license: Proprietary service terms
+  release_url: https://seed.bytedance.com/en/blog/tech-report-of-seedance-1-0-is-now-publicly-available
+  weights_url: null
+  api_url: https://seed.bytedance.com/en/seedance
+architecture:
+  family: Diffusion transformer with decoupled spatial-temporal layers and multimodal rotary position encoding
+  parameters: null
+  notes: The unified T2V and I2V design uses interleaved multimodal position encoding, a video VAE, and native multi-shot sequences; parameter count is not disclosed.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Large-scale multi-source video corpus
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: undisclosed
+      notes: The report describes diverse durations, resolutions, subjects, scenes, styles, and camera movements but names no source dataset or mixture weight.
+    - name: High-quality video-text SFT mixture
+      catalog_id: null
+      role: fine-tuning
+      availability: undisclosed
+      scale: undisclosed
+      notes: Curated video-text pairs with precise captions cover diverse styles and scenes; dataset identity and size are not published.
+    - name: Seedance 1 Pro Human Preferences
+      catalog_id: seedance-1-pro-human-preference
+      role: evaluation
+      availability: public
+      scale: 198 paired comparisons and about 6,000 human responses
+      notes: This is an independent post-release Rapidata benchmark, not a ByteDance training-data disclosure.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - undisclosed
+        - synthetic
+      operations:
+        - shot-boundary-detection
+        - adaptive-cropping
+        - heuristic-filtering
+        - object-detector-filtering
+        - multi-source-balancing
+        - dense-video-captioning
+        - unified-task-training
+      scale_disclosed: false
+      strategy: Segment and filter a diverse multi-source video corpus, generate captions that separate dynamic and static detail, and jointly learn T2V and I2V with interleaved multi-shot sequences.
+    - name: fine-tuning
+      modalities:
+        - video
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - high-quality-pair-selection
+        - subset-specialization
+        - model-merging
+      scale_disclosed: false
+      strategy: Fine-tune separate models on high-quality, precisely captioned subsets covering different strengths, then merge them into one service model.
+    - name: preference
+      modalities:
+        - video
+        - text
+      source_types:
+        - human-feedback
+        - undisclosed
+      operations:
+        - dimension-specific-reward-modeling
+        - video-rlhf
+        - feedback-driven-learning
+      scale_disclosed: false
+      strategy: Apply video-specific RLHF with dimension-specific reward models to improve motion vividness, structural stability, and visual quality.
+    - name: distillation
+      modalities:
+        - video
+        - text
+      source_types:
+        - synthetic
+        - human-feedback
+      operations:
+        - trajectory-segmented-consistency-distillation
+        - score-distillation
+        - adversarial-multistep-distillation
+      scale_disclosed: false
+      strategy: Combine consistency, score, and adversarial multi-step distillation with preference supervision to reduce sampling steps while retaining quality.
+  strategy_summary:
+    - Build a broad video prior through shot segmentation, adaptive cropping, rule and detector filtering, balancing, and precise dense captioning.
+    - Unify text-to-video, image-to-video, and multi-shot learning through conditional masks and interleaved multimodal position encoding.
+    - Use specialized SFT subsets, model merging, video RLHF, and multi-stage distillation for quality, controllability, and speed.
+  unknowns:
+    - Exact source datasets, collection permissions, media licenses, mixture weights, retained sample counts, and deduplication policy.
+    - Caption-model identity and training data, filter thresholds, safety taxonomy, annotator composition, and reward-model datasets.
+    - Model parameter count, production checkpoint versioning, and service retention or output-rights terms.
+evidence:
+  release: https://seed.bytedance.com/en/blog/tech-report-of-seedance-1-0-is-now-publicly-available
+  technical_report: https://arxiv.org/abs/2506.09113
+  repository: null
+status: partial
+last_verified: "2026-07-27"

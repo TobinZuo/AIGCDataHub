@@ -18,7 +18,7 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(validate(), [])
 
     def test_cards_are_present(self) -> None:
-        self.assertGreaterEqual(len(load_cards()), 51)
+        self.assertGreaterEqual(len(load_cards()), 55)
 
     def test_audio_and_3d_coverage_is_present(self) -> None:
         modalities = {card["modality"] for _, card in load_cards()}
@@ -100,6 +100,23 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(cards["gpic"]["scale"]["samples"], 101200000)
         self.assertEqual(cards["openve-bench"]["scale"]["samples"], 431)
 
+    def test_release_feed_promotions_have_downloads_and_review_boundaries(self) -> None:
+        cards = {card["id"]: card for _, card in load_cards()}
+        self.assertTrue(
+            {
+                "videoufo",
+                "talkingheadbench",
+                "maven-multicultural-video",
+                "seedance-1-pro-human-preference",
+            }.issubset(cards)
+        )
+        self.assertEqual(cards["videoufo"]["scale"]["samples"], 1091712)
+        self.assertEqual(cards["videoufo"]["access"]["type"], "hosted")
+        self.assertEqual(cards["talkingheadbench"]["scale"]["samples"], 5306)
+        self.assertEqual(cards["talkingheadbench"]["license"]["commercial_use"], "review-required")
+        self.assertEqual(cards["maven-multicultural-video"]["scale"]["samples"], 972)
+        self.assertEqual(cards["seedance-1-pro-human-preference"]["scale"]["samples"], 198)
+
     def test_dataset_lineage_uses_canonical_catalog_ids(self) -> None:
         cards = {card["id"]: card for _, card in load_cards()}
         self.assertEqual(
@@ -125,6 +142,10 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(
             cards["openve-bench"]["derived_from"][0]["catalog_id"],
             "openve-3m",
+        )
+        self.assertEqual(
+            cards["talkingheadbench"]["derived_from"][0]["catalog_id"],
+            "celebv-hq",
         )
 
     def test_site_catalog_orders_datasets_by_release_date(self) -> None:

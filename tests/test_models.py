@@ -15,6 +15,29 @@ class ModelCatalogTests(unittest.TestCase):
     def test_model_catalog_is_valid(self) -> None:
         self.assertEqual(validate_models(), [])
 
+    def test_seedance_1_records_public_data_strategy_and_external_evaluation(self) -> None:
+        cards = {card["id"]: card for _, card in load_models()}
+        seedance = cards["seedance-1-0-pro"]
+        self.assertEqual(seedance["data"]["disclosure_level"], "high-level")
+        self.assertFalse(seedance["data"]["exact_datasets_disclosed"])
+        self.assertIn(
+            "seedance-1-pro-human-preference",
+            {item["catalog_id"] for item in seedance["data"]["datasets"]},
+        )
+        operations = {
+            operation
+            for stage in seedance["data"]["stages"]
+            for operation in stage["operations"]
+        }
+        self.assertTrue(
+            {
+                "shot-boundary-detection",
+                "dense-video-captioning",
+                "video-rlhf",
+                "trajectory-segmented-consistency-distillation",
+            }.issubset(operations)
+        )
+
     def test_representative_modalities_are_present(self) -> None:
         cards = [card for _, card in load_models()]
         modalities = {modality for card in cards for modality in card["modalities"]}

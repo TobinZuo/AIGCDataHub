@@ -1,0 +1,72 @@
+id: seedance-1-pro-human-preference
+name: Seedance 1 Pro Human Preferences
+organization: Rapidata
+released_at: "2025-08-08"
+release_date_source: https://huggingface.co/datasets/Rapidata/image-to-video-human-preference-seedance-1-pro
+modality: preference
+tasks:
+  - image-to-video-evaluation
+  - video-generation-preference
+  - pairwise-model-comparison
+stages:
+  - evaluation
+description: >-
+  An open set of paired image-to-video outputs and human judgments comparing
+  Seedance 1 Pro with Hailuo-02 and Marey on prompt alignment, visual coherence,
+  and aesthetic preference.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/Rapidata/image-to-video-human-preference-seedance-1-pro
+  requires_account: false
+  notes: Hugging Face hosts the 198-row Parquet table, prompt images, preview assets, and full-resolution model outputs.
+scale:
+  samples: 198
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The card reports about 6,000 responses from about 2,000 annotators aggregated into 198 paired comparisons.
+annotations:
+  types:
+    - prompt
+    - prompt-image
+    - paired-video-output
+    - alignment-preference
+    - coherence-preference
+    - aesthetic-preference
+    - individual-response
+  source: human
+  languages:
+    - en
+license:
+  metadata: Apache-2.0
+  media: Generated-output rights depend on Seedance 1 Pro, Hailuo-02, and Marey service terms
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    Apache-2.0 covers the published repository metadata; users should separately
+    review the terms governing model outputs and prompt images.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - aesthetics
+    - motion
+    - temporal-consistency
+    - human-preference
+    - provenance
+  known_limitations:
+    - The 198 comparison rows are too small to represent the full prompt and motion distribution of the compared services.
+    - The card reports approximate annotator and response counts without demographic or sampling details.
+    - Model versions are fixed historical service snapshots and may not match current production behavior.
+processing:
+  recipe: recipes/dataset_audit
+  recommended_format: parquet
+  notes: Keep individual responses separate from weighted aggregates and group splits by prompt asset to prevent leakage.
+evidence:
+  homepage: https://huggingface.co/datasets/Rapidata/image-to-video-human-preference-seedance-1-pro
+  paper: null
+  used_by:
+    - Seedance 1.0 Pro
+status: verified
+last_verified: "2026-07-27"

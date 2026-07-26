@@ -1,0 +1,78 @@
+id: talkingheadbench
+name: TalkingHeadBench
+organization: University of North Carolina at Chapel Hill and Michigan State University
+released_at: "2025-05-15"
+release_date_source: https://huggingface.co/datasets/luchaoqi/TalkingHeadBench
+modality: evaluation
+tasks:
+  - talking-head-deepfake-detection
+  - audio-visual-deepfake-detection
+  - cross-generator-generalization
+stages:
+  - fine-tuning
+  - evaluation
+description: >-
+  A manually curated audio-video benchmark for detecting modern talking-head
+  deepfakes, with identity-separated splits, six core academic generators,
+  two held-out generators, synchronized audio, and real-video controls.
+derived_from:
+  - catalog_id: celebv-hq
+    relationship: source-component
+    contribution: Driving video and audio signals plus a distinct subset of real videos
+    notes: CelebV-HQ supplies driving signals for synthetic clips and real-video controls; identities are separated from source portraits and evaluation splits.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/luchaoqi/TalkingHeadBench
+  requires_account: false
+  notes: Hugging Face hosts fake and real video splits, extracted audio, source-driving audio, and split manifests.
+scale:
+  samples: 5306
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The paper reports 2,994 curated fake videos and 2,312 real videos; more than 60 percent of initially generated fakes were removed.
+annotations:
+  types:
+    - real-or-fake-label
+    - generator-label
+    - identity-separated-split
+    - audio-track
+    - driving-signal-provenance
+  source: mixed
+  languages:
+    - multilingual
+license:
+  metadata: MIT on the Hugging Face card; CC-BY-4.0 in the paper supplement
+  media: Component-dependent, including FFHQ CC-BY-NC-SA-4.0 and CelebV-HQ and FaceForensics++ terms
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    The repository metadata and paper supplement declare different top-level
+    licenses, while source datasets retain their own terms; review every
+    component license before commercial use or redistribution.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - temporal-consistency
+    - deduplication
+    - provenance
+  known_limitations:
+    - The benchmark covers a finite set of generators and identities, so results may not generalize to newer commercial systems.
+    - Audio was corrected in March and April 2026; scores from earlier snapshots are not directly comparable.
+    - The default real-data split differs from the official FaceForensics++ protocol, and the two split variants should not be mixed.
+processing:
+  recipe: recipes/dataset_audit
+  recommended_format: native
+  notes: >-
+    Pin a dataset revision, keep the selected real-data protocol explicit, and
+    preserve identity separation and audio-version provenance in every run.
+evidence:
+  homepage: https://anaxqx.github.io/talkingheadbench.github.io/
+  paper: https://arxiv.org/abs/2505.24866
+  used_by:
+    - TalkingHeadBench detector baselines
+status: partial
+last_verified: "2026-07-27"

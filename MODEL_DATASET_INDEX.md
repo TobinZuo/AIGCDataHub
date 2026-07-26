@@ -2,9 +2,9 @@
 
 Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; unreleased or undisclosed data must state why no card exists.
 
-- Models: 64
-- References linked to catalog cards: 35
-- References without a card, with an explicit evidence boundary: 77
+- Models: 65
+- References linked to catalog cards: 36
+- References without a card, with an explicit evidence boundary: 79
 - Ordering: model release date, newest first
 
 | Model | Released | Dataset or corpus named by source | Availability | Catalog resolution | Role | Evidence boundary |
@@ -113,6 +113,9 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [Gemini 3 Pro Image (Nano Banana Pro)](models/image/gemini-3-pro-image.yaml) | 2025-11-20 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Sora 2](models/video/sora-2.yaml) | 2025-09-30 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Runway Aleph](models/video/runway-aleph.yaml) | 2025-07-25 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
+| [Seedance 1.0 Pro](models/video/seedance-1-0-pro.yaml) | 2025-06-11 | Large-scale multi-source video corpus | undisclosed | — exact source is not disclosed | pretraining | The report describes diverse durations, resolutions, subjects, scenes, styles, and camera movements but names no source dataset or mixture weight. |
+| [Seedance 1.0 Pro](models/video/seedance-1-0-pro.yaml) | 2025-06-11 | High-quality video-text SFT mixture | undisclosed | — exact source is not disclosed | fine-tuning | Curated video-text pairs with precise captions cover diverse styles and scenes; dataset identity and size are not published. |
+| [Seedance 1.0 Pro](models/video/seedance-1-0-pro.yaml) | 2025-06-11 | Seedance 1 Pro Human Preferences | public | [`seedance-1-pro-human-preference`](catalog/preference/seedance-1-pro-human-preference.yaml) | evaluation | This is an independent post-release Rapidata benchmark, not a ByteDance training-data disclosure. |
 | [HunyuanVideo-Avatar](models/video/hunyuanvideo-avatar.yaml) | 2025-05-28 | HunyuanVideo-I2V inherited training mixture | undisclosed | — exact source is not disclosed | pretraining | The avatar model inherits the visual prior of HunyuanVideo-I2V, but this release does not restate that model's complete source corpus or mixture. |
 | [HunyuanVideo-Avatar](models/video/hunyuanvideo-avatar.yaml) | 2025-05-28 | HunyuanVideo-Avatar character-audio training corpus | not-released | — publisher has not released it | fine-tuning | The report discloses aggregate scale and filtering but not source identities, licensing composition, speaker consent, or a public artifact. |
 | [HunyuanVideo-Avatar](models/video/hunyuanvideo-avatar.yaml) | 2025-05-28 | HDTF | public | [`hdtf`](catalog/video/hdtf.yaml) | evaluation | Used as a public talking-head evaluation set; this relationship is not a claim that HDTF was included in the private training corpus. |
