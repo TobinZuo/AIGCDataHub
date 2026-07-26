@@ -7,6 +7,7 @@ from pathlib import Path
 sys.path.insert(0, "scripts")
 
 from models import load_models
+from build_readme import render_model_table
 from build_model_dataset_index import render_index
 from validate_models import validate_models
 
@@ -147,6 +148,13 @@ class ModelCatalogTests(unittest.TestCase):
         self.assertIn("publisher has not released it", rendered)
         self.assertIn("exact source is not disclosed", rendered)
         self.assertIn("models/image/gpt-image-2.yaml", rendered)
+
+    def test_readme_model_summary_deduplicates_multi_role_dataset_names(self) -> None:
+        row = next(
+            line for line in render_model_table().splitlines()
+            if "[OmniTryOn](models/video/omnitryon.yaml)" in line
+        )
+        self.assertEqual(row.count("[TryAny-Bench](catalog/video/tryany-bench.yaml)"), 1)
 
     def test_every_model_records_unknowns(self) -> None:
         for _, card in load_models():

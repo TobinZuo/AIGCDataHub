@@ -126,8 +126,12 @@ def strategy_profile(card: dict[str, Any]) -> dict[str, Any]:
             )
         ),
         "data_reference_count": len(data_references),
-        "linked_dataset_count": sum(
-            reference["catalog_id"] is not None for reference in data_references
+        "linked_dataset_count": len(
+            {
+                reference["catalog_id"]
+                for reference in data_references
+                if reference["catalog_id"] is not None
+            }
         ),
         "scale_disclosed_stage_count": sum(
             stage["scale_disclosed"] for stage in stages

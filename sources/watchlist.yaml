@@ -452,6 +452,15 @@ tracks:
       - url: https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k
         catalog_id: fit-vto-100k
         priority: critical
+      - url: https://huggingface.co/api/datasets/xcll/Try-Any-Bench
+        catalog_id: tryany-bench
+        priority: critical
+      - url: https://arxiv.org/html/2605.21431
+        catalog_id: vvt-interact
+        priority: critical
+      - url: https://huggingface.co/api/datasets/alibaba-yuanjing-aigclab/ViViD
+        catalog_id: vivid
+        priority: critical
       - url: https://github.com/facebookresearch/co3d/commits/main.atom
         catalog_id: co3d
         priority: critical
@@ -652,6 +661,12 @@ tracks:
         priority: critical
       - url: https://shaodingbao.github.io/TripVVT/
         model_id: tripvvt
+        priority: critical
+      - url: https://huggingface.co/api/models/xcll/omnitryon_model
+        model_id: omnitryon
+        priority: critical
+      - url: https://export.arxiv.org/api/query?id_list=2605.21431
+        model_id: itryon
         priority: critical
       - url: https://huggingface.co/api/models/baidu/ERNIE-Image
         model_id: ernie-image

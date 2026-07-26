@@ -927,7 +927,7 @@ function RankingOverview({ boards, modelById, onOpenModel }: {
                           key={`${entry.rank}-${component.name}`}
                         >
                           <strong>{entry.components.length > 1 ? component.name : "模型卡"}</strong>
-                          <small>{model.strategy_profile.linked_dataset_count}/{model.strategy_profile.data_reference_count} 数据卡</small>
+                          <small>{model.strategy_profile.linked_dataset_count} 卡 / {model.strategy_profile.data_reference_count} 引用</small>
                         </button>
                       ) : (
                         <small key={`${entry.rank}-${component.name}`}>{component.name}: 待建卡</small>
@@ -1111,18 +1111,18 @@ function StrategyMatrix({
                       {profile.data_reference_count ? (
                         <div className="comparison-dataset-cell">
                           <a href={`#strategy-datasets-${model.id}`}>
-                            <strong>{profile.linked_dataset_count}/{profile.data_reference_count}</strong>
+                            <strong>{profile.linked_dataset_count} 卡 / {profile.data_reference_count} 引用</strong>
                             <small>查看完整引用</small>
                           </a>
                           <div className="comparison-dataset-links" aria-label={`${model.name} 对应数据集`}>
-                            {model.data.datasets.slice(0, 2).map((reference) => {
+                            {model.data.datasets.slice(0, 2).map((reference, referenceIndex) => {
                               const dataset = reference.catalog_id ? datasetById.get(reference.catalog_id) : undefined;
                               return dataset ? (
-                                <button type="button" onClick={() => onOpenDataset(dataset.id)} key={`${model.id}-${reference.name}`}>
+                                <button type="button" onClick={() => onOpenDataset(dataset.id)} key={`${model.id}-${reference.role}-${referenceIndex}-${reference.name}`}>
                                   {dataset.name} <span aria-hidden="true">→</span>
                                 </button>
                               ) : (
-                                <span title="尚无可打开的数据卡" key={`${model.id}-${reference.name}`}>{reference.name}</span>
+                                <span title="尚无可打开的数据卡" key={`${model.id}-${reference.role}-${referenceIndex}-${reference.name}`}>{reference.name}</span>
                               );
                             })}
                             {model.data.datasets.length > 2 && (
@@ -1231,14 +1231,14 @@ function StrategyResult({
             <p className="detail-label" id={`strategy-datasets-title-${model.id}`}>关联数据集与访问入口</p>
             <p>这里列出模型卡中每一条数据引用。已建数据卡的条目可继续查看详情或直接打开下载、申请入口。</p>
           </div>
-          <strong>{profile.linked_dataset_count}/{profile.data_reference_count || 0}</strong>
+          <strong>{profile.linked_dataset_count} 卡 / {profile.data_reference_count || 0} 引用</strong>
         </header>
         {model.data.datasets.length > 0 ? (
           <div className="strategy-dataset-list">
-            {model.data.datasets.map((reference) => {
+            {model.data.datasets.map((reference, referenceIndex) => {
               const dataset = reference.catalog_id ? datasetById.get(reference.catalog_id) : undefined;
               return (
-                <article className="strategy-dataset-row" key={`${model.id}-${reference.name}`}>
+                <article className="strategy-dataset-row" key={`${model.id}-${reference.role}-${referenceIndex}-${reference.name}`}>
                   <div className="strategy-dataset-name">
                     <strong>{dataset?.name ?? reference.name}</strong>
                     <div>
@@ -1271,7 +1271,7 @@ function StrategyResult({
         )}
       </section>
       <footer>
-        <span>{DISCLOSURE_LABELS[model.data.disclosure_level]} / {profile.linked_dataset_count}/{profile.data_reference_count || "无"} 数据卡关联 / {profile.unknown_count} 项未知</span>
+        <span>{DISCLOSURE_LABELS[model.data.disclosure_level]} / {profile.linked_dataset_count} 张数据卡 · {profile.data_reference_count || "无"} 条引用 / {profile.unknown_count} 项未知</span>
         <ExternalLink href={model.evidence.technical_report ?? model.evidence.release}>查看一手证据</ExternalLink>
       </footer>
     </article>

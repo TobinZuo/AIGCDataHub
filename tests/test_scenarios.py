@@ -43,10 +43,15 @@ class ScenarioTaxonomyTests(unittest.TestCase):
         self.assertIn("virtual-try-on", models["flux-vto"]["scenario_ids"])
         self.assertIn("virtual-try-on", models["ctrlvton"]["scenario_ids"])
         self.assertIn("virtual-try-on", models["tripvvt"]["scenario_ids"])
+        self.assertIn("virtual-try-on", models["omnitryon"]["scenario_ids"])
+        self.assertIn("virtual-try-on", models["itryon"]["scenario_ids"])
         self.assertIn("video-localization", datasets["audiovisual-translation-dub"]["scenario_ids"])
         self.assertIn("virtual-try-on", datasets["fit-vto-100k"]["scenario_ids"])
         self.assertIn("virtual-try-on", datasets["viton-hd-edit"]["scenario_ids"])
         self.assertIn("virtual-try-on", datasets["tripvvt-10k"]["scenario_ids"])
+        self.assertIn("virtual-try-on", datasets["tryany-bench"]["scenario_ids"])
+        self.assertIn("virtual-try-on", datasets["vvt-interact"]["scenario_ids"])
+        self.assertIn("virtual-try-on", datasets["vivid"]["scenario_ids"])
         self.assertTrue(
             {"video-generation", "digital-human"}.issubset(
                 datasets["talkverse"]["scenario_ids"]
@@ -115,6 +120,14 @@ class ScenarioTaxonomyTests(unittest.TestCase):
                 tripvvt["operations"]
             )
         )
+
+        omnitryon = models["omnitryon"]["strategy_profile"]
+        self.assertEqual(omnitryon["data_reference_count"], 3)
+        self.assertEqual(omnitryon["linked_dataset_count"], 1)
+
+        itryon = models["itryon"]["strategy_profile"]
+        self.assertEqual(itryon["data_reference_count"], 5)
+        self.assertEqual(itryon["linked_dataset_count"], 2)
 
         avatar_v = models["avatar-v"]["strategy_profile"]
         self.assertEqual(

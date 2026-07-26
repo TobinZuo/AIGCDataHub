@@ -2,9 +2,9 @@
 
 Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; unreleased or undisclosed data must state why no card exists.
 
-- Models: 78
-- References linked to catalog cards: 82
-- References without a card, with an explicit evidence boundary: 89
+- Models: 80
+- References linked to catalog cards: 88
+- References without a card, with an explicit evidence boundary: 91
 - Ordering: model release date, newest first
 
 | Model | Released | Dataset or corpus named by source | Availability | Catalog resolution | Role | Evidence boundary |
@@ -36,6 +36,9 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [HappyHorse 1.1](models/video/happyhorse-1-1.yaml) | 2026-06-22 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Grok Imagine Video 1.5](models/video/grok-imagine-video-1-5.yaml) | 2026-06-16 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [HiDream-O1-Image-1.5](models/image/hidream-o1-image-1-5.yaml) | 2026-06-09 | HiDream O1 heterogeneous visual corpus | undisclosed | — exact source is not disclosed | pretraining | The family report describes public-web and internally licensed pools but does not name the component datasets or tie an exact mixture to version 1.5. |
+| [OmniTryOn](models/video/omnitryon.yaml) | 2026-06-05 | Wan2.1-I2V-14B and Video-As-Prompt inherited training mixture | undisclosed | — exact source is not disclosed | pretraining | OmniTryOn initializes from Video-As-Prompt, which is based on Wan2.1-I2V-14B; neither inherited foundation corpus is restated in this paper. |
+| [OmniTryOn](models/video/omnitryon.yaml) | 2026-06-05 | TryAny-Bench | public | [`tryany-bench`](catalog/video/tryany-bench.yaml) | fine-tuning | The paper says every OmniTryOn training stage uses the released TryAny-Bench training split; intermediate garment-only pairs support stage one and full multi-object pairs support stage two. |
+| [OmniTryOn](models/video/omnitryon.yaml) | 2026-06-05 | TryAny-Bench | public | [`tryany-bench`](catalog/video/tryany-bench.yaml) | evaluation | The held-out split is evaluated with conventional perceptual and video metrics plus the paper's nine-dimension VQA protocol. |
 | [Reve 2.0](models/image/reve-2.yaml) | 2026-06-03 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Ideogram 4.0](models/image/ideogram-4.yaml) | 2026-06-03 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [MAI-Image-2.5](models/image/mai-image-2-5.yaml) | 2026-06-02 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
@@ -45,6 +48,11 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [Runway Aleph 2.0](models/video/runway-aleph-2.yaml) | 2026-05-21 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Lens](models/image/lens.yaml) | 2026-05-20 | Lens-800M | not-released | [`lens-800m`](catalog/image/lens-800m.yaml) | pretraining | Dense GPT-4.1 captions average approximately 109 words. |
 | [Lens](models/image/lens.yaml) | 2026-05-20 | Lens-RL-8K | not-released | [`lens-rl-8k`](catalog/preference/lens-rl-8k.yaml) | preference | Taxonomy-driven GPT-4.1 prompts paired with up to ten prompt-specific rubrics and one global structural-integrity rubric. |
+| [iTryOn](models/video/itryon.yaml) | 2026-05-20 | Wan2.1-VACE inherited pretraining mixture | undisclosed | — exact source is not disclosed | pretraining | iTryOn initializes from Wan2.1-VACE, but the paper does not restate the foundation model's complete training corpus or source mixture. |
+| [iTryOn](models/video/itryon.yaml) | 2026-05-20 | ViViD | public | [`vivid`](catalog/video/vivid.yaml) | fine-tuning | The first 10K-step stage adapts the backbone to non-interactive video try-on with empty action captions. |
+| [iTryOn](models/video/itryon.yaml) | 2026-05-20 | VVT-Interact | not-released | [`vvt-interact`](catalog/video/vvt-interact.yaml) | fine-tuning | A second 10K-step stage adds interactive garment behavior using global captions, time-stamped actions, and derived interaction-frame masks. |
+| [iTryOn](models/video/itryon.yaml) | 2026-05-20 | ViViD | public | [`vivid`](catalog/video/vivid.yaml) | evaluation | The public benchmark measures conventional non-interactive virtual try-on quality after the first stage. |
+| [iTryOn](models/video/itryon.yaml) | 2026-05-20 | VVT-Interact | not-released | [`vvt-interact`](catalog/video/vvt-interact.yaml) | evaluation | The unreleased test split supports SSIM, LPIPS, VFID, FVD, and the proposed Qwen-VL-based Interaction Success Rate. |
 | [Lance](models/multimodal/lance.yaml) | 2026-05-18 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Recraft V4.1](models/image/recraft-v4-1.yaml) | 2026-05-14 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [HiDream-O1-Image](models/image/hidream-o1-image.yaml) | 2026-05-08 | HiDream O1 heterogeneous visual corpus | undisclosed | — exact source is not disclosed | pretraining | The report describes source classes and constructed supervision but does not name component datasets or publish the compiled corpus. |

@@ -1,0 +1,94 @@
+id: omnitryon
+name: OmniTryOn
+organization: Xi'an Jiaotong University
+released_at: "2026-06-05"
+modalities:
+  - video
+tasks:
+  - video-virtual-try-on
+  - virtual-try-on
+  - multi-garment-try-on
+  - garment-conditioned-generation
+  - video-to-video
+  - video-editing
+access:
+  status: open-weights
+  license: Public checkpoint and code repositories do not declare a model or code license; access does not establish permission to use, modify, or redistribute them
+  release_url: https://huggingface.co/xcll/omnitryon_model
+  weights_url: https://huggingface.co/xcll/omnitryon_model
+  api_url: null
+architecture:
+  family: Wan2.1-I2V-14B / Video-As-Prompt DiT with a first-frame wearable cache and shared spatiotemporal RoPE
+  parameters: 14000000000
+  notes: The model concatenates wearable-object images as a first-frame cache, applies full attention across reference and target latents, and assigns identical 3D RoPE coordinates to preserve motion and background without masks or pose extractors at inference.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Wan2.1-I2V-14B and Video-As-Prompt inherited training mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: OmniTryOn initializes from Video-As-Prompt, which is based on Wan2.1-I2V-14B; neither inherited foundation corpus is restated in this paper.
+    - name: TryAny-Bench
+      catalog_id: tryany-bench
+      role: fine-tuning
+      availability: public
+      scale: 1,243 training pairs
+      notes: The paper says every OmniTryOn training stage uses the released TryAny-Bench training split; intermediate garment-only pairs support stage one and full multi-object pairs support stage two.
+    - name: TryAny-Bench
+      catalog_id: tryany-bench
+      role: evaluation
+      availability: public
+      scale: 217 test pairs
+      notes: The held-out split is evaluated with conventional perceptual and video metrics plus the paper's nine-dimension VQA protocol.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-foundation-model
+      scale_disclosed: false
+      strategy: Initialize the generation backbone from Video-As-Prompt and Wan2.1-I2V-14B without restating their upstream training sources or mixture.
+    - name: fine-tuning
+      modalities:
+        - video
+        - image
+        - text
+      source_types:
+        - public-dataset
+        - public-web
+        - synthetic
+        - human-feedback
+      operations:
+        - ecommerce-video-curation
+        - synthetic-pair-generation
+        - wearable-object-extraction
+        - garment-replacement
+        - face-swapping
+        - vlm-captioning
+        - manual-filtering
+        - progressive-task-training
+      scale_disclosed: true
+      strategy: Fine-tune exclusively on 1,243 TryAny-Bench training pairs for two epochs, first learning garment transfer from intermediate pairs and then expanding to garments, shoes, bags, and facial identity with the complete paired examples.
+  strategy_summary:
+    - Build genuine reference-target video pairs from more than 1,500 e-commerce videos instead of training against destructively masked inputs.
+    - Use Gemini 3.1 Flash Image for wearable extraction, MagicTryOn and CAPYBARA for staged object replacement, face swapping where needed, Qwen3-VL-Instruct-8B captions, and final manual rejection to retain 1,460 pairs.
+    - Train the two progressive stages only on the public TryAny-Bench split while preserving the inherited Wan2.1 and Video-As-Prompt corpus as an explicit unresolved dependency.
+  unknowns:
+    - Complete source URLs, platform terms, subject consent, and upstream media rights for the raw e-commerce videos.
+    - License terms for the OmniTryOn checkpoint, code, and TryAny-Bench files; none of the three public repositories currently declares a usable license.
+    - Versions, licenses, prompts, and failure rates for every commercial or open model used in the synthetic construction pipeline.
+    - Complete Wan2.1-I2V-14B and Video-As-Prompt pretraining data, filtering, and mixture weights.
+evidence:
+  release: https://huggingface.co/xcll/omnitryon_model
+  technical_report: https://arxiv.org/abs/2606.08514
+  repository: https://github.com/xcltql666/OminTryOn
+status: verified
+last_verified: "2026-07-27"

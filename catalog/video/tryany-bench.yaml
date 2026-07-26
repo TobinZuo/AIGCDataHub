@@ -1,0 +1,76 @@
+id: tryany-bench
+name: TryAny-Bench
+organization: Xi'an Jiaotong University
+released_at: "2026-06-07"
+release_date_source: https://huggingface.co/datasets/xcll/Try-Any-Bench
+modality: video
+tasks:
+  - video-virtual-try-on
+  - virtual-try-on
+  - multi-garment-try-on
+  - garment-conditioned-generation
+  - video-to-video
+  - virtual-try-on-evaluation
+stages:
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A physics-preserving paired-video corpus for transferring multiple wearable
+  objects at once, with reference videos, target videos, extracted wearable
+  images, captions, a 1,243/217 split, and a nine-dimension VQA protocol.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/xcll/Try-Any-Bench
+  requires_account: false
+  notes: Two public archives, train.tar.gz and test.tar.gz, are directly hosted. The API reports about 18.5 GB of repository storage while the web page reports 15.4 GB; neither surface publishes a dataset card or license.
+scale:
+  samples: 1460
+  source_items: 1500
+  hours: null
+  approximate: false
+  notes: The paper reports 1,243 training and 217 testing pairs retained from more than 1,500 raw e-commerce videos.
+annotations:
+  types:
+    - reference-video
+    - target-video
+    - wearable-object-images
+    - garment-only-intermediate-pairs
+    - multi-object-pairs
+    - fine-grained-video-caption
+    - train-test-split
+    - vqa-evaluation-prompts
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: No dataset license declared
+  media: No media license declared; raw e-commerce sources and synthetic edits are not enumerated per item
+  commercial_use: unknown
+  redistribution: review-required
+  notes: Public hosting is not a grant of training or redistribution rights. Review raw-video provenance, synthetic-generator terms, face-swapping implications, and subject rights before reuse.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - Raw e-commerce video URLs, providers, platform terms, creator permission, and subject consent are not disclosed.
+    - Reference videos are synthesized through several generators, so artifacts and generator-specific biases may remain after manual filtering.
+    - The 217-pair test split is small and was constructed by the same pipeline as the training split.
+    - Repository size differs between the Hugging Face API and rendered page, and no checksum manifest or structured dataset card is published.
+processing:
+  recipe: Curate more than 1,500 e-commerce target videos; extract and perturb wearable objects with Gemini 3.1 Flash Image; replace garments with MagicTryOn, other wearables with CAPYBARA, and visible identities with a face-swap model; caption with Qwen3-VL-Instruct-8B; crop overexposed starts; and manually reject accumulated editing failures.
+  recommended_format: native
+  notes: Download and preserve the publisher's train/test archives separately. Record the Hugging Face revision because the repository currently has no manifest, card, license, or stable per-sample provenance table.
+evidence:
+  homepage: https://huggingface.co/datasets/xcll/Try-Any-Bench
+  paper: https://arxiv.org/abs/2606.08514
+  used_by:
+    - OmniTryOn
+status: partial
+last_verified: "2026-07-27"

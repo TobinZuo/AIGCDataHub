@@ -375,6 +375,10 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.deepEqual(models["fit-vto"].strategy_profile.stage_names, ["pretraining", "fine-tuning"]);
   assert.equal(models["fit-vto"].strategy_profile.data_reference_count, 3);
   assert.equal(models["fit-vto"].strategy_profile.linked_dataset_count, 1);
+  assert.equal(models["omnitryon"].strategy_profile.data_reference_count, 3);
+  assert.equal(models["omnitryon"].strategy_profile.linked_dataset_count, 1);
+  assert.equal(models["itryon"].strategy_profile.data_reference_count, 5);
+  assert.equal(models["itryon"].strategy_profile.linked_dataset_count, 2);
   assert.equal(models["flux-vto"].strategy_profile.scale_disclosed_stage_count, 0);
   assert.match(page, /CatalogExplorer/);
   assert.match(catalogExplorer, /StrategyMatrix/);

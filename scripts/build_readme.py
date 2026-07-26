@@ -64,13 +64,17 @@ def render_model_table() -> str:
         name = f"[{model['name']}]({model_path})"
         modalities = ", ".join(item for item in model["modalities"] if item != "multimodal")
         named_datasets: list[str] = []
+        seen_dataset_labels: set[str] = set()
         for dataset in model["data"]["datasets"]:
             catalog_id = dataset["catalog_id"]
             if catalog_id and catalog_id in dataset_paths:
                 target = dataset_paths[catalog_id].relative_to(ROOT).as_posix()
-                named_datasets.append(f"[{dataset['name']}]({target})")
+                label = f"[{dataset['name']}]({target})"
             else:
-                named_datasets.append(dataset["name"])
+                label = dataset["name"]
+            if label not in seen_dataset_labels:
+                named_datasets.append(label)
+                seen_dataset_labels.add(label)
         rows.append(
             "| "
             + " | ".join(

@@ -82,6 +82,17 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn("ctrlvton", self.datasets["viton-hd-edit"]["linked_model_ids"])
         self.assertIn("tripvvt-10k", self.models["tripvvt"]["linked_dataset_ids"])
         self.assertIn("tripvvt", self.datasets["tripvvt-10k"]["linked_model_ids"])
+        self.assertEqual(
+            self.models["omnitryon"]["linked_dataset_ids"],
+            ["tryany-bench"],
+        )
+        self.assertIn("omnitryon", self.datasets["tryany-bench"]["linked_model_ids"])
+        self.assertEqual(
+            set(self.models["itryon"]["linked_dataset_ids"]),
+            {"vivid", "vvt-interact"},
+        )
+        self.assertIn("itryon", self.datasets["vivid"]["linked_model_ids"])
+        self.assertIn("itryon", self.datasets["vvt-interact"]["linked_model_ids"])
         self.assertIn(
             "audiovisual-translation-dub",
             self.models["just-dub-it"]["linked_dataset_ids"],

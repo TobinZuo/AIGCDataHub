@@ -1,0 +1,75 @@
+id: vivid
+name: ViViD
+organization: University of Science and Technology of China and Alibaba Group
+released_at: "2024-06-17"
+release_date_source: https://huggingface.co/datasets/alibaba-yuanjing-aigclab/ViViD
+modality: video
+tasks:
+  - video-virtual-try-on
+  - virtual-try-on
+  - garment-conditioned-generation
+  - video-to-video
+  - virtual-try-on-evaluation
+stages:
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A multi-category high-resolution video virtual-try-on dataset pairing product
+  garment images with indoor model videos and derived agnostic, mask, and
+  DensePose conditions for upper-body, lower-body, and dress try-on.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/alibaba-yuanjing-aigclab/ViViD
+  requires_account: false
+  notes: The official Hugging Face repository hosts ViViD.zip (about 32.1 GB) and a viewer with 38,800 rows representing four condition groups over 9,700 garment-video pairs.
+scale:
+  samples: 9700
+  source_items: 1213694
+  hours: null
+  approximate: false
+  notes: The paper reports 9,700 pairs, 1,213,694 total frames, 832 by 624 source resolution, and upper-body, lower-body, and dress categories.
+annotations:
+  types:
+    - source-video
+    - garment-reference-image
+    - garment-category
+    - garment-mask
+    - garment-agnostic-video
+    - garment-agnostic-mask
+    - densepose-video
+    - human-keypoints
+  source: mixed
+  languages:
+    - none
+license:
+  metadata: Apache-2.0 declared by the Hugging Face card
+  media: Apache-2.0 is declared at repository level, but the underlying Net-A-Porter image and video rights are not enumerated per item
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The repository license and dataset tag do not replace review of the upstream e-commerce media, depicted people, trademarks, and Net-A-Porter terms.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - The corpus focuses on indoor product-presentation videos and the paper reports artifacts on outdoor inputs.
+    - Every source item comes from one named e-commerce website, limiting environment, motion, demographic, and retail-domain diversity.
+    - The public repository has an empty README and does not expose per-item source URLs, consent records, or upstream rights metadata.
+    - Derived masks, parsing, DensePose, and automatic categories inherit failures from OpenPose, SCHP, DensePose, SAM, and BLIP-2.
+processing:
+  recipe: Download paired product images and model videos from Net-A-Porter; crop video to 832 by 624; derive 18 body keypoints with OpenPose, human parsing and agnostic regions with SCHP, pose videos with DensePose, garment masks with SAM, and garment categories with BLIP-2.
+  recommended_format: native
+  notes: Keep raw video, garment image, garment mask, agnostic video, agnostic mask, and DensePose video synchronized by pair identifier; retain the publisher's split when using ViViD as an iTryOn stage-one source.
+evidence:
+  homepage: https://huggingface.co/datasets/alibaba-yuanjing-aigclab/ViViD
+  paper: https://arxiv.org/abs/2405.11794
+  used_by:
+    - ViViD
+    - iTryOn
+status: partial
+last_verified: "2026-07-27"

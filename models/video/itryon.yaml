@@ -1,0 +1,121 @@
+id: itryon
+name: iTryOn
+organization: Sun Yat-sen University and Alibaba Group
+released_at: "2026-05-20"
+modalities:
+  - video
+tasks:
+  - video-virtual-try-on
+  - virtual-try-on
+  - garment-conditioned-generation
+  - controllable-virtual-try-on
+  - video-to-video
+access:
+  status: announced
+  license: The paper is CC-BY-4.0; model code, checkpoints, datasets, and model-specific terms have not been released
+  release_url: https://arxiv.org/abs/2605.21431
+  weights_url: null
+  api_url: null
+architecture:
+  family: Wan2.1-VACE conditional DiT with 3D-hand, pose, agnostic-video, and time-localized action guidance
+  parameters: null
+  notes: Parallel context blocks and an Interaction Guider inject garment-agnostic HaMeR hand geometry, pose, global captions, and time-stamped action captions; A-RoPE aligns action text to segments and an action-aware loss upweights sparse interaction frames.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Wan2.1-VACE inherited pretraining mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: iTryOn initializes from Wan2.1-VACE, but the paper does not restate the foundation model's complete training corpus or source mixture.
+    - name: ViViD
+      catalog_id: vivid
+      role: fine-tuning
+      availability: public
+      scale: 7,759 training pairs
+      notes: The first 10K-step stage adapts the backbone to non-interactive video try-on with empty action captions.
+    - name: VVT-Interact
+      catalog_id: vvt-interact
+      role: fine-tuning
+      availability: not-released
+      scale: 5,160 training pairs
+      notes: A second 10K-step stage adds interactive garment behavior using global captions, time-stamped actions, and derived interaction-frame masks.
+    - name: ViViD
+      catalog_id: vivid
+      role: evaluation
+      availability: public
+      scale: 180 test pairs
+      notes: The public benchmark measures conventional non-interactive virtual try-on quality after the first stage.
+    - name: VVT-Interact
+      catalog_id: vvt-interact
+      role: evaluation
+      availability: not-released
+      scale: 132 test pairs / 10,692 frames
+      notes: The unreleased test split supports SSIM, LPIPS, VFID, FVD, and the proposed Qwen-VL-based Interaction Success Rate.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-foundation-model
+      scale_disclosed: false
+      strategy: Reuse Wan2.1-VACE as the controllable video-generation backbone without restating its upstream data lineage.
+    - name: fine-tuning
+      modalities:
+        - video
+        - image
+        - text
+        - 3d
+      source_types:
+        - public-dataset
+      operations:
+        - non-interactive-adaptation
+        - pose-conditioning
+        - garment-agnostic-conditioning
+        - empty-action-captioning
+      scale_disclosed: true
+      strategy: Fine-tune for 10K steps on 7,759 ViViD training pairs at 576 by 768 with 81-frame clips, teaching ordinary garment transfer before introducing interaction supervision.
+    - name: fine-tuning
+      modalities:
+        - video
+        - image
+        - text
+        - 3d
+      source_types:
+        - public-web
+        - proprietary
+        - synthetic
+      operations:
+        - ecommerce-video-curation
+        - social-video-curation
+        - quality-filtering
+        - shot-boundary-filtering
+        - vlm-captioning
+        - frame-level-action-labeling
+        - morphological-smoothing
+        - hand-pose-estimation
+        - action-aware-loss-reweighting
+      scale_disclosed: true
+      strategy: Continue for 10K steps on 5,160 VVT-Interact training pairs, using Qwen-VL global and localized action captions, HaMeR 3D hands, and a segment mask to amplify loss on rare interaction frames.
+  strategy_summary:
+    - "Separate non-interactive adaptation from interactive learning: 10K steps on public ViViD, followed by 10K steps on the unreleased VVT-Interact corpus."
+    - Curate 5,292 e-commerce livestream and social-video pairs with resolution, bitrate, subject-size, occlusion, and scene-cut gates; then label six interaction categories with global and time-stamped Qwen-VL captions.
+    - Convert the time-stamped annotations into both A-RoPE alignment and an action-aware loss mask so sparse hand-garment events receive stronger supervision.
+  unknowns:
+    - Public download or application route, dataset license, source URLs, platform composition, subject consent, and media rights for VVT-Interact.
+    - Model checkpoint, training code, model license, parameter count, and reproducible release schedule.
+    - Exact Qwen-VL and HaMeR versions, annotation acceptance rates, per-category counts, and human validation protocol.
+    - Complete Wan2.1-VACE pretraining data and the exact overlap between ViViD sources and VVT-Interact sources.
+evidence:
+  release: https://arxiv.org/abs/2605.21431
+  technical_report: https://arxiv.org/abs/2605.21431
+  repository: null
+status: verified
+last_verified: "2026-07-27"

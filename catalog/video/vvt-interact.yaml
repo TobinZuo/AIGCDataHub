@@ -1,0 +1,76 @@
+id: vvt-interact
+name: VVT-Interact
+organization: Sun Yat-sen University and Alibaba Group
+released_at: "2026-05-20"
+release_date_source: https://arxiv.org/abs/2605.21431
+modality: video
+tasks:
+  - video-virtual-try-on
+  - virtual-try-on
+  - controllable-virtual-try-on
+  - garment-conditioned-generation
+  - virtual-try-on-evaluation
+stages:
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A paper-disclosed interactive video virtual-try-on corpus of video-garment
+  pairs spanning six hand-garment actions, with global motion captions,
+  time-stamped action captions, and train/test splits; files are not released.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2605.21431
+  requires_account: false
+  notes: The paper names and describes the dataset but provides no repository, files, request form, or announced release date. This URL is evidence and an availability notice, not a download link.
+scale:
+  samples: 5292
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The paper reports 5,160 training and 132 test video-garment pairs; the test split contains 10,692 frames.
+annotations:
+  types:
+    - garment-reference-image
+    - interactive-video
+    - six-interaction-categories
+    - global-motion-caption
+    - time-stamped-action-caption
+    - frame-level-interaction-label
+    - interaction-segment-boundary
+    - 3d-hand-prior
+    - train-test-split
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Not published
+  media: Not published; sources are described only as e-commerce livestreams and social media
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The paper's CC-BY-4.0 license applies to the article, not automatically to dataset metadata or media. No source-level rights, consent, or redistribution terms are published.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - There is no public file release, manifest, sample browser, request process, or dataset license.
+    - Source platforms, URLs, geographic coverage, people demographics, consent, and upstream media rights are undisclosed.
+    - Qwen-VL generates both global captions and frame-level interaction labels; the paper does not publish human agreement or annotation-error rates.
+    - Six predefined interaction categories may omit long-tail garment behaviors and interactions involving accessories or multiple garments.
+processing:
+  recipe: Collect paired garments and videos from e-commerce livestreams and social media; remove low-resolution garments, low-bitrate or artifact-heavy videos, small subjects, unrecoverable occlusions, and scene cuts; generate global captions and frame-level action labels with Qwen-VL; smooth binary labels into time-stamped segments; and derive garment-agnostic 3D hand priors with HaMeR.
+  recommended_format: native
+  notes: No file layout is public. Preserve the 5,160/132 split, action timestamps, global captions, interaction categories, and source provenance if a release appears.
+evidence:
+  homepage: https://arxiv.org/abs/2605.21431
+  paper: https://arxiv.org/abs/2605.21431
+  used_by:
+    - iTryOn
+status: partial
+last_verified: "2026-07-27"
