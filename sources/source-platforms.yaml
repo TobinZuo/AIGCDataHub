@@ -1,4 +1,4 @@
-schema_version: 1
+schema_version: 2
 policy:
   boundary: Candidate content-source platforms are not dataset releases and do not provide a repository download action.
   rights: Every platform requires source-specific review of platform terms, rightsholder permissions, privacy, regional access, and the intended training use before collection.
@@ -11,6 +11,18 @@ platforms:
     modalities: [video, audio, image, text]
     relevant_scenarios: [video-generation, digital-human, video-localization]
     content_scope: User-published video, audio, thumbnails, captions, and metadata.
+    data_access:
+      status: documented-api
+      interface_name: YouTube Data API v3
+      interface_url: https://developers.google.com/youtube/v3/docs
+      scope: Video, channel, playlist, thumbnail, caption metadata, and authorized account resources.
+      requirements: Google Cloud project, API key or OAuth, quota, and API policy compliance.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://developers.google.com/youtube/v3/docs
+      mode: content-revision
+      focus: API scope, authentication, quota, policy, and deprecation changes.
+      priority: high
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
@@ -22,6 +34,18 @@ platforms:
     modalities: [video, audio, image, text]
     relevant_scenarios: [video-generation, digital-human, video-localization]
     content_scope: Publisher and creator video, audio, thumbnails, captions, and metadata.
+    data_access:
+      status: documented-api
+      interface_name: Vimeo API
+      interface_url: https://developer.vimeo.com/api/reference
+      scope: Video, user, channel, showcase, folder, and authorized account metadata and operations.
+      requirements: Registered application, access token, scopes, rate limits, and platform terms.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://developer.vimeo.com/api/reference
+      mode: content-revision
+      focus: API resources, authentication, scopes, and endpoint changes.
+      priority: high
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
@@ -33,6 +57,18 @@ platforms:
     modalities: [video, audio, image, text]
     relevant_scenarios: [video-generation, digital-human, video-localization]
     content_scope: User and publisher video, audio, covers, subtitles, and metadata.
+    data_access:
+      status: documented-api
+      interface_name: Bilibili Open Platform
+      interface_url: https://openhome.bilibili.com/doc
+      scope: Authorized user, video submission, article, live, webhook, and related platform data.
+      requirements: Identity verification, application review, account authorization, and platform rules.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://openhome.bilibili.com/doc
+      mode: content-revision
+      focus: Open API capabilities, authorization, operating rules, and webhook changes.
+      priority: high
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
@@ -44,6 +80,18 @@ platforms:
     modalities: [video, audio, image, text]
     relevant_scenarios: [video-generation, digital-human, video-localization]
     content_scope: Publisher and user video, audio, thumbnails, captions, and metadata.
+    data_access:
+      status: documented-api
+      interface_name: Dailymotion Platform API
+      interface_url: https://developers.dailymotion.com/docs/welcome
+      scope: Video, user, channel, media metadata, reporting, and authorized content-management operations.
+      requirements: Registered application, OAuth credentials, permissions, and platform terms.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://developers.dailymotion.com/docs/welcome
+      mode: content-revision
+      focus: API objects, authentication, reporting, and endpoint lifecycle changes.
+      priority: high
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
@@ -55,6 +103,18 @@ platforms:
     modalities: [video, audio, image, text]
     relevant_scenarios: [video-generation, video-localization]
     content_scope: Subscription film and episodic media plus associated artwork and localization assets.
+    data_access:
+      status: partner-portal
+      interface_name: Netflix Partner Help Center and Content Hub
+      interface_url: https://partnerhelp.netflixstudios.com/hc/en-us
+      scope: Assigned production, delivery, artwork, sound, dubbing, localization, and partner workflow assets.
+      requirements: Netflix partner relationship, assigned project access, credentials, and contractual controls.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://partnerhelp.netflixstudios.com/hc/en-us
+      mode: content-revision
+      focus: Partner asset workflows, localization guidance, security, and generative-AI policy changes.
+      priority: high
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
@@ -66,6 +126,18 @@ platforms:
     modalities: [video, audio, image, text]
     relevant_scenarios: [video-generation, video-localization]
     content_scope: Studio film, episodic, promotional, artwork, and localization assets.
+    data_access:
+      status: not-cataloged
+      interface_name: null
+      interface_url: null
+      scope: No public content-data interface has been cataloged; only the public consumer and corporate surfaces are recorded.
+      requirements: Direct rightsholder agreement and a verified delivery or licensing channel.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://www.disney.com/
+      mode: availability
+      focus: Official platform availability until a public or partner data interface is verified.
+      priority: standard
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
@@ -77,6 +149,18 @@ platforms:
     modalities: [video, audio, image, text]
     relevant_scenarios: [video-generation, video-localization]
     content_scope: Studio film, episodic, promotional, artwork, and localization assets.
+    data_access:
+      status: not-cataloged
+      interface_name: null
+      interface_url: null
+      scope: No public content-data interface has been cataloged; only the public studio surface is recorded.
+      requirements: Direct rightsholder agreement and a verified delivery or licensing channel.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://www.warnerbros.com/
+      mode: availability
+      focus: Official platform availability until a public or partner data interface is verified.
+      priority: standard
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
@@ -88,6 +172,18 @@ platforms:
     modalities: [video, audio, image, text]
     relevant_scenarios: [video-generation, video-localization]
     content_scope: Studio film, episodic, promotional, artwork, and localization assets.
+    data_access:
+      status: not-cataloged
+      interface_name: null
+      interface_url: null
+      scope: No public content-data interface has been cataloged; only the public studio surface is recorded.
+      requirements: Direct rightsholder agreement and a verified delivery or licensing channel.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://www.paramount.com/
+      mode: availability
+      focus: Official platform availability until a public or partner data interface is verified.
+      priority: standard
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
@@ -99,6 +195,18 @@ platforms:
     modalities: [image, video, text]
     relevant_scenarios: [image-generation, video-generation]
     content_scope: Commercial stock imagery, footage, descriptions, and collection metadata.
+    data_access:
+      status: licensed-service
+      interface_name: VCG authorized website and API channels
+      interface_url: https://www.vcg.com/help/website-terms
+      scope: Search, preview, trial, purchase, and licensed delivery of commercial image, video, and audio assets.
+      requirements: Registered or contracted access and asset-specific content license terms.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://www.vcg.com/help/website-terms
+      mode: content-revision
+      focus: Authorized acquisition channels, licensing, API access, and AI-service terms.
+      priority: high
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
@@ -110,6 +218,18 @@ platforms:
     modalities: [image, video, audio, text]
     relevant_scenarios: [image-generation, video-generation]
     content_scope: Commercial stock images, footage, audio, descriptions, and collection metadata.
+    data_access:
+      status: documented-api
+      interface_name: Shutterstock API
+      interface_url: https://api-reference.shutterstock.com/
+      scope: Image, footage, audio, contributor, search, metadata, licensing, and account-authorized downloads.
+      requirements: Developer application, consumer credentials, account permissions, and content license.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://api-reference.shutterstock.com/
+      mode: content-revision
+      focus: Media search, licensing, download endpoints, credentials, and API lifecycle changes.
+      priority: high
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
@@ -121,6 +241,18 @@ platforms:
     modalities: [image, text]
     relevant_scenarios: [image-generation]
     content_scope: Photographer images, descriptions, and collection metadata.
+    data_access:
+      status: licensed-service
+      interface_name: Tuchong Open Platform API
+      interface_url: https://open.tuchong.com/
+      scope: Licensed asset search, metadata, authorization, download links, and collection synchronization.
+      requirements: Commercial onboarding, account or contract, paid licensing, and usage-specific authorization.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://open.tuchong.com/
+      mode: content-revision
+      focus: Search, metadata, authorization, download, and commercial-access changes.
+      priority: high
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
@@ -132,6 +264,18 @@ platforms:
     modalities: [image, video, text]
     relevant_scenarios: [image-generation, video-generation, virtual-try-on]
     content_scope: Product imagery, commerce video, listings, and product metadata.
+    data_access:
+      status: partner-api
+      interface_name: TikTok Shop Partner API
+      interface_url: https://partner.tiktokshop.com/docv2/page/tts-developer-guide
+      scope: Seller-authorized shop, product, order, fulfillment, logistics, finance, and webhook data.
+      requirements: Partner Center application, API scopes, seller authorization, credentials, and platform terms.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://partner.tiktokshop.com/docv2/page/tts-developer-guide
+      mode: content-revision
+      focus: Product data scopes, seller authorization, API versions, webhooks, and deprecations.
+      priority: high
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
@@ -143,6 +287,18 @@ platforms:
     modalities: [image, video, text]
     relevant_scenarios: [image-generation, video-generation, virtual-try-on]
     content_scope: Product imagery, commerce video, listings, and product metadata.
+    data_access:
+      status: partner-api
+      interface_name: Amazon Creators API
+      interface_url: https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction
+      scope: Product catalog search, item details, variations, browse nodes, and rich product content for eligible partners.
+      requirements: Amazon Associates enrollment, qualifying activity, API registration, credentials, and program policies.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction
+      mode: content-revision
+      focus: Creators API eligibility, catalog operations, license, and migration or deprecation changes.
+      priority: high
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
@@ -154,6 +310,18 @@ platforms:
     modalities: [image, video, text]
     relevant_scenarios: [image-generation, video-generation, virtual-try-on]
     content_scope: Product imagery, commerce video, listings, and product metadata.
+    data_access:
+      status: partner-api
+      interface_name: Shopee Open Platform
+      interface_url: https://open.shopee.com/documents?version=1
+      scope: Seller-authorized shop, product, order, logistics, and related marketplace integration data.
+      requirements: Regional partner registration, application approval, seller authorization, and API credentials.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://open.shopee.com/documents?version=1
+      mode: availability
+      focus: Official developer portal availability until stable public revision metadata is available.
+      priority: high
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
@@ -165,6 +333,18 @@ platforms:
     modalities: [image, video, text]
     relevant_scenarios: [image-generation, video-generation, virtual-try-on]
     content_scope: Product imagery, commerce video, listings, and product metadata.
+    data_access:
+      status: partner-api
+      interface_name: Temu Partner Platform
+      interface_url: https://partner.temu.com/documentation
+      scope: Partner developer guides, API reference, marketplace integration, and authorized commerce data.
+      requirements: Partner onboarding, application review, credentials, authorization, and data-security policies.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://partner.temu.com/documentation
+      mode: content-revision
+      focus: Partner API reference, policies, data security, and developer lifecycle changes.
+      priority: high
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
@@ -176,6 +356,18 @@ platforms:
     modalities: [image, video, text]
     relevant_scenarios: [image-generation, video-generation, virtual-try-on]
     content_scope: Fashion product imagery, commerce video, listings, and product metadata.
+    data_access:
+      status: partner-api
+      interface_name: SHEIN Open Platform
+      interface_url: https://open.sheincorp.cn/
+      scope: Product publication, fulfillment, logistics, order status, webhook, and seller-authorized platform data.
+      requirements: Open Platform account, application review, seller authorization, and API credentials.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://open.sheincorp.cn/
+      mode: content-revision
+      focus: Product APIs, authorization, webhooks, fulfillment, and developer-policy changes.
+      priority: high
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required

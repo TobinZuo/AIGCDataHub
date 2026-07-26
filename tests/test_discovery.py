@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sys
 import unittest
+import urllib.error
 from pathlib import Path
 from unittest.mock import patch
 
@@ -66,6 +67,35 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(content_revision(b"official page"), content_revision(b"official page"))
         self.assertNotEqual(content_revision(b"official page"), content_revision(b"updated page"))
         self.assertTrue(content_revision(b"official page").startswith("sha256:"))
+
+    def test_content_revision_ignores_html_hydration_and_markup_noise(self) -> None:
+        first = b"""<!doctype html><html><head><meta name='description' content='Model API'></head>
+        <body class='build-a'><h1>Model API</h1><script>window.build='123'</script>
+        <style>.a{color:red}</style><p>Stable documentation.</p></body></html>"""
+        second = b"""<!doctype html><html><head><meta name='description' content='Model API'></head>
+        <body class='build-b'><h1>Model API</h1><script>window.build='456'</script>
+        <style>.a{color:blue}</style><p> Stable   documentation. </p></body></html>"""
+        changed = second.replace(b"Stable   documentation", b"Updated documentation")
+        self.assertEqual(content_revision(first), content_revision(second))
+        self.assertNotEqual(content_revision(first), content_revision(changed))
+
+    def test_platform_availability_treats_access_control_as_reachable(self) -> None:
+        source = WatchSource(
+            "source-platform-updates",
+            "https://example.com/partner",
+            priority="high",
+            platform_id="example",
+            revision_mode="availability",
+        )
+        error = urllib.error.HTTPError(
+            source.source_url, 403, "Forbidden", {}, None
+        )
+        with patch("discover_updates.urllib.request.urlopen", side_effect=error):
+            snapshot = _fetch_source(source, timeout=1, max_bytes=1024)
+        self.assertIsNone(snapshot.error)
+        self.assertEqual(snapshot.status, 403)
+        self.assertEqual(snapshot.revision, "reachable")
+        self.assertEqual(snapshot.platform_id, "example")
 
     def test_normalize_url_removes_tracking_and_fragment(self) -> None:
         self.assertEqual(
@@ -203,6 +233,10 @@ class DiscoveryTests(unittest.TestCase):
             sum(source.track_id == "important-model-updates" for source in sources),
             30,
         )
+        self.assertEqual(
+            sum(source.track_id == "source-platform-updates" for source in sources),
+            16,
+        )
         self.assertTrue(
             {
                 "digital-human-and-localization",
@@ -211,10 +245,12 @@ class DiscoveryTests(unittest.TestCase):
                 "important-model-updates",
                 "dataset-release-feeds",
                 "industry-model-rankings",
+                "source-platform-updates",
             }.issubset(track_ids)
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 5)
+        self.assertEqual(len(sources), 151)
         self.assertEqual(
             {source.ranking_id for source in sources if source.ranking_id},
             {"text-to-image", "image-editing", "text-to-video", "image-to-video", "video-editing"},
@@ -259,6 +295,9 @@ class DiscoveryTests(unittest.TestCase):
                 "https://platform.vidu.com/docs/update",
                 "https://docs.bfl.ai/release-notes",
                 "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/",
+                "https://developers.google.com/youtube/v3/docs",
+                "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction",
+                "https://partner.temu.com/documentation",
             }.issubset(urls)
         )
         self.assertIn("https://huggingface.co/api/datasets/nkp37/OpenVid-1M", urls)
@@ -472,6 +511,41 @@ class DiscoveryTests(unittest.TestCase):
         self.assertIn("requires primary-source verification", markdown)
         self.assertIn("<!-- aigcdatahub-weekly-discovery -->", markdown)
         self.assertTrue(report["has_updates"])
+
+    def test_platform_revision_has_a_platform_specific_review_signal(self) -> None:
+        baseline = {
+            "sources": [
+                {
+                    "track_id": "source-platform-updates",
+                    "source_url": "https://example.com/developer",
+                    "revision": "sha256:old",
+                    "candidates": [],
+                    "error": None,
+                }
+            ]
+        }
+        current = (
+            SourceSnapshot(
+                track_id="source-platform-updates",
+                source_url="https://example.com/developer",
+                resolved_url="https://example.com/developer",
+                status=200,
+                candidates=(),
+                error=None,
+                revision="sha256:new",
+                revision_url="https://example.com/developer",
+                priority="high",
+                platform_id="example-platform",
+                revision_mode="content-revision",
+            ),
+        )
+        diff = compare_snapshots(baseline, current, set())
+        self.assertEqual(diff.source_updates[0]["entity_type"], "source-platform")
+        self.assertEqual(diff.source_updates[0]["platform_id"], "example-platform")
+        markdown = render_report(
+            report_payload(diff, "2026-07-27T00:00:00Z", "Discovery", 1, ["image"])
+        )
+        self.assertIn("source-platform access signal", markdown)
 
     def test_ranking_diff_tracks_membership_and_order_not_elo_noise(self) -> None:
         baseline = {

@@ -202,10 +202,13 @@ material unknowns; 🗄️ archived or unavailable from the original distributor
 ## Candidate content-source platforms
 
 The [source-platform index](SOURCE_PLATFORM_INDEX.md) tracks 16 candidate
-content surfaces referenced for image/video data planning. A platform homepage
-is not a dataset download action and does not imply permission to crawl, train,
-commercialize, or redistribute its content. Non-public operational assessments
-are intentionally excluded from this public repository.
+content surfaces referenced for image/video data planning. Each entry separates
+the public content scope from the documented API, partner portal, or licensed
+delivery path, and records access requirements plus a monitored official
+interface. An interface is not a dataset download action and does not grant
+permission to crawl, train, commercialize, or redistribute its content.
+Non-public operational assessments are intentionally excluded from this public
+repository.
 
 ## What is in this repository?
 
@@ -277,6 +280,12 @@ revision probe declares either a dataset `catalog_id` or model `model_id` plus a
 monitoring priority. Dataset changes propagate through derived datasets into
 affected models; model changes list the model's directly linked catalog
 datasets. It closes the Issue when the queue is clear.
+The same workflow checks all 16 candidate source platforms through their
+official API documentation, partner portal, licensed-service terms, or a
+conservative availability probe when no public data interface is cataloged.
+HTML content revisions hash normalized visible text rather than scripts,
+styles, hydration payloads, or build attributes, preventing dynamic page noise
+from opening false review items.
 This is triage rather than automatic fact generation: a card, license
 conclusion, or `last_verified` date changes only through a reviewed PR.
 
@@ -302,7 +311,7 @@ scanner also expose their monitoring tier and probe source. A dataset card's
 a canonical model relationship.
 
 The latest evidence review is recorded in
-[updates/2026-07-26.md](updates/2026-07-26.md), including accepted releases,
+[updates/2026-07-27.md](updates/2026-07-27.md), including accepted releases,
 scope decisions, and disclosures that remain unknown.
 
 Freshness dates are evidence, not bookkeeping: update `last_verified` only after

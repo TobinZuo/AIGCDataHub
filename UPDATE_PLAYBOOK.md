@@ -26,6 +26,11 @@ as an exhaustive list.
    GitHub API revision probes use the workflow token rather than the anonymous
    rate limit. A connection reset, TLS error, or other source-level network
    failure is recorded for review without aborting the remaining source scan.
+   All entries in `sources/source-platforms.yaml` contribute a monitor for an
+   official API, partner portal, licensed-service page, or an availability-only
+   endpoint. Review platform alerts for access scope, authorization, license,
+   policy, and interface lifecycle changes; never treat an API as training
+   permission.
    Search beyond the generated candidates when an official organization uses a
    new domain, publishes only through a feed, or changes an existing model card.
 2. Create a candidate list with release date, primary source, modality, access,
@@ -49,8 +54,8 @@ as an exhaustive list.
    Candidate website sources belong in `sources/source-platforms.yaml`, not in
    `catalog/`. A homepage is never labeled as a dataset download, and public
    entries must exclude non-public operational assessments. Each platform keeps
-   a required rights-review boundary until source-specific permissions are
-   independently established.
+   an explicit access profile and monitor plus a required rights-review boundary
+   until source-specific permissions are independently established.
 5. Distinguish facts from analysis:
    - `strategy`: directly supported by primary evidence;
    - `unknowns`: material information the source does not provide;
@@ -73,11 +78,22 @@ belong in `important-dataset-updates` and require an existing `catalog_id`;
 model probes belong in `important-model-updates` and require an existing
 `model_id`. Hugging Face dataset/model APIs and official GitHub commit APIs
 expose stable revision identifiers. For publishers without such an API, the
-scanner records a SHA-256 content revision of the official page or PDF. Do not
-monitor by URL alone: the canonical ID connects a revision to the site card and
+scanner records a SHA-256 content revision of the official page or PDF. HTML
+revisions are derived from normalized visible text and metadata, excluding
+scripts, styles, hydration payloads, and markup-only build changes; PDFs and
+other binaries retain a byte-level hash. Do not monitor an important model or
+dataset by URL alone: the canonical ID connects a revision to the site card and
 its reviewed relationships. An access-controlled source that always returns
 401 to anonymous CI stays linked from its card but is not presented as a
 healthy revision probe.
+
+Source-platform monitors are generated from `sources/source-platforms.yaml`.
+Use `content-revision` for stable official documentation or terms and
+`availability` only when a public interface is not cataloged or the portal is
+consistently access-controlled. Availability accepts 401, 403, 405, and 429 as
+proof that the official surface still exists, but a 404 or 410 remains a
+failure. Every platform access profile must state that the interface itself
+does not grant model-training rights.
 
 Ranking sources belong in `industry-model-rankings` and require a unique
 `ranking_id` plus `ranking_limit`. A leaderboard is authoritative only for its
@@ -89,9 +105,10 @@ without primary-source review.
 ## Automation boundary
 
 The scheduled workflow may discover links and maintain a review Issue. It may
-also report revisions to selected important models and datasets, but it must not create
-model or dataset cards, infer a training corpus, change a license conclusion,
-advance `last_verified`, merge a PR, or deploy unreviewed data.
+also report revisions to selected important models, datasets, and source
+platform access surfaces, but it must not create cards, infer a training
+corpus, change a license conclusion, advance `last_verified`, merge a PR, or
+deploy unreviewed data.
 
 ## Freshness policy
 

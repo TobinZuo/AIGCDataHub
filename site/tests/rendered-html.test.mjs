@@ -148,7 +148,14 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"name": "YouTube"/);
   assert.match(catalog, /"name": "Shutterstock"/);
   assert.match(catalog, /"name": "SHEIN"/);
+  assert.match(catalog, /"interface_name": "Amazon Creators API"/);
+  assert.match(catalog, /"interface_name": "YouTube Data API v3"/);
+  assert.match(catalog, /"training_rights": "not-granted-by-interface"/);
   assert.match(catalogExplorer, /把网站来源和可下载数据集分开管理/);
+  assert.match(catalogExplorer, /可访问范围/);
+  assert.match(catalogExplorer, /已登记接口/);
+  assert.match(catalogExplorer, /重点监控/);
+  assert.match(catalogExplorer, /权利需逐源审核/);
   assert.match(catalog, /"avatar-v"/);
   assert.match(catalog, /"just-dub-it"/);
   assert.match(catalog, /"audiovisual-translation-dub"/);
@@ -190,9 +197,17 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"relations"/);
   assert.match(catalog, /"dataset_relations"/);
   const parsedCatalog = JSON.parse(catalog);
-  assert.equal(parsedCatalog.format_version, 10);
+  assert.equal(parsedCatalog.format_version, 11);
   assert.equal(parsedCatalog.rankings.length, 5);
   assert.equal(parsedCatalog.source_platforms.length, 16);
+  assert.equal(
+    parsedCatalog.source_platforms.filter((platform) => platform.data_access.interface_url).length,
+    13,
+  );
+  assert.equal(
+    parsedCatalog.source_platforms.filter((platform) => platform.monitoring.priority === "high").length,
+    13,
+  );
   assert.equal(
     parsedCatalog.rankings.find((board) => board.id === "text-to-image").entries[0].model_id,
     "gpt-image-2",

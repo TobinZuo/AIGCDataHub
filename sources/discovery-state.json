@@ -1,6 +1,6 @@
 {
-  "schema_version": 6,
-  "generated_at": "2026-07-26T16:56:08Z",
+  "schema_version": 7,
+  "generated_at": "2026-07-26T17:25:07Z",
   "sources": [
     {
       "track_id": "dataset-release-feeds",
@@ -160,7 +160,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "dataset-release-feeds",
@@ -204,7 +206,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "dataset-release-feeds",
@@ -260,7 +264,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "dataset-release-feeds",
@@ -476,7 +482,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "dataset-release-feeds",
@@ -520,7 +528,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "dataset-release-feeds",
@@ -540,7 +550,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "dataset-release-feeds",
@@ -656,7 +668,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "dataset-release-feeds",
@@ -696,7 +710,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "datasets",
@@ -711,7 +727,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "datasets",
@@ -759,7 +777,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "datasets",
@@ -799,7 +819,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "datasets",
@@ -814,7 +836,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "datasets",
@@ -834,7 +858,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "datasets",
@@ -849,7 +875,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "datasets",
@@ -864,7 +892,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "datasets",
@@ -884,7 +914,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "datasets",
@@ -920,7 +952,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "datasets",
@@ -948,7 +982,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "datasets",
@@ -980,7 +1016,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "datasets",
@@ -1016,7 +1054,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "datasets",
@@ -1064,7 +1104,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "datasets",
@@ -1096,7 +1138,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -1124,7 +1168,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -1148,7 +1194,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -1163,7 +1211,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -1187,7 +1237,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -1223,7 +1275,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -1243,7 +1297,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -1287,7 +1343,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -1302,7 +1360,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -1326,7 +1386,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -1354,7 +1416,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -1382,7 +1446,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -1406,7 +1472,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "image-generation",
@@ -1474,7 +1542,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "image-generation",
@@ -1494,7 +1564,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "image-generation",
@@ -1566,7 +1638,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "image-generation",
@@ -1581,7 +1655,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "image-generation",
@@ -1629,7 +1705,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "image-generation",
@@ -1649,7 +1727,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "image-generation",
@@ -1664,7 +1744,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "image-generation",
@@ -1700,7 +1782,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "image-generation",
@@ -1784,7 +1868,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "image-generation",
@@ -1820,7 +1906,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "image-generation",
@@ -1840,7 +1928,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "image-generation",
@@ -1855,7 +1945,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "image-generation",
@@ -1870,7 +1962,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1885,7 +1979,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1900,7 +1996,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1915,7 +2013,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1930,7 +2030,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1945,7 +2047,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1960,7 +2064,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1975,7 +2081,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1990,7 +2098,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2005,7 +2115,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2020,7 +2132,9 @@
       "priority": "high",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2035,7 +2149,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2050,7 +2166,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2065,7 +2183,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2080,7 +2200,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2095,7 +2217,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2110,7 +2234,9 @@
       "priority": "high",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2125,7 +2251,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2140,7 +2268,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2155,7 +2285,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2170,7 +2302,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2185,7 +2319,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2200,7 +2336,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2215,7 +2353,9 @@
       "priority": "high",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2230,7 +2370,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2245,7 +2387,9 @@
       "priority": "high",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2260,7 +2404,9 @@
       "priority": "high",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2275,7 +2421,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2290,7 +2438,9 @@
       "priority": "high",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2305,7 +2455,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2320,7 +2472,9 @@
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -2329,13 +2483,15 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:ae404d925fb0a363d0a6c0a5b14ad31437e2944d219ac5dafb76017d5a7d46cd",
+      "revision": "sha256:5e1912202a6dbd5acb3c24da5db4996c597e9d08564d944cbd717a0d55792a89",
       "revision_url": "https://projects.csail.mit.edu/soundnet",
       "catalog_id": "soundnet",
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2350,7 +2506,9 @@
       "priority": "critical",
       "model_id": "fit-vto",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2365,7 +2523,9 @@
       "priority": "critical",
       "model_id": "hidream-o1-image",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2380,7 +2540,9 @@
       "priority": "high",
       "model_id": "hunyuanvideo-1-5",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2395,7 +2557,9 @@
       "priority": "critical",
       "model_id": "ctrlvton",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2404,13 +2568,15 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:58e81f73750467f18cb0ff27fc8d4bff7b85833efd9402640e0d1eff2492c737",
+      "revision": "sha256:15d721efa4d1295195cc83fa4b20099dfd3a104a72a4fcb6a96ed0e44426d9da",
       "revision_url": "https://arxiv.org/abs/2602.21818",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "skyreels-v4",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2444,13 +2610,15 @@
         }
       ],
       "error": null,
-      "revision": "sha256:6dabc7242f6f629bdfd03e6044d625296501f2ead385dd26cf9ff919d3d30221",
+      "revision": "sha256:4e6e69d80fb72b4744b5dc3374deefc1abcedde665c1e63ebab089809b41b243",
       "revision_url": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "veo-3-1-lite",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2508,13 +2676,15 @@
         }
       ],
       "error": null,
-      "revision": "sha256:924cfa788bcc1824e68bf72647eaf8405600723cce4cfb1216d16a45f0611c6d",
+      "revision": "sha256:ed8e79eb00ef7519a48642a5e2fc21dea6d082bb81171229aa412225477f5086",
       "revision_url": "https://docs.bfl.ai/release-notes",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "flux-2-max",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2560,13 +2730,15 @@
         }
       ],
       "error": null,
-      "revision": "sha256:43fe396ee4a5c4a72849e92c4966a345fb3c01e226c80df39a949f321692880a",
+      "revision": "sha256:2ea01052dc594d2bf9cae1ca662619649322dbe4d4b2c28aabe1f1c335cafa0f",
       "revision_url": "https://docs.byteplus.com/en/docs/ModelArk/2582775",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "seedream-5-0-pro",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2620,13 +2792,15 @@
         }
       ],
       "error": null,
-      "revision": "sha256:f4373eab82b3c3fdf0ed3837c117a263040dd85f36302ef15368d35f44a00447",
+      "revision": "sha256:0750fc445c571562f9ae5358c106bfe1f01cc04d498deb02ae75ab3571e09634",
       "revision_url": "https://docs.x.ai/developers/models/grok-imagine-image",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "grok-imagine-image",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2680,13 +2854,15 @@
         }
       ],
       "error": null,
-      "revision": "sha256:ff4db6dc15766aebf63083925870ecd7fa94188d08272b6a6c634d8b727b2454",
+      "revision": "sha256:dd94d0bfacfd13262b9e1e74ee0471876f9bea4a72a7e32c06f9146bdac57fe0",
       "revision_url": "https://docs.x.ai/developers/models/grok-imagine-image-quality",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "grok-imagine-image-quality",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2740,13 +2916,15 @@
         }
       ],
       "error": null,
-      "revision": "sha256:26ac8031b3bb5d9fb14353f9c3fa3f842fc151049ffd8cc91b0f4a83979b5b36",
+      "revision": "sha256:da9eebbe794e113af9640d7916cb9bad977b687a3304cf3dec25ef7a39df9759",
       "revision_url": "https://docs.x.ai/developers/models/grok-imagine-video",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "grok-imagine-video",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2761,7 +2939,9 @@
       "priority": "high",
       "model_id": "omni2sound",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2776,7 +2956,9 @@
       "priority": "high",
       "model_id": "ltx-2-3",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2791,7 +2973,9 @@
       "priority": "critical",
       "model_id": "musetalk-1-5",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2806,7 +2990,9 @@
       "priority": "high",
       "model_id": "lance",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2821,7 +3007,9 @@
       "priority": "high",
       "model_id": "commoncanvas-xl-c",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2836,7 +3024,9 @@
       "priority": "critical",
       "model_id": "fashn-vton-1-5",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2851,7 +3041,9 @@
       "priority": "critical",
       "model_id": "just-dub-it",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2866,7 +3058,9 @@
       "priority": "critical",
       "model_id": "cosmos3-super-text2image",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2881,7 +3075,9 @@
       "priority": "critical",
       "model_id": "talkverse-5b",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2896,7 +3092,9 @@
       "priority": "high",
       "model_id": "gpic-baselines",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2911,7 +3109,9 @@
       "priority": "critical",
       "model_id": "hunyuanimage-3-instruct",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2926,7 +3126,9 @@
       "priority": "critical",
       "model_id": "hunyuanvideo-avatar",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2935,13 +3137,15 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:6c983027b35c288f4b2a0ccec65235cec08319f1496891c80971107a2d310223",
+      "revision": "sha256:9bdc4a2b3bacaf87aabdc6437e9f6972bf31d97804d25e7e68e7c3f97ec3d04b",
       "revision_url": "https://ir.kuaishou.com/news-releases/news-release-details/kling-o1-launches-worlds-first-unified-multimodal-video-model-0",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "kling-o1",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2959,13 +3163,15 @@
         }
       ],
       "error": null,
-      "revision": "sha256:3ecfc4903622452dbc49f68bc11dfb940bd2e7ffd2da66a144046d1f9723da67",
+      "revision": "sha256:a5444c62a29e5dbfa8203c075937c736c0157f56c27d454065c5a47ec8962710",
       "revision_url": "https://lumalabs.ai/news/uni-1-1-api",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "luma-uni-1-max",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2983,13 +3189,15 @@
         }
       ],
       "error": null,
-      "revision": "sha256:076dc6232ced8380f930b6cb11c21df0aae0f883c72cbc807afa527f12367900",
+      "revision": "sha256:aa1e8d8d70ada11b2414a2e8a7b1a81fbb5d96ebff44ba6dfb4942cd42cddb3b",
       "revision_url": "https://pixverse.ai/en/blog/pixverse-launches-v6-advancing-ai-video-generation",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "pixverse-v6",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -2998,13 +3206,15 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:68d7dd45442ed3f0792770f9ea0184d987cf078f00b3dc3d23ed4a2953dc7bc7",
+      "revision": "sha256:abeb1b855c6c3caa489f278462908863be3cb8d31d8c2215078dd089f55a55d8",
       "revision_url": "https://platform.vidu.com/docs/update",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "vidu-q3-pro",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -3019,7 +3229,9 @@
       "priority": "critical",
       "model_id": "veo-3-1",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -3049,13 +3261,15 @@
         }
       ],
       "error": null,
-      "revision": "sha256:ef33d5222a70facd22e8131cf0df3f53739310880e145efb7f2defd0a0d32239",
+      "revision": "sha256:5bed619fb4df5305f53b7de44423cd8dc1f3b82139d826811de58763ab80e76d",
       "revision_url": "https://hidreamai.com/home",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "hidream-o1-image-1-5",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "important-model-updates",
@@ -3149,13 +3363,15 @@
         }
       ],
       "error": null,
-      "revision": "sha256:64a2439925c47d5cb77a0ef08fcc03a2fe37a88dcc3b903f775d3b58e598213c",
+      "revision": "sha256:0429947349b9190af809d600d4d7a5c17b664d3b3f0258040853a8c7ae8261b4",
       "revision_url": "https://www.recraft.ai/blog/recraft-v4-1-more-beautiful-by-nature",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "recraft-v4-1",
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "industry-model-rankings",
@@ -3321,7 +3537,9 @@
           "released": "May 2026",
           "open_weights": true
         }
-      ]
+      ],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "industry-model-rankings",
@@ -3487,7 +3705,9 @@
           "released": "Dec 2025",
           "open_weights": false
         }
-      ]
+      ],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "industry-model-rankings",
@@ -3653,7 +3873,9 @@
           "released": "Feb 2026",
           "open_weights": false
         }
-      ]
+      ],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "industry-model-rankings",
@@ -3819,7 +4041,9 @@
           "released": "Jan 2026",
           "open_weights": false
         }
-      ]
+      ],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "industry-model-rankings",
@@ -3895,7 +4119,281 @@
           "released": "Mar 2026",
           "open_weights": false
         }
-      ]
+      ],
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction",
+      "resolved_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:4f6b3ff7b950e5b64f2393d69ce16fe4b670121beb45ec61b4e947659d7419a0",
+      "revision_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "amazon",
+      "revision_mode": "content-revision"
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://api-reference.shutterstock.com/",
+      "resolved_url": "https://api-reference.shutterstock.com/",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:44e6dc2994aaaa815b527590e7fb39c03b6ea264a7a38ed7b4e5388fe218cd5e",
+      "revision_url": "https://api-reference.shutterstock.com/",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "shutterstock",
+      "revision_mode": "content-revision"
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://developer.vimeo.com/api/reference",
+      "resolved_url": "https://developer.vimeo.com/api/reference",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:a7a93fd1930a610f099b5919c711898d9fc5cd84b70a6312fc5bc62c411b78c9",
+      "revision_url": "https://developer.vimeo.com/api/reference",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "vimeo",
+      "revision_mode": "content-revision"
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://developers.dailymotion.com/docs/welcome",
+      "resolved_url": "https://developers.dailymotion.com/docs/welcome",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:f9595bf169059069b22dc00ce9d94c0c52b46a87fa1162324d3c186c51bee161",
+      "revision_url": "https://developers.dailymotion.com/docs/welcome",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "dailymotion",
+      "revision_mode": "content-revision"
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://developers.google.com/youtube/v3/docs",
+      "resolved_url": "https://developers.google.com/youtube/v3/docs",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:825c71ac3fff3db66a85c19666f2de405e6c10023984b57c4492a790bbe36c17",
+      "revision_url": "https://developers.google.com/youtube/v3/docs",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "youtube",
+      "revision_mode": "content-revision"
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://open.sheincorp.cn/",
+      "resolved_url": "https://open.sheincorp.cn/",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:b82a513f0b8770411741a7ea3f263877dd0f62dc792f9f618d8f05e4f1248662",
+      "revision_url": "https://open.sheincorp.cn/",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "shein",
+      "revision_mode": "content-revision"
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://open.shopee.com/documents?version=1",
+      "resolved_url": "https://open.shopee.com/documents?version=1",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "reachable",
+      "revision_url": "https://open.shopee.com/documents?version=1",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "shopee",
+      "revision_mode": "availability"
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://open.tuchong.com/",
+      "resolved_url": "https://open.tuchong.com/",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:9d2f5c632d712a1f30f4d0772c2339d95fad702220abffcb56e8209e4fb04c5d",
+      "revision_url": "https://open.tuchong.com/",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "tuchong",
+      "revision_mode": "content-revision"
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://openhome.bilibili.com/doc",
+      "resolved_url": "https://openhome.bilibili.com/doc",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:5b322809ec7c5a604f1905f6008435c4cf64c181f137401b870ecc56115379a7",
+      "revision_url": "https://openhome.bilibili.com/doc",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "bilibili",
+      "revision_mode": "content-revision"
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://partner.temu.com/documentation",
+      "resolved_url": "https://partner.temu.com/documentation",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:ec387b8e69390ba0379e7ccecdad9826615bee079cf26bddb15c03abd67154a8",
+      "revision_url": "https://partner.temu.com/documentation",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "temu",
+      "revision_mode": "content-revision"
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://partner.tiktokshop.com/docv2/page/tts-developer-guide",
+      "resolved_url": "https://partner.tiktokshop.com/docv2/page/tts-developer-guide",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:ec8d499c1a5c814aba40b407edb3fa44bb7b6b3a729d8a5b0b9618d149931d10",
+      "revision_url": "https://partner.tiktokshop.com/docv2/page/tts-developer-guide",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "tiktok-shop",
+      "revision_mode": "content-revision"
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://partnerhelp.netflixstudios.com/hc/en-us",
+      "resolved_url": "https://partnerhelp.netflixstudios.com/hc/en-us",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:1b4c9bd9ec273ff94ae9eb00a56ca069a29efa52c15ca4e792d0c957cf7b4b30",
+      "revision_url": "https://partnerhelp.netflixstudios.com/hc/en-us",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "netflix",
+      "revision_mode": "content-revision"
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://www.disney.com/",
+      "resolved_url": "https://www.disney.com/",
+      "status": 403,
+      "candidates": [],
+      "error": null,
+      "revision": "reachable",
+      "revision_url": "https://www.disney.com/",
+      "catalog_id": null,
+      "priority": "standard",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "disney",
+      "revision_mode": "availability"
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://www.paramount.com/",
+      "resolved_url": "https://www.paramount.com/",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "reachable",
+      "revision_url": "https://www.paramount.com/",
+      "catalog_id": null,
+      "priority": "standard",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "paramount",
+      "revision_mode": "availability"
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://www.vcg.com/help/website-terms",
+      "resolved_url": "https://www.vcg.com/help/website-terms",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:ef584c0093a0e39d1fa4a978434ffbd233947ff7c9b4cebd9e20800e54314ee1",
+      "revision_url": "https://www.vcg.com/help/website-terms",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "vcg",
+      "revision_mode": "content-revision"
+    },
+    {
+      "track_id": "source-platform-updates",
+      "source_url": "https://www.warnerbros.com/",
+      "resolved_url": "https://www.warnerbros.com/",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "reachable",
+      "revision_url": "https://www.warnerbros.com/",
+      "catalog_id": null,
+      "priority": "standard",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "platform_id": "warner-bros",
+      "revision_mode": "availability"
     },
     {
       "track_id": "video-and-audio-generation",
@@ -3935,7 +4433,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -3975,7 +4475,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -4027,7 +4529,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -4042,7 +4546,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -4070,7 +4576,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -4094,7 +4602,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -4274,7 +4784,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -4289,7 +4801,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -4317,7 +4831,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -4337,7 +4853,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -4365,7 +4883,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -4385,7 +4905,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -4405,7 +4927,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -4437,7 +4961,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -4509,7 +5035,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -4577,7 +5105,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -4597,7 +5127,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -4612,7 +5144,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -4627,7 +5161,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -4651,7 +5187,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -4683,7 +5221,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -4715,7 +5255,9 @@
       "priority": null,
       "model_id": null,
       "ranking_id": null,
-      "rankings": []
+      "rankings": [],
+      "platform_id": null,
+      "revision_mode": null
     }
   ]
 }

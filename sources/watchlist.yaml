@@ -18,6 +18,7 @@ discovery:
     - industry-model-rankings
     - important-dataset-updates
     - important-model-updates
+    - source-platform-updates
   excluded_sources:
     - https://github.com/omni2sound/Omni2Sound
     - https://github.com/allenai/objaverse-xl
@@ -212,6 +213,16 @@ tracks:
       - "https://huggingface.co/api/datasets?search=talking-head&sort=createdAt&direction=-1&limit=50&full=true"
       - "https://huggingface.co/api/datasets?search=video-dubbing&sort=createdAt&direction=-1&limit=50&full=true"
       - "https://huggingface.co/api/datasets?search=virtual-try-on&sort=createdAt&direction=-1&limit=50&full=true"
+
+  - id: source-platform-updates
+    topics:
+      - official-data-interface
+      - api-scope
+      - partner-access
+      - licensing-channel
+      - platform-policy
+    registry: sources/source-platforms.yaml
+    official_sources: []
 
   - id: industry-model-rankings
     topics:

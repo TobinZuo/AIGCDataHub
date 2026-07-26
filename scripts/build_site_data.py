@@ -307,7 +307,7 @@ def build_payload() -> dict[str, Any]:
     verified_dates = [item["last_verified"] for item in [*datasets, *models]]
 
     return {
-        "format_version": 10,
+        "format_version": 11,
         "generated_from": [
             "catalog/**/*.yaml",
             "models/**/*.yaml",
