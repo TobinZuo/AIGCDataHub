@@ -443,6 +443,63 @@ tracks:
       - url: https://projects.csail.mit.edu/soundnet/
         catalog_id: soundnet
         priority: critical
+      - url: https://arxiv.org/abs/2607.21580
+        catalog_id: graphvid-bench
+        priority: critical
+      - url: https://export.arxiv.org/api/query?id_list=2607.16283
+        catalog_id: gensyn10
+        priority: critical
+      - url: https://huggingface.co/api/models/baidu/ERNIE-Image-Aes
+        catalog_id: eria-1k
+        priority: critical
+      - url: https://www.microsoft.com/en-us/research/publication/lens-rethinking-training-efficiency-for-foundational-text-to-image-models/
+        catalog_id: lens-800m
+        priority: critical
+      - url: https://arxiv.org/abs/2605.21573
+        catalog_id: lens-rl-8k
+        priority: critical
+      - url: https://omni2sound.github.io/
+        catalog_id: soundatlas
+        priority: critical
+      - url: https://api.github.com/repos/cdjkim/audiocaps/commits/master
+        catalog_id: audiocaps-2-0
+        priority: high
+      - url: https://laion.ai/blog/relaion-5b/
+        catalog_id: re-laion-5b
+        priority: high
+      - url: https://api.github.com/repos/yuvalkirstain/PickScore/commits/main
+        catalog_id: pick-a-pic-v2
+        priority: high
+      - url: https://api.github.com/repos/allenai/objaverse-xl/commits/main
+        catalog_id: objaverse-xl
+        priority: high
+      - url: https://journeydb.github.io/
+        catalog_id: journeydb
+        priority: high
+      - url: https://api.github.com/repos/m-bain/webvid/commits/main
+        catalog_id: webvid-10m
+        priority: high
+      - url: https://zenodo.org/api/records/4783391
+        catalog_id: clotho-2-1
+        priority: high
+      - url: https://zenodo.org/api/records/4060432
+        catalog_id: fsd50k
+        priority: high
+      - url: https://api.github.com/repos/hche11/VGGSound/commits/master
+        catalog_id: vggsound
+        priority: critical
+      - url: https://api.github.com/repos/mdeff/fma/commits/master
+        catalog_id: fma
+        priority: high
+      - url: https://research.google.com/audioset/download.html
+        catalog_id: audioset
+        priority: critical
+      - url: https://registry.opendata.aws/multimedia-commons/
+        catalog_id: yfcc100m
+        priority: high
+      - url: https://api.github.com/repos/tbertinmahieux/MSongsDB/commits/master
+        catalog_id: million-song-dataset
+        priority: high
 
   - id: important-model-updates
     topics:

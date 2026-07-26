@@ -1935,6 +1935,49 @@ input:focus-visible {
   color: var(--signal);
 }
 
+.comparison-dataset-cell {
+  display: grid;
+  gap: 10px;
+}
+
+.comparison-dataset-links {
+  display: grid;
+  gap: 5px;
+}
+
+.comparison-dataset-links button,
+.comparison-dataset-links > a,
+.comparison-dataset-links > span {
+  width: fit-content;
+  max-width: 190px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: var(--ink);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 8px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.comparison-dataset-links button,
+.comparison-dataset-links > a {
+  cursor: pointer;
+}
+
+.comparison-dataset-links > span {
+  border-bottom-style: dashed;
+  color: var(--muted);
+}
+
+.comparison-dataset-links button:hover,
+.comparison-dataset-links button:focus-visible,
+.comparison-dataset-links > a:hover,
+.comparison-dataset-links > a:focus-visible {
+  color: var(--signal);
+}
+
 .comparison-unknowns strong {
   color: var(--signal);
 }

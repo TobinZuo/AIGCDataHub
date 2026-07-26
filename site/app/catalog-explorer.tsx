@@ -982,9 +982,13 @@ function SourcePlatformOverview({
 function StrategyMatrix({
   models,
   scenario,
+  datasetById,
+  onOpenDataset,
 }: {
   models: ModelCard[];
   scenario: ScenarioDefinition | null;
+  datasetById: Map<string, DatasetCard>;
+  onOpenDataset: (datasetId: string) => void;
 }) {
   const title = scenario
     ? `${scenario.short_label}：同场景数据策略对比`
@@ -1058,10 +1062,27 @@ function StrategyMatrix({
                     </td>
                     <td className="comparison-ratio">
                       {profile.data_reference_count ? (
-                        <a href={`#strategy-datasets-${model.id}`}>
-                          <strong>{profile.linked_dataset_count}/{profile.data_reference_count}</strong>
-                          <small>查看对应数据集</small>
-                        </a>
+                        <div className="comparison-dataset-cell">
+                          <a href={`#strategy-datasets-${model.id}`}>
+                            <strong>{profile.linked_dataset_count}/{profile.data_reference_count}</strong>
+                            <small>查看完整引用</small>
+                          </a>
+                          <div className="comparison-dataset-links" aria-label={`${model.name} 对应数据集`}>
+                            {model.data.datasets.slice(0, 2).map((reference) => {
+                              const dataset = reference.catalog_id ? datasetById.get(reference.catalog_id) : undefined;
+                              return dataset ? (
+                                <button type="button" onClick={() => onOpenDataset(dataset.id)} key={`${model.id}-${reference.name}`}>
+                                  {dataset.name} <span aria-hidden="true">→</span>
+                                </button>
+                              ) : (
+                                <span title="尚无可打开的数据卡" key={`${model.id}-${reference.name}`}>{reference.name}</span>
+                              );
+                            })}
+                            {model.data.datasets.length > 2 && (
+                              <a href={`#strategy-datasets-${model.id}`}>+{model.data.datasets.length - 2} 条</a>
+                            )}
+                          </div>
+                        </div>
                       ) : (
                         <><strong>无</strong><small>没有数据引用</small></>
                       )}
@@ -1586,7 +1607,12 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
 
         <div className="result-list" role="tabpanel">
           {mode === "strategies" && (
-            <StrategyMatrix models={modelResults} scenario={activeScenario} />
+            <StrategyMatrix
+              models={modelResults}
+              scenario={activeScenario}
+              datasetById={datasetById}
+              onOpenDataset={(id) => openRelation("datasets", id)}
+            />
           )}
           {mode === "lineage" && visibleCount > 0 && (
             <LineageOverview
