@@ -37,7 +37,8 @@ Text-only LLM corpora are intentionally out of scope.
 Model cards link architecture and release information to the disclosed training
 stages, named datasets, source types, curation operations, and material unknowns.
 “Undisclosed” is a result: the catalog never invents a training dataset from a
-model's capabilities or outputs.
+model's capabilities or outputs. The table is sorted by model release date,
+newest first.
 
 <!-- BEGIN MODEL CATALOG -->
 | Model | Organization | Modalities | Released | Access | Data disclosure | Named datasets | Status |
@@ -48,26 +49,38 @@ model's capabilities or outputs.
 | [FLUX 3](models/multimodal/flux-3.yaml) | Black Forest Labs | image, video, audio, action | 2026-07-23 | early access | partial | General video training corpus, Human and robot manipulation video corpus, Robot action demonstrations | 👀 |
 | [Mage-Flow](models/image/mage-flow.yaml) | Microsoft Mage Team | image | 2026-07-21 | announced | partial | Mage-Flow curated image-text corpus, Mage-Flow-Edit training triples, Mage-Flow capability-routed RL prompt pools | 👀 |
 | [CtrlVTON](models/image/ctrlvton.yaml) | NXN Labs and KAIST | image | 2026-07-10 | announced | partial | FLUX.2 Klein inherited pretraining mixture, VIP-Seg fashion segmentation dataset, CtrlVTON training corpus, [VITON-HD-edit](catalog/image/viton-hd-edit.yaml) | 👀 |
+| [Reve 2.1](models/image/reve-2-1.yaml) | Reve | image | 2026-07-09 | api only | undisclosed | not disclosed | 👀 |
 | [Muse Video](models/video/muse-video.yaml) | Meta Superintelligence Labs | video, audio | 2026-07-07 | announced | high level | not disclosed | 👀 |
 | [Muse Image](models/multimodal/muse-image.yaml) | Meta Superintelligence Labs | image | 2026-07-07 | product only | high level | not disclosed | 👀 |
 | [Gemini Omni Flash](models/video/gemini-omni-flash.yaml) | Google DeepMind | video, audio | 2026-06-30 | api only | high level | Undisclosed multimodal training mixture | ✅ |
 | [Gemini 3.1 Flash-Lite Image](models/image/gemini-3-1-flash-lite-image.yaml) | Google DeepMind | image | 2026-06-30 | api only | high level | Gemini 3 family multimodal training mixture | ✅ |
+| [HappyHorse 1.1](models/video/happyhorse-1-1.yaml) | Alibaba ATH | video, audio | 2026-06-22 | api only | undisclosed | not disclosed | 👀 |
+| [Grok Imagine Video 1.5](models/video/grok-imagine-video-1-5.yaml) | xAI | video, audio | 2026-06-16 | api only | undisclosed | not disclosed | 👀 |
+| [MAI-Image-2.5](models/image/mai-image-2-5.yaml) | Microsoft AI | image | 2026-06-02 | api only | undisclosed | not disclosed | 👀 |
 | [GPIC Baseline Models](models/image/gpic-baselines.yaml) | Stanford Vision Lab and collaborators | image | 2026-05-28 | open weights | partial | [GPIC](catalog/image/gpic.yaml) | 🟡 |
 | [FLUX VTO](models/image/flux-vto.yaml) | Black Forest Labs | image | 2026-05-28 | api only | undisclosed | not disclosed | 👀 |
+| [Runway Aleph 2.0](models/video/runway-aleph-2.yaml) | Runway | video | 2026-05-21 | product only | undisclosed | not disclosed | 👀 |
 | [Lens](models/image/lens.yaml) | Microsoft Research | image | 2026-05-20 | open weights | partial | [Lens-800M](catalog/image/lens-800m.yaml), [Lens-RL-8K](catalog/preference/lens-rl-8k.yaml) | ✅ |
 | [Lance](models/multimodal/lance.yaml) | ByteDance | image, video | 2026-05-18 | open weights | high level | not disclosed | ✅ |
 | [TripVVT](models/video/tripvvt.yaml) | Nanjing University, JIUTIAN Research (CMCC), Jilin University, and ByteDance | video | 2026-04-30 | announced | partial | Wan2.1-Fun-14B-control inherited pretraining mixture, TripVVT supplementary training set, [TripVVT-10K](catalog/video/tripvvt-10k.yaml) | ✅ |
+| [HappyHorse 1.0](models/video/happyhorse-1-0.yaml) | Alibaba ATH | video, audio | 2026-04-27 | api only | undisclosed | not disclosed | 👀 |
+| [GPT Image 2](models/image/gpt-image-2.yaml) | OpenAI | image | 2026-04-21 | api only | undisclosed | not disclosed | 👀 |
 | [ERNIE-Image](models/image/ernie-image.yaml) | Baidu | image | 2026-04-15 | open weights | partial | Internal large-scale image pool, [ERIA-1K](catalog/evaluation/eria-1k.yaml) | ✅ |
 | [Fit-VTO](models/image/fit-vto.yaml) | University of Washington and Google Research | image | 2026-04-09 | research preview | partial | FLUX.1-dev inherited pretraining mixture, Full FIT training collection, [FIT-VTO-100K](catalog/image/fit-vto-100k.yaml) | ✅ |
 | [Avatar V](models/video/avatar-v.yaml) | HeyGen Research | video, audio | 2026-04-08 | product only | partial | Avatar V general video pretraining corpus, Avatar V audio-to-video fine-tuning corpus, Avatar V human preference data | ✅ |
+| [Wan 2.7](models/video/wan-2-7.yaml) | Alibaba Cloud | video, audio | 2026-04-03 | api only | undisclosed | not disclosed | 👀 |
+| [Gemini 3.1 Flash Image (Nano Banana 2)](models/image/gemini-3-1-flash-image.yaml) | Google DeepMind | image | 2026-02-26 | api only | undisclosed | not disclosed | 👀 |
 | [LTX-2.3](models/multimodal/ltx-2-3.yaml) | Lightricks | video, audio | 2026-02-23 | open weights | partial | Audio-informative subset of the LTX-Video training corpus, Higher-quality VAE training subset | ✅ |
 | [Seedance 2.0](models/video/seedance-2-0.yaml) | ByteDance Seed | video, audio | 2026-02-12 | api only | undisclosed | not disclosed | 👀 |
 | [JUST-DUB-IT](models/video/just-dub-it.yaml) | Lightricks and Tel Aviv University | video, audio | 2026-02-10 | gated weights | partial | LTX-2 base-model training mixture, [Audiovisual Translation Dubbing Dataset](catalog/video/audiovisual-translation-dub.yaml) | ✅ |
+| [Kling AI 3.0](models/video/kling-3.yaml) | Kuaishou Technology | video, audio, image | 2026-02-05 | product only | undisclosed | not disclosed | 👀 |
 | [FASHN VTON v1.5](models/image/fashn-vton-1-5.yaml) | FASHN AI | image | 2026-01-19 | open weights | partial | FASHN masked try-on pair pool, FASHN synthetic same-person alternative-garment triplets | ✅ |
 | [Omni2Sound](models/multimodal/omni2sound.yaml) | Tsinghua University, Monash University, and Shengshu AI | audio, video | 2026-01-06 | open weights | partial | [AudioCaps](catalog/audio/audiocaps-2-0.yaml), [WavCaps](catalog/audio/wavcaps.yaml), [Clotho](catalog/audio/clotho-2-1.yaml), [AudioSet](catalog/audio/audioset.yaml), [VGGSound](catalog/audio/vggsound.yaml), [FSD50K](catalog/audio/fsd50k.yaml), [Million Song Dataset](catalog/audio/million-song-dataset.yaml), [FMA](catalog/audio/fma.yaml), [SoundAtlas](catalog/audio/soundatlas.yaml), [VGGSound-Omni](catalog/evaluation/vggsound-omni.yaml) | ✅ |
 | [TalkVerse-5B](models/video/talkverse-5b.yaml) | CUHK MMLab and Snap Research | video, audio | 2025-12-24 | open weights | partial | Wan2.2-TI2V-5B inherited training mixture, [TalkVerse](catalog/video/talkverse.yaml) | ✅ |
+| [GPT Image 1.5](models/image/gpt-image-1-5.yaml) | OpenAI | image | 2025-12-16 | api only | undisclosed | not disclosed | 👀 |
 | [OpenVE-Edit](models/video/openve-edit.yaml) | Zhejiang University and ByteDance | video | 2025-12-08 | announced | partial | [OpenVE-3M](catalog/video/openve-3m.yaml), [OpenVE-Bench](catalog/evaluation/openve-bench.yaml) | 👀 |
 | [HunyuanVideo 1.5](models/video/hunyuanvideo-1-5.yaml) | Tencent Hunyuan | video | 2025-11-24 | open weights | high level | not disclosed | 🟡 |
+| [Gemini 3 Pro Image (Nano Banana Pro)](models/image/gemini-3-pro-image.yaml) | Google DeepMind | image | 2025-11-20 | api only | undisclosed | not disclosed | 👀 |
 | [HunyuanVideo-Avatar](models/video/hunyuanvideo-avatar.yaml) | Tencent Hunyuan | video, audio | 2025-05-28 | open weights | partial | HunyuanVideo-I2V inherited training mixture, HunyuanVideo-Avatar character-audio training corpus, [HDTF](catalog/video/hdtf.yaml), [CelebV-HQ](catalog/video/celebv-hq.yaml) | ✅ |
 | [MuseTalk 1.5](models/video/musetalk-1-5.yaml) | Tencent Music Entertainment Lyra Lab | video, audio | 2025-03-28 | open weights | partial | Stable Diffusion 1.4 inherited training mixture, [HDTF](catalog/video/hdtf.yaml), MuseTalk private talking-face dataset | ✅ |
 | [CommonCanvas-XL-C](models/image/commoncanvas-xl-c.yaml) | CommonCanvas collaborators | image | 2024-05-16 | open weights | partial | [CommonCatalog commercial subset](catalog/image/commoncatalog.yaml) | ✅ |
@@ -76,6 +89,26 @@ model's capabilities or outputs.
 Legend: ✅ strategy checked against primary technical sources; 🟡 only part of
 the strategy can be verified; 👀 active release to watch for new technical or
 data disclosures.
+
+The repository-level [model ↔ dataset audit](MODEL_DATASET_INDEX.md) lists every
+named data reference. Public or gated references are required to resolve to a
+catalog card; unreleased and undisclosed references explain why no card exists.
+
+## Ranking and release monitoring
+
+The weekly discovery workflow watches the Top 15 positions across five
+Artificial Analysis boards: text-to-image, image editing, text-to-video,
+image-to-video, and video editing. Open-weight and closed/API models are treated
+equally. Membership or ordering changes trigger review; Elo-only fluctuations
+do not. The generated site maps leaderboard aliases back to canonical model
+cards and shows unmapped entries as monitored card candidates.
+
+New dataset discovery is not limited to existing cards. Eight Hugging Face API
+feeds are sorted by `createdAt` for image generation, video generation,
+image-to-video, talking heads, video dubbing, and virtual try-on, alongside the
+recent arXiv CS.CV and CS.MM feeds and official project sources. These are
+triage signals only: a dataset enters the catalog after its primary source,
+release date, access, license, scale, and evidence boundaries are verified.
 
 ## Dataset catalog
 

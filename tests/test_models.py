@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import sys
 import unittest
+from pathlib import Path
 
 sys.path.insert(0, "scripts")
 
 from models import load_models
+from build_model_dataset_index import render_index
 from validate_models import validate_models
 
 
@@ -16,12 +18,47 @@ class ModelCatalogTests(unittest.TestCase):
     def test_representative_modalities_are_present(self) -> None:
         cards = [card for _, card in load_models()]
         modalities = {modality for card in cards for modality in card["modalities"]}
-        self.assertGreaterEqual(len(cards), 29)
+        self.assertGreaterEqual(len(cards), 41)
         self.assertTrue({"image", "video", "audio", "multimodal"}.issubset(modalities))
 
     def test_product_only_releases_are_representable(self) -> None:
         cards = [card for _, card in load_models()]
         self.assertTrue(any(card["access"]["status"] == "product-only" for card in cards))
+
+    def test_top_ranked_open_and_closed_model_versions_are_cataloged(self) -> None:
+        cards = {card["id"]: card for _, card in load_models()}
+        self.assertTrue(
+            {
+                "gpt-image-2",
+                "reve-2-1",
+                "mai-image-2-5",
+                "gemini-3-1-flash-image",
+                "gpt-image-1-5",
+                "gemini-3-pro-image",
+                "wan-2-7",
+                "happyhorse-1-1",
+                "happyhorse-1-0",
+                "grok-imagine-video-1-5",
+                "runway-aleph-2",
+                "kling-3",
+            }.issubset(cards)
+        )
+        self.assertIn("GPT Image 2 (high)", cards["gpt-image-2"]["ranking_names"])
+        self.assertIn("HappyHorse-1.0", cards["happyhorse-1-0"]["ranking_names"])
+
+    def test_public_and_gated_named_data_always_resolve_to_catalog_cards(self) -> None:
+        for _, card in load_models():
+            for reference in card["data"]["datasets"]:
+                if reference["availability"] in {"public", "gated"}:
+                    with self.subTest(model=card["id"], dataset=reference["name"]):
+                        self.assertIsNotNone(reference["catalog_id"])
+
+    def test_repository_model_dataset_index_is_current_and_explains_missing_cards(self) -> None:
+        rendered = render_index()
+        self.assertEqual(rendered, Path("MODEL_DATASET_INDEX.md").read_text(encoding="utf-8"))
+        self.assertIn("publisher has not released it", rendered)
+        self.assertIn("exact source is not disclosed", rendered)
+        self.assertIn("models/image/gpt-image-2.yaml", rendered)
 
     def test_every_model_records_unknowns(self) -> None:
         for _, card in load_models():

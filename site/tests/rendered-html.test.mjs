@@ -57,6 +57,12 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /GenSyn10/);
   assert.match(html, /Gemini Omni Flash/);
   assert.match(html, /Gemini 3\.1 Flash-Lite Image/);
+  assert.match(html, /GPT Image 2/);
+  assert.match(html, /Reve 2\.1/);
+  assert.match(html, /MAI-Image-2\.5/);
+  assert.match(html, /HappyHorse 1\.1/);
+  assert.match(html, /Wan 2\.7/);
+  assert.match(html, /Kling AI 3\.0/);
   assert.match(html, /Avatar V/);
   assert.match(html, /JUST-DUB-IT/);
   assert.match(html, /Audiovisual Translation Dubbing Dataset/);
@@ -96,7 +102,8 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /模型与数据血缘/);
   assert.match(html, /关系图谱/);
   assert.match(html, /最新数据集/);
-  assert.match(html, /最新模型/);
+  assert.match(html, /模型 · 发布时间/);
+  assert.match(html, /行业排行榜/);
   assert.match(html, /结构化数据集/);
   assert.match(html, /https:\/\/tobinzuo\.github\.io\/AIGCDataHub\/og\.png/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
@@ -124,6 +131,9 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"gensyn10"/);
   assert.match(catalog, /"gemini-omni-flash"/);
   assert.match(catalog, /"gemini-3-1-flash-lite-image"/);
+  assert.match(catalog, /"gpt-image-2"/);
+  assert.match(catalog, /"happyhorse-1-1"/);
+  assert.match(catalog, /"rankings"/);
   assert.match(catalog, /"avatar-v"/);
   assert.match(catalog, /"just-dub-it"/);
   assert.match(catalog, /"audiovisual-translation-dub"/);
@@ -165,7 +175,12 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"relations"/);
   assert.match(catalog, /"dataset_relations"/);
   const parsedCatalog = JSON.parse(catalog);
-  assert.equal(parsedCatalog.format_version, 8);
+  assert.equal(parsedCatalog.format_version, 9);
+  assert.equal(parsedCatalog.rankings.length, 5);
+  assert.equal(
+    parsedCatalog.rankings.find((board) => board.id === "text-to-image").entries[0].model_id,
+    "gpt-image-2",
+  );
   assert.deepEqual(
     parsedCatalog.scenarios.map((scenario) => scenario.id),
     ["image-generation", "video-generation", "digital-human", "video-localization", "virtual-try-on"],
@@ -268,6 +283,8 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(page, /CatalogExplorer/);
   assert.match(catalogExplorer, /StrategyMatrix/);
   assert.match(catalogExplorer, /LineageOverview/);
+  assert.match(catalogExplorer, /RankingOverview/);
+  assert.match(catalogExplorer, /头部模型不是凭印象补录/);
   assert.match(catalogExplorer, /从上游数据，一路追到衍生集和模型/);
   assert.match(catalogExplorer, /核心监控/);
   assert.match(catalogExplorer, /同场景数据策略对比/);

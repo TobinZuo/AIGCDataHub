@@ -30,6 +30,7 @@ def validate_models() -> list[str]:
     dataset_ids = {card["id"] for _, card in load_cards()}
     validator = Draft202012Validator(load_model_schema(), format_checker=FormatChecker())
     ids: list[str] = []
+    ranking_aliases: list[str] = []
 
     for path, model in models:
         path_name = relative(path)
@@ -38,6 +39,7 @@ def validate_models() -> list[str]:
             ids.append(model_id)
             if path.stem != model_id:
                 errors.append(f"{path_name}: file name must match id {model_id!r}")
+        ranking_aliases.extend(model.get("ranking_names", []))
 
         modalities = model.get("modalities", [])
         expected_parent = "multimodal" if "multimodal" in modalities else (modalities[0] if modalities else None)
@@ -54,6 +56,10 @@ def validate_models() -> list[str]:
             if catalog_id and catalog_id not in dataset_ids:
                 errors.append(
                     f"{path_name}:data.datasets.{index}.catalog_id: unknown dataset {catalog_id!r}"
+                )
+            if dataset.get("availability") in {"public", "gated"} and not catalog_id:
+                errors.append(
+                    f"{path_name}:data.datasets.{index}.catalog_id: public or gated named data requires a catalog card"
                 )
 
         if data.get("exact_datasets_disclosed") and not data.get("datasets"):
@@ -72,6 +78,9 @@ def validate_models() -> list[str]:
     for model_id, count in sorted(Counter(ids).items()):
         if count > 1:
             errors.append(f"duplicate model id: {model_id}")
+    for alias, count in sorted(Counter(ranking_aliases).items()):
+        if count > 1:
+            errors.append(f"duplicate ranking alias: {alias}")
     return errors
 
 
@@ -88,4 +97,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

@@ -131,6 +131,20 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(dates, sorted(dates, reverse=True))
         self.assertEqual(datasets[0]["id"], "graphvid-bench")
 
+    def test_site_catalog_orders_models_by_release_date(self) -> None:
+        models = build_payload()["models"]
+        dates = [card["released_at"] for card in models]
+        self.assertEqual(dates, sorted(dates, reverse=True))
+        self.assertEqual(models[0]["id"], "midjourney-v8-2")
+
+    def test_every_ranking_top_five_entry_maps_to_a_model_card(self) -> None:
+        rankings = build_payload()["rankings"]
+        self.assertEqual(len(rankings), 5)
+        for board in rankings:
+            with self.subTest(board=board["id"]):
+                self.assertGreaterEqual(len(board["entries"]), 5)
+                self.assertTrue(all(entry["model_id"] for entry in board["entries"][:5]))
+
     def test_compact_number(self) -> None:
         self.assertEqual(compact_number(70_723_513), "70.7M")
         self.assertEqual(compact_number(1_000_000, approximate=True), "~1M")

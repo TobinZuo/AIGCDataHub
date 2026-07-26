@@ -33,6 +33,9 @@ unreviewed links.
   SFT, preference optimization, and distillation into one vague paragraph.
 - Link named datasets to `catalog_id` when a catalog card exists. A named but
   unreleased corpus should still be recorded with `availability: not-released`.
+  Public or gated references without a catalog card fail validation. Regenerate
+  `MODEL_DATASET_INDEX.md` so every unresolved reference states its evidence
+  boundary.
 - Use model-side `catalog_id` as the only editable model-to-dataset relation.
   Generated dataset backlinks and the top-level site relation index must not be
   hand-edited. `evidence.used_by` records an upstream statement, not a canonical
@@ -69,6 +72,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -r requirements-dev.txt
 make readme
+make model-data-index
 make site-data
 make check
 ```

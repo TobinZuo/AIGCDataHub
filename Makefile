@@ -1,4 +1,4 @@
-.PHONY: validate freshness discovery discovery-accept readme readme-check site-data site-data-check test check-links audit-example audit-example-check check
+.PHONY: validate freshness discovery discovery-accept readme readme-check model-data-index model-data-index-check site-data site-data-check test check-links audit-example audit-example-check check
 
 validate:
 	python3 scripts/validate_catalog.py
@@ -19,6 +19,12 @@ readme:
 readme-check:
 	python3 scripts/build_readme.py --check
 
+model-data-index:
+	python3 scripts/build_model_dataset_index.py
+
+model-data-index-check:
+	python3 scripts/build_model_dataset_index.py --check
+
 site-data:
 	python3 scripts/build_site_data.py
 
@@ -37,4 +43,4 @@ audit-example:
 audit-example-check:
 	python3 scripts/audit_manifest.py examples/manifests/tiny-multimodal.jsonl --sample-size 8 --json-out examples/reports/tiny-multimodal.json --markdown-out examples/reports/tiny-multimodal.md --fail-on-invalid --min-provenance-coverage 1 --check
 
-check: validate freshness readme-check site-data-check audit-example-check test
+check: validate freshness readme-check model-data-index-check site-data-check audit-example-check test

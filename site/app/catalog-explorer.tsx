@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-type Mode = "models" | "datasets" | "lineage" | "strategies";
+type Mode = "models" | "datasets" | "rankings" | "lineage" | "strategies";
 
 type ScenarioDefinition = {
   id: string;
@@ -72,11 +72,36 @@ type Monitoring = {
   source_url: string;
 };
 
+type RankingPosition = {
+  ranking_id: string;
+  rank: number;
+  elo: number;
+};
+
+type RankingEntry = {
+  rank: number;
+  creator: string;
+  model: string;
+  elo: number;
+  confidence_interval: string;
+  samples: number | null;
+  released: string;
+  open_weights: boolean;
+  model_id: string | null;
+};
+
+type RankingBoard = {
+  id: string;
+  source_url: string;
+  entries: RankingEntry[];
+};
+
 type ModelCard = {
   id: string;
   name: string;
   organization: string;
   released_at: string;
+  ranking_names?: string[];
   modalities: string[];
   tasks: string[];
   access: {
@@ -112,6 +137,7 @@ type ModelCard = {
   strategy_profile: StrategyProfile;
   linked_dataset_ids: string[];
   monitoring: Monitoring | null;
+  ranking_positions: RankingPosition[];
 };
 
 type DatasetCard = {
@@ -188,13 +214,23 @@ type Catalog = {
   datasets: DatasetCard[];
   relations: ModelDatasetRelation[];
   dataset_relations: DatasetLineageRelation[];
+  rankings: RankingBoard[];
 };
 
 const MODE_LABELS: Record<Mode, string> = {
-  models: "最新模型",
+  models: "模型 · 发布时间↓",
   datasets: "最新数据集",
+  rankings: "行业排行榜",
   lineage: "关系图谱",
   strategies: "数据策略",
+};
+
+const RANKING_LABELS: Record<string, string> = {
+  "text-to-image": "文生图",
+  "image-editing": "图片编辑",
+  "text-to-video": "文生视频",
+  "image-to-video": "图生视频",
+  "video-editing": "视频编辑",
 };
 
 const MODALITY_LABELS: Record<string, string> = {
@@ -358,6 +394,11 @@ function ModelResult({ model, scenarioLabels, expanded, onToggle, onOpenDataset 
             {model.modalities.slice(0, 4).map((item) => (
               <span className="tag" key={item}>{MODALITY_LABELS[item] ?? item}</span>
             ))}
+            {model.ranking_positions.slice(0, 2).map((item) => (
+              <span className="tag tag-ranking" key={item.ranking_id}>
+                {RANKING_LABELS[item.ranking_id] ?? item.ranking_id} #{item.rank}
+              </span>
+            ))}
             {model.monitoring && <span className="tag tag-monitor">{MONITORING_LABELS[model.monitoring.priority]}</span>}
           </div>
         </div>
@@ -409,12 +450,19 @@ function ModelResult({ model, scenarioLabels, expanded, onToggle, onOpenDataset 
                 {model.data.datasets.map((item) => (
                   <div key={`${model.id}-${item.name}`}>
                     <strong>{item.name}</strong>
-                    <span>{item.role} · {item.scale ?? "规模未披露"}</span>
+                    <span>{item.role} · {DATA_AVAILABILITY_LABELS[item.availability] ?? item.availability} · {item.scale ?? "规模未披露"}</span>
                     <p>{item.notes}</p>
                     {item.catalog_id && (
                       <button className="relation-link" onClick={() => onOpenDataset(item.catalog_id!)}>
                         打开数据卡 <span aria-hidden="true">→</span>
                       </button>
+                    )}
+                    {!item.catalog_id && (
+                      <small className="reference-resolution">
+                        {item.availability === "not-released"
+                          ? "没有数据卡：发布方尚未发布该语料。"
+                          : "没有数据卡：一手资料没有披露可识别的数据集。"}
+                      </small>
                     )}
                   </div>
                 ))}
@@ -714,6 +762,63 @@ function LineageOverview({ modelRelations, datasetRelations, onOpenModel, onOpen
   );
 }
 
+function RankingOverview({ boards, onOpenModel }: {
+  boards: RankingBoard[];
+  onOpenModel: (modelId: string) => void;
+}) {
+  const monitored = boards.reduce((count, board) => count + board.entries.length, 0);
+  const cataloged = boards.reduce(
+    (count, board) => count + board.entries.filter((entry) => entry.model_id).length,
+    0,
+  );
+  return (
+    <section className="ranking-overview" aria-labelledby="ranking-title">
+      <header className="ranking-summary">
+        <div>
+          <p className="comparison-kicker">RANKING / TOP 15 / OPEN + CLOSED</p>
+          <h3 id="ranking-title">头部模型不是凭印象补录，而是跟着榜单持续复核。</h3>
+          <p>每周抓取 Artificial Analysis 的五个生成媒体榜单；成员或名次变化会进入复核队列，Elo 的日常小波动不会制造提醒。</p>
+        </div>
+        <dl>
+          <div><dt>榜单</dt><dd>{boards.length}</dd></div>
+          <div><dt>监控席位</dt><dd>{monitored}</dd></div>
+          <div><dt>已映射模型卡</dt><dd>{cataloged}</dd></div>
+        </dl>
+      </header>
+      <div className="ranking-boards">
+        {boards.map((board) => (
+          <article className="ranking-board" key={board.id}>
+            <header>
+              <div><span>{board.id.toUpperCase()}</span><h4>{RANKING_LABELS[board.id] ?? board.id}</h4></div>
+              <ExternalLink href={board.source_url}>榜单原页</ExternalLink>
+            </header>
+            <ol>
+              {board.entries.map((entry) => (
+                <li key={`${board.id}-${entry.rank}-${entry.model}`}>
+                  <strong className="ranking-rank">{String(entry.rank).padStart(2, "0")}</strong>
+                  <div>
+                    <b>{entry.model}</b>
+                    <span>{entry.creator} · {entry.released || "发布日期未列"}</span>
+                  </div>
+                  <div className="ranking-score"><strong>{entry.elo}</strong><span>Elo</span></div>
+                  <span className={`ranking-access ${entry.open_weights ? "is-open" : ""}`}>
+                    {entry.open_weights ? "开放权重" : "闭源 / 服务"}
+                  </span>
+                  {entry.model_id ? (
+                    <button onClick={() => onOpenModel(entry.model_id!)}>模型卡 →</button>
+                  ) : (
+                    <small>已监控 · 待建卡</small>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function StrategyMatrix({
   models,
   scenario,
@@ -1003,13 +1108,33 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
     });
   }, [datasetLineageRecords, modality, query, scenario]);
 
+  const rankingResults = useMemo(() => {
+    const search = normalize(query.trim());
+    return catalog.rankings.flatMap((board): RankingBoard[] => {
+      const boardModality = board.id.includes("image") ? "image" : "video";
+      if (modality !== "all" && modality !== boardModality) return [];
+      const entries = board.entries.filter((entry) => !search || normalize([
+        board.id,
+        RANKING_LABELS[board.id] ?? "",
+        entry.model,
+        entry.creator,
+        entry.open_weights ? "open weights 开放权重" : "closed 闭源",
+      ].join(" ")).includes(search));
+      return entries.length ? [{ ...board, entries }] : [];
+    });
+  }, [catalog.rankings, modality, query]);
+
   const visibleModalities = mode === "datasets"
     ? ["all", "image", "video", "audio", "3d", "preference"]
+    : mode === "rankings"
+      ? ["all", "image", "video"]
     : mode === "lineage"
       ? ["all", "image", "video", "audio", "3d", "preference", "multimodal", "action"]
     : ["all", "image", "video", "audio", "3d", "multimodal", "action"];
   const visibleCount = mode === "datasets"
     ? datasetResults.length
+    : mode === "rankings"
+      ? rankingResults.reduce((count, board) => count + board.entries.length, 0)
     : mode === "lineage"
       ? modelLineageResults.length + datasetLineageResults.length
       : modelResults.length;
@@ -1019,6 +1144,9 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
   const exactDatasetModels = catalog.models.filter((item) => item.data.exact_datasets_disclosed).length;
   const openDatasets = catalog.datasets.filter((item) => item.access.status === "open").length;
   const scenarioCounts = useMemo(() => {
+    if (mode === "rankings") {
+      return Object.fromEntries(catalog.scenarios.map((item) => [item.id, 0]));
+    }
     if (mode === "lineage") {
       return Object.fromEntries(catalog.scenarios.map((item) => [
         item.id,
@@ -1040,6 +1168,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
 
   function totalForMode(item: Mode) {
     if (item === "datasets") return catalog.datasets.length;
+    if (item === "rankings") return catalog.rankings.reduce((count, board) => count + board.entries.length, 0);
     if (item === "lineage") return catalog.relations.length + catalog.dataset_relations.length;
     return catalog.models.length;
   }
@@ -1139,7 +1268,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
           ))}
         </div>
 
-        <div className="scenario-rail" role="group" aria-label="应用场景筛选">
+        {mode !== "rankings" && <div className="scenario-rail" role="group" aria-label="应用场景筛选">
           <span className="scenario-caption">应用场景</span>
           <div className="scenario-options">
             <button
@@ -1163,7 +1292,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
               </button>
             ))}
           </div>
-        </div>
+        </div>}
 
         <div className="search-panel">
           <label className="search-box">
@@ -1175,6 +1304,8 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
               onChange={(event) => setQuery(event.target.value)}
               placeholder={mode === "datasets"
                 ? "搜索数据集、任务、标注类型…"
+                : mode === "rankings"
+                  ? "搜索榜单模型、机构、开放权重…"
                 : mode === "lineage"
                   ? "搜索模型、上游数据、衍生集或关系类型…"
                   : "搜索模型、机构、数据集或训练操作…"}
@@ -1188,7 +1319,10 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
               </button>
             ))}
           </div>
-          <div className="result-count"><strong>{visibleCount}</strong> 条结果</div>
+          <div className="result-count">
+            <strong>{visibleCount}</strong> 条结果
+            {mode === "models" && <small>发布时间：新 → 旧</small>}
+          </div>
         </div>
 
         <div className="result-list" role="tabpanel">
@@ -1201,6 +1335,12 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
               datasetRelations={datasetLineageResults}
               onOpenModel={(id) => openRelation("models", id)}
               onOpenDataset={(id) => openRelation("datasets", id)}
+            />
+          )}
+          {mode === "rankings" && visibleCount > 0 && (
+            <RankingOverview
+              boards={rankingResults}
+              onOpenModel={(id) => openRelation("models", id)}
             />
           )}
           {mode === "models" && modelResults.map((model) => (

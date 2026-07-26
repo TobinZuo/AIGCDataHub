@@ -1,0 +1,54 @@
+id: wan-2-7
+name: Wan 2.7
+organization: Alibaba Cloud
+released_at: "2026-04-03"
+ranking_names:
+  - Wan2.7-260612
+  - Wan 2.7
+  - Wan2.7
+modalities:
+  - video
+  - audio
+tasks:
+  - text-to-video
+  - image-to-video
+  - reference-to-video
+  - video-editing
+  - audio-video-generation
+access:
+  status: api-only
+  license: Alibaba Cloud Model Studio service terms
+  release_url: https://help.aliyun.com/en/model-studio/newly-released-models
+  weights_url: null
+  api_url: https://help.aliyun.com/en/model-studio/text-to-video-api-reference
+architecture:
+  family: Undisclosed multimodal Wan video architecture
+  parameters: null
+  notes: The service supports text, image, audio, and video conditioning across generation, reference, continuation, and editing endpoints.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - audio
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: Model Studio documents service variants and dated snapshots but does not publish Wan 2.7 training datasets or processing stages.
+  strategy_summary:
+    - Monitor both the rolling Wan 2.7 alias and dated snapshots while keeping its closed training corpus explicitly undisclosed.
+  unknowns:
+    - Training dataset identities, ownership, licenses, size, modality mix, captions, filtering, deduplication, and post-training strategy.
+evidence:
+  release: https://help.aliyun.com/en/model-studio/newly-released-models
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-26"

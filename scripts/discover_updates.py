@@ -22,7 +22,7 @@ from catalog import load_cards
 from models import load_models
 
 
-SCHEMA_VERSION = 5
+SCHEMA_VERSION = 6
 USER_AGENT = "AIGCDataHub-discovery/0.1 (+https://github.com/TobinZuo/AIGCDataHub)"
 MEDIA_TERMS = (
     "image",
@@ -178,6 +178,18 @@ class Candidate:
     url: str
 
 
+@dataclass(frozen=True)
+class RankingEntry:
+    rank: int
+    creator: str
+    model: str
+    elo: int
+    confidence_interval: str
+    samples: int | None
+    released: str
+    open_weights: bool
+
+
 @dataclass(frozen=True, order=True)
 class WatchSource:
     track_id: str
@@ -185,6 +197,8 @@ class WatchSource:
     catalog_id: str | None = None
     priority: str | None = None
     model_id: str | None = None
+    ranking_id: str | None = None
+    ranking_limit: int | None = None
 
 
 @dataclass(frozen=True)
@@ -200,10 +214,13 @@ class SourceSnapshot:
     catalog_id: str | None = None
     priority: str | None = None
     model_id: str | None = None
+    ranking_id: str | None = None
+    rankings: tuple[RankingEntry, ...] = ()
 
     def to_dict(self) -> dict[str, Any]:
         payload = asdict(self)
         payload["candidates"] = [asdict(candidate) for candidate in self.candidates]
+        payload["rankings"] = [asdict(entry) for entry in self.rankings]
         return payload
 
 
@@ -213,10 +230,17 @@ class DiscoveryDiff:
     source_updates: tuple[dict[str, Any], ...]
     failures: tuple[dict[str, Any], ...]
     recoveries: tuple[dict[str, Any], ...]
+    ranking_updates: tuple[dict[str, Any], ...] = ()
 
     @property
     def has_updates(self) -> bool:
-        return bool(self.new_candidates or self.source_updates or self.failures or self.recoveries)
+        return bool(
+            self.new_candidates
+            or self.source_updates
+            or self.failures
+            or self.recoveries
+            or self.ranking_updates
+        )
 
 
 class AnchorParser(HTMLParser):
@@ -243,6 +267,47 @@ class AnchorParser(HTMLParser):
             self.links.append((self._href, normalize_text(" ".join(self._text))))
             self._href = None
             self._text = []
+
+
+class TableParser(HTMLParser):
+    """Collect visible table cells without depending on provider CSS classes."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self._in_row = False
+        self._cell_depth = 0
+        self._cell_text: list[str] = []
+        self._row: list[str] = []
+        self.rows: list[list[str]] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        del attrs
+        tag = tag.lower()
+        if tag == "tr":
+            self._in_row = True
+            self._row = []
+        elif self._in_row and tag in {"td", "th"}:
+            self._cell_depth = 1
+            self._cell_text = []
+        elif self._cell_depth:
+            self._cell_depth += 1
+
+    def handle_data(self, data: str) -> None:
+        if self._cell_depth:
+            self._cell_text.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        tag = tag.lower()
+        if self._cell_depth:
+            self._cell_depth -= 1
+            if self._cell_depth == 0:
+                self._row.append(normalize_text(" ".join(self._cell_text)))
+                self._cell_text = []
+        if tag == "tr" and self._in_row:
+            if self._row:
+                self.rows.append(self._row)
+            self._in_row = False
+            self._row = []
 
 
 def normalize_text(value: str) -> str:
@@ -372,6 +437,61 @@ def extract_candidate_links(html: str, base_url: str, contextual: bool = False) 
     return tuple(sorted(candidates.values(), key=lambda item: (item.url, item.title.lower())))
 
 
+def extract_huggingface_dataset_candidates(payload: str) -> tuple[Candidate, ...]:
+    """Turn a Hugging Face datasets API search response into canonical candidate links."""
+    try:
+        records = json.loads(payload)
+    except (json.JSONDecodeError, TypeError):
+        return ()
+    if not isinstance(records, list):
+        return ()
+
+    candidates: dict[str, Candidate] = {}
+    for record in records:
+        dataset_id = record.get("id") if isinstance(record, dict) else None
+        if not isinstance(dataset_id, str) or not dataset_id or "/" not in dataset_id:
+            continue
+        url = normalize_url(f"https://huggingface.co/datasets/{dataset_id}")
+        if url:
+            candidates[url] = Candidate(title=dataset_id[:240], url=url)
+    return tuple(sorted(candidates.values(), key=lambda item: item.url.lower()))
+
+
+def extract_ranking_entries(html: str, limit: int = 15) -> tuple[RankingEntry, ...]:
+    """Parse Artificial Analysis leaderboard tables into a stable top-N snapshot."""
+    parser = TableParser()
+    parser.feed(html)
+    entries: list[RankingEntry] = []
+    for row in parser.rows:
+        if len(row) < 8 or not re.fullmatch(r"\d+", row[0].replace(",", "")):
+            continue
+        rank = int(row[0].replace(",", ""))
+        if rank > limit:
+            continue
+        try:
+            elo = int(row[4].replace(",", ""))
+        except ValueError:
+            continue
+        model_cell = row[3]
+        open_weights = model_cell.endswith("Open Weights")
+        model = re.sub(r"\s*Open Weights\s*$", "", model_cell).strip()
+        sample_text = row[6].replace(",", "")
+        samples = int(sample_text) if sample_text.isdigit() else None
+        entries.append(
+            RankingEntry(
+                rank=rank,
+                creator=row[2],
+                model=model,
+                elo=elo,
+                confidence_interval=row[5],
+                samples=samples,
+                released=row[7],
+                open_weights=open_weights,
+            )
+        )
+    return tuple(sorted(entries, key=lambda item: item.rank)[:limit])
+
+
 def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> SourceSnapshot:
     track_id = source.track_id
     source_url = source.source_url
@@ -394,27 +514,41 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
                     catalog_id=source.catalog_id,
                     priority=source.priority,
                     model_id=source.model_id,
+                    ranking_id=source.ranking_id,
                 )
             charset = response.headers.get_content_charset() or "utf-8"
             html = payload.decode(charset, errors="replace")
             hostname = (urllib.parse.urlsplit(response.url).hostname or "").lower()
             revision, revision_url = extract_source_revision(html, response.url)
+            if source.ranking_id:
+                rankings = extract_ranking_entries(html, source.ranking_limit or 15)
+                candidates: tuple[Candidate, ...] = ()
+                if not rankings:
+                    raise ValueError("ranking-table-empty")
+            elif hostname == "huggingface.co" and urllib.parse.urlsplit(response.url).path == "/api/datasets":
+                rankings = ()
+                candidates = extract_huggingface_dataset_candidates(html)
+            else:
+                rankings = ()
+                candidates = extract_candidate_links(
+                    html,
+                    response.url,
+                    contextual=track_id in CONTEXTUAL_TRACKS and hostname not in INDEX_HOSTS,
+                )
             return SourceSnapshot(
                 track_id=track_id,
                 source_url=source_url,
                 resolved_url=normalize_url(response.url),
                 status=response.status,
-                candidates=extract_candidate_links(
-                    html,
-                    response.url,
-                    contextual=track_id in CONTEXTUAL_TRACKS and hostname not in INDEX_HOSTS,
-                ),
+                candidates=candidates,
                 error=None,
                 revision=revision,
                 revision_url=revision_url,
                 catalog_id=source.catalog_id,
                 priority=source.priority,
                 model_id=source.model_id,
+                ranking_id=source.ranking_id,
+                rankings=rankings,
             )
     except urllib.error.HTTPError as exc:
         error = f"HTTP {exc.code}"
@@ -434,6 +568,7 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
         catalog_id=source.catalog_id,
         priority=source.priority,
         model_id=source.model_id,
+        ranking_id=source.ranking_id,
     )
 
 
@@ -454,14 +589,25 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
             catalog_id = None
             priority = None
             model_id = None
+            ranking_id = None
+            ranking_limit = None
             if isinstance(source, dict):
-                unexpected = set(source) - {"url", "catalog_id", "model_id", "priority"}
+                unexpected = set(source) - {
+                    "url",
+                    "catalog_id",
+                    "model_id",
+                    "priority",
+                    "ranking_id",
+                    "ranking_limit",
+                }
                 if unexpected:
                     raise ValueError(f"watch source has unsupported keys: {sorted(unexpected)}")
                 url = source.get("url")
                 catalog_id = source.get("catalog_id")
                 priority = source.get("priority")
                 model_id = source.get("model_id")
+                ranking_id = source.get("ranking_id")
+                ranking_limit = source.get("ranking_limit")
             else:
                 url = source
             if not isinstance(url, str) or not url.startswith("https://"):
@@ -472,6 +618,14 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
                 raise ValueError(f"watch source references unknown model model_id: {model_id!r}")
             if priority is not None and priority not in {"critical", "high", "standard"}:
                 raise ValueError(f"watch source has invalid priority: {priority!r}")
+            if ranking_id is not None and (
+                not isinstance(ranking_id, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", ranking_id)
+            ):
+                raise ValueError(f"watch source has invalid ranking_id: {ranking_id!r}")
+            if ranking_limit is not None and (
+                not isinstance(ranking_limit, int) or not 1 <= ranking_limit <= 100
+            ):
+                raise ValueError(f"watch source has invalid ranking_limit: {ranking_limit!r}")
             if track_id == "important-dataset-updates":
                 if catalog_id is None or priority is None or model_id is not None:
                     raise ValueError(
@@ -482,11 +636,34 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
                     raise ValueError(
                         "important model watch sources require model_id and priority only"
                     )
+            if track_id == "industry-model-rankings":
+                if (
+                    ranking_id is None
+                    or ranking_limit is None
+                    or catalog_id is not None
+                    or model_id is not None
+                    or priority is not None
+                ):
+                    raise ValueError(
+                        "ranking watch sources require ranking_id and ranking_limit only"
+                    )
+            elif ranking_id is not None or ranking_limit is not None:
+                raise ValueError("ranking metadata is only valid for industry-model-rankings")
             normalized = normalize_url(url) or url
             if normalized in seen_urls or normalized in excluded:
                 continue
             seen_urls.add(normalized)
-            sources.append(WatchSource(track_id, url, catalog_id, priority, model_id))
+            sources.append(
+                WatchSource(
+                    track_id,
+                    url,
+                    catalog_id,
+                    priority,
+                    model_id,
+                    ranking_id,
+                    ranking_limit,
+                )
+            )
     return watchlist, sorted(sources)
 
 
@@ -624,6 +801,7 @@ def compare_snapshots(
     source_updates: list[dict[str, Any]] = []
     failures: list[dict[str, Any]] = []
     recoveries: list[dict[str, Any]] = []
+    ranking_updates: list[dict[str, Any]] = []
     dataset_impacts = dataset_impacts or {}
     model_impacts = model_impacts or {}
 
@@ -677,6 +855,31 @@ def compare_snapshots(
             recovery.update(source_entity_payload(source, dataset_impacts, model_impacts))
             recoveries.append(recovery)
 
+        if source.ranking_id and not source.error and previous.get("rankings"):
+            previous_names = [item["model"] for item in previous["rankings"]]
+            current_names = [item.model for item in source.rankings]
+            if previous_names != current_names:
+                previous_positions = {
+                    name: index for index, name in enumerate(previous_names, start=1)
+                }
+                current_positions = {
+                    name: index for index, name in enumerate(current_names, start=1)
+                }
+                changes = []
+                for name in sorted(set(previous_positions) | set(current_positions)):
+                    before = previous_positions.get(name)
+                    after = current_positions.get(name)
+                    if before != after:
+                        changes.append({"model": name, "previous_rank": before, "rank": after})
+                ranking_updates.append(
+                    {
+                        "ranking_id": source.ranking_id,
+                        "source_url": source.source_url,
+                        "changes": changes,
+                        "current": [asdict(entry) for entry in source.rankings],
+                    }
+                )
+
     return DiscoveryDiff(
         new_candidates=tuple(sorted(new_candidates, key=lambda item: (item["track_id"], item["url"]))),
         source_updates=tuple(
@@ -684,6 +887,9 @@ def compare_snapshots(
         ),
         failures=tuple(sorted(failures, key=lambda item: (item["track_id"], item["source_url"]))),
         recoveries=tuple(sorted(recoveries, key=lambda item: (item["track_id"], item["source_url"]))),
+        ranking_updates=tuple(
+            sorted(ranking_updates, key=lambda item: item["ranking_id"])
+        ),
     )
 
 
@@ -705,6 +911,7 @@ def report_payload(
         "source_updates": list(diff.source_updates),
         "failures": list(diff.failures),
         "recoveries": list(diff.recoveries),
+        "ranking_updates": list(diff.ranking_updates),
     }
 
 
@@ -721,8 +928,20 @@ def render_report(report: dict[str, Any], limit: int = 100) -> str:
         f"- Important catalog revisions: {len(report['source_updates'])}",
         f"- New source failures: {len(report['failures'])}",
         f"- Source recoveries: {len(report['recoveries'])}",
+        f"- Ranking boards changed: {len(report['ranking_updates'])}",
         "",
     ]
+    if report["ranking_updates"]:
+        lines.extend(["## Ranking changes", ""])
+        for board in report["ranking_updates"]:
+            lines.append(f"### `{board['ranking_id']}`")
+            lines.append("")
+            for change in board["changes"]:
+                before = change["previous_rank"] if change["previous_rank"] is not None else "outside"
+                after = change["rank"] if change["rank"] is not None else "outside"
+                lines.append(f"- {change['model']}: {before} → {after}")
+            lines.append(f"- [Current leaderboard]({board['source_url']})")
+            lines.append("")
     if report["new_candidates"]:
         lines.extend(["## Candidate links", ""])
         for item in report["new_candidates"][:limit]:
@@ -834,7 +1053,7 @@ def main() -> int:
     print(
         f"Checked {len(sources)} watched source(s): {len(diff.new_candidates)} new candidate(s), "
         f"{len(diff.source_updates)} important catalog revision(s), {len(diff.failures)} new failure(s), "
-        f"{len(diff.recoveries)} recovery/recoveries."
+        f"{len(diff.recoveries)} recovery/recoveries, {len(diff.ranking_updates)} ranking board change(s)."
     )
     return 0
 

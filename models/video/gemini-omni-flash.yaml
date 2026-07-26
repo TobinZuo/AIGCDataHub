@@ -2,6 +2,8 @@ id: gemini-omni-flash
 name: Gemini Omni Flash
 organization: Google DeepMind
 released_at: "2026-06-30"
+ranking_names:
+  - Gemini Omni Flash
 modalities:
   - video
   - audio

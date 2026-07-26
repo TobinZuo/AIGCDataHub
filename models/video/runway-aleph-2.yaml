@@ -1,0 +1,48 @@
+id: runway-aleph-2
+name: Runway Aleph 2.0
+organization: Runway
+released_at: "2026-05-21"
+ranking_names:
+  - Runway Aleph 2.0
+  - Aleph 2.0
+modalities:
+  - video
+tasks:
+  - video-editing
+  - reference-to-video
+access:
+  status: product-only
+  license: Runway Terms of Use
+  release_url: https://runwayml.com/news/introducing-aleph-2-and-edit-studio
+  weights_url: null
+  api_url: null
+architecture:
+  family: Undisclosed in-context video editing model
+  parameters: null
+  notes: Applies text or edited-frame instructions across clips up to 30 seconds and multiple shots while preserving untouched content.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: Runway's launch explains in-context editing behavior and product limits but publishes no training datasets or data-construction stages.
+  strategy_summary:
+    - Preserve the boundary between input-preservation behavior and training-data evidence; Aleph 2.0's corpus remains undisclosed.
+  unknowns:
+    - Training source identities, rights, sizes, edit-pair construction, filtering, deduplication, and preference data.
+evidence:
+  release: https://runwayml.com/news/introducing-aleph-2-and-edit-studio
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-26"
