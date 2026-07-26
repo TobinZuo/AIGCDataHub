@@ -6,9 +6,13 @@ as an exhaustive list.
 
 ## Weekly cycle
 
-1. Search official organization blogs, repositories, model/dataset cards, and
-   new technical reports for image, video, audio, 3D, unified generation, and
-   physical-AI releases.
+1. Review the candidate Issue produced by `.github/workflows/discovery.yml`.
+   The scanner compares official-source links with
+   `sources/discovery-state.json`; it prioritizes image and video generation.
+   The scenario layer explicitly covers digital humans, talking avatars, video
+   translation/dubbing, lip sync, virtual try-on, and commerce creatives.
+   Search beyond the generated candidates when an official organization uses a
+   new domain, publishes only through a feed, or changes an existing model card.
 2. Create a candidate list with release date, primary source, modality, access,
    and whether any training-data information is actually disclosed.
    Treat `released_at` as the first public date of the exact named version and
@@ -27,6 +31,16 @@ as an exhaustive list.
    primary-source links.
 8. Summarize new models, new datasets, changed disclosures, broken links, and
    stale cards for the reviewer.
+9. After every generated candidate is accepted or rejected, run
+   `make discovery-accept` and include the reviewed baseline change in the same
+   PR. This prevents reviewed links from reappearing without treating them as
+   accepted catalog facts.
+
+## Automation boundary
+
+The scheduled workflow may discover links and maintain a review Issue. It must
+not create model or dataset cards, infer a training corpus, change a license
+conclusion, advance `last_verified`, merge a PR, or deploy unreviewed data.
 
 ## Freshness policy
 

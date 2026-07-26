@@ -53,6 +53,10 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /GenSyn10/);
   assert.match(html, /Gemini Omni Flash/);
   assert.match(html, /Gemini 3\.1 Flash-Lite Image/);
+  assert.match(html, /Avatar V/);
+  assert.match(html, /JUST-DUB-IT/);
+  assert.match(html, /Audiovisual Translation Dubbing Dataset/);
+  assert.match(html, /FIT-VTO-100K/);
   assert.match(html, /10\/10/);
   assert.match(html, /目录关联/);
   assert.match(html, /最新数据集/);
@@ -83,6 +87,10 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"gensyn10"/);
   assert.match(catalog, /"gemini-omni-flash"/);
   assert.match(catalog, /"gemini-3-1-flash-lite-image"/);
+  assert.match(catalog, /"avatar-v"/);
+  assert.match(catalog, /"just-dub-it"/);
+  assert.match(catalog, /"audiovisual-translation-dub"/);
+  assert.match(catalog, /"fit-vto-100k"/);
   assert.match(catalog, /"clotho-2-1"/);
   assert.match(catalog, /"audioset"/);
   assert.match(catalog, /"vggsound"/);
@@ -100,6 +108,10 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.deepEqual(
     models["ernie-image"].data.datasets.map((dataset) => dataset.catalog_id),
     [null, "eria-1k"],
+  );
+  assert.deepEqual(
+    models["just-dub-it"].data.datasets.map((dataset) => dataset.catalog_id),
+    [null, "audiovisual-translation-dub"],
   );
   assert.match(page, /CatalogExplorer/);
   assert.match(layout, /AIGCDataHub/);

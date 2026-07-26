@@ -1,0 +1,134 @@
+id: avatar-v
+name: Avatar V
+organization: HeyGen Research
+released_at: "2026-04-08"
+modalities:
+  - video
+  - audio
+tasks:
+  - audio-driven-avatar
+  - reference-video-avatar
+  - talking-head-generation
+  - cross-scene-avatar-generation
+  - multilingual-avatar-video
+access:
+  status: product-only
+  license: HeyGen Terms of Service
+  release_url: https://www.heygen.com/research/avatar-v-model
+  weights_url: null
+  api_url: null
+architecture:
+  family: Flow-matching diffusion transformer with sparse reference attention
+  parameters: null
+  notes: Conditions on full reference-video tokens plus driving audio to preserve static identity and dynamic talking style across long videos.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Avatar V general video pretraining corpus
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: 100M+ clips derived from 50M raw internet videos
+      notes: HeyGen discloses scale and processing but not source identities, rights composition, or mixture weights.
+    - name: Avatar V audio-to-video fine-tuning corpus
+      catalog_id: null
+      role: fine-tuning
+      availability: undisclosed
+      scale: 10M+ talking-head and portrait-animation clips
+      notes: Clips carry avatar quality signals, audio-video annotations, and cross-scene identity links.
+    - name: Avatar V human preference data
+      catalog_id: null
+      role: preference
+      availability: undisclosed
+      scale: null
+      notes: Human pairwise labels cover identity preservation, expression naturalness, audio-visual synchronization, motion, and visual quality.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - image
+        - audio
+        - text
+      source_types:
+        - public-web
+        - proprietary
+      operations:
+        - resolution-normalization
+        - temporal-prefiltering
+        - human-detection
+        - optical-flow-analysis
+        - visual-quality-scoring
+        - smart-clipping
+        - scene-cut-detection
+        - vlm-content-filtering
+        - semantic-categorization
+        - embedding-deduplication
+        - distribution-rebalancing
+        - av-captioning
+        - asr-transcription
+        - speaker-diarization
+        - lip-sync-scoring
+      scale_disclosed: true
+      strategy: Transform 50M raw internet videos through a ten-stage curation cascade and thirteen feature-extraction stages into 100M+ deduplicated, labeled clips for joint text-to-video and image-to-video pretraining.
+    - name: fine-tuning
+      modalities:
+        - video
+        - image
+        - audio
+        - text
+      source_types:
+        - public-web
+        - proprietary
+        - human-feedback
+      operations:
+        - avatar-quality-scoring
+        - identity-connectivity-graph
+        - cross-scene-pairing
+        - demographic-balancing
+        - attribute-annotation
+        - bad-case-filtering
+        - personality-supervised-fine-tuning
+      scale_disclosed: true
+      strategy: Build 10M+ avatar-specific clips with ten quality signals, human annotations, and same-identity cross-scene pairs for audio-to-video adaptation and personality SFT.
+    - name: distillation
+      modalities:
+        - video
+        - audio
+      source_types:
+        - synthetic
+      operations:
+        - cfg-distillation
+        - distribution-matching-distillation
+      scale_disclosed: false
+      strategy: Distill classifier-free guidance and then apply three-model distribution matching distillation to reduce inference cost.
+    - name: preference
+      modalities:
+        - video
+        - audio
+      source_types:
+        - human-feedback
+      operations:
+        - quality-scoring
+        - pairwise-preference-labeling
+        - direct-preference-optimization
+        - group-relative-policy-optimization
+        - kl-regularization
+      scale_disclosed: false
+      strategy: Align identity fidelity, motion naturalness, lip synchronization, and visual quality with human preference pairs using DPO and GRPO.
+  strategy_summary:
+    - Separate a broad 100M+ video pretraining pool from a 10M+ densely annotated avatar specialization corpus.
+    - Link the same person across visually different clips so the model learns identity separately from scene, pose, and lighting.
+    - Combine automated quality signals with calibrated human labels for filtering, reward modeling, and preference alignment.
+    - Run the data engine continuously so sources and annotations can be reprocessed as curation models improve.
+  unknowns:
+    - Exact raw-video sources, media rights, consent composition, geographic distribution, and mixture weights.
+    - Exact counts for preference pairs, per-stage samples, rejected clips, and synthetic or licensed content shares.
+    - Production-model availability, parameter count, and the mapping between the research model and public HeyGen APIs.
+evidence:
+  release: https://www.heygen.com/research/avatar-v-model
+  technical_report: https://www.heygen.com/research/avatar-v-data
+  repository: null
+status: verified
+last_verified: "2026-07-26"

@@ -313,6 +313,171 @@
       "scale_label": "800M"
     },
     {
+      "id": "fit-vto-100k",
+      "name": "FIT-VTO-100K",
+      "organization": "University of Washington and Google Research",
+      "released_at": "2026-05-08",
+      "release_date_source": "https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k",
+      "modality": "image",
+      "tasks": [
+        "virtual-try-on",
+        "fit-aware-generation",
+        "garment-conditioned-generation",
+        "virtual-try-on-evaluation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "The official 105,000-sample preview of the FIT fit-aware virtual try-on dataset, pairing lay-flat garments, neutral person images, try-on targets, and precise body and garment measurements.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k",
+        "requires_account": false,
+        "notes": "The repository exposes 100,000 training and 5,000 evaluation rows in Parquet, totaling about 212 GB."
+      },
+      "scale": {
+        "samples": 105000,
+        "source_items": 315000,
+        "hours": null,
+        "approximate": false,
+        "notes": "Every row contains three aligned 768 by 1024 images; this preview is smaller than the full 1,069,824-sample FIT collection described on the project page."
+      },
+      "annotations": {
+        "types": [
+          "paired-person-image",
+          "layflat-garment-image",
+          "try-on-target-image",
+          "body-measurements",
+          "garment-measurements",
+          "train-eval-split"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-ND-4.0",
+        "media": "CC-BY-NC-ND-4.0 per the official dataset card",
+        "commercial_use": "noncommercial",
+        "redistribution": "allowed",
+        "notes": "Attribution is required; commercial use and distribution of derivatives are prohibited by the published dataset license."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "geometry-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The released 105K preview is a subset of the more than one-million-sample FIT collection described by the paper and project page.",
+          "Synthetic generation and re-texturing can leave a domain gap relative to real people, garments, lighting, and fabric behavior.",
+          "CC BY-NC-ND 4.0 prevents commercial use and derivative redistribution, which materially limits production training workflows."
+        ]
+      },
+      "processing": {
+        "recipe": "Generate parametric 3D garments, drape them over measured body shapes with physics simulation, re-texture renders into photorealistic paired images while preserving geometry, QA-filter lay-flat garments with Gemini 2.5 Flash, and regenerate failed garments with a try-off model.",
+        "recommended_format": "parquet",
+        "notes": "Preserve all three aligned images plus body and garment measurements; images are resized or center-cropped and padded to 768 by 1024."
+      },
+      "evidence": {
+        "homepage": "https://johannakarras.github.io/FIT/",
+        "paper": "https://arxiv.org/abs/2604.08526",
+        "used_by": [
+          "Fit-VTO"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/image/fit-vto-100k.yaml",
+      "scale_label": "105K"
+    },
+    {
+      "id": "audiovisual-translation-dub",
+      "name": "Audiovisual Translation Dubbing Dataset",
+      "organization": "Lightricks and Tel Aviv University",
+      "released_at": "2026-02-08",
+      "release_date_source": "https://huggingface.co/api/datasets/justdubit/audiovisual_translation_dub",
+      "modality": "video",
+      "tasks": [
+        "video-dubbing",
+        "audiovisual-translation",
+        "lip-sync-training"
+      ],
+      "stages": [
+        "fine-tuning"
+      ],
+      "description": "A released 288-record paired video collection for training synchronized audiovisual dubbing adapters, with source references, dubbed targets, multilingual structured captions, and optional facial masks.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub",
+        "requires_account": false,
+        "notes": "The public repository is approximately 537 MB and exposes one 288-row training split."
+      },
+      "scale": {
+        "samples": 288,
+        "source_items": 576,
+        "hours": null,
+        "approximate": false,
+        "notes": "Each logical record pairs one reference video with one target dubbed video; optional face masks are additional assets."
+      },
+      "annotations": {
+        "types": [
+          "reference-video",
+          "dubbed-target-video",
+          "face-segmentation-mask",
+          "speaker-description",
+          "language-label",
+          "dialogue-caption"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en",
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0",
+        "media": "CC-BY-NC-4.0 per the official dataset card",
+        "commercial_use": "noncommercial",
+        "redistribution": "allowed",
+        "notes": "Attribution and non-commercial restrictions apply; downstream users must also review the LTX-2 model terms used to generate and train on the media."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The 288-record scale is small relative to the diversity of speakers, languages, accents, poses, and production conditions in real localization workloads.",
+          "Face segmentation masks are optional, so mask coverage is not uniform across all records.",
+          "The public card does not enumerate per-language counts or the complete prompt and rejection distribution."
+        ]
+      },
+      "processing": {
+        "recipe": "Generate multilingual clips with language switches, use counterfactual face-and-audio inpainting to form same-speaker pairs, and compute latent-aware face masks for localized training losses.",
+        "recommended_format": "native",
+        "notes": "Preserve the target-reference pairing, structured caption, language, dialogue, and optional mask path for every record."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub",
+        "paper": "https://arxiv.org/abs/2601.22143",
+        "used_by": [
+          "JUST-DUB-IT"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/video/audiovisual-translation-dub.yaml",
+      "scale_label": "288"
+    },
+    {
       "id": "vggsound-omni",
       "name": "VGGSound-Omni",
       "organization": "Tsinghua University, Monash University, and Shengshu AI",
@@ -2975,6 +3140,179 @@
       "source_path": "models/image/ernie-image.yaml"
     },
     {
+      "id": "avatar-v",
+      "name": "Avatar V",
+      "organization": "HeyGen Research",
+      "released_at": "2026-04-08",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "audio-driven-avatar",
+        "reference-video-avatar",
+        "talking-head-generation",
+        "cross-scene-avatar-generation",
+        "multilingual-avatar-video"
+      ],
+      "access": {
+        "status": "product-only",
+        "license": "HeyGen Terms of Service",
+        "release_url": "https://www.heygen.com/research/avatar-v-model",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Flow-matching diffusion transformer with sparse reference attention",
+        "parameters": null,
+        "notes": "Conditions on full reference-video tokens plus driving audio to preserve static identity and dynamic talking style across long videos."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Avatar V general video pretraining corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": "100M+ clips derived from 50M raw internet videos",
+            "notes": "HeyGen discloses scale and processing but not source identities, rights composition, or mixture weights."
+          },
+          {
+            "name": "Avatar V audio-to-video fine-tuning corpus",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "undisclosed",
+            "scale": "10M+ talking-head and portrait-animation clips",
+            "notes": "Clips carry avatar quality signals, audio-video annotations, and cross-scene identity links."
+          },
+          {
+            "name": "Avatar V human preference data",
+            "catalog_id": null,
+            "role": "preference",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "Human pairwise labels cover identity preservation, expression naturalness, audio-visual synchronization, motion, and visual quality."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "image",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-web",
+              "proprietary"
+            ],
+            "operations": [
+              "resolution-normalization",
+              "temporal-prefiltering",
+              "human-detection",
+              "optical-flow-analysis",
+              "visual-quality-scoring",
+              "smart-clipping",
+              "scene-cut-detection",
+              "vlm-content-filtering",
+              "semantic-categorization",
+              "embedding-deduplication",
+              "distribution-rebalancing",
+              "av-captioning",
+              "asr-transcription",
+              "speaker-diarization",
+              "lip-sync-scoring"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Transform 50M raw internet videos through a ten-stage curation cascade and thirteen feature-extraction stages into 100M+ deduplicated, labeled clips for joint text-to-video and image-to-video pretraining."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "image",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-web",
+              "proprietary",
+              "human-feedback"
+            ],
+            "operations": [
+              "avatar-quality-scoring",
+              "identity-connectivity-graph",
+              "cross-scene-pairing",
+              "demographic-balancing",
+              "attribute-annotation",
+              "bad-case-filtering",
+              "personality-supervised-fine-tuning"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Build 10M+ avatar-specific clips with ten quality signals, human annotations, and same-identity cross-scene pairs for audio-to-video adaptation and personality SFT."
+          },
+          {
+            "name": "distillation",
+            "modalities": [
+              "video",
+              "audio"
+            ],
+            "source_types": [
+              "synthetic"
+            ],
+            "operations": [
+              "cfg-distillation",
+              "distribution-matching-distillation"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Distill classifier-free guidance and then apply three-model distribution matching distillation to reduce inference cost."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "video",
+              "audio"
+            ],
+            "source_types": [
+              "human-feedback"
+            ],
+            "operations": [
+              "quality-scoring",
+              "pairwise-preference-labeling",
+              "direct-preference-optimization",
+              "group-relative-policy-optimization",
+              "kl-regularization"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Align identity fidelity, motion naturalness, lip synchronization, and visual quality with human preference pairs using DPO and GRPO."
+          }
+        ],
+        "strategy_summary": [
+          "Separate a broad 100M+ video pretraining pool from a 10M+ densely annotated avatar specialization corpus.",
+          "Link the same person across visually different clips so the model learns identity separately from scene, pose, and lighting.",
+          "Combine automated quality signals with calibrated human labels for filtering, reward modeling, and preference alignment.",
+          "Run the data engine continuously so sources and annotations can be reprocessed as curation models improve."
+        ],
+        "unknowns": [
+          "Exact raw-video sources, media rights, consent composition, geographic distribution, and mixture weights.",
+          "Exact counts for preference pairs, per-stage samples, rejected clips, and synthetic or licensed content shares.",
+          "Production-model availability, parameter count, and the mapping between the research model and public HeyGen APIs."
+        ]
+      },
+      "evidence": {
+        "release": "https://www.heygen.com/research/avatar-v-model",
+        "technical_report": "https://www.heygen.com/research/avatar-v-data",
+        "repository": null
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/video/avatar-v.yaml"
+    },
+    {
       "id": "ltx-2-3",
       "name": "LTX-2.3",
       "organization": "Lightricks",
@@ -3147,6 +3485,114 @@
       "status": "watch",
       "last_verified": "2026-07-26",
       "source_path": "models/video/seedance-2-0.yaml"
+    },
+    {
+      "id": "just-dub-it",
+      "name": "JUST-DUB-IT",
+      "organization": "Lightricks and Tel Aviv University",
+      "released_at": "2026-02-10",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "video-dubbing",
+        "audiovisual-translation",
+        "lip-sync",
+        "voice-preserving-video-localization"
+      ],
+      "access": {
+        "status": "gated-weights",
+        "license": "LTX-2 Community License Agreement",
+        "release_url": "https://justdubit.github.io/",
+        "weights_url": "https://huggingface.co/justdubit/justdubit",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "In-context LoRA adapter for an LTX-2 joint audio-video diffusion model",
+        "parameters": null,
+        "notes": "Conditions on source audio-video and jointly regenerates translated speech and synchronized facial motion."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "LTX-2 base-model training mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "The adapter inherits the foundation model prior; its exact base-model corpus and mixture are not restated by JUST-DUB-IT."
+          },
+          {
+            "name": "Audiovisual Translation Dubbing Dataset",
+            "catalog_id": "audiovisual-translation-dub",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "288 paired multilingual video records",
+            "notes": "Each record pairs a reference video with a dubbed target, structured caption, and optional face mask."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-foundation-model"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Reuse the pretrained LTX-2 joint audio-video generative prior without disclosing or modifying its exact source mixture in this release."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "synthetic"
+            ],
+            "operations": [
+              "language-switching-generation",
+              "counterfactual-inpainting",
+              "latent-aware-masking",
+              "structural-anchoring",
+              "isolated-cross-attention",
+              "lora-fine-tuning"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Generate same-speaker multilingual clips, inpaint face and audio halves into counterfactual pairs, then train a lightweight in-context LoRA on 288 released paired records."
+          }
+        ],
+        "strategy_summary": [
+          "Convert a scarce paired-dubbing problem into synthetic same-identity supervision with controlled language switches.",
+          "Regenerate audio and facial motion jointly instead of chaining translation, voice cloning, and lip-sync models.",
+          "Use source latents as structural anchors and latent-aware face masks to limit motion leakage outside the edited region."
+        ],
+        "unknowns": [
+          "Exact LTX-2 base corpus, rights composition, and mixture ratios inherited by the adapter.",
+          "Language distribution, prompt inventory, generator settings, and selection criteria for the 288 released pairs.",
+          "Whether the public training dataset is the complete fine-tuning set used for every released adapter version."
+        ]
+      },
+      "evidence": {
+        "release": "https://justdubit.github.io/",
+        "technical_report": "https://arxiv.org/abs/2601.22143",
+        "repository": "https://github.com/Lightricks/LTX-2"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/video/just-dub-it.yaml"
     },
     {
       "id": "omni2sound",

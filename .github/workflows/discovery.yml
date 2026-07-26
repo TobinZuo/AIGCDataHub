@@ -1,0 +1,49 @@
+name: Discover generative-media updates
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 1 * * 1"
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: weekly-generative-media-discovery
+  cancel-in-progress: true
+
+jobs:
+  discovery:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - name: Install development dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Compare official sources with the reviewed baseline
+        run: >-
+          python scripts/discover_updates.py
+          --json-out ${{ runner.temp }}/discovery.json
+          --markdown-out ${{ runner.temp }}/discovery.md
+          --timeout 20
+          --workers 8
+      - name: Maintain the discovery review issue
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          python scripts/upsert_discovery_issue.py
+          --report ${{ runner.temp }}/discovery.json
+          --markdown ${{ runner.temp }}/discovery.md
+      - name: Upload the machine-readable discovery report
+        uses: actions/upload-artifact@v4
+        with:
+          name: generative-media-discovery-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/discovery.json
+            ${{ runner.temp }}/discovery.md
+          retention-days: 30

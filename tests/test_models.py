@@ -16,7 +16,7 @@ class ModelCatalogTests(unittest.TestCase):
     def test_representative_modalities_are_present(self) -> None:
         cards = [card for _, card in load_models()]
         modalities = {modality for card in cards for modality in card["modalities"]}
-        self.assertGreaterEqual(len(cards), 13)
+        self.assertGreaterEqual(len(cards), 15)
         self.assertTrue({"image", "video", "audio", "multimodal"}.issubset(modalities))
 
     def test_product_only_releases_are_representable(self) -> None:
@@ -36,6 +36,13 @@ class ModelCatalogTests(unittest.TestCase):
 
         self.assertTrue({"multilevel-captioning", "semantic-deduplication"}.issubset(omni_ops))
         self.assertTrue({"dataset-filtering", "human-preference-alignment", "critic-feedback"}.issubset(image_ops))
+
+    def test_digital_human_and_video_localization_lineage(self) -> None:
+        cards = {card["id"]: card for _, card in load_models()}
+        avatar_stages = {stage["name"] for stage in cards["avatar-v"]["data"]["stages"]}
+        just_dub_it_ids = {item["catalog_id"] for item in cards["just-dub-it"]["data"]["datasets"]}
+        self.assertEqual(avatar_stages, {"pretraining", "fine-tuning", "distillation", "preference"})
+        self.assertEqual(just_dub_it_ids, {None, "audiovisual-translation-dub"})
 
     def test_released_dataset_lineage_is_resolved(self) -> None:
         omni2sound = next(card for card in [item for _, item in load_models()] if card["id"] == "omni2sound")

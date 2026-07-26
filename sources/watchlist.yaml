@@ -3,6 +3,30 @@ cadence: weekly
 lookback_days: 14
 primary_sources_only: true
 
+discovery:
+  issue_title: "[Auto] Weekly generative-media discovery"
+  focus_modalities:
+    - image
+    - video
+  included_tracks:
+    - image-generation
+    - video-and-audio-generation
+    - digital-human-and-localization
+    - virtual-try-on-and-commerce
+    - datasets
+  excluded_sources:
+    - https://github.com/omni2sound/Omni2Sound
+    - https://github.com/allenai/objaverse-xl
+    - https://github.com/crockwell/Cap3D
+    - https://github.com/cdjkim/audiocaps
+    - https://github.com/XinhaoMei/WavCaps
+    - https://zenodo.org/records/4783391
+    - https://research.google.com/audioset/
+    - https://github.com/hche11/VGGSound
+    - https://zenodo.org/records/4060432
+    - https://millionsongdataset.com/
+    - https://github.com/mdeff/fma
+
 tracks:
   - id: image-generation
     topics:
@@ -13,7 +37,6 @@ tracks:
     official_sources:
       - https://bfl.ai/blog
       - https://www.microsoft.com/en-us/research/publications/
-      - https://github.com/microsoft/Lens
       - https://github.com/baidu
       - https://github.com/baidu/ERNIE-Image
       - https://github.com/QwenLM
@@ -40,9 +63,45 @@ tracks:
       - https://deepmind.google/models/veo/
       - https://deepmind.google/models/gemini-omni/
       - https://deepmind.google/models/model-cards/gemini-omni-flash/
-      - https://openai.com/research/
+      - https://openai.com/sitemap.xml/sora/
+      - https://openai.com/sitemap.xml/research/
+      - https://openai.com/sitemap.xml/release/
       - https://ai.meta.com/blog/
       - https://github.com/omni2sound/Omni2Sound
+
+  - id: digital-human-and-localization
+    topics:
+      - digital-human
+      - talking-avatar
+      - audio-driven-animation
+      - multi-character-dialogue
+      - lip-sync
+      - visual-dubbing
+      - video-translation
+      - voice-preserving-localization
+    official_sources:
+      - https://www.heygen.com/research/avatar-v-model
+      - https://www.heygen.com/research/avatar-v-data
+      - https://github.com/Tencent-Hunyuan/HunyuanVideo-Avatar
+      - https://github.com/TMElyralab/MuseTalk
+      - https://justdubit.github.io/
+      - https://github.com/Lightricks/LTX-2
+      - https://huggingface.co/justdubit/justdubit
+
+  - id: virtual-try-on-and-commerce
+    topics:
+      - virtual-try-on
+      - fit-aware-generation
+      - garment-conditioned-generation
+      - fashion-image-generation
+      - product-conditioned-generation
+      - ecommerce-creative
+    official_sources:
+      - https://bfl.ai/blog/flux-vto-virtual-try-on-at-catalog-scale
+      - https://johannakarras.github.io/FIT/
+      - https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k
+      - https://github.com/HarryWang355/FIT-VTO
+      - https://github.com/fashn-AI
 
   - id: unified-and-physical-ai
     topics:
@@ -65,6 +124,11 @@ tracks:
       - preference-dataset
       - aesthetic-benchmark
       - multimodal-data-curation
+      - digital-human-dataset
+      - video-dubbing-dataset
+      - lip-sync-benchmark
+      - virtual-try-on-dataset
+      - identity-preservation-benchmark
     official_sources:
       - https://huggingface.co/datasets
       - https://arxiv.org/list/cs.CV/recent
@@ -81,9 +145,10 @@ tracks:
       - https://zenodo.org/records/4060432
       - https://millionsongdataset.com/
       - https://github.com/mdeff/fma
-      - https://github.com/microsoft/Lens
       - https://huggingface.co/baidu/ERNIE-Image-Aes
       - https://arxiv.org/abs/2607.16283
+      - https://huggingface.co/datasets/justdubit/audiovisual_translation_dub
+      - https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k
 
 acceptance_rules:
   - Require an official release, repository, model card, dataset card, or technical report.

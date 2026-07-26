@@ -50,8 +50,10 @@ model's capabilities or outputs.
 | [Lens](models/image/lens.yaml) | Microsoft Research | image | 2026-05-20 | open weights | partial | [Lens-800M](catalog/image/lens-800m.yaml), [Lens-RL-8K](catalog/preference/lens-rl-8k.yaml) | ✅ |
 | [Lance](models/multimodal/lance.yaml) | ByteDance | image, video | 2026-05-18 | open weights | high level | not disclosed | ✅ |
 | [ERNIE-Image](models/image/ernie-image.yaml) | Baidu | image | 2026-04-15 | open weights | partial | Internal large-scale image pool, [ERIA-1K](catalog/evaluation/eria-1k.yaml) | ✅ |
+| [Avatar V](models/video/avatar-v.yaml) | HeyGen Research | video, audio | 2026-04-08 | product only | partial | Avatar V general video pretraining corpus, Avatar V audio-to-video fine-tuning corpus, Avatar V human preference data | ✅ |
 | [LTX-2.3](models/multimodal/ltx-2-3.yaml) | Lightricks | video, audio | 2026-02-23 | open weights | partial | Audio-informative subset of the LTX-Video training corpus, Higher-quality VAE training subset | ✅ |
 | [Seedance 2.0](models/video/seedance-2-0.yaml) | ByteDance Seed | video, audio | 2026-02-12 | api only | undisclosed | not disclosed | 👀 |
+| [JUST-DUB-IT](models/video/just-dub-it.yaml) | Lightricks and Tel Aviv University | video, audio | 2026-02-10 | gated weights | partial | LTX-2 base-model training mixture, [Audiovisual Translation Dubbing Dataset](catalog/video/audiovisual-translation-dub.yaml) | ✅ |
 | [Omni2Sound](models/multimodal/omni2sound.yaml) | Tsinghua University, Monash University, and Shengshu AI | audio, video | 2026-01-06 | open weights | partial | [AudioCaps](catalog/audio/audiocaps-2-0.yaml), [WavCaps](catalog/audio/wavcaps.yaml), [Clotho](catalog/audio/clotho-2-1.yaml), [AudioSet](catalog/audio/audioset.yaml), [VGGSound](catalog/audio/vggsound.yaml), [FSD50K](catalog/audio/fsd50k.yaml), [Million Song Dataset](catalog/audio/million-song-dataset.yaml), [FMA](catalog/audio/fma.yaml), [SoundAtlas](catalog/audio/soundatlas.yaml), [VGGSound-Omni](catalog/evaluation/vggsound-omni.yaml) | ✅ |
 | [HunyuanVideo 1.5](models/video/hunyuanvideo-1-5.yaml) | Tencent Hunyuan | video | 2025-11-24 | open weights | high level | not disclosed | 🟡 |
 <!-- END MODEL CATALOG -->
@@ -73,6 +75,8 @@ generated table.
 | [ERIA-1K](catalog/evaluation/eria-1k.yaml) | Baidu | evaluation | 2026-05-25 | image aesthetic assessment, aesthetic model evaluation | 1K | unavailable | unknown | 🟡 |
 | [Lens-RL-8K](catalog/preference/lens-rl-8k.yaml) | Microsoft Research | preference | 2026-05-20 | text to image reinforcement learning, rubric based reward modeling | ~8K | unavailable | unknown | 🟡 |
 | [Lens-800M](catalog/image/lens-800m.yaml) | Microsoft Research | image | 2026-05-20 | text to image, image text pretraining | 800M | unavailable | unknown | 🟡 |
+| [FIT-VTO-100K](catalog/image/fit-vto-100k.yaml) | University of Washington and Google Research | image | 2026-05-08 | virtual try on, fit aware generation, garment conditioned generation, virtual try on evaluation | 105K | open | noncommercial | ✅ |
+| [Audiovisual Translation Dubbing Dataset](catalog/video/audiovisual-translation-dub.yaml) | Lightricks and Tel Aviv University | video | 2026-02-08 | video dubbing, audiovisual translation, lip sync training | 288 | open | noncommercial | ✅ |
 | [VGGSound-Omni](catalog/evaluation/vggsound-omni.yaml) | Tsinghua University, Monash University, and Shengshu AI | evaluation | 2026-01-06 | text to audio evaluation, video to audio evaluation, video text to audio evaluation, off screen audio evaluation | ~14K | gated | noncommercial | ✅ |
 | [SoundAtlas](catalog/audio/soundatlas.yaml) | Tsinghua University, Monash University, and Shengshu AI | audio | 2026-01-06 | text to audio, video to audio, video text to audio, audio captioning | ~470K | gated | noncommercial | ✅ |
 | [AudioCaps 2.0](catalog/audio/audiocaps-2-0.yaml) | Seoul National University | audio | 2025-02-24 | audio captioning, text to audio, audio language pretraining, text to audio evaluation | 98.6K | gated | noncommercial | 🟡 |
@@ -153,6 +157,15 @@ the evidence and freshness policy. `make freshness` fails when a `watch` model
 has not been rechecked for 14 days, another model for 45 days, or a dataset for
 90 days.
 
+The weekly discovery workflow compares image/video-related links from those
+watched sources with a reviewed baseline. Its application tracks include
+digital humans, talking avatars, video translation and dubbing, lip sync,
+virtual try-on, and commerce-oriented conditional generation. It opens or
+updates one GitHub Issue when it finds new candidates or source failures, and
+closes the Issue when the queue is clear. This is triage rather than automatic
+fact generation: a card, license conclusion, or `last_verified` date changes
+only through a reviewed PR.
+
 The latest evidence review is recorded in
 [updates/2026-07-26.md](updates/2026-07-26.md), including accepted releases,
 scope decisions, and disclosures that remain unknown.
@@ -166,7 +179,7 @@ checking the primary source.
 - **v0.2:** living model/data-strategy tracker, freshness monitoring, and executable manifest audits;
 - **v0.3:** searchable model, dataset, and data-strategy site generated from the same YAML cards;
 - **v0.4:** audio and 3D dataset coverage plus richer model-to-dataset lineage;
-- **v0.5:** digital-human coverage and reproducible cross-model data-strategy comparisons;
+- **v0.5:** digital-human, video-localization, and virtual-try-on coverage plus reproducible cross-model data-strategy comparisons;
 - **later:** organization-specific adapters and pipeline benchmarks on shared snapshots.
 
 ## License

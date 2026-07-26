@@ -1,0 +1,67 @@
+id: fit-vto-100k
+name: FIT-VTO-100K
+organization: University of Washington and Google Research
+released_at: "2026-05-08"
+release_date_source: https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k
+modality: image
+tasks:
+  - virtual-try-on
+  - fit-aware-generation
+  - garment-conditioned-generation
+  - virtual-try-on-evaluation
+stages:
+  - fine-tuning
+  - evaluation
+description: >-
+  The official 105,000-sample preview of the FIT fit-aware virtual try-on
+  dataset, pairing lay-flat garments, neutral person images, try-on targets,
+  and precise body and garment measurements.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k
+  requires_account: false
+  notes: The repository exposes 100,000 training and 5,000 evaluation rows in Parquet, totaling about 212 GB.
+scale:
+  samples: 105000
+  source_items: 315000
+  hours: null
+  approximate: false
+  notes: Every row contains three aligned 768 by 1024 images; this preview is smaller than the full 1,069,824-sample FIT collection described on the project page.
+annotations:
+  types:
+    - paired-person-image
+    - layflat-garment-image
+    - try-on-target-image
+    - body-measurements
+    - garment-measurements
+    - train-eval-split
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: CC-BY-NC-ND-4.0
+  media: CC-BY-NC-ND-4.0 per the official dataset card
+  commercial_use: noncommercial
+  redistribution: allowed
+  notes: Attribution is required; commercial use and distribution of derivatives are prohibited by the published dataset license.
+quality:
+  dimensions:
+    - visual-quality
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - The released 105K preview is a subset of the more than one-million-sample FIT collection described by the paper and project page.
+    - Synthetic generation and re-texturing can leave a domain gap relative to real people, garments, lighting, and fabric behavior.
+    - CC BY-NC-ND 4.0 prevents commercial use and derivative redistribution, which materially limits production training workflows.
+processing:
+  recipe: Generate parametric 3D garments, drape them over measured body shapes with physics simulation, re-texture renders into photorealistic paired images while preserving geometry, QA-filter lay-flat garments with Gemini 2.5 Flash, and regenerate failed garments with a try-off model.
+  recommended_format: parquet
+  notes: Preserve all three aligned images plus body and garment measurements; images are resized or center-cropped and padded to 768 by 1024.
+evidence:
+  homepage: https://johannakarras.github.io/FIT/
+  paper: https://arxiv.org/abs/2604.08526
+  used_by:
+    - Fit-VTO
+status: verified
+last_verified: "2026-07-26"
