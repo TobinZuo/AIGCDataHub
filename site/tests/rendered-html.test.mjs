@@ -50,6 +50,9 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /FMA/);
   assert.match(html, /Lens-RL-8K/);
   assert.match(html, /ERIA-1K/);
+  assert.match(html, /GenSyn10/);
+  assert.match(html, /Gemini Omni Flash/);
+  assert.match(html, /Gemini 3\.1 Flash-Lite Image/);
   assert.match(html, /10\/10/);
   assert.match(html, /目录关联/);
   assert.match(html, /最新数据集/);
@@ -77,6 +80,9 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"vggsound-omni"/);
   assert.match(catalog, /"lens-rl-8k"/);
   assert.match(catalog, /"eria-1k"/);
+  assert.match(catalog, /"gensyn10"/);
+  assert.match(catalog, /"gemini-omni-flash"/);
+  assert.match(catalog, /"gemini-3-1-flash-lite-image"/);
   assert.match(catalog, /"clotho-2-1"/);
   assert.match(catalog, /"audioset"/);
   assert.match(catalog, /"vggsound"/);
@@ -85,7 +91,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"fma"/);
   const parsedCatalog = JSON.parse(catalog);
   assert.equal(parsedCatalog.format_version, 2);
-  assert.equal(parsedCatalog.datasets[0].id, "eria-1k");
+  assert.equal(parsedCatalog.datasets[0].id, "gensyn10");
   const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
   assert.deepEqual(
     models.lens.data.datasets.map((dataset) => dataset.catalog_id),

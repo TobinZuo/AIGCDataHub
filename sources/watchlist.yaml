@@ -21,6 +21,8 @@ tracks:
       - https://ai.meta.com/blog/
       - https://updates.midjourney.com/
       - https://huggingface.co/models?pipeline_tag=text-to-image
+      - https://deepmind.google/models/model-cards/gemini-3-1-flash-lite-image/
+      - https://ai.google.dev/gemini-api/docs/changelog
 
   - id: video-and-audio-generation
     topics:
@@ -36,6 +38,8 @@ tracks:
       - https://github.com/Lightricks
       - https://github.com/Wan-Video
       - https://deepmind.google/models/veo/
+      - https://deepmind.google/models/gemini-omni/
+      - https://deepmind.google/models/model-cards/gemini-omni-flash/
       - https://openai.com/research/
       - https://ai.meta.com/blog/
       - https://github.com/omni2sound/Omni2Sound
@@ -79,6 +83,7 @@ tracks:
       - https://github.com/mdeff/fma
       - https://github.com/microsoft/Lens
       - https://huggingface.co/baidu/ERNIE-Image-Aes
+      - https://arxiv.org/abs/2607.16283
 
 acceptance_rules:
   - Require an official release, repository, model card, dataset card, or technical report.

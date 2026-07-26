@@ -1,0 +1,63 @@
+id: gensyn10
+name: GenSyn10
+organization: University of Western Australia
+released_at: "2026-07-10"
+release_date_source: https://arxiv.org/abs/2607.16283
+modality: evaluation
+tasks:
+  - synthetic-image-detection
+  - image-classification
+  - out-of-distribution-evaluation
+stages:
+  - fine-tuning
+  - evaluation
+description: >-
+  A 60,000-image synthetic benchmark aligned to ten CIFAR-10 classes, generated
+  equally by FLUX.2-dev, HunyuanImage-3.0, and Qwen-Image-2512 for synthetic-
+  image classification and cross-generator generalization research.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2607.16283
+  requires_account: false
+  notes: The paper describes the full construction recipe, but no official dataset files or repository are currently linked.
+scale:
+  samples: 60000
+  source_items: 60000
+  hours: null
+  approximate: false
+  notes: Each generator contributes 20,000 images; the balanced split contains 50,000 training and 10,000 test images.
+annotations:
+  types:
+    - class-label
+    - generator-identifier
+    - train-test-split
+    - prompt-template
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Unknown
+  media: Generated-image terms remain dependent on the three source models
+  commercial_use: review-required
+  redistribution: unknown
+  notes: The arXiv paper license does not establish a dataset license, and no dataset-specific usage or redistribution terms are published.
+quality:
+  dimensions:
+    - visual-quality
+    - provenance
+  known_limitations:
+    - No official downloadable files, repository, or dataset-specific license were located during verification.
+    - Images are downsampled from 512 by 512 pixels to 32 by 32 pixels, limiting conclusions about high-resolution generator artifacts.
+    - The released recipe covers three generators and a template-based prompt grammar rather than open-domain production prompts.
+processing:
+  recipe: Generate balanced CIFAR-10-aligned classes at 512 by 512 pixels with three generators, then downsample with Lanczos resampling to 32 by 32 pixels.
+  recommended_format: native
+  notes: Preserve the generator, class, split, prompt template, and generation configuration for each image if files are released.
+evidence:
+  homepage: https://arxiv.org/abs/2607.16283
+  paper: https://arxiv.org/abs/2607.16283
+  used_by:
+    - GenSyn10 benchmark classifiers
+status: partial
+last_verified: "2026-07-26"

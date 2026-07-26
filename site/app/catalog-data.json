@@ -7,6 +7,84 @@
   "last_verified": "2026-07-26",
   "datasets": [
     {
+      "id": "gensyn10",
+      "name": "GenSyn10",
+      "organization": "University of Western Australia",
+      "released_at": "2026-07-10",
+      "release_date_source": "https://arxiv.org/abs/2607.16283",
+      "modality": "evaluation",
+      "tasks": [
+        "synthetic-image-detection",
+        "image-classification",
+        "out-of-distribution-evaluation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "A 60,000-image synthetic benchmark aligned to ten CIFAR-10 classes, generated equally by FLUX.2-dev, HunyuanImage-3.0, and Qwen-Image-2512 for synthetic- image classification and cross-generator generalization research.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2607.16283",
+        "requires_account": false,
+        "notes": "The paper describes the full construction recipe, but no official dataset files or repository are currently linked."
+      },
+      "scale": {
+        "samples": 60000,
+        "source_items": 60000,
+        "hours": null,
+        "approximate": false,
+        "notes": "Each generator contributes 20,000 images; the balanced split contains 50,000 training and 10,000 test images."
+      },
+      "annotations": {
+        "types": [
+          "class-label",
+          "generator-identifier",
+          "train-test-split",
+          "prompt-template"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Unknown",
+        "media": "Generated-image terms remain dependent on the three source models",
+        "commercial_use": "review-required",
+        "redistribution": "unknown",
+        "notes": "The arXiv paper license does not establish a dataset license, and no dataset-specific usage or redistribution terms are published."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "No official downloadable files, repository, or dataset-specific license were located during verification.",
+          "Images are downsampled from 512 by 512 pixels to 32 by 32 pixels, limiting conclusions about high-resolution generator artifacts.",
+          "The released recipe covers three generators and a template-based prompt grammar rather than open-domain production prompts."
+        ]
+      },
+      "processing": {
+        "recipe": "Generate balanced CIFAR-10-aligned classes at 512 by 512 pixels with three generators, then downsample with Lanczos resampling to 32 by 32 pixels.",
+        "recommended_format": "native",
+        "notes": "Preserve the generator, class, split, prompt template, and generation configuration for each image if files are released."
+      },
+      "evidence": {
+        "homepage": "https://arxiv.org/abs/2607.16283",
+        "paper": "https://arxiv.org/abs/2607.16283",
+        "used_by": [
+          "GenSyn10 benchmark classifiers"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/evaluation/gensyn10.yaml",
+      "scale_label": "60K"
+    },
+    {
       "id": "eria-1k",
       "name": "ERIA-1K",
       "organization": "Baidu",
@@ -2361,6 +2439,213 @@
       "status": "watch",
       "last_verified": "2026-07-26",
       "source_path": "models/multimodal/muse-image.yaml"
+    },
+    {
+      "id": "gemini-omni-flash",
+      "name": "Gemini Omni Flash",
+      "organization": "Google DeepMind",
+      "released_at": "2026-06-30",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "reference-to-video",
+        "video-editing",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Gemini API Additional Terms of Service",
+        "release_url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "weights_url": null,
+        "api_url": "https://ai.google.dev/gemini-api/docs/omni"
+      },
+      "architecture": {
+        "family": "Native multimodal transformer",
+        "parameters": null,
+        "notes": "Accepts text, images, audio, and video and generates high-resolution video with synchronized audio."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Undisclosed multimodal training mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "The official model card names image, video, audio, and text modalities but no source datasets or mixture counts."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "multilevel-captioning",
+              "compliance-filtering",
+              "safety-filtering",
+              "quality-filtering",
+              "semantic-deduplication"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Annotate audio and video with captions at multiple levels of detail, then filter training videos for compliance, safety, and quality and semantically deduplicate them."
+          }
+        ],
+        "strategy_summary": [
+          "Use one native multimodal corpus spanning images, video, audio, and text for joint audiovisual generation.",
+          "Apply captions at different detail levels to supervise both broad scene understanding and fine audiovisual events.",
+          "Filter and semantically deduplicate training video before model training."
+        ],
+        "unknowns": [
+          "Exact source datasets, total sample count, mixture ratios, and geographic or language composition.",
+          "Media rights, license composition, and the provenance of caption annotations.",
+          "Post-training, preference-alignment, safety-tuning, and per-stage data details."
+        ]
+      },
+      "evidence": {
+        "release": "https://ai.google.dev/gemini-api/docs/changelog",
+        "technical_report": "https://deepmind.google/models/model-cards/gemini-omni-flash/",
+        "repository": null
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/video/gemini-omni-flash.yaml"
+    },
+    {
+      "id": "gemini-3-1-flash-lite-image",
+      "name": "Gemini 3.1 Flash-Lite Image",
+      "organization": "Google DeepMind",
+      "released_at": "2026-06-30",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "multi-image-composition",
+        "text-rendering"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Gemini API Additional Terms of Service",
+        "release_url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "weights_url": null,
+        "api_url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-lite-image"
+      },
+      "architecture": {
+        "family": "Gemini 3.1 Flash-Lite image-generation derivative",
+        "parameters": null,
+        "notes": "An image-generation and editing model based on Gemini 3.1 Flash-Lite, also released as Nano Banana 2 Lite."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Gemini 3 family multimodal training mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": "large-scale, exact count undisclosed",
+            "notes": "The image model inherits its model data through Gemini 3.1 Flash-Lite from Gemini 3 Pro; no model-specific source list is published."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-web",
+              "public-dataset",
+              "licensed",
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "deduplication",
+              "robots-txt-honoring",
+              "safety-filtering",
+              "quality-filtering",
+              "dataset-filtering",
+              "conditional-pretraining"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Inherit the Gemini 3 multimodal corpus and apply model-specific dataset filtering and conditional pretraining for image generation."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "supervised-fine-tuning"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Apply supervised fine-tuning for image-generation and editing capabilities; the examples, counts, and source mixture are not disclosed."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "human-feedback",
+              "synthetic"
+            ],
+            "operations": [
+              "reinforcement-learning",
+              "human-preference-alignment",
+              "critic-feedback"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Use reinforcement learning from human and critic feedback to improve output quality and alignment after supervised fine-tuning."
+          }
+        ],
+        "strategy_summary": [
+          "Reuse the broad Gemini 3 multimodal pretraining base rather than disclose a standalone image-only corpus.",
+          "Specialize the inherited base with dataset filtering, conditional pretraining, and supervised fine-tuning.",
+          "Combine human and critic feedback during reinforcement learning for image quality and alignment."
+        ],
+        "unknowns": [
+          "Exact model-specific datasets, sample counts, mixture ratios, and rights composition.",
+          "Which inherited Gemini 3 sources contribute directly to image-generation training and at what weights.",
+          "Fine-tuning examples, preference-data counts, critic construction, and safety-filter thresholds."
+        ]
+      },
+      "evidence": {
+        "release": "https://ai.google.dev/gemini-api/docs/changelog",
+        "technical_report": "https://deepmind.google/models/model-cards/gemini-3-1-flash-lite-image/",
+        "repository": null
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/image/gemini-3-1-flash-lite-image.yaml"
     },
     {
       "id": "lens",

@@ -1,0 +1,92 @@
+id: gemini-3-1-flash-lite-image
+name: Gemini 3.1 Flash-Lite Image
+organization: Google DeepMind
+released_at: "2026-06-30"
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - multi-image-composition
+  - text-rendering
+access:
+  status: api-only
+  license: Gemini API Additional Terms of Service
+  release_url: https://ai.google.dev/gemini-api/docs/changelog
+  weights_url: null
+  api_url: https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-lite-image
+architecture:
+  family: Gemini 3.1 Flash-Lite image-generation derivative
+  parameters: null
+  notes: An image-generation and editing model based on Gemini 3.1 Flash-Lite, also released as Nano Banana 2 Lite.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Gemini 3 family multimodal training mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: large-scale, exact count undisclosed
+      notes: The image model inherits its model data through Gemini 3.1 Flash-Lite from Gemini 3 Pro; no model-specific source list is published.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - audio
+        - text
+      source_types:
+        - public-web
+        - public-dataset
+        - licensed
+        - proprietary
+        - synthetic
+      operations:
+        - deduplication
+        - robots-txt-honoring
+        - safety-filtering
+        - quality-filtering
+        - dataset-filtering
+        - conditional-pretraining
+      scale_disclosed: false
+      strategy: Inherit the Gemini 3 multimodal corpus and apply model-specific dataset filtering and conditional pretraining for image generation.
+    - name: fine-tuning
+      modalities:
+        - image
+        - text
+      source_types:
+        - proprietary
+        - synthetic
+      operations:
+        - supervised-fine-tuning
+      scale_disclosed: false
+      strategy: Apply supervised fine-tuning for image-generation and editing capabilities; the examples, counts, and source mixture are not disclosed.
+    - name: preference
+      modalities:
+        - image
+        - text
+      source_types:
+        - human-feedback
+        - synthetic
+      operations:
+        - reinforcement-learning
+        - human-preference-alignment
+        - critic-feedback
+      scale_disclosed: false
+      strategy: Use reinforcement learning from human and critic feedback to improve output quality and alignment after supervised fine-tuning.
+  strategy_summary:
+    - Reuse the broad Gemini 3 multimodal pretraining base rather than disclose a standalone image-only corpus.
+    - Specialize the inherited base with dataset filtering, conditional pretraining, and supervised fine-tuning.
+    - Combine human and critic feedback during reinforcement learning for image quality and alignment.
+  unknowns:
+    - Exact model-specific datasets, sample counts, mixture ratios, and rights composition.
+    - Which inherited Gemini 3 sources contribute directly to image-generation training and at what weights.
+    - Fine-tuning examples, preference-data counts, critic construction, and safety-filter thresholds.
+evidence:
+  release: https://ai.google.dev/gemini-api/docs/changelog
+  technical_report: https://deepmind.google/models/model-cards/gemini-3-1-flash-lite-image/
+  repository: null
+status: verified
+last_verified: "2026-07-26"
