@@ -78,15 +78,21 @@ def load_monitors(track_id: str, id_key: str, entity_label: str) -> dict[str, di
         source_url = source.get("url")
         entity_id = source.get(id_key)
         priority = source.get("priority")
+        revision_mode = source.get("revision_mode")
         if not all(isinstance(value, str) and value for value in (source_url, entity_id, priority)):
             raise ValueError(f"important {entity_label} watch sources require non-empty metadata")
         if not source_url.startswith("https://"):
             raise ValueError(f"{entity_label} monitor requires an HTTPS url: {source_url!r}")
         if priority not in {"critical", "high", "standard"}:
             raise ValueError(f"{entity_label} monitor has invalid priority: {priority!r}")
+        if revision_mode is not None and revision_mode not in {"content-revision", "availability"}:
+            raise ValueError(f"{entity_label} monitor has invalid revision_mode: {revision_mode!r}")
         if entity_id in monitors:
             raise ValueError(f"duplicate {entity_label} monitor id: {entity_id!r}")
-        monitors[entity_id] = {"priority": priority, "source_url": source_url}
+        monitor = {"priority": priority, "source_url": source_url}
+        if revision_mode is not None:
+            monitor["mode"] = revision_mode
+        monitors[entity_id] = monitor
     return monitors
 
 
@@ -339,7 +345,7 @@ def build_payload() -> dict[str, Any]:
     verified_dates = [item["last_verified"] for item in [*datasets, *models]]
 
     return {
-        "format_version": 13,
+        "format_version": 14,
         "generated_from": [
             "catalog/**/*.yaml",
             "models/**/*.yaml",

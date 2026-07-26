@@ -1,5 +1,5 @@
 {
-  "format_version": 13,
+  "format_version": 14,
   "generated_from": [
     "catalog/**/*.yaml",
     "models/**/*.yaml",
@@ -5014,7 +5014,11 @@
         "image-generation"
       ],
       "scale_label": "~5B",
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/bigdata-pw/Flickr",
+        "mode": "availability"
+      },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
       "linked_model_ids": [
@@ -8299,7 +8303,10 @@
         "stage_count": 2,
         "unknown_count": 3
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://updates.midjourney.com/version-8-2/"
+      },
       "ranking_positions": [],
       "linked_dataset_ids": []
     },
@@ -8488,7 +8495,10 @@
         "stage_count": 4,
         "unknown_count": 4
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://nvlabs.github.io/Sana/Video2/"
+      },
       "ranking_positions": [],
       "linked_dataset_ids": []
     },
@@ -8625,7 +8635,10 @@
         "stage_count": 2,
         "unknown_count": 4
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://export.arxiv.org/api/query?id_list=2607.21580"
+      },
       "ranking_positions": [],
       "linked_dataset_ids": [
         "graphvid-bench"
@@ -8776,7 +8789,10 @@
         "stage_count": 2,
         "unknown_count": 3
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://bfl.ai/blog/flux-3"
+      },
       "ranking_positions": [],
       "linked_dataset_ids": []
     },
@@ -8978,7 +8994,10 @@
         "stage_count": 4,
         "unknown_count": 4
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2607.19064"
+      },
       "ranking_positions": [],
       "linked_dataset_ids": []
     },
@@ -11276,7 +11295,10 @@
         "stage_count": 2,
         "unknown_count": 3
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://docs.bfl.ai/flux_tools/flux_vto"
+      },
       "ranking_positions": [],
       "linked_dataset_ids": []
     },
@@ -11520,7 +11542,10 @@
         "stage_count": 3,
         "unknown_count": 3
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2605.21573"
+      },
       "ranking_positions": [],
       "linked_dataset_ids": [
         "lens-800m",
@@ -12360,7 +12385,10 @@
         "stage_count": 4,
         "unknown_count": 4
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://shaodingbao.github.io/TripVVT/"
+      },
       "ranking_positions": [],
       "linked_dataset_ids": [
         "tripvvt-10k"
@@ -12808,7 +12836,10 @@
         "stage_count": 4,
         "unknown_count": 3
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/baidu/ERNIE-Image"
+      },
       "ranking_positions": [],
       "linked_dataset_ids": [
         "eria-1k"
@@ -13192,7 +13223,10 @@
         "stage_count": 4,
         "unknown_count": 3
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://dynamic.heygen.ai/www/Paper%20Links/avatarv_tech_report.pdf"
+      },
       "ranking_positions": [],
       "linked_dataset_ids": []
     },
@@ -17386,7 +17420,10 @@
         "stage_count": 1,
         "unknown_count": 2
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/OpenVE-Team/OpenVE-3M/commits/main.atom"
+      },
       "ranking_positions": [],
       "linked_dataset_ids": [
         "openve-3m",

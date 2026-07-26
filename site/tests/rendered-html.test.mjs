@@ -219,7 +219,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"relations"/);
   assert.match(catalog, /"dataset_relations"/);
   const parsedCatalog = JSON.parse(catalog);
-  assert.equal(parsedCatalog.format_version, 13);
+  assert.equal(parsedCatalog.format_version, 14);
   assert.equal(parsedCatalog.rankings.length, 11);
   assert.equal(parsedCatalog.source_platforms.length, 18);
   assert.equal(
@@ -240,6 +240,8 @@ test("uses generated catalog data and removes starter preview assets", async () 
   );
   assert.equal(parsedCatalog.datasets[0].id, "graphvid-bench");
   const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
+  assert.ok(parsedCatalog.models.every((model) => model.monitoring));
+  assert.ok(parsedCatalog.datasets.every((dataset) => dataset.monitoring));
   const rankedModelIds = new Set(
     parsedCatalog.rankings.flatMap((board) => board.entries.flatMap((entry) => entry.model_ids)),
   );
@@ -314,6 +316,11 @@ test("uses generated catalog data and removes starter preview assets", async () 
     (relation) => relation.source_dataset_id === "openve-3m" && relation.derived_dataset_id === "openve-bench",
   ));
   const datasets = Object.fromEntries(parsedCatalog.datasets.map((dataset) => [dataset.id, dataset]));
+  assert.equal(datasets["flickr-5b"].monitoring.mode, "availability");
+  assert.equal(
+    datasets["flickr-5b"].monitoring.source_url,
+    "https://huggingface.co/api/datasets/bigdata-pw/Flickr",
+  );
   assert.equal(datasets["fit-vto-100k"].monitoring.priority, "critical");
   assert.equal(datasets["viton-hd-edit"].monitoring.priority, "critical");
   assert.equal(datasets["tripvvt-10k"].monitoring.priority, "critical");

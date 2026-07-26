@@ -26,7 +26,7 @@ from models import load_models
 from source_platforms import load_source_platforms
 
 
-SCHEMA_VERSION = 9
+SCHEMA_VERSION = 10
 USER_AGENT = "AIGCDataHub-discovery/0.1 (+https://github.com/TobinZuo/AIGCDataHub)"
 MEDIA_TERMS = (
     "image",
@@ -913,7 +913,10 @@ def _fetch_source_once(source: WatchSource, timeout: float, max_bytes: int) -> S
             html = payload.decode(charset, errors="replace")
             hostname = (urllib.parse.urlsplit(response.url).hostname or "").lower()
             revision, revision_url = extract_source_revision(html, response.url)
-            if revision is None and track_id in {
+            if source.revision_mode == "availability":
+                revision = "reachable" if track_id == "source-platform-updates" else f"http-{response.status}"
+                revision_url = normalize_url(response.url)
+            elif revision is None and track_id in {
                 "important-dataset-updates",
                 "important-model-updates",
             }:
@@ -977,11 +980,7 @@ def _fetch_source_once(source: WatchSource, timeout: float, max_bytes: int) -> S
                 revision_mode=source.revision_mode,
             )
     except urllib.error.HTTPError as exc:
-        if (
-            track_id == "source-platform-updates"
-            and source.revision_mode == "availability"
-            and exc.code in {401, 403, 405, 429}
-        ):
+        if source.revision_mode == "availability" and exc.code in {401, 403, 405, 429}:
             return SourceSnapshot(
                 track_id=track_id,
                 source_url=source_url,
@@ -989,9 +988,11 @@ def _fetch_source_once(source: WatchSource, timeout: float, max_bytes: int) -> S
                 status=exc.code,
                 candidates=(),
                 error=None,
-                revision="reachable",
+                revision="reachable" if track_id == "source-platform-updates" else f"http-{exc.code}",
                 revision_url=normalize_url(exc.url),
+                catalog_id=source.catalog_id,
                 priority=source.priority,
+                model_id=source.model_id,
                 platform_id=source.platform_id,
                 revision_mode=source.revision_mode,
             )
@@ -1084,6 +1085,7 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
             ranking_date_label = None
             ranking_coverage_policy = None
             ranking_page_url = None
+            revision_mode = None
             if isinstance(source, dict):
                 unexpected = set(source) - {
                     "url",
@@ -1100,6 +1102,7 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
                     "ranking_date_label",
                     "ranking_coverage_policy",
                     "ranking_page_url",
+                    "revision_mode",
                 }
                 if unexpected:
                     raise ValueError(f"watch source has unsupported keys: {sorted(unexpected)}")
@@ -1117,6 +1120,7 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
                 ranking_date_label = source.get("ranking_date_label")
                 ranking_coverage_policy = source.get("ranking_coverage_policy")
                 ranking_page_url = source.get("ranking_page_url")
+                revision_mode = source.get("revision_mode")
             else:
                 url = source
             if not isinstance(url, str) or not url.startswith("https://"):
@@ -1127,6 +1131,14 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
                 raise ValueError(f"watch source references unknown model model_id: {model_id!r}")
             if priority is not None and priority not in {"critical", "high", "standard"}:
                 raise ValueError(f"watch source has invalid priority: {priority!r}")
+            if revision_mode is not None and (
+                track_id not in {"important-dataset-updates", "important-model-updates"}
+                or revision_mode not in {"content-revision", "availability"}
+            ):
+                raise ValueError(
+                    "revision_mode is only valid for important dataset/model sources and must be "
+                    "content-revision or availability"
+                )
             if ranking_id is not None and (
                 not isinstance(ranking_id, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", ranking_id)
             ):
@@ -1206,6 +1218,7 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
                     ranking_date_label,
                     ranking_coverage_policy,
                     ranking_page_url,
+                    revision_mode=revision_mode,
                 )
             )
     if not included or "source-platform-updates" in included:

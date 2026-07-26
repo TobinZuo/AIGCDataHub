@@ -216,6 +216,63 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(snapshot.revision, "reachable")
         self.assertEqual(snapshot.platform_id, "example")
 
+    def test_dataset_availability_monitor_preserves_access_status(self) -> None:
+        class Headers:
+            @staticmethod
+            def get_content_charset():
+                return "utf-8"
+
+        class PublicResponse:
+            status = 200
+            url = "https://example.com/private-dataset"
+            headers = Headers()
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+            @staticmethod
+            def read(_max_bytes):
+                return b"public"
+
+        source = WatchSource(
+            "important-dataset-updates",
+            "https://example.com/private-dataset",
+            catalog_id="private-dataset",
+            priority="critical",
+            revision_mode="availability",
+        )
+        error = urllib.error.HTTPError(
+            source.source_url, 401, "Unauthorized", {}, None
+        )
+        with patch("discover_updates.urllib.request.urlopen", side_effect=error):
+            snapshot = _fetch_source(source, timeout=1, max_bytes=1024)
+        self.assertIsNone(snapshot.error)
+        self.assertEqual(snapshot.status, 401)
+        self.assertEqual(snapshot.revision, "http-401")
+        self.assertEqual(snapshot.catalog_id, "private-dataset")
+        self.assertEqual(snapshot.revision_mode, "availability")
+
+        with patch("discover_updates.urllib.request.urlopen", return_value=PublicResponse()):
+            public_snapshot = _fetch_source(source, timeout=1, max_bytes=1024)
+        self.assertEqual(public_snapshot.revision, "http-200")
+        diff = compare_snapshots(
+            {
+                "sources": [{
+                    "track_id": source.track_id,
+                    "source_url": source.source_url,
+                    "revision": "http-401",
+                    "error": None,
+                    "candidates": [],
+                }],
+            },
+            (public_snapshot,),
+            set(),
+        )
+        self.assertEqual(diff.source_updates[0]["catalog_id"], "private-dataset")
+
     def test_normalize_url_removes_tracking_and_fragment(self) -> None:
         self.assertEqual(
             normalize_url("http://Example.com/releases/model/?utm_source=x&version=2#details"),
@@ -444,11 +501,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            77,
+            78,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            66,
+            77,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -467,7 +524,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
-        self.assertEqual(len(sources), 237)
+        self.assertEqual(len(sources), 249)
         self.assertEqual(
             {source.ranking_id for source in sources if source.ranking_id},
             {
@@ -513,6 +570,7 @@ class DiscoveryTests(unittest.TestCase):
                 "https://github.com/CelebV-HQ/CelebV-HQ/commits/main.atom",
                 "https://huggingface.co/api/datasets/FreedomIntelligence/TalkVid",
                 "https://huggingface.co/api/datasets/MV-Fashion/MV-Fashion",
+                "https://huggingface.co/api/datasets/bigdata-pw/Flickr",
                 "https://huggingface.co/api/models/tencent/HunyuanVideo-Avatar",
                 "https://huggingface.co/api/models/TMElyralab/MuseTalk",
                 "https://huggingface.co/api/models/fashn-ai/fashn-vton-1.5",
@@ -534,6 +592,17 @@ class DiscoveryTests(unittest.TestCase):
                 "https://docs.x.ai/developers/models/grok-imagine-video-1.5-preview",
                 "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-mai",
                 "https://runwayml.com/news/introducing-aleph-2-and-edit-studio",
+                "https://updates.midjourney.com/version-8-2/",
+                "https://nvlabs.github.io/Sana/Video2/",
+                "https://export.arxiv.org/api/query?id_list=2607.21580",
+                "https://bfl.ai/blog/flux-3",
+                "https://arxiv.org/abs/2607.19064",
+                "https://docs.bfl.ai/flux_tools/flux_vto",
+                "https://arxiv.org/html/2605.21573",
+                "https://shaodingbao.github.io/TripVVT/",
+                "https://huggingface.co/api/models/baidu/ERNIE-Image",
+                "https://dynamic.heygen.ai/www/Paper%20Links/avatarv_tech_report.pdf",
+                "https://github.com/OpenVE-Team/OpenVE-3M/commits/main.atom",
                 "https://huggingface.co/api/models/tencent/HunyuanImage-3.0-Instruct",
                 "https://huggingface.co/api/models/nvidia/Cosmos3-Super-Text2Image",
                 "https://arxiv.org/abs/2602.21818",
@@ -569,6 +638,8 @@ class DiscoveryTests(unittest.TestCase):
                 "https://huggingface.co/api/models/tencent/HunyuanVideo-Foley",
             }.issubset(urls)
         )
+        flickr = next(source for source in sources if source.catalog_id == "flickr-5b")
+        self.assertEqual(flickr.revision_mode, "availability")
         self.assertIn("https://huggingface.co/api/datasets/nkp37/OpenVid-1M", urls)
         openvid = next(source for source in sources if source.catalog_id == "openvid-1m")
         self.assertEqual(openvid, WatchSource(

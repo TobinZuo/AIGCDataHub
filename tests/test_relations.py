@@ -166,7 +166,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
     def test_dataset_monitoring_is_joined_by_canonical_catalog_id(self) -> None:
         self.assertEqual(
             sum(dataset["monitoring"] is not None for dataset in self.datasets.values()),
-            77,
+            len(self.datasets),
         )
         self.assertEqual(
             self.datasets["fit-vto-100k"]["monitoring"],
@@ -235,17 +235,25 @@ class ModelDatasetRelationTests(unittest.TestCase):
             self.datasets["humoset"]["monitoring"]["source_url"],
             "https://modelscope.cn/api/v1/datasets/leoniuschen/HuMoSet",
         )
+        self.assertEqual(
+            self.datasets["flickr-5b"]["monitoring"],
+            {
+                "priority": "critical",
+                "source_url": "https://huggingface.co/api/datasets/bigdata-pw/Flickr",
+                "mode": "availability",
+            },
+        )
         linked_without_probe = {
             dataset_id
             for dataset_id, dataset in self.datasets.items()
             if dataset["linked_model_ids"] and dataset["monitoring"] is None
         }
-        self.assertEqual(linked_without_probe, {"flickr-5b"})
+        self.assertEqual(linked_without_probe, set())
 
     def test_model_monitoring_is_joined_by_canonical_model_id(self) -> None:
         self.assertEqual(
             sum(model["monitoring"] is not None for model in self.models.values()),
-            66,
+            len(self.models),
         )
         self.assertEqual(
             self.models["hunyuanvideo-avatar"]["monitoring"],
@@ -285,7 +293,11 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.models["phantom-wan-14b"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["mova-720p"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["vera-14b"]["monitoring"]["priority"], "critical")
-        self.assertIsNone(self.models["graphvid"]["monitoring"])
+        self.assertEqual(self.models["graphvid"]["monitoring"]["priority"], "critical")
+        self.assertEqual(
+            self.models["openve-edit"]["monitoring"]["source_url"],
+            "https://github.com/OpenVE-Team/OpenVE-3M/commits/main.atom",
+        )
 
 
 if __name__ == "__main__":
