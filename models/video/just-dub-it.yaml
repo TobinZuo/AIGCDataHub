@@ -1,0 +1,81 @@
+id: just-dub-it
+name: JUST-DUB-IT
+organization: Lightricks and Tel Aviv University
+released_at: "2026-02-10"
+modalities:
+  - video
+  - audio
+tasks:
+  - video-dubbing
+  - audiovisual-translation
+  - lip-sync
+  - voice-preserving-video-localization
+access:
+  status: gated-weights
+  license: LTX-2 Community License Agreement
+  release_url: https://justdubit.github.io/
+  weights_url: https://huggingface.co/justdubit/justdubit
+  api_url: null
+architecture:
+  family: In-context LoRA adapter for an LTX-2 joint audio-video diffusion model
+  parameters: null
+  notes: Conditions on source audio-video and jointly regenerates translated speech and synchronized facial motion.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: LTX-2 base-model training mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: The adapter inherits the foundation model prior; its exact base-model corpus and mixture are not restated by JUST-DUB-IT.
+    - name: Audiovisual Translation Dubbing Dataset
+      catalog_id: audiovisual-translation-dub
+      role: fine-tuning
+      availability: public
+      scale: 288 paired multilingual video records
+      notes: Each record pairs a reference video with a dubbed target, structured caption, and optional face mask.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-foundation-model
+      scale_disclosed: false
+      strategy: Reuse the pretrained LTX-2 joint audio-video generative prior without disclosing or modifying its exact source mixture in this release.
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - synthetic
+      operations:
+        - language-switching-generation
+        - counterfactual-inpainting
+        - latent-aware-masking
+        - structural-anchoring
+        - isolated-cross-attention
+        - lora-fine-tuning
+      scale_disclosed: true
+      strategy: Generate same-speaker multilingual clips, inpaint face and audio halves into counterfactual pairs, then train a lightweight in-context LoRA on 288 released paired records.
+  strategy_summary:
+    - Convert a scarce paired-dubbing problem into synthetic same-identity supervision with controlled language switches.
+    - Regenerate audio and facial motion jointly instead of chaining translation, voice cloning, and lip-sync models.
+    - Use source latents as structural anchors and latent-aware face masks to limit motion leakage outside the edited region.
+  unknowns:
+    - Exact LTX-2 base corpus, rights composition, and mixture ratios inherited by the adapter.
+    - Language distribution, prompt inventory, generator settings, and selection criteria for the 288 released pairs.
+    - Whether the public training dataset is the complete fine-tuning set used for every released adapter version.
+evidence:
+  release: https://justdubit.github.io/
+  technical_report: https://arxiv.org/abs/2601.22143
+  repository: https://github.com/Lightricks/LTX-2
+status: verified
+last_verified: "2026-07-26"

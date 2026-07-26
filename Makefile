@@ -1,4 +1,4 @@
-.PHONY: validate freshness readme readme-check site-data site-data-check test check-links audit-example audit-example-check check
+.PHONY: validate freshness discovery discovery-accept readme readme-check site-data site-data-check test check-links audit-example audit-example-check check
 
 validate:
 	python3 scripts/validate_catalog.py
@@ -6,6 +6,12 @@ validate:
 
 freshness:
 	python3 scripts/check_freshness.py
+
+discovery:
+	python3 scripts/discover_updates.py --json-out /tmp/aigcdatahub-discovery.json --markdown-out /tmp/aigcdatahub-discovery.md
+
+discovery-accept:
+	python3 scripts/discover_updates.py --accept-current --json-out /tmp/aigcdatahub-discovery.json --markdown-out /tmp/aigcdatahub-discovery.md
 
 readme:
 	python3 scripts/build_readme.py

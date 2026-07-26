@@ -27,11 +27,25 @@ unreviewed links.
   SFT, preference optimization, and distillation into one vague paragraph.
 - Link named datasets to `catalog_id` when a catalog card exists. A named but
   unreleased corpus should still be recorded with `availability: not-released`.
+- Use model-side `catalog_id` as the only editable model-to-dataset relation.
+  Generated dataset backlinks and the top-level site relation index must not be
+  hand-edited. `evidence.used_by` records an upstream statement, not a canonical
+  backlink.
 - Set `exact_datasets_disclosed` and `exact_mixture_disclosed` independently.
   A paper can describe a strong strategy while withholding source identities.
 - Put every material gap in `data.unknowns`; never infer a source from model
   behavior, a benchmark table, or a similar model from the same organization.
 - Use `watch` for a recent preview whose technical details are still changing.
+
+## Application scenario taxonomy
+
+- Keep card `tasks` factual and specific; do not add a task solely to make a
+  model appear under a desired filter.
+- Map supported tasks to stable scenario IDs in `sources/scenarios.yaml`.
+- A scenario shown on the site must match at least one model and one dataset so
+  users can compare capability, training strategy, and reusable data together.
+- Add a new scenario only when it has durable meaning across organizations, not
+  for a single product name or marketing phrase.
 
 ## Status definitions
 
@@ -54,8 +68,8 @@ make check
 ```
 
 The generated catalogs in `README.md` and `site/app/catalog-data.json` must be
-committed with changed dataset or model cards. Link checks run separately because
-remote sites can be transient.
+committed with changed dataset, model, or scenario sources. Link checks run
+separately because remote sites can be transient.
 
 ## Recipes and benchmarks
 

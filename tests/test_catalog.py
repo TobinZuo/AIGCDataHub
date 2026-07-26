@@ -16,7 +16,7 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(validate(), [])
 
     def test_cards_are_present(self) -> None:
-        self.assertGreaterEqual(len(load_cards()), 23)
+        self.assertGreaterEqual(len(load_cards()), 29)
 
     def test_audio_and_3d_coverage_is_present(self) -> None:
         modalities = {card["modality"] for _, card in load_cards()}
@@ -39,11 +39,21 @@ class CatalogTests(unittest.TestCase):
             }.issubset(ids)
         )
 
+    def test_image_model_lineage_datasets_are_present(self) -> None:
+        ids = {card["id"] for _, card in load_cards()}
+        self.assertTrue({"lens-800m", "lens-rl-8k", "eria-1k", "gensyn10"}.issubset(ids))
+
+    def test_application_scenario_datasets_are_present(self) -> None:
+        cards = {card["id"]: card for _, card in load_cards()}
+        self.assertTrue({"audiovisual-translation-dub", "fit-vto-100k"}.issubset(cards))
+        self.assertIn("video-dubbing", cards["audiovisual-translation-dub"]["tasks"])
+        self.assertIn("virtual-try-on", cards["fit-vto-100k"]["tasks"])
+
     def test_site_catalog_orders_datasets_by_release_date(self) -> None:
         datasets = build_payload()["datasets"]
         dates = [card["released_at"] for card in datasets]
         self.assertEqual(dates, sorted(dates, reverse=True))
-        self.assertEqual(datasets[0]["id"], "lens-800m")
+        self.assertEqual(datasets[0]["id"], "graphvid-bench")
 
     def test_compact_number(self) -> None:
         self.assertEqual(compact_number(70_723_513), "70.7M")

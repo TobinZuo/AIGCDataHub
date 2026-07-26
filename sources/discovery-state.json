@@ -1,0 +1,1214 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-07-26T10:31:18Z",
+  "sources": [
+    {
+      "track_id": "datasets",
+      "source_url": "https://arxiv.org/abs/2607.16283",
+      "resolved_url": "https://arxiv.org/abs/2607.16283",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "datasets",
+      "source_url": "https://arxiv.org/list/cs.CV/recent",
+      "resolved_url": "https://arxiv.org/list/cs.CV/recent",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "T-STAR: A Large-Scale Benchmark for Spatio-Temporal Panoptic Scene Graph Generation in Satellite Video",
+          "url": "https://arxiv.org/abs/2607.21228"
+        },
+        {
+          "title": "Adaptive Identity Anchoring: Closed-Loop Keyframe Placement for Synthetic Paired Supervision in Video Face Swapping",
+          "url": "https://arxiv.org/abs/2607.21434"
+        },
+        {
+          "title": "Texture++: Elevating 3D Asset Texture Resolution with a Region-Aware Diffusion Model",
+          "url": "https://arxiv.org/abs/2607.21504"
+        },
+        {
+          "title": "ElasticTTT: Prior-Preserving Test-Time Tuning for Video Editing",
+          "url": "https://arxiv.org/abs/2607.21529"
+        },
+        {
+          "title": "SANA-Video 2.0: Hybrid Linear Attention with Attention Residuals for Efficient Video Generation",
+          "url": "https://arxiv.org/abs/2607.21553"
+        },
+        {
+          "title": "GraphVid: Interactive Graph-Controllable Video Generation",
+          "url": "https://arxiv.org/abs/2607.21580"
+        },
+        {
+          "title": "Inference-Time Scaling of Diffusion Models via Progressive Seed Pruning",
+          "url": "https://arxiv.org/abs/2607.21591"
+        },
+        {
+          "title": "Streaming Multi-Agent Autoregressive Diffusion Model with World State Registers",
+          "url": "https://arxiv.org/abs/2607.21594"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "datasets",
+      "source_url": "https://arxiv.org/list/cs.MM/recent",
+      "resolved_url": "https://arxiv.org/list/cs.MM/recent",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Large Language Model-Enhanced Multi-hop Parallel Image Semantic Communication",
+          "url": "https://arxiv.org/abs/2607.15297"
+        },
+        {
+          "title": "Debiasing Text-to-Image Evaluation via Implicit Cultural Alignment Reward Modeling",
+          "url": "https://arxiv.org/abs/2607.15740"
+        },
+        {
+          "title": "Between Safe Boundaries: Exploiting Temporal Consistency for Jailbreaking Text-To-Video Generation Models",
+          "url": "https://arxiv.org/abs/2607.17279"
+        },
+        {
+          "title": "Keyframe-Anchored Identity Preservation for Sequential-Action Video Generation",
+          "url": "https://arxiv.org/abs/2607.17985"
+        },
+        {
+          "title": "Mage-Flow: An Efficient Native-Resolution Foundation Model for Image Generation and Editing",
+          "url": "https://arxiv.org/abs/2607.19064"
+        },
+        {
+          "title": "Group-of-Latents: Perceptual Video Compression at Extreme Bitrates via Masked Latent Generative Modeling",
+          "url": "https://arxiv.org/abs/2607.19437"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "datasets",
+      "source_url": "https://github.com/NVIDIA-NeMo/Curator",
+      "resolved_url": "https://github.com/NVIDIA-NeMo/Curator",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "datasets",
+      "source_url": "https://huggingface.co/baidu/ERNIE-Image-Aes",
+      "resolved_url": "https://huggingface.co/baidu/ERNIE-Image-Aes",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "ERNIE-Image Collection The serieas of image generation models, including text2img、img2img. • 4 items • Updated May 20 • 26",
+          "url": "https://huggingface.co/collections/baidu/ernie-image"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "datasets",
+      "source_url": "https://huggingface.co/datasets",
+      "resolved_url": "https://huggingface.co/datasets",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "MCG-NJU/VideoChat3-Academic2M Viewer • Updated 7 days ago • 19.2k • 4.25k • 23",
+          "url": "https://huggingface.co/datasets/MCG-NJU/VideoChat3-Academic2M"
+        },
+        {
+          "title": "netflix/Vera-Layered-Video-Dataset Viewer • Updated 9 days ago • 90.1k • 14.6k • 52",
+          "url": "https://huggingface.co/datasets/netflix/Vera-Layered-Video-Dataset"
+        },
+        {
+          "title": "imagefolder",
+          "url": "https://huggingface.co/datasets?format=format%3Aimagefolder"
+        },
+        {
+          "title": "Image",
+          "url": "https://huggingface.co/datasets?modality=modality%3Aimage"
+        },
+        {
+          "title": "Video",
+          "url": "https://huggingface.co/datasets?modality=modality%3Avideo"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "datasets",
+      "source_url": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub",
+      "resolved_url": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "github.com/justdubit/just-dub-it",
+          "url": "https://github.com/justdubit/just-dub-it"
+        },
+        {
+          "title": "Data Studio",
+          "url": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub/viewer"
+        },
+        {
+          "title": "Duplicate",
+          "url": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub?duplicate=true"
+        },
+        {
+          "title": "Video",
+          "url": "https://huggingface.co/datasets?modality=modality%3Avideo"
+        },
+        {
+          "title": "audio-video",
+          "url": "https://huggingface.co/datasets?other=audio-video"
+        },
+        {
+          "title": "lip-sync",
+          "url": "https://huggingface.co/datasets?other=lip-sync"
+        },
+        {
+          "title": "video-dubbing",
+          "url": "https://huggingface.co/datasets?other=video-dubbing"
+        },
+        {
+          "title": "Video-to-Video",
+          "url": "https://huggingface.co/datasets?task_categories=task_categories%3Avideo-to-video"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "digital-human-and-localization",
+      "source_url": "https://github.com/Lightricks/LTX-2",
+      "resolved_url": "https://github.com/Lightricks/LTX-2",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "digital-human-and-localization",
+      "source_url": "https://github.com/TMElyralab/MuseTalk",
+      "resolved_url": "https://github.com/TMElyralab/MuseTalk",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "ComfyUI",
+          "url": "https://github.com/chaojie/ComfyUI-MuseTalk"
+        },
+        {
+          "title": "huggingface",
+          "url": "https://huggingface.co/TMElyralab/MuseTalk"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "digital-human-and-localization",
+      "source_url": "https://github.com/Tencent-Hunyuan/HunyuanVideo-Avatar",
+      "resolved_url": "https://github.com/Tencent-Hunyuan/HunyuanVideo-Avatar",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "HunyuanVideo-Avatar: High-Fidelity Audio-Driven Human Animation for Multiple Characters",
+          "url": "https://arxiv.org/pdf/2505.20156"
+        },
+        {
+          "title": "HunyuanVideo-Avatar",
+          "url": "https://cnb.cool/tencent/hunyuan/HunyuanVideo-Avatar"
+        },
+        {
+          "title": "HunyuanVideo",
+          "url": "https://github.com/Tencent/HunyuanVideo"
+        },
+        {
+          "title": "FLUX",
+          "url": "https://github.com/black-forest-labs/flux"
+        },
+        {
+          "title": "Wan2GP",
+          "url": "https://github.com/deepbeepmeep/Wan2GP"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "digital-human-and-localization",
+      "source_url": "https://huggingface.co/justdubit/justdubit",
+      "resolved_url": "https://huggingface.co/justdubit/justdubit",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "github.com/justdubit/just-dub-it",
+          "url": "https://github.com/justdubit/just-dub-it"
+        },
+        {
+          "title": "justdubit/audiovisual_translation_dub Viewer • Updated Feb 8 • 288 • 151 • 6",
+          "url": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub"
+        },
+        {
+          "title": "audio-video",
+          "url": "https://huggingface.co/models?other=audio-video"
+        },
+        {
+          "title": "diffusion",
+          "url": "https://huggingface.co/models?other=diffusion"
+        },
+        {
+          "title": "lip-sync",
+          "url": "https://huggingface.co/models?other=lip-sync"
+        },
+        {
+          "title": "video-dubbing",
+          "url": "https://huggingface.co/models?other=video-dubbing"
+        },
+        {
+          "title": "Video-to-Video",
+          "url": "https://huggingface.co/models?pipeline_tag=video-to-video"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "digital-human-and-localization",
+      "source_url": "https://justdubit.github.io/",
+      "resolved_url": "https://justdubit.github.io/",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Paper",
+          "url": "https://arxiv.org/abs/2601.22143"
+        },
+        {
+          "title": "Code",
+          "url": "https://github.com/Lightricks/LTX-2/tree/main/packages/ltx-pipelines"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "digital-human-and-localization",
+      "source_url": "https://www.heygen.com/research/avatar-v-data",
+      "resolved_url": "https://www.heygen.com/research/avatar-v-data",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Read the report",
+          "url": "https://dynamic.heygen.ai/www/Paper%20Links/avatarv_tech_report.pdf"
+        },
+        {
+          "title": "Video Avatar",
+          "url": "https://www.heygen.com/avatars/ai-video-avatar"
+        },
+        {
+          "title": "AI Video Generator",
+          "url": "https://www.heygen.com/tool/ai-video-generator"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "digital-human-and-localization",
+      "source_url": "https://www.heygen.com/research/avatar-v-model",
+      "resolved_url": "https://www.heygen.com/research/avatar-v-model",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Read the report",
+          "url": "https://dynamic.heygen.ai/www/Paper%20Links/avatarv_tech_report.pdf"
+        },
+        {
+          "title": "Video Avatar",
+          "url": "https://www.heygen.com/avatars/ai-video-avatar"
+        },
+        {
+          "title": "AI Video Generator",
+          "url": "https://www.heygen.com/tool/ai-video-generator"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "image-generation",
+      "source_url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "resolved_url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Image Generation with Gemini",
+          "url": "https://ai.google.dev/gemini-api/docs/image-generation"
+        },
+        {
+          "title": "Gemini 2.0 Flash Preview Image Generation",
+          "url": "https://ai.google.dev/gemini-api/docs/models"
+        },
+        {
+          "title": "Gemini 3 Pro Image",
+          "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3-pro-image"
+        },
+        {
+          "title": "Gemini 3.1 Flash Image",
+          "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-image"
+        },
+        {
+          "title": "Gemini 3.1 Flash Image Preview",
+          "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-image-preview"
+        },
+        {
+          "title": "Gemini 3.1 Flash Lite Image",
+          "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-lite-image"
+        },
+        {
+          "title": "Gemini Omni Flash",
+          "url": "https://ai.google.dev/gemini-api/docs/models/gemini-omni-flash"
+        },
+        {
+          "title": "veo-3.1-lite-generate-preview",
+          "url": "https://ai.google.dev/gemini-api/docs/models/veo-3.1-lite-generate-preview"
+        },
+        {
+          "title": "Gemini Omni Flash",
+          "url": "https://ai.google.dev/gemini-api/docs/omni"
+        },
+        {
+          "title": "Veo",
+          "url": "https://ai.google.dev/gemini-api/docs/veo"
+        },
+        {
+          "title": "Veo 3.1 and 3.1 Fast",
+          "url": "https://ai.google.dev/gemini-api/docs/video"
+        },
+        {
+          "title": "Veo",
+          "url": "https://ai.google.dev/gemini-api/docs/video?example=dialogue"
+        },
+        {
+          "title": "Gemini Enterprise Agent Platform",
+          "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/veo/3-1-generate"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "image-generation",
+      "source_url": "https://ai.meta.com/blog/",
+      "resolved_url": "https://ai.meta.com/blog",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Introducing Muse Image and Muse Video",
+          "url": "https://ai.meta.com/blog/introducing-muse-image-muse-video-msl"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "image-generation",
+      "source_url": "https://bfl.ai/blog",
+      "resolved_url": "https://bfl.ai/blog",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Models Research FLUX 3 - Real World Models: Towards Multimodal Flow Models as the Backbone of Visual Intelligence. FLUX 3, our new multimodal frontier model, jointly learns from images, video, and audio to build one representation of the wo",
+          "url": "https://bfl.ai/blog/flux-3"
+        },
+        {
+          "title": "Research Models FLUX 3 x mimic: The Next Generation of Video-Action Models July 23, 2026",
+          "url": "https://bfl.ai/blog/flux-3-mimic"
+        },
+        {
+          "title": "Products FLUX Erase: Remove anything, leave no trace May 21, 2026",
+          "url": "https://bfl.ai/blog/flux-erase-remove-anything-leave-no-trace"
+        },
+        {
+          "title": "Models News Research FLUX VTO: Virtual Try-On at scale May 28, 2026",
+          "url": "https://bfl.ai/blog/flux-vto-virtual-try-on-at-catalog-scale"
+        },
+        {
+          "title": "Products FLUX.2 is now on device: ASUS ProArt laptops now support Klein models June 4, 2026",
+          "url": "https://bfl.ai/blog/flux2-klein-on-device"
+        },
+        {
+          "title": "Customer stories How Envato Built Its Creative AI Engine on FLUX June 17, 2026",
+          "url": "https://bfl.ai/blog/how-envato-built-its-creative-ai-engine-on-flux"
+        },
+        {
+          "title": "Products FLUX Outpainting: Extend any image, in any direction May 14, 2026",
+          "url": "https://bfl.ai/blog/outpainting-extend-any-image-in-any-direction"
+        },
+        {
+          "title": "FLUX API Service Terms",
+          "url": "https://bfl.ai/legal/flux-api-service-terms"
+        },
+        {
+          "title": "FLUX.2",
+          "url": "https://bfl.ai/models/flux-2"
+        },
+        {
+          "title": "FLUX.2 Klein",
+          "url": "https://bfl.ai/models/flux-2-klein"
+        },
+        {
+          "title": "FLUX.2 Max",
+          "url": "https://bfl.ai/models/flux-2-max"
+        },
+        {
+          "title": "FLUX 3",
+          "url": "https://bfl.ai/models/flux-3"
+        },
+        {
+          "title": "Flux Tools",
+          "url": "https://bfl.ai/models/flux-tools"
+        },
+        {
+          "title": "GitHub",
+          "url": "https://github.com/black-forest-labs/flux"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "image-generation",
+      "source_url": "https://deepmind.google/models/model-cards/gemini-3-1-flash-lite-image/",
+      "resolved_url": "https://deepmind.google/models/model-cards/gemini-3-1-flash-lite-image",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Nano Banana Create and edit detailed images",
+          "url": "https://deepmind.google/models/gemini-image"
+        },
+        {
+          "title": "Learn more",
+          "url": "https://deepmind.google/models/gemini-image/flash-lite"
+        },
+        {
+          "title": "Gemini Omni Create anything from anything",
+          "url": "https://deepmind.google/models/gemini-omni"
+        },
+        {
+          "title": "Imagen Generate high-quality images from text",
+          "url": "https://deepmind.google/models/imagen"
+        },
+        {
+          "title": "Learn more",
+          "url": "https://deepmind.google/models/model-cards/gemini-3-1-flash-image"
+        },
+        {
+          "title": "Learn more",
+          "url": "https://deepmind.google/models/model-cards/veo-3-1-lite"
+        },
+        {
+          "title": "Veo Generate cinematic video with audio",
+          "url": "https://deepmind.google/models/veo"
+        },
+        {
+          "title": "View PDF version",
+          "url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-1-Flash-Lite-Image-Model-Card.pdf"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "image-generation",
+      "source_url": "https://github.com/QwenLM",
+      "resolved_url": "https://github.com/QwenLM",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Qwen-Image",
+          "url": "https://github.com/QwenLM/Qwen-Image"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "image-generation",
+      "source_url": "https://github.com/baidu",
+      "resolved_url": "https://github.com/baidu",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "image-generation",
+      "source_url": "https://github.com/baidu/ERNIE-Image",
+      "resolved_url": "https://github.com/baidu/ERNIE-Image",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "🤗 ERNIE-Image",
+          "url": "https://huggingface.co/Baidu/ERNIE-Image"
+        },
+        {
+          "title": "🤗 ERNIE-Image-Turbo",
+          "url": "https://huggingface.co/Baidu/ERNIE-Image-Turbo"
+        },
+        {
+          "title": "ERNIE-Image",
+          "url": "https://huggingface.co/baidu/ERNIE-Image"
+        },
+        {
+          "title": "ERNIE-Image-Turbo",
+          "url": "https://huggingface.co/baidu/ERNIE-Image-Turbo"
+        },
+        {
+          "title": "📖 Blog",
+          "url": "https://yiyan.baidu.com/blog/posts/ernie-image"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "image-generation",
+      "source_url": "https://huggingface.co/models?pipeline_tag=text-to-image",
+      "resolved_url": "https://huggingface.co/models?pipeline_tag=text-to-image",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Qwen/Qwen-Image Text-to-Image • 20B • Updated Aug 18, 2025 • 195k • • 2.55k",
+          "url": "https://huggingface.co/Qwen/Qwen-Image"
+        },
+        {
+          "title": "bench-labs/PixelModel-v2 Text-to-Image • 200k • Updated 1 day ago • 54 • 9",
+          "url": "https://huggingface.co/bench-labs/PixelModel-v2"
+        },
+        {
+          "title": "bench-labs/PixelModel-v3 Text-to-Image • 919k • Updated 1 day ago • 90 • 7",
+          "url": "https://huggingface.co/bench-labs/PixelModel-v3"
+        },
+        {
+          "title": "black-forest-labs/FLUX.1-dev Text-to-Image • 12B • Updated Jun 27, 2025 • 557k • • 13.8k",
+          "url": "https://huggingface.co/black-forest-labs/FLUX.1-dev"
+        },
+        {
+          "title": "black-forest-labs/FLUX.1-schnell Text-to-Image • 12B • Updated Aug 16, 2024 • 221k • • 5.42k",
+          "url": "https://huggingface.co/black-forest-labs/FLUX.1-schnell"
+        },
+        {
+          "title": "DiffusionBee",
+          "url": "https://huggingface.co/models?other=diffusionbee"
+        },
+        {
+          "title": "1",
+          "url": "https://huggingface.co/models?p=0&pipeline_tag=text-to-image&sort=trending"
+        },
+        {
+          "title": "Next",
+          "url": "https://huggingface.co/models?p=1&pipeline_tag=text-to-image&sort=trending"
+        },
+        {
+          "title": "3",
+          "url": "https://huggingface.co/models?p=2&pipeline_tag=text-to-image&sort=trending"
+        },
+        {
+          "title": "100",
+          "url": "https://huggingface.co/models?p=99&pipeline_tag=text-to-image&sort=trending"
+        },
+        {
+          "title": "Image-Text-to-Text",
+          "url": "https://huggingface.co/models?pipeline_tag=image-text-to-text"
+        },
+        {
+          "title": "Image-to-Image",
+          "url": "https://huggingface.co/models?pipeline_tag=image-to-image"
+        },
+        {
+          "title": "Image-to-Text",
+          "url": "https://huggingface.co/models?pipeline_tag=image-to-text"
+        },
+        {
+          "title": "Text-to-Video",
+          "url": "https://huggingface.co/models?pipeline_tag=text-to-video"
+        },
+        {
+          "title": "nvidia/Qwen-Image-Flash Text-to-Image • 20B • Updated 3 days ago • 238 • 37",
+          "url": "https://huggingface.co/nvidia/Qwen-Image-Flash"
+        },
+        {
+          "title": "ponpoke/flux2-klein-9b-uncensored-text-encoder Text-to-Image • 8B • Updated May 2 • 27.8k • 325",
+          "url": "https://huggingface.co/ponpoke/flux2-klein-9b-uncensored-text-encoder"
+        },
+        {
+          "title": "wikeeyang/Flux2-Klein-9B-True-V3 Text-to-Image • 9B • Updated 13 days ago • 42.9k • 110",
+          "url": "https://huggingface.co/wikeeyang/Flux2-Klein-9B-True-V3"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "image-generation",
+      "source_url": "https://stability.ai/news",
+      "resolved_url": "https://stability.ai/news-updates",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Introducing Stable Virtual Camera: Multi-View Video Generation with 3D Camera Control",
+          "url": "https://stability.ai/news-updates/introducing-stable-virtual-camera-multi-view-video-generation-with-3d-camera-control"
+        },
+        {
+          "title": "Stability AI and NVIDIA Bring Faster Performance and Simplified Enterprise Deployment with the Stable Diffusion 3.5 NIM",
+          "url": "https://stability.ai/news-updates/stability-ai-and-nvidia-bring-faster-performance-and-simplified-enterprise-deployment-with-the-stable-diffusion-35-nim"
+        },
+        {
+          "title": "Stable Diffusion 3.5 Models Optimized with TensorRT Deliver 2X Faster Performance and 40% Less Memory on NVIDIA RTX GPUs",
+          "url": "https://stability.ai/news-updates/stable-diffusion-35-models-optimized-with-tensorrt-deliver-2x-faster-performance-and-40-less-memory-on-nvidia-rtx-gpus"
+        },
+        {
+          "title": "Stable Diffusion Now Optimized for AMD Radeon™ GPUs and Ryzen™ AI APUs",
+          "url": "https://stability.ai/news-updates/stable-diffusion-now-optimized-for-amd-radeon-gpus"
+        },
+        {
+          "title": "Stable Video 4D 2.0: New Upgrades for High-Fidelity Novel-Views and 4D Generation from a Single Video",
+          "url": "https://stability.ai/news-updates/stable-video-4d-20-new-upgrades-for-high-fidelity-novel-views-and-4d-generation-from-a-single-video"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "image-generation",
+      "source_url": "https://updates.midjourney.com/",
+      "resolved_url": "https://updates.midjourney.com/",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "image-generation",
+      "source_url": "https://www.microsoft.com/en-us/research/publications/",
+      "resolved_url": "https://www.microsoft.com/en-us/research/publications",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/Dalision/Omni2Sound_Benchmark",
+      "resolved_url": "https://huggingface.co/api/datasets/Dalision/Omni2Sound_Benchmark",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-04-24T14:54:54.000Z@4f2b6bbd41976b32a9cfb6157af62c7b4924e303",
+      "revision_url": "https://huggingface.co/datasets/Dalision/Omni2Sound_Benchmark"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/HuggingFaceFV/finevideo",
+      "resolved_url": "https://huggingface.co/api/datasets/HuggingFaceFV/finevideo",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-04-30T18:21:00.000Z@84c74091e1c6ee7a5dffabfafb5c9033e4718883",
+      "revision_url": "https://huggingface.co/datasets/HuggingFaceFV/finevideo"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/OpenGVLab/InternVid",
+      "resolved_url": "https://huggingface.co/api/datasets/OpenGVLab/InternVid",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2024-08-13T02:04:22.000Z@8f8e0138bd89103a914e8c97ae124ab0c4a78fcf",
+      "revision_url": "https://huggingface.co/datasets/OpenGVLab/InternVid"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k",
+      "resolved_url": "https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-06-14T10:51:28.000Z@5563646729edf148ed2b32c4b9c794d51a1bc828",
+      "revision_url": "https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/cvssp/WavCaps",
+      "resolved_url": "https://huggingface.co/api/datasets/cvssp/WavCaps",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2023-07-06T13:28:10.000Z@0930ec11ded28fa0eaa910fde2f6fc3538acbeac",
+      "revision_url": "https://huggingface.co/datasets/cvssp/WavCaps"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/justdubit/audiovisual_translation_dub",
+      "resolved_url": "https://huggingface.co/api/datasets/justdubit/audiovisual_translation_dub",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-02-08T14:09:47.000Z@5b9a84788df7bad0e27a9e5091c64c650a85535e",
+      "revision_url": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/kakaobrain/coyo-700m",
+      "resolved_url": "https://huggingface.co/api/datasets/kakaobrain/coyo-700m",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2022-08-30T19:07:52.000Z@54ee2d8c64d3d80a5e10ef6952a4466551834fc1",
+      "revision_url": "https://huggingface.co/datasets/kakaobrain/coyo-700m"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/mlfoundations/datacomp_1b",
+      "resolved_url": "https://huggingface.co/api/datasets/mlfoundations/datacomp_1b",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2023-08-21T21:43:05.000Z@086ebeee20d4cc3b3e7c05ae703fcf278ae3a759",
+      "revision_url": "https://huggingface.co/datasets/mlfoundations/datacomp_1b"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/nkp37/OpenVid-1M",
+      "resolved_url": "https://huggingface.co/api/datasets/nkp37/OpenVid-1M",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-03-31T03:50:30.000Z@d8a63bd22989c80b5734ec2bb989f4e1b61a5807",
+      "revision_url": "https://huggingface.co/datasets/nkp37/OpenVid-1M"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/tiange/Cap3D",
+      "resolved_url": "https://huggingface.co/api/datasets/tiange/Cap3D",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-02-06T05:33:20.000Z@0f05a726ff7eb3db93444a4efc65f0552bce84a4",
+      "revision_url": "https://huggingface.co/datasets/tiange/Cap3D"
+    },
+    {
+      "track_id": "video-and-audio-generation",
+      "source_url": "https://deepmind.google/models/gemini-omni/",
+      "resolved_url": "https://deepmind.google/models/gemini-omni",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Build with Gemini Omni",
+          "url": "https://aistudio.google.com/prompts/new_chat?model=gemini-omni-flash-preview"
+        },
+        {
+          "title": "SynthID",
+          "url": "https://deepmind.google/blog/identifying-ai-generated-images-with-synthid"
+        },
+        {
+          "title": "Nano Banana Create and edit detailed images",
+          "url": "https://deepmind.google/models/gemini-image"
+        },
+        {
+          "title": "Imagen Generate high-quality images from text",
+          "url": "https://deepmind.google/models/imagen"
+        },
+        {
+          "title": "Veo Generate cinematic video with audio",
+          "url": "https://deepmind.google/models/veo"
+        },
+        {
+          "title": "Try in Gemini",
+          "url": "https://gemini.google.com/veo"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "video-and-audio-generation",
+      "source_url": "https://deepmind.google/models/model-cards/gemini-omni-flash/",
+      "resolved_url": "https://deepmind.google/models/model-cards/gemini-omni-flash",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Nano Banana Create and edit detailed images",
+          "url": "https://deepmind.google/models/gemini-image"
+        },
+        {
+          "title": "Gemini Omni Create anything from anything",
+          "url": "https://deepmind.google/models/gemini-omni"
+        },
+        {
+          "title": "Imagen Generate high-quality images from text",
+          "url": "https://deepmind.google/models/imagen"
+        },
+        {
+          "title": "Learn more",
+          "url": "https://deepmind.google/models/model-cards/gemini-3-1-flash-image"
+        },
+        {
+          "title": "Learn more",
+          "url": "https://deepmind.google/models/model-cards/veo-3-1-lite"
+        },
+        {
+          "title": "Veo Generate cinematic video with audio",
+          "url": "https://deepmind.google/models/veo"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "video-and-audio-generation",
+      "source_url": "https://deepmind.google/models/veo/",
+      "resolved_url": "https://deepmind.google/models/veo",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Build with Veo",
+          "url": "https://ai.google.dev/gemini-api/docs/video?example=dialogue"
+        },
+        {
+          "title": "Try in Google AI Studio",
+          "url": "https://aistudio.google.com/apps/bundled/veo_studio?showAssistant=true&showPreview=true"
+        },
+        {
+          "title": "Nano Banana Create and edit detailed images",
+          "url": "https://deepmind.google/models/gemini-image"
+        },
+        {
+          "title": "Gemini Omni Create anything from anything",
+          "url": "https://deepmind.google/models/gemini-omni"
+        },
+        {
+          "title": "Imagen Generate high-quality images from text",
+          "url": "https://deepmind.google/models/imagen"
+        },
+        {
+          "title": "Learn how to prompt",
+          "url": "https://deepmind.google/models/veo/prompt-guide"
+        },
+        {
+          "title": "Try in Gemini",
+          "url": "https://gemini.google.com/veo"
+        },
+        {
+          "title": "View model card",
+          "url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Veo-3-Model-Card.pdf"
+        },
+        {
+          "title": "View tech report",
+          "url": "https://storage.googleapis.com/deepmind-media/veo/Veo-3-Tech-Report.pdf"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "video-and-audio-generation",
+      "source_url": "https://github.com/Lightricks",
+      "resolved_url": "https://github.com/Lightricks",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "video-and-audio-generation",
+      "source_url": "https://github.com/Tencent-Hunyuan",
+      "resolved_url": "https://github.com/Tencent-Hunyuan",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "HunyuanImage-3.0",
+          "url": "https://github.com/Tencent-Hunyuan/HunyuanImage-3.0"
+        },
+        {
+          "title": "HunyuanVideo",
+          "url": "https://github.com/Tencent-Hunyuan/HunyuanVideo"
+        },
+        {
+          "title": "HunyuanVideo-I2V",
+          "url": "https://github.com/Tencent-Hunyuan/HunyuanVideo-I2V"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "video-and-audio-generation",
+      "source_url": "https://github.com/Wan-Video",
+      "resolved_url": "https://github.com/Wan-Video",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Wan2.1",
+          "url": "https://github.com/Wan-Video/Wan2.1"
+        },
+        {
+          "title": "Wan2.2",
+          "url": "https://github.com/Wan-Video/Wan2.2"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "video-and-audio-generation",
+      "source_url": "https://openai.com/sitemap.xml/release/",
+      "resolved_url": "https://openai.com/sitemap.xml/release",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "introducing 4o image generation",
+          "url": "https://openai.com/index/introducing-4o-image-generation"
+        },
+        {
+          "title": "introducing chatgpt images 2 0",
+          "url": "https://openai.com/index/introducing-chatgpt-images-2-0"
+        },
+        {
+          "title": "sora 2",
+          "url": "https://openai.com/index/sora-2"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "video-and-audio-generation",
+      "source_url": "https://openai.com/sitemap.xml/research/",
+      "resolved_url": "https://openai.com/sitemap.xml/research",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "sora 2",
+          "url": "https://openai.com/index/sora-2"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "video-and-audio-generation",
+      "source_url": "https://openai.com/sitemap.xml/sora/",
+      "resolved_url": "https://openai.com/sitemap.xml/sora",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "disney sora agreement",
+          "url": "https://openai.com/index/disney-sora-agreement"
+        },
+        {
+          "title": "sora minne atairu",
+          "url": "https://openai.com/index/sora-minne-atairu"
+        },
+        {
+          "title": "sora vallee duhamel",
+          "url": "https://openai.com/index/sora-vallee-duhamel"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "video-and-audio-generation",
+      "source_url": "https://seed.bytedance.com/en/blog",
+      "resolved_url": "https://seed.bytedance.com/en/blog",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Seedance 2.0",
+          "url": "https://seed.bytedance.com/en/seedance2_0"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "virtual-try-on-and-commerce",
+      "source_url": "https://bfl.ai/blog/flux-vto-virtual-try-on-at-catalog-scale",
+      "resolved_url": "https://bfl.ai/blog/flux-vto-virtual-try-on-at-catalog-scale",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "← Previous article FLUX Erase: Remove anything, leave no trace",
+          "url": "https://bfl.ai/blog/flux-erase-remove-anything-leave-no-trace"
+        },
+        {
+          "title": "FLUX API Service Terms",
+          "url": "https://bfl.ai/legal/flux-api-service-terms"
+        },
+        {
+          "title": "FLUX.2",
+          "url": "https://bfl.ai/models/flux-2"
+        },
+        {
+          "title": "FLUX.2 Klein",
+          "url": "https://bfl.ai/models/flux-2-klein"
+        },
+        {
+          "title": "FLUX.2 Max",
+          "url": "https://bfl.ai/models/flux-2-max"
+        },
+        {
+          "title": "FLUX 3",
+          "url": "https://bfl.ai/models/flux-3"
+        },
+        {
+          "title": "Flux Tools",
+          "url": "https://bfl.ai/models/flux-tools"
+        },
+        {
+          "title": "Training Data Disclosure",
+          "url": "https://bfl.ai/transparency"
+        },
+        {
+          "title": "FLUX MCP",
+          "url": "https://docs.bfl.ai/api_integration/mcp_integration"
+        },
+        {
+          "title": "docs",
+          "url": "https://docs.bfl.ai/flux_tools/flux_vto"
+        },
+        {
+          "title": "BFL Shop Demo",
+          "url": "https://flux-tools.bfl.ai/virtual-try-on"
+        },
+        {
+          "title": "GitHub",
+          "url": "https://github.com/black-forest-labs"
+        },
+        {
+          "title": "GitHub",
+          "url": "https://github.com/black-forest-labs/flux"
+        },
+        {
+          "title": "Hugging Face",
+          "url": "https://huggingface.co/black-forest-labs"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "virtual-try-on-and-commerce",
+      "source_url": "https://github.com/HarryWang355/FIT-VTO",
+      "resolved_url": "https://github.com/HarryWang355/FIT-VTO",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "FLUX.1-dev",
+          "url": "https://huggingface.co/black-forest-labs/FLUX.1-dev"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "virtual-try-on-and-commerce",
+      "source_url": "https://github.com/fashn-AI",
+      "resolved_url": "https://github.com/fashn-AI",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "virtual-try-on-and-commerce",
+      "source_url": "https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k",
+      "resolved_url": "https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Image",
+          "url": "https://huggingface.co/datasets?modality=modality%3Aimage"
+        },
+        {
+          "title": "Image-to-Image",
+          "url": "https://huggingface.co/datasets?task_categories=task_categories%3Aimage-to-image"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    },
+    {
+      "track_id": "virtual-try-on-and-commerce",
+      "source_url": "https://johannakarras.github.io/FIT/",
+      "resolved_url": "https://johannakarras.github.io/FIT",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Paper",
+          "url": "https://dl.acm.org/doi/10.1145/3799902.3811168"
+        },
+        {
+          "title": "Code",
+          "url": "https://github.com/HarryWang355/FIT-VTO"
+        },
+        {
+          "title": "Nerfies",
+          "url": "https://github.com/nerfies/nerfies.github.io"
+        },
+        {
+          "title": "Dataset",
+          "url": "https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null
+    }
+  ]
+}

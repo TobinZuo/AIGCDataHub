@@ -1,0 +1,70 @@
+schema_version: 1
+
+scenarios:
+  - id: image-generation
+    label: 生图与图像编辑
+    short_label: 生图
+    description: 文生图、图像编辑、个性化生成，以及支撑这些能力的图文与偏好数据。
+    tasks:
+      - agentic-image-generation
+      - generative-image-understanding
+      - image-aesthetic-assessment
+      - image-editing
+      - image-personalization
+      - image-text-pretraining
+      - multi-image-composition
+      - multi-reference-composition
+      - rubric-based-reward-modeling
+      - synthetic-image-detection
+      - text-rendering
+      - text-to-image
+      - text-to-image-preference
+      - text-to-image-reinforcement-learning
+
+  - id: video-generation
+    label: 生视频与视频编辑
+    short_label: 生视频
+    description: 文生视频、图生视频、参考视频生成、联合音视频生成及视频编辑。
+    tasks:
+      - audio-to-video
+      - audio-video-generation
+      - image-to-video
+      - reference-to-video
+      - text-to-video
+      - video-editing
+      - video-text-pretraining
+      - video-to-video
+
+  - id: digital-human
+    label: 数字人与口型驱动
+    short_label: 数字人
+    description: 参考人物保持、音频驱动头像、Talking Head、口型同步和跨场景身份保持。
+    tasks:
+      - audio-driven-avatar
+      - cross-scene-avatar-generation
+      - lip-sync
+      - lip-sync-training
+      - multilingual-avatar-video
+      - reference-video-avatar
+      - talking-head-generation
+
+  - id: video-localization
+    label: 视频翻译与本地化
+    short_label: 视频翻译
+    description: 跨语言配音、声线保持、音画联合翻译及面部运动本地化。
+    tasks:
+      - audiovisual-translation
+      - video-dubbing
+      - voice-preserving-video-localization
+
+  - id: virtual-try-on
+    label: 试穿与服装生成
+    short_label: Try-On
+    description: 人物与服装条件生成、尺寸感知试穿、多服装组合和服装迁移。
+    tasks:
+      - fit-aware-generation
+      - garment-conditioned-generation
+      - garment-transfer
+      - multi-garment-try-on
+      - virtual-try-on
+      - virtual-try-on-evaluation

@@ -4,6 +4,13 @@ import { useMemo, useState } from "react";
 
 type Mode = "models" | "datasets" | "strategies";
 
+type ScenarioDefinition = {
+  id: string;
+  label: string;
+  short_label: string;
+  description: string;
+};
+
 type DataReference = {
   name: string;
   catalog_id: string | null;
@@ -20,6 +27,26 @@ type TrainingStage = {
   operations: string[];
   scale_disclosed: boolean;
   strategy: string;
+};
+
+type StrategyProfile = {
+  stage_names: string[];
+  source_types: string[];
+  operations: string[];
+  data_reference_count: number;
+  linked_dataset_count: number;
+  scale_disclosed_stage_count: number;
+  stage_count: number;
+  unknown_count: number;
+};
+
+type ModelDatasetRelation = {
+  model_id: string;
+  dataset_id: string;
+  role: string;
+  availability: string;
+  scale: string | null;
+  reference_name: string;
 };
 
 type ModelCard = {
@@ -58,6 +85,9 @@ type ModelCard = {
   status: string;
   last_verified: string;
   source_path: string;
+  scenario_ids: string[];
+  strategy_profile: StrategyProfile;
+  linked_dataset_ids: string[];
 };
 
 type DatasetCard = {
@@ -114,12 +144,16 @@ type DatasetCard = {
   status: string;
   last_verified: string;
   source_path: string;
+  scenario_ids: string[];
+  linked_model_ids: string[];
 };
 
 type Catalog = {
   last_verified: string;
+  scenarios: ScenarioDefinition[];
   models: ModelCard[];
   datasets: DatasetCard[];
+  relations: ModelDatasetRelation[];
 };
 
 const MODE_LABELS: Record<Mode, string> = {
@@ -144,6 +178,26 @@ const DISCLOSURE_LABELS: Record<string, string> = {
   partial: "部分披露",
   "high-level": "仅高层策略",
   undisclosed: "未披露",
+};
+
+const STAGE_LABELS: Record<string, string> = {
+  pretraining: "预训练",
+  midtraining: "持续训练",
+  "fine-tuning": "微调",
+  preference: "偏好对齐",
+  distillation: "蒸馏",
+  "action-adaptation": "动作适配",
+};
+
+const SOURCE_TYPE_LABELS: Record<string, string> = {
+  undisclosed: "未披露",
+  "public-web": "公开网络",
+  "public-dataset": "公开数据集",
+  licensed: "授权数据",
+  proprietary: "自有数据",
+  synthetic: "合成数据",
+  "human-feedback": "人类反馈",
+  "robot-demonstration": "机器人示范",
 };
 
 const ACCESS_LABELS: Record<string, string> = {
@@ -179,6 +233,10 @@ function normalize(value: string) {
   return value.toLocaleLowerCase().replaceAll("-", " ");
 }
 
+function taxonomyLabel(value: string, labels: Record<string, string>) {
+  return labels[value] ?? value.replaceAll("-", " ");
+}
+
 function disclosureScore(level: string) {
   return ({ full: 4, partial: 3, "high-level": 2, undisclosed: 1 }[level] ?? 0);
 }
@@ -204,20 +262,22 @@ function EmptyState({ query }: { query: string }) {
     <div className="empty-state">
       <span className="empty-symbol" aria-hidden="true">∅</span>
       <h3>没有匹配项</h3>
-      <p>试试缩短“{query || "当前条件"}”，或切换到全部模态。</p>
+      <p>试试缩短“{query || "当前条件"}”，或切换到全部场景和全部模态。</p>
     </div>
   );
 }
 
-function ModelResult({ model, expanded, onToggle }: {
+function ModelResult({ model, scenarioLabels, expanded, onToggle, onOpenDataset }: {
   model: ModelCard;
+  scenarioLabels: string[];
   expanded: boolean;
   onToggle: () => void;
+  onOpenDataset: (datasetId: string) => void;
 }) {
   const namedDatasets = model.data.datasets.filter((item) => item.catalog_id);
 
   return (
-    <article className={`result-card model-card ${expanded ? "is-expanded" : ""}`}>
+    <article id={`model-${model.id}`} className={`result-card model-card ${expanded ? "is-expanded" : ""}`}>
       <button className="card-toggle" onClick={onToggle} aria-expanded={expanded}>
         <div className="card-index">M/{model.released_at.slice(2).replaceAll("-", "")}</div>
         <div className="card-primary">
@@ -228,6 +288,9 @@ function ModelResult({ model, expanded, onToggle }: {
           <h3>{model.name}</h3>
           <p>{model.data.strategy_summary[0]}</p>
           <div className="tag-row">
+            {scenarioLabels.slice(0, 2).map((item) => (
+              <span className="tag tag-scenario" key={item}>{item}</span>
+            ))}
             {model.modalities.slice(0, 4).map((item) => (
               <span className="tag" key={item}>{MODALITY_LABELS[item] ?? item}</span>
             ))}
@@ -240,7 +303,7 @@ function ModelResult({ model, expanded, onToggle }: {
           </div>
           <div>
             <span className="metric-label">目录关联</span>
-            <strong>{model.data.datasets.length ? `${namedDatasets.length}/${model.data.datasets.length}` : "—"}</strong>
+            <strong>{model.data.datasets.length ? `${namedDatasets.length}/${model.data.datasets.length}` : "无"}</strong>
           </div>
           <StatusMark status={model.status} />
         </div>
@@ -260,8 +323,8 @@ function ModelResult({ model, expanded, onToggle }: {
           <section>
             <p className="detail-label">阶段与操作</p>
             <div className="stage-list">
-              {model.data.stages.map((stage) => (
-                <div className="stage" key={`${model.id}-${stage.name}`}>
+              {model.data.stages.map((stage, index) => (
+                <div className="stage" key={`${model.id}-${index}-${stage.name}`}>
                   <div className="stage-title">
                     <strong>{stage.name}</strong>
                     <span>{stage.scale_disclosed ? "规模已披露" : "规模未知"}</span>
@@ -283,6 +346,11 @@ function ModelResult({ model, expanded, onToggle }: {
                     <strong>{item.name}</strong>
                     <span>{item.role} · {item.scale ?? "规模未披露"}</span>
                     <p>{item.notes}</p>
+                    {item.catalog_id && (
+                      <button className="relation-link" onClick={() => onOpenDataset(item.catalog_id!)}>
+                        打开数据卡 <span aria-hidden="true">→</span>
+                      </button>
+                    )}
                   </div>
                 ))}
               </div>
@@ -311,13 +379,16 @@ function ModelResult({ model, expanded, onToggle }: {
   );
 }
 
-function DatasetResult({ dataset, expanded, onToggle }: {
+function DatasetResult({ dataset, scenarioLabels, linkedModels, expanded, onToggle, onOpenModel }: {
   dataset: DatasetCard;
+  scenarioLabels: string[];
+  linkedModels: ModelCard[];
   expanded: boolean;
   onToggle: () => void;
+  onOpenModel: (modelId: string) => void;
 }) {
   return (
-    <article className={`result-card dataset-card ${expanded ? "is-expanded" : ""}`}>
+    <article id={`dataset-${dataset.id}`} className={`result-card dataset-card ${expanded ? "is-expanded" : ""}`}>
       <button className="card-toggle" onClick={onToggle} aria-expanded={expanded}>
         <div className="card-index">D/{dataset.released_at.slice(2).replaceAll("-", "")}</div>
         <div className="card-primary">
@@ -328,8 +399,12 @@ function DatasetResult({ dataset, expanded, onToggle }: {
           <h3>{dataset.name}</h3>
           <p>{dataset.description}</p>
           <div className="tag-row">
+            {scenarioLabels.slice(0, 2).map((item) => (
+              <span className="tag tag-scenario" key={item}>{item}</span>
+            ))}
             <span className="tag">{MODALITY_LABELS[dataset.modality] ?? dataset.modality}</span>
-            {dataset.tasks.slice(0, 3).map((item) => <span className="tag" key={item}>{item}</span>)}
+            {dataset.tasks.slice(0, 2).map((item) => <span className="tag" key={item}>{item}</span>)}
+            {linkedModels.length > 0 && <span className="tag tag-relation">{linkedModels.length} 个模型关联</span>}
           </div>
         </div>
         <div className="card-metrics">
@@ -369,6 +444,25 @@ function DatasetResult({ dataset, expanded, onToggle }: {
             </dl>
             <p className="license-note">{dataset.license.notes}</p>
           </section>
+          {(linkedModels.length > 0 || dataset.evidence.used_by.length > 0) && (
+            <section className="relation-panel">
+              <p className="detail-label">模型关系</p>
+              {linkedModels.length > 0 && (
+                <div className="relation-list">
+                  {linkedModels.map((model) => (
+                    <button className="relation-link" onClick={() => onOpenModel(model.id)} key={model.id}>
+                      <span>{model.name}</span><small>{model.data.datasets.find((item) => item.catalog_id === dataset.id)?.role ?? "关联"}</small><b aria-hidden="true">→</b>
+                    </button>
+                  ))}
+                </div>
+              )}
+              {dataset.evidence.used_by.length > 0 && (
+                <p className="editorial-relation">
+                  上游资料提及：{dataset.evidence.used_by.join("、")}。目录内反向链接只由模型卡的 <code>catalog_id</code> 自动生成。
+                </p>
+              )}
+            </section>
+          )}
           <section className="unknown-panel">
             <p className="detail-label">已知限制</p>
             <ul>
@@ -393,16 +487,121 @@ function DatasetResult({ dataset, expanded, onToggle }: {
   );
 }
 
-function StrategyResult({ model }: { model: ModelCard }) {
-  const disclosed = disclosureScore(model.data.disclosure_level);
-  const linkedDatasets = model.data.datasets.filter((item) => item.catalog_id).length;
+function StrategyMatrix({
+  models,
+  scenario,
+}: {
+  models: ModelCard[];
+  scenario: ScenarioDefinition | null;
+}) {
+  const title = scenario
+    ? `${scenario.short_label}：同场景数据策略对比`
+    : "同场景数据策略对比";
 
   return (
-    <article className="strategy-card">
+    <section className="strategy-comparison" aria-labelledby="strategy-comparison-title">
+      <header>
+        <div>
+          <p className="comparison-kicker">COMPARE / SOURCE-BOUND</p>
+          <h3 id="strategy-comparison-title">{title}</h3>
+        </div>
+        <p>只比较一手资料明确披露的字段，不补全未知项，也不做综合评分。</p>
+      </header>
+      {!scenario && (
+        <div className="comparison-prompt">
+          <strong>先选择一个应用场景</strong>
+          <span>生图、生视频、数字人、视频翻译与 Try-On 将在各自场景内比较。</span>
+        </div>
+      )}
+      {scenario && models.length === 0 && (
+        <div className="comparison-prompt">
+          <strong>当前条件下没有可比较模型</strong>
+          <span>可清空搜索词或切换模态后重试。</span>
+        </div>
+      )}
+      {scenario && models.length > 0 && (
+        <div className="comparison-table-scroll" tabIndex={0} aria-label={`${scenario.short_label}策略比较表，可横向滚动`}>
+          <table className="comparison-table">
+            <caption className="sr-only">{title}</caption>
+            <thead>
+              <tr>
+                <th scope="col">模型</th>
+                <th scope="col">披露程度</th>
+                <th scope="col">训练阶段</th>
+                <th scope="col">数据来源类型</th>
+                <th scope="col">数据引用</th>
+                <th scope="col">规模披露</th>
+                <th scope="col">未知项</th>
+              </tr>
+            </thead>
+            <tbody>
+              {models.map((model) => {
+                const profile = model.strategy_profile;
+                return (
+                  <tr key={model.id}>
+                    <th scope="row">
+                      <a href={`#strategy-${model.id}`}>{model.name}</a>
+                      <small>{model.organization}</small>
+                    </th>
+                    <td>
+                      <span className="comparison-disclosure" data-level={model.data.disclosure_level}>
+                        {DISCLOSURE_LABELS[model.data.disclosure_level]}
+                      </span>
+                    </td>
+                    <td>
+                      <div className="comparison-terms">
+                        {profile.stage_names.map((item, index) => (
+                          <span key={`${index}-${item}`}>{taxonomyLabel(item, STAGE_LABELS)}</span>
+                        ))}
+                      </div>
+                    </td>
+                    <td>
+                      <div className="comparison-terms comparison-sources">
+                        {profile.source_types.map((item) => (
+                          <span data-undisclosed={item === "undisclosed" || undefined} key={item}>
+                            {taxonomyLabel(item, SOURCE_TYPE_LABELS)}
+                          </span>
+                        ))}
+                      </div>
+                    </td>
+                    <td className="comparison-ratio">
+                      <strong>{profile.data_reference_count ? `${profile.linked_dataset_count}/${profile.data_reference_count}` : "无"}</strong>
+                      <small>目录关联 / 引用</small>
+                    </td>
+                    <td className="comparison-ratio">
+                      <strong>{profile.scale_disclosed_stage_count}/{profile.stage_count}</strong>
+                      <small>披露阶段 / 全部</small>
+                    </td>
+                    <td className="comparison-unknowns">
+                      <strong>{profile.unknown_count}</strong>
+                      <small>明确记录</small>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function StrategyResult({ model, scenarioLabels }: { model: ModelCard; scenarioLabels: string[] }) {
+  const disclosed = disclosureScore(model.data.disclosure_level);
+  const profile = model.strategy_profile;
+
+  return (
+    <article className="strategy-card" id={`strategy-${model.id}`}>
       <header>
         <div>
           <span className="strategy-org">{model.organization}</span>
           <h3>{model.name}</h3>
+          <div className="tag-row">
+            {scenarioLabels.slice(0, 2).map((item) => (
+              <span className="tag tag-scenario" key={item}>{item}</span>
+            ))}
+          </div>
         </div>
         <div className="disclosure-meter" aria-label={`披露程度：${DISCLOSURE_LABELS[model.data.disclosure_level]}`}>
           {[1, 2, 3, 4].map((level) => <span className={level <= disclosed ? "is-on" : ""} key={level} />)}
@@ -411,7 +610,7 @@ function StrategyResult({ model }: { model: ModelCard }) {
       <p className="strategy-lead">{model.data.strategy_summary[0]}</p>
       <div className="pipeline" aria-label="训练阶段">
         {model.data.stages.map((stage, index) => (
-          <div className="pipeline-stage" key={`${model.id}-${stage.name}`}>
+          <div className="pipeline-stage" key={`${model.id}-${index}-${stage.name}`}>
             <span>{String(index + 1).padStart(2, "0")}</span>
             <strong>{stage.name}</strong>
             <small>{stage.source_types.join(" + ")}</small>
@@ -431,7 +630,7 @@ function StrategyResult({ model }: { model: ModelCard }) {
         </div>
       </div>
       <footer>
-        <span>{DISCLOSURE_LABELS[model.data.disclosure_level]} · {linkedDatasets}/{model.data.datasets.length || "—"} 数据卡关联 · {model.data.unknowns.length} 项未知</span>
+        <span>{DISCLOSURE_LABELS[model.data.disclosure_level]} / {profile.linked_dataset_count}/{profile.data_reference_count || "无"} 数据卡关联 / {profile.unknown_count} 项未知</span>
         <ExternalLink href={model.evidence.technical_report ?? model.evidence.release}>查看一手证据</ExternalLink>
       </footer>
     </article>
@@ -442,12 +641,23 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
   const [mode, setMode] = useState<Mode>("models");
   const [query, setQuery] = useState("");
   const [modality, setModality] = useState("all");
+  const [scenario, setScenario] = useState("all");
   const [expanded, setExpanded] = useState<string | null>("flux-3");
+
+  const scenarioLabels = useMemo(
+    () => new Map(catalog.scenarios.map((item) => [item.id, item.short_label])),
+    [catalog.scenarios],
+  );
+  const modelById = useMemo(
+    () => new Map(catalog.models.map((item) => [item.id, item])),
+    [catalog.models],
+  );
 
   const modelResults = useMemo(() => {
     const search = normalize(query.trim());
     return catalog.models.filter((model) => {
       const inModality = modality === "all" || model.modalities.includes(modality);
+      const inScenario = scenario === "all" || model.scenario_ids.includes(scenario);
       const haystack = normalize([
         model.name,
         model.organization,
@@ -457,14 +667,15 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         ...model.data.datasets.map((item) => item.name),
         ...model.data.stages.flatMap((stage) => stage.operations),
       ].join(" "));
-      return inModality && (!search || haystack.includes(search));
+      return inModality && inScenario && (!search || haystack.includes(search));
     });
-  }, [catalog.models, modality, query]);
+  }, [catalog.models, modality, query, scenario]);
 
   const datasetResults = useMemo(() => {
     const search = normalize(query.trim());
     return catalog.datasets.filter((dataset) => {
       const inModality = modality === "all" || dataset.modality === modality;
+      const inScenario = scenario === "all" || dataset.scenario_ids.includes(scenario);
       const haystack = normalize([
         dataset.name,
         dataset.organization,
@@ -473,22 +684,47 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         ...dataset.tasks,
         ...dataset.annotations.types,
         ...dataset.evidence.used_by,
+        ...dataset.linked_model_ids.map((id) => modelById.get(id)?.name ?? id),
       ].join(" "));
-      return inModality && (!search || haystack.includes(search));
+      return inModality && inScenario && (!search || haystack.includes(search));
     });
-  }, [catalog.datasets, modality, query]);
+  }, [catalog.datasets, modality, modelById, query, scenario]);
 
   const visibleModalities = mode === "datasets"
     ? ["all", "image", "video", "audio", "3d", "preference"]
     : ["all", "image", "video", "audio", "3d", "multimodal", "action"];
   const visibleCount = mode === "datasets" ? datasetResults.length : modelResults.length;
+  const activeScenario = scenario === "all"
+    ? null
+    : catalog.scenarios.find((item) => item.id === scenario) ?? null;
   const exactDatasetModels = catalog.models.filter((item) => item.data.exact_datasets_disclosed).length;
   const openDatasets = catalog.datasets.filter((item) => item.access.status === "open").length;
+  const scenarioCounts = useMemo(() => {
+    const items = mode === "datasets" ? catalog.datasets : catalog.models;
+    return Object.fromEntries(catalog.scenarios.map((item) => [
+      item.id,
+      items.filter((entry) => entry.scenario_ids.includes(item.id)).length,
+    ]));
+  }, [catalog.datasets, catalog.models, catalog.scenarios, mode]);
 
   function switchMode(nextMode: Mode) {
     setMode(nextMode);
     setModality("all");
-    setExpanded(nextMode === "models" ? catalog.models[0]?.id ?? null : null);
+    setExpanded(null);
+  }
+
+  function openRelation(targetMode: "models" | "datasets", id: string) {
+    setMode(targetMode);
+    setQuery("");
+    setModality("all");
+    setScenario("all");
+    setExpanded(id);
+    const prefix = targetMode === "models" ? "model" : "dataset";
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        document.getElementById(`${prefix}-${id}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    });
   }
 
   return (
@@ -509,26 +745,25 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="kicker"><span>01</span> 生成式 AI 数据情报</p>
+          <p className="kicker">生成式 AI 数据情报</p>
           <h1>追踪模型，<br />追到它的<span>数据源头。</span></h1>
           <p className="hero-description">
             不止告诉你“有哪些数据集”。这里持续拆解最新 AIGC 模型用了什么数据、怎样清洗与训练，以及官方仍未披露什么。
           </p>
           <div className="hero-actions">
             <button onClick={() => document.querySelector("#explorer")?.scrollIntoView({ behavior: "smooth" })}>
-              开始检索 <span aria-hidden="true">↓</span>
+              打开目录
             </button>
-            <span>一手来源 · 显式未知项 · 每周复核</span>
           </div>
         </div>
         <aside className="hero-stats" aria-label="目录统计">
-          <div className="stats-topline"><span>INDEX / 2026</span><span>CN—EN</span></div>
+          <div className="stats-topline"><span>INDEX / 2026</span><span>CN / EN</span></div>
           <div className="stat-main"><strong>{catalog.models.length}</strong><span>最新模型<br />及数据策略</span></div>
           <div className="stat-grid">
             <div><strong>{catalog.datasets.length}</strong><span>结构化数据集</span></div>
             <div><strong>{openDatasets}</strong><span>公开可访问</span></div>
             <div><strong>{exactDatasetModels}</strong><span>披露具体数据</span></div>
-            <div><strong>7D</strong><span>更新节奏</span></div>
+            <div><strong>{catalog.relations.length}</strong><span>模型—数据关系</span></div>
           </div>
           <div className="stats-note">每条结论保留发布日期、核验时间和官方证据。未知不是空白，也是结论。</div>
         </aside>
@@ -539,7 +774,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         <span className="signal-date">{formatDate(catalog.models[0].released_at)}</span>
         <strong>{catalog.models[0].name}</strong>
         <p>{catalog.models[0].data.strategy_summary[0]}</p>
-        <button onClick={() => { switchMode("models"); setExpanded(catalog.models[0].id); document.querySelector("#explorer")?.scrollIntoView({ behavior: "smooth" }); }}>
+        <button onClick={() => openRelation("models", catalog.models[0].id)}>
           查看拆解 ↘
         </button>
       </section>
@@ -547,7 +782,6 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
       <section className="explorer" id="explorer">
         <div className="explorer-heading">
           <div>
-            <p className="kicker"><span>02</span> 可核验目录</p>
             <h2>查模型，也查它背后的数据逻辑。</h2>
           </div>
           <p>目录直接由仓库中的 YAML 数据卡生成；更新事实源，页面随之更新。</p>
@@ -566,6 +800,32 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
               <small>{item === "datasets" ? catalog.datasets.length : catalog.models.length}</small>
             </button>
           ))}
+        </div>
+
+        <div className="scenario-rail" role="group" aria-label="应用场景筛选">
+          <span className="scenario-caption">应用场景</span>
+          <div className="scenario-options">
+            <button
+              className={scenario === "all" ? "is-active" : ""}
+              onClick={() => { setScenario("all"); setExpanded(null); }}
+              aria-pressed={scenario === "all"}
+            >
+              <span>全部场景</span>
+              <small>{mode === "datasets" ? catalog.datasets.length : catalog.models.length}</small>
+            </button>
+            {catalog.scenarios.map((item) => (
+              <button
+                className={scenario === item.id ? "is-active" : ""}
+                onClick={() => { setScenario(item.id); setExpanded(null); }}
+                aria-pressed={scenario === item.id}
+                title={item.description}
+                key={item.id}
+              >
+                <span>{item.short_label}</span>
+                <small>{scenarioCounts[item.id]}</small>
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="search-panel">
@@ -591,30 +851,46 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         </div>
 
         <div className="result-list" role="tabpanel">
+          {mode === "strategies" && (
+            <StrategyMatrix models={modelResults} scenario={activeScenario} />
+          )}
           {mode === "models" && modelResults.map((model) => (
             <ModelResult
               key={model.id}
               model={model}
+              scenarioLabels={model.scenario_ids.map((item) => scenarioLabels.get(item) ?? item)}
               expanded={expanded === model.id}
               onToggle={() => setExpanded(expanded === model.id ? null : model.id)}
+              onOpenDataset={(id) => openRelation("datasets", id)}
             />
           ))}
           {mode === "datasets" && datasetResults.map((dataset) => (
             <DatasetResult
               key={dataset.id}
               dataset={dataset}
+              linkedModels={dataset.linked_model_ids.flatMap((id) => {
+                const model = modelById.get(id);
+                return model ? [model] : [];
+              })}
+              scenarioLabels={dataset.scenario_ids.map((item) => scenarioLabels.get(item) ?? item)}
               expanded={expanded === dataset.id}
               onToggle={() => setExpanded(expanded === dataset.id ? null : dataset.id)}
+              onOpenModel={(id) => openRelation("models", id)}
             />
           ))}
-          {mode === "strategies" && modelResults.map((model) => <StrategyResult model={model} key={model.id} />)}
+          {mode === "strategies" && modelResults.map((model) => (
+            <StrategyResult
+              model={model}
+              scenarioLabels={model.scenario_ids.map((item) => scenarioLabels.get(item) ?? item)}
+              key={model.id}
+            />
+          ))}
           {visibleCount === 0 && <EmptyState query={query} />}
         </div>
       </section>
 
       <section className="method-section">
         <div className="method-heading">
-          <p className="kicker"><span>03</span> 证据方法</p>
           <h2>我们把“没说”也写下来。</h2>
         </div>
         <div className="method-grid">

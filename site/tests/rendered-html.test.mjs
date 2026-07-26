@@ -31,11 +31,15 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>AIGCDataHub — 模型背后的数据策略<\/title>/i);
+  assert.match(html, /<title>AIGCDataHub \| 模型背后的数据策略<\/title>/i);
   assert.match(html, /追踪模型/);
   assert.match(html, /Midjourney V8\.2/);
   assert.match(html, /Muse Image/);
   assert.match(html, /FLUX 3/);
+  assert.match(html, /SANA-Video 2\.0/);
+  assert.match(html, /GraphVid/);
+  assert.match(html, /GraphVid-Bench/);
+  assert.match(html, /Mage-Flow/);
   assert.match(html, /Omni2Sound/);
   assert.match(html, /SoundAtlas/);
   assert.match(html, /Cap3D/);
@@ -48,19 +52,36 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /FSD50K/);
   assert.match(html, /Million Song Dataset/);
   assert.match(html, /FMA/);
+  assert.match(html, /Lens-RL-8K/);
+  assert.match(html, /ERIA-1K/);
+  assert.match(html, /GenSyn10/);
+  assert.match(html, /Gemini Omni Flash/);
+  assert.match(html, /Gemini 3\.1 Flash-Lite Image/);
+  assert.match(html, /Avatar V/);
+  assert.match(html, /JUST-DUB-IT/);
+  assert.match(html, /Audiovisual Translation Dubbing Dataset/);
+  assert.match(html, /FIT-VTO-100K/);
+  assert.match(html, /Fit-VTO/);
+  assert.match(html, /FLUX VTO/);
+  assert.match(html, /应用场景/);
+  assert.match(html, /数字人/);
+  assert.match(html, /视频翻译/);
+  assert.match(html, /Try-On/);
   assert.match(html, /10\/10/);
   assert.match(html, /目录关联/);
+  assert.match(html, /模型—数据关系/);
   assert.match(html, /最新数据集/);
   assert.match(html, /最新模型/);
   assert.match(html, /结构化数据集/);
-  assert.match(html, /https:\/\/aigc-datahub-index\.zuotongbin\.chatgpt\.site\/og\.png/);
+  assert.match(html, /https:\/\/tobinzuo\.github\.io\/AIGCDataHub\/og\.png/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 
 test("uses generated catalog data and removes starter preview assets", async () => {
-  const [catalog, page, layout, packageJson] = await Promise.all([
+  const [catalog, page, catalogExplorer, layout, packageJson] = await Promise.all([
     readFile(new URL("../app/catalog-data.json", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/catalog-explorer.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
@@ -73,16 +94,61 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"release_date_source"/);
   assert.match(catalog, /"audiocaps-2-0"/);
   assert.match(catalog, /"vggsound-omni"/);
+  assert.match(catalog, /"lens-rl-8k"/);
+  assert.match(catalog, /"eria-1k"/);
+  assert.match(catalog, /"gensyn10"/);
+  assert.match(catalog, /"gemini-omni-flash"/);
+  assert.match(catalog, /"gemini-3-1-flash-lite-image"/);
+  assert.match(catalog, /"avatar-v"/);
+  assert.match(catalog, /"just-dub-it"/);
+  assert.match(catalog, /"audiovisual-translation-dub"/);
+  assert.match(catalog, /"fit-vto-100k"/);
   assert.match(catalog, /"clotho-2-1"/);
   assert.match(catalog, /"audioset"/);
   assert.match(catalog, /"vggsound"/);
   assert.match(catalog, /"fsd50k"/);
   assert.match(catalog, /"million-song-dataset"/);
   assert.match(catalog, /"fma"/);
+  assert.match(catalog, /"graphvid-bench"/);
+  assert.match(catalog, /"sana-video-2-0"/);
+  assert.match(catalog, /"mage-flow"/);
+  assert.match(catalog, /"relations"/);
   const parsedCatalog = JSON.parse(catalog);
-  assert.equal(parsedCatalog.format_version, 2);
-  assert.equal(parsedCatalog.datasets[0].id, "lens-800m");
+  assert.equal(parsedCatalog.format_version, 5);
+  assert.deepEqual(
+    parsedCatalog.scenarios.map((scenario) => scenario.id),
+    ["image-generation", "video-generation", "digital-human", "video-localization", "virtual-try-on"],
+  );
+  assert.equal(parsedCatalog.datasets[0].id, "graphvid-bench");
+  const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
+  assert.deepEqual(
+    models.lens.data.datasets.map((dataset) => dataset.catalog_id),
+    ["lens-800m", "lens-rl-8k"],
+  );
+  assert.deepEqual(
+    models["ernie-image"].data.datasets.map((dataset) => dataset.catalog_id),
+    [null, "eria-1k"],
+  );
+  assert.deepEqual(
+    models["just-dub-it"].data.datasets.map((dataset) => dataset.catalog_id),
+    [null, "audiovisual-translation-dub"],
+  );
+  assert.deepEqual(models.graphvid.linked_dataset_ids, ["graphvid-bench"]);
+  assert.ok(parsedCatalog.relations.some(
+    (relation) => relation.model_id === "graphvid" && relation.dataset_id === "graphvid-bench",
+  ));
+  assert.deepEqual(models["fit-vto"].scenario_ids, ["virtual-try-on"]);
+  assert.deepEqual(models["flux-vto"].scenario_ids, ["virtual-try-on"]);
+  assert.deepEqual(models["fit-vto"].strategy_profile.stage_names, ["pretraining", "fine-tuning"]);
+  assert.equal(models["fit-vto"].strategy_profile.data_reference_count, 3);
+  assert.equal(models["fit-vto"].strategy_profile.linked_dataset_count, 1);
+  assert.equal(models["flux-vto"].strategy_profile.scale_disclosed_stage_count, 0);
   assert.match(page, /CatalogExplorer/);
+  assert.match(catalogExplorer, /StrategyMatrix/);
+  assert.match(catalogExplorer, /同场景数据策略对比/);
+  assert.match(catalogExplorer, /不做综合评分/);
+  assert.match(catalogExplorer, /打开数据卡/);
+  assert.match(catalogExplorer, /目录内反向链接只由模型卡/);
   assert.match(layout, /AIGCDataHub/);
   assert.doesNotMatch(layout, /codex-preview|Starter Project/i);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);

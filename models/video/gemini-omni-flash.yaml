@@ -1,0 +1,65 @@
+id: gemini-omni-flash
+name: Gemini Omni Flash
+organization: Google DeepMind
+released_at: "2026-06-30"
+modalities:
+  - video
+  - audio
+tasks:
+  - text-to-video
+  - image-to-video
+  - reference-to-video
+  - video-editing
+  - audio-video-generation
+access:
+  status: api-only
+  license: Gemini API Additional Terms of Service
+  release_url: https://ai.google.dev/gemini-api/docs/changelog
+  weights_url: null
+  api_url: https://ai.google.dev/gemini-api/docs/omni
+architecture:
+  family: Native multimodal transformer
+  parameters: null
+  notes: Accepts text, images, audio, and video and generates high-resolution video with synchronized audio.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Undisclosed multimodal training mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: The official model card names image, video, audio, and text modalities but no source datasets or mixture counts.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - audio
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - multilevel-captioning
+        - compliance-filtering
+        - safety-filtering
+        - quality-filtering
+        - semantic-deduplication
+      scale_disclosed: false
+      strategy: Annotate audio and video with captions at multiple levels of detail, then filter training videos for compliance, safety, and quality and semantically deduplicate them.
+  strategy_summary:
+    - Use one native multimodal corpus spanning images, video, audio, and text for joint audiovisual generation.
+    - Apply captions at different detail levels to supervise both broad scene understanding and fine audiovisual events.
+    - Filter and semantically deduplicate training video before model training.
+  unknowns:
+    - Exact source datasets, total sample count, mixture ratios, and geographic or language composition.
+    - Media rights, license composition, and the provenance of caption annotations.
+    - Post-training, preference-alignment, safety-tuning, and per-stage data details.
+evidence:
+  release: https://ai.google.dev/gemini-api/docs/changelog
+  technical_report: https://deepmind.google/models/model-cards/gemini-omni-flash/
+  repository: null
+status: verified
+last_verified: "2026-07-26"

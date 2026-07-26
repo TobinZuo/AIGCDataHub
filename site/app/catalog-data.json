@@ -1,11 +1,382 @@
 {
-  "format_version": 2,
+  "format_version": 5,
   "generated_from": [
     "catalog/**/*.yaml",
-    "models/**/*.yaml"
+    "models/**/*.yaml",
+    "sources/scenarios.yaml"
   ],
   "last_verified": "2026-07-26",
+  "scenarios": [
+    {
+      "id": "image-generation",
+      "label": "生图与图像编辑",
+      "short_label": "生图",
+      "description": "文生图、图像编辑、个性化生成，以及支撑这些能力的图文与偏好数据。"
+    },
+    {
+      "id": "video-generation",
+      "label": "生视频与视频编辑",
+      "short_label": "生视频",
+      "description": "文生视频、图生视频、参考视频生成、联合音视频生成及视频编辑。"
+    },
+    {
+      "id": "digital-human",
+      "label": "数字人与口型驱动",
+      "short_label": "数字人",
+      "description": "参考人物保持、音频驱动头像、Talking Head、口型同步和跨场景身份保持。"
+    },
+    {
+      "id": "video-localization",
+      "label": "视频翻译与本地化",
+      "short_label": "视频翻译",
+      "description": "跨语言配音、声线保持、音画联合翻译及面部运动本地化。"
+    },
+    {
+      "id": "virtual-try-on",
+      "label": "试穿与服装生成",
+      "short_label": "Try-On",
+      "description": "人物与服装条件生成、尺寸感知试穿、多服装组合和服装迁移。"
+    }
+  ],
   "datasets": [
+    {
+      "id": "graphvid-bench",
+      "name": "GraphVid-Bench",
+      "organization": "University of Illinois Urbana-Champaign and Sony Research India",
+      "released_at": "2026-07-23",
+      "release_date_source": "https://arxiv.org/abs/2607.21580",
+      "modality": "video",
+      "tasks": [
+        "graph-conditioned-video-generation",
+        "image-to-video",
+        "object-interaction-generation",
+        "video-generation-evaluation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A paper-described graph-conditioned image-to-video training and evaluation resource built around discrete object interactions, directed scene graphs, and fixed-duration motion clips.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2607.21580",
+        "requires_account": false,
+        "notes": "The paper describes the corpus and benchmark, but no official dataset files, annotations, or download procedure were available on 2026-07-26."
+      },
+      "scale": {
+        "samples": 27504,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The reported category counts sum to 27,504 clips: 3,881 no-interaction, 10,982 single-interaction, and 12,641 multi-interaction examples."
+      },
+      "annotations": {
+        "types": [
+          "source-image",
+          "object-entity",
+          "directed-interaction-edge",
+          "scene-graph",
+          "interaction-count",
+          "clip-boundary"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not published",
+        "media": "Upstream and source-dependent",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The paper names WISA-80K, Something-Something v2, and MagicData as training sources and DAVIS 2017 plus MoveBench for evaluation; their original terms remain binding, and no GraphVid-Bench-specific license is published."
+      },
+      "quality": {
+        "dimensions": [
+          "motion",
+          "temporal-consistency",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The corpus and its graph annotations are not publicly downloadable, so reported counts and construction steps cannot yet be independently audited.",
+          "Vision-language filtering intentionally excludes camera, ego-motion, background, and fluid-dynamics changes, narrowing the motion distribution.",
+          "Machine-generated entities and directed interaction edges can inherit errors and biases from the Qwen3-VL and embedding models used in construction.",
+          "Upstream dataset snapshots, per-source counts, duplicate handling, and media-rights composition are not disclosed."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "The paper describes Qwen3-VL semantic filtering, motion-energy selection of 81-frame windows at 16 FPS, 512-by-288 dynamic letterboxing, and graph construction, but publishes no executable recipe."
+      },
+      "evidence": {
+        "homepage": "https://arxiv.org/abs/2607.21580",
+        "paper": "https://arxiv.org/abs/2607.21580",
+        "used_by": [
+          "GraphVid"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/video/graphvid-bench.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~27.5K",
+      "linked_model_ids": [
+        "graphvid"
+      ]
+    },
+    {
+      "id": "gensyn10",
+      "name": "GenSyn10",
+      "organization": "University of Western Australia",
+      "released_at": "2026-07-10",
+      "release_date_source": "https://arxiv.org/abs/2607.16283",
+      "modality": "evaluation",
+      "tasks": [
+        "synthetic-image-detection",
+        "image-classification",
+        "out-of-distribution-evaluation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "A 60,000-image synthetic benchmark aligned to ten CIFAR-10 classes, generated equally by FLUX.2-dev, HunyuanImage-3.0, and Qwen-Image-2512 for synthetic- image classification and cross-generator generalization research.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2607.16283",
+        "requires_account": false,
+        "notes": "The paper describes the full construction recipe, but no official dataset files or repository are currently linked."
+      },
+      "scale": {
+        "samples": 60000,
+        "source_items": 60000,
+        "hours": null,
+        "approximate": false,
+        "notes": "Each generator contributes 20,000 images; the balanced split contains 50,000 training and 10,000 test images."
+      },
+      "annotations": {
+        "types": [
+          "class-label",
+          "generator-identifier",
+          "train-test-split",
+          "prompt-template"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Unknown",
+        "media": "Generated-image terms remain dependent on the three source models",
+        "commercial_use": "review-required",
+        "redistribution": "unknown",
+        "notes": "The arXiv paper license does not establish a dataset license, and no dataset-specific usage or redistribution terms are published."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "No official downloadable files, repository, or dataset-specific license were located during verification.",
+          "Images are downsampled from 512 by 512 pixels to 32 by 32 pixels, limiting conclusions about high-resolution generator artifacts.",
+          "The released recipe covers three generators and a template-based prompt grammar rather than open-domain production prompts."
+        ]
+      },
+      "processing": {
+        "recipe": "Generate balanced CIFAR-10-aligned classes at 512 by 512 pixels with three generators, then downsample with Lanczos resampling to 32 by 32 pixels.",
+        "recommended_format": "native",
+        "notes": "Preserve the generator, class, split, prompt template, and generation configuration for each image if files are released."
+      },
+      "evidence": {
+        "homepage": "https://arxiv.org/abs/2607.16283",
+        "paper": "https://arxiv.org/abs/2607.16283",
+        "used_by": [
+          "GenSyn10 benchmark classifiers"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/evaluation/gensyn10.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "60K",
+      "linked_model_ids": []
+    },
+    {
+      "id": "eria-1k",
+      "name": "ERIA-1K",
+      "organization": "Baidu",
+      "released_at": "2026-05-25",
+      "release_date_source": "https://arxiv.org/abs/2605.25347",
+      "modality": "evaluation",
+      "tasks": [
+        "image-aesthetic-assessment",
+        "aesthetic-model-evaluation"
+      ],
+      "stages": [
+        "evaluation"
+      ],
+      "description": "A held-out, human-annotated image-aesthetics benchmark designed around a deployment-oriented mixture of photography, illustration, graphic design, mixed web imagery, film photography, and product imagery.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://huggingface.co/baidu/ERNIE-Image-Aes",
+        "requires_account": false,
+        "notes": "The report says ERIA-1K is open-source, but no downloadable benchmark files are linked in the official resources."
+      },
+      "scale": {
+        "samples": 1000,
+        "source_items": 1000,
+        "hours": null,
+        "approximate": false,
+        "notes": "The benchmark contains 1,000 images across six disclosed content categories."
+      },
+      "annotations": {
+        "types": [
+          "aesthetic-tier",
+          "content-category",
+          "pairwise-aesthetic-preference"
+        ],
+        "source": "human",
+        "languages": [
+          "language-agnostic"
+        ]
+      },
+      "license": {
+        "metadata": "Unknown",
+        "media": "Source-dependent and undisclosed",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The Apache-2.0 model license does not establish terms for the benchmark metadata or underlying images."
+      },
+      "quality": {
+        "dimensions": [
+          "aesthetics",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "No official downloadable data files or dataset-specific license were located during verification.",
+          "The report gives category proportions but not the source-level provenance or rights composition of the images.",
+          "Professional calibration improves annotation consistency but does not make aesthetic judgments universal."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "Preserve all six content categories and the Swiss-tournament-derived aesthetic tiers from 1 to 10."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/baidu/ERNIE-Image-Aes",
+        "paper": "https://arxiv.org/abs/2605.25347",
+        "used_by": [
+          "ERNIE-Image-Aes"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/evaluation/eria-1k.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "1K",
+      "linked_model_ids": [
+        "ernie-image"
+      ]
+    },
+    {
+      "id": "lens-rl-8k",
+      "name": "Lens-RL-8K",
+      "organization": "Microsoft Research",
+      "released_at": "2026-05-20",
+      "release_date_source": "https://arxiv.org/abs/2605.21573",
+      "modality": "preference",
+      "tasks": [
+        "text-to-image-reinforcement-learning",
+        "rubric-based-reward-modeling"
+      ],
+      "stages": [
+        "preference-tuning"
+      ],
+      "description": "A taxonomy-driven prompt and rubric collection used to reinforce Lens after pretraining across diverse text-to-image scenarios, including people, objects, scenes, text rendering, and graphic design.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2605.21573",
+        "requires_account": false,
+        "notes": "The technical report describes the collection, but no official dataset download is currently linked."
+      },
+      "scale": {
+        "samples": 8000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The release identifies the prompt set as 8K rather than publishing an exact row count."
+      },
+      "annotations": {
+        "types": [
+          "image-generation-prompt",
+          "taxonomy-category",
+          "prompt-specific-rubric",
+          "global-structural-integrity-rubric"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Unknown",
+        "media": "Not applicable; the described records are text prompts and rubrics",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "No dataset-specific license or redistribution terms are published with the technical report."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "aesthetics",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The prompt set and complete rubrics are not publicly downloadable for independent inspection.",
+          "GPT-4.1 generated both prompts and prompt-specific rubrics, so model biases can propagate into RL coverage and rewards.",
+          "The 8K name does not establish an exact machine-verifiable row count."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "Preserve taxonomy fields, prompts, up to ten prompt-specific rubrics, and the appended global rubric."
+      },
+      "evidence": {
+        "homepage": "https://www.microsoft.com/en-us/research/publication/lens-rethinking-training-efficiency-for-foundational-text-to-image-models/",
+        "paper": "https://arxiv.org/abs/2605.21573",
+        "used_by": [
+          "Lens"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/preference/lens-rl-8k.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~8K",
+      "linked_model_ids": [
+        "lens"
+      ]
+    },
     {
       "id": "lens-800m",
       "name": "Lens-800M",
@@ -79,7 +450,191 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/image/lens-800m.yaml",
-      "scale_label": "800M"
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "800M",
+      "linked_model_ids": [
+        "lens"
+      ]
+    },
+    {
+      "id": "fit-vto-100k",
+      "name": "FIT-VTO-100K",
+      "organization": "University of Washington and Google Research",
+      "released_at": "2026-05-08",
+      "release_date_source": "https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k",
+      "modality": "image",
+      "tasks": [
+        "virtual-try-on",
+        "fit-aware-generation",
+        "garment-conditioned-generation",
+        "virtual-try-on-evaluation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "The official 105,000-sample preview of the FIT fit-aware virtual try-on dataset, pairing lay-flat garments, neutral person images, try-on targets, and precise body and garment measurements.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k",
+        "requires_account": false,
+        "notes": "The repository exposes 100,000 training and 5,000 evaluation rows in Parquet, totaling about 212 GB."
+      },
+      "scale": {
+        "samples": 105000,
+        "source_items": 315000,
+        "hours": null,
+        "approximate": false,
+        "notes": "Every row contains three aligned 768 by 1024 images; this preview is smaller than the full 1,069,824-sample FIT collection described on the project page."
+      },
+      "annotations": {
+        "types": [
+          "paired-person-image",
+          "layflat-garment-image",
+          "try-on-target-image",
+          "body-measurements",
+          "garment-measurements",
+          "train-eval-split"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-ND-4.0",
+        "media": "CC-BY-NC-ND-4.0 per the official dataset card",
+        "commercial_use": "noncommercial",
+        "redistribution": "allowed",
+        "notes": "Attribution is required; commercial use and distribution of derivatives are prohibited by the published dataset license."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "geometry-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The released 105K preview is a subset of the more than one-million-sample FIT collection described by the paper and project page.",
+          "Synthetic generation and re-texturing can leave a domain gap relative to real people, garments, lighting, and fabric behavior.",
+          "CC BY-NC-ND 4.0 prevents commercial use and derivative redistribution, which materially limits production training workflows."
+        ]
+      },
+      "processing": {
+        "recipe": "Generate parametric 3D garments, drape them over measured body shapes with physics simulation, re-texture renders into photorealistic paired images while preserving geometry, QA-filter lay-flat garments with Gemini 2.5 Flash, and regenerate failed garments with a try-off model.",
+        "recommended_format": "parquet",
+        "notes": "Preserve all three aligned images plus body and garment measurements; images are resized or center-cropped and padded to 768 by 1024."
+      },
+      "evidence": {
+        "homepage": "https://johannakarras.github.io/FIT/",
+        "paper": "https://arxiv.org/abs/2604.08526",
+        "used_by": [
+          "Fit-VTO"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/image/fit-vto-100k.yaml",
+      "scenario_ids": [
+        "virtual-try-on"
+      ],
+      "scale_label": "105K",
+      "linked_model_ids": [
+        "fit-vto"
+      ]
+    },
+    {
+      "id": "audiovisual-translation-dub",
+      "name": "Audiovisual Translation Dubbing Dataset",
+      "organization": "Lightricks and Tel Aviv University",
+      "released_at": "2026-02-08",
+      "release_date_source": "https://huggingface.co/api/datasets/justdubit/audiovisual_translation_dub",
+      "modality": "video",
+      "tasks": [
+        "video-dubbing",
+        "audiovisual-translation",
+        "lip-sync-training"
+      ],
+      "stages": [
+        "fine-tuning"
+      ],
+      "description": "A released 288-record paired video collection for training synchronized audiovisual dubbing adapters, with source references, dubbed targets, multilingual structured captions, and optional facial masks.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub",
+        "requires_account": false,
+        "notes": "The public repository is approximately 537 MB and exposes one 288-row training split."
+      },
+      "scale": {
+        "samples": 288,
+        "source_items": 576,
+        "hours": null,
+        "approximate": false,
+        "notes": "Each logical record pairs one reference video with one target dubbed video; optional face masks are additional assets."
+      },
+      "annotations": {
+        "types": [
+          "reference-video",
+          "dubbed-target-video",
+          "face-segmentation-mask",
+          "speaker-description",
+          "language-label",
+          "dialogue-caption"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en",
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0",
+        "media": "CC-BY-NC-4.0 per the official dataset card",
+        "commercial_use": "noncommercial",
+        "redistribution": "allowed",
+        "notes": "Attribution and non-commercial restrictions apply; downstream users must also review the LTX-2 model terms used to generate and train on the media."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The 288-record scale is small relative to the diversity of speakers, languages, accents, poses, and production conditions in real localization workloads.",
+          "Face segmentation masks are optional, so mask coverage is not uniform across all records.",
+          "The public card does not enumerate per-language counts or the complete prompt and rejection distribution."
+        ]
+      },
+      "processing": {
+        "recipe": "Generate multilingual clips with language switches, use counterfactual face-and-audio inpainting to form same-speaker pairs, and compute latent-aware face masks for localized training losses.",
+        "recommended_format": "native",
+        "notes": "Preserve the target-reference pairing, structured caption, language, dialogue, and optional mask path for every record."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub",
+        "paper": "https://arxiv.org/abs/2601.22143",
+        "used_by": [
+          "JUST-DUB-IT"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/video/audiovisual-translation-dub.yaml",
+      "scenario_ids": [
+        "digital-human",
+        "video-localization"
+      ],
+      "scale_label": "288",
+      "linked_model_ids": [
+        "just-dub-it"
+      ]
     },
     {
       "id": "vggsound-omni",
@@ -165,7 +720,11 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/evaluation/vggsound-omni.yaml",
-      "scale_label": "~14K"
+      "scenario_ids": [],
+      "scale_label": "~14K",
+      "linked_model_ids": [
+        "omni2sound"
+      ]
     },
     {
       "id": "soundatlas",
@@ -249,7 +808,11 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/soundatlas.yaml",
-      "scale_label": "~470K"
+      "scenario_ids": [],
+      "scale_label": "~470K",
+      "linked_model_ids": [
+        "omni2sound"
+      ]
     },
     {
       "id": "audiocaps-2-0",
@@ -330,7 +893,11 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/audiocaps-2-0.yaml",
-      "scale_label": "98.6K"
+      "scenario_ids": [],
+      "scale_label": "98.6K",
+      "linked_model_ids": [
+        "omni2sound"
+      ]
     },
     {
       "id": "finevideo",
@@ -407,7 +974,11 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/video/finevideo.yaml",
-      "scale_label": "~43K"
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~43K",
+      "linked_model_ids": []
     },
     {
       "id": "re-laion-5b",
@@ -484,7 +1055,11 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/image/re-laion-5b.yaml",
-      "scale_label": "~5.8B"
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~5.8B",
+      "linked_model_ids": []
     },
     {
       "id": "openvid-1m",
@@ -564,7 +1139,11 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/video/openvid-1m.yaml",
-      "scale_label": "~1M"
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~1M",
+      "linked_model_ids": []
     },
     {
       "id": "panda-70m",
@@ -642,7 +1221,11 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/video/panda-70m.yaml",
-      "scale_label": "70.7M"
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "70.7M",
+      "linked_model_ids": []
     },
     {
       "id": "pick-a-pic-v2",
@@ -718,7 +1301,11 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/preference/pick-a-pic-v2.yaml",
-      "scale_label": "~1M"
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~1M",
+      "linked_model_ids": []
     },
     {
       "id": "internvid",
@@ -798,7 +1385,11 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/video/internvid.yaml",
-      "scale_label": "~234M"
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~234M",
+      "linked_model_ids": []
     },
     {
       "id": "objaverse-xl",
@@ -879,7 +1470,9 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/3d/objaverse-xl.yaml",
-      "scale_label": "~10M"
+      "scenario_ids": [],
+      "scale_label": "~10M",
+      "linked_model_ids": []
     },
     {
       "id": "journeydb",
@@ -955,7 +1548,11 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/image/journeydb.yaml",
-      "scale_label": "4.4M"
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "4.4M",
+      "linked_model_ids": []
     },
     {
       "id": "cap3d",
@@ -1041,7 +1638,9 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/3d/cap3d.yaml",
-      "scale_label": "1.6M"
+      "scenario_ids": [],
+      "scale_label": "1.6M",
+      "linked_model_ids": []
     },
     {
       "id": "datacomp-1b",
@@ -1117,7 +1716,11 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/image/datacomp-1b.yaml",
-      "scale_label": "~1B"
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~1B",
+      "linked_model_ids": []
     },
     {
       "id": "wavcaps",
@@ -1200,7 +1803,11 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/wavcaps.yaml",
-      "scale_label": "~403.1K"
+      "scenario_ids": [],
+      "scale_label": "~403.1K",
+      "linked_model_ids": [
+        "omni2sound"
+      ]
     },
     {
       "id": "coyo-700m",
@@ -1278,7 +1885,11 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/image/coyo-700m.yaml",
-      "scale_label": "~700M"
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~700M",
+      "linked_model_ids": []
     },
     {
       "id": "webvid-10m",
@@ -1352,7 +1963,11 @@
       "status": "archived",
       "last_verified": "2026-07-26",
       "source_path": "catalog/video/webvid-10m.yaml",
-      "scale_label": "~10M"
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~10M",
+      "linked_model_ids": []
     },
     {
       "id": "clotho-2-1",
@@ -1435,7 +2050,11 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/clotho-2-1.yaml",
-      "scale_label": "7K"
+      "scenario_ids": [],
+      "scale_label": "7K",
+      "linked_model_ids": [
+        "omni2sound"
+      ]
     },
     {
       "id": "fsd50k",
@@ -1517,7 +2136,11 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/fsd50k.yaml",
-      "scale_label": "51.2K"
+      "scenario_ids": [],
+      "scale_label": "51.2K",
+      "linked_model_ids": [
+        "omni2sound"
+      ]
     },
     {
       "id": "vggsound",
@@ -1599,7 +2222,11 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/vggsound.yaml",
-      "scale_label": "~210K"
+      "scenario_ids": [],
+      "scale_label": "~210K",
+      "linked_model_ids": [
+        "omni2sound"
+      ]
     },
     {
       "id": "fma",
@@ -1683,7 +2310,11 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/fma.yaml",
-      "scale_label": "~106.6K"
+      "scenario_ids": [],
+      "scale_label": "~106.6K",
+      "linked_model_ids": [
+        "omni2sound"
+      ]
     },
     {
       "id": "audioset",
@@ -1765,7 +2396,11 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/audioset.yaml",
-      "scale_label": "~2.1M"
+      "scenario_ids": [],
+      "scale_label": "~2.1M",
+      "linked_model_ids": [
+        "omni2sound"
+      ]
     },
     {
       "id": "million-song-dataset",
@@ -1847,7 +2482,11 @@
       "status": "archived",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/million-song-dataset.yaml",
-      "scale_label": "1M"
+      "scenario_ids": [],
+      "scale_label": "1M",
+      "linked_model_ids": [
+        "omni2sound"
+      ]
     }
   ],
   "models": [
@@ -1936,7 +2575,354 @@
       },
       "status": "watch",
       "last_verified": "2026-07-26",
-      "source_path": "models/image/midjourney-v8-2.yaml"
+      "source_path": "models/image/midjourney-v8-2.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "preference"
+        ],
+        "source_types": [
+          "undisclosed",
+          "human-feedback"
+        ],
+        "operations": [
+          "preference-profile-modeling",
+          "image-pool-expansion"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 3
+      },
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "sana-video-2-0",
+      "name": "SANA-Video 2.0",
+      "organization": "NVIDIA",
+      "released_at": "2026-07-23",
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video"
+      ],
+      "access": {
+        "status": "research-preview",
+        "license": "Code is Apache-2.0; SANA-Video 2.0 weights have not been released",
+        "release_url": "https://nvlabs.github.io/Sana/Video2/",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Hybrid linear-attention and softmax-attention video diffusion transformer",
+        "parameters": 14000000000,
+        "notes": "The report describes 5B and 14B variants trained progressively up to 720p, with a joint image-video recipe."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Curated in-house image and video training pool",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "not-released",
+            "scale": null,
+            "notes": "The report names no source datasets, but describes separate broad pretraining, stricter continual-training, and trusted supervised-fine-tuning pools."
+          },
+          {
+            "name": "Gemini-ranked generated video preference pairs",
+            "catalog_id": null,
+            "role": "preference",
+            "availability": "not-released",
+            "scale": null,
+            "notes": "Generated candidates are ranked for visual fidelity, prompt alignment, motion quality, and temporal coherence before unreliable comparisons are removed."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "proprietary"
+            ],
+            "operations": [
+              "shot-segmentation",
+              "subtitle-removal",
+              "quality-filtering",
+              "motion-filtering",
+              "text-media-filtering",
+              "structured-recaptioning",
+              "image-video-joint-training",
+              "progressive-resolution-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Build a broad pool through shot segmentation and independent visual, motion, exposure, artifact, alignment, and shot-integrity filters, then train progressively from 480p to 720p while increasing frame rate and duration."
+          },
+          {
+            "name": "midtraining",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "proprietary"
+            ],
+            "operations": [
+              "stricter-quality-filtering",
+              "dense-recaptioning",
+              "motion-description",
+              "image-video-joint-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Continue training on a stricter-quality pool with denser structured captions and appended motion descriptions while retaining interleaved image batches."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "proprietary"
+            ],
+            "operations": [
+              "trusted-subset-selection",
+              "supervised-fine-tuning"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Supervise the model on a smaller trusted subset selected from the progressively curated video pool, without publishing the underlying clips or selection thresholds."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "synthetic"
+            ],
+            "operations": [
+              "pairwise-ranking",
+              "unreliable-pair-filtering",
+              "diffusion-dpo",
+              "online-reward-learning",
+              "reward-ensembling"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Apply Diffusion-DPO to Gemini-ranked generated pairs, then online reward fine-tuning with HPSv3++, DeQA-Score, and UniPercept while regularizing against the frozen base model."
+          }
+        ],
+        "strategy_summary": [
+          "Turn heterogeneous in-house clips into progressively stricter pretraining, continual-training, and trusted fine-tuning pools through independent quality axes.",
+          "Increase resolution, frame rate, duration, and caption density in stages while interleaving images to preserve spatial quality.",
+          "Combine filtered pairwise preferences with an online visual-quality reward ensemble after supervised training."
+        ],
+        "unknowns": [
+          "Source dataset identities, corpus sizes, mixture ratios, collection dates, and media-rights composition.",
+          "Exact thresholds and retention rates for every filtering dimension and trusted-subset selection.",
+          "The complete preference-pair count, prompt distribution, Gemini configuration, and reward-optimization sample budget.",
+          "Release timing and license terms for SANA-Video 2.0 weights and training data."
+        ]
+      },
+      "evidence": {
+        "release": "https://nvlabs.github.io/Sana/Video2/",
+        "technical_report": "https://arxiv.org/abs/2607.21553",
+        "repository": "https://github.com/NVlabs/Sana"
+      },
+      "status": "watch",
+      "last_verified": "2026-07-26",
+      "source_path": "models/video/sana-video-2-0.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "midtraining",
+          "fine-tuning",
+          "preference"
+        ],
+        "source_types": [
+          "proprietary",
+          "synthetic"
+        ],
+        "operations": [
+          "shot-segmentation",
+          "subtitle-removal",
+          "quality-filtering",
+          "motion-filtering",
+          "text-media-filtering",
+          "structured-recaptioning",
+          "image-video-joint-training",
+          "progressive-resolution-training",
+          "stricter-quality-filtering",
+          "dense-recaptioning",
+          "motion-description",
+          "trusted-subset-selection",
+          "supervised-fine-tuning",
+          "pairwise-ranking",
+          "unreliable-pair-filtering",
+          "diffusion-dpo",
+          "online-reward-learning",
+          "reward-ensembling"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 4,
+        "unknown_count": 4
+      },
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "graphvid",
+      "name": "GraphVid",
+      "organization": "University of Illinois Urbana-Champaign and Sony Research India",
+      "released_at": "2026-07-23",
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "image-to-video",
+        "graph-conditioned-video-generation"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Paper-only release; no model license or weights are published",
+        "release_url": "https://arxiv.org/abs/2607.21580",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Graph-conditioned LTX-Video diffusion transformer with GINE reasoning and LoRA",
+        "parameters": null,
+        "notes": "The frozen LTX-Video backbone is adapted with Qwen3 encoders, a GINE graph module, conditioning adapters, and rank-128 LoRA; the paper reports 0.6B trainable parameters."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "LTX-Video base-model training mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "GraphVid inherits a frozen LTX-Video generative prior whose original source corpus and mixture are not restated by this paper."
+          },
+          {
+            "name": "GraphVid-Bench",
+            "catalog_id": "graphvid-bench",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "approximately 27,500 videos",
+            "notes": "The paper constructs the training corpus from WISA-80K, Something-Something v2, and MagicData, then adds graph-structured object-interaction supervision."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-foundation-model"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Reuse the frozen LTX-Video diffusion transformer and video autoencoder without restating their complete training-data lineage."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "synthetic"
+            ],
+            "operations": [
+              "semantic-interaction-filtering",
+              "motion-window-selection",
+              "dynamic-letterboxing",
+              "graph-annotation",
+              "graph-conditioned-lora",
+              "flow-matching"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Filter three upstream video sources for discrete object interactions, select high-motion 81-frame windows, construct directed scene graphs with vision-language models, and train only the graph module, adapters, and LoRA parameters."
+          }
+        ],
+        "strategy_summary": [
+          "Convert video clips into directed object-interaction graphs so motion intent is explicit rather than implicit in a caption.",
+          "Select fixed 81-frame, 16-FPS windows using semantic interaction and motion-energy filters, then preserve geometry through dynamic letterboxing.",
+          "Freeze the LTX-Video backbone and train a compact graph-conditioning path plus rank-128 LoRA with flow matching."
+        ],
+        "unknowns": [
+          "Complete LTX-Video base-model corpus, mixture, rights composition, and any inherited filtering decisions.",
+          "Per-source retention rates and the exact split of WISA-80K, Something-Something v2, and MagicData after filtering.",
+          "Dataset, graph annotations, code, checkpoints, and their licenses have not been released.",
+          "The project URL declared in the paper returned HTTP 404 when checked on 2026-07-26."
+        ]
+      },
+      "evidence": {
+        "release": "https://arxiv.org/abs/2607.21580",
+        "technical_report": "https://arxiv.org/abs/2607.21580",
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-26",
+      "source_path": "models/video/graphvid.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed",
+          "public-dataset",
+          "synthetic"
+        ],
+        "operations": [
+          "inherited-foundation-model",
+          "semantic-interaction-filtering",
+          "motion-window-selection",
+          "dynamic-letterboxing",
+          "graph-annotation",
+          "graph-conditioned-lora",
+          "flow-matching"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 4
+      },
+      "linked_dataset_ids": [
+        "graphvid-bench"
+      ]
     },
     {
       "id": "flux-3",
@@ -2056,7 +3042,234 @@
       },
       "status": "watch",
       "last_verified": "2026-07-26",
-      "source_path": "models/multimodal/flux-3.yaml"
+      "source_path": "models/multimodal/flux-3.yaml",
+      "scenario_ids": [
+        "image-generation",
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "action-adaptation"
+        ],
+        "source_types": [
+          "undisclosed",
+          "robot-demonstration",
+          "proprietary"
+        ],
+        "operations": [
+          "joint-multimodal-training",
+          "self-flow",
+          "curriculum-expansion",
+          "action-decoder-training"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 3
+      },
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "mage-flow",
+      "name": "Mage-Flow",
+      "organization": "Microsoft Mage Team",
+      "released_at": "2026-07-21",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "text-rendering"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Paper-only release; no model license or weights are published",
+        "release_url": "https://arxiv.org/abs/2607.19064",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Native-resolution multimodal diffusion transformer with Mage-VAE",
+        "parameters": 4000000000,
+        "notes": "The family combines a 4B rectified-flow backbone, a one-step image tokenizer, native-resolution sequence packing, RL-aligned generation and editing variants, and four-step Turbo distillations."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Mage-Flow curated image-text corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "not-released",
+            "scale": "1.3B retained pairs from roughly 10B raw pairs",
+            "notes": "The raw pool comes from unnamed large-scale open-source datasets and is filtered, deduplicated, recaptioned, supplemented, and concept-balanced before progressive training."
+          },
+          {
+            "name": "Mage-Flow-Edit training triples",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "roughly 90M raw triples",
+            "notes": "The pool combines about 50M triples from unnamed open-source editing datasets with 40M in-house synthetic triples, then undergoes VLM filtering and edit-type balancing."
+          },
+          {
+            "name": "Mage-Flow capability-routed RL prompt pools",
+            "catalog_id": null,
+            "role": "preference",
+            "availability": "not-released",
+            "scale": "approximately 20K generation prompts and 30K editing prompts",
+            "notes": "Generation prompts cover text rendering, aesthetics, and semantic understanding; editing prompts are sampled across edit tasks and mixed with the generation stream."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "synthetic"
+            ],
+            "operations": [
+              "sample-level-filtering",
+              "semantic-deduplication",
+              "multi-granularity-captioning",
+              "concept-aware-synthesis",
+              "concept-balanced-sampling",
+              "native-resolution-packing",
+              "progressive-resolution-training"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Reduce roughly 10B raw open-source image-text pairs to 1.3B curated pairs, then progressively train on 1.2B at 256px, a cleaner 600M native-aspect subset at 512px, and a still cleaner 300M subset at 1024px."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "synthetic"
+            ],
+            "operations": [
+              "strict-quality-filtering",
+              "supervised-fine-tuning",
+              "synthetic-edit-generation",
+              "vlm-quality-filtering",
+              "edit-type-balancing",
+              "generation-editing-interleaving"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Fine-tune generation on a strict 150M-pair 1024px subset, then adapt editing with 35M editing triples plus 35M generation pairs before a higher-quality 20M editing plus 10M generation mixture."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "synthetic"
+            ],
+            "operations": [
+              "capability-routed-prompting",
+              "online-candidate-generation",
+              "rubric-based-rewarding",
+              "diffusion-nft",
+              "generation-editing-interleaving"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Run Diffusion-NFT on online candidates using OCR, aesthetic, semantic, and editing-specific reward routes; shift generation prompt weights across two stages and interleave editing with generation at a four-to-one ratio."
+          },
+          {
+            "name": "distillation",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "synthetic"
+            ],
+            "operations": [
+              "distribution-matching-distillation",
+              "adversarial-perceptual-guidance",
+              "four-step-distillation"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Distill Base and Edit models to four denoising steps with Decoupled-DMD plus perceptual adversarial gradients from frozen visual encoders and a lightweight feature discriminator."
+          }
+        ],
+        "strategy_summary": [
+          "Filter and recaption a 10B-scale open-source pool into progressively cleaner 256px, 512px, 1024px, and supervised-fine-tuning subsets.",
+          "Build editing supervision from open-source and in-house synthetic triples, then balance edit types and interleave generation pairs to retain the visual prior.",
+          "Route compact generation and editing prompt pools to task-specific online rewards before four-step distillation."
+        ],
+        "unknowns": [
+          "Names, versions, licenses, collection dates, and mixture shares of the open-source image-text and editing datasets.",
+          "Retention rates for individual filters, duplicate thresholds, and the exact composition of stage-wise subsets.",
+          "Source and licensing of every synthetic target image, supplemental long-tail sample, and RL prompt.",
+          "Release timing and terms for code, checkpoints, tokenizer weights, and any training-data artifacts."
+        ]
+      },
+      "evidence": {
+        "release": "https://arxiv.org/abs/2607.19064",
+        "technical_report": "https://arxiv.org/abs/2607.19064",
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-26",
+      "source_path": "models/image/mage-flow.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "preference",
+          "distillation"
+        ],
+        "source_types": [
+          "public-dataset",
+          "synthetic"
+        ],
+        "operations": [
+          "sample-level-filtering",
+          "semantic-deduplication",
+          "multi-granularity-captioning",
+          "concept-aware-synthesis",
+          "concept-balanced-sampling",
+          "native-resolution-packing",
+          "progressive-resolution-training",
+          "strict-quality-filtering",
+          "supervised-fine-tuning",
+          "synthetic-edit-generation",
+          "vlm-quality-filtering",
+          "edit-type-balancing",
+          "generation-editing-interleaving",
+          "capability-routed-prompting",
+          "online-candidate-generation",
+          "rubric-based-rewarding",
+          "diffusion-nft",
+          "distribution-matching-distillation",
+          "adversarial-perceptual-guidance",
+          "four-step-distillation"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 3,
+        "stage_count": 4,
+        "unknown_count": 4
+      },
+      "linked_dataset_ids": []
     },
     {
       "id": "muse-video",
@@ -2121,7 +3334,27 @@
       },
       "status": "watch",
       "last_verified": "2026-07-26",
-      "source_path": "models/video/muse-video.yaml"
+      "source_path": "models/video/muse-video.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [
+          "shared-media-pretraining"
+        ],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 3
+      },
+      "linked_dataset_ids": []
     },
     {
       "id": "muse-image",
@@ -2207,7 +3440,396 @@
       },
       "status": "watch",
       "last_verified": "2026-07-26",
-      "source_path": "models/multimodal/muse-image.yaml"
+      "source_path": "models/multimodal/muse-image.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "preference"
+        ],
+        "source_types": [
+          "undisclosed",
+          "synthetic"
+        ],
+        "operations": [
+          "shared-media-pretraining",
+          "reinforcement-learning",
+          "tool-use-training",
+          "self-refinement"
+        ],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 3
+      },
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "gemini-omni-flash",
+      "name": "Gemini Omni Flash",
+      "organization": "Google DeepMind",
+      "released_at": "2026-06-30",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "reference-to-video",
+        "video-editing",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Gemini API Additional Terms of Service",
+        "release_url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "weights_url": null,
+        "api_url": "https://ai.google.dev/gemini-api/docs/omni"
+      },
+      "architecture": {
+        "family": "Native multimodal transformer",
+        "parameters": null,
+        "notes": "Accepts text, images, audio, and video and generates high-resolution video with synchronized audio."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Undisclosed multimodal training mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "The official model card names image, video, audio, and text modalities but no source datasets or mixture counts."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "multilevel-captioning",
+              "compliance-filtering",
+              "safety-filtering",
+              "quality-filtering",
+              "semantic-deduplication"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Annotate audio and video with captions at multiple levels of detail, then filter training videos for compliance, safety, and quality and semantically deduplicate them."
+          }
+        ],
+        "strategy_summary": [
+          "Use one native multimodal corpus spanning images, video, audio, and text for joint audiovisual generation.",
+          "Apply captions at different detail levels to supervise both broad scene understanding and fine audiovisual events.",
+          "Filter and semantically deduplicate training video before model training."
+        ],
+        "unknowns": [
+          "Exact source datasets, total sample count, mixture ratios, and geographic or language composition.",
+          "Media rights, license composition, and the provenance of caption annotations.",
+          "Post-training, preference-alignment, safety-tuning, and per-stage data details."
+        ]
+      },
+      "evidence": {
+        "release": "https://ai.google.dev/gemini-api/docs/changelog",
+        "technical_report": "https://deepmind.google/models/model-cards/gemini-omni-flash/",
+        "repository": null
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/video/gemini-omni-flash.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [
+          "multilevel-captioning",
+          "compliance-filtering",
+          "safety-filtering",
+          "quality-filtering",
+          "semantic-deduplication"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 3
+      },
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "gemini-3-1-flash-lite-image",
+      "name": "Gemini 3.1 Flash-Lite Image",
+      "organization": "Google DeepMind",
+      "released_at": "2026-06-30",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "multi-image-composition",
+        "text-rendering"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Gemini API Additional Terms of Service",
+        "release_url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "weights_url": null,
+        "api_url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-lite-image"
+      },
+      "architecture": {
+        "family": "Gemini 3.1 Flash-Lite image-generation derivative",
+        "parameters": null,
+        "notes": "An image-generation and editing model based on Gemini 3.1 Flash-Lite, also released as Nano Banana 2 Lite."
+      },
+      "data": {
+        "disclosure_level": "high-level",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Gemini 3 family multimodal training mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": "large-scale, exact count undisclosed",
+            "notes": "The image model inherits its model data through Gemini 3.1 Flash-Lite from Gemini 3 Pro; no model-specific source list is published."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-web",
+              "public-dataset",
+              "licensed",
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "deduplication",
+              "robots-txt-honoring",
+              "safety-filtering",
+              "quality-filtering",
+              "dataset-filtering",
+              "conditional-pretraining"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Inherit the Gemini 3 multimodal corpus and apply model-specific dataset filtering and conditional pretraining for image generation."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "supervised-fine-tuning"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Apply supervised fine-tuning for image-generation and editing capabilities; the examples, counts, and source mixture are not disclosed."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "human-feedback",
+              "synthetic"
+            ],
+            "operations": [
+              "reinforcement-learning",
+              "human-preference-alignment",
+              "critic-feedback"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Use reinforcement learning from human and critic feedback to improve output quality and alignment after supervised fine-tuning."
+          }
+        ],
+        "strategy_summary": [
+          "Reuse the broad Gemini 3 multimodal pretraining base rather than disclose a standalone image-only corpus.",
+          "Specialize the inherited base with dataset filtering, conditional pretraining, and supervised fine-tuning.",
+          "Combine human and critic feedback during reinforcement learning for image quality and alignment."
+        ],
+        "unknowns": [
+          "Exact model-specific datasets, sample counts, mixture ratios, and rights composition.",
+          "Which inherited Gemini 3 sources contribute directly to image-generation training and at what weights.",
+          "Fine-tuning examples, preference-data counts, critic construction, and safety-filter thresholds."
+        ]
+      },
+      "evidence": {
+        "release": "https://ai.google.dev/gemini-api/docs/changelog",
+        "technical_report": "https://deepmind.google/models/model-cards/gemini-3-1-flash-lite-image/",
+        "repository": null
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/image/gemini-3-1-flash-lite-image.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "preference"
+        ],
+        "source_types": [
+          "public-web",
+          "public-dataset",
+          "licensed",
+          "proprietary",
+          "synthetic",
+          "human-feedback"
+        ],
+        "operations": [
+          "deduplication",
+          "robots-txt-honoring",
+          "safety-filtering",
+          "quality-filtering",
+          "dataset-filtering",
+          "conditional-pretraining",
+          "supervised-fine-tuning",
+          "reinforcement-learning",
+          "human-preference-alignment",
+          "critic-feedback"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 3,
+        "unknown_count": 3
+      },
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "flux-vto",
+      "name": "FLUX VTO",
+      "organization": "Black Forest Labs",
+      "released_at": "2026-05-28",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "virtual-try-on",
+        "multi-garment-try-on",
+        "garment-transfer",
+        "identity-preserving-editing"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "FLUX API Service Terms",
+        "release_url": "https://bfl.ai/blog/flux-vto-virtual-try-on-at-catalog-scale",
+        "weights_url": null,
+        "api_url": "https://docs.bfl.ai/flux_tools/flux_vto"
+      },
+      "architecture": {
+        "family": "Undisclosed proprietary virtual try-on image model",
+        "parameters": null,
+        "notes": "Accepts a person image, one or more garment references, and a styling prompt while targeting preservation of face, pose, garment branding, prints, stitching, and hardware."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "unknown"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "Black Forest Labs does not identify a base model, training corpus, source types, scale, or curation process for FLUX VTO."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "The release describes production goals and inference inputs but does not disclose whether or how a virtual try-on specialization dataset was constructed."
+          }
+        ],
+        "strategy_summary": [
+          "Publish production targets for identity fidelity, garment fidelity, multi-item layering, latency, and cost without disclosing the training corpus behind them.",
+          "Support packshot or on-model garment references, up to four garments, and person-preserving transfer through a public API endpoint.",
+          "Keep inference-time image preparation and moderation guidance separate from training-data claims because the official sources do not connect them."
+        ],
+        "unknowns": [
+          "All training dataset identities, source types, sample counts, rights composition, filters, deduplication, and mixture ratios.",
+          "Base architecture, parameter count, whether training uses paired real or synthetic try-on data, and whether preference or human-feedback stages are used.",
+          "Terms and technical relationship of the separately offered self-hosted deployment to the public API model."
+        ]
+      },
+      "evidence": {
+        "release": "https://bfl.ai/blog/flux-vto-virtual-try-on-at-catalog-scale",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-26",
+      "source_path": "models/image/flux-vto.yaml",
+      "scenario_ids": [
+        "virtual-try-on"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 3
+      },
+      "linked_dataset_ids": []
     },
     {
       "id": "lens",
@@ -2247,11 +3869,11 @@
           },
           {
             "name": "Lens-RL-8K",
-            "catalog_id": null,
+            "catalog_id": "lens-rl-8k",
             "role": "preference",
             "availability": "not-released",
             "scale": "8K prompts",
-            "notes": "Taxonomy-driven prompts paired with structured reward rubrics."
+            "notes": "Taxonomy-driven GPT-4.1 prompts paired with up to ten prompt-specific rubrics and one global structural-integrity rubric."
           }
         ],
         "stages": [
@@ -2280,8 +3902,7 @@
               "text"
             ],
             "source_types": [
-              "synthetic",
-              "human-feedback"
+              "synthetic"
             ],
             "operations": [
               "taxonomy-driven-prompting",
@@ -2313,7 +3934,8 @@
         ],
         "unknowns": [
           "Original media sources, rights, and filtering pipeline for Lens-800M.",
-          "Exact pretraining mixture, deduplication policy, and safety filters."
+          "Exact pretraining mixture, deduplication policy, and safety filters.",
+          "Dataset files and dataset-specific terms for Lens-RL-8K have not been released."
         ]
       },
       "evidence": {
@@ -2323,7 +3945,38 @@
       },
       "status": "verified",
       "last_verified": "2026-07-26",
-      "source_path": "models/image/lens.yaml"
+      "source_path": "models/image/lens.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "preference",
+          "distillation"
+        ],
+        "source_types": [
+          "undisclosed",
+          "synthetic"
+        ],
+        "operations": [
+          "dense-recaptioning",
+          "multi-resolution-batching",
+          "aspect-ratio-diversification",
+          "taxonomy-driven-prompting",
+          "rubric-based-rewarding",
+          "step-distillation"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 2,
+        "scale_disclosed_stage_count": 2,
+        "stage_count": 3,
+        "unknown_count": 3
+      },
+      "linked_dataset_ids": [
+        "lens-800m",
+        "lens-rl-8k"
+      ]
     },
     {
       "id": "lance",
@@ -2397,7 +4050,30 @@
       },
       "status": "verified",
       "last_verified": "2026-07-26",
-      "source_path": "models/multimodal/lance.yaml"
+      "source_path": "models/multimodal/lance.yaml",
+      "scenario_ids": [
+        "image-generation",
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [
+          "staged-multitask-training",
+          "adaptive-data-scheduling",
+          "capability-oriented-objectives"
+        ],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "linked_dataset_ids": []
     },
     {
       "id": "ernie-image",
@@ -2438,11 +4114,11 @@
           },
           {
             "name": "ERIA-1K",
-            "catalog_id": null,
+            "catalog_id": "eria-1k",
             "role": "evaluation",
-            "availability": "public",
+            "availability": "not-released",
             "scale": "1K professionally annotated images",
-            "notes": "Held-out aesthetic benchmark released with the ERNIE-Image-Aes resources."
+            "notes": "The report calls this benchmark open-source, but no downloadable data files or dataset terms were found in the official resources."
           }
         ],
         "stages": [
@@ -2523,7 +4199,8 @@
         ],
         "unknowns": [
           "Exact source datasets, total sample count, rights composition, and data mixture.",
-          "Deduplication, safety filtering, and per-stage sample counts."
+          "Deduplication, safety filtering, and per-stage sample counts.",
+          "Download location, source-image provenance, and dataset license for ERIA-1K."
         ]
       },
       "evidence": {
@@ -2533,7 +4210,418 @@
       },
       "status": "verified",
       "last_verified": "2026-07-26",
-      "source_path": "models/image/ernie-image.yaml"
+      "source_path": "models/image/ernie-image.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "preference",
+          "distillation"
+        ],
+        "source_types": [
+          "proprietary",
+          "synthetic",
+          "human-feedback"
+        ],
+        "operations": [
+          "fine-grained-categorization",
+          "vlm-recaptioning",
+          "aesthetic-scoring",
+          "hierarchical-sampling",
+          "resolution-curriculum",
+          "domain-curation",
+          "annotation-diversification",
+          "stabilized-dpo",
+          "aesthetic-alignment",
+          "multi-teacher-distillation"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 4,
+        "unknown_count": 3
+      },
+      "linked_dataset_ids": [
+        "eria-1k"
+      ]
+    },
+    {
+      "id": "fit-vto",
+      "name": "Fit-VTO",
+      "organization": "University of Washington and Google Research",
+      "released_at": "2026-04-09",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "virtual-try-on",
+        "fit-aware-generation",
+        "garment-conditioned-generation",
+        "identity-preserving-editing"
+      ],
+      "access": {
+        "status": "research-preview",
+        "license": "Model-specific checkpoint terms are not published",
+        "release_url": "https://johannakarras.github.io/FIT/",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Measurement-conditioned FLUX.1-dev MMDiT LoRA",
+        "parameters": null,
+        "notes": "Encodes person and lay-flat garment images separately, replaces text embeddings with body and garment measurements, and combines the conditions with noisy target latents."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "FLUX.1-dev inherited pretraining mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "Fit-VTO inherits the FLUX.1-dev visual prior, whose exact source corpus and mixture are not restated by this release."
+          },
+          {
+            "name": "Full FIT training collection",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "1,064,824 training triplets",
+            "notes": "The project describes the full synthetic training collection, but only the smaller preview is currently downloadable."
+          },
+          {
+            "name": "FIT-VTO-100K",
+            "catalog_id": "fit-vto-100k",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "100,000 training and 5,000 evaluation triplets",
+            "notes": "This public preview exposes the same person, garment, target, and measurement structure for partial reproduction and evaluation."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-foundation-model"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Reuse the pretrained FLUX.1-dev MMDiT and VAE visual prior; this release does not restate the foundation model's source corpus."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image"
+            ],
+            "source_types": [
+              "synthetic",
+              "public-dataset"
+            ],
+            "operations": [
+              "lora-fine-tuning",
+              "paired-person-conditioning",
+              "garment-conditioning",
+              "measurement-conditioning",
+              "vae-latent-encoding",
+              "channel-concatenation",
+              "sequence-concatenation",
+              "identity-preserving-training"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Fine-tune FLUX.1-dev with LoRA on FIT triplets, using separate person and garment latents plus explicit body and garment measurement embeddings to preserve identity while controlling fit."
+          }
+        ],
+        "strategy_summary": [
+          "Turn procedurally simulated, physics-draped garments into more than one million photorealistic supervised try-on triplets with exact body and garment measurements.",
+          "Preserve identity by pairing the same generated person across different garments, then condition the model on person, garment, and measurement signals separately.",
+          "Release a 105K preview and generation pipeline while leaving the full training collection and Fit-VTO checkpoint unavailable."
+        ],
+        "unknowns": [
+          "Exact FLUX.1-dev source corpus, rights composition, and inherited mixture weights.",
+          "Whether every reported Fit-VTO result uses the complete 1,064,824-row training split and the exact rejection rate after data quality filtering.",
+          "Fit-VTO checkpoint availability, model-specific license, training hyperparameters, and total compute."
+        ]
+      },
+      "evidence": {
+        "release": "https://johannakarras.github.io/FIT/",
+        "technical_report": "https://arxiv.org/abs/2604.08526",
+        "repository": "https://github.com/HarryWang355/FIT-VTO"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/image/fit-vto.yaml",
+      "scenario_ids": [
+        "virtual-try-on"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed",
+          "synthetic",
+          "public-dataset"
+        ],
+        "operations": [
+          "inherited-foundation-model",
+          "lora-fine-tuning",
+          "paired-person-conditioning",
+          "garment-conditioning",
+          "measurement-conditioning",
+          "vae-latent-encoding",
+          "channel-concatenation",
+          "sequence-concatenation",
+          "identity-preserving-training"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 3
+      },
+      "linked_dataset_ids": [
+        "fit-vto-100k"
+      ]
+    },
+    {
+      "id": "avatar-v",
+      "name": "Avatar V",
+      "organization": "HeyGen Research",
+      "released_at": "2026-04-08",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "audio-driven-avatar",
+        "reference-video-avatar",
+        "talking-head-generation",
+        "cross-scene-avatar-generation",
+        "multilingual-avatar-video"
+      ],
+      "access": {
+        "status": "product-only",
+        "license": "HeyGen Terms of Service",
+        "release_url": "https://www.heygen.com/research/avatar-v-model",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Flow-matching diffusion transformer with sparse reference attention",
+        "parameters": null,
+        "notes": "Conditions on full reference-video tokens plus driving audio to preserve static identity and dynamic talking style across long videos."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Avatar V general video pretraining corpus",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": "100M+ clips derived from 50M raw internet videos",
+            "notes": "HeyGen discloses scale and processing but not source identities, rights composition, or mixture weights."
+          },
+          {
+            "name": "Avatar V audio-to-video fine-tuning corpus",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "undisclosed",
+            "scale": "10M+ talking-head and portrait-animation clips",
+            "notes": "Clips carry avatar quality signals, audio-video annotations, and cross-scene identity links."
+          },
+          {
+            "name": "Avatar V human preference data",
+            "catalog_id": null,
+            "role": "preference",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "Human pairwise labels cover identity preservation, expression naturalness, audio-visual synchronization, motion, and visual quality."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "image",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-web",
+              "proprietary"
+            ],
+            "operations": [
+              "resolution-normalization",
+              "temporal-prefiltering",
+              "human-detection",
+              "optical-flow-analysis",
+              "visual-quality-scoring",
+              "smart-clipping",
+              "scene-cut-detection",
+              "vlm-content-filtering",
+              "semantic-categorization",
+              "embedding-deduplication",
+              "distribution-rebalancing",
+              "av-captioning",
+              "asr-transcription",
+              "speaker-diarization",
+              "lip-sync-scoring"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Transform 50M raw internet videos through a ten-stage curation cascade and thirteen feature-extraction stages into 100M+ deduplicated, labeled clips for joint text-to-video and image-to-video pretraining."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "image",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-web",
+              "proprietary",
+              "human-feedback"
+            ],
+            "operations": [
+              "avatar-quality-scoring",
+              "identity-connectivity-graph",
+              "cross-scene-pairing",
+              "demographic-balancing",
+              "attribute-annotation",
+              "bad-case-filtering",
+              "personality-supervised-fine-tuning"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Build 10M+ avatar-specific clips with ten quality signals, human annotations, and same-identity cross-scene pairs for audio-to-video adaptation and personality SFT."
+          },
+          {
+            "name": "distillation",
+            "modalities": [
+              "video",
+              "audio"
+            ],
+            "source_types": [
+              "synthetic"
+            ],
+            "operations": [
+              "cfg-distillation",
+              "distribution-matching-distillation"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Distill classifier-free guidance and then apply three-model distribution matching distillation to reduce inference cost."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "video",
+              "audio"
+            ],
+            "source_types": [
+              "human-feedback"
+            ],
+            "operations": [
+              "quality-scoring",
+              "pairwise-preference-labeling",
+              "direct-preference-optimization",
+              "group-relative-policy-optimization",
+              "kl-regularization"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Align identity fidelity, motion naturalness, lip synchronization, and visual quality with human preference pairs using DPO and GRPO."
+          }
+        ],
+        "strategy_summary": [
+          "Separate a broad 100M+ video pretraining pool from a 10M+ densely annotated avatar specialization corpus.",
+          "Link the same person across visually different clips so the model learns identity separately from scene, pose, and lighting.",
+          "Combine automated quality signals with calibrated human labels for filtering, reward modeling, and preference alignment.",
+          "Run the data engine continuously so sources and annotations can be reprocessed as curation models improve."
+        ],
+        "unknowns": [
+          "Exact raw-video sources, media rights, consent composition, geographic distribution, and mixture weights.",
+          "Exact counts for preference pairs, per-stage samples, rejected clips, and synthetic or licensed content shares.",
+          "Production-model availability, parameter count, and the mapping between the research model and public HeyGen APIs."
+        ]
+      },
+      "evidence": {
+        "release": "https://www.heygen.com/research/avatar-v-model",
+        "technical_report": "https://www.heygen.com/research/avatar-v-data",
+        "repository": null
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/video/avatar-v.yaml",
+      "scenario_ids": [
+        "digital-human"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "distillation",
+          "preference"
+        ],
+        "source_types": [
+          "public-web",
+          "proprietary",
+          "human-feedback",
+          "synthetic"
+        ],
+        "operations": [
+          "resolution-normalization",
+          "temporal-prefiltering",
+          "human-detection",
+          "optical-flow-analysis",
+          "visual-quality-scoring",
+          "smart-clipping",
+          "scene-cut-detection",
+          "vlm-content-filtering",
+          "semantic-categorization",
+          "embedding-deduplication",
+          "distribution-rebalancing",
+          "av-captioning",
+          "asr-transcription",
+          "speaker-diarization",
+          "lip-sync-scoring",
+          "avatar-quality-scoring",
+          "identity-connectivity-graph",
+          "cross-scene-pairing",
+          "demographic-balancing",
+          "attribute-annotation",
+          "bad-case-filtering",
+          "personality-supervised-fine-tuning",
+          "cfg-distillation",
+          "distribution-matching-distillation",
+          "quality-scoring",
+          "pairwise-preference-labeling",
+          "direct-preference-optimization",
+          "group-relative-policy-optimization",
+          "kl-regularization"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 2,
+        "stage_count": 4,
+        "unknown_count": 3
+      },
+      "linked_dataset_ids": []
     },
     {
       "id": "ltx-2-3",
@@ -2641,7 +4729,34 @@
       },
       "status": "verified",
       "last_verified": "2026-07-26",
-      "source_path": "models/multimodal/ltx-2-3.yaml"
+      "source_path": "models/multimodal/ltx-2-3.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "proprietary",
+          "synthetic"
+        ],
+        "operations": [
+          "audio-aware-filtering",
+          "multimodal-recaptioning",
+          "joint-audio-video-training",
+          "quality-filtering",
+          "portrait-data-training",
+          "vae-retraining"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 2
+      },
+      "linked_dataset_ids": []
     },
     {
       "id": "seedance-2-0",
@@ -2707,7 +4822,164 @@
       },
       "status": "watch",
       "last_verified": "2026-07-26",
-      "source_path": "models/video/seedance-2-0.yaml"
+      "source_path": "models/video/seedance-2-0.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "just-dub-it",
+      "name": "JUST-DUB-IT",
+      "organization": "Lightricks and Tel Aviv University",
+      "released_at": "2026-02-10",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "video-dubbing",
+        "audiovisual-translation",
+        "lip-sync",
+        "voice-preserving-video-localization"
+      ],
+      "access": {
+        "status": "gated-weights",
+        "license": "LTX-2 Community License Agreement",
+        "release_url": "https://justdubit.github.io/",
+        "weights_url": "https://huggingface.co/justdubit/justdubit",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "In-context LoRA adapter for an LTX-2 joint audio-video diffusion model",
+        "parameters": null,
+        "notes": "Conditions on source audio-video and jointly regenerates translated speech and synchronized facial motion."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "LTX-2 base-model training mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "The adapter inherits the foundation model prior; its exact base-model corpus and mixture are not restated by JUST-DUB-IT."
+          },
+          {
+            "name": "Audiovisual Translation Dubbing Dataset",
+            "catalog_id": "audiovisual-translation-dub",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "288 paired multilingual video records",
+            "notes": "Each record pairs a reference video with a dubbed target, structured caption, and optional face mask."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-foundation-model"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Reuse the pretrained LTX-2 joint audio-video generative prior without disclosing or modifying its exact source mixture in this release."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "synthetic"
+            ],
+            "operations": [
+              "language-switching-generation",
+              "counterfactual-inpainting",
+              "latent-aware-masking",
+              "structural-anchoring",
+              "isolated-cross-attention",
+              "lora-fine-tuning"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Generate same-speaker multilingual clips, inpaint face and audio halves into counterfactual pairs, then train a lightweight in-context LoRA on 288 released paired records."
+          }
+        ],
+        "strategy_summary": [
+          "Convert a scarce paired-dubbing problem into synthetic same-identity supervision with controlled language switches.",
+          "Regenerate audio and facial motion jointly instead of chaining translation, voice cloning, and lip-sync models.",
+          "Use source latents as structural anchors and latent-aware face masks to limit motion leakage outside the edited region."
+        ],
+        "unknowns": [
+          "Exact LTX-2 base corpus, rights composition, and mixture ratios inherited by the adapter.",
+          "Language distribution, prompt inventory, generator settings, and selection criteria for the 288 released pairs.",
+          "Whether the public training dataset is the complete fine-tuning set used for every released adapter version."
+        ]
+      },
+      "evidence": {
+        "release": "https://justdubit.github.io/",
+        "technical_report": "https://arxiv.org/abs/2601.22143",
+        "repository": "https://github.com/Lightricks/LTX-2"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/video/just-dub-it.yaml",
+      "scenario_ids": [
+        "digital-human",
+        "video-localization"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed",
+          "synthetic"
+        ],
+        "operations": [
+          "inherited-foundation-model",
+          "language-switching-generation",
+          "counterfactual-inpainting",
+          "latent-aware-masking",
+          "structural-anchoring",
+          "isolated-cross-attention",
+          "lora-fine-tuning"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 3
+      },
+      "linked_dataset_ids": [
+        "audiovisual-translation-dub"
+      ]
     },
     {
       "id": "omni2sound",
@@ -2896,7 +5168,46 @@
       },
       "status": "verified",
       "last_verified": "2026-07-26",
-      "source_path": "models/multimodal/omni2sound.yaml"
+      "source_path": "models/multimodal/omni2sound.yaml",
+      "scenario_ids": [],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "public-dataset",
+          "synthetic"
+        ],
+        "operations": [
+          "multi-dataset-pretraining",
+          "text-to-audio-training",
+          "multitask-interleaving",
+          "semantic-bridge-training",
+          "temporal-conditioning",
+          "off-screen-synthesis",
+          "text-dropout",
+          "robustness-training"
+        ],
+        "data_reference_count": 10,
+        "linked_dataset_count": 10,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 3,
+        "unknown_count": 4
+      },
+      "linked_dataset_ids": [
+        "audiocaps-2-0",
+        "wavcaps",
+        "clotho-2-1",
+        "audioset",
+        "vggsound",
+        "fsd50k",
+        "million-song-dataset",
+        "fma",
+        "soundatlas",
+        "vggsound-omni"
+      ]
     },
     {
       "id": "hunyuanvideo-1-5",
@@ -2980,7 +5291,162 @@
       },
       "status": "partial",
       "last_verified": "2026-07-26",
-      "source_path": "models/video/hunyuanvideo-1-5.yaml"
+      "source_path": "models/video/hunyuanvideo-1-5.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [
+          "data-curation",
+          "progressive-training",
+          "image-video-joint-training",
+          "progressive-post-training",
+          "bilingual-conditioning"
+        ],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 2
+      },
+      "linked_dataset_ids": []
+    }
+  ],
+  "relations": [
+    {
+      "model_id": "ernie-image",
+      "dataset_id": "eria-1k",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "1K professionally annotated images",
+      "reference_name": "ERIA-1K"
+    },
+    {
+      "model_id": "fit-vto",
+      "dataset_id": "fit-vto-100k",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "100,000 training and 5,000 evaluation triplets",
+      "reference_name": "FIT-VTO-100K"
+    },
+    {
+      "model_id": "graphvid",
+      "dataset_id": "graphvid-bench",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "approximately 27,500 videos",
+      "reference_name": "GraphVid-Bench"
+    },
+    {
+      "model_id": "just-dub-it",
+      "dataset_id": "audiovisual-translation-dub",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "288 paired multilingual video records",
+      "reference_name": "Audiovisual Translation Dubbing Dataset"
+    },
+    {
+      "model_id": "lens",
+      "dataset_id": "lens-800m",
+      "role": "pretraining",
+      "availability": "not-released",
+      "scale": "800M image-text pairs",
+      "reference_name": "Lens-800M"
+    },
+    {
+      "model_id": "lens",
+      "dataset_id": "lens-rl-8k",
+      "role": "preference",
+      "availability": "not-released",
+      "scale": "8K prompts",
+      "reference_name": "Lens-RL-8K"
+    },
+    {
+      "model_id": "omni2sound",
+      "dataset_id": "audiocaps-2-0",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": null,
+      "reference_name": "AudioCaps"
+    },
+    {
+      "model_id": "omni2sound",
+      "dataset_id": "audioset",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": null,
+      "reference_name": "AudioSet"
+    },
+    {
+      "model_id": "omni2sound",
+      "dataset_id": "clotho-2-1",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": null,
+      "reference_name": "Clotho"
+    },
+    {
+      "model_id": "omni2sound",
+      "dataset_id": "fma",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": null,
+      "reference_name": "FMA"
+    },
+    {
+      "model_id": "omni2sound",
+      "dataset_id": "fsd50k",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": null,
+      "reference_name": "FSD50K"
+    },
+    {
+      "model_id": "omni2sound",
+      "dataset_id": "million-song-dataset",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": null,
+      "reference_name": "Million Song Dataset"
+    },
+    {
+      "model_id": "omni2sound",
+      "dataset_id": "soundatlas",
+      "role": "fine-tuning",
+      "availability": "gated",
+      "scale": "Approximately 470K audio-caption pairs",
+      "reference_name": "SoundAtlas"
+    },
+    {
+      "model_id": "omni2sound",
+      "dataset_id": "vggsound",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": null,
+      "reference_name": "VGGSound"
+    },
+    {
+      "model_id": "omni2sound",
+      "dataset_id": "vggsound-omni",
+      "role": "evaluation",
+      "availability": "gated",
+      "scale": null,
+      "reference_name": "VGGSound-Omni"
+    },
+    {
+      "model_id": "omni2sound",
+      "dataset_id": "wavcaps",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": null,
+      "reference_name": "WavCaps"
     }
   ]
 }

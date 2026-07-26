@@ -23,13 +23,14 @@ The current scope covers:
 - current image, video, audio-video, unified multimodal, and physical-AI models;
 - the public, gated, internal, synthetic, and undisclosed data behind each model;
 - image, video, audio, 3D, and preference datasets;
+- scenario-first coverage for image/video generation, digital humans, video
+  localization, and virtual try-on;
 - data engineering: acquisition, validation, filtering, deduplication,
   recaptioning, sharding, and loading;
 - quality and governance: alignment, visual quality, motion, safety, privacy,
   provenance, licensing, and redistribution constraints.
 
-Digital-human coverage will expand as verified cards are added. Text-only LLM
-corpora are intentionally out of scope.
+Text-only LLM corpora are intentionally out of scope.
 
 ## Latest models and data strategies
 
@@ -42,14 +43,23 @@ model's capabilities or outputs.
 | Model | Organization | Modalities | Released | Access | Data disclosure | Named datasets | Status |
 |---|---|---|---|---|---|---|:---:|
 | [Midjourney V8.2](models/image/midjourney-v8-2.yaml) | Midjourney | image | 2026-07-24 | product only | high level | V8.2 personalization ratings and image-selection pool | 👀 |
+| [SANA-Video 2.0](models/video/sana-video-2-0.yaml) | NVIDIA | video | 2026-07-23 | research preview | partial | Curated in-house image and video training pool, Gemini-ranked generated video preference pairs | 👀 |
+| [GraphVid](models/video/graphvid.yaml) | University of Illinois Urbana-Champaign and Sony Research India | video | 2026-07-23 | announced | partial | LTX-Video base-model training mixture, [GraphVid-Bench](catalog/video/graphvid-bench.yaml) | 👀 |
 | [FLUX 3](models/multimodal/flux-3.yaml) | Black Forest Labs | image, video, audio, action | 2026-07-23 | early access | partial | General video training corpus, Human and robot manipulation video corpus, Robot action demonstrations | 👀 |
+| [Mage-Flow](models/image/mage-flow.yaml) | Microsoft Mage Team | image | 2026-07-21 | announced | partial | Mage-Flow curated image-text corpus, Mage-Flow-Edit training triples, Mage-Flow capability-routed RL prompt pools | 👀 |
 | [Muse Video](models/video/muse-video.yaml) | Meta Superintelligence Labs | video, audio | 2026-07-07 | announced | high level | not disclosed | 👀 |
 | [Muse Image](models/multimodal/muse-image.yaml) | Meta Superintelligence Labs | image | 2026-07-07 | product only | high level | not disclosed | 👀 |
-| [Lens](models/image/lens.yaml) | Microsoft Research | image | 2026-05-20 | open weights | partial | [Lens-800M](catalog/image/lens-800m.yaml), Lens-RL-8K | ✅ |
+| [Gemini Omni Flash](models/video/gemini-omni-flash.yaml) | Google DeepMind | video, audio | 2026-06-30 | api only | high level | Undisclosed multimodal training mixture | ✅ |
+| [Gemini 3.1 Flash-Lite Image](models/image/gemini-3-1-flash-lite-image.yaml) | Google DeepMind | image | 2026-06-30 | api only | high level | Gemini 3 family multimodal training mixture | ✅ |
+| [FLUX VTO](models/image/flux-vto.yaml) | Black Forest Labs | image | 2026-05-28 | api only | undisclosed | not disclosed | 👀 |
+| [Lens](models/image/lens.yaml) | Microsoft Research | image | 2026-05-20 | open weights | partial | [Lens-800M](catalog/image/lens-800m.yaml), [Lens-RL-8K](catalog/preference/lens-rl-8k.yaml) | ✅ |
 | [Lance](models/multimodal/lance.yaml) | ByteDance | image, video | 2026-05-18 | open weights | high level | not disclosed | ✅ |
-| [ERNIE-Image](models/image/ernie-image.yaml) | Baidu | image | 2026-04-15 | open weights | partial | Internal large-scale image pool, ERIA-1K | ✅ |
+| [ERNIE-Image](models/image/ernie-image.yaml) | Baidu | image | 2026-04-15 | open weights | partial | Internal large-scale image pool, [ERIA-1K](catalog/evaluation/eria-1k.yaml) | ✅ |
+| [Fit-VTO](models/image/fit-vto.yaml) | University of Washington and Google Research | image | 2026-04-09 | research preview | partial | FLUX.1-dev inherited pretraining mixture, Full FIT training collection, [FIT-VTO-100K](catalog/image/fit-vto-100k.yaml) | ✅ |
+| [Avatar V](models/video/avatar-v.yaml) | HeyGen Research | video, audio | 2026-04-08 | product only | partial | Avatar V general video pretraining corpus, Avatar V audio-to-video fine-tuning corpus, Avatar V human preference data | ✅ |
 | [LTX-2.3](models/multimodal/ltx-2-3.yaml) | Lightricks | video, audio | 2026-02-23 | open weights | partial | Audio-informative subset of the LTX-Video training corpus, Higher-quality VAE training subset | ✅ |
 | [Seedance 2.0](models/video/seedance-2-0.yaml) | ByteDance Seed | video, audio | 2026-02-12 | api only | undisclosed | not disclosed | 👀 |
+| [JUST-DUB-IT](models/video/just-dub-it.yaml) | Lightricks and Tel Aviv University | video, audio | 2026-02-10 | gated weights | partial | LTX-2 base-model training mixture, [Audiovisual Translation Dubbing Dataset](catalog/video/audiovisual-translation-dub.yaml) | ✅ |
 | [Omni2Sound](models/multimodal/omni2sound.yaml) | Tsinghua University, Monash University, and Shengshu AI | audio, video | 2026-01-06 | open weights | partial | [AudioCaps](catalog/audio/audiocaps-2-0.yaml), [WavCaps](catalog/audio/wavcaps.yaml), [Clotho](catalog/audio/clotho-2-1.yaml), [AudioSet](catalog/audio/audioset.yaml), [VGGSound](catalog/audio/vggsound.yaml), [FSD50K](catalog/audio/fsd50k.yaml), [Million Song Dataset](catalog/audio/million-song-dataset.yaml), [FMA](catalog/audio/fma.yaml), [SoundAtlas](catalog/audio/soundatlas.yaml), [VGGSound-Omni](catalog/evaluation/vggsound-omni.yaml) | ✅ |
 | [HunyuanVideo 1.5](models/video/hunyuanvideo-1-5.yaml) | Tencent Hunyuan | video | 2025-11-24 | open weights | high level | not disclosed | 🟡 |
 <!-- END MODEL CATALOG -->
@@ -67,7 +77,13 @@ generated table.
 <!-- BEGIN DATASET CATALOG -->
 | Dataset | Organization | Modality | Released | Tasks | Scale | Access | Commercial use | Status |
 |---|---|---|---|---|---:|---|---|:---:|
+| [GraphVid-Bench](catalog/video/graphvid-bench.yaml) | University of Illinois Urbana-Champaign and Sony Research India | video | 2026-07-23 | graph conditioned video generation, image to video, object interaction generation, video generation evaluation | ~27.5K | unavailable | unknown | 🟡 |
+| [GenSyn10](catalog/evaluation/gensyn10.yaml) | University of Western Australia | evaluation | 2026-07-10 | synthetic image detection, image classification, out of distribution evaluation | 60K | unavailable | review required | 🟡 |
+| [ERIA-1K](catalog/evaluation/eria-1k.yaml) | Baidu | evaluation | 2026-05-25 | image aesthetic assessment, aesthetic model evaluation | 1K | unavailable | unknown | 🟡 |
+| [Lens-RL-8K](catalog/preference/lens-rl-8k.yaml) | Microsoft Research | preference | 2026-05-20 | text to image reinforcement learning, rubric based reward modeling | ~8K | unavailable | unknown | 🟡 |
 | [Lens-800M](catalog/image/lens-800m.yaml) | Microsoft Research | image | 2026-05-20 | text to image, image text pretraining | 800M | unavailable | unknown | 🟡 |
+| [FIT-VTO-100K](catalog/image/fit-vto-100k.yaml) | University of Washington and Google Research | image | 2026-05-08 | virtual try on, fit aware generation, garment conditioned generation, virtual try on evaluation | 105K | open | noncommercial | ✅ |
+| [Audiovisual Translation Dubbing Dataset](catalog/video/audiovisual-translation-dub.yaml) | Lightricks and Tel Aviv University | video | 2026-02-08 | video dubbing, audiovisual translation, lip sync training | 288 | open | noncommercial | ✅ |
 | [VGGSound-Omni](catalog/evaluation/vggsound-omni.yaml) | Tsinghua University, Monash University, and Shengshu AI | evaluation | 2026-01-06 | text to audio evaluation, video to audio evaluation, video text to audio evaluation, off screen audio evaluation | ~14K | gated | noncommercial | ✅ |
 | [SoundAtlas](catalog/audio/soundatlas.yaml) | Tsinghua University, Monash University, and Shengshu AI | audio | 2026-01-06 | text to audio, video to audio, video text to audio, audio captioning | ~470K | gated | noncommercial | ✅ |
 | [AudioCaps 2.0](catalog/audio/audiocaps-2-0.yaml) | Seoul National University | audio | 2025-02-24 | audio captioning, text to audio, audio language pretraining, text to audio evaluation | 98.6K | gated | noncommercial | 🟡 |
@@ -101,6 +117,7 @@ material unknowns; 🗄️ archived or unavailable from the original distributor
 |---|---|---|
 | Catalog | Machine-readable dataset cards | What data exists and is it accessible? |
 | Models | Model cards linked to datasets and training stages | What data strategy produced each model? |
+| Scenarios | Task-derived application taxonomy shared by the generated site | Which models and datasets support a concrete workflow? |
 | Recipes | Reproducible processing blueprints | How does raw media become training data? |
 | Quality | Metrics, filters, and audit guidance | Is the data good enough? |
 | Governance | License, privacy, safety, and provenance | May the data be used or redistributed? |
@@ -148,6 +165,32 @@ the evidence and freshness policy. `make freshness` fails when a `watch` model
 has not been rechecked for 14 days, another model for 45 days, or a dataset for
 90 days.
 
+The weekly discovery workflow compares image/video-related links from those
+watched sources with a reviewed baseline. Its application tracks include
+digital humans, talking avatars, video translation and dubbing, lip sync,
+virtual try-on, and commerce-oriented conditional generation. It opens or
+updates one GitHub Issue when it finds new candidates, source failures, or an
+important dataset revision. For selected Hugging Face datasets it records both
+`lastModified` and the repository commit SHA, so a changed release is surfaced
+even when its URL stays the same. It closes the Issue when the queue is clear.
+This is triage rather than automatic fact generation: a card, license
+conclusion, or `last_verified` date changes only through a reviewed PR.
+
+The application taxonomy in [sources/scenarios.yaml](sources/scenarios.yaml)
+maps card tasks to stable scenario IDs. The generated site uses those IDs for
+the same filters across model, dataset, and data-strategy views. Each generated
+model record also includes a source-bound `strategy_profile` derived directly
+from its stages, source types, data references, scale disclosures, and recorded
+unknowns. Selecting one scenario in the strategy view exposes those fields in a
+cross-model matrix without adding an inferred score.
+
+Model-to-dataset relationships have one canonical source: a model data
+reference with a non-null `catalog_id`. Site generation converts those reviewed
+references into a relation index plus model and dataset backlinks, so users can
+navigate in either direction without maintaining two editable copies. A
+dataset card's `evidence.used_by` remains an upstream claim and is never
+silently promoted to a canonical relationship.
+
 The latest evidence review is recorded in
 [updates/2026-07-26.md](updates/2026-07-26.md), including accepted releases,
 scope decisions, and disclosures that remain unknown.
@@ -161,7 +204,7 @@ checking the primary source.
 - **v0.2:** living model/data-strategy tracker, freshness monitoring, and executable manifest audits;
 - **v0.3:** searchable model, dataset, and data-strategy site generated from the same YAML cards;
 - **v0.4:** audio and 3D dataset coverage plus richer model-to-dataset lineage;
-- **v0.5:** digital-human coverage and reproducible cross-model data-strategy comparisons;
+- **v0.5:** digital-human, video-localization, and virtual-try-on coverage plus reproducible cross-model data-strategy comparisons;
 - **later:** organization-specific adapters and pipeline benchmarks on shared snapshots.
 
 ## License

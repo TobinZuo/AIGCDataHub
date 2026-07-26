@@ -28,11 +28,11 @@ data:
       scale: 800M image-text pairs
       notes: Dense GPT-4.1 captions average approximately 109 words.
     - name: Lens-RL-8K
-      catalog_id: null
+      catalog_id: lens-rl-8k
       role: preference
       availability: not-released
       scale: 8K prompts
-      notes: Taxonomy-driven prompts paired with structured reward rubrics.
+      notes: Taxonomy-driven GPT-4.1 prompts paired with up to ten prompt-specific rubrics and one global structural-integrity rubric.
   stages:
     - name: pretraining
       modalities:
@@ -53,7 +53,6 @@ data:
         - text
       source_types:
         - synthetic
-        - human-feedback
       operations:
         - taxonomy-driven-prompting
         - rubric-based-rewarding
@@ -76,10 +75,10 @@ data:
   unknowns:
     - Original media sources, rights, and filtering pipeline for Lens-800M.
     - Exact pretraining mixture, deduplication policy, and safety filters.
+    - Dataset files and dataset-specific terms for Lens-RL-8K have not been released.
 evidence:
   release: https://www.microsoft.com/en-us/research/publication/lens-rethinking-training-efficiency-for-foundational-text-to-image-models/
   technical_report: https://arxiv.org/abs/2605.21573
   repository: https://huggingface.co/microsoft/Lens
 status: verified
 last_verified: "2026-07-26"
-

@@ -1,0 +1,68 @@
+id: audiovisual-translation-dub
+name: Audiovisual Translation Dubbing Dataset
+organization: Lightricks and Tel Aviv University
+released_at: "2026-02-08"
+release_date_source: https://huggingface.co/api/datasets/justdubit/audiovisual_translation_dub
+modality: video
+tasks:
+  - video-dubbing
+  - audiovisual-translation
+  - lip-sync-training
+stages:
+  - fine-tuning
+description: >-
+  A released 288-record paired video collection for training synchronized
+  audiovisual dubbing adapters, with source references, dubbed targets,
+  multilingual structured captions, and optional facial masks.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/justdubit/audiovisual_translation_dub
+  requires_account: false
+  notes: The public repository is approximately 537 MB and exposes one 288-row training split.
+scale:
+  samples: 288
+  source_items: 576
+  hours: null
+  approximate: false
+  notes: Each logical record pairs one reference video with one target dubbed video; optional face masks are additional assets.
+annotations:
+  types:
+    - reference-video
+    - dubbed-target-video
+    - face-segmentation-mask
+    - speaker-description
+    - language-label
+    - dialogue-caption
+  source: model-generated
+  languages:
+    - en
+    - multilingual
+license:
+  metadata: CC-BY-NC-4.0
+  media: CC-BY-NC-4.0 per the official dataset card
+  commercial_use: noncommercial
+  redistribution: allowed
+  notes: Attribution and non-commercial restrictions apply; downstream users must also review the LTX-2 model terms used to generate and train on the media.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - The 288-record scale is small relative to the diversity of speakers, languages, accents, poses, and production conditions in real localization workloads.
+    - Face segmentation masks are optional, so mask coverage is not uniform across all records.
+    - The public card does not enumerate per-language counts or the complete prompt and rejection distribution.
+processing:
+  recipe: Generate multilingual clips with language switches, use counterfactual face-and-audio inpainting to form same-speaker pairs, and compute latent-aware face masks for localized training losses.
+  recommended_format: native
+  notes: Preserve the target-reference pairing, structured caption, language, dialogue, and optional mask path for every record.
+evidence:
+  homepage: https://huggingface.co/datasets/justdubit/audiovisual_translation_dub
+  paper: https://arxiv.org/abs/2601.22143
+  used_by:
+    - JUST-DUB-IT
+status: verified
+last_verified: "2026-07-26"

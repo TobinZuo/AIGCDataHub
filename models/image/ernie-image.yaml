@@ -29,11 +29,11 @@ data:
       scale: large-scale, exact count undisclosed
       notes: Authors disclose the processing strategy but not source datasets or media terms.
     - name: ERIA-1K
-      catalog_id: null
+      catalog_id: eria-1k
       role: evaluation
-      availability: public
+      availability: not-released
       scale: 1K professionally annotated images
-      notes: Held-out aesthetic benchmark released with the ERNIE-Image-Aes resources.
+      notes: The report calls this benchmark open-source, but no downloadable data files or dataset terms were found in the official resources.
   stages:
     - name: pretraining
       modalities:
@@ -91,10 +91,10 @@ data:
   unknowns:
     - Exact source datasets, total sample count, rights composition, and data mixture.
     - Deduplication, safety filtering, and per-stage sample counts.
+    - Download location, source-image provenance, and dataset license for ERIA-1K.
 evidence:
   release: https://github.com/baidu/ERNIE-Image
   technical_report: https://arxiv.org/abs/2605.25347
   repository: https://github.com/baidu/ERNIE-Image
 status: verified
 last_verified: "2026-07-26"
-
