@@ -11,7 +11,10 @@ as an exhaustive list.
    `sources/discovery-state.json`; it prioritizes image and video generation.
    It also compares stable revisions for selected important datasets. A changed
    Hugging Face `lastModified` or repository commit SHA requires reviewing
-   access, files, scale, terms, and the affected model relationships.
+   access, files, scale, terms, and the affected model relationships. Review
+   `priority`, `catalog_id`, and `impacted_model_ids` first: these fields are
+   joined from the monitored dataset to canonical model-side `catalog_id`
+   references and define the immediate blast radius.
    The scenario layer explicitly covers digital humans, talking avatars, video
    translation/dubbing, lip sync, virtual try-on, and commerce creatives.
    Search beyond the generated candidates when an official organization uses a
@@ -44,6 +47,12 @@ as an exhaustive list.
    `make discovery-accept` and include the reviewed baseline change in the same
    PR. This prevents reviewed links from reappearing without treating them as
    accepted catalog facts.
+
+When adding an important dataset revision probe, use an object in the
+`important-dataset-updates` track with an official HTTPS API `url`, an existing
+dataset `catalog_id`, and `priority: critical|high|standard`. Do not monitor a
+dataset by URL alone: the canonical ID is what connects a revision to the site
+card and its affected models.
 
 ## Automation boundary
 

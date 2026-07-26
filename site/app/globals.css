@@ -438,7 +438,7 @@ input:focus-visible {
 
 .mode-tabs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
 }
@@ -969,6 +969,11 @@ input:focus-visible {
   color: var(--green);
 }
 
+.tag-monitor {
+  border-color: var(--signal);
+  color: var(--signal);
+}
+
 .relation-panel {
   background: #f1f6e8;
 }
@@ -1009,6 +1014,178 @@ input:focus-visible {
   padding: 2px 4px;
   background: rgba(255, 255, 255, 0.7);
   font-size: 9px;
+}
+
+.lineage-overview {
+  border-bottom: 1px solid var(--ink);
+}
+
+.lineage-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.7fr);
+  align-items: end;
+  gap: 42px;
+  padding: 34px;
+  border-bottom: 1px solid var(--ink);
+  background: color-mix(in srgb, var(--paper-deep) 58%, transparent);
+}
+
+.lineage-summary h3 {
+  max-width: 760px;
+  margin: 0;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: clamp(27px, 3vw, 42px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.lineage-summary > div > p:last-child {
+  max-width: 760px;
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.lineage-summary code {
+  padding: 2px 5px;
+  background: var(--white);
+  color: var(--signal);
+  font-size: 9px;
+}
+
+.lineage-summary dl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin: 0;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+}
+
+.lineage-summary dl > div {
+  min-height: 92px;
+  padding: 13px;
+  background: var(--white);
+}
+
+.lineage-summary dt {
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.lineage-summary dd {
+  margin: 18px 0 0;
+  font-family: Georgia, serif;
+  font-size: 30px;
+}
+
+.lineage-grid {
+  display: grid;
+  gap: 1px;
+  background: var(--line-dark);
+}
+
+.lineage-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px minmax(0, 1fr);
+  min-height: 142px;
+  background: var(--white);
+}
+
+.lineage-entity {
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-content: center;
+  gap: 6px 14px;
+  padding: 24px 28px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.lineage-entity:hover,
+.lineage-entity:focus-visible {
+  z-index: 1;
+  background: var(--acid);
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+}
+
+.lineage-entity > span {
+  grid-row: 1 / 3;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid var(--ink);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+}
+
+.lineage-dataset > span {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.lineage-entity strong {
+  overflow-wrap: anywhere;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.lineage-entity small {
+  grid-column: 2;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+.lineage-edge {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px;
+  border-right: 1px solid var(--line-dark);
+  border-left: 1px solid var(--line-dark);
+  background: var(--paper-deep);
+  text-align: center;
+}
+
+.lineage-edge::after {
+  content: "→";
+  position: absolute;
+  right: -8px;
+  display: grid;
+  width: 16px;
+  height: 16px;
+  place-items: center;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 9px;
+}
+
+.lineage-edge strong {
+  color: var(--signal);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.lineage-edge span,
+.lineage-edge small {
+  color: var(--muted);
+  font-size: 8px;
+  line-height: 1.4;
 }
 
 .linked-note {
@@ -1666,6 +1843,30 @@ input:focus-visible {
 
   .mode-tabs small {
     display: none;
+  }
+
+  .lineage-summary {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px 4px;
+  }
+
+  .lineage-row {
+    grid-template-columns: 1fr;
+  }
+
+  .lineage-edge {
+    min-height: 88px;
+    border-top: 1px solid var(--line-dark);
+    border-right: 0;
+    border-bottom: 1px solid var(--line-dark);
+    border-left: 0;
+  }
+
+  .lineage-edge::after {
+    right: 50%;
+    bottom: -8px;
+    transform: translateX(50%) rotate(90deg);
   }
 
   .scenario-rail {

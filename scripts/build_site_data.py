@@ -18,6 +18,7 @@ from models import load_models
 
 OUTPUT_PATH = ROOT / "site" / "app" / "catalog-data.json"
 SCENARIO_PATH = ROOT / "sources" / "scenarios.yaml"
+WATCHLIST_PATH = ROOT / "sources" / "watchlist.yaml"
 KEBAB_CASE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 
@@ -58,6 +59,35 @@ def scenario_ids(tasks: list[str], scenarios: list[dict[str, Any]]) -> list[str]
     return [scenario["id"] for scenario in scenarios if task_set.intersection(scenario["tasks"])]
 
 
+def load_dataset_monitors() -> dict[str, dict[str, str]]:
+    payload = yaml.safe_load(WATCHLIST_PATH.read_text(encoding="utf-8"))
+    tracks = payload.get("tracks", []) if isinstance(payload, dict) else []
+    track = next(
+        (item for item in tracks if isinstance(item, dict) and item.get("id") == "important-dataset-updates"),
+        None,
+    )
+    if track is None:
+        raise ValueError("sources/watchlist.yaml must define important-dataset-updates")
+
+    monitors: dict[str, dict[str, str]] = {}
+    for source in track.get("official_sources", []):
+        if not isinstance(source, dict):
+            raise ValueError("important dataset watch sources must include url, catalog_id, and priority")
+        source_url = source.get("url")
+        catalog_id = source.get("catalog_id")
+        priority = source.get("priority")
+        if not all(isinstance(value, str) and value for value in (source_url, catalog_id, priority)):
+            raise ValueError("important dataset watch sources require non-empty metadata")
+        if not source_url.startswith("https://"):
+            raise ValueError(f"dataset monitor requires an HTTPS url: {source_url!r}")
+        if priority not in {"critical", "high", "standard"}:
+            raise ValueError(f"dataset monitor has invalid priority: {priority!r}")
+        if catalog_id in monitors:
+            raise ValueError(f"duplicate dataset monitor catalog_id: {catalog_id!r}")
+        monitors[catalog_id] = {"priority": priority, "source_url": source_url}
+    return monitors
+
+
 def strategy_profile(card: dict[str, Any]) -> dict[str, Any]:
     """Derive comparison fields without interpreting undisclosed evidence."""
     stages = card["data"]["stages"]
@@ -93,6 +123,7 @@ def strategy_profile(card: dict[str, Any]) -> dict[str, Any]:
 
 def build_payload() -> dict[str, Any]:
     scenarios = load_scenarios()
+    monitors = load_dataset_monitors()
     datasets = []
     for path, card in load_cards():
         item = dict(card)
@@ -101,7 +132,12 @@ def build_payload() -> dict[str, Any]:
         item["scale_label"] = compact_number(
             card["scale"].get("samples"), card["scale"].get("approximate", False)
         )
+        item["monitoring"] = monitors.get(card["id"])
         datasets.append(item)
+
+    unknown_monitors = set(monitors) - {item["id"] for item in datasets}
+    if unknown_monitors:
+        raise ValueError(f"dataset monitors reference unknown catalog ids: {sorted(unknown_monitors)}")
 
     models = []
     for path, card in load_models():
@@ -149,8 +185,13 @@ def build_payload() -> dict[str, Any]:
     verified_dates = [item["last_verified"] for item in [*datasets, *models]]
 
     return {
-        "format_version": 5,
-        "generated_from": ["catalog/**/*.yaml", "models/**/*.yaml", "sources/scenarios.yaml"],
+        "format_version": 6,
+        "generated_from": [
+            "catalog/**/*.yaml",
+            "models/**/*.yaml",
+            "sources/scenarios.yaml",
+            "sources/watchlist.yaml",
+        ],
         "last_verified": max(verified_dates),
         "scenarios": [
             {key: value for key, value in scenario.items() if key != "tasks"}

@@ -30,6 +30,8 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /Try-On/);
   assert.match(html, /10\/10/);
   assert.match(html, /模型—数据关系/);
+  assert.match(html, /模型 ↔ 数据/);
+  assert.ok(html.includes('monitoring\\":{\\"priority\\":\\"critical'));
   assert.match(html, /\/AIGCDataHub\/_next\/static\//);
   assert.match(html, /https:\/\/tobinzuo\.github\.io\/AIGCDataHub\/og\.png/);
 
