@@ -9,6 +9,7 @@ import hashlib
 import json
 import os
 import re
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -153,6 +154,7 @@ IGNORED_PATH_PARTS = (
     "/tags",
     "/tree/",
     "/blob/",
+    "/bibtex",
     "/watchers",
 )
 IGNORED_EXTENSIONS = (
@@ -173,6 +175,8 @@ IGNORED_EXTENSIONS = (
     ".tar",
     ".gz",
 )
+TRANSIENT_HTTP_CODES = {408, 425, 429, 500, 502, 503, 504}
+RETRY_DELAYS = (0.5, 1.5, 4.0)
 
 
 @dataclass(frozen=True)
@@ -423,8 +427,21 @@ def normalize_url(value: str, base_url: str | None = None) -> str | None:
 
 def is_relevant_candidate(title: str, url: str) -> bool:
     lowered_url = url.lower()
-    path = urllib.parse.urlsplit(lowered_url).path
+    parsed = urllib.parse.urlsplit(lowered_url)
+    path = parsed.path
     if any(part in path for part in IGNORED_PATH_PARTS) or path.endswith(IGNORED_EXTENSIONS):
+        return False
+    social_share_paths = {
+        "facebook.com": ("/sharer",),
+        "www.facebook.com": ("/sharer",),
+        "linkedin.com": ("/sharearticle",),
+        "www.linkedin.com": ("/sharearticle",),
+        "reddit.com": ("/submit",),
+        "www.reddit.com": ("/submit",),
+        "x.com": ("/intent/",),
+        "twitter.com": ("/intent/",),
+    }
+    if any(path.startswith(prefix) for prefix in social_share_paths.get(parsed.hostname or "", ())):
         return False
     blob = f"{title} {urllib.parse.unquote(lowered_url)}".lower()
     if any(name in blob for name in STRONG_MEDIA_NAMES):
@@ -475,6 +492,22 @@ def extract_source_revision(payload: str, source_url: str) -> tuple[str | None, 
             return None, None
         revision = sha if not isinstance(committed_at, str) or not committed_at else f"{committed_at}@{sha}"
         return revision, html_url if isinstance(html_url, str) else None
+
+    if parsed_url.hostname in {"zenodo.org", "www.zenodo.org"} and re.fullmatch(
+        r"/api/records/\d+", parsed_url.path
+    ):
+        modified = metadata.get("modified")
+        record_revision = metadata.get("revision")
+        links = metadata.get("links")
+        html_url = links.get("html") if isinstance(links, dict) else None
+        doi_url = metadata.get("doi_url")
+        if not isinstance(modified, str) or not modified:
+            return None, None
+        revision = modified
+        if isinstance(record_revision, (int, str)) and str(record_revision):
+            revision = f"{modified}@revision-{record_revision}"
+        stable_url = html_url if isinstance(html_url, str) else doi_url if isinstance(doi_url, str) else None
+        return revision, stable_url
 
     return None, None
 
@@ -738,7 +771,7 @@ def extract_arena_ranking_entries(payload: str, limit: int = 15) -> tuple[Rankin
     return tuple(sorted(entries, key=lambda item: item.rank)[:limit])
 
 
-def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> SourceSnapshot:
+def _fetch_source_once(source: WatchSource, timeout: float, max_bytes: int) -> SourceSnapshot:
     track_id = source.track_id
     source_url = source.source_url
     headers = {
@@ -891,6 +924,35 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
         platform_id=source.platform_id,
         revision_mode=source.revision_mode,
     )
+
+
+def _is_transient_fetch_error(error: str | None) -> bool:
+    if not error:
+        return False
+    if error == "timeout" or error.startswith("network-"):
+        return True
+    if error.startswith("HTTP "):
+        try:
+            return int(error.removeprefix("HTTP ")) in TRANSIENT_HTTP_CODES
+        except ValueError:
+            return False
+    return False
+
+
+def _fetch_source(
+    source: WatchSource,
+    timeout: float,
+    max_bytes: int,
+    retry_delays: tuple[float, ...] = RETRY_DELAYS,
+) -> SourceSnapshot:
+    """Fetch one source and retry only transport or retryable HTTP failures."""
+    snapshot = _fetch_source_once(source, timeout, max_bytes)
+    for delay in retry_delays:
+        if not _is_transient_fetch_error(snapshot.error):
+            break
+        time.sleep(delay)
+        snapshot = _fetch_source_once(source, timeout, max_bytes)
+    return snapshot
 
 
 def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
@@ -1503,10 +1565,28 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--json-out", type=Path, required=True)
     parser.add_argument("--markdown-out", type=Path, required=True)
     parser.add_argument("--accept-current", action="store_true")
+    parser.add_argument(
+        "--allow-failures",
+        action="store_true",
+        help="Allow --accept-current to store source failures in the reviewed baseline.",
+    )
     parser.add_argument("--timeout", type=float, default=20)
     parser.add_argument("--max-bytes", type=int, default=4_000_000)
     parser.add_argument("--workers", type=int, default=8)
     return parser.parse_args()
+
+
+def ensure_acceptable_baseline(
+    snapshots: tuple[SourceSnapshot, ...], allow_failures: bool = False
+) -> None:
+    """Fail closed so a transient outage cannot become an invisible baseline."""
+    failures = [snapshot for snapshot in snapshots if snapshot.error]
+    if failures and not allow_failures:
+        examples = ", ".join(snapshot.source_url for snapshot in failures[:3])
+        raise SystemExit(
+            f"refusing to accept baseline with {len(failures)} source failure(s): {examples}; "
+            "rerun after recovery or pass --allow-failures explicitly"
+        )
 
 
 def main() -> int:
@@ -1519,6 +1599,7 @@ def main() -> int:
     current_state = snapshot_payload(snapshots, generated_at)
 
     if args.accept_current:
+        ensure_acceptable_baseline(snapshots, args.allow_failures)
         args.state.parent.mkdir(parents=True, exist_ok=True)
         args.state.write_text(json.dumps(current_state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         baseline = current_state

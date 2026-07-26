@@ -33,7 +33,7 @@ jobs:
           --json-out ${{ runner.temp }}/discovery.json
           --markdown-out ${{ runner.temp }}/discovery.md
           --timeout 20
-          --workers 8
+          --workers 4
       - name: Maintain the discovery review issue
         env:
           GITHUB_TOKEN: ${{ github.token }}

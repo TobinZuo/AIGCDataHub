@@ -292,6 +292,15 @@ revision probe declares either a dataset `catalog_id` or model `model_id` plus a
 monitoring priority. Dataset changes propagate through derived datasets into
 affected models; model changes list the model's directly linked catalog
 datasets. It closes the Issue when the queue is clear.
+Refreshing the reviewed baseline fails closed when any watched source is
+unreachable, so a transient outage cannot be accepted as the new normal. An
+explicit `--allow-failures` override exists only for reviewed, intentional
+exceptions.
+Fifty of the 51 cataloged datasets now have an independent revision probe. The
+only exception is Flickr 5B metadata: its current Hugging Face repository
+requires authentication, so the catalog preserves the access boundary instead
+of reporting an unauthenticated failure as a working monitor. Every other
+dataset referenced by a model has a dedicated official probe.
 Ranking entries that do not yet resolve to a verified model card also keep the
 Issue open, so newly ranked closed or open models cannot disappear between
 weekly scans. Arena snapshots use its official Hugging Face leaderboard dataset

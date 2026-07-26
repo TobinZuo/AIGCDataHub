@@ -23,6 +23,7 @@ from discover_updates import (
     extract_huggingface_dataset_candidates,
     extract_ranking_entries,
     extract_source_revision,
+    ensure_acceptable_baseline,
     load_watchlist,
     model_impact_index,
     model_ranking_aliases,
@@ -57,7 +58,7 @@ class DiscoveryTests(unittest.TestCase):
                 "discover_updates.urllib.request.urlopen", return_value=ResettingResponse()
             ) as urlopen,
         ):
-            snapshot = _fetch_source(source, timeout=1, max_bytes=1024)
+            snapshot = _fetch_source(source, timeout=1, max_bytes=1024, retry_delays=())
 
         self.assertEqual(snapshot.error, "network-ConnectionResetError")
         self.assertEqual(snapshot.model_id, "example-model")
@@ -65,6 +66,47 @@ class DiscoveryTests(unittest.TestCase):
         request = urlopen.call_args.args[0]
         self.assertEqual(request.get_header("Authorization"), "Bearer test-token")
         self.assertEqual(request.get_header("X-github-api-version"), "2022-11-28")
+
+    def test_fetch_source_retries_transient_network_errors(self) -> None:
+        class Headers:
+            @staticmethod
+            def get_content_charset():
+                return "utf-8"
+
+        class SuccessfulResponse:
+            status = 200
+            url = "https://huggingface.co/api/datasets/example/retry-set"
+            headers = Headers()
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+            @staticmethod
+            def read(_max_bytes):
+                return b'{"id":"example/retry-set","sha":"abc123","lastModified":"2026-07-27T00:00:00Z"}'
+
+        source = WatchSource(
+            "important-dataset-updates",
+            "https://huggingface.co/api/datasets/example/retry-set",
+            catalog_id="retry-set",
+            priority="critical",
+        )
+        with (
+            patch(
+                "discover_updates.urllib.request.urlopen",
+                side_effect=[urllib.error.URLError(ConnectionResetError()), SuccessfulResponse()],
+            ) as urlopen,
+            patch("discover_updates.time.sleep") as sleep,
+        ):
+            snapshot = _fetch_source(source, timeout=1, max_bytes=1024, retry_delays=(0.25,))
+
+        self.assertIsNone(snapshot.error)
+        self.assertEqual(snapshot.revision, "2026-07-27T00:00:00Z@abc123")
+        self.assertEqual(urlopen.call_count, 2)
+        sleep.assert_called_once_with(0.25)
 
     def test_content_revision_is_stable_and_change_sensitive(self) -> None:
         self.assertEqual(content_revision(b"official page"), content_revision(b"official page"))
@@ -230,6 +272,30 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(revision, "2026-07-25T10:00:00Z@abc123")
         self.assertEqual(url, "https://github.com/org/repo/commit/abc123")
 
+    def test_extracts_stable_zenodo_record_revision(self) -> None:
+        revision, url = extract_source_revision(
+            '{"modified":"2021-07-15T18:37:40.856524+00:00","revision":3,'
+            '"links":{"html":"https://zenodo.org/records/4783391"}}',
+            "https://zenodo.org/api/records/4783391",
+        )
+        self.assertEqual(revision, "2021-07-15T18:37:40.856524+00:00@revision-3")
+        self.assertEqual(url, "https://zenodo.org/records/4783391")
+
+    def test_accept_current_rejects_failureful_baseline_by_default(self) -> None:
+        snapshots = (
+            SourceSnapshot(
+                "datasets",
+                "https://example.com/dataset",
+                None,
+                None,
+                (),
+                "network-ConnectionResetError",
+            ),
+        )
+        with self.assertRaisesRegex(SystemExit, "refusing to accept baseline with 1 source failure"):
+            ensure_acceptable_baseline(snapshots)
+        ensure_acceptable_baseline(snapshots, allow_failures=True)
+
     def test_extracts_relevant_sitemap_locations(self) -> None:
         xml = """
         <urlset>
@@ -270,13 +336,23 @@ class DiscoveryTests(unittest.TestCase):
             (Candidate("Dataset", "https://huggingface.co/datasets/example/paired-clips"),),
         )
 
+    def test_social_share_and_bibtex_links_are_not_candidates(self) -> None:
+        html = """
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://example.com/text-to-image">Share on Facebook</a>
+        <a href="https://www.linkedin.com/shareArticle?url=https://example.com/text-to-image">Share on LinkedIn</a>
+        <a href="https://www.reddit.com/submit?url=https://example.com/text-to-image">Share on Reddit</a>
+        <a href="https://x.com/intent/tweet?url=https://example.com/text-to-image">Share on X</a>
+        <a href="/research/text-to-image/bibtex">Download BibTex</a>
+        """
+        self.assertEqual(extract_candidate_links(html, "https://example.com/research/text-to-image"), ())
+
     def test_watchlist_includes_requested_application_tracks(self) -> None:
         _, sources = load_watchlist(Path("sources/watchlist.yaml"))
         track_ids = {source.track_id for source in sources}
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            31,
+            50,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
@@ -299,7 +375,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 10)
-        self.assertEqual(len(sources), 163)
+        self.assertEqual(len(sources), 182)
         self.assertEqual(
             {source.ranking_id for source in sources if source.ranking_id},
             {
@@ -345,6 +421,13 @@ class DiscoveryTests(unittest.TestCase):
                 "https://huggingface.co/api/models/fashn-ai/fashn-vton-1.5",
                 "https://huggingface.co/api/datasets/amphion/Emilia-Dataset",
                 "https://projects.csail.mit.edu/soundnet/",
+                "https://arxiv.org/abs/2607.21580",
+                "https://export.arxiv.org/api/query?id_list=2607.16283",
+                "https://huggingface.co/api/models/baidu/ERNIE-Image-Aes",
+                "https://www.microsoft.com/en-us/research/publication/lens-rethinking-training-efficiency-for-foundational-text-to-image-models/",
+                "https://api.github.com/repos/hche11/VGGSound/commits/master",
+                "https://research.google.com/audioset/download.html",
+                "https://registry.opendata.aws/multimedia-commons/",
                 "https://huggingface.co/api/models/tencent/HunyuanImage-3.0-Instruct",
                 "https://huggingface.co/api/models/nvidia/Cosmos3-Super-Text2Image",
                 "https://arxiv.org/abs/2602.21818",
@@ -716,6 +799,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertIn("scripts/discover_updates.py", workflow)
         self.assertIn("scripts/upsert_discovery_issue.py", workflow)
         self.assertEqual(workflow.count("GITHUB_TOKEN: ${{ github.token }}"), 2)
+        self.assertIn("--workers 4", workflow)
 
 
 if __name__ == "__main__":

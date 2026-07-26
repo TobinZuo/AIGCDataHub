@@ -106,6 +106,10 @@ class ModelDatasetRelationTests(unittest.TestCase):
 
     def test_dataset_monitoring_is_joined_by_canonical_catalog_id(self) -> None:
         self.assertEqual(
+            sum(dataset["monitoring"] is not None for dataset in self.datasets.values()),
+            50,
+        )
+        self.assertEqual(
             self.datasets["fit-vto-100k"]["monitoring"],
             {
                 "priority": "critical",
@@ -147,7 +151,15 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.datasets["fine-t2i"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["gpic"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["openve-3m"]["monitoring"]["priority"], "critical")
-        self.assertIsNone(self.datasets["graphvid-bench"]["monitoring"])
+        self.assertEqual(self.datasets["graphvid-bench"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["vggsound"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["audioset"]["monitoring"]["priority"], "critical")
+        linked_without_probe = {
+            dataset_id
+            for dataset_id, dataset in self.datasets.items()
+            if dataset["linked_model_ids"] and dataset["monitoring"] is None
+        }
+        self.assertEqual(linked_without_probe, {"flickr-5b"})
 
     def test_model_monitoring_is_joined_by_canonical_model_id(self) -> None:
         self.assertEqual(

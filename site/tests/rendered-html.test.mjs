@@ -286,7 +286,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.equal(datasets["openve-3m"].monitoring.priority, "critical");
   assert.equal(datasets["openve-bench"].monitoring.priority, "critical");
   assert.equal(datasets.finevideo.monitoring.priority, "high");
-  assert.equal(datasets["graphvid-bench"].monitoring, null);
+  assert.equal(datasets["graphvid-bench"].monitoring.priority, "critical");
   assert.equal(datasets.hdtf.monitoring.priority, "critical");
   assert.equal(datasets["celebv-hq"].monitoring.priority, "critical");
   assert.equal(datasets.talkvid.monitoring.priority, "critical");
@@ -328,6 +328,9 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalogExplorer, /打开数据卡/);
   assert.match(catalogExplorer, /查看数据卡/);
   assert.match(catalogExplorer, /strategy-dataset-list/);
+  assert.match(catalogExplorer, /comparison-dataset-links/);
+  assert.match(catalogExplorer, /对应数据集/);
+  assert.match(catalogExplorer, /查看完整引用/);
   assert.match(catalogExplorer, /strategy-datasets-\$\{model\.id\}/);
   assert.match(catalogExplorer, /onOpenDataset=\{\(id\) => openRelation\("datasets", id\)\}/);
   assert.match(catalogExplorer, /数据获取入口/);
