@@ -1,0 +1,83 @@
+id: ltx-2
+name: LTX-2
+organization: Lightricks
+released_at: "2025-12-29"
+ranking_names:
+  - LTX-2
+modalities:
+  - multimodal
+  - video
+  - audio
+tasks:
+  - text-to-video
+  - image-to-video
+  - video-to-video
+  - audio-to-video
+  - audio-video-generation
+access:
+  status: open-weights
+  license: LTX-2 Community License Agreement
+  release_url: https://ltx.io/blog/ltx-2-is-now-open-source
+  weights_url: https://huggingface.co/Lightricks/LTX-2
+  api_url: https://docs.ltx.video/
+architecture:
+  family: Asymmetric dual-stream audio-video diffusion transformer
+  parameters: 19000000000
+  notes: Couples a 14B video stream and 5B audio stream with bidirectional cross-modal attention and separate latent representations.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: LTX-2 audio-video training corpus
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: The technical report describes captioning, filtering, and joint training but does not identify constituent datasets or publish the corpus.
+    - name: AVGen-Bench
+      catalog_id: avgen-bench
+      role: evaluation
+      availability: public
+      scale: 235 prompts and 3,009 generated examples
+      notes: The official leaderboard evaluates LTX-2 separately from LTX-2.3; it is not a training source.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - proprietary
+        - synthetic
+      operations:
+        - audio-aware-filtering
+        - multimodal-recaptioning
+        - joint-audio-video-training
+        - multi-resolution-training
+      scale_disclosed: false
+      strategy: Select audio-informative clips, generate detailed captions spanning visuals, dialogue, sound, ambience, and music, and jointly train synchronized audio-video streams across resolutions.
+    - name: distillation
+      modalities:
+        - video
+        - audio
+      source_types:
+        - synthetic
+        - proprietary
+      operations:
+        - step-distillation
+        - latent-upscaling
+      scale_disclosed: false
+      strategy: Distill the full checkpoint for fewer sampling steps and pair it with spatial and temporal latent upscalers for production workflows.
+  strategy_summary:
+    - Treat rich audiovisual recaptioning and audio-aware filtering as the central disclosed data operations.
+    - Keep the public full, distilled, LoRA, and upscaler artifacts distinct from the unreleased training corpus.
+  unknowns:
+    - Exact video and audio sources, rights composition, sample count, language mix, filters, deduplication, and mixture weights.
+    - Distillation prompt sources and generated-sample scale.
+evidence:
+  release: https://ltx.io/blog/ltx-2-is-now-open-source
+  technical_report: https://arxiv.org/abs/2601.03233
+  repository: https://github.com/Lightricks/LTX-2
+status: verified
+last_verified: "2026-07-27"

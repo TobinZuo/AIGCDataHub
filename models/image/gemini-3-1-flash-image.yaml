@@ -27,7 +27,13 @@ data:
   disclosure_level: undisclosed
   exact_datasets_disclosed: false
   exact_mixture_disclosed: false
-  datasets: []
+  datasets:
+    - name: AVGen-Bench
+      catalog_id: avgen-bench
+      role: evaluation
+      availability: public
+      scale: 235 prompts and 3,009 generated examples
+      notes: The official leaderboard evaluates a Nano Banana 2 first-frame plus MOVA audio-video pipeline; this is not a standalone Nano Banana 2 score or a training source.
   stages:
     - name: pretraining
       modalities:

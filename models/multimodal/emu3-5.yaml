@@ -1,0 +1,174 @@
+id: emu3-5
+name: Emu3.5
+organization: Beijing Academy of Artificial Intelligence
+released_at: "2025-10-30"
+ranking_names:
+  - Emu3.5 + MOVA
+  - Emu3.5
+modalities:
+  - multimodal
+  - image
+  - video
+tasks:
+  - text-to-image
+  - image-editing
+  - interleaved-generation
+  - world-modeling
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://github.com/baaivision/Emu3.5
+  weights_url: https://huggingface.co/BAAI/Emu3.5
+  api_url: null
+architecture:
+  family: Native autoregressive vision-language transformer
+  parameters: 34000000000
+  notes: Predicts interleaved visual and language tokens with one next-token objective; the released checkpoint is listed as 34B on Hugging Face.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: ImageNet
+      catalog_id: imagenet
+      role: pretraining
+      availability: gated
+      scale: 14,197,122 indexed images in the full official collection
+      notes: Named as a general-domain source for training the Emu3.5 visual tokenizer.
+    - name: Open Images V7
+      catalog_id: open-images-v7
+      role: pretraining
+      availability: public
+      scale: About 9M images with annotations
+      notes: Named as a general-domain source for visual-tokenizer training.
+    - name: Conceptual Captions 3M
+      catalog_id: conceptual-captions-3m
+      role: pretraining
+      availability: public
+      scale: About 3.3M image-text records
+      notes: Named as paired vision-text data for visual-tokenizer and multimodal corpus construction.
+    - name: Conceptual 12M
+      catalog_id: conceptual-12m
+      role: pretraining
+      availability: public
+      scale: About 12M image-text records
+      notes: Named as a larger long-tail image-text source.
+    - name: LAION-5B family
+      catalog_id: laion-5b
+      role: pretraining
+      availability: public
+      scale: 5.85B URL-text metadata pairs
+      notes: The report says LAION without a version; this relation points to the canonical 5B family card and preserves that ambiguity.
+    - name: TextAtlas5M
+      catalog_id: textatlas5m
+      role: pretraining
+      availability: public
+      scale: About 5M dense-text images
+      notes: Used to enrich text rendering in visual-tokenizer training.
+    - name: PosterCraft public training corpora
+      catalog_id: postercraft-public-corpora
+      role: pretraining
+      availability: public
+      scale: About 2.25M released Text-Render-2M and Poster100K records
+      notes: The report cites PosterCraft for text-rich image curation; the catalog card records the two released source collections.
+    - name: COYO-700M
+      catalog_id: coyo-700m
+      role: pretraining
+      availability: public
+      scale: About 700M URL-text metadata pairs
+      notes: Named as a source of face-rich images after face detection and filtering.
+    - name: DataComp-1B
+      catalog_id: datacomp-1b
+      role: pretraining
+      availability: public
+      scale: About 1B URL-text metadata pairs
+      notes: Named in the face-rich visual-tokenizer data mixture.
+    - name: JourneyDB
+      catalog_id: journeydb
+      role: pretraining
+      availability: gated
+      scale: 4,429,295 generated images
+      notes: Named in the face-rich visual-tokenizer data mixture.
+    - name: Infinity-Instruct
+      catalog_id: infinity-instruct
+      role: fine-tuning
+      availability: public
+      scale: About 8.9M instruction-response pairs used by Emu3.5
+      notes: Used for general language instruction supervision during SFT.
+    - name: Emu3.5 video-interleaved Internet corpus
+      catalog_id: null
+      role: pretraining
+      availability: not-released
+      scale: More than 13T multimodal tokens across the full pretraining mix
+      notes: Built primarily from sequential frames and aligned transcripts of large-scale Internet videos; source URLs and media are not released.
+    - name: AVGen-Bench
+      catalog_id: avgen-bench
+      role: evaluation
+      availability: public
+      scale: 235 prompts and 3,009 generated examples
+      notes: AVGen-Bench evaluates an Emu3.5 image-generation plus MOVA audio-video pipeline, not Emu3.5 as a standalone audio-video generator.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - public-web
+        - public-dataset
+        - proprietary
+      operations:
+        - video-frame-extraction
+        - transcript-alignment
+        - resolution-filtering
+        - quality-filtering
+        - deduplication
+        - next-token-prediction
+      scale_disclosed: true
+      strategy: Pretrain in two stages on 10T then about 3T tokens, centered on long video-frame and transcript sequences, while raising resolution, quality, balance, and annotation density in stage two.
+    - name: fine-tuning
+      modalities:
+        - image
+        - video
+        - text
+        - action
+      source_types:
+        - public-dataset
+        - proprietary
+        - synthetic
+      operations:
+        - supervised-fine-tuning
+        - scene-segmentation
+        - automatic-speech-recognition
+        - dense-captioning
+        - clustering
+      scale_disclosed: true
+      strategy: Mix general tasks, any-to-image, visual narrative, visual guidance, world exploration, and embodied manipulation, using structured video processing and synthetic supervision.
+    - name: preference
+      modalities:
+        - image
+        - text
+        - action
+      source_types:
+        - human-feedback
+        - proprietary
+        - synthetic
+      operations:
+        - group-relative-policy-optimization
+        - multi-task-reward-modeling
+        - prompt-filtering
+      scale_disclosed: true
+      strategy: Run unified multimodal GRPO over curated SFT prompts plus user feedback, then a separate image-focused stage with 58K X2I instructions and 50K T2I samples.
+  strategy_summary:
+    - Make long video-frame and transcript sequences the center of a 13T-token native multimodal pretraining mix.
+    - Train the tokenizer on linked public image corpora plus unreleased aesthetic, face-rich, and in-house media.
+    - Move from broad multitask SFT to unified multimodal reinforcement learning and a targeted image-generation RL stage.
+  unknowns:
+    - Exact Internet-video sources, media rights, per-source counts, removal requests, and the complete pretraining mixture.
+    - Exact mapping from every public tokenizer source to the final checkpoint and the proportion of Midjourney-derived face data.
+evidence:
+  release: https://github.com/baaivision/Emu3.5
+  technical_report: https://arxiv.org/abs/2510.26583
+  repository: https://github.com/baaivision/Emu3.5
+status: verified
+last_verified: "2026-07-27"

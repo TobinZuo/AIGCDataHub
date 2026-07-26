@@ -1,0 +1,64 @@
+id: laion-5b
+name: LAION-5B
+organization: LAION
+released_at: "2022-03-30"
+release_date_source: https://laion.ai/blog/laion-5b/
+modality: image
+tasks:
+  - image-text-pretraining
+  - text-to-image
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A 5.85-billion-scale multilingual index of Common Crawl image URLs and text,
+  filtered with CLIP and released as metadata for reconstructing image-text
+  training corpora.
+access:
+  status: metadata-only
+  type: urls
+  url: https://projects.laion.ai/laion-datasets/
+  requires_account: false
+  notes: The release is an index and does not host the referenced images; current users should prefer the safety-cleaned Re-LAION release where applicable.
+scale:
+  samples: 5850000000
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The official project reports 5.85B multilingual CLIP-filtered URL-text pairs.
+annotations:
+  types:
+    - caption
+    - source-url
+    - clip-embedding
+    - language
+    - similarity-score
+  source: web-metadata
+  languages:
+    - multilingual
+license:
+  metadata: CC-BY-4.0 metadata
+  media: Source-dependent
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The metadata license does not cover linked media; the original LAION-5B release also has known safety-removal history, so current availability and cleanup status must be checked.
+quality:
+  dimensions:
+    - text-media-alignment
+    - safety
+    - deduplication
+    - provenance
+  known_limitations:
+    - The original index was withdrawn and cleaned after illegal-content findings; do not reconstruct an unfiltered historical snapshot.
+    - URL decay, source rights, noisy captions, duplicates, and demographic bias require independent controls.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: Prefer Re-LAION safety removals, keep URL and hash-based blocklists current, and retain source provenance and retrieval outcomes.
+evidence:
+  homepage: https://projects.laion.ai/laion-datasets/
+  paper: https://arxiv.org/abs/2210.08402
+  used_by:
+    - Emu3.5
+status: partial
+last_verified: "2026-07-27"

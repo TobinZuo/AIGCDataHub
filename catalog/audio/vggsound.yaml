@@ -66,5 +66,6 @@ evidence:
   used_by:
     - Omni2Sound
     - MOVA-720p
+    - HunyuanVideo-Foley
 status: partial
 last_verified: "2026-07-26"

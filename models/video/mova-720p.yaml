@@ -2,6 +2,9 @@ id: mova-720p
 name: MOVA-720p
 organization: OpenMOSS
 released_at: "2026-01-29"
+ranking_names:
+  - NanoBanana2 + MOVA
+  - MOVA
 modalities:
   - video
   - audio

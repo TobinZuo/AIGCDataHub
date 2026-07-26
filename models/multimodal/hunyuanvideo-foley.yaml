@@ -1,0 +1,92 @@
+id: hunyuanvideo-foley
+name: HunyuanVideo-Foley
+organization: Tencent Hunyuan
+released_at: "2025-08-28"
+ranking_names:
+  - Wan2.2 + HunyuanVideo-Foley
+  - HunyuanVideo-Foley
+modalities:
+  - multimodal
+  - video
+  - audio
+tasks:
+  - video-to-audio
+  - text-video-to-audio
+  - foley-generation
+access:
+  status: open-weights
+  license: Tencent Hunyuan Community License Agreement
+  release_url: https://github.com/Tencent-Hunyuan/HunyuanVideo-Foley
+  weights_url: https://huggingface.co/tencent/HunyuanVideo-Foley
+  api_url: null
+architecture:
+  family: Hybrid multimodal and audio diffusion transformer
+  parameters: null
+  notes: Fuses SigLIP2 video, CLAP text, DAC-VAE audio, and Synchformer timing features through multimodal then audio-only transformer blocks.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: HunyuanVideo-Foley TV2A corpus
+      catalog_id: null
+      role: pretraining
+      availability: not-released
+      scale: About 100K hours of text-video-audio material
+      notes: The paper discloses scale and processing but not the raw video database, source providers, or a downloadable dataset.
+    - name: VGGSound
+      catalog_id: vggsound
+      role: evaluation
+      availability: public
+      scale: More than 200K audio-video clips in the source dataset
+      notes: The paper reports objective results on the public VGGSound test split; it does not state that VGGSound is in the 100K-hour training corpus.
+    - name: AVGen-Bench
+      catalog_id: avgen-bench
+      role: evaluation
+      availability: public
+      scale: 235 prompts and 3,009 generated examples
+      notes: The official leaderboard evaluates a Wan2.2 plus HunyuanVideo-Foley pipeline, so the score does not isolate the Foley model.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - proprietary
+        - public-web
+        - synthetic
+      operations:
+        - scene-segmentation
+        - silence-filtering
+        - bandwidth-filtering
+        - audio-quality-filtering
+        - audio-video-sync-filtering
+        - audio-classification
+        - synthetic-captioning
+      scale_disclosed: true
+      strategy: Segment raw videos into eight-second clips, remove silent or low-bandwidth audio, filter quality and audiovisual alignment, classify content, and caption audio to construct about 100K training hours.
+    - name: fine-tuning
+      modalities:
+        - audio
+        - video
+        - text
+      source_types:
+        - proprietary
+      operations:
+        - representation-alignment
+        - flow-matching
+      scale_disclosed: false
+      strategy: Align intermediate diffusion features to self-supervised frame-level audio representations while balancing visual timing and textual semantics.
+  strategy_summary:
+    - Scale TV2A supervision through a disclosed filter-and-caption pipeline rather than publishing the underlying corpus.
+    - Separate temporal audiovisual alignment from global text-audio semantic alignment in architecture and training losses.
+  unknowns:
+    - Raw source identities, licenses, geographic and language mix, duplication, safety filters, and exact retained sample counts.
+    - Parameter counts for XXL and XL checkpoints and whether their training mixtures differ.
+evidence:
+  release: https://github.com/Tencent-Hunyuan/HunyuanVideo-Foley
+  technical_report: https://arxiv.org/abs/2508.16930
+  repository: https://github.com/Tencent-Hunyuan/HunyuanVideo-Foley
+status: partial
+last_verified: "2026-07-27"

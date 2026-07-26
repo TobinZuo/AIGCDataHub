@@ -805,6 +805,60 @@ def extract_arena_ranking_entries(payload: str, limit: int = 15) -> tuple[Rankin
     return tuple(sorted(entries, key=lambda item: item.rank)[:limit])
 
 
+def extract_avgen_ranking_entries(payload: str, limit: int = 15) -> tuple[RankingEntry, ...]:
+    """Parse the compact leaderboard in AVGen-Bench's official Markdown README."""
+    compact_table = re.search(
+        r"\|\s*Model\s*\|\s*Components\s*\|\s*Total\s*\|"
+        r"(?P<body>.*?)"
+        r"(?:\n\s*<details>|\n\s*Full per-metric results|\n\s*##\s+)",
+        payload,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    if compact_table is None:
+        return ()
+
+    entries: list[RankingEntry] = []
+    for line in compact_table.group("body").splitlines():
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        if len(cells) != 3 or set(cells[0]) <= {"-", ":"}:
+            continue
+        model, components, total = cells
+        model = re.sub(r"[*_`]", "", model).strip()
+        components = re.sub(r"[*_`]", "", components).strip()
+        total = re.sub(r"[*_`]", "", total).strip()
+        try:
+            score = float(total)
+        except ValueError:
+            continue
+        has_open = "(open-source)" in components.casefold()
+        has_proprietary = "(proprietary)" in components.casefold()
+        if has_open and has_proprietary:
+            license_name = "Mixed pipeline"
+            open_weights = False
+        elif has_open:
+            license_name = "Open-source"
+            open_weights = True
+        else:
+            license_name = "Proprietary"
+            open_weights = False
+        entries.append(
+            RankingEntry(
+                rank=len(entries) + 1,
+                creator=components,
+                model=model,
+                score=score,
+                confidence_interval="",
+                samples=None,
+                released="",
+                open_weights=open_weights,
+                license=license_name,
+            )
+        )
+        if len(entries) >= limit:
+            break
+    return tuple(entries)
+
+
 def _fetch_source_once(source: WatchSource, timeout: float, max_bytes: int) -> SourceSnapshot:
     track_id = source.track_id
     source_url = source.source_url
@@ -865,10 +919,13 @@ def _fetch_source_once(source: WatchSource, timeout: float, max_bytes: int) -> S
                 rankings = ()
                 candidates = ()
             elif source.ranking_id:
-                rankings = (
-                    extract_arena_ranking_entries(html, source.ranking_limit or 15)
-                    if source.ranking_parser == "arena-hf-dataset"
-                    else extract_ranking_entries(html, source.ranking_limit or 15)
+                ranking_extractors = {
+                    "artificial-analysis-html": extract_ranking_entries,
+                    "arena-hf-dataset": extract_arena_ranking_entries,
+                    "avgen-markdown": extract_avgen_ranking_entries,
+                }
+                rankings = ranking_extractors[source.ranking_parser or "artificial-analysis-html"](
+                    html, source.ranking_limit or 15
                 )
                 candidates: tuple[Candidate, ...] = ()
                 if not rankings:
@@ -1101,7 +1158,11 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
                     )
                 if ranking_modality not in {"image", "video"}:
                     raise ValueError(f"ranking source has invalid modality: {ranking_modality!r}")
-                if ranking_parser not in {"artificial-analysis-html", "arena-hf-dataset"}:
+                if ranking_parser not in {
+                    "artificial-analysis-html",
+                    "arena-hf-dataset",
+                    "avgen-markdown",
+                }:
                     raise ValueError(f"ranking source has invalid parser: {ranking_parser!r}")
                 if ranking_coverage_policy not in {"required", "monitor"}:
                     raise ValueError(

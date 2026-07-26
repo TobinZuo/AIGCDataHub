@@ -1,0 +1,69 @@
+id: rbench
+name: RBench
+organization: Peking University and ByteDance Seed
+released_at: "2026-05-21"
+release_date_source: https://github.com/DAGroup-PKU/ReVidgen
+modality: evaluation
+tasks:
+  - robotics-video-generation-evaluation
+  - image-to-video-evaluation
+  - physical-plausibility-evaluation
+stages:
+  - evaluation
+  - data-curation
+description: >-
+  A 650-case robotics video-generation benchmark spanning five task families
+  and four robot embodiments, with reproducible structure, physics, action,
+  and visual-quality metrics.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/DAGroup-PKU/RBench
+  requires_account: false
+  notes: The validation images, prompts, metadata, and evaluator checkpoints total about 22 GB and are downloadable from the official Hugging Face repository.
+scale:
+  samples: 650
+  source_items: null
+  hours: null
+  approximate: false
+  notes: Includes 250 task-oriented image-text cases and 400 embodiment-oriented cases.
+annotations:
+  types:
+    - reference-image
+    - task-prompt
+    - robot-type
+    - manipulated-object
+    - viewpoint
+    - task-category
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-4.0
+  media: CC-BY-4.0 repository declaration
+  commercial_use: allowed
+  redistribution: allowed
+  notes: The official dataset card declares CC BY 4.0; retain attribution and review the evaluator checkpoints and any third-party dependencies separately.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - text-media-alignment
+    - human-preference
+    - provenance
+  known_limitations:
+    - Six hundred fifty cases cannot represent every robot, task, camera, environment, or failure mode.
+    - Automated metrics depend on multiple external perception checkpoints and optional GPT-based evaluation.
+    - The reported 0.96 human correlation is study-specific and may not transfer to new model or task distributions.
+processing:
+  recipe: Generate videos from each reference image and prompt, then run task- and embodiment-oriented scripts combining VLM judgments with low-level structure, motion, and quality operators.
+  recommended_format: native
+  notes: Pin prompts, evaluator checkpoints, model outputs, metric versions, and API-backed judge settings for reproducible comparisons.
+evidence:
+  homepage: https://dagroup-pku.github.io/ReVidgen.github.io/
+  paper: https://arxiv.org/abs/2601.15282
+  used_by: []
+status: verified
+last_verified: "2026-07-27"

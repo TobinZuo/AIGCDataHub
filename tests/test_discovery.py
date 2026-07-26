@@ -21,6 +21,7 @@ from discover_updates import (
     declared_urls,
     extract_candidate_links,
     extract_arena_ranking_entries,
+    extract_avgen_ranking_entries,
     extract_huggingface_dataset_candidates,
     extract_ranking_entries,
     extract_source_revision,
@@ -36,6 +37,30 @@ from upsert_discovery_issue import issue_action, issue_body
 
 
 class DiscoveryTests(unittest.TestCase):
+    def test_avgen_markdown_parser_reads_only_compact_leaderboard(self) -> None:
+        markdown = """
+## Benchmark Results
+| Model | Components | Total |
+|---|---|---:|
+| Seedance 2.0 | Seedance 2.0 (Proprietary) | **72.07** |
+| NanoBanana2 + MOVA | NanoBanana2 (Proprietary) + MOVA (Open-source) | 58.10 |
+| Ovi | Ovi (Open-source) | 52.02 |
+
+<details>
+| Model | Components | Vis | Total |
+| Ovi | Ovi (Open-source) | 0.839 | 52.02 |
+</details>
+"""
+        entries = extract_avgen_ranking_entries(markdown)
+        self.assertEqual([entry.model for entry in entries], [
+            "Seedance 2.0", "NanoBanana2 + MOVA", "Ovi",
+        ])
+        self.assertEqual([entry.score for entry in entries], [72.07, 58.1, 52.02])
+        self.assertEqual([entry.license for entry in entries], [
+            "Proprietary", "Mixed pipeline", "Open-source",
+        ])
+        self.assertEqual([entry.open_weights for entry in entries], [False, False, True])
+
     def test_reviewed_exclusions_are_known_candidate_urls(self) -> None:
         watchlist, _ = load_watchlist(Path("sources/watchlist.yaml"))
         known_urls = declared_urls(watchlist)
@@ -414,11 +439,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            67,
+            77,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            59,
+            66,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -436,14 +461,15 @@ class DiscoveryTests(unittest.TestCase):
             }.issubset(track_ids)
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
-        self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 10)
-        self.assertEqual(len(sources), 219)
+        self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
+        self.assertEqual(len(sources), 237)
         self.assertEqual(
             {source.ranking_id for source in sources if source.ranking_id},
             {
                 "text-to-image", "image-editing", "text-to-video", "image-to-video", "video-editing",
                 "arena-text-to-image", "arena-image-edit", "arena-text-to-video",
                 "arena-image-to-video", "arena-video-edit",
+                "avgen-text-to-audio-video",
             },
         )
         arena = next(source for source in sources if source.ranking_id == "arena-text-to-image")
@@ -451,6 +477,10 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(arena.ranking_parser, "arena-hf-dataset")
         self.assertEqual(arena.ranking_coverage_policy, "required")
         self.assertEqual(arena.ranking_modality, "image")
+        avgen = next(source for source in sources if source.ranking_id == "avgen-text-to-audio-video")
+        self.assertEqual(avgen.ranking_provider, "AVGen-Bench")
+        self.assertEqual(avgen.ranking_parser, "avgen-markdown")
+        self.assertEqual(avgen.ranking_limit, 13)
         self.assertTrue(
             {
                 "https://www.heygen.com/research/avatar-v-data",
@@ -526,6 +556,12 @@ class DiscoveryTests(unittest.TestCase):
                 "https://huggingface.co/api/models/OpenMOSS-Team/MOVA-720p",
                 "https://vera-layered-diffusion.github.io/",
                 "https://mixkit.co/license/",
+                "https://raw.githubusercontent.com/microsoft/AVGen-Bench/main/README.md",
+                "https://huggingface.co/api/datasets/DAGroup-PKU/RoVid-X",
+                "https://huggingface.co/api/datasets/DAGroup-PKU/RBench",
+                "https://huggingface.co/api/models/Lightricks/LTX-2",
+                "https://huggingface.co/api/models/BAAI/Emu3.5",
+                "https://huggingface.co/api/models/tencent/HunyuanVideo-Foley",
             }.issubset(urls)
         )
         self.assertIn("https://huggingface.co/api/datasets/nkp37/OpenVid-1M", urls)
@@ -558,7 +594,12 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(impacts["wavcaps"]["model_ids"], ("mova-720p", "omni2sound"))
         self.assertEqual(
             impacts["avgen-bench"]["model_ids"],
-            ("ltx-2-3", "mova-720p", "seedance-2-0", "sora-2", "veo-3-1", "wan-2-6"),
+            (
+                "emu3-5", "gemini-3-1-flash-image", "hunyuanvideo-foley",
+                "kling-2-6", "ltx-2", "ltx-2-3", "mova-720p", "ovi",
+                "seedance-1-5-pro", "seedance-2-0", "sora-2", "veo-3-1",
+                "wan-2-2", "wan-2-6",
+            ),
         )
         self.assertEqual(impacts["commoncatalog"]["model_ids"], ("commoncanvas-xl-c",))
         self.assertEqual(impacts["gpic"]["model_ids"], ("gpic-baselines",))

@@ -84,6 +84,13 @@ class ModelCatalogTests(unittest.TestCase):
                 "videocof",
                 "humo-17b",
                 "phantom-wan-14b",
+                "seedance-1-5-pro",
+                "kling-2-6",
+                "ltx-2",
+                "emu3-5",
+                "wan-2-2",
+                "hunyuanvideo-foley",
+                "ovi",
             }.issubset(cards)
         )
         self.assertIn("GPT Image 2 (high)", cards["gpt-image-2"]["ranking_names"])
@@ -300,6 +307,39 @@ class ModelCatalogTests(unittest.TestCase):
         )
         self.assertEqual(vera["architecture"]["parameters"], 42000000000)
         self.assertEqual(vera["access"]["status"], "research-preview")
+
+    def test_emu35_named_public_sources_resolve_to_download_cards(self) -> None:
+        cards = {card["id"]: card for _, card in load_models()}
+        emu = cards["emu3-5"]
+        linked = {
+            item["catalog_id"]
+            for item in emu["data"]["datasets"]
+            if item["availability"] in {"public", "gated"}
+        }
+        self.assertEqual(
+            linked,
+            {
+                "imagenet", "open-images-v7", "conceptual-captions-3m",
+                "conceptual-12m", "laion-5b", "textatlas5m",
+                "postercraft-public-corpora", "coyo-700m", "datacomp-1b",
+                "journeydb", "infinity-instruct", "avgen-bench",
+            },
+        )
+        self.assertTrue(emu["data"]["exact_datasets_disclosed"])
+        self.assertFalse(emu["data"]["exact_mixture_disclosed"])
+
+    def test_avgen_ranked_models_distinguish_training_from_pipeline_evaluation(self) -> None:
+        cards = {card["id"]: card for _, card in load_models()}
+        for model_id in (
+            "seedance-1-5-pro", "kling-2-6", "ltx-2", "emu3-5",
+            "wan-2-2", "hunyuanvideo-foley", "ovi",
+        ):
+            with self.subTest(model=model_id):
+                avgen = next(
+                    item for item in cards[model_id]["data"]["datasets"]
+                    if item["catalog_id"] == "avgen-bench"
+                )
+                self.assertEqual(avgen["role"], "evaluation")
 
     def test_undisclosed_training_cards_can_link_public_evaluation_sets(self) -> None:
         cards = {card["id"]: card for _, card in load_models()}

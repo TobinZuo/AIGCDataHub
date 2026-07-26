@@ -113,7 +113,7 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /数字人/);
   assert.match(html, /视频翻译/);
   assert.match(html, /Try-On/);
-  assert.match(html, /10\/10/);
+  assert.match(html, /11\/11/);
   assert.match(html, /目录关联/);
   assert.match(html, /模型与数据血缘/);
   assert.match(html, /关系图谱/);
@@ -220,7 +220,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"dataset_relations"/);
   const parsedCatalog = JSON.parse(catalog);
   assert.equal(parsedCatalog.format_version, 12);
-  assert.equal(parsedCatalog.rankings.length, 10);
+  assert.equal(parsedCatalog.rankings.length, 11);
   assert.equal(parsedCatalog.source_platforms.length, 18);
   assert.equal(
     parsedCatalog.source_platforms.filter((platform) => platform.data_access.interface_url).length,
@@ -243,7 +243,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   const rankedModelIds = new Set(
     parsedCatalog.rankings.flatMap((board) => board.entries.map((entry) => entry.model_id)),
   );
-  assert.equal(rankedModelIds.size, 40);
+  assert.equal(rankedModelIds.size, 48);
   assert.ok([...rankedModelIds].every((modelId) => models[modelId].monitoring));
   assert.equal(models["gpt-image-2"].monitoring.priority, "critical");
   assert.equal(models["gemini-omni-flash"].monitoring.priority, "critical");

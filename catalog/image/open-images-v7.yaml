@@ -1,0 +1,68 @@
+id: open-images-v7
+name: Open Images V7
+organization: Google
+released_at: "2016-09-30"
+release_date_source: https://storage.googleapis.com/openimages/web/index.html
+modality: image
+tasks:
+  - image-classification
+  - object-detection
+  - visual-relationship-detection
+  - image-text-pretraining
+stages:
+  - pretraining
+  - evaluation
+  - data-curation
+description: >-
+  A roughly nine-million-image collection from Flickr with image-level labels,
+  boxes, masks, relationships, localized narratives, and downloadable source
+  and rights metadata.
+access:
+  status: open
+  type: hosted
+  url: https://storage.googleapis.com/openimages/web/download_v7.html
+  requires_account: false
+  notes: Official download scripts, annotation files, and hosted image subsets are public; some full-transfer workflows require a Google Cloud account.
+scale:
+  samples: 9200000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The Open Images V4 paper reports 9.2M images; V7 adds annotation types without changing the collection into a single simple training split.
+annotations:
+  types:
+    - class-label
+    - bounding-box
+    - instance-mask
+    - visual-relationship
+    - localized-narrative
+    - author-and-license-metadata
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-4.0 annotations; Apache-2.0 tooling
+  media: Per-image Creative Commons attribution metadata
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Google licenses annotations under CC BY 4.0, while each Flickr image retains its listed license and attribution requirements.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - deduplication
+    - provenance
+  known_limitations:
+    - Flickr and annotation coverage bias the distribution toward particular regions, creators, and object categories.
+    - Per-image license and attribution metadata must remain attached to redistributed media.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Use the official downloader and preserve image ID, author, original URL, license URL, split, and annotation-version fields.
+evidence:
+  homepage: https://storage.googleapis.com/openimages/web/index.html
+  paper: https://arxiv.org/abs/1811.00982
+  used_by:
+    - Emu3.5
+status: verified
+last_verified: "2026-07-27"
