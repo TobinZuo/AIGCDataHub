@@ -1,0 +1,48 @@
+id: runway-aleph
+name: Runway Aleph
+organization: Runway
+released_at: "2025-07-25"
+ranking_names:
+  - Runway Aleph
+  - runway-gen4-aleph
+modalities:
+  - video
+tasks:
+  - video-editing
+  - reference-to-video
+access:
+  status: product-only
+  license: Runway Terms of Use
+  release_url: https://runwayml.com/research/introducing-runway-aleph
+  weights_url: null
+  api_url: null
+architecture:
+  family: Undisclosed in-context video editing model
+  parameters: null
+  notes: Aleph performs prompt-conditioned addition, removal, transformation, view generation, relighting, and restyling over input video without a published architecture or parameter count.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: Runway's official research release describes in-context video editing capabilities but publishes no training-data identities, source classes, scale, or construction stages.
+  strategy_summary:
+    - Preserve the leaderboard's Gen-4 Aleph alias while keeping the original Aleph release distinct from the later Aleph 2.0 model.
+  unknowns:
+    - Training sources, licenses, corpus scale, edit-pair construction, captions, filtering, deduplication, mixtures, and post-training data.
+evidence:
+  release: https://runwayml.com/research/introducing-runway-aleph
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-27"

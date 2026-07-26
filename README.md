@@ -60,6 +60,8 @@ newest first.
 | [HappyHorse 1.1](models/video/happyhorse-1-1.yaml) | Alibaba ATH | video, audio | 2026-06-22 | api only | undisclosed | not disclosed | 👀 |
 | [Grok Imagine Video 1.5](models/video/grok-imagine-video-1-5.yaml) | xAI | video, audio | 2026-06-16 | api only | undisclosed | not disclosed | 👀 |
 | [HiDream-O1-Image-1.5](models/image/hidream-o1-image-1-5.yaml) | HiDream.ai | image | 2026-06-09 | product only | high level | HiDream O1 heterogeneous visual corpus | 🟡 |
+| [Reve 2.0](models/image/reve-2.yaml) | Reve | image | 2026-06-03 | api only | undisclosed | not disclosed | 👀 |
+| [Ideogram 4.0](models/image/ideogram-4.yaml) | Ideogram | image | 2026-06-03 | gated weights | high level | not disclosed | ✅ |
 | [MAI-Image-2.5](models/image/mai-image-2-5.yaml) | Microsoft AI | image | 2026-06-02 | api only | undisclosed | not disclosed | 👀 |
 | [Cosmos3-Super-Text2Image](models/image/cosmos3-super-text2image.yaml) | NVIDIA | image | 2026-05-31 | open weights | high level | Cosmos 3 multimodal generator corpus | ✅ |
 | [GPIC Baseline Models](models/image/gpic-baselines.yaml) | Stanford Vision Lab and collaborators | image | 2026-05-28 | open weights | partial | [GPIC](catalog/image/gpic.yaml) | 🟡 |
@@ -84,6 +86,7 @@ newest first.
 | [SkyReels V4](models/video/skyreels-v4.yaml) | Skywork AI | video, audio | 2026-02-25 | api only | partial | [LAION (version not specified)](catalog/image/re-laion-5b.yaml), [Flickr](catalog/image/flickr-5b.yaml), [WebVid-10M](catalog/video/webvid-10m.yaml), [Koala-36M](catalog/video/koala-36m.yaml), [OpenHumanVid](catalog/video/openhumanvid.yaml), [Emilia](catalog/audio/emilia.yaml), [AudioSet](catalog/audio/audioset.yaml), [VGGSound](catalog/audio/vggsound.yaml), [SoundNet](catalog/audio/soundnet.yaml), Licensed SkyReels film and web-video corpus, Synthetic multilingual and editing corpora | ✅ |
 | [LTX-2.3](models/multimodal/ltx-2-3.yaml) | Lightricks | video, audio | 2026-02-23 | open weights | partial | Audio-informative subset of the LTX-Video training corpus, Higher-quality VAE training subset | ✅ |
 | [Seedance 2.0](models/video/seedance-2-0.yaml) | ByteDance Seed | video, audio | 2026-02-12 | api only | undisclosed | not disclosed | 👀 |
+| [Qwen-Image 2.0](models/image/qwen-image-2.yaml) | Qwen Team | image | 2026-02-10 | api only | undisclosed | not disclosed | 👀 |
 | [JUST-DUB-IT](models/video/just-dub-it.yaml) | Lightricks and Tel Aviv University | video, audio | 2026-02-10 | gated weights | partial | LTX-2 base-model training mixture, [Audiovisual Translation Dubbing Dataset](catalog/video/audiovisual-translation-dub.yaml) | ✅ |
 | [Kling AI 3.0](models/video/kling-3.yaml) | Kuaishou Technology | video, audio, image | 2026-02-05 | product only | undisclosed | not disclosed | 👀 |
 | [Grok Imagine Video](models/video/grok-imagine-video.yaml) | xAI | video, audio | 2026-01-28 | api only | undisclosed | not disclosed | 👀 |
@@ -94,12 +97,15 @@ newest first.
 | [Veo 3.1](models/video/veo-3-1.yaml) | Google DeepMind | video, audio | 2026-01-13 | api only | high level | Veo 3 multimodal training corpus | ✅ |
 | [Omni2Sound](models/multimodal/omni2sound.yaml) | Tsinghua University, Monash University, and Shengshu AI | audio, video | 2026-01-06 | open weights | partial | [AudioCaps](catalog/audio/audiocaps-2-0.yaml), [WavCaps](catalog/audio/wavcaps.yaml), [Clotho](catalog/audio/clotho-2-1.yaml), [AudioSet](catalog/audio/audioset.yaml), [VGGSound](catalog/audio/vggsound.yaml), [FSD50K](catalog/audio/fsd50k.yaml), [Million Song Dataset](catalog/audio/million-song-dataset.yaml), [FMA](catalog/audio/fma.yaml), [SoundAtlas](catalog/audio/soundatlas.yaml), [VGGSound-Omni](catalog/evaluation/vggsound-omni.yaml) | ✅ |
 | [TalkVerse-5B](models/video/talkverse-5b.yaml) | CUHK MMLab and Snap Research | video, audio | 2025-12-24 | open weights | partial | Wan2.2-TI2V-5B inherited training mixture, [TalkVerse](catalog/video/talkverse.yaml) | ✅ |
+| [Wan 2.6](models/video/wan-2-6.yaml) | Alibaba Cloud | video, audio, image | 2025-12-16 | api only | undisclosed | not disclosed | 👀 |
 | [GPT Image 1.5](models/image/gpt-image-1-5.yaml) | OpenAI | image | 2025-12-16 | api only | undisclosed | not disclosed | 👀 |
 | [FLUX.2 [max]](models/image/flux-2-max.yaml) | Black Forest Labs | image | 2025-12-16 | api only | undisclosed | not disclosed | 👀 |
 | [OpenVE-Edit](models/video/openve-edit.yaml) | Zhejiang University and ByteDance | video | 2025-12-08 | announced | partial | [OpenVE-3M](catalog/video/openve-3m.yaml), [OpenVE-Bench](catalog/evaluation/openve-bench.yaml) | 👀 |
 | [Kling O1](models/image/kling-o1.yaml) | Kuaishou Technology | image, video | 2025-12-01 | product only | undisclosed | not disclosed | 👀 |
 | [HunyuanVideo 1.5](models/video/hunyuanvideo-1-5.yaml) | Tencent Hunyuan | video | 2025-11-24 | open weights | high level | not disclosed | 🟡 |
 | [Gemini 3 Pro Image (Nano Banana Pro)](models/image/gemini-3-pro-image.yaml) | Google DeepMind | image | 2025-11-20 | api only | undisclosed | not disclosed | 👀 |
+| [Sora 2](models/video/sora-2.yaml) | OpenAI | video, audio | 2025-09-30 | api only | high level | not disclosed | 🟡 |
+| [Runway Aleph](models/video/runway-aleph.yaml) | Runway | video | 2025-07-25 | product only | undisclosed | not disclosed | 👀 |
 | [HunyuanVideo-Avatar](models/video/hunyuanvideo-avatar.yaml) | Tencent Hunyuan | video, audio | 2025-05-28 | open weights | partial | HunyuanVideo-I2V inherited training mixture, HunyuanVideo-Avatar character-audio training corpus, [HDTF](catalog/video/hdtf.yaml), [CelebV-HQ](catalog/video/celebv-hq.yaml) | ✅ |
 | [MuseTalk 1.5](models/video/musetalk-1-5.yaml) | Tencent Music Entertainment Lyra Lab | video, audio | 2025-03-28 | open weights | partial | Stable Diffusion 1.4 inherited training mixture, [HDTF](catalog/video/hdtf.yaml), MuseTalk private talking-face dataset | ✅ |
 | [CommonCanvas-XL-C](models/image/commoncanvas-xl-c.yaml) | CommonCanvas collaborators | image | 2024-05-16 | open weights | partial | [CommonCatalog commercial subset](catalog/image/commoncatalog.yaml) | ✅ |
@@ -122,9 +128,9 @@ dataset on Hugging Face. Open-weight and closed/API models are treated equally.
 Membership or ordering changes trigger review; score-only fluctuations do not.
 The generated site maps provider-specific aliases back to canonical model cards
 and shows unmatched ranked entries as a persistent review queue. The five
-Artificial Analysis boards have required full card coverage; the newer Arena
-boards remain monitored while first-party evidence is verified for missing
-cards.
+Artificial Analysis boards and five Arena boards all require full Top-15 card
+coverage. Any future unmatched entry remains visible in the review queue and
+fails the repository coverage check until first-party evidence is verified.
 
 New dataset discovery is not limited to existing cards. Eight Hugging Face API
 feeds are sorted by `createdAt` for image generation, video generation,

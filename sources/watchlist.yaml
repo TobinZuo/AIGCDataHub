@@ -296,7 +296,7 @@ tracks:
         ranking_parser: arena-hf-dataset
         ranking_score_label: Arena
         ranking_date_label: 榜单快照
-        ranking_coverage_policy: monitor
+        ranking_coverage_policy: required
         ranking_page_url: https://arena.ai/leaderboard/text-to-image
       - url: "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=image_edit&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100"
         ranking_id: arena-image-edit
@@ -307,7 +307,7 @@ tracks:
         ranking_parser: arena-hf-dataset
         ranking_score_label: Arena
         ranking_date_label: 榜单快照
-        ranking_coverage_policy: monitor
+        ranking_coverage_policy: required
         ranking_page_url: https://arena.ai/leaderboard/image-edit
       - url: "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=text_to_video&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100"
         ranking_id: arena-text-to-video
@@ -318,7 +318,7 @@ tracks:
         ranking_parser: arena-hf-dataset
         ranking_score_label: Arena
         ranking_date_label: 榜单快照
-        ranking_coverage_policy: monitor
+        ranking_coverage_policy: required
         ranking_page_url: https://arena.ai/leaderboard/text-to-video
       - url: "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=image_to_video&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100"
         ranking_id: arena-image-to-video
@@ -329,7 +329,7 @@ tracks:
         ranking_parser: arena-hf-dataset
         ranking_score_label: Arena
         ranking_date_label: 榜单快照
-        ranking_coverage_policy: monitor
+        ranking_coverage_policy: required
         ranking_page_url: https://arena.ai/leaderboard/image-to-video
       - url: "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=video_edit&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100"
         ranking_id: arena-video-edit
@@ -340,7 +340,7 @@ tracks:
         ranking_parser: arena-hf-dataset
         ranking_score_label: Arena
         ranking_date_label: 榜单快照
-        ranking_coverage_policy: monitor
+        ranking_coverage_policy: required
         ranking_page_url: https://arena.ai/leaderboard/video-edit
 
   - id: important-dataset-updates
@@ -540,6 +540,27 @@ tracks:
         priority: critical
       - url: https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/
         model_id: veo-3-1-lite
+        priority: critical
+      - url: https://blog.reve.com/posts/announcing-reve-2.0/
+        model_id: reve-2
+        priority: critical
+      - url: https://huggingface.co/api/models/ideogram-ai/ideogram-4-fp8
+        model_id: ideogram-4
+        priority: critical
+      - url: https://help.aliyun.com/en/model-studio/qwen-image-api
+        model_id: qwen-image-2
+        priority: critical
+      - url: https://deploymentsafety.openai.com/sora-2/overview-of-sora-2
+        model_id: sora-2
+        priority: critical
+      - url: https://help.aliyun.com/en/model-studio/legacy-wan-text-to-video-api-reference
+        model_id: wan-2-6
+        priority: critical
+      - url: https://ir.kuaishou.com/news-releases/news-release-details/kling-ai-launches-30-model-ushering-era-where-everyone-can-be
+        model_id: kling-3
+        priority: critical
+      - url: https://runwayml.com/research/introducing-runway-aleph
+        model_id: runway-aleph
         priority: critical
 
 acceptance_rules:

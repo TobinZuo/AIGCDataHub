@@ -280,7 +280,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            30,
+            37,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -299,7 +299,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 10)
-        self.assertEqual(len(sources), 156)
+        self.assertEqual(len(sources), 163)
         self.assertEqual(
             {source.ranking_id for source in sources if source.ranking_id},
             {
@@ -311,7 +311,7 @@ class DiscoveryTests(unittest.TestCase):
         arena = next(source for source in sources if source.ranking_id == "arena-text-to-image")
         self.assertEqual(arena.ranking_provider, "Arena")
         self.assertEqual(arena.ranking_parser, "arena-hf-dataset")
-        self.assertEqual(arena.ranking_coverage_policy, "monitor")
+        self.assertEqual(arena.ranking_coverage_policy, "required")
         self.assertEqual(arena.ranking_modality, "image")
         self.assertTrue(
             {

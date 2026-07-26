@@ -1,0 +1,57 @@
+id: wan-2-6
+name: Wan 2.6
+organization: Alibaba Cloud
+released_at: "2025-12-16"
+ranking_names:
+  - Wan 2.6
+  - Wan2.6
+  - wan2.6-t2v
+  - wan2.6-i2v
+  - wan2.6-r2v
+modalities:
+  - video
+  - audio
+  - image
+tasks:
+  - text-to-video
+  - image-to-video
+  - reference-to-video
+  - audio-video-generation
+access:
+  status: api-only
+  license: Alibaba Cloud Model Studio service terms
+  release_url: https://help.aliyun.com/en/model-studio/newly-released-models
+  weights_url: null
+  api_url: https://help.aliyun.com/en/model-studio/legacy-wan-text-to-video-api-reference
+architecture:
+  family: Undisclosed multimodal Wan video architecture
+  parameters: null
+  notes: The API family supports text, image, reference, and audio conditioning with multi-shot video generation, but Alibaba Cloud does not publish architecture details or parameter count.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - audio
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: Model Studio documents the 2.6 service variants, capabilities, deployment regions, and release dates but does not publish training datasets or processing stages.
+  strategy_summary:
+    - Treat the text-to-video, image-to-video, and reference-to-video endpoints as one Wan 2.6 service family while keeping its training corpus undisclosed.
+  unknowns:
+    - Training dataset identities, provenance, licenses, sizes, modality and language mix, captions, filtering, deduplication, and mixture weights.
+    - Fine-tuning, audio-alignment, preference, synthetic, and safety-training data.
+evidence:
+  release: https://help.aliyun.com/en/model-studio/newly-released-models
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-27"
