@@ -9,13 +9,13 @@ as an exhaustive list.
 1. Review the candidate Issue produced by `.github/workflows/discovery.yml`.
    The scanner compares official-source links with
    `sources/discovery-state.json`; it prioritizes image and video generation.
-   It also compares stable revisions for selected important datasets. A changed
-   Hugging Face `lastModified` or repository commit SHA requires reviewing
-   access, files, scale, terms, and the affected model relationships. Review
-   `priority`, `catalog_id`, `impacted_dataset_ids`, and `impacted_model_ids`
-   first. The scanner follows reviewed dataset `derived_from` edges and then
-   canonical model-side `catalog_id` references to define the transitive blast
-   radius.
+   It also compares stable revisions for selected important models and
+   datasets. A changed Hugging Face `lastModified` or repository commit SHA
+   requires reviewing access, files, scale, terms, and affected relationships.
+   Review `entity_type`, `entity_id`, `priority`, `impacted_dataset_ids`, and
+   `impacted_model_ids` first. For a dataset, the scanner follows reviewed
+   `derived_from` edges and canonical model-side `catalog_id` references. For a
+   model, it reports the model itself and its directly linked catalog datasets.
    The scenario layer explicitly covers digital humans, talking avatars, video
    translation/dubbing, lip sync, virtual try-on, and commerce creatives.
    Search beyond the generated candidates when an official organization uses a
@@ -53,17 +53,18 @@ as an exhaustive list.
    PR. This prevents reviewed links from reappearing without treating them as
    accepted catalog facts.
 
-When adding an important dataset revision probe, use an object in the
-`important-dataset-updates` track with an official HTTPS API `url`, an existing
-dataset `catalog_id`, and `priority: critical|high|standard`. Hugging Face
-dataset APIs and official GitHub commit APIs are supported revision sources. Do
-not monitor a dataset by URL alone: the canonical ID connects a revision to the
-site card, downstream datasets, and affected models.
+When adding an important revision probe, use a structured object with an
+official HTTPS API `url` and `priority: critical|high|standard`. Dataset probes
+belong in `important-dataset-updates` and require an existing `catalog_id`;
+model probes belong in `important-model-updates` and require an existing
+`model_id`. Hugging Face dataset/model APIs and official GitHub commit APIs are
+supported. Do not monitor by URL alone: the canonical ID connects a revision to
+the site card and its reviewed relationships.
 
 ## Automation boundary
 
 The scheduled workflow may discover links and maintain a review Issue. It may
-also report revisions to selected important datasets, but it must not create
+also report revisions to selected important models and datasets, but it must not create
 model or dataset cards, infer a training corpus, change a license conclusion,
 advance `last_verified`, merge a PR, or deploy unreviewed data.
 

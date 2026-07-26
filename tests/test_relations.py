@@ -21,7 +21,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
             for reference in model["data"]["datasets"]
         )
         self.assertEqual(len(self.payload["relations"]), expected)
-        self.assertGreaterEqual(len(self.payload["relations"]), 23)
+        self.assertGreaterEqual(len(self.payload["relations"]), 26)
 
     def test_model_and_dataset_backlinks_are_symmetric(self) -> None:
         relation_pairs = {
@@ -97,6 +97,12 @@ class ModelDatasetRelationTests(unittest.TestCase):
             set(self.models["openve-edit"]["linked_dataset_ids"]),
             {"openve-3m", "openve-bench"},
         )
+        self.assertEqual(
+            set(self.models["hunyuanvideo-avatar"]["linked_dataset_ids"]),
+            {"hdtf", "celebv-hq"},
+        )
+        self.assertIn("hunyuanvideo-avatar", self.datasets["celebv-hq"]["linked_model_ids"])
+        self.assertIn("musetalk-1-5", self.datasets["hdtf"]["linked_model_ids"])
 
     def test_dataset_monitoring_is_joined_by_canonical_catalog_id(self) -> None:
         self.assertEqual(
@@ -142,6 +148,23 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.datasets["gpic"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["openve-3m"]["monitoring"]["priority"], "critical")
         self.assertIsNone(self.datasets["graphvid-bench"]["monitoring"])
+
+    def test_model_monitoring_is_joined_by_canonical_model_id(self) -> None:
+        self.assertEqual(
+            sum(model["monitoring"] is not None for model in self.models.values()),
+            13,
+        )
+        self.assertEqual(
+            self.models["hunyuanvideo-avatar"]["monitoring"],
+            {
+                "priority": "critical",
+                "source_url": "https://huggingface.co/api/models/tencent/HunyuanVideo-Avatar",
+            },
+        )
+        self.assertEqual(self.models["musetalk-1-5"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.models["fashn-vton-1-5"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.models["ltx-2-3"]["monitoring"]["priority"], "high")
+        self.assertIsNone(self.models["graphvid"]["monitoring"])
 
 
 if __name__ == "__main__":

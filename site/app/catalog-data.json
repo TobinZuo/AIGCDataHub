@@ -1,5 +1,5 @@
 {
-  "format_version": 7,
+  "format_version": 8,
   "generated_from": [
     "catalog/**/*.yaml",
     "models/**/*.yaml",
@@ -422,6 +422,105 @@
       ],
       "scale_label": "60K",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
+    },
+    {
+      "id": "mv-fashion",
+      "name": "MV-Fashion",
+      "organization": "Max Planck Institute for Intelligent Systems and collaborators",
+      "released_at": "2026-06-02",
+      "release_date_source": "https://huggingface.co/datasets/MV-Fashion/MV-Fashion",
+      "modality": "3d",
+      "tasks": [
+        "virtual-try-on",
+        "video-virtual-try-on",
+        "garment-conditioned-generation",
+        "garment-instance-segmentation",
+        "multi-view-human-reconstruction"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "A synchronized multi-view fashion capture dataset pairing clothed human performances with flat garment imagery, material and sizing metadata, segmentation, SMPL-X bodies, and reconstructed geometry.",
+      "access": {
+        "status": "gated",
+        "type": "request",
+        "url": "https://huggingface.co/datasets/MV-Fashion/MV-Fashion",
+        "requires_account": true,
+        "notes": "Access requires a Hugging Face account, manual approval, and acceptance of the dataset agreement for non-commercial research use."
+      },
+      "scale": {
+        "samples": 52020529,
+        "source_items": 2357,
+        "hours": null,
+        "approximate": false,
+        "notes": "The current release reports 52,020,529 frames, 2,357 sequences, 81 subjects, and about 11.5 TB; this is smaller than the paper headline of 72.5M frames and 3,273 sequences after privacy exclusions and quality removals."
+      },
+      "annotations": {
+        "types": [
+          "synchronized-multi-view-video",
+          "depth",
+          "camera-calibration",
+          "garment-catalog-image",
+          "garment-size",
+          "material-elasticity",
+          "segmentation-mask",
+          "smpl-x",
+          "point-cloud"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "MV-Fashion Dataset Agreement",
+        "media": "MV-Fashion Dataset Agreement",
+        "commercial_use": "noncommercial",
+        "redistribution": "prohibited",
+        "notes": "Access is limited to approved non-commercial research; the agreement and GDPR-sensitive human-subject restrictions prohibit treating the release as an unrestricted open corpus."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "motion",
+          "temporal-consistency",
+          "geometry-quality",
+          "multi-view-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The current 52.0M-frame release differs materially from the paper's 72.5M-frame headline after privacy and quality exclusions.",
+          "Minimally clothed captures are excluded for privacy and GDPR reasons, and some annotations remain in progress.",
+          "Up to three cameras can be missing for a sequence, while removed bad frames and sequences make capture coverage non-uniform.",
+          "Approved research-only access prevents direct commercial deployment and unrestricted redistribution."
+        ]
+      },
+      "processing": {
+        "recipe": "Synchronize 68 cameras, calibrate RGB and depth views, remove privacy-sensitive and quality-failed captures, and align segmentation, SMPL-X, point clouds, garment catalog imagery, sizing, and material measurements.",
+        "recommended_format": "native",
+        "notes": "Use the current manifest as the authoritative release scale, preserve per-camera missingness, and do not substitute the larger paper headline for downloadable counts."
+      },
+      "evidence": {
+        "homepage": "https://hunorlaczko.github.io/MV-Fashion/",
+        "paper": "https://arxiv.org/abs/2603.08147",
+        "used_by": []
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/3d/mv-fashion.yaml",
+      "scenario_ids": [
+        "virtual-try-on"
+      ],
+      "scale_label": "52M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/MV-Fashion/MV-Fashion"
+      },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
       "linked_model_ids": []
@@ -1697,6 +1796,104 @@
       "linked_model_ids": [
         "openve-edit"
       ]
+    },
+    {
+      "id": "talkvid",
+      "name": "TalkVid",
+      "organization": "FreedomIntelligence",
+      "released_at": "2025-08-19",
+      "release_date_source": "https://github.com/FreedomIntelligence/TalkVid",
+      "modality": "video",
+      "tasks": [
+        "talking-head-generation",
+        "audio-driven-avatar",
+        "multilingual-avatar-video",
+        "lip-sync-training",
+        "talking-head-evaluation"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A multilingual high-definition talking-video research corpus described at 1,244.33 hours, with a richly annotated 160-hour core and a stratified benchmark; the current public Hugging Face artifact exposes only 500 test rows.",
+      "access": {
+        "status": "metadata-only",
+        "type": "metadata",
+        "url": "https://huggingface.co/datasets/FreedomIntelligence/TalkVid",
+        "requires_account": false,
+        "notes": "The current repository contains a 500-row test split of about 2.02 GB; it is not the complete 1,244.33-hour corpus described by the paper and project page."
+      },
+      "scale": {
+        "samples": 500,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "This card reports the currently observable public artifact; the paper headline is 1,244.33 hours from 7,729 speakers, and TalkVid-Core is 160 hours with 180,860 structured annotations."
+      },
+      "annotations": {
+        "types": [
+          "embedded-video",
+          "speaker-attribute",
+          "language-label",
+          "structured-video-caption",
+          "facial-motion",
+          "audio-video-quality",
+          "benchmark-stratum"
+        ],
+        "source": "mixed",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0",
+        "media": "CC-BY-NC-4.0 release terms layered on original YouTube rights",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The public card uses CC BY-NC 4.0, while source videos remain subject to uploader and platform rights; the release is unsuitable for commercial training without additional clearance."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "aesthetics",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The public Hugging Face artifact currently exposes only the 500-row benchmark, not the full training corpus claimed by the paper.",
+          "DOVER, CoTracker, head-detail filters, Gemini annotations, and human validation can introduce model and reviewer bias.",
+          "The project does not publish a complete item-level rights, consent, demographic, or per-language distribution audit."
+        ]
+      },
+      "processing": {
+        "recipe": "Segment more than 6,000 raw hours, filter visual quality and aesthetics with DOVER, bound motion with CoTracker, enforce head-detail criteria, human-validate retained clips, and stratify 500 benchmark clips by age, gender, ethnicity, and language.",
+        "recommended_format": "parquet",
+        "notes": "Treat the 500-row public test split separately from the unreleased full corpus and 160-hour TalkVid-Core claims."
+      },
+      "evidence": {
+        "homepage": "https://freedomintelligence.github.io/talk-vid",
+        "paper": "https://arxiv.org/abs/2508.13618",
+        "used_by": []
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/video/talkvid.yaml",
+      "scenario_ids": [
+        "digital-human"
+      ],
+      "scale_label": "500",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/FreedomIntelligence/TalkVid"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
     },
     {
       "id": "mvhumannet-plus-plus",
@@ -3459,6 +3656,102 @@
       "linked_model_ids": []
     },
     {
+      "id": "celebv-hq",
+      "name": "CelebV-HQ",
+      "organization": "CUHK MMLab and SenseTime Research",
+      "released_at": "2022-07-25",
+      "release_date_source": "https://github.com/CelebV-HQ/CelebV-HQ/releases/tag/v1.0",
+      "modality": "video",
+      "tasks": [
+        "talking-head-generation",
+        "audio-driven-avatar",
+        "face-video-generation",
+        "talking-head-evaluation"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "A large-scale high-quality face-video collection with diverse identities, head poses, actions, and emotions, distributed as YouTube reconstruction metadata with 83 manually defined facial attributes.",
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://github.com/CelebV-HQ/CelebV-HQ",
+        "requires_account": false,
+        "notes": "Official scripts reconstruct clips from YouTube URLs and timestamps; the project does not redistribute the complete source-video corpus."
+      },
+      "scale": {
+        "samples": 35666,
+        "source_items": 15653,
+        "hours": null,
+        "approximate": false,
+        "notes": "The official project reports 35,666 clips from 15,653 identities at 512 by 512 resolution or higher."
+      },
+      "annotations": {
+        "types": [
+          "youtube-url",
+          "temporal-boundary",
+          "identity-label",
+          "appearance-attribute",
+          "action-attribute",
+          "emotion-attribute"
+        ],
+        "source": "human",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "CelebV-HQ research-use terms",
+        "media": "Original YouTube uploader and platform terms remain applicable",
+        "commercial_use": "noncommercial",
+        "redistribution": "prohibited",
+        "notes": "The official terms limit use to non-commercial research and prohibit copying, distribution, or sale; reconstructed source media also retains upstream rights."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "YouTube removals and regional restrictions can make the reconstructed corpus smaller than the published index.",
+          "Celebrity identities introduce privacy, publicity-right, consent, and demographic-bias considerations.",
+          "The 83 attributes are manually defined but do not constitute a complete fairness or identity-consent audit."
+        ]
+      },
+      "processing": {
+        "recipe": "Download the listed YouTube sources, cut the declared temporal ranges, retain high-resolution face videos, and join the released appearance, action, and emotion annotations.",
+        "recommended_format": "csv",
+        "notes": "Keep source identifiers and download status with every reconstructed clip; do not redistribute upstream media without a separate rights review."
+      },
+      "evidence": {
+        "homepage": "https://github.com/CelebV-HQ/CelebV-HQ",
+        "paper": "https://arxiv.org/abs/2207.12393",
+        "used_by": [
+          "HunyuanVideo-Avatar"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/video/celebv-hq.yaml",
+      "scenario_ids": [
+        "digital-human"
+      ],
+      "scale_label": "35.7K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://api.github.com/repos/CelebV-HQ/CelebV-HQ/commits/main"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "hunyuanvideo-avatar"
+      ]
+    },
+    {
       "id": "webvid-10m",
       "name": "WebVid-10M",
       "organization": "University of Oxford VGG",
@@ -3627,6 +3920,103 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "omni2sound"
+      ]
+    },
+    {
+      "id": "hdtf",
+      "name": "HDTF",
+      "organization": "University of Science and Technology of China and Microsoft Research Asia",
+      "released_at": "2021-03-28",
+      "release_date_source": "https://github.com/MRzzm/HDTF/commit/12157d13e321b19d9294622ee9b644287572db78",
+      "modality": "video",
+      "tasks": [
+        "talking-head-generation",
+        "audio-driven-avatar",
+        "lip-sync-training",
+        "talking-head-evaluation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "A high-resolution audio-visual talking-face collection reconstructed from YouTube source videos, with long-form 720p and 1080p speech footage plus official timestamps and face-crop metadata.",
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://github.com/MRzzm/HDTF",
+        "requires_account": false,
+        "notes": "The official repository distributes YouTube URLs, timestamps, crop metadata, and preprocessing scripts rather than redistributing all source videos."
+      },
+      "scale": {
+        "samples": 362,
+        "source_items": 362,
+        "hours": 15.8,
+        "approximate": true,
+        "notes": "The CVPR paper and repository describe approximately 362 videos totaling 15.8 hours; source availability can shrink as YouTube items disappear."
+      },
+      "annotations": {
+        "types": [
+          "youtube-url",
+          "temporal-boundary",
+          "face-crop",
+          "audio-track",
+          "video-resolution"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source media availability depends on YouTube and may change after the published metadata snapshot.",
+          "The release does not document speaker consent, demographic balance, or a complete per-video rights audit.",
+          "Talking-head framing and English speech dominate, limiting broader full-body and multilingual avatar coverage."
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0 stated by the official repository",
+        "media": "Original YouTube uploader and platform terms remain applicable",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The repository states CC BY 4.0 for the dataset release, but users must separately review the copyright and platform terms of reconstructed source videos."
+      },
+      "processing": {
+        "recipe": "Fetch the declared YouTube intervals, extract audio and frames, apply the released face-crop metadata, and resize aligned talking-face crops to 512 by 512 where required.",
+        "recommended_format": "native",
+        "notes": "Preserve source URL, interval, crop, and retrieval status so missing or changed upstream videos remain auditable."
+      },
+      "evidence": {
+        "homepage": "https://github.com/MRzzm/HDTF",
+        "paper": "https://openaccess.thecvf.com/content/CVPR2021/html/Zhang_Flow-Guided_One-Shot_Talking_Face_Generation_With_a_High-Resolution_Audio-Visual_Dataset_CVPR_2021_paper.html",
+        "used_by": [
+          "HunyuanVideo-Avatar",
+          "MuseTalk 1.5"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/video/hdtf.yaml",
+      "scenario_ids": [
+        "digital-human"
+      ],
+      "scale_label": "~362",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://api.github.com/repos/MRzzm/HDTF/commits/main"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "hunyuanvideo-avatar",
+        "musetalk-1-5"
       ]
     },
     {
@@ -4287,6 +4677,7 @@
         "stage_count": 2,
         "unknown_count": 3
       },
+      "monitoring": null,
       "linked_dataset_ids": []
     },
     {
@@ -4474,6 +4865,7 @@
         "stage_count": 4,
         "unknown_count": 4
       },
+      "monitoring": null,
       "linked_dataset_ids": []
     },
     {
@@ -4609,6 +5001,7 @@
         "stage_count": 2,
         "unknown_count": 4
       },
+      "monitoring": null,
       "linked_dataset_ids": [
         "graphvid-bench"
       ]
@@ -4758,6 +5151,7 @@
         "stage_count": 2,
         "unknown_count": 3
       },
+      "monitoring": null,
       "linked_dataset_ids": []
     },
     {
@@ -4958,6 +5352,7 @@
         "stage_count": 4,
         "unknown_count": 4
       },
+      "monitoring": null,
       "linked_dataset_ids": []
     },
     {
@@ -5170,6 +5565,10 @@
         "stage_count": 4,
         "unknown_count": 4
       },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://api.github.com/repos/nxnai/CtrlVTON/commits/main"
+      },
       "linked_dataset_ids": [
         "viton-hd-edit"
       ]
@@ -5257,6 +5656,7 @@
         "stage_count": 1,
         "unknown_count": 3
       },
+      "monitoring": null,
       "linked_dataset_ids": []
     },
     {
@@ -5368,6 +5768,7 @@
         "stage_count": 2,
         "unknown_count": 3
       },
+      "monitoring": null,
       "linked_dataset_ids": []
     },
     {
@@ -5477,6 +5878,7 @@
         "stage_count": 1,
         "unknown_count": 3
       },
+      "monitoring": null,
       "linked_dataset_ids": []
     },
     {
@@ -5635,6 +6037,7 @@
         "stage_count": 3,
         "unknown_count": 3
       },
+      "monitoring": null,
       "linked_dataset_ids": []
     },
     {
@@ -5735,6 +6138,10 @@
         "stage_count": 1,
         "unknown_count": 2
       },
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/models/stanford-vision-lab/gpic-baselines"
+      },
       "linked_dataset_ids": [
         "gpic"
       ]
@@ -5834,6 +6241,7 @@
         "stage_count": 2,
         "unknown_count": 3
       },
+      "monitoring": null,
       "linked_dataset_ids": []
     },
     {
@@ -5978,6 +6386,7 @@
         "stage_count": 3,
         "unknown_count": 3
       },
+      "monitoring": null,
       "linked_dataset_ids": [
         "lens-800m",
         "lens-rl-8k"
@@ -6077,6 +6486,10 @@
         "scale_disclosed_stage_count": 0,
         "stage_count": 1,
         "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/models/bytedance-research/Lance"
       },
       "linked_dataset_ids": []
     },
@@ -6279,6 +6692,7 @@
         "stage_count": 4,
         "unknown_count": 4
       },
+      "monitoring": null,
       "linked_dataset_ids": [
         "tripvvt-10k"
       ]
@@ -6452,6 +6866,7 @@
         "stage_count": 4,
         "unknown_count": 3
       },
+      "monitoring": null,
       "linked_dataset_ids": [
         "eria-1k"
       ]
@@ -6599,6 +7014,10 @@
         "scale_disclosed_stage_count": 1,
         "stage_count": 2,
         "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://api.github.com/repos/HarryWang355/FIT-VTO/commits/main"
       },
       "linked_dataset_ids": [
         "fit-vto-100k"
@@ -6829,6 +7248,7 @@
         "stage_count": 4,
         "unknown_count": 3
       },
+      "monitoring": null,
       "linked_dataset_ids": []
     },
     {
@@ -6964,6 +7384,10 @@
         "stage_count": 2,
         "unknown_count": 2
       },
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/models/Lightricks/LTX-2.3"
+      },
       "linked_dataset_ids": []
     },
     {
@@ -7048,6 +7472,7 @@
         "stage_count": 1,
         "unknown_count": 2
       },
+      "monitoring": null,
       "linked_dataset_ids": []
     },
     {
@@ -7185,9 +7610,152 @@
         "stage_count": 2,
         "unknown_count": 3
       },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/justdubit/justdubit"
+      },
       "linked_dataset_ids": [
         "audiovisual-translation-dub"
       ]
+    },
+    {
+      "id": "fashn-vton-1-5",
+      "name": "FASHN VTON v1.5",
+      "organization": "FASHN AI",
+      "released_at": "2026-01-19",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "virtual-try-on",
+        "garment-conditioned-generation",
+        "identity-preserving-editing",
+        "multi-garment-try-on"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0",
+        "release_url": "https://fashn.ai/research/vton-1-5",
+        "weights_url": "https://huggingface.co/fashn-ai/fashn-vton-1.5",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "972M-parameter pixel-space MMDiT with double-stream, single-stream, and patch-mixer blocks",
+        "parameters": 972000000,
+        "notes": "Generates 576 by 864 try-on images from person, garment, category, and optional mask inputs using 8 double-stream, 16 single-stream, and 4 patch-mixer blocks with 12 by 12 patches."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": true,
+        "datasets": [
+          {
+            "name": "FASHN masked try-on pair pool",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "not-released",
+            "scale": "18 million masked try-on pairs",
+            "notes": "The report discloses aggregate pair count but not source datasets, identities, acquisition terms, rights composition, or a downloadable artifact."
+          },
+          {
+            "name": "FASHN synthetic same-person alternative-garment triplets",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "4 million synthetic triplets",
+            "notes": "Phase-one weights generate same-person alternative-garment supervision; source images and the exact number of examples consumed in phase two are not released."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image"
+            ],
+            "source_types": [
+              "proprietary"
+            ],
+            "operations": [
+              "masked-try-on-pairing",
+              "pixel-space-training",
+              "token-dropping",
+              "random-mask-conditioning"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train the pixel-space MMDiT from scratch on 18 million masked person-garment try-on pairs while dropping up to 75 percent of input tokens to reduce compute."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image"
+            ],
+            "source_types": [
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "synthetic-triplet-generation",
+              "same-person-conditioning",
+              "garment-substitution",
+              "source-mixing",
+              "token-dropping"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Continue training on a 50 to 50 mix of masked pairs and a four-million-item synthetic pool where the phase-one checkpoint creates the same person wearing an alternative garment."
+          }
+        ],
+        "strategy_summary": [
+          "Train a 972M pixel-space MMDiT from scratch in two phases instead of inheriting an undisclosed foundation-model corpus.",
+          "Start from 18 million masked try-on pairs, then mix them equally with four million phase-one-generated same-person alternative-garment triplets.",
+          "Drop up to 75 percent of tokens during training to lower compute while retaining person identity, garment fidelity, and optional-mask control."
+        ],
+        "unknowns": [
+          "Source dataset identities, image acquisition path, consent, licensing, demographic balance, and rights composition of the 18-million-pair pool.",
+          "Exact phase-two sample counts, sampling with or without replacement, number of epochs, rejection rate, and quality filters for the four-million synthetic pool.",
+          "Complete training compute, per-stage duration, and whether every benchmark or production configuration is reproducible from the public checkpoint and repository."
+        ]
+      },
+      "evidence": {
+        "release": "https://fashn.ai/research/vton-1-5",
+        "technical_report": "https://fashn.ai/research/vton-1-5",
+        "repository": "https://github.com/fashn-AI/fashn-vton-1.5"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/image/fashn-vton-1-5.yaml",
+      "scenario_ids": [
+        "virtual-try-on"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "proprietary",
+          "synthetic"
+        ],
+        "operations": [
+          "masked-try-on-pairing",
+          "pixel-space-training",
+          "token-dropping",
+          "random-mask-conditioning",
+          "synthetic-triplet-generation",
+          "same-person-conditioning",
+          "garment-substitution",
+          "source-mixing"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 2,
+        "stage_count": 2,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/fashn-ai/fashn-vton-1.5"
+      },
+      "linked_dataset_ids": []
     },
     {
       "id": "omni2sound",
@@ -7404,6 +7972,10 @@
         "stage_count": 3,
         "unknown_count": 4
       },
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/models/Dalision/Omni2Sound"
+      },
       "linked_dataset_ids": [
         "audiocaps-2-0",
         "wavcaps",
@@ -7591,6 +8163,10 @@
         "stage_count": 2,
         "unknown_count": 4
       },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/snap-research/talkverse-s2v-5b"
+      },
       "linked_dataset_ids": [
         "talkverse"
       ]
@@ -7707,6 +8283,7 @@
         "stage_count": 1,
         "unknown_count": 2
       },
+      "monitoring": null,
       "linked_dataset_ids": [
         "openve-3m",
         "openve-bench"
@@ -7819,7 +8396,328 @@
         "stage_count": 2,
         "unknown_count": 2
       },
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://api.github.com/repos/Tencent-Hunyuan/HunyuanVideo-1.5/commits/main"
+      },
       "linked_dataset_ids": []
+    },
+    {
+      "id": "hunyuanvideo-avatar",
+      "name": "HunyuanVideo-Avatar",
+      "organization": "Tencent Hunyuan",
+      "released_at": "2025-05-28",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "audio-driven-avatar",
+        "talking-head-generation",
+        "image-to-video",
+        "long-video-generation",
+        "cross-scene-avatar-generation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Tencent Hunyuan Community License; territory excludes the EU, UK, and South Korea, with additional commercial-use conditions",
+        "release_url": "https://github.com/Tencent-Hunyuan/HunyuanVideo-Avatar",
+        "weights_url": "https://huggingface.co/tencent/HunyuanVideo-Avatar",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "HunyuanVideo-I2V 13B MM-DiT with character-image injection, Face-Aware Audio Adapter, and Audio Emotion Module",
+        "parameters": 13000000000,
+        "notes": "Extends HunyuanVideo-I2V with face-aware audio conditioning, emotion features, reference-character injection, and position-shift fusion for long-form single- and multi-character animation."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "HunyuanVideo-I2V inherited training mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "The avatar model inherits the visual prior of HunyuanVideo-I2V, but this release does not restate that model's complete source corpus or mixture."
+          },
+          {
+            "name": "HunyuanVideo-Avatar character-audio training corpus",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "500,000 character-audio samples totaling approximately 1,250 hours",
+            "notes": "The report discloses aggregate scale and filtering but not source identities, licensing composition, speaker consent, or a public artifact."
+          },
+          {
+            "name": "HDTF",
+            "catalog_id": "hdtf",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "Approximately 362 videos and 15.8 hours",
+            "notes": "Used as a public talking-head evaluation set; this relationship is not a claim that HDTF was included in the private training corpus."
+          },
+          {
+            "name": "CelebV-HQ",
+            "catalog_id": "celebv-hq",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "35,666 clips from 15,653 identities",
+            "notes": "Used as a public face-video evaluation set; this relationship is not a claim that CelebV-HQ was included in the private training corpus."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-foundation-model"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Reuse the 13B HunyuanVideo-I2V image-to-video prior without restating the foundation model's exact training sources, filtering, or mixture."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "audio"
+            ],
+            "source_types": [
+              "proprietary"
+            ],
+            "operations": [
+              "audio-video-sync-filtering",
+              "brightness-filtering",
+              "aesthetic-filtering",
+              "face-aware-audio-conditioning",
+              "audio-emotion-conditioning",
+              "mixed-resolution-training"
+            ],
+            "scale_disclosed": true,
+            "strategy": "First optimize audio-only conditioning, then mix audio-conditioned and image-conditioned examples at a reported 1 to 1.5 ratio over 500,000 character-audio samples from 704 by 704 through 704 by 1216."
+          }
+        ],
+        "strategy_summary": [
+          "Curate 500,000 character-audio samples totaling about 1,250 hours, filtering synchronization with LatentSync and low-light or low-aesthetic content with Koala-36M tooling.",
+          "Stage training from audio-only conditioning to a 1 to 1.5 mix of audio and reference-image examples so the model learns lip motion, emotion, identity, and body motion jointly.",
+          "Evaluate on public HDTF and CelebV-HQ plus an unreleased 250-video, 200-identity full-body test set while keeping the private training corpus distinct from those benchmarks."
+        ],
+        "unknowns": [
+          "Exact sources, identities, languages, consent process, licenses, and rights composition of the 500,000-sample training corpus.",
+          "Complete HunyuanVideo-I2V inherited training corpus, data mixture, filters, and per-source weights.",
+          "Whether the unreleased full-body benchmark and every reported training asset will become publicly auditable.",
+          "Applicability of the Tencent Hunyuan Community License for intended geography and commercial scale, including its excluded territories."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/Tencent-Hunyuan/HunyuanVideo-Avatar",
+        "technical_report": "https://arxiv.org/abs/2505.20156",
+        "repository": "https://github.com/Tencent-Hunyuan/HunyuanVideo-Avatar"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/video/hunyuanvideo-avatar.yaml",
+      "scenario_ids": [
+        "video-generation",
+        "digital-human"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed",
+          "proprietary"
+        ],
+        "operations": [
+          "inherited-foundation-model",
+          "audio-video-sync-filtering",
+          "brightness-filtering",
+          "aesthetic-filtering",
+          "face-aware-audio-conditioning",
+          "audio-emotion-conditioning",
+          "mixed-resolution-training"
+        ],
+        "data_reference_count": 4,
+        "linked_dataset_count": 2,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/tencent/HunyuanVideo-Avatar"
+      },
+      "linked_dataset_ids": [
+        "hdtf",
+        "celebv-hq"
+      ]
+    },
+    {
+      "id": "musetalk-1-5",
+      "name": "MuseTalk 1.5",
+      "organization": "Tencent Music Entertainment Lyra Lab",
+      "released_at": "2025-03-28",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "audio-driven-avatar",
+        "talking-head-generation",
+        "lip-sync",
+        "video-dubbing"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Repository states MIT code and broad model use; Hugging Face metadata declares CreativeML Open RAIL-M",
+        "release_url": "https://github.com/TMElyralab/MuseTalk",
+        "weights_url": "https://huggingface.co/TMElyralab/MuseTalk",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Single-step latent inpainting UNet with frozen ft-mse VAE and Whisper-tiny audio encoder",
+        "parameters": null,
+        "notes": "Adapts a Stable Diffusion 1.4-derived UNet to one-step 256 by 256 face-region latent inpainting rather than iterative diffusion sampling, enabling more than 30 FPS on an NVIDIA V100."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Stable Diffusion 1.4 inherited training mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "MuseTalk initializes its UNet from Stable Diffusion 1.4 but does not restate the foundation model's complete data lineage."
+          },
+          {
+            "name": "HDTF",
+            "catalog_id": "hdtf",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "Approximately 362 videos and 15.8 hours",
+            "notes": "The official repository explicitly says the released checkpoint was trained on HDTF together with a private dataset."
+          },
+          {
+            "name": "MuseTalk private talking-face dataset",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": null,
+            "notes": "The repository names a private component but does not disclose its size, sources, language distribution, rights, or release plan."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "audio"
+            ],
+            "source_types": [
+              "public-dataset",
+              "proprietary"
+            ],
+            "operations": [
+              "informative-frame-sampling",
+              "facial-abstract-pretraining",
+              "latent-inpainting",
+              "perceptual-loss"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Train a facial abstract representation with informative frame sampling over HDTF and a private talking-face set while keeping the VAE and Whisper audio encoder frozen."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "audio"
+            ],
+            "source_types": [
+              "public-dataset",
+              "proprietary"
+            ],
+            "operations": [
+              "dynamic-margin-sampling",
+              "lip-sync-adversarial-training",
+              "gan-loss",
+              "sync-loss",
+              "spatiotemporal-sampling"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Adversarially fine-tune lip synchronization with dynamic margin sampling, perceptual and GAN objectives, and explicit sync supervision over spatiotemporal training samples."
+          }
+        ],
+        "strategy_summary": [
+          "Combine public HDTF with an unnamed private talking-face set; the released checkpoint discloses dataset identity only for the public component and no mixture ratio.",
+          "Use facial abstract pretraining with informative frame sampling before lip-sync adversarial fine-tuning with dynamic margin sampling.",
+          "Freeze the ft-mse VAE and Whisper-tiny encoder while adapting a Stable Diffusion-derived UNet for single-step face-region inpainting and real-time inference."
+        ],
+        "unknowns": [
+          "Size, source identities, languages, consent, licensing, demographic coverage, and mixture weight of the private training dataset.",
+          "Complete inherited Stable Diffusion 1.4 corpus and the exact snapshot used for initialization.",
+          "A single authoritative model-license statement resolving the repository's broad-use language and Hugging Face's CreativeML Open RAIL-M metadata.",
+          "Full training hyperparameters, compute, rejected-sample counts, and reproducibility of the reported real-time quality from public assets alone."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/TMElyralab/MuseTalk",
+        "technical_report": "https://arxiv.org/abs/2410.10122",
+        "repository": "https://github.com/TMElyralab/MuseTalk"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/video/musetalk-1-5.yaml",
+      "scenario_ids": [
+        "digital-human",
+        "video-localization"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "public-dataset",
+          "proprietary"
+        ],
+        "operations": [
+          "informative-frame-sampling",
+          "facial-abstract-pretraining",
+          "latent-inpainting",
+          "perceptual-loss",
+          "dynamic-margin-sampling",
+          "lip-sync-adversarial-training",
+          "gan-loss",
+          "sync-loss",
+          "spatiotemporal-sampling"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/TMElyralab/MuseTalk"
+      },
+      "linked_dataset_ids": [
+        "hdtf"
+      ]
     },
     {
       "id": "commoncanvas-xl-c",
@@ -7922,6 +8820,10 @@
         "stage_count": 1,
         "unknown_count": 2
       },
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/models/common-canvas/CommonCanvas-XL-C"
+      },
       "linked_dataset_ids": [
         "commoncatalog"
       ]
@@ -7977,6 +8879,22 @@
       "reference_name": "GraphVid-Bench"
     },
     {
+      "model_id": "hunyuanvideo-avatar",
+      "dataset_id": "celebv-hq",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "35,666 clips from 15,653 identities",
+      "reference_name": "CelebV-HQ"
+    },
+    {
+      "model_id": "hunyuanvideo-avatar",
+      "dataset_id": "hdtf",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "Approximately 362 videos and 15.8 hours",
+      "reference_name": "HDTF"
+    },
+    {
       "model_id": "just-dub-it",
       "dataset_id": "audiovisual-translation-dub",
       "role": "fine-tuning",
@@ -7999,6 +8917,14 @@
       "availability": "not-released",
       "scale": "8K prompts",
       "reference_name": "Lens-RL-8K"
+    },
+    {
+      "model_id": "musetalk-1-5",
+      "dataset_id": "hdtf",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "Approximately 362 videos and 15.8 hours",
+      "reference_name": "HDTF"
     },
     {
       "model_id": "omni2sound",

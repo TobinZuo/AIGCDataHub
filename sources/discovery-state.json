@@ -1,6 +1,6 @@
 {
-  "schema_version": 4,
-  "generated_at": "2026-07-26T12:02:55Z",
+  "schema_version": 5,
+  "generated_at": "2026-07-26T12:28:17Z",
   "sources": [
     {
       "track_id": "datasets",
@@ -12,7 +12,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "datasets",
@@ -57,7 +58,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "datasets",
@@ -94,7 +96,39 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
+    },
+    {
+      "track_id": "datasets",
+      "source_url": "https://github.com/CelebV-HQ/CelebV-HQ",
+      "resolved_url": "https://github.com/CelebV-HQ/CelebV-HQ",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null
+    },
+    {
+      "track_id": "datasets",
+      "source_url": "https://github.com/MRzzm/HDTF",
+      "resolved_url": "https://github.com/MRzzm/HDTF",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "paper",
+          "url": "https://openaccess.thecvf.com/content/CVPR2021/papers/Zhang_Flow-Guided_One-Shot_Talking_Face_Generation_With_a_High-Resolution_Audio-Visual_Dataset_CVPR_2021_paper.pdf"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "datasets",
@@ -106,7 +140,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "datasets",
@@ -118,7 +153,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "datasets",
@@ -135,7 +171,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "datasets",
@@ -168,7 +205,34 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
+    },
+    {
+      "track_id": "datasets",
+      "source_url": "https://huggingface.co/datasets/FreedomIntelligence/TalkVid",
+      "resolved_url": "https://huggingface.co/datasets/FreedomIntelligence/TalkVid",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "video-generation",
+          "url": "https://huggingface.co/datasets?other=video-generation"
+        },
+        {
+          "title": "Image-to-Video",
+          "url": "https://huggingface.co/datasets?task_categories=task_categories%3Aimage-to-video"
+        },
+        {
+          "title": "TalkVid: A Large-Scale Diversified Dataset for Audio-Driven Talking Head Synthesis Paper • 2508.13618 • Published Aug 19, 2025 • 19",
+          "url": "https://huggingface.co/papers/2508.13618"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "datasets",
@@ -197,7 +261,42 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
+    },
+    {
+      "track_id": "datasets",
+      "source_url": "https://huggingface.co/datasets/MV-Fashion/MV-Fashion",
+      "resolved_url": "https://huggingface.co/datasets/MV-Fashion/MV-Fashion",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Video",
+          "url": "https://huggingface.co/datasets?modality=modality%3Avideo"
+        },
+        {
+          "title": "Image Segmentation",
+          "url": "https://huggingface.co/datasets?task_categories=task_categories%3Aimage-segmentation"
+        },
+        {
+          "title": "Image-to-3D",
+          "url": "https://huggingface.co/datasets?task_categories=task_categories%3Aimage-to-3d"
+        },
+        {
+          "title": "Image-to-Image",
+          "url": "https://huggingface.co/datasets?task_categories=task_categories%3Aimage-to-image"
+        },
+        {
+          "title": "MV-Fashion: Towards Enabling Virtual Try-On and Size Estimation with Multi-View Paired Data Paper • 2603.08147 • Published Mar 9",
+          "url": "https://huggingface.co/papers/2603.08147"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "datasets",
@@ -242,7 +341,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "datasets",
@@ -271,7 +371,56 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
+    },
+    {
+      "track_id": "digital-human-and-localization",
+      "source_url": "https://freedomintelligence.github.io/talk-vid",
+      "resolved_url": "https://freedomintelligence.github.io/talk-vid",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Paper",
+          "url": "https://arxiv.org/pdf/2508.13618"
+        },
+        {
+          "title": "https://github.com/FreedomIntelligence/TalkVid",
+          "url": "https://github.com/FreedomIntelligence/TalkVid"
+        },
+        {
+          "title": "Data",
+          "url": "https://huggingface.co/datasets/FreedomIntelligence/TalkVid"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null
+    },
+    {
+      "track_id": "digital-human-and-localization",
+      "source_url": "https://github.com/FreedomIntelligence/TalkVid",
+      "resolved_url": "https://github.com/FreedomIntelligence/TalkVid",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "TalkVid: A Large-Scale Diversified Dataset for Audio-Driven Talking Head Synthesis",
+          "url": "https://arxiv.org/abs/2508.13618"
+        },
+        {
+          "title": "Stable Diffusion",
+          "url": "https://github.com/Stability-AI/stablediffusion"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -283,7 +432,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -304,7 +454,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -337,7 +488,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -354,7 +506,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -395,7 +548,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -407,7 +561,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -428,7 +583,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -453,7 +609,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -478,7 +635,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "digital-human-and-localization",
@@ -499,7 +657,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "image-generation",
@@ -564,7 +723,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "image-generation",
@@ -581,7 +741,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "image-generation",
@@ -650,7 +811,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "image-generation",
@@ -695,7 +857,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "image-generation",
@@ -712,7 +875,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "image-generation",
@@ -724,7 +888,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "image-generation",
@@ -757,7 +922,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "image-generation",
@@ -822,11 +988,11 @@
           "url": "https://huggingface.co/models?pipeline_tag=text-to-video"
         },
         {
-          "title": "nvidia/Qwen-Image-Flash Text-to-Image • 20B • Updated 3 days ago • 238 • 39",
+          "title": "nvidia/Qwen-Image-Flash Text-to-Image • 20B • Updated 3 days ago • 238 • 40",
           "url": "https://huggingface.co/nvidia/Qwen-Image-Flash"
         },
         {
-          "title": "ponpoke/flux2-klein-9b-uncensored-text-encoder Text-to-Image • 8B • Updated May 2 • 27.8k • 326",
+          "title": "ponpoke/flux2-klein-9b-uncensored-text-encoder Text-to-Image • 8B • Updated May 2 • 27.8k • 327",
           "url": "https://huggingface.co/ponpoke/flux2-klein-9b-uncensored-text-encoder"
         },
         {
@@ -838,7 +1004,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "image-generation",
@@ -871,7 +1038,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "image-generation",
@@ -883,7 +1051,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "image-generation",
@@ -895,7 +1064,21 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://api.github.com/repos/CelebV-HQ/CelebV-HQ/commits/main",
+      "resolved_url": "https://api.github.com/repos/CelebV-HQ/CelebV-HQ/commits/main",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2023-01-04T00:29:28Z@d1b6cf3ace513de8c9af3f2b72860ac7533e81ef",
+      "revision_url": "https://github.com/CelebV-HQ/CelebV-HQ/commit/d1b6cf3ace513de8c9af3f2b72860ac7533e81ef",
+      "catalog_id": "celebv-hq",
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -907,7 +1090,8 @@
       "revision": "2025-05-27T02:27:11Z@63551e6ff8b0c2f5e51e1c8de7fdd13415109000",
       "revision_url": "https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet/commit/63551e6ff8b0c2f5e51e1c8de7fdd13415109000",
       "catalog_id": "mvhumannet",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -919,7 +1103,21 @@
       "revision": "2025-05-27T02:20:06Z@1afb075162e2f8052872c930ccb4c8800ae875c6",
       "revision_url": "https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus/commit/1afb075162e2f8052872c930ccb4c8800ae875c6",
       "catalog_id": "mvhumannet-plus-plus",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://api.github.com/repos/MRzzm/HDTF/commits/main",
+      "resolved_url": "https://api.github.com/repos/MRzzm/HDTF/commits/main",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2021-10-05T12:13:40Z@bbde889bbab954c9a9ebcabe9962885c29f2165e",
+      "revision_url": "https://github.com/MRzzm/HDTF/commit/bbde889bbab954c9a9ebcabe9962885c29f2165e",
+      "catalog_id": "hdtf",
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -931,7 +1129,8 @@
       "revision": "2025-02-27T09:27:08Z@1c37e5adf4585d8ca83a6c24e7a496ea83d41d7d",
       "revision_url": "https://github.com/fudan-generative-vision/OpenHumanVid/commit/1c37e5adf4585d8ca83a6c24e7a496ea83d41d7d",
       "catalog_id": "openhumanvid",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -943,7 +1142,8 @@
       "revision": "2024-10-25T00:31:10Z@9afd40bc95a0b9ced71513ef9076661a205a1873",
       "revision_url": "https://github.com/snap-research/Panda-70M/commit/9afd40bc95a0b9ced71513ef9076661a205a1873",
       "catalog_id": "panda-70m",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -955,7 +1155,21 @@
       "revision": "2026-04-24T14:54:54.000Z@4f2b6bbd41976b32a9cfb6157af62c7b4924e303",
       "revision_url": "https://huggingface.co/datasets/Dalision/Omni2Sound_Benchmark",
       "catalog_id": "vggsound-omni",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/FreedomIntelligence/TalkVid",
+      "resolved_url": "https://huggingface.co/api/datasets/FreedomIntelligence/TalkVid",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2025-09-02T10:32:10.000Z@11145b122686d7c4d5f7f9294564dd5b467378a7",
+      "revision_url": "https://huggingface.co/datasets/FreedomIntelligence/TalkVid",
+      "catalog_id": "talkvid",
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -967,7 +1181,8 @@
       "revision": "2026-07-18T04:28:40.000Z@db4d79386cb91679ec762859af7914b173647d31",
       "revision_url": "https://huggingface.co/datasets/Haosonnn/OpenHumanVid-Talking",
       "catalog_id": "openhumanvid-talking",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -979,7 +1194,8 @@
       "revision": "2026-04-30T18:21:00.000Z@84c74091e1c6ee7a5dffabfafb5c9033e4718883",
       "revision_url": "https://huggingface.co/datasets/HuggingFaceFV/finevideo",
       "catalog_id": "finevideo",
-      "priority": "high"
+      "priority": "high",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -991,7 +1207,8 @@
       "revision": "2024-10-12T11:55:05.000Z@d22de7a8906c9555a51ea59fb503d88726d5bda3",
       "revision_url": "https://huggingface.co/datasets/Koala-36M/Koala-36M-v1",
       "catalog_id": "koala-36m",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1003,7 +1220,8 @@
       "revision": "2026-01-26T10:27:16.000Z@d2c134f01c49d22efc2e0d9aefd798772f039a79",
       "revision_url": "https://huggingface.co/datasets/Lewandofski/OpenVE-3M",
       "catalog_id": "openve-3m",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1015,7 +1233,21 @@
       "revision": "2025-12-24T09:45:55.000Z@255b2ff91a8c7d45696f37f5aed14bd427b35e34",
       "revision_url": "https://huggingface.co/datasets/Lewandofski/OpenVE-Bench",
       "catalog_id": "openve-bench",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/MV-Fashion/MV-Fashion",
+      "resolved_url": "https://huggingface.co/api/datasets/MV-Fashion/MV-Fashion",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-06-04T02:57:26.000Z@59070f2e954c5ecc4381876e93ac1a9fad9ab0da",
+      "revision_url": "https://huggingface.co/datasets/MV-Fashion/MV-Fashion",
+      "catalog_id": "mv-fashion",
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1027,7 +1259,8 @@
       "revision": "2026-07-15T03:41:09.000Z@9de94ee10e15f5069fd650ce4c914215f124eb6f",
       "revision_url": "https://huggingface.co/datasets/NXN-Labs/VITON-HD-edit",
       "catalog_id": "viton-hd-edit",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1039,7 +1272,8 @@
       "revision": "2024-08-13T02:04:22.000Z@8f8e0138bd89103a914e8c97ae124ab0c4a78fcf",
       "revision_url": "https://huggingface.co/datasets/OpenGVLab/InternVid",
       "catalog_id": "internvid",
-      "priority": "high"
+      "priority": "high",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1051,7 +1285,8 @@
       "revision": "2026-06-25T16:54:31.000Z@596f650e5186a9d6a5fe694e3c2a3eccf2ab7dd3",
       "revision_url": "https://huggingface.co/datasets/TripVVT/TripVVT-10K",
       "catalog_id": "tripvvt-10k",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1063,7 +1298,8 @@
       "revision": "2026-06-14T10:51:28.000Z@5563646729edf148ed2b32c4b9c794d51a1bc828",
       "revision_url": "https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k",
       "catalog_id": "fit-vto-100k",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1075,7 +1311,8 @@
       "revision": "2024-05-16T19:01:29.000Z@80f50fe4a1ca937f37a11be3f8eee5199d776ff3",
       "revision_url": "https://huggingface.co/datasets/common-canvas/commoncatalog-cc-by",
       "catalog_id": "commoncatalog",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1087,7 +1324,8 @@
       "revision": "2023-07-06T13:28:10.000Z@0930ec11ded28fa0eaa910fde2f6fc3538acbeac",
       "revision_url": "https://huggingface.co/datasets/cvssp/WavCaps",
       "catalog_id": "wavcaps",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1099,7 +1337,8 @@
       "revision": "2026-02-08T14:09:47.000Z@5b9a84788df7bad0e27a9e5091c64c650a85535e",
       "revision_url": "https://huggingface.co/datasets/justdubit/audiovisual_translation_dub",
       "catalog_id": "audiovisual-translation-dub",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1111,7 +1350,8 @@
       "revision": "2022-08-30T19:07:52.000Z@54ee2d8c64d3d80a5e10ef6952a4466551834fc1",
       "revision_url": "https://huggingface.co/datasets/kakaobrain/coyo-700m",
       "catalog_id": "coyo-700m",
-      "priority": "high"
+      "priority": "high",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1123,7 +1363,8 @@
       "revision": "2026-02-20T06:41:40.000Z@28fdd5663ee202b5cafc01d6ed08a03f14957854",
       "revision_url": "https://huggingface.co/datasets/ma-xu/fine-t2i",
       "catalog_id": "fine-t2i",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1135,7 +1376,8 @@
       "revision": "2023-08-21T21:43:05.000Z@086ebeee20d4cc3b3e7c05ae703fcf278ae3a759",
       "revision_url": "https://huggingface.co/datasets/mlfoundations/datacomp_1b",
       "catalog_id": "datacomp-1b",
-      "priority": "high"
+      "priority": "high",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1147,7 +1389,8 @@
       "revision": "2026-03-31T03:50:30.000Z@d8a63bd22989c80b5734ec2bb989f4e1b61a5807",
       "revision_url": "https://huggingface.co/datasets/nkp37/OpenVid-1M",
       "catalog_id": "openvid-1m",
-      "priority": "high"
+      "priority": "high",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1159,7 +1402,8 @@
       "revision": "2026-06-04T19:45:37.000Z@ab5a293b37a2d2e3d8228518c61b6ffbe4458c55",
       "revision_url": "https://huggingface.co/datasets/stanford-vision-lab/gpic",
       "catalog_id": "gpic",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1171,7 +1415,8 @@
       "revision": "2026-02-06T05:33:20.000Z@0f05a726ff7eb3db93444a4efc65f0552bce84a4",
       "revision_url": "https://huggingface.co/datasets/tiange/Cap3D",
       "catalog_id": "cap3d",
-      "priority": "high"
+      "priority": "high",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1183,7 +1428,8 @@
       "revision": "2026-01-02T15:39:52.000Z@6f678477700a8306b9b62628cbf5ac74c4f395bd",
       "revision_url": "https://huggingface.co/datasets/wjwow/FreeMan",
       "catalog_id": "freeman",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
     },
     {
       "track_id": "important-dataset-updates",
@@ -1195,7 +1441,177 @@
       "revision": "2026-01-02T03:01:54.000Z@0251e435401cf4dbb1e9e18ba3b54007be588833",
       "revision_url": "https://huggingface.co/datasets/zhenzhiwang/TalkVerse",
       "catalog_id": "talkverse",
-      "priority": "critical"
+      "priority": "critical",
+      "model_id": null
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://api.github.com/repos/HarryWang355/FIT-VTO/commits/main",
+      "resolved_url": "https://api.github.com/repos/HarryWang355/FIT-VTO/commits/main",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-06-18T05:53:49Z@5288a2285c732481ec93213aec7372be82976db2",
+      "revision_url": "https://github.com/HarryWang355/FIT-VTO/commit/5288a2285c732481ec93213aec7372be82976db2",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "fit-vto"
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://api.github.com/repos/Tencent-Hunyuan/HunyuanVideo-1.5/commits/main",
+      "resolved_url": "https://api.github.com/repos/Tencent-Hunyuan/HunyuanVideo-1.5/commits/main",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-04-10T06:14:58Z@60783e704160023913bee78f0b47036d393d4dfa",
+      "revision_url": "https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5/commit/60783e704160023913bee78f0b47036d393d4dfa",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": "hunyuanvideo-1-5"
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://api.github.com/repos/nxnai/CtrlVTON/commits/main",
+      "resolved_url": "https://api.github.com/repos/nxnai/CtrlVTON/commits/main",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-07-13T01:34:16Z@655f3d0f1c494090449962a79d4b7ab253b53f1a",
+      "revision_url": "https://github.com/nxnai/CtrlVTON/commit/655f3d0f1c494090449962a79d4b7ab253b53f1a",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "ctrlvton"
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://huggingface.co/api/models/Dalision/Omni2Sound",
+      "resolved_url": "https://huggingface.co/api/models/Dalision/Omni2Sound",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-04-24T15:00:00.000Z@766f5bf56e4e7de04a74c1afbe2a6f2945e74a95",
+      "revision_url": "https://huggingface.co/Dalision/Omni2Sound",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": "omni2sound"
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://huggingface.co/api/models/Lightricks/LTX-2.3",
+      "resolved_url": "https://huggingface.co/api/models/Lightricks/LTX-2.3",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-07-09T11:12:53.000Z@4229404625088d21c4f112eb640fb04a0900ee25",
+      "revision_url": "https://huggingface.co/Lightricks/LTX-2.3",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": "ltx-2-3"
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://huggingface.co/api/models/TMElyralab/MuseTalk",
+      "resolved_url": "https://huggingface.co/api/models/TMElyralab/MuseTalk",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2025-03-31T13:50:46.000Z@3ef28bc5cff08c90ad8178a25f1b570cd800170f",
+      "revision_url": "https://huggingface.co/TMElyralab/MuseTalk",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "musetalk-1-5"
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://huggingface.co/api/models/bytedance-research/Lance",
+      "resolved_url": "https://huggingface.co/api/models/bytedance-research/Lance",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-05-28T06:25:28.000Z@7395315758865e6f56ab87ad06a88c7ac172f056",
+      "revision_url": "https://huggingface.co/bytedance-research/Lance",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": "lance"
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://huggingface.co/api/models/common-canvas/CommonCanvas-XL-C",
+      "resolved_url": "https://huggingface.co/api/models/common-canvas/CommonCanvas-XL-C",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2024-05-17T15:11:00.000Z@6e5753ae3eebce4c841f5d49c060212cd03140ed",
+      "revision_url": "https://huggingface.co/common-canvas/CommonCanvas-XL-C",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": "commoncanvas-xl-c"
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://huggingface.co/api/models/fashn-ai/fashn-vton-1.5",
+      "resolved_url": "https://huggingface.co/api/models/fashn-ai/fashn-vton-1.5",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-02-01T15:55:17.000Z@7720683168567eb5a2a4c67f15116c6e29c83ded",
+      "revision_url": "https://huggingface.co/fashn-ai/fashn-vton-1.5",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "fashn-vton-1-5"
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://huggingface.co/api/models/justdubit/justdubit",
+      "resolved_url": "https://huggingface.co/api/models/justdubit/justdubit",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-02-08T14:18:05.000Z@6be23f1fda4ba41538733890cbaafc33df75b9bd",
+      "revision_url": "https://huggingface.co/justdubit/justdubit",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "just-dub-it"
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://huggingface.co/api/models/snap-research/talkverse-s2v-5b",
+      "resolved_url": "https://huggingface.co/api/models/snap-research/talkverse-s2v-5b",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2025-12-26T17:49:04.000Z@3a58ee5632c0cf65808bdcb5be2a35e309462e4b",
+      "revision_url": "https://huggingface.co/snap-research/talkverse-s2v-5b",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "talkverse-5b"
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://huggingface.co/api/models/stanford-vision-lab/gpic-baselines",
+      "resolved_url": "https://huggingface.co/api/models/stanford-vision-lab/gpic-baselines",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-06-22T23:59:48.000Z@aea765f6c45ba23064f4bfb91597fd4c6214c700",
+      "revision_url": "https://huggingface.co/stanford-vision-lab/gpic-baselines",
+      "catalog_id": null,
+      "priority": "high",
+      "model_id": "gpic-baselines"
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://huggingface.co/api/models/tencent/HunyuanVideo-Avatar",
+      "resolved_url": "https://huggingface.co/api/models/tencent/HunyuanVideo-Avatar",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2025-05-28T15:02:17.000Z@43884f06f848cbc1c2bbfb8c32b366782538b953",
+      "revision_url": "https://huggingface.co/tencent/HunyuanVideo-Avatar",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "hunyuanvideo-avatar"
     },
     {
       "track_id": "video-and-audio-generation",
@@ -1232,7 +1648,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -1269,7 +1686,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -1318,7 +1736,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -1330,7 +1749,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -1355,7 +1775,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -1376,7 +1797,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -1401,7 +1823,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -1418,7 +1841,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -1443,7 +1867,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -1460,7 +1885,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -1529,7 +1955,74 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
+    },
+    {
+      "track_id": "virtual-try-on-and-commerce",
+      "source_url": "https://fashn.ai/research/vton-1-5",
+      "resolved_url": "https://fashn.ai/research/vton-1-5",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "\"Stretching Each Dollar: Diffusion Training from Scratch on a Micro-Budget\"",
+          "url": "https://arxiv.org/abs/2407.15811"
+        },
+        {
+          "title": "Consistent Models",
+          "url": "https://fashn.ai/consistent-models"
+        },
+        {
+          "title": "Fashion Brands Create premium imagery for your products",
+          "url": "https://fashn.ai/fashion-brands"
+        },
+        {
+          "title": "Model Creation Create AI fashion models",
+          "url": "https://fashn.ai/model-creation"
+        },
+        {
+          "title": "Model Swap Replace just the model in a photo",
+          "url": "https://fashn.ai/model-swap"
+        },
+        {
+          "title": "Product to Model Turn product photos into on-model shots",
+          "url": "https://fashn.ai/product-to-model"
+        },
+        {
+          "title": "API Integrate virtual try-on into your app",
+          "url": "https://fashn.ai/products/api"
+        },
+        {
+          "title": "App Create beautiful on-model visuals",
+          "url": "https://fashn.ai/products/app"
+        },
+        {
+          "title": "Short Videos Add motion to your try-ons",
+          "url": "https://fashn.ai/short-videos"
+        },
+        {
+          "title": "Try-On Learn about our proprietary AI model",
+          "url": "https://fashn.ai/virtual-try-on"
+        },
+        {
+          "title": "GitHub",
+          "url": "https://github.com/fashn-AI"
+        },
+        {
+          "title": "Code",
+          "url": "https://github.com/fashn-AI/fashn-vton-1.5"
+        },
+        {
+          "title": "🤗 Model Weights",
+          "url": "https://huggingface.co/fashn-ai/fashn-vton-1.5"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -1546,7 +2039,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -1558,7 +2052,21 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
+    },
+    {
+      "track_id": "virtual-try-on-and-commerce",
+      "source_url": "https://github.com/fashn-AI/fashn-vton-1.5",
+      "resolved_url": "https://github.com/fashn-AI/fashn-vton-1.5",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -1579,7 +2087,38 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
+    },
+    {
+      "track_id": "virtual-try-on-and-commerce",
+      "source_url": "https://hunorlaczko.github.io/MV-Fashion/",
+      "resolved_url": "https://hunorlaczko.github.io/MV-Fashion",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Read Paper",
+          "url": "https://arxiv.org/abs/2603.08147"
+        },
+        {
+          "title": "Star on GitHub",
+          "url": "https://github.com/HunorLaczko/MV-Fashion"
+        },
+        {
+          "title": "Get Dataset",
+          "url": "https://huggingface.co/datasets/MV-Fashion/MV-Fashion"
+        },
+        {
+          "title": "OpenAccess",
+          "url": "https://openaccess.thecvf.com/content/CVPR2026/html/Laczko_MV-Fashion_Towards_Enabling_Virtual_Try-On_and_Size_Estimation_with_Multi-View_CVPR_2026_paper.html"
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null
     },
     {
       "track_id": "virtual-try-on-and-commerce",
@@ -1608,7 +2147,8 @@
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
-      "priority": null
+      "priority": null,
+      "model_id": null
     }
   ]
 }

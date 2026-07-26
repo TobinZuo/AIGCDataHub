@@ -1,0 +1,69 @@
+id: celebv-hq
+name: CelebV-HQ
+organization: CUHK MMLab and SenseTime Research
+released_at: "2022-07-25"
+release_date_source: https://github.com/CelebV-HQ/CelebV-HQ/releases/tag/v1.0
+modality: video
+tasks:
+  - talking-head-generation
+  - audio-driven-avatar
+  - face-video-generation
+  - talking-head-evaluation
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+description: >-
+  A large-scale high-quality face-video collection with diverse identities,
+  head poses, actions, and emotions, distributed as YouTube reconstruction
+  metadata with 83 manually defined facial attributes.
+access:
+  status: metadata-only
+  type: urls
+  url: https://github.com/CelebV-HQ/CelebV-HQ
+  requires_account: false
+  notes: Official scripts reconstruct clips from YouTube URLs and timestamps; the project does not redistribute the complete source-video corpus.
+scale:
+  samples: 35666
+  source_items: 15653
+  hours: null
+  approximate: false
+  notes: The official project reports 35,666 clips from 15,653 identities at 512 by 512 resolution or higher.
+annotations:
+  types:
+    - youtube-url
+    - temporal-boundary
+    - identity-label
+    - appearance-attribute
+    - action-attribute
+    - emotion-attribute
+  source: human
+  languages:
+    - multilingual
+license:
+  metadata: CelebV-HQ research-use terms
+  media: Original YouTube uploader and platform terms remain applicable
+  commercial_use: noncommercial
+  redistribution: prohibited
+  notes: The official terms limit use to non-commercial research and prohibit copying, distribution, or sale; reconstructed source media also retains upstream rights.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - YouTube removals and regional restrictions can make the reconstructed corpus smaller than the published index.
+    - Celebrity identities introduce privacy, publicity-right, consent, and demographic-bias considerations.
+    - The 83 attributes are manually defined but do not constitute a complete fairness or identity-consent audit.
+processing:
+  recipe: Download the listed YouTube sources, cut the declared temporal ranges, retain high-resolution face videos, and join the released appearance, action, and emotion annotations.
+  recommended_format: csv
+  notes: Keep source identifiers and download status with every reconstructed clip; do not redistribute upstream media without a separate rights review.
+evidence:
+  homepage: https://github.com/CelebV-HQ/CelebV-HQ
+  paper: https://arxiv.org/abs/2207.12393
+  used_by:
+    - HunyuanVideo-Avatar
+status: partial
+last_verified: "2026-07-26"

@@ -1,0 +1,94 @@
+id: hunyuanvideo-avatar
+name: HunyuanVideo-Avatar
+organization: Tencent Hunyuan
+released_at: "2025-05-28"
+modalities:
+  - video
+  - audio
+tasks:
+  - audio-driven-avatar
+  - talking-head-generation
+  - image-to-video
+  - long-video-generation
+  - cross-scene-avatar-generation
+access:
+  status: open-weights
+  license: Tencent Hunyuan Community License; territory excludes the EU, UK, and South Korea, with additional commercial-use conditions
+  release_url: https://github.com/Tencent-Hunyuan/HunyuanVideo-Avatar
+  weights_url: https://huggingface.co/tencent/HunyuanVideo-Avatar
+  api_url: null
+architecture:
+  family: HunyuanVideo-I2V 13B MM-DiT with character-image injection, Face-Aware Audio Adapter, and Audio Emotion Module
+  parameters: 13000000000
+  notes: Extends HunyuanVideo-I2V with face-aware audio conditioning, emotion features, reference-character injection, and position-shift fusion for long-form single- and multi-character animation.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: HunyuanVideo-I2V inherited training mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: The avatar model inherits the visual prior of HunyuanVideo-I2V, but this release does not restate that model's complete source corpus or mixture.
+    - name: HunyuanVideo-Avatar character-audio training corpus
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: 500,000 character-audio samples totaling approximately 1,250 hours
+      notes: The report discloses aggregate scale and filtering but not source identities, licensing composition, speaker consent, or a public artifact.
+    - name: HDTF
+      catalog_id: hdtf
+      role: evaluation
+      availability: public
+      scale: Approximately 362 videos and 15.8 hours
+      notes: Used as a public talking-head evaluation set; this relationship is not a claim that HDTF was included in the private training corpus.
+    - name: CelebV-HQ
+      catalog_id: celebv-hq
+      role: evaluation
+      availability: public
+      scale: 35,666 clips from 15,653 identities
+      notes: Used as a public face-video evaluation set; this relationship is not a claim that CelebV-HQ was included in the private training corpus.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-foundation-model
+      scale_disclosed: false
+      strategy: Reuse the 13B HunyuanVideo-I2V image-to-video prior without restating the foundation model's exact training sources, filtering, or mixture.
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+      source_types:
+        - proprietary
+      operations:
+        - audio-video-sync-filtering
+        - brightness-filtering
+        - aesthetic-filtering
+        - face-aware-audio-conditioning
+        - audio-emotion-conditioning
+        - mixed-resolution-training
+      scale_disclosed: true
+      strategy: First optimize audio-only conditioning, then mix audio-conditioned and image-conditioned examples at a reported 1 to 1.5 ratio over 500,000 character-audio samples from 704 by 704 through 704 by 1216.
+  strategy_summary:
+    - Curate 500,000 character-audio samples totaling about 1,250 hours, filtering synchronization with LatentSync and low-light or low-aesthetic content with Koala-36M tooling.
+    - Stage training from audio-only conditioning to a 1 to 1.5 mix of audio and reference-image examples so the model learns lip motion, emotion, identity, and body motion jointly.
+    - Evaluate on public HDTF and CelebV-HQ plus an unreleased 250-video, 200-identity full-body test set while keeping the private training corpus distinct from those benchmarks.
+  unknowns:
+    - Exact sources, identities, languages, consent process, licenses, and rights composition of the 500,000-sample training corpus.
+    - Complete HunyuanVideo-I2V inherited training corpus, data mixture, filters, and per-source weights.
+    - Whether the unreleased full-body benchmark and every reported training asset will become publicly auditable.
+    - Applicability of the Tencent Hunyuan Community License for intended geography and commercial scale, including its excluded territories.
+evidence:
+  release: https://github.com/Tencent-Hunyuan/HunyuanVideo-Avatar
+  technical_report: https://arxiv.org/abs/2505.20156
+  repository: https://github.com/Tencent-Hunyuan/HunyuanVideo-Avatar
+status: verified
+last_verified: "2026-07-26"

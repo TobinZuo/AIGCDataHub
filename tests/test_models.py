@@ -16,7 +16,7 @@ class ModelCatalogTests(unittest.TestCase):
     def test_representative_modalities_are_present(self) -> None:
         cards = [card for _, card in load_models()]
         modalities = {modality for card in cards for modality in card["modalities"]}
-        self.assertGreaterEqual(len(cards), 23)
+        self.assertGreaterEqual(len(cards), 29)
         self.assertTrue({"image", "video", "audio", "multimodal"}.issubset(modalities))
 
     def test_product_only_releases_are_representable(self) -> None:
@@ -66,6 +66,20 @@ class ModelCatalogTests(unittest.TestCase):
         )
         self.assertTrue(cards["talkverse-5b"]["data"]["stages"][1]["scale_disclosed"])
 
+        hunyuan_ids = {item["catalog_id"] for item in cards["hunyuanvideo-avatar"]["data"]["datasets"]}
+        musetalk_ids = {item["catalog_id"] for item in cards["musetalk-1-5"]["data"]["datasets"]}
+        self.assertEqual(hunyuan_ids, {None, "hdtf", "celebv-hq"})
+        self.assertEqual(musetalk_ids, {None, "hdtf"})
+        self.assertTrue(cards["hunyuanvideo-avatar"]["data"]["stages"][1]["scale_disclosed"])
+        self.assertIn(
+            "audio-video-sync-filtering",
+            cards["hunyuanvideo-avatar"]["data"]["stages"][1]["operations"],
+        )
+        self.assertIn(
+            "dynamic-margin-sampling",
+            cards["musetalk-1-5"]["data"]["stages"][1]["operations"],
+        )
+
     def test_virtual_try_on_records_disclosed_and_undisclosed_strategies(self) -> None:
         cards = {card["id"]: card for _, card in load_models()}
         fit_ids = {item["catalog_id"] for item in cards["fit-vto"]["data"]["datasets"]}
@@ -79,6 +93,10 @@ class ModelCatalogTests(unittest.TestCase):
         self.assertEqual(cards["tripvvt"]["data"]["disclosure_level"], "partial")
         self.assertEqual(cards["flux-vto"]["data"]["disclosure_level"], "undisclosed")
         self.assertEqual(cards["flux-vto"]["data"]["datasets"], [])
+        self.assertEqual(
+            {item["catalog_id"] for item in cards["fashn-vton-1-5"]["data"]["datasets"]},
+            {None},
+        )
 
         ctrlvton_ops = {
             operation
@@ -92,6 +110,13 @@ class ModelCatalogTests(unittest.TestCase):
             [stage["scale_disclosed"] for stage in cards["tripvvt"]["data"]["stages"]],
             [False, True, True, True],
         )
+        fashn_ops = {
+            operation
+            for stage in cards["fashn-vton-1-5"]["data"]["stages"]
+            for operation in stage["operations"]
+        }
+        self.assertTrue({"synthetic-triplet-generation", "token-dropping"}.issubset(fashn_ops))
+        self.assertTrue(all(stage["scale_disclosed"] for stage in cards["fashn-vton-1-5"]["data"]["stages"]))
 
     def test_released_dataset_lineage_is_resolved(self) -> None:
         omni2sound = next(card for card in [item for _, item in load_models()] if card["id"] == "omni2sound")

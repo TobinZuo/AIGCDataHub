@@ -1,0 +1,75 @@
+id: mv-fashion
+name: MV-Fashion
+organization: Max Planck Institute for Intelligent Systems and collaborators
+released_at: "2026-06-02"
+release_date_source: https://huggingface.co/datasets/MV-Fashion/MV-Fashion
+modality: 3d
+tasks:
+  - virtual-try-on
+  - video-virtual-try-on
+  - garment-conditioned-generation
+  - garment-instance-segmentation
+  - multi-view-human-reconstruction
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+description: >-
+  A synchronized multi-view fashion capture dataset pairing clothed human
+  performances with flat garment imagery, material and sizing metadata,
+  segmentation, SMPL-X bodies, and reconstructed geometry.
+access:
+  status: gated
+  type: request
+  url: https://huggingface.co/datasets/MV-Fashion/MV-Fashion
+  requires_account: true
+  notes: Access requires a Hugging Face account, manual approval, and acceptance of the dataset agreement for non-commercial research use.
+scale:
+  samples: 52020529
+  source_items: 2357
+  hours: null
+  approximate: false
+  notes: The current release reports 52,020,529 frames, 2,357 sequences, 81 subjects, and about 11.5 TB; this is smaller than the paper headline of 72.5M frames and 3,273 sequences after privacy exclusions and quality removals.
+annotations:
+  types:
+    - synchronized-multi-view-video
+    - depth
+    - camera-calibration
+    - garment-catalog-image
+    - garment-size
+    - material-elasticity
+    - segmentation-mask
+    - smpl-x
+    - point-cloud
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: MV-Fashion Dataset Agreement
+  media: MV-Fashion Dataset Agreement
+  commercial_use: noncommercial
+  redistribution: prohibited
+  notes: Access is limited to approved non-commercial research; the agreement and GDPR-sensitive human-subject restrictions prohibit treating the release as an unrestricted open corpus.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - multi-view-consistency
+    - provenance
+  known_limitations:
+    - The current 52.0M-frame release differs materially from the paper's 72.5M-frame headline after privacy and quality exclusions.
+    - Minimally clothed captures are excluded for privacy and GDPR reasons, and some annotations remain in progress.
+    - Up to three cameras can be missing for a sequence, while removed bad frames and sequences make capture coverage non-uniform.
+    - Approved research-only access prevents direct commercial deployment and unrestricted redistribution.
+processing:
+  recipe: Synchronize 68 cameras, calibrate RGB and depth views, remove privacy-sensitive and quality-failed captures, and align segmentation, SMPL-X, point clouds, garment catalog imagery, sizing, and material measurements.
+  recommended_format: native
+  notes: Use the current manifest as the authoritative release scale, preserve per-camera missingness, and do not substitute the larger paper headline for downloadable counts.
+evidence:
+  homepage: https://hunorlaczko.github.io/MV-Fashion/
+  paper: https://arxiv.org/abs/2603.08147
+  used_by: []
+status: partial
+last_verified: "2026-07-26"

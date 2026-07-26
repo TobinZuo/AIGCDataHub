@@ -1,0 +1,69 @@
+id: hdtf
+name: HDTF
+organization: University of Science and Technology of China and Microsoft Research Asia
+released_at: "2021-03-28"
+release_date_source: https://github.com/MRzzm/HDTF/commit/12157d13e321b19d9294622ee9b644287572db78
+modality: video
+tasks:
+  - talking-head-generation
+  - audio-driven-avatar
+  - lip-sync-training
+  - talking-head-evaluation
+stages:
+  - fine-tuning
+  - evaluation
+description: >-
+  A high-resolution audio-visual talking-face collection reconstructed from
+  YouTube source videos, with long-form 720p and 1080p speech footage plus
+  official timestamps and face-crop metadata.
+access:
+  status: metadata-only
+  type: urls
+  url: https://github.com/MRzzm/HDTF
+  requires_account: false
+  notes: The official repository distributes YouTube URLs, timestamps, crop metadata, and preprocessing scripts rather than redistributing all source videos.
+scale:
+  samples: 362
+  source_items: 362
+  hours: 15.8
+  approximate: true
+  notes: The CVPR paper and repository describe approximately 362 videos totaling 15.8 hours; source availability can shrink as YouTube items disappear.
+annotations:
+  types:
+    - youtube-url
+    - temporal-boundary
+    - face-crop
+    - audio-track
+    - video-resolution
+  source: mixed
+  languages:
+    - en
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Source media availability depends on YouTube and may change after the published metadata snapshot.
+    - The release does not document speaker consent, demographic balance, or a complete per-video rights audit.
+    - Talking-head framing and English speech dominate, limiting broader full-body and multilingual avatar coverage.
+license:
+  metadata: CC-BY-4.0 stated by the official repository
+  media: Original YouTube uploader and platform terms remain applicable
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The repository states CC BY 4.0 for the dataset release, but users must separately review the copyright and platform terms of reconstructed source videos.
+processing:
+  recipe: Fetch the declared YouTube intervals, extract audio and frames, apply the released face-crop metadata, and resize aligned talking-face crops to 512 by 512 where required.
+  recommended_format: native
+  notes: Preserve source URL, interval, crop, and retrieval status so missing or changed upstream videos remain auditable.
+evidence:
+  homepage: https://github.com/MRzzm/HDTF
+  paper: https://openaccess.thecvf.com/content/CVPR2021/html/Zhang_Flow-Guided_One-Shot_Talking_Face_Generation_With_a_High-Resolution_Audio-Visual_Dataset_CVPR_2021_paper.html
+  used_by:
+    - HunyuanVideo-Avatar
+    - MuseTalk 1.5
+status: partial
+last_verified: "2026-07-26"
