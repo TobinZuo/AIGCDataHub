@@ -6687,7 +6687,10 @@
         "stage_count": 1,
         "unknown_count": 2
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://blog.reve.com/posts/launching-reve-2.1/"
+      },
       "ranking_positions": [
         {
           "ranking_id": "arena-image-edit",
@@ -6707,7 +6710,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1301,
+          "score": 1300,
           "score_label": "Elo"
         }
       ],
@@ -6799,7 +6802,10 @@
         "stage_count": 1,
         "unknown_count": 3
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://ai.meta.com/blog/"
+      },
       "ranking_positions": [
         {
           "ranking_id": "arena-text-to-video",
@@ -6923,7 +6929,10 @@
         "stage_count": 2,
         "unknown_count": 3
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/"
+      },
       "ranking_positions": [
         {
           "ranking_id": "arena-image-edit",
@@ -7053,7 +7062,10 @@
         "stage_count": 1,
         "unknown_count": 3
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://deepmind.google/models/model-cards/gemini-omni-flash/"
+      },
       "ranking_positions": [
         {
           "ranking_id": "arena-image-to-video",
@@ -7253,7 +7265,10 @@
         "stage_count": 3,
         "unknown_count": 3
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://deepmind.google/models/model-cards/gemini-3-1-flash-lite-image/"
+      },
       "ranking_positions": [
         {
           "ranking_id": "arena-text-to-image",
@@ -7266,7 +7281,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 4,
-          "score": 1263,
+          "score": 1262,
           "score_label": "Elo"
         }
       ],
@@ -7357,7 +7372,10 @@
         "stage_count": 1,
         "unknown_count": 2
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://help.aliyun.com/en/model-studio/happyhorse-image-to-video-api-reference"
+      },
       "ranking_positions": [
         {
           "ranking_id": "image-to-video",
@@ -7461,7 +7479,10 @@
         "stage_count": 1,
         "unknown_count": 1
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://docs.x.ai/developers/models/grok-imagine-video-1.5-preview"
+      },
       "ranking_positions": [
         {
           "ranking_id": "arena-image-to-video",
@@ -7923,7 +7944,10 @@
         "stage_count": 1,
         "unknown_count": 1
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-mai"
+      },
       "ranking_positions": [
         {
           "ranking_id": "arena-image-edit",
@@ -8394,7 +8418,10 @@
         "stage_count": 1,
         "unknown_count": 1
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://runwayml.com/news/introducing-aleph-2-and-edit-studio"
+      },
       "ranking_positions": [
         {
           "ranking_id": "video-editing",
@@ -9025,7 +9052,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 8,
-          "score": 1229,
+          "score": 1230,
           "score_label": "Elo"
         },
         {
@@ -9457,7 +9484,10 @@
         "stage_count": 1,
         "unknown_count": 1
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://help.aliyun.com/en/model-studio/happyhorse-text-to-video-api-reference"
+      },
       "ranking_positions": [
         {
           "ranking_id": "arena-image-to-video",
@@ -9586,7 +9616,10 @@
         "stage_count": 1,
         "unknown_count": 2
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-image-2"
+      },
       "ranking_positions": [
         {
           "ranking_id": "arena-image-edit",
@@ -10265,7 +10298,10 @@
         "stage_count": 1,
         "unknown_count": 1
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://help.aliyun.com/en/model-studio/newly-released-models"
+      },
       "ranking_positions": [
         {
           "ranking_id": "arena-image-to-video",
@@ -10285,7 +10321,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1100,
+          "score": 1099,
           "score_label": "Elo"
         },
         {
@@ -10593,7 +10629,10 @@
         "stage_count": 1,
         "unknown_count": 1
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-image"
+      },
       "ranking_positions": [
         {
           "ranking_id": "arena-image-edit",
@@ -11119,7 +11158,10 @@
         "stage_count": 1,
         "unknown_count": 2
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://seed.bytedance.com/en/seedance2_0"
+      },
       "ranking_positions": [
         {
           "ranking_id": "arena-image-to-video",
@@ -11581,7 +11623,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 10,
-          "score": 1097,
+          "score": 1098,
           "score_label": "Elo"
         },
         {
@@ -13129,7 +13171,10 @@
         "stage_count": 1,
         "unknown_count": 1
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-image-1.5"
+      },
       "ranking_positions": [
         {
           "ranking_id": "arena-image-edit",
@@ -13694,7 +13739,10 @@
         "stage_count": 1,
         "unknown_count": 1
       },
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://ai.google.dev/gemini-api/docs/models/gemini-3-pro-image"
+      },
       "ranking_positions": [
         {
           "ranking_id": "arena-image-edit",
@@ -15642,7 +15690,7 @@
           "model": "GPT Image 2 (high)",
           "score": 1258,
           "confidence_interval": "-7/7",
-          "samples": 16341,
+          "samples": 16342,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -15654,7 +15702,7 @@
           "model": "GPT Image 1.5 (high)",
           "score": 1254,
           "confidence_interval": "-8/8",
-          "samples": 9767,
+          "samples": 9770,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -15724,9 +15772,9 @@
           "rank": 8,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image-quality",
-          "score": 1229,
+          "score": 1230,
           "confidence_interval": "-8/8",
-          "samples": 8319,
+          "samples": 8320,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -15762,7 +15810,7 @@
           "model": "Kling Image 3.0 Omni",
           "score": 1214,
           "confidence_interval": "-7/7",
-          "samples": 8447,
+          "samples": 8448,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -15835,7 +15883,7 @@
           "model": "Gemini Omni Flash",
           "score": 1199,
           "confidence_interval": "-11/11",
-          "samples": 3080,
+          "samples": 3081,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -15847,7 +15895,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1199,
           "confidence_interval": "-8/8",
-          "samples": 9087,
+          "samples": 9088,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -15871,7 +15919,7 @@
           "model": "HappyHorse-1.1",
           "score": 1110,
           "confidence_interval": "-10/10",
-          "samples": 3339,
+          "samples": 3340,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -15881,9 +15929,9 @@
           "rank": 5,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "score": 1100,
+          "score": 1099,
           "confidence_interval": "-10/10",
-          "samples": 3301,
+          "samples": 3302,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -15943,7 +15991,7 @@
           "model": "Veo 3.1 Fast",
           "score": 1079,
           "confidence_interval": "-8/8",
-          "samples": 7589,
+          "samples": 7590,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -15955,7 +16003,7 @@
           "model": "Kling 3.0 1080p (Pro)",
           "score": 1075,
           "confidence_interval": "-8/8",
-          "samples": 8087,
+          "samples": 8088,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -15979,7 +16027,7 @@
           "model": "Kling 3.0 720p (Standard)",
           "score": 1070,
           "confidence_interval": "-8/8",
-          "samples": 8140,
+          "samples": 8142,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16038,7 +16086,7 @@
           "rank": 2,
           "creator": "Reve",
           "model": "Reve 2.1",
-          "score": 1301,
+          "score": 1300,
           "confidence_interval": "-11/11",
           "samples": 9347,
           "released": "Jul 2026",
@@ -16062,9 +16110,9 @@
           "rank": 4,
           "creator": "Google",
           "model": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
-          "score": 1263,
+          "score": 1262,
           "confidence_interval": "-10/10",
-          "samples": 9259,
+          "samples": 9260,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16124,7 +16172,7 @@
           "model": "Nano Banana Pro (Gemini 3 Pro Image)",
           "score": 1223,
           "confidence_interval": "-7/7",
-          "samples": 11499,
+          "samples": 11500,
           "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16136,7 +16184,7 @@
           "model": "Cosmos3-Super-Text2Image (agentic)",
           "score": 1218,
           "confidence_interval": "-8/8",
-          "samples": 9782,
+          "samples": 9783,
           "released": "May 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -16160,7 +16208,7 @@
           "model": "grok-imagine-image-quality",
           "score": 1203,
           "confidence_interval": "-7/7",
-          "samples": 15466,
+          "samples": 15467,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16196,7 +16244,7 @@
           "model": "FLUX.2 [max]",
           "score": 1194,
           "confidence_interval": "-7/7",
-          "samples": 11253,
+          "samples": 11254,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16245,7 +16293,7 @@
           "model": "Wan2.7-260612",
           "score": 1165,
           "confidence_interval": "-9/9",
-          "samples": 4832,
+          "samples": 4833,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16257,7 +16305,7 @@
           "model": "HappyHorse-1.1",
           "score": 1153,
           "confidence_interval": "-9/9",
-          "samples": 5309,
+          "samples": 5311,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16281,7 +16329,7 @@
           "model": "Kling 3.0 1080p (Pro)",
           "score": 1113,
           "confidence_interval": "-7/7",
-          "samples": 10929,
+          "samples": 10931,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16293,7 +16341,7 @@
           "model": "SkyReels V4",
           "score": 1112,
           "confidence_interval": "-9/9",
-          "samples": 4507,
+          "samples": 4508,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16305,7 +16353,7 @@
           "model": "Wan 2.7",
           "score": 1109,
           "confidence_interval": "-9/9",
-          "samples": 4010,
+          "samples": 4013,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16317,7 +16365,7 @@
           "model": "Kling 3.0 720p (Standard)",
           "score": 1102,
           "confidence_interval": "-7/7",
-          "samples": 10888,
+          "samples": 10889,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16327,9 +16375,9 @@
           "rank": 10,
           "creator": "KlingAI",
           "model": "Kling 3.0 Omni 1080p (Pro)",
-          "score": 1097,
+          "score": 1098,
           "confidence_interval": "-8/8",
-          "samples": 7685,
+          "samples": 7687,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16353,7 +16401,7 @@
           "model": "Kling 3.0 Omni 720p (Standard)",
           "score": 1093,
           "confidence_interval": "-8/8",
-          "samples": 7572,
+          "samples": 7573,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16365,7 +16413,7 @@
           "model": "Veo 3.1 Fast",
           "score": 1092,
           "confidence_interval": "-7/7",
-          "samples": 10251,
+          "samples": 10254,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16377,7 +16425,7 @@
           "model": "Veo 3.1 Lite",
           "score": 1092,
           "confidence_interval": "-8/8",
-          "samples": 7279,
+          "samples": 7281,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16389,7 +16437,7 @@
           "model": "Vidu Q3 Pro",
           "score": 1083,
           "confidence_interval": "-7/7",
-          "samples": 11004,
+          "samples": 11008,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16414,7 +16462,7 @@
           "model": "HappyHorse-1.0",
           "score": 1102,
           "confidence_interval": "-5/5",
-          "samples": 15833,
+          "samples": 15834,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16438,7 +16486,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1039,
           "confidence_interval": "-5/5",
-          "samples": 15632,
+          "samples": 15633,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -16462,7 +16510,7 @@
           "model": "Kling 3.0 Omni 1080p (Pro)",
           "score": 1000,
           "confidence_interval": "0/0",
-          "samples": 14873,
+          "samples": 14874,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",

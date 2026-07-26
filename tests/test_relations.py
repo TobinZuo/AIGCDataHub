@@ -164,7 +164,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
     def test_model_monitoring_is_joined_by_canonical_model_id(self) -> None:
         self.assertEqual(
             sum(model["monitoring"] is not None for model in self.models.values()),
-            37,
+            53,
         )
         self.assertEqual(
             self.models["hunyuanvideo-avatar"]["monitoring"],
@@ -180,6 +180,23 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.models["veo-3-1"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["pixverse-v6"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["flux-2-max"]["monitoring"]["priority"], "critical")
+        ranked_model_ids = {
+            entry["model_id"]
+            for board in self.payload["rankings"]
+            for entry in board["entries"]
+        }
+        self.assertEqual(len(ranked_model_ids), 40)
+        self.assertEqual(
+            {
+                model_id
+                for model_id in ranked_model_ids
+                if self.models[model_id]["monitoring"] is None
+            },
+            set(),
+        )
+        self.assertEqual(self.models["gpt-image-2"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.models["gemini-omni-flash"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.models["seedance-2-0"]["monitoring"]["priority"], "critical")
         self.assertIsNone(self.models["graphvid"]["monitoring"])
 
 

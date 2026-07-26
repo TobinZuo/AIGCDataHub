@@ -218,6 +218,13 @@ test("uses generated catalog data and removes starter preview assets", async () 
   );
   assert.equal(parsedCatalog.datasets[0].id, "graphvid-bench");
   const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
+  const rankedModelIds = new Set(
+    parsedCatalog.rankings.flatMap((board) => board.entries.map((entry) => entry.model_id)),
+  );
+  assert.equal(rankedModelIds.size, 40);
+  assert.ok([...rankedModelIds].every((modelId) => models[modelId].monitoring));
+  assert.equal(models["gpt-image-2"].monitoring.priority, "critical");
+  assert.equal(models["gemini-omni-flash"].monitoring.priority, "critical");
   assert.deepEqual(
     models.lens.data.datasets.map((dataset) => dataset.catalog_id),
     ["lens-800m", "lens-rl-8k"],

@@ -305,6 +305,11 @@ Ranking entries that do not yet resolve to a verified model card also keep the
 Issue open, so newly ranked closed or open models cannot disappear between
 weekly scans. Arena snapshots use its official Hugging Face leaderboard dataset
 rather than a bot-protected web page.
+All 40 distinct model cards represented by the current 133 leaderboard seats
+have their own official revision probe, regardless of whether the model is open
+weight, API-only, product-only, or only announced. Revision-only model and
+dataset probes do not emit navigation links as discovery candidates; broader
+provider feeds remain responsible for finding new releases.
 
 The same workflow checks all 16 candidate source platforms through their
 official API documentation, partner portal, licensed-service terms, or a

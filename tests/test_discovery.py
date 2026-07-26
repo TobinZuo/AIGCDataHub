@@ -108,6 +108,43 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(urlopen.call_count, 2)
         sleep.assert_called_once_with(0.25)
 
+    def test_revision_probes_do_not_emit_navigation_candidates(self) -> None:
+        class Headers:
+            @staticmethod
+            def get_content_charset():
+                return "utf-8"
+
+        class Response:
+            status = 200
+            url = "https://example.com/models/ranked-image-model"
+            headers = Headers()
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+            @staticmethod
+            def read(_max_bytes):
+                return b"""<!doctype html><html><body>
+                <h1>Ranked image model</h1>
+                <a href='/models/new-video-generation-model'>New video generation model</a>
+                </body></html>"""
+
+        source = WatchSource(
+            "important-model-updates",
+            "https://example.com/models/ranked-image-model",
+            priority="critical",
+            model_id="ranked-image-model",
+        )
+        with patch("discover_updates.urllib.request.urlopen", return_value=Response()):
+            snapshot = _fetch_source(source, timeout=1, max_bytes=4096, retry_delays=())
+
+        self.assertIsNone(snapshot.error)
+        self.assertEqual(snapshot.candidates, ())
+        self.assertTrue(snapshot.revision.startswith("sha256:"))
+
     def test_content_revision_is_stable_and_change_sensitive(self) -> None:
         self.assertEqual(content_revision(b"official page"), content_revision(b"official page"))
         self.assertNotEqual(content_revision(b"official page"), content_revision(b"updated page"))
@@ -356,7 +393,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            37,
+            53,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -375,7 +412,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 10)
-        self.assertEqual(len(sources), 182)
+        self.assertEqual(len(sources), 192)
         self.assertEqual(
             {source.ranking_id for source in sources if source.ranking_id},
             {
@@ -428,6 +465,15 @@ class DiscoveryTests(unittest.TestCase):
                 "https://api.github.com/repos/hche11/VGGSound/commits/master",
                 "https://research.google.com/audioset/download.html",
                 "https://registry.opendata.aws/multimedia-commons/",
+                "https://deepmind.google/models/model-cards/gemini-omni-flash/",
+                "https://developers.openai.com/api/docs/models/gpt-image-2",
+                "https://seed.bytedance.com/en/seedance2_0",
+                "https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/",
+                "https://blog.reve.com/posts/launching-reve-2.1/",
+                "https://help.aliyun.com/en/model-studio/newly-released-models",
+                "https://docs.x.ai/developers/models/grok-imagine-video-1.5-preview",
+                "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-mai",
+                "https://runwayml.com/news/introducing-aleph-2-and-edit-studio",
                 "https://huggingface.co/api/models/tencent/HunyuanImage-3.0-Instruct",
                 "https://huggingface.co/api/models/nvidia/Cosmos3-Super-Text2Image",
                 "https://arxiv.org/abs/2602.21818",

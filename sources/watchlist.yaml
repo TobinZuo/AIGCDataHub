@@ -58,10 +58,8 @@ tracks:
       - https://github.com/baidu/ERNIE-Image
       - https://github.com/QwenLM
       - https://stability.ai/news
-      - https://ai.meta.com/blog/
       - https://updates.midjourney.com/
       - https://huggingface.co/models?pipeline_tag=text-to-image
-      - https://deepmind.google/models/model-cards/gemini-3-1-flash-lite-image/
       - https://ai.google.dev/gemini-api/docs/changelog
 
   - id: video-and-audio-generation
@@ -79,16 +77,13 @@ tracks:
       - https://github.com/Wan-Video
       - https://deepmind.google/models/veo/
       - https://deepmind.google/models/gemini-omni/
-      - https://deepmind.google/models/model-cards/gemini-omni-flash/
       - https://openai.com/sitemap.xml/sora/
       - https://openai.com/sitemap.xml/research/
       - https://openai.com/sitemap.xml/release/
-      - https://ai.meta.com/blog/
       - https://github.com/omni2sound/Omni2Sound
       - https://x.ai/news
       - https://runwayml.com/news
       - https://ir.kuaishou.com/news-events/company-news/
-      - https://help.aliyun.com/en/model-studio/newly-released-models
 
   - id: digital-human-and-localization
     topics:
@@ -107,10 +102,8 @@ tracks:
       - https://github.com/TMElyralab/MuseTalk
       - https://justdubit.github.io/
       - https://github.com/Lightricks/LTX-2
-      - https://huggingface.co/justdubit/justdubit
       - https://zhenzhiwang.github.io/talkverse/
       - https://github.com/snap-research/TalkVerse
-      - https://huggingface.co/snap-research/talkverse-s2v-5b
       - https://freedomintelligence.github.io/talk-vid
       - https://github.com/FreedomIntelligence/TalkVid
 
@@ -618,6 +611,54 @@ tracks:
         priority: critical
       - url: https://runwayml.com/research/introducing-runway-aleph
         model_id: runway-aleph
+        priority: critical
+      - url: https://deepmind.google/models/model-cards/gemini-omni-flash/
+        model_id: gemini-omni-flash
+        priority: critical
+      - url: https://developers.openai.com/api/docs/models/gpt-image-2
+        model_id: gpt-image-2
+        priority: critical
+      - url: https://help.aliyun.com/en/model-studio/happyhorse-text-to-video-api-reference
+        model_id: happyhorse-1-0
+        priority: critical
+      - url: https://seed.bytedance.com/en/seedance2_0
+        model_id: seedance-2-0
+        priority: critical
+      - url: https://developers.openai.com/api/docs/models/gpt-image-1.5
+        model_id: gpt-image-1-5
+        priority: critical
+      - url: https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/
+        model_id: muse-image
+        priority: critical
+      - url: https://blog.reve.com/posts/launching-reve-2.1/
+        model_id: reve-2-1
+        priority: critical
+      - url: https://help.aliyun.com/en/model-studio/newly-released-models
+        model_id: wan-2-7
+        priority: critical
+      - url: https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-image
+        model_id: gemini-3-1-flash-image
+        priority: critical
+      - url: https://docs.x.ai/developers/models/grok-imagine-video-1.5-preview
+        model_id: grok-imagine-video-1-5
+        priority: critical
+      - url: https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-mai
+        model_id: mai-image-2-5
+        priority: critical
+      - url: https://ai.meta.com/blog/
+        model_id: muse-video
+        priority: critical
+      - url: https://deepmind.google/models/model-cards/gemini-3-1-flash-lite-image/
+        model_id: gemini-3-1-flash-lite-image
+        priority: critical
+      - url: https://help.aliyun.com/en/model-studio/happyhorse-image-to-video-api-reference
+        model_id: happyhorse-1-1
+        priority: critical
+      - url: https://runwayml.com/news/introducing-aleph-2-and-edit-studio
+        model_id: runway-aleph-2
+        priority: critical
+      - url: https://ai.google.dev/gemini-api/docs/models/gemini-3-pro-image
+        model_id: gemini-3-pro-image
         priority: critical
 
 acceptance_rules:
