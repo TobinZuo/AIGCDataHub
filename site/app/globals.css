@@ -1924,6 +1924,17 @@ input:focus-visible {
   line-height: 1;
 }
 
+.comparison-ratio a {
+  color: inherit;
+  text-decoration-color: var(--signal);
+  text-underline-offset: 4px;
+}
+
+.comparison-ratio a:hover,
+.comparison-ratio a:focus-visible {
+  color: var(--signal);
+}
+
 .comparison-unknowns strong {
   color: var(--signal);
 }
@@ -2044,6 +2055,90 @@ input:focus-visible {
   color: var(--muted);
   font-size: 11px;
   line-height: 1.65;
+}
+
+.strategy-datasets {
+  padding: 24px 0 28px;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 100px;
+}
+
+.strategy-datasets > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.strategy-datasets > header .detail-label {
+  margin-bottom: 7px;
+}
+
+.strategy-datasets > header p:last-child {
+  max-width: 720px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.strategy-datasets > header > strong {
+  flex: 0 0 auto;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.strategy-dataset-list {
+  border-top: 1px solid var(--ink);
+}
+
+.strategy-dataset-row {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.75fr) minmax(260px, 1.25fr) minmax(160px, auto);
+  align-items: start;
+  gap: 24px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.strategy-dataset-name > strong {
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.strategy-dataset-name > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+  margin-top: 7px;
+  color: var(--muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 8px;
+}
+
+.strategy-dataset-row > p {
+  margin: 0;
+  color: #5d6058;
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.strategy-dataset-actions {
+  display: grid;
+  justify-items: start;
+  gap: 9px;
+}
+
+.strategy-dataset-actions .relation-link {
+  padding: 0 0 3px;
+  font-size: 9px;
+}
+
+.strategy-dataset-row > .reference-resolution {
+  margin-top: 0;
 }
 
 .strategy-card > footer {
@@ -2520,6 +2615,15 @@ input:focus-visible {
 
   .strategy-columns {
     grid-template-columns: 1fr;
+  }
+
+  .strategy-datasets > header {
+    align-items: flex-end;
+  }
+
+  .strategy-dataset-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .method-section {

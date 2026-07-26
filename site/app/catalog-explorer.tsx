@@ -467,7 +467,7 @@ function ModelResult({ model, scenarioLabels, expanded, onToggle, onOpenDataset 
               <span className="tag" key={item}>{MODALITY_LABELS[item] ?? item}</span>
             ))}
             {model.ranking_positions.slice(0, 2).map((item) => (
-              <span className="tag tag-ranking" key={item.ranking_id}>
+              <span className="tag tag-ranking" key={`${item.ranking_id}-${item.rank}`}>
                 {RANKING_LABELS[item.ranking_id] ?? item.ranking_id} #{item.rank}
               </span>
             ))}
@@ -1057,8 +1057,14 @@ function StrategyMatrix({
                       </div>
                     </td>
                     <td className="comparison-ratio">
-                      <strong>{profile.data_reference_count ? `${profile.linked_dataset_count}/${profile.data_reference_count}` : "无"}</strong>
-                      <small>目录关联 / 引用</small>
+                      {profile.data_reference_count ? (
+                        <a href={`#strategy-datasets-${model.id}`}>
+                          <strong>{profile.linked_dataset_count}/{profile.data_reference_count}</strong>
+                          <small>查看对应数据集</small>
+                        </a>
+                      ) : (
+                        <><strong>无</strong><small>没有数据引用</small></>
+                      )}
                     </td>
                     <td className="comparison-ratio">
                       <strong>{profile.scale_disclosed_stage_count}/{profile.stage_count}</strong>
@@ -1079,7 +1085,17 @@ function StrategyMatrix({
   );
 }
 
-function StrategyResult({ model, scenarioLabels }: { model: ModelCard; scenarioLabels: string[] }) {
+function StrategyResult({
+  model,
+  scenarioLabels,
+  datasetById,
+  onOpenDataset,
+}: {
+  model: ModelCard;
+  scenarioLabels: string[];
+  datasetById: Map<string, DatasetCard>;
+  onOpenDataset: (datasetId: string) => void;
+}) {
   const disclosed = disclosureScore(model.data.disclosure_level);
   const profile = model.strategy_profile;
 
@@ -1122,6 +1138,51 @@ function StrategyResult({ model, scenarioLabels }: { model: ModelCard; scenarioL
           <p>{model.data.exact_datasets_disclosed ? "公开了具体数据集名称。" : "未公开完整数据集清单。"} {model.data.exact_mixture_disclosed ? "混合比例可核验。" : "混合比例仍未知。"}</p>
         </div>
       </div>
+      <section className="strategy-datasets" id={`strategy-datasets-${model.id}`} aria-labelledby={`strategy-datasets-title-${model.id}`}>
+        <header>
+          <div>
+            <p className="detail-label" id={`strategy-datasets-title-${model.id}`}>关联数据集与访问入口</p>
+            <p>这里列出模型卡中每一条数据引用。已建数据卡的条目可继续查看详情或直接打开下载、申请入口。</p>
+          </div>
+          <strong>{profile.linked_dataset_count}/{profile.data_reference_count || 0}</strong>
+        </header>
+        {model.data.datasets.length > 0 ? (
+          <div className="strategy-dataset-list">
+            {model.data.datasets.map((reference) => {
+              const dataset = reference.catalog_id ? datasetById.get(reference.catalog_id) : undefined;
+              return (
+                <article className="strategy-dataset-row" key={`${model.id}-${reference.name}`}>
+                  <div className="strategy-dataset-name">
+                    <strong>{dataset?.name ?? reference.name}</strong>
+                    <div>
+                      <span>{RELATION_ROLE_LABELS[reference.role] ?? reference.role}</span>
+                      <span>{DATA_AVAILABILITY_LABELS[reference.availability] ?? reference.availability}</span>
+                      <span>{reference.scale ?? "规模未披露"}</span>
+                    </div>
+                  </div>
+                  <p>{reference.notes}</p>
+                  {dataset ? (
+                    <div className="strategy-dataset-actions">
+                      <button type="button" className="relation-link" onClick={() => onOpenDataset(dataset.id)}>
+                        查看数据卡 <span aria-hidden="true">→</span>
+                      </button>
+                      <ExternalLink href={dataset.access.url}>{datasetAccessAction(dataset)}</ExternalLink>
+                    </div>
+                  ) : (
+                    <small className="reference-resolution">
+                      {reference.availability === "not-released"
+                        ? "发布方尚未公开该数据，暂无下载入口。"
+                        : "一手资料未披露可识别的数据集，无法提供下载入口。"}
+                    </small>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        ) : (
+          <p className="unknown-copy">官方没有公开任何可识别的数据引用，因此暂无可展示的数据卡或下载入口。</p>
+        )}
+      </section>
       <footer>
         <span>{DISCLOSURE_LABELS[model.data.disclosure_level]} / {profile.linked_dataset_count}/{profile.data_reference_count || "无"} 数据卡关联 / {profile.unknown_count} 项未知</span>
         <ExternalLink href={model.evidence.technical_report ?? model.evidence.release}>查看一手证据</ExternalLink>
@@ -1584,6 +1645,8 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
             <StrategyResult
               model={model}
               scenarioLabels={model.scenario_ids.map((item) => scenarioLabels.get(item) ?? item)}
+              datasetById={datasetById}
+              onOpenDataset={(id) => openRelation("datasets", id)}
               key={model.id}
             />
           ))}
