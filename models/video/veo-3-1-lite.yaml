@@ -1,0 +1,48 @@
+id: veo-3-1-lite
+name: Veo 3.1 Lite
+organization: Google DeepMind
+released_at: "2026-03-31"
+ranking_names:
+  - Veo 3.1 Lite
+modalities:
+  - video
+tasks:
+  - text-to-video
+  - image-to-video
+access:
+  status: api-only
+  license: Google Gemini API terms
+  release_url: https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/
+  weights_url: null
+  api_url: https://ai.google.dev/gemini-api/docs/video
+architecture:
+  family: Undisclosed cost-optimized Veo 3.1 family variant
+  parameters: null
+  notes: Google positions Lite as a same-speed, lower-cost family variant supporting text-to-video and image-to-video, but publishes no variant-specific topology or parameter count.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: The Lite release documents cost, speed, resolutions, durations, and input modes without identifying any training or post-training data.
+  strategy_summary:
+    - Keep Lite separate from Veo 3.1 and Fast because its March release date and exact training delta are not represented by the January family endpoint.
+  unknowns:
+    - Dataset identities, provenance, licenses, scale, mixture, captions, filtering, deduplication, and safety processing.
+    - Distillation or efficiency recipe, relationship to Veo 3.1/Fast weights, post-training data, and whether audio data is used.
+evidence:
+  release: https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-27"

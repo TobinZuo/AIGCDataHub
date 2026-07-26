@@ -23,6 +23,8 @@ The current scope covers:
 - current image, video, audio-video, unified multimodal, and physical-AI models;
 - the public, gated, internal, synthetic, and undisclosed data behind each model;
 - image, video, audio, 3D, and preference datasets;
+- candidate video, stock-media, studio, and e-commerce source platforms, kept
+  separate from downloadable dataset releases;
 - scenario-first coverage for image/video generation, digital humans, video
   localization, and virtual try-on;
 - data engineering: acquisition, validation, filtering, deduplication,
@@ -65,6 +67,8 @@ newest first.
 | [Runway Aleph 2.0](models/video/runway-aleph-2.yaml) | Runway | video | 2026-05-21 | product only | undisclosed | not disclosed | 👀 |
 | [Lens](models/image/lens.yaml) | Microsoft Research | image | 2026-05-20 | open weights | partial | [Lens-800M](catalog/image/lens-800m.yaml), [Lens-RL-8K](catalog/preference/lens-rl-8k.yaml) | ✅ |
 | [Lance](models/multimodal/lance.yaml) | ByteDance | image, video | 2026-05-18 | open weights | high level | not disclosed | ✅ |
+| [Recraft V4.1](models/image/recraft-v4-1.yaml) | Recraft | image | 2026-05-14 | api only | undisclosed | not disclosed | 👀 |
+| [HiDream-O1-Image](models/image/hidream-o1-image.yaml) | HiDream.ai | image | 2026-05-08 | open weights | partial | HiDream O1 heterogeneous visual corpus | ✅ |
 | [Grok Imagine Image Quality](models/image/grok-imagine-image-quality.yaml) | xAI | image | 2026-05-06 | api only | undisclosed | not disclosed | 👀 |
 | [Luma UNI 1 Max](models/image/luma-uni-1-max.yaml) | Luma AI | image | 2026-05-05 | api only | high level | Luma UNI creative training corpus | 👀 |
 | [TripVVT](models/video/tripvvt.yaml) | Nanjing University, JIUTIAN Research (CMCC), Jilin University, and ByteDance | video | 2026-04-30 | announced | partial | Wan2.1-Fun-14B-control inherited pretraining mixture, TripVVT supplementary training set, [TripVVT-10K](catalog/video/tripvvt-10k.yaml) | ✅ |
@@ -74,6 +78,8 @@ newest first.
 | [Fit-VTO](models/image/fit-vto.yaml) | University of Washington and Google Research | image | 2026-04-09 | research preview | partial | FLUX.1-dev inherited pretraining mixture, Full FIT training collection, [FIT-VTO-100K](catalog/image/fit-vto-100k.yaml) | ✅ |
 | [Avatar V](models/video/avatar-v.yaml) | HeyGen Research | video, audio | 2026-04-08 | product only | partial | Avatar V general video pretraining corpus, Avatar V audio-to-video fine-tuning corpus, Avatar V human preference data | ✅ |
 | [Wan 2.7](models/video/wan-2-7.yaml) | Alibaba Cloud | video, audio | 2026-04-03 | api only | undisclosed | not disclosed | 👀 |
+| [Veo 3.1 Lite](models/video/veo-3-1-lite.yaml) | Google DeepMind | video | 2026-03-31 | api only | undisclosed | not disclosed | 👀 |
+| [PixVerse V6](models/video/pixverse-v6.yaml) | PixVerse | video, audio | 2026-03-30 | api only | undisclosed | not disclosed | 👀 |
 | [Gemini 3.1 Flash Image (Nano Banana 2)](models/image/gemini-3-1-flash-image.yaml) | Google DeepMind | image | 2026-02-26 | api only | undisclosed | not disclosed | 👀 |
 | [SkyReels V4](models/video/skyreels-v4.yaml) | Skywork AI | video, audio | 2026-02-25 | api only | partial | [LAION (version not specified)](catalog/image/re-laion-5b.yaml), [Flickr](catalog/image/flickr-5b.yaml), [WebVid-10M](catalog/video/webvid-10m.yaml), [Koala-36M](catalog/video/koala-36m.yaml), [OpenHumanVid](catalog/video/openhumanvid.yaml), [Emilia](catalog/audio/emilia.yaml), [AudioSet](catalog/audio/audioset.yaml), [VGGSound](catalog/audio/vggsound.yaml), [SoundNet](catalog/audio/soundnet.yaml), Licensed SkyReels film and web-video corpus, Synthetic multilingual and editing corpora | ✅ |
 | [LTX-2.3](models/multimodal/ltx-2-3.yaml) | Lightricks | video, audio | 2026-02-23 | open weights | partial | Audio-informative subset of the LTX-Video training corpus, Higher-quality VAE training subset | ✅ |
@@ -81,13 +87,17 @@ newest first.
 | [JUST-DUB-IT](models/video/just-dub-it.yaml) | Lightricks and Tel Aviv University | video, audio | 2026-02-10 | gated weights | partial | LTX-2 base-model training mixture, [Audiovisual Translation Dubbing Dataset](catalog/video/audiovisual-translation-dub.yaml) | ✅ |
 | [Kling AI 3.0](models/video/kling-3.yaml) | Kuaishou Technology | video, audio, image | 2026-02-05 | product only | undisclosed | not disclosed | 👀 |
 | [Grok Imagine Video](models/video/grok-imagine-video.yaml) | xAI | video, audio | 2026-01-28 | api only | undisclosed | not disclosed | 👀 |
+| [Grok Imagine Image](models/image/grok-imagine-image.yaml) | xAI | image | 2026-01-28 | api only | undisclosed | not disclosed | 👀 |
+| [Vidu Q3 Pro](models/video/vidu-q3-pro.yaml) | ShengShu Technology | video, audio | 2026-01-27 | api only | undisclosed | not disclosed | 👀 |
 | [HunyuanImage 3.0 Instruct](models/image/hunyuanimage-3-instruct.yaml) | Tencent Hunyuan | image | 2026-01-26 | open weights | partial | Filtered Hunyuan image corpus, Hunyuan interleaved image-pair corpus, Hunyuan reasoning and editing corpora | ✅ |
 | [FASHN VTON v1.5](models/image/fashn-vton-1-5.yaml) | FASHN AI | image | 2026-01-19 | open weights | partial | FASHN masked try-on pair pool, FASHN synthetic same-person alternative-garment triplets | ✅ |
 | [Veo 3.1](models/video/veo-3-1.yaml) | Google DeepMind | video, audio | 2026-01-13 | api only | high level | Veo 3 multimodal training corpus | ✅ |
 | [Omni2Sound](models/multimodal/omni2sound.yaml) | Tsinghua University, Monash University, and Shengshu AI | audio, video | 2026-01-06 | open weights | partial | [AudioCaps](catalog/audio/audiocaps-2-0.yaml), [WavCaps](catalog/audio/wavcaps.yaml), [Clotho](catalog/audio/clotho-2-1.yaml), [AudioSet](catalog/audio/audioset.yaml), [VGGSound](catalog/audio/vggsound.yaml), [FSD50K](catalog/audio/fsd50k.yaml), [Million Song Dataset](catalog/audio/million-song-dataset.yaml), [FMA](catalog/audio/fma.yaml), [SoundAtlas](catalog/audio/soundatlas.yaml), [VGGSound-Omni](catalog/evaluation/vggsound-omni.yaml) | ✅ |
 | [TalkVerse-5B](models/video/talkverse-5b.yaml) | CUHK MMLab and Snap Research | video, audio | 2025-12-24 | open weights | partial | Wan2.2-TI2V-5B inherited training mixture, [TalkVerse](catalog/video/talkverse.yaml) | ✅ |
 | [GPT Image 1.5](models/image/gpt-image-1-5.yaml) | OpenAI | image | 2025-12-16 | api only | undisclosed | not disclosed | 👀 |
+| [FLUX.2 [max]](models/image/flux-2-max.yaml) | Black Forest Labs | image | 2025-12-16 | api only | undisclosed | not disclosed | 👀 |
 | [OpenVE-Edit](models/video/openve-edit.yaml) | Zhejiang University and ByteDance | video | 2025-12-08 | announced | partial | [OpenVE-3M](catalog/video/openve-3m.yaml), [OpenVE-Bench](catalog/evaluation/openve-bench.yaml) | 👀 |
+| [Kling O1](models/image/kling-o1.yaml) | Kuaishou Technology | image, video | 2025-12-01 | product only | undisclosed | not disclosed | 👀 |
 | [HunyuanVideo 1.5](models/video/hunyuanvideo-1-5.yaml) | Tencent Hunyuan | video | 2025-11-24 | open weights | high level | not disclosed | 🟡 |
 | [Gemini 3 Pro Image (Nano Banana Pro)](models/image/gemini-3-pro-image.yaml) | Google DeepMind | image | 2025-11-20 | api only | undisclosed | not disclosed | 👀 |
 | [HunyuanVideo-Avatar](models/video/hunyuanvideo-avatar.yaml) | Tencent Hunyuan | video, audio | 2025-05-28 | open weights | partial | HunyuanVideo-I2V inherited training mixture, HunyuanVideo-Avatar character-audio training corpus, [HDTF](catalog/video/hdtf.yaml), [CelebV-HQ](catalog/video/celebv-hq.yaml) | ✅ |
@@ -111,8 +121,8 @@ image-to-video, and video editing. Open-weight and closed/API models are treated
 equally. Membership or ordering changes trigger review; Elo-only fluctuations
 do not. The generated site maps leaderboard aliases back to canonical model
 cards and shows unmapped entries as monitored card candidates. Every available
-Top 10 seat on the five boards must resolve to a model card; the complete Top 15
-remains under change monitoring.
+Top 15 seat on the five boards must resolve to a model card, including
+open-weight, API-only, and product-only releases.
 
 New dataset discovery is not limited to existing cards. Eight Hugging Face API
 feeds are sorted by `createdAt` for image generation, video generation,
@@ -189,6 +199,14 @@ notice. For a download-first view of every card, use the
 Legend: ✅ verified against primary sources; 🟡 partially verified or contains
 material unknowns; 🗄️ archived or unavailable from the original distributor.
 
+## Candidate content-source platforms
+
+The [source-platform index](SOURCE_PLATFORM_INDEX.md) tracks 16 candidate
+content surfaces referenced for image/video data planning. A platform homepage
+is not a dataset download action and does not imply permission to crawl, train,
+commercialize, or redistribute its content. Non-public operational assessments
+are intentionally excluded from this public repository.
+
 ## What is in this repository?
 
 | Layer | Content | Question answered |
@@ -196,6 +214,7 @@ material unknowns; 🗄️ archived or unavailable from the original distributor
 | Catalog | Machine-readable dataset cards | What data exists and is it accessible? |
 | Models | Model cards linked to datasets and training stages | What data strategy produced each model? |
 | Scenarios | Task-derived application taxonomy shared by the generated site | Which models and datasets support a concrete workflow? |
+| Source platforms | Candidate acquisition surfaces with explicit access and rights boundaries | Which websites may be relevant without pretending they are datasets? |
 | Recipes | Reproducible processing blueprints | How does raw media become training data? |
 | Quality | Metrics, filters, and audit guidance | Is the data good enough? |
 | Governance | License, privacy, safety, and provenance | May the data be used or redistributed? |
@@ -216,6 +235,7 @@ Useful commands:
 make validate      # schema, duplicate ID, and file-name checks
 make readme        # regenerate this catalog table
 make dataset-access-index # regenerate every dataset access/download link
+make source-platform-index # regenerate the candidate website/source index
 make site-data     # regenerate the searchable site's catalog payload
 make check-links   # verify primary-source links (network required)
 make audit-example # regenerate the manifest audit example

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-type Mode = "models" | "datasets" | "rankings" | "lineage" | "strategies";
+type Mode = "models" | "datasets" | "sources" | "rankings" | "lineage" | "strategies";
 
 type ScenarioDefinition = {
   id: string;
@@ -94,6 +94,20 @@ type RankingBoard = {
   id: string;
   source_url: string;
   entries: RankingEntry[];
+};
+
+type SourcePlatform = {
+  id: string;
+  name: string;
+  homepage: string;
+  category: string;
+  modalities: string[];
+  relevant_scenarios: string[];
+  content_scope: string;
+  source_status: string;
+  access_boundary: string;
+  rights_review: string;
+  last_reviewed: string;
 };
 
 type ModelCard = {
@@ -210,6 +224,7 @@ type DatasetCard = {
 type Catalog = {
   last_verified: string;
   scenarios: ScenarioDefinition[];
+  source_platforms: SourcePlatform[];
   models: ModelCard[];
   datasets: DatasetCard[];
   relations: ModelDatasetRelation[];
@@ -220,6 +235,7 @@ type Catalog = {
 const MODE_LABELS: Record<Mode, string> = {
   models: "模型 · 发布时间↓",
   datasets: "最新数据集",
+  sources: "来源平台",
   rankings: "行业排行榜",
   lineage: "关系图谱",
   strategies: "数据策略",
@@ -238,10 +254,18 @@ const MODALITY_LABELS: Record<string, string> = {
   image: "图像",
   video: "视频",
   audio: "音频",
+  text: "文本 / 元数据",
   action: "具身 / Action",
   multimodal: "多模态",
   preference: "偏好数据",
   "3d": "3D",
+};
+
+const SOURCE_PLATFORM_CATEGORY_LABELS: Record<string, string> = {
+  "video-platform": "视频平台",
+  "streaming-and-studio": "流媒体与影视",
+  "stock-media": "素材平台",
+  ecommerce: "电商平台",
 };
 
 const DISCLOSURE_LABELS: Record<string, string> = {
@@ -836,6 +860,75 @@ function RankingOverview({ boards, onOpenModel }: {
   );
 }
 
+function SourcePlatformOverview({
+  platforms,
+  scenarioLabels,
+}: {
+  platforms: SourcePlatform[];
+  scenarioLabels: Map<string, string>;
+}) {
+  const categories = [
+    "video-platform",
+    "streaming-and-studio",
+    "stock-media",
+    "ecommerce",
+  ];
+  const modalityCount = new Set(platforms.flatMap((item) => item.modalities)).size;
+
+  return (
+    <section className="source-platform-overview" aria-labelledby="source-platform-title">
+      <header className="source-platform-summary">
+        <div>
+          <h3 id="source-platform-title">把网站来源和可下载数据集分开管理。</h3>
+          <p>这些条目是候选内容来源，不是数据集下载入口，也不代表已经获得抓取、训练、商用或再分发许可。</p>
+        </div>
+        <dl>
+          <div><dt>候选平台</dt><dd>{platforms.length}</dd></div>
+          <div><dt>平台类别</dt><dd>{new Set(platforms.map((item) => item.category)).size}</dd></div>
+          <div><dt>涉及模态</dt><dd>{modalityCount}</dd></div>
+        </dl>
+      </header>
+      <div className="source-platform-groups">
+        {categories.map((category) => {
+          const entries = platforms.filter((item) => item.category === category);
+          if (entries.length === 0) return null;
+          return (
+            <article className="source-platform-group" key={category}>
+              <header>
+                <h4>{SOURCE_PLATFORM_CATEGORY_LABELS[category] ?? category}</h4>
+                <span>{entries.length}</span>
+              </header>
+              <div className="source-platform-list">
+                {entries.map((platform) => (
+                  <section className="source-platform-item" key={platform.id}>
+                    <div className="source-platform-name">
+                      <ExternalLink href={platform.homepage}>{platform.name}</ExternalLink>
+                      <span>{formatDate(platform.last_reviewed)} 复核</span>
+                    </div>
+                    <p>{platform.content_scope}</p>
+                    <div className="tag-row">
+                      {platform.modalities.map((item) => (
+                        <span className="tag" key={item}>{MODALITY_LABELS[item] ?? item}</span>
+                      ))}
+                      {platform.relevant_scenarios.map((item) => (
+                        <span className="tag tag-scenario" key={item}>{scenarioLabels.get(item) ?? item}</span>
+                      ))}
+                    </div>
+                    <footer>
+                      <span>来源平台，不是数据集</span>
+                      <strong>权利需逐源审核</strong>
+                    </footer>
+                  </section>
+                ))}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 function StrategyMatrix({
   models,
   scenario,
@@ -1141,14 +1234,37 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
     });
   }, [catalog.rankings, modality, query]);
 
-  const visibleModalities = mode === "datasets"
+  const sourcePlatformResults = useMemo(() => {
+    const search = normalize(query.trim());
+    return catalog.source_platforms.filter((platform) => {
+      const inModality = modality === "all" || platform.modalities.includes(modality);
+      const inScenario = scenario === "all" || platform.relevant_scenarios.includes(scenario);
+      const haystack = normalize([
+        platform.name,
+        platform.homepage,
+        platform.category,
+        SOURCE_PLATFORM_CATEGORY_LABELS[platform.category] ?? "",
+        platform.content_scope,
+        ...platform.modalities,
+        ...platform.relevant_scenarios,
+        ...platform.relevant_scenarios.map((item) => scenarioLabels.get(item) ?? item),
+      ].join(" "));
+      return inModality && inScenario && (!search || haystack.includes(search));
+    });
+  }, [catalog.source_platforms, modality, query, scenario, scenarioLabels]);
+
+  const visibleModalities = mode === "sources"
+    ? ["all", "image", "video", "audio", "text"]
+    : mode === "datasets"
     ? ["all", "image", "video", "audio", "3d", "preference"]
     : mode === "rankings"
       ? ["all", "image", "video"]
     : mode === "lineage"
       ? ["all", "image", "video", "audio", "3d", "preference", "multimodal", "action"]
     : ["all", "image", "video", "audio", "3d", "multimodal", "action"];
-  const visibleCount = mode === "datasets"
+  const visibleCount = mode === "sources"
+    ? sourcePlatformResults.length
+    : mode === "datasets"
     ? datasetResults.length
     : mode === "rankings"
       ? rankingResults.reduce((count, board) => count + board.entries.length, 0)
@@ -1176,15 +1292,22 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         )).length,
       ]));
     }
+    if (mode === "sources") {
+      return Object.fromEntries(catalog.scenarios.map((item) => [
+        item.id,
+        catalog.source_platforms.filter((entry) => entry.relevant_scenarios.includes(item.id)).length,
+      ]));
+    }
     const items = mode === "datasets" ? catalog.datasets : catalog.models;
     return Object.fromEntries(catalog.scenarios.map((item) => [
       item.id,
       items.filter((entry) => entry.scenario_ids.includes(item.id)).length,
     ]));
-  }, [catalog.datasets, catalog.models, catalog.scenarios, datasetLineageRecords, lineageRecords, mode]);
+  }, [catalog.datasets, catalog.models, catalog.scenarios, catalog.source_platforms, datasetLineageRecords, lineageRecords, mode]);
 
   function totalForMode(item: Mode) {
     if (item === "datasets") return catalog.datasets.length;
+    if (item === "sources") return catalog.source_platforms.length;
     if (item === "rankings") return catalog.rankings.reduce((count, board) => count + board.entries.length, 0);
     if (item === "lineage") return catalog.relations.length + catalog.dataset_relations.length;
     return catalog.models.length;
@@ -1321,6 +1444,8 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
               onChange={(event) => setQuery(event.target.value)}
               placeholder={mode === "datasets"
                 ? "搜索数据集、任务、标注类型…"
+                : mode === "sources"
+                  ? "搜索来源平台、类别、模态或应用场景…"
                 : mode === "rankings"
                   ? "搜索榜单模型、机构、开放权重…"
                 : mode === "lineage"
@@ -1358,6 +1483,12 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
             <RankingOverview
               boards={rankingResults}
               onOpenModel={(id) => openRelation("models", id)}
+            />
+          )}
+          {mode === "sources" && visibleCount > 0 && (
+            <SourcePlatformOverview
+              platforms={sourcePlatformResults}
+              scenarioLabels={scenarioLabels}
             />
           )}
           {mode === "models" && modelResults.map((model) => (

@@ -63,6 +63,14 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /HappyHorse 1\.1/);
   assert.match(html, /Wan 2\.7/);
   assert.match(html, /Kling AI 3\.0/);
+  assert.match(html, /Kling O1/);
+  assert.match(html, /Grok Imagine Image/);
+  assert.match(html, /HiDream-O1-Image/);
+  assert.match(html, /PixVerse V6/);
+  assert.match(html, /Vidu Q3 Pro/);
+  assert.match(html, /Recraft V4\.1/);
+  assert.match(html, /FLUX\.2 \[max\]/);
+  assert.match(html, /Veo 3\.1 Lite/);
   assert.match(html, /Avatar V/);
   assert.match(html, /JUST-DUB-IT/);
   assert.match(html, /Audiovisual Translation Dubbing Dataset/);
@@ -104,6 +112,7 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /最新数据集/);
   assert.match(html, /模型 · 发布时间/);
   assert.match(html, /行业排行榜/);
+  assert.match(html, /来源平台/);
   assert.match(html, /结构化数据集/);
   assert.match(html, /https:\/\/tobinzuo\.github\.io\/AIGCDataHub\/og\.png/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
@@ -134,6 +143,12 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"gpt-image-2"/);
   assert.match(catalog, /"happyhorse-1-1"/);
   assert.match(catalog, /"rankings"/);
+  assert.match(catalog, /"source_platforms"/);
+  assert.match(catalog, /"source-platform-not-dataset"/);
+  assert.match(catalog, /"name": "YouTube"/);
+  assert.match(catalog, /"name": "Shutterstock"/);
+  assert.match(catalog, /"name": "SHEIN"/);
+  assert.match(catalogExplorer, /把网站来源和可下载数据集分开管理/);
   assert.match(catalog, /"avatar-v"/);
   assert.match(catalog, /"just-dub-it"/);
   assert.match(catalog, /"audiovisual-translation-dub"/);
@@ -175,8 +190,9 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"relations"/);
   assert.match(catalog, /"dataset_relations"/);
   const parsedCatalog = JSON.parse(catalog);
-  assert.equal(parsedCatalog.format_version, 9);
+  assert.equal(parsedCatalog.format_version, 10);
   assert.equal(parsedCatalog.rankings.length, 5);
+  assert.equal(parsedCatalog.source_platforms.length, 16);
   assert.equal(
     parsedCatalog.rankings.find((board) => board.id === "text-to-image").entries[0].model_id,
     "gpt-image-2",

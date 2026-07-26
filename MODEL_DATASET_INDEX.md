@@ -2,9 +2,9 @@
 
 Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; unreleased or undisclosed data must state why no card exists.
 
-- Models: 50
+- Models: 58
 - References linked to catalog cards: 35
-- References without a card, with an explicit evidence boundary: 63
+- References without a card, with an explicit evidence boundary: 71
 - Ordering: model release date, newest first
 
 | Model | Released | Dataset or corpus named by source | Availability | Catalog resolution | Role | Evidence boundary |
@@ -41,6 +41,8 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [Lens](models/image/lens.yaml) | 2026-05-20 | Lens-800M | not-released | [`lens-800m`](catalog/image/lens-800m.yaml) | pretraining | Dense GPT-4.1 captions average approximately 109 words. |
 | [Lens](models/image/lens.yaml) | 2026-05-20 | Lens-RL-8K | not-released | [`lens-rl-8k`](catalog/preference/lens-rl-8k.yaml) | preference | Taxonomy-driven GPT-4.1 prompts paired with up to ten prompt-specific rubrics and one global structural-integrity rubric. |
 | [Lance](models/multimodal/lance.yaml) | 2026-05-18 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
+| [Recraft V4.1](models/image/recraft-v4-1.yaml) | 2026-05-14 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
+| [HiDream-O1-Image](models/image/hidream-o1-image.yaml) | 2026-05-08 | HiDream O1 heterogeneous visual corpus | undisclosed | — exact source is not disclosed | pretraining | The report describes source classes and constructed supervision but does not name component datasets or publish the compiled corpus. |
 | [Grok Imagine Image Quality](models/image/grok-imagine-image-quality.yaml) | 2026-05-06 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Luma UNI 1 Max](models/image/luma-uni-1-max.yaml) | 2026-05-05 | Luma UNI creative training corpus | undisclosed | — exact source is not disclosed | pretraining | Luma says Uni was trained in collaboration with cinematographers, VFX artists, and artists, but does not identify a distributable dataset. |
 | [TripVVT](models/video/tripvvt.yaml) | 2026-04-30 | Wan2.1-Fun-14B-control inherited pretraining mixture | undisclosed | — exact source is not disclosed | pretraining | TripVVT inherits the Wan2.1-I2V and control-model visual prior; their complete source lineage is not restated. |
@@ -57,6 +59,8 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [Avatar V](models/video/avatar-v.yaml) | 2026-04-08 | Avatar V audio-to-video fine-tuning corpus | undisclosed | — exact source is not disclosed | fine-tuning | Clips carry avatar quality signals, audio-video annotations, and cross-scene identity links. |
 | [Avatar V](models/video/avatar-v.yaml) | 2026-04-08 | Avatar V human preference data | undisclosed | — exact source is not disclosed | preference | Human pairwise labels cover identity preservation, expression naturalness, audio-visual synchronization, motion, and visual quality. |
 | [Wan 2.7](models/video/wan-2-7.yaml) | 2026-04-03 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
+| [Veo 3.1 Lite](models/video/veo-3-1-lite.yaml) | 2026-03-31 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
+| [PixVerse V6](models/video/pixverse-v6.yaml) | 2026-03-30 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Gemini 3.1 Flash Image (Nano Banana 2)](models/image/gemini-3-1-flash-image.yaml) | 2026-02-26 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [SkyReels V4](models/video/skyreels-v4.yaml) | 2026-02-25 | LAION (version not specified) | public | [`re-laion-5b`](catalog/image/re-laion-5b.yaml) | pretraining | The paper names LAION without a version; the linked card documents the maintained Re-LAION-5B lineage and does not assert the exact snapshot used. |
 | [SkyReels V4](models/video/skyreels-v4.yaml) | 2026-02-25 | Flickr | public | [`flickr-5b`](catalog/image/flickr-5b.yaml) | pretraining | The paper directly cites the bigdata-pw/Flickr metadata repository. |
@@ -76,6 +80,8 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [JUST-DUB-IT](models/video/just-dub-it.yaml) | 2026-02-10 | Audiovisual Translation Dubbing Dataset | public | [`audiovisual-translation-dub`](catalog/video/audiovisual-translation-dub.yaml) | fine-tuning | Each record pairs a reference video with a dubbed target, structured caption, and optional face mask. |
 | [Kling AI 3.0](models/video/kling-3.yaml) | 2026-02-05 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Grok Imagine Video](models/video/grok-imagine-video.yaml) | 2026-01-28 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
+| [Grok Imagine Image](models/image/grok-imagine-image.yaml) | 2026-01-28 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
+| [Vidu Q3 Pro](models/video/vidu-q3-pro.yaml) | 2026-01-27 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [HunyuanImage 3.0 Instruct](models/image/hunyuanimage-3-instruct.yaml) | 2026-01-26 | Filtered Hunyuan image corpus | undisclosed | — exact source is not disclosed | pretraining | The report discloses the retained scale and curation pipeline but not the source collections or licenses. |
 | [HunyuanImage 3.0 Instruct](models/image/hunyuanimage-3-instruct.yaml) | 2026-01-26 | Hunyuan interleaved image-pair corpus | undisclosed | — exact source is not disclosed | pretraining | Constructed from image clustering, internet interleaved data, and video-frame mining; exact source identities are not listed. |
 | [HunyuanImage 3.0 Instruct](models/image/hunyuanimage-3-instruct.yaml) | 2026-01-26 | Hunyuan reasoning and editing corpora | not-released | — publisher has not released it | fine-tuning | Includes T2T, T2TI, and TI2TI reasoning traces plus Wikipedia infographics, but the compiled corpora were not released. |
@@ -95,8 +101,10 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [TalkVerse-5B](models/video/talkverse-5b.yaml) | 2025-12-24 | Wan2.2-TI2V-5B inherited training mixture | undisclosed | — exact source is not disclosed | pretraining | TalkVerse inherits the base model's visual prior, but the complete source corpus, rights composition, and mixture are not restated by the project. |
 | [TalkVerse-5B](models/video/talkverse-5b.yaml) | 2025-12-24 | TalkVerse | gated | [`talkverse`](catalog/video/talkverse.yaml) | fine-tuning | Curated from OpenHumanVid and Panda-70M; the public Hugging Face release contains annotations and retrieval metadata rather than redistributable source videos. |
 | [GPT Image 1.5](models/image/gpt-image-1-5.yaml) | 2025-12-16 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
+| [FLUX.2 [max]](models/image/flux-2-max.yaml) | 2025-12-16 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [OpenVE-Edit](models/video/openve-edit.yaml) | 2025-12-08 | OpenVE-3M | public | [`openve-3m`](catalog/video/openve-3m.yaml) | fine-tuning | The project states OpenVE-Edit is trained on OpenVE-3M; category-level mixture weights and teacher-generation details are not fully released. |
 | [OpenVE-Edit](models/video/openve-edit.yaml) | 2025-12-08 | OpenVE-Bench | public | [`openve-bench`](catalog/evaluation/openve-bench.yaml) | evaluation | The project reports state-of-the-art results on the companion benchmark but has not yet published a complete reproducibility package for the model. |
+| [Kling O1](models/image/kling-o1.yaml) | 2025-12-01 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [HunyuanVideo 1.5](models/video/hunyuanvideo-1-5.yaml) | 2025-11-24 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Gemini 3 Pro Image (Nano Banana Pro)](models/image/gemini-3-pro-image.yaml) | 2025-11-20 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [HunyuanVideo-Avatar](models/video/hunyuanvideo-avatar.yaml) | 2025-05-28 | HunyuanVideo-I2V inherited training mixture | undisclosed | — exact source is not disclosed | pretraining | The avatar model inherits the visual prior of HunyuanVideo-I2V, but this release does not restate that model's complete source corpus or mixture. |

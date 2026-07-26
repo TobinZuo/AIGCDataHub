@@ -23,6 +23,9 @@ as an exhaustive list.
    ranking alert when membership or ordering changes, regardless of whether the
    model is open-weight or closed. Eight Hugging Face dataset API feeds sorted
    by creation time provide a separate new-release queue for the same scenarios.
+   GitHub API revision probes use the workflow token rather than the anonymous
+   rate limit. A connection reset, TLS error, or other source-level network
+   failure is recorded for review without aborting the remaining source scan.
    Search beyond the generated candidates when an official organization uses a
    new domain, publishes only through a feed, or changes an existing model card.
 2. Create a candidate list with release date, primary source, modality, access,
@@ -43,6 +46,11 @@ as an exhaustive list.
    generator derives `dataset_relations`, `upstream_dataset_ids`, and
    `downstream_dataset_ids`; unknown parents, duplicates, self-links, and cycles
    fail validation.
+   Candidate website sources belong in `sources/source-platforms.yaml`, not in
+   `catalog/`. A homepage is never labeled as a dataset download, and public
+   entries must exclude non-public operational assessments. Each platform keeps
+   a required rights-review boundary until source-specific permissions are
+   independently established.
 5. Distinguish facts from analysis:
    - `strategy`: directly supported by primary evidence;
    - `unknowns`: material information the source does not provide;

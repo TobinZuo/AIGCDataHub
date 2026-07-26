@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 sys.path.insert(0, "scripts")
 
@@ -11,6 +12,7 @@ from discover_updates import (
     RankingEntry,
     SourceSnapshot,
     WatchSource,
+    _fetch_source,
     compare_snapshots,
     content_revision,
     dataset_impact_index,
@@ -28,6 +30,38 @@ from upsert_discovery_issue import issue_action, issue_body
 
 
 class DiscoveryTests(unittest.TestCase):
+    def test_fetch_source_isolates_connection_resets(self) -> None:
+        class ResettingResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+            def read(self, _max_bytes):
+                raise ConnectionResetError("connection reset by peer")
+
+        source = WatchSource(
+            "important-model-updates",
+            "https://api.github.com/repos/example/model/commits/main",
+            priority="critical",
+            model_id="example-model",
+        )
+        with (
+            patch.dict("discover_updates.os.environ", {"GITHUB_TOKEN": "test-token"}, clear=True),
+            patch(
+                "discover_updates.urllib.request.urlopen", return_value=ResettingResponse()
+            ) as urlopen,
+        ):
+            snapshot = _fetch_source(source, timeout=1, max_bytes=1024)
+
+        self.assertEqual(snapshot.error, "network-ConnectionResetError")
+        self.assertEqual(snapshot.model_id, "example-model")
+        self.assertEqual(snapshot.priority, "critical")
+        request = urlopen.call_args.args[0]
+        self.assertEqual(request.get_header("Authorization"), "Bearer test-token")
+        self.assertEqual(request.get_header("X-github-api-version"), "2022-11-28")
+
     def test_content_revision_is_stable_and_change_sensitive(self) -> None:
         self.assertEqual(content_revision(b"official page"), content_revision(b"official page"))
         self.assertNotEqual(content_revision(b"official page"), content_revision(b"updated page"))
@@ -167,7 +201,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            22,
+            30,
         )
         self.assertTrue(
             {
@@ -220,6 +254,11 @@ class DiscoveryTests(unittest.TestCase):
                 "https://huggingface.co/api/models/tencent/HunyuanImage-3.0-Instruct",
                 "https://huggingface.co/api/models/nvidia/Cosmos3-Super-Text2Image",
                 "https://arxiv.org/abs/2602.21818",
+                "https://docs.x.ai/developers/models/grok-imagine-image",
+                "https://pixverse.ai/en/blog/pixverse-launches-v6-advancing-ai-video-generation",
+                "https://platform.vidu.com/docs/update",
+                "https://docs.bfl.ai/release-notes",
+                "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/",
             }.issubset(urls)
         )
         self.assertIn("https://huggingface.co/api/datasets/nkp37/OpenVid-1M", urls)
@@ -519,6 +558,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertIn("issues: write", workflow)
         self.assertIn("scripts/discover_updates.py", workflow)
         self.assertIn("scripts/upsert_discovery_issue.py", workflow)
+        self.assertEqual(workflow.count("GITHUB_TOKEN: ${{ github.token }}"), 2)
 
 
 if __name__ == "__main__":

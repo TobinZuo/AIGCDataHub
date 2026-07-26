@@ -1,0 +1,54 @@
+id: kling-o1
+name: Kling O1
+organization: Kuaishou Technology
+released_at: "2025-12-01"
+ranking_names:
+  - Kling Image O1
+modalities:
+  - image
+  - video
+tasks:
+  - text-to-image
+  - image-editing
+  - reference-image-generation
+  - text-to-video
+  - image-to-video
+  - video-editing
+  - reference-to-video
+access:
+  status: product-only
+  license: Kling AI service terms
+  release_url: https://ir.kuaishou.com/news-releases/news-release-details/kling-o1-launches-worlds-first-unified-multimodal-video-model-0/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Multimodal Visual Language unified generation and editing framework
+  parameters: null
+  notes: Kuaishou describes one engine that accepts text, image, video, and subject inputs across image and video generation/editing, but does not publish its parameter count or full topology.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: The first-party launch explains the unified multimodal task surface without identifying training sources, curation, scale, or post-training data.
+  strategy_summary:
+    - Map the leaderboard's Image O1 label to the first-party Kling O1 family while keeping its undisclosed data boundary explicit.
+  unknowns:
+    - Dataset identities, provenance, rights, scale, mixture, captions, filtering, deduplication, and safety processing.
+    - Image-specific versus video-specific training stages, preference data, and product checkpoint changes.
+evidence:
+  release: https://ir.kuaishou.com/news-releases/news-release-details/kling-o1-launches-worlds-first-unified-multimodal-video-model-0/
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-27"

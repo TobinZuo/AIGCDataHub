@@ -14,6 +14,7 @@ import yaml
 
 from catalog import ROOT, compact_number, load_cards
 from models import load_models
+from source_platforms import load_source_platforms
 
 
 OUTPUT_PATH = ROOT / "site" / "app" / "catalog-data.json"
@@ -163,6 +164,16 @@ def ranking_key(value: str) -> str:
 
 def build_payload() -> dict[str, Any]:
     scenarios = load_scenarios()
+    source_platforms = load_source_platforms()
+    scenario_id_set = {item["id"] for item in scenarios}
+    for platform in source_platforms:
+        unknown_scenarios = set(platform["relevant_scenarios"]) - scenario_id_set
+        if unknown_scenarios:
+            raise ValueError(
+                f"source platform {platform['id']!r} references unknown scenarios: "
+                f"{sorted(unknown_scenarios)}"
+            )
+    source_platforms.sort(key=lambda item: (item["category"], item["name"].lower()))
     dataset_monitors = load_dataset_monitors()
     model_monitors = load_model_monitors()
     datasets = []
@@ -296,11 +307,12 @@ def build_payload() -> dict[str, Any]:
     verified_dates = [item["last_verified"] for item in [*datasets, *models]]
 
     return {
-        "format_version": 9,
+        "format_version": 10,
         "generated_from": [
             "catalog/**/*.yaml",
             "models/**/*.yaml",
             "sources/scenarios.yaml",
+            "sources/source-platforms.yaml",
             "sources/watchlist.yaml",
             "sources/discovery-state.json",
         ],
@@ -309,6 +321,7 @@ def build_payload() -> dict[str, Any]:
             {key: value for key, value in scenario.items() if key != "tasks"}
             for scenario in scenarios
         ],
+        "source_platforms": source_platforms,
         "datasets": datasets,
         "models": models,
         "relations": relations,

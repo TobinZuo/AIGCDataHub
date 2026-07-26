@@ -1,0 +1,50 @@
+id: flux-2-max
+name: FLUX.2 [max]
+organization: Black Forest Labs
+released_at: "2025-12-16"
+ranking_names:
+  - FLUX.2 [max]
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - multi-reference-image-editing
+  - grounded-image-generation
+  - text-rendering
+access:
+  status: api-only
+  license: FLUX API service terms
+  release_url: https://docs.bfl.ai/release-notes
+  weights_url: null
+  api_url: https://docs.bfl.ai/flux_2/flux2_overview
+architecture:
+  family: Undisclosed highest-quality FLUX.2 service variant
+  parameters: null
+  notes: BFL documents unified generation/editing, multi-reference conditioning, and grounding search but not the Max parameter count or complete architecture.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: The Max launch and FLUX.2 family overview publish capabilities and serving behavior without identifying training sources, scale, curation, or post-training data.
+  strategy_summary:
+    - Keep the closed Max endpoint separate from the open-weight Dev and Klein variants; family membership does not establish a shared exact corpus.
+  unknowns:
+    - Dataset identities, provenance, licenses, scale, mixture, filtering, deduplication, captions, and safety processing.
+    - Max-specific training changes, editing and preference data, grounding-search training, and its relationship to other FLUX.2 checkpoints.
+evidence:
+  release: https://docs.bfl.ai/release-notes
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-27"

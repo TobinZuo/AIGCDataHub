@@ -1,0 +1,54 @@
+id: vidu-q3-pro
+name: Vidu Q3 Pro
+organization: ShengShu Technology
+released_at: "2026-01-27"
+ranking_names:
+  - Vidu Q3 Pro
+modalities:
+  - video
+  - audio
+tasks:
+  - text-to-video
+  - image-to-video
+  - first-last-frame-video
+  - reference-to-video
+  - storyboard-video-generation
+  - audio-video-generation
+access:
+  status: api-only
+  license: Vidu API platform terms
+  release_url: https://platform.vidu.com/docs/update
+  weights_url: null
+  api_url: https://platform.vidu.com/docs/model-map
+architecture:
+  family: Undisclosed Vidu Q3 native audiovisual generation model
+  parameters: null
+  notes: The Q3 Pro API supports synchronized audio/video, smart scene cuts, and up to 16-second output, but its exact architecture and parameter count are not published.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - audio
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: Vidu's release notes, product page, and API documentation expose capabilities and serving parameters without a Q3 Pro training-data recipe.
+  strategy_summary:
+    - Do not inherit the original 2024 Vidu technical report's architecture or data claims into Q3 Pro without version-specific evidence.
+  unknowns:
+    - Video, image, audio, and text source identities, rights, scale, mixture, language coverage, captions, filtering, and deduplication.
+    - Storyboard, synchronization, preference, safety, and industry-specialization post-training data.
+evidence:
+  release: https://platform.vidu.com/docs/update
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-27"

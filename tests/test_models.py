@@ -18,7 +18,7 @@ class ModelCatalogTests(unittest.TestCase):
     def test_representative_modalities_are_present(self) -> None:
         cards = [card for _, card in load_models()]
         modalities = {modality for card in cards for modality in card["modalities"]}
-        self.assertGreaterEqual(len(cards), 50)
+        self.assertGreaterEqual(len(cards), 58)
         self.assertTrue({"image", "video", "audio", "multimodal"}.issubset(modalities))
 
     def test_product_only_releases_are_representable(self) -> None:
@@ -50,10 +50,20 @@ class ModelCatalogTests(unittest.TestCase):
                 "veo-3-1",
                 "skyreels-v4",
                 "grok-imagine-video",
+                "grok-imagine-image",
+                "kling-o1",
+                "hidream-o1-image",
+                "pixverse-v6",
+                "vidu-q3-pro",
+                "recraft-v4-1",
+                "flux-2-max",
+                "veo-3-1-lite",
             }.issubset(cards)
         )
         self.assertIn("GPT Image 2 (high)", cards["gpt-image-2"]["ranking_names"])
         self.assertIn("HappyHorse-1.0", cards["happyhorse-1-0"]["ranking_names"])
+        self.assertIn("Kling Image 3.0 Omni", cards["kling-3"]["ranking_names"])
+        self.assertIn("Recraft V4.1 Utility Pro", cards["recraft-v4-1"]["ranking_names"])
 
     def test_skyreels_disclosed_public_data_resolves_to_download_cards(self) -> None:
         cards = {card["id"]: card for _, card in load_models()}

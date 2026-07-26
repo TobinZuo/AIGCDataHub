@@ -397,6 +397,9 @@ tracks:
         model_id: luma-uni-1-max
         priority: critical
       - url: https://api.github.com/repos/HiDream-ai/HiDream-O1-Image/commits/main
+        model_id: hidream-o1-image
+        priority: critical
+      - url: https://www.hidream.ai/
         model_id: hidream-o1-image-1-5
         priority: critical
       - url: https://huggingface.co/api/models/nvidia/Cosmos3-Super-Text2Image
@@ -410,6 +413,27 @@ tracks:
         priority: critical
       - url: https://docs.x.ai/developers/models/grok-imagine-video
         model_id: grok-imagine-video
+        priority: critical
+      - url: https://docs.x.ai/developers/models/grok-imagine-image
+        model_id: grok-imagine-image
+        priority: critical
+      - url: https://ir.kuaishou.com/news-releases/news-release-details/kling-o1-launches-worlds-first-unified-multimodal-video-model-0/
+        model_id: kling-o1
+        priority: critical
+      - url: https://pixverse.ai/en/blog/pixverse-launches-v6-advancing-ai-video-generation
+        model_id: pixverse-v6
+        priority: critical
+      - url: https://platform.vidu.com/docs/update
+        model_id: vidu-q3-pro
+        priority: critical
+      - url: https://www.recraft.ai/blog/recraft-v4-1-more-beautiful-by-nature
+        model_id: recraft-v4-1
+        priority: critical
+      - url: https://docs.bfl.ai/release-notes
+        model_id: flux-2-max
+        priority: critical
+      - url: https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/
+        model_id: veo-3-1-lite
         priority: critical
 
 acceptance_rules:

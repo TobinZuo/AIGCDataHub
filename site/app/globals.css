@@ -438,7 +438,7 @@ input:focus-visible {
 
 .mode-tabs {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
 }
@@ -1302,6 +1302,160 @@ input:focus-visible {
   border-bottom: 1px solid var(--ink);
 }
 
+.source-platform-overview {
+  border-bottom: 1px solid var(--ink);
+}
+
+.source-platform-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.7fr);
+  align-items: end;
+  gap: 42px;
+  padding: 34px;
+  border-bottom: 1px solid var(--ink);
+  background: color-mix(in srgb, var(--paper-deep) 58%, transparent);
+}
+
+.source-platform-summary h3 {
+  max-width: 760px;
+  margin: 0;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: clamp(27px, 3vw, 42px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.source-platform-summary > div > p {
+  max-width: 760px;
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.source-platform-summary dl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin: 0;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+}
+
+.source-platform-summary dl > div {
+  min-height: 92px;
+  padding: 13px;
+  background: var(--white);
+}
+
+.source-platform-summary dt {
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.source-platform-summary dd {
+  margin: 18px 0 0;
+  font-family: Georgia, serif;
+  font-size: 30px;
+}
+
+.source-platform-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--ink);
+}
+
+.source-platform-group {
+  min-width: 0;
+  background: var(--white);
+}
+
+.source-platform-group > header {
+  display: flex;
+  min-height: 74px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.source-platform-group h4 {
+  margin: 0;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.source-platform-group > header span {
+  color: var(--signal);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+}
+
+.source-platform-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+}
+
+.source-platform-item {
+  display: flex;
+  min-height: 230px;
+  flex-direction: column;
+  padding: 21px;
+  background: var(--white);
+}
+
+.source-platform-name {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.source-platform-name .text-link {
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 20px;
+}
+
+.source-platform-name > span {
+  color: var(--muted);
+  font-size: 8px;
+  white-space: nowrap;
+}
+
+.source-platform-item > p {
+  margin: 15px 0 0;
+  color: #5d6058;
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.source-platform-item .tag-row {
+  margin-top: 15px;
+}
+
+.source-platform-item footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 18px;
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.source-platform-item footer strong {
+  color: var(--signal);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
 .ranking-summary {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.7fr);
@@ -2119,7 +2273,7 @@ input:focus-visible {
   }
 
   .mode-tabs {
-    grid-template-columns: repeat(5, minmax(132px, 1fr));
+    grid-template-columns: repeat(6, minmax(132px, 1fr));
     overflow-x: auto;
   }
 
@@ -2137,6 +2291,17 @@ input:focus-visible {
     grid-template-columns: 1fr;
     gap: 24px;
     padding: 28px 4px;
+  }
+
+  .source-platform-summary {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px 4px;
+  }
+
+  .source-platform-groups,
+  .source-platform-list {
+    grid-template-columns: 1fr;
   }
 
   .ranking-boards {
