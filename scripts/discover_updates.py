@@ -121,6 +121,11 @@ ARTIFACT_TERMS = (
     "weights",
 )
 CONTEXTUAL_TRACKS = {"digital-human-and-localization", "virtual-try-on-and-commerce"}
+REVISION_ONLY_TRACKS = {
+    "important-dataset-updates",
+    "important-model-updates",
+    "source-platform-updates",
+}
 INDEX_HOSTS = {"github.com", "huggingface.co"}
 IGNORED_PATH_PARTS = (
     "/login",
@@ -827,7 +832,7 @@ def _fetch_source_once(source: WatchSource, timeout: float, max_bytes: int) -> S
                     else "reachable"
                 )
                 revision_url = normalize_url(response.url)
-            if track_id == "source-platform-updates":
+            if track_id in REVISION_ONLY_TRACKS:
                 rankings = ()
                 candidates = ()
             elif source.ranking_id:
