@@ -1,0 +1,48 @@
+id: gpt-image-2
+name: GPT Image 2
+organization: OpenAI
+released_at: "2026-04-21"
+ranking_names:
+  - GPT Image 2 (high)
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - text-rendering
+access:
+  status: api-only
+  license: OpenAI Services Agreement
+  release_url: https://openai.com/index/introducing-chatgpt-images-2-0/
+  weights_url: null
+  api_url: https://developers.openai.com/api/docs/models/gpt-image-2
+architecture:
+  family: Undisclosed native image-generation architecture
+  parameters: null
+  notes: The product adds a thinking mode with reasoning and tool use, but OpenAI does not publish the generator architecture or parameter count.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: OpenAI documents product capabilities and deployment safeguards but does not identify the training corpus or model-development data pipeline.
+  strategy_summary:
+    - Keep the training corpus marked undisclosed; the system card describes deployment safety layers, not the model's training-data inventory.
+  unknowns:
+    - Training dataset identities, provenance, rights composition, sample counts, mixture ratios, and deduplication policy.
+    - Fine-tuning, preference, synthetic-data, and safety-training data used before deployment.
+evidence:
+  release: https://openai.com/index/introducing-chatgpt-images-2-0/
+  technical_report: https://deploymentsafety.openai.com/chatgpt-images-2-0/chatgpt-images-2-0.pdf
+  repository: null
+status: watch
+last_verified: "2026-07-26"

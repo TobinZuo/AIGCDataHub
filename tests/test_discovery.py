@@ -8,11 +8,14 @@ sys.path.insert(0, "scripts")
 
 from discover_updates import (
     Candidate,
+    RankingEntry,
     SourceSnapshot,
     WatchSource,
     compare_snapshots,
     dataset_impact_index,
     extract_candidate_links,
+    extract_huggingface_dataset_candidates,
+    extract_ranking_entries,
     extract_source_revision,
     load_watchlist,
     model_impact_index,
@@ -71,6 +74,33 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(revision, "2026-07-25T11:00:00Z@def456")
         self.assertEqual(url, "https://huggingface.co/tencent/HunyuanVideo-Avatar")
+
+    def test_extracts_hugging_face_release_feed_candidates(self) -> None:
+        candidates = extract_huggingface_dataset_candidates(
+            '[{"id":"org/NewVideoSet"},{"id":"invalid"},{"id":"org/SecondSet"}]'
+        )
+        self.assertEqual(
+            candidates,
+            (
+                Candidate("org/NewVideoSet", "https://huggingface.co/datasets/org/NewVideoSet"),
+                Candidate("org/SecondSet", "https://huggingface.co/datasets/org/SecondSet"),
+            ),
+        )
+
+    def test_extracts_top_ranking_entries_and_open_weight_status(self) -> None:
+        html = """
+        <table>
+          <tr><th></th><th>Range</th><th>Creator</th><th>Model</th><th>Elo</th><th>95% CI</th><th>Samples</th><th>Released</th><th>Price</th></tr>
+          <tr><td>1</td><td>1</td><td>OpenAI</td><td>GPT Image 2 (high)</td><td>1,338</td><td>-7/7</td><td>21,060</td><td>Apr 2026</td><td>$211</td></tr>
+          <tr><td>2</td><td>2</td><td>NVIDIA</td><td>Cosmos3 Open Weights</td><td>1,218</td><td>-8/8</td><td>8,000</td><td>Jun 2026</td><td>-</td></tr>
+        </table>
+        """
+        entries = extract_ranking_entries(html, limit=2)
+        self.assertEqual([entry.model for entry in entries], ["GPT Image 2 (high)", "Cosmos3"])
+        self.assertEqual(entries[0].elo, 1338)
+        self.assertEqual(entries[0].samples, 21060)
+        self.assertFalse(entries[0].open_weights)
+        self.assertTrue(entries[1].open_weights)
 
     def test_extracts_github_repository_revision(self) -> None:
         revision, url = extract_source_revision(
@@ -139,7 +169,15 @@ class DiscoveryTests(unittest.TestCase):
                 "virtual-try-on-and-commerce",
                 "important-dataset-updates",
                 "important-model-updates",
+                "dataset-release-feeds",
+                "industry-model-rankings",
             }.issubset(track_ids)
+        )
+        self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
+        self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 5)
+        self.assertEqual(
+            {source.ranking_id for source in sources if source.ranking_id},
+            {"text-to-image", "image-editing", "text-to-video", "image-to-video", "video-editing"},
         )
         self.assertTrue(
             {
@@ -384,6 +422,66 @@ class DiscoveryTests(unittest.TestCase):
         self.assertIn("requires primary-source verification", markdown)
         self.assertIn("<!-- aigcdatahub-weekly-discovery -->", markdown)
         self.assertTrue(report["has_updates"])
+
+    def test_ranking_diff_tracks_membership_and_order_not_elo_noise(self) -> None:
+        baseline = {
+            "sources": [
+                {
+                    "track_id": "industry-model-rankings",
+                    "source_url": "https://example.com/ranking",
+                    "ranking_id": "text-to-image",
+                    "rankings": [
+                        {"rank": 1, "model": "Model A", "elo": 1300},
+                        {"rank": 2, "model": "Model B", "elo": 1290},
+                    ],
+                    "candidates": [],
+                    "error": None,
+                }
+            ]
+        }
+        entries = (
+            RankingEntry(1, "Org B", "Model B", 1305, "-8/8", 1000, "Jul 2026", False),
+            RankingEntry(2, "Org C", "Model C", 1280, "-9/9", 800, "Jul 2026", True),
+        )
+        current = (
+            SourceSnapshot(
+                track_id="industry-model-rankings",
+                source_url="https://example.com/ranking",
+                resolved_url="https://example.com/ranking",
+                status=200,
+                candidates=(),
+                error=None,
+                ranking_id="text-to-image",
+                rankings=entries,
+            ),
+        )
+        diff = compare_snapshots(baseline, current, set())
+        self.assertEqual(len(diff.ranking_updates), 1)
+        self.assertEqual(diff.ranking_updates[0]["ranking_id"], "text-to-image")
+        self.assertEqual(
+            diff.ranking_updates[0]["changes"],
+            [
+                {"model": "Model A", "previous_rank": 1, "rank": None},
+                {"model": "Model B", "previous_rank": 2, "rank": 1},
+                {"model": "Model C", "previous_rank": None, "rank": 2},
+            ],
+        )
+        unchanged_order = (
+            SourceSnapshot(
+                track_id="industry-model-rankings",
+                source_url="https://example.com/ranking",
+                resolved_url="https://example.com/ranking",
+                status=200,
+                candidates=(),
+                error=None,
+                ranking_id="text-to-image",
+                rankings=(
+                    RankingEntry(1, "Org A", "Model A", 1400, "-1/1", 2000, "Jul 2026", False),
+                    RankingEntry(2, "Org B", "Model B", 1390, "-1/1", 2000, "Jul 2026", False),
+                ),
+            ),
+        )
+        self.assertFalse(compare_snapshots(baseline, unchanged_order, set()).ranking_updates)
 
     def test_issue_body_links_to_the_actions_run(self) -> None:
         body = issue_body(

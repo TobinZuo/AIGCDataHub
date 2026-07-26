@@ -1,0 +1,47 @@
+id: gpt-image-1-5
+name: GPT Image 1.5
+organization: OpenAI
+released_at: "2025-12-16"
+ranking_names:
+  - GPT Image 1.5 (high)
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - text-rendering
+access:
+  status: api-only
+  license: OpenAI Services Agreement
+  release_url: https://openai.com/index/new-chatgpt-images-is-here/
+  weights_url: null
+  api_url: https://developers.openai.com/api/docs/models/gpt-image-1.5
+architecture:
+  family: Undisclosed native image-generation architecture
+  parameters: null
+  notes: OpenAI describes a faster image-generation and editing model without publishing its architecture or parameter count.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: The release and API documentation do not publish identifiable training datasets or a reproducible data-construction recipe.
+  strategy_summary:
+    - Record the absence of a public training-data inventory instead of treating deployment-safety documentation as corpus disclosure.
+  unknowns:
+    - All training and post-training dataset names, provenance, licenses, sizes, mixtures, and processing operations.
+evidence:
+  release: https://openai.com/index/new-chatgpt-images-is-here/
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-26"

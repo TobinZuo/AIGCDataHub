@@ -1,0 +1,48 @@
+id: gemini-3-pro-image
+name: Gemini 3 Pro Image (Nano Banana Pro)
+organization: Google DeepMind
+released_at: "2025-11-20"
+ranking_names:
+  - Nano Banana Pro (Gemini 3 Pro Image)
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - text-rendering
+  - multi-image-composition
+access:
+  status: api-only
+  license: Gemini API Additional Terms of Service
+  release_url: https://blog.google/innovation-and-ai/products/nano-banana-pro/
+  weights_url: null
+  api_url: https://ai.google.dev/gemini-api/docs/image-generation
+architecture:
+  family: Gemini 3 Pro native image-generation model
+  parameters: null
+  notes: Built on Gemini 3 Pro for reasoning-aware generation and editing; Google does not disclose the generator parameter count.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: Google documents reasoning, Search grounding, editing, and composition capabilities without publishing a model-specific training corpus.
+  strategy_summary:
+    - Do not count Google Search grounding as training-data disclosure; the named datasets and model-specific mixture remain unknown.
+  unknowns:
+    - Image-training sources, rights, counts, captions, filtering, deduplication, mixture ratios, and post-training data.
+evidence:
+  release: https://blog.google/innovation-and-ai/products/nano-banana-pro/
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-26"

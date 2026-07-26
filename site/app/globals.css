@@ -438,7 +438,7 @@ input:focus-visible {
 
 .mode-tabs {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
 }
@@ -637,6 +637,14 @@ input:focus-visible {
   font-family: Georgia, serif;
   font-size: 25px;
   font-weight: 400;
+}
+
+.result-count small {
+  display: block;
+  margin-top: 3px;
+  color: var(--signal);
+  font-size: 8px;
+  white-space: nowrap;
 }
 
 .result-list {
@@ -1246,6 +1254,192 @@ input:focus-visible {
   margin: 15px 0 0;
   color: var(--green);
   font-size: 10px;
+}
+
+.reference-resolution {
+  display: block;
+  margin-top: 9px;
+  color: var(--signal);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.tag-ranking {
+  border-color: var(--signal);
+  color: var(--signal);
+}
+
+.ranking-overview {
+  border-bottom: 1px solid var(--ink);
+}
+
+.ranking-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.7fr);
+  align-items: end;
+  gap: 42px;
+  padding: 34px;
+  border-bottom: 1px solid var(--ink);
+  background: color-mix(in srgb, var(--paper-deep) 58%, transparent);
+}
+
+.ranking-summary h3 {
+  max-width: 760px;
+  margin: 0;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: clamp(27px, 3vw, 42px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.ranking-summary > div > p:last-child {
+  max-width: 760px;
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.ranking-summary dl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin: 0;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+}
+
+.ranking-summary dl > div {
+  min-height: 92px;
+  padding: 13px;
+  background: var(--white);
+}
+
+.ranking-summary dt {
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.ranking-summary dd {
+  margin: 18px 0 0;
+  font-family: Georgia, serif;
+  font-size: 30px;
+}
+
+.ranking-boards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--ink);
+}
+
+.ranking-board {
+  min-width: 0;
+  background: var(--white);
+}
+
+.ranking-board > header {
+  display: flex;
+  min-height: 86px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.ranking-board > header span {
+  color: var(--signal);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+
+.ranking-board h4 {
+  margin: 5px 0 0;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.ranking-board ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ranking-board li {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 48px 74px 72px;
+  min-height: 75px;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ranking-rank {
+  color: var(--signal);
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.ranking-board li > div:nth-child(2) {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.ranking-board li b {
+  overflow: hidden;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ranking-board li span,
+.ranking-board li small {
+  color: var(--muted);
+  font-size: 8px;
+  line-height: 1.35;
+}
+
+.ranking-score {
+  display: grid;
+  text-align: right;
+}
+
+.ranking-score strong {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 11px;
+}
+
+.ranking-access {
+  padding: 5px;
+  border: 1px solid var(--line-dark);
+  text-align: center;
+}
+
+.ranking-access.is-open {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.ranking-board li button {
+  padding: 7px 6px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 8px;
+}
+
+.ranking-board li button:hover {
+  background: var(--acid);
 }
 
 .unknown-panel {
@@ -1895,6 +2089,11 @@ input:focus-visible {
     padding: 0 12px;
   }
 
+  .mode-tabs {
+    grid-template-columns: repeat(5, minmax(132px, 1fr));
+    overflow-x: auto;
+  }
+
   .mode-tabs small {
     display: none;
   }
@@ -1903,6 +2102,28 @@ input:focus-visible {
     grid-template-columns: 1fr;
     gap: 24px;
     padding: 28px 4px;
+  }
+
+  .ranking-summary {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px 4px;
+  }
+
+  .ranking-boards {
+    grid-template-columns: 1fr;
+  }
+
+  .ranking-board li {
+    grid-template-columns: 28px minmax(0, 1fr) 42px 68px;
+    gap: 9px;
+    padding: 10px 8px;
+  }
+
+  .ranking-board li button,
+  .ranking-board li > small:last-child {
+    grid-column: 2 / -1;
+    justify-self: start;
   }
 
   .lineage-row {

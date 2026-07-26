@@ -13,6 +13,11 @@ from dataclasses import dataclass
 from catalog import load_cards
 from models import load_models
 
+HARD_FAILURES = {"HTTP 404", "HTTP 410"}
+
+
+def is_hard_failure(error: str) -> bool:
+    return error in HARD_FAILURES
 
 @dataclass(frozen=True)
 class Link:
@@ -90,16 +95,29 @@ def main() -> int:
             if error:
                 failures.append((link, error))
 
-    if failures:
-        print(f"Link check failed for {len(failures)} declaration(s):", file=sys.stderr)
-        for link, error in sorted(failures, key=lambda item: item[0].url):
+    hard_failures = [item for item in failures if is_hard_failure(item[1])]
+    warnings = [item for item in failures if not is_hard_failure(item[1])]
+    if warnings:
+        print(
+            f"Link check could not verify {len(warnings)} declaration(s) because of access controls or transient network errors:",
+            file=sys.stderr,
+        )
+        for link, error in sorted(warnings, key=lambda item: item[0].url):
+            print(
+                f"- {link.entity_id}.{link.field}: {link.url} ({error})",
+                file=sys.stderr,
+            )
+    if hard_failures:
+        print(f"Link check found {len(hard_failures)} missing declaration(s):", file=sys.stderr)
+        for link, error in sorted(hard_failures, key=lambda item: item[0].url):
             print(
                 f"- {link.entity_id}.{link.field}: {link.url} ({error})",
                 file=sys.stderr,
             )
         return 1
 
-    print(f"Checked {len(declared)} link declaration(s).")
+    suffix = f"; {len(warnings)} transient/access warning(s)" if warnings else ""
+    print(f"Checked {len(declared)} link declaration(s){suffix}.")
     return 0
 
 

@@ -2,7 +2,7 @@ id: celebv-hq
 name: CelebV-HQ
 organization: CUHK MMLab and SenseTime Research
 released_at: "2022-07-25"
-release_date_source: https://github.com/CelebV-HQ/CelebV-HQ/releases/tag/v1.0
+release_date_source: https://github.com/CelebV-HQ/CelebV-HQ
 modality: video
 tasks:
   - talking-head-generation

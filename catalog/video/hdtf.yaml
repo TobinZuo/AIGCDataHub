@@ -2,7 +2,7 @@ id: hdtf
 name: HDTF
 organization: University of Science and Technology of China and Microsoft Research Asia
 released_at: "2021-03-28"
-release_date_source: https://github.com/MRzzm/HDTF/commit/12157d13e321b19d9294622ee9b644287572db78
+release_date_source: https://api.github.com/repos/MRzzm/HDTF
 modality: video
 tasks:
   - talking-head-generation

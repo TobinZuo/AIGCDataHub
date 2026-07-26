@@ -19,6 +19,7 @@ from models import load_models
 OUTPUT_PATH = ROOT / "site" / "app" / "catalog-data.json"
 SCENARIO_PATH = ROOT / "sources" / "scenarios.yaml"
 WATCHLIST_PATH = ROOT / "sources" / "watchlist.yaml"
+DISCOVERY_STATE_PATH = ROOT / "sources" / "discovery-state.json"
 KEBAB_CASE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 
@@ -129,6 +130,37 @@ def strategy_profile(card: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def load_rankings() -> list[dict[str, Any]]:
+    if not DISCOVERY_STATE_PATH.exists():
+        return []
+    state = json.loads(DISCOVERY_STATE_PATH.read_text(encoding="utf-8"))
+    boards: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for source in state.get("sources", []):
+        ranking_id = source.get("ranking_id")
+        if not ranking_id:
+            continue
+        if ranking_id in seen:
+            raise ValueError(f"duplicate ranking snapshot: {ranking_id!r}")
+        seen.add(ranking_id)
+        entries = source.get("rankings", [])
+        ranks = [entry.get("rank") for entry in entries]
+        if ranks != sorted(ranks) or len(ranks) != len(set(ranks)):
+            raise ValueError(f"ranking snapshot is not strictly ordered: {ranking_id!r}")
+        boards.append(
+            {
+                "id": ranking_id,
+                "source_url": source["source_url"],
+                "entries": entries,
+            }
+        )
+    return sorted(boards, key=lambda item: item["id"])
+
+
+def ranking_key(value: str) -> str:
+    return re.sub(r"\s+", " ", value).strip().casefold()
+
+
 def build_payload() -> dict[str, Any]:
     scenarios = load_scenarios()
     dataset_monitors = load_dataset_monitors()
@@ -155,6 +187,7 @@ def build_payload() -> dict[str, Any]:
         item["scenario_ids"] = scenario_ids(card["tasks"], scenarios)
         item["strategy_profile"] = strategy_profile(card)
         item["monitoring"] = model_monitors.get(card["id"])
+        item["ranking_positions"] = []
         models.append(item)
 
     unknown_model_monitors = set(model_monitors) - {item["id"] for item in models}
@@ -163,6 +196,29 @@ def build_payload() -> dict[str, Any]:
 
     datasets.sort(key=lambda item: (item["released_at"], item["name"].lower()), reverse=True)
     models.sort(key=lambda item: (item["released_at"], item["name"].lower()), reverse=True)
+    model_aliases: dict[str, str] = {}
+    for model in models:
+        for alias in [model["name"], *model.get("ranking_names", [])]:
+            key = ranking_key(alias)
+            previous = model_aliases.get(key)
+            if previous and previous != model["id"]:
+                raise ValueError(f"ranking alias {alias!r} maps to multiple models")
+            model_aliases[key] = model["id"]
+
+    rankings = load_rankings()
+    model_by_id = {item["id"]: item for item in models}
+    for board in rankings:
+        for entry in board["entries"]:
+            model_id = model_aliases.get(ranking_key(entry["model"]))
+            entry["model_id"] = model_id
+            if model_id:
+                model_by_id[model_id]["ranking_positions"].append(
+                    {
+                        "ranking_id": board["id"],
+                        "rank": entry["rank"],
+                        "elo": entry["elo"],
+                    }
+                )
     dataset_by_id = {item["id"]: item for item in datasets}
     dataset_relations: list[dict[str, Any]] = []
     seen_dataset_relations: set[tuple[str, str]] = set()
@@ -240,12 +296,13 @@ def build_payload() -> dict[str, Any]:
     verified_dates = [item["last_verified"] for item in [*datasets, *models]]
 
     return {
-        "format_version": 8,
+        "format_version": 9,
         "generated_from": [
             "catalog/**/*.yaml",
             "models/**/*.yaml",
             "sources/scenarios.yaml",
             "sources/watchlist.yaml",
+            "sources/discovery-state.json",
         ],
         "last_verified": max(verified_dates),
         "scenarios": [
@@ -256,6 +313,7 @@ def build_payload() -> dict[str, Any]:
         "models": models,
         "relations": relations,
         "dataset_relations": dataset_relations,
+        "rankings": rankings,
     }
 
 

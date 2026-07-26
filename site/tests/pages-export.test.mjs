@@ -15,6 +15,9 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /GenSyn10/);
   assert.match(html, /Gemini Omni Flash/);
   assert.match(html, /Gemini 3\.1 Flash-Lite Image/);
+  assert.match(html, /GPT Image 2/);
+  assert.match(html, /HappyHorse 1\.1/);
+  assert.match(html, /行业排行榜/);
   assert.match(html, /Avatar V/);
   assert.match(html, /JUST-DUB-IT/);
   assert.match(html, /Audiovisual Translation Dubbing Dataset/);

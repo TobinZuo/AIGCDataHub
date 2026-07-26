@@ -1,0 +1,52 @@
+id: happyhorse-1-1
+name: HappyHorse 1.1
+organization: Alibaba ATH
+released_at: "2026-06-22"
+ranking_names:
+  - HappyHorse-1.1
+modalities:
+  - video
+  - audio
+tasks:
+  - text-to-video
+  - image-to-video
+  - reference-to-video
+  - audio-video-generation
+access:
+  status: api-only
+  license: Alibaba Cloud Model Studio service terms
+  release_url: https://help.aliyun.com/en/model-studio/newly-released-models
+  weights_url: null
+  api_url: https://help.aliyun.com/en/model-studio/happyhorse-image-to-video-api-reference
+architecture:
+  family: Undisclosed native audiovisual generation architecture
+  parameters: null
+  notes: Model Studio exposes text, image, and reference-conditioned 3-to-15-second audiovisual generation without architecture details.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - audio
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: The official Model Studio release log and API reference expose capabilities and versions but no identifiable training corpus.
+  strategy_summary:
+    - Track the exact HappyHorse 1.1 release separately from 1.0 while keeping its training data undisclosed.
+  unknowns:
+    - Training and post-training dataset names, provenance, rights, scale, mixture, annotation, filtering, and deduplication.
+    - Whether and how the 1.1 training mixture differs from HappyHorse 1.0.
+evidence:
+  release: https://help.aliyun.com/en/model-studio/newly-released-models
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-26"

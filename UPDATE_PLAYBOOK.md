@@ -18,6 +18,10 @@ as an exhaustive list.
    model, it reports the model itself and its directly linked catalog datasets.
    The scenario layer explicitly covers digital humans, talking avatars, video
    translation/dubbing, lip sync, virtual try-on, and commerce creatives.
+   Five Artificial Analysis leaderboards are snapshotted to Top 15; review a
+   ranking alert when membership or ordering changes, regardless of whether the
+   model is open-weight or closed. Eight Hugging Face dataset API feeds sorted
+   by creation time provide a separate new-release queue for the same scenarios.
    Search beyond the generated candidates when an official organization uses a
    new domain, publishes only through a feed, or changes an existing model card.
 2. Create a candidate list with release date, primary source, modality, access,
@@ -42,7 +46,8 @@ as an exhaustive list.
    - `strategy`: directly supported by primary evidence;
    - `unknowns`: material information the source does not provide;
    - `watch`: recent preview that should be checked again soon.
-6. Run `make readme`, `make site-data`, `make check`, and `make check-links`.
+6. Run `make readme`, `make model-data-index`, `make site-data`, `make check`,
+   and `make check-links`.
 7. Add `updates/YYYY-MM-DD.md` with accepted candidates, already-covered or
    rejected candidates, scope decisions, changed disclosures, and direct
    primary-source links.
@@ -60,6 +65,13 @@ model probes belong in `important-model-updates` and require an existing
 `model_id`. Hugging Face dataset/model APIs and official GitHub commit APIs are
 supported. Do not monitor by URL alone: the canonical ID connects a revision to
 the site card and its reviewed relationships.
+
+Ranking sources belong in `industry-model-rankings` and require a unique
+`ranking_id` plus `ranking_limit`. A leaderboard is authoritative only for its
+own observed ranking; model release, access, and data-strategy facts still need
+first-party evidence. Dataset discovery feeds belong in
+`dataset-release-feeds`; their candidates are never accepted as catalog facts
+without primary-source review.
 
 ## Automation boundary
 

@@ -1,0 +1,59 @@
+id: kling-3
+name: Kling AI 3.0
+organization: Kuaishou Technology
+released_at: "2026-02-05"
+ranking_names:
+  - Kling 3.0 1080p Pro
+  - Kling 3.0 720p
+  - Kling 3.0 Omni 1080p
+  - Kling 3.0 Omni 1080p (Pro)
+  - Kling 3.0 Omni 720p
+  - Kling 3.0 Pro
+modalities:
+  - video
+  - audio
+  - image
+tasks:
+  - text-to-video
+  - image-to-video
+  - reference-to-video
+  - video-editing
+  - text-to-image
+  - audio-video-generation
+access:
+  status: product-only
+  license: Kling AI service terms
+  release_url: https://ir.kuaishou.com/news-releases/news-release-details/kling-ai-launches-30-model-ushering-era-where-everyone-can-be
+  weights_url: null
+  api_url: null
+architecture:
+  family: Multi-modal Visual Language all-in-one architecture
+  parameters: null
+  notes: Unifies multimodal understanding, generation, editing, storyboarding, and native multilingual audio across Kling Video and Image 3.0 variants.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - audio
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: Kuaishou describes a unified multimodal product architecture and capabilities but does not disclose identifiable training datasets or their processing.
+  strategy_summary:
+    - Monitor Kling 3.0 and Omni leaderboard variants as one model family; no first-party training-data inventory is public.
+  unknowns:
+    - Dataset identities, provenance, rights, scale, language mix, captions, filtering, deduplication, and post-training data.
+evidence:
+  release: https://ir.kuaishou.com/news-releases/news-release-details/kling-ai-launches-30-model-ushering-era-where-everyone-can-be
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-26"

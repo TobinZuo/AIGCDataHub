@@ -1,0 +1,48 @@
+id: mai-image-2-5
+name: MAI-Image-2.5
+organization: Microsoft AI
+released_at: "2026-06-02"
+ranking_names:
+  - MAI-Image-2.5
+  - MAI-Image-2.5-Flash
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - text-rendering
+access:
+  status: api-only
+  license: Microsoft Foundry model terms
+  release_url: https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/new-mai-models-in-microsoft-foundry-across-text-image-voice-and-speech/4524632
+  weights_url: null
+  api_url: https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-mai
+architecture:
+  family: Undisclosed Microsoft AI image model
+  parameters: null
+  notes: Foundry exposes text-to-image and image-editing deployments, including a faster variant, without an architecture specification.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: Microsoft publishes deployment and capability information for MAI-Image-2.5 but no image-model training corpus or data-processing recipe.
+  strategy_summary:
+    - Do not transfer training-data claims from other MAI models to MAI-Image-2.5; its image corpus remains undisclosed.
+  unknowns:
+    - Dataset identities, provenance, licenses, sample counts, mixtures, captions, filtering, deduplication, and post-training data.
+evidence:
+  release: https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/new-mai-models-in-microsoft-foundry-across-text-image-voice-and-speech/4524632
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-26"

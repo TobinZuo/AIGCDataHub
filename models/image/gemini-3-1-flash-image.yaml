@@ -1,0 +1,49 @@
+id: gemini-3-1-flash-image
+name: Gemini 3.1 Flash Image (Nano Banana 2)
+organization: Google DeepMind
+released_at: "2026-02-26"
+ranking_names:
+  - Nano Banana 2 (Gemini 3.1 Flash Image Preview)
+  - Nano Banana 2
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - text-rendering
+  - image-localization
+access:
+  status: api-only
+  license: Gemini API Additional Terms of Service
+  release_url: https://blog.google/innovation-and-ai/technology/developers-tools/build-with-nano-banana-2/
+  weights_url: null
+  api_url: https://ai.google.dev/gemini-api/docs/image-generation
+architecture:
+  family: Gemini 3.1 Flash native image-generation model
+  parameters: null
+  notes: Combines Gemini reasoning and world knowledge with native image generation and editing; parameter count is not disclosed.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: The launch explains web-search grounding at inference time but does not publish model-training datasets or a model-specific construction pipeline.
+  strategy_summary:
+    - Keep inference-time web grounding separate from training-data provenance; no named training datasets are disclosed for Nano Banana 2.
+  unknowns:
+    - Model-specific pretraining and post-training corpora, rights, scale, mixture ratios, filtering, and human-feedback data.
+evidence:
+  release: https://blog.google/innovation-and-ai/technology/developers-tools/build-with-nano-banana-2/
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-26"

@@ -14,6 +14,8 @@ discovery:
     - digital-human-and-localization
     - virtual-try-on-and-commerce
     - datasets
+    - dataset-release-feeds
+    - industry-model-rankings
     - important-dataset-updates
     - important-model-updates
   excluded_sources:
@@ -48,6 +50,8 @@ tracks:
       - visual-reasoning-generation
     official_sources:
       - https://bfl.ai/blog
+      - https://blog.reve.com/posts
+      - https://techcommunity.microsoft.com/category/azure-ai-foundry/blog/azure-ai-foundry-blog
       - https://www.microsoft.com/en-us/research/publications/
       - https://github.com/baidu
       - https://github.com/baidu/ERNIE-Image
@@ -80,6 +84,10 @@ tracks:
       - https://openai.com/sitemap.xml/release/
       - https://ai.meta.com/blog/
       - https://github.com/omni2sound/Omni2Sound
+      - https://x.ai/news
+      - https://runwayml.com/news
+      - https://ir.kuaishou.com/news-releases
+      - https://help.aliyun.com/en/model-studio/newly-released-models
 
   - id: digital-human-and-localization
     topics:
@@ -186,6 +194,48 @@ tracks:
       - https://github.com/CelebV-HQ/CelebV-HQ
       - https://huggingface.co/datasets/FreedomIntelligence/TalkVid
       - https://huggingface.co/datasets/MV-Fashion/MV-Fashion
+
+  - id: dataset-release-feeds
+    topics:
+      - newly-published-dataset
+      - image-generation-dataset
+      - video-generation-dataset
+      - digital-human-dataset
+      - video-localization-dataset
+      - virtual-try-on-dataset
+    official_sources:
+      - "https://huggingface.co/api/datasets?search=text-to-image&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/datasets?search=image-generation&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/datasets?search=text-to-video&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/datasets?search=video-generation&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/datasets?search=image-to-video&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/datasets?search=talking-head&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/datasets?search=video-dubbing&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/datasets?search=virtual-try-on&sort=createdAt&direction=-1&limit=50&full=true"
+
+  - id: industry-model-rankings
+    topics:
+      - text-to-image-ranking
+      - image-editing-ranking
+      - text-to-video-ranking
+      - image-to-video-ranking
+      - video-editing-ranking
+    official_sources:
+      - url: https://artificialanalysis.ai/image/leaderboard/text-to-image/
+        ranking_id: text-to-image
+        ranking_limit: 15
+      - url: https://artificialanalysis.ai/image/leaderboard/editing/
+        ranking_id: image-editing
+        ranking_limit: 15
+      - url: https://artificialanalysis.ai/video/leaderboard/text-to-video
+        ranking_id: text-to-video
+        ranking_limit: 15
+      - url: https://artificialanalysis.ai/video/leaderboard/image-to-video
+        ranking_id: image-to-video
+        ranking_limit: 15
+      - url: https://artificialanalysis.ai/video/leaderboard/video-editing
+        ranking_id: video-editing
+        ranking_limit: 15
 
   - id: important-dataset-updates
     topics:
@@ -336,3 +386,4 @@ acceptance_rules:
   - Record named but unreleased corpora with availability not-released.
   - Add every material unknown to the card rather than silently omitting it.
   - Prefer one deeply verified card over many link-only entries.
+  - Treat leaderboard providers as the primary source only for their own rankings; model facts still require first-party evidence.
