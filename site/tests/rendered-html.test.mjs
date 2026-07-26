@@ -73,9 +73,10 @@ test("server-renders the AIGCDataHub catalog", async () => {
 });
 
 test("uses generated catalog data and removes starter preview assets", async () => {
-  const [catalog, page, layout, packageJson] = await Promise.all([
+  const [catalog, page, catalogExplorer, layout, packageJson] = await Promise.all([
     readFile(new URL("../app/catalog-data.json", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/catalog-explorer.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
@@ -104,7 +105,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"million-song-dataset"/);
   assert.match(catalog, /"fma"/);
   const parsedCatalog = JSON.parse(catalog);
-  assert.equal(parsedCatalog.format_version, 3);
+  assert.equal(parsedCatalog.format_version, 4);
   assert.deepEqual(
     parsedCatalog.scenarios.map((scenario) => scenario.id),
     ["image-generation", "video-generation", "digital-human", "video-localization", "virtual-try-on"],
@@ -125,7 +126,14 @@ test("uses generated catalog data and removes starter preview assets", async () 
   );
   assert.deepEqual(models["fit-vto"].scenario_ids, ["virtual-try-on"]);
   assert.deepEqual(models["flux-vto"].scenario_ids, ["virtual-try-on"]);
+  assert.deepEqual(models["fit-vto"].strategy_profile.stage_names, ["pretraining", "fine-tuning"]);
+  assert.equal(models["fit-vto"].strategy_profile.data_reference_count, 3);
+  assert.equal(models["fit-vto"].strategy_profile.linked_dataset_count, 1);
+  assert.equal(models["flux-vto"].strategy_profile.scale_disclosed_stage_count, 0);
   assert.match(page, /CatalogExplorer/);
+  assert.match(catalogExplorer, /StrategyMatrix/);
+  assert.match(catalogExplorer, /同场景数据策略对比/);
+  assert.match(catalogExplorer, /不做综合评分/);
   assert.match(layout, /AIGCDataHub/);
   assert.doesNotMatch(layout, /codex-preview|Starter Project/i);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);

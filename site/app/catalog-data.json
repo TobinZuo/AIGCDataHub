@@ -1,5 +1,5 @@
 {
-  "format_version": 3,
+  "format_version": 4,
   "generated_from": [
     "catalog/**/*.yaml",
     "models/**/*.yaml",
@@ -2429,7 +2429,26 @@
       "source_path": "models/image/midjourney-v8-2.yaml",
       "scenario_ids": [
         "image-generation"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "preference"
+        ],
+        "source_types": [
+          "undisclosed",
+          "human-feedback"
+        ],
+        "operations": [
+          "preference-profile-modeling",
+          "image-pool-expansion"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 3
+      }
     },
     {
       "id": "flux-3",
@@ -2553,7 +2572,29 @@
       "scenario_ids": [
         "image-generation",
         "video-generation"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "action-adaptation"
+        ],
+        "source_types": [
+          "undisclosed",
+          "robot-demonstration",
+          "proprietary"
+        ],
+        "operations": [
+          "joint-multimodal-training",
+          "self-flow",
+          "curriculum-expansion",
+          "action-decoder-training"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 3
+      }
     },
     {
       "id": "muse-video",
@@ -2621,7 +2662,23 @@
       "source_path": "models/video/muse-video.yaml",
       "scenario_ids": [
         "video-generation"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [
+          "shared-media-pretraining"
+        ],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 3
+      }
     },
     {
       "id": "muse-image",
@@ -2710,7 +2767,28 @@
       "source_path": "models/multimodal/muse-image.yaml",
       "scenario_ids": [
         "image-generation"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "preference"
+        ],
+        "source_types": [
+          "undisclosed",
+          "synthetic"
+        ],
+        "operations": [
+          "shared-media-pretraining",
+          "reinforcement-learning",
+          "tool-use-training",
+          "self-refinement"
+        ],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 3
+      }
     },
     {
       "id": "gemini-omni-flash",
@@ -2798,7 +2876,27 @@
       "source_path": "models/video/gemini-omni-flash.yaml",
       "scenario_ids": [
         "video-generation"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [
+          "multilevel-captioning",
+          "compliance-filtering",
+          "safety-filtering",
+          "quality-filtering",
+          "semantic-deduplication"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 3
+      }
     },
     {
       "id": "gemini-3-1-flash-lite-image",
@@ -2923,7 +3021,39 @@
       "source_path": "models/image/gemini-3-1-flash-lite-image.yaml",
       "scenario_ids": [
         "image-generation"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "preference"
+        ],
+        "source_types": [
+          "public-web",
+          "public-dataset",
+          "licensed",
+          "proprietary",
+          "synthetic",
+          "human-feedback"
+        ],
+        "operations": [
+          "deduplication",
+          "robots-txt-honoring",
+          "safety-filtering",
+          "quality-filtering",
+          "dataset-filtering",
+          "conditional-pretraining",
+          "supervised-fine-tuning",
+          "reinforcement-learning",
+          "human-preference-alignment",
+          "critic-feedback"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 3,
+        "unknown_count": 3
+      }
     },
     {
       "id": "flux-vto",
@@ -3004,7 +3134,22 @@
       "source_path": "models/image/flux-vto.yaml",
       "scenario_ids": [
         "virtual-try-on"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 3
+      }
     },
     {
       "id": "lens",
@@ -3123,7 +3268,31 @@
       "source_path": "models/image/lens.yaml",
       "scenario_ids": [
         "image-generation"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "preference",
+          "distillation"
+        ],
+        "source_types": [
+          "undisclosed",
+          "synthetic"
+        ],
+        "operations": [
+          "dense-recaptioning",
+          "multi-resolution-batching",
+          "aspect-ratio-diversification",
+          "taxonomy-driven-prompting",
+          "rubric-based-rewarding",
+          "step-distillation"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 2,
+        "scale_disclosed_stage_count": 2,
+        "stage_count": 3,
+        "unknown_count": 3
+      }
     },
     {
       "id": "lance",
@@ -3201,7 +3370,25 @@
       "scenario_ids": [
         "image-generation",
         "video-generation"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [
+          "staged-multitask-training",
+          "adaptive-data-scheduling",
+          "capability-oriented-objectives"
+        ],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      }
     },
     {
       "id": "ernie-image",
@@ -3341,7 +3528,37 @@
       "source_path": "models/image/ernie-image.yaml",
       "scenario_ids": [
         "image-generation"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "preference",
+          "distillation"
+        ],
+        "source_types": [
+          "proprietary",
+          "synthetic",
+          "human-feedback"
+        ],
+        "operations": [
+          "fine-grained-categorization",
+          "vlm-recaptioning",
+          "aesthetic-scoring",
+          "hierarchical-sampling",
+          "resolution-curriculum",
+          "domain-curation",
+          "annotation-diversification",
+          "stabilized-dpo",
+          "aesthetic-alignment",
+          "multi-teacher-distillation"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 4,
+        "unknown_count": 3
+      }
     },
     {
       "id": "fit-vto",
@@ -3459,7 +3676,34 @@
       "source_path": "models/image/fit-vto.yaml",
       "scenario_ids": [
         "virtual-try-on"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed",
+          "synthetic",
+          "public-dataset"
+        ],
+        "operations": [
+          "inherited-foundation-model",
+          "lora-fine-tuning",
+          "paired-person-conditioning",
+          "garment-conditioning",
+          "measurement-conditioning",
+          "vae-latent-encoding",
+          "channel-concatenation",
+          "sequence-concatenation",
+          "identity-preserving-training"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 3
+      }
     },
     {
       "id": "avatar-v",
@@ -3635,7 +3879,57 @@
       "source_path": "models/video/avatar-v.yaml",
       "scenario_ids": [
         "digital-human"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "distillation",
+          "preference"
+        ],
+        "source_types": [
+          "public-web",
+          "proprietary",
+          "human-feedback",
+          "synthetic"
+        ],
+        "operations": [
+          "resolution-normalization",
+          "temporal-prefiltering",
+          "human-detection",
+          "optical-flow-analysis",
+          "visual-quality-scoring",
+          "smart-clipping",
+          "scene-cut-detection",
+          "vlm-content-filtering",
+          "semantic-categorization",
+          "embedding-deduplication",
+          "distribution-rebalancing",
+          "av-captioning",
+          "asr-transcription",
+          "speaker-diarization",
+          "lip-sync-scoring",
+          "avatar-quality-scoring",
+          "identity-connectivity-graph",
+          "cross-scene-pairing",
+          "demographic-balancing",
+          "attribute-annotation",
+          "bad-case-filtering",
+          "personality-supervised-fine-tuning",
+          "cfg-distillation",
+          "distribution-matching-distillation",
+          "quality-scoring",
+          "pairwise-preference-labeling",
+          "direct-preference-optimization",
+          "group-relative-policy-optimization",
+          "kl-regularization"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 2,
+        "stage_count": 4,
+        "unknown_count": 3
+      }
     },
     {
       "id": "ltx-2-3",
@@ -3746,7 +4040,30 @@
       "source_path": "models/multimodal/ltx-2-3.yaml",
       "scenario_ids": [
         "video-generation"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "proprietary",
+          "synthetic"
+        ],
+        "operations": [
+          "audio-aware-filtering",
+          "multimodal-recaptioning",
+          "joint-audio-video-training",
+          "quality-filtering",
+          "portrait-data-training",
+          "vae-retraining"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 2
+      }
     },
     {
       "id": "seedance-2-0",
@@ -3815,7 +4132,21 @@
       "source_path": "models/video/seedance-2-0.yaml",
       "scenario_ids": [
         "video-generation"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 2
+      }
     },
     {
       "id": "just-dub-it",
@@ -3927,7 +4258,31 @@
       "scenario_ids": [
         "digital-human",
         "video-localization"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed",
+          "synthetic"
+        ],
+        "operations": [
+          "inherited-foundation-model",
+          "language-switching-generation",
+          "counterfactual-inpainting",
+          "latent-aware-masking",
+          "structural-anchoring",
+          "isolated-cross-attention",
+          "lora-fine-tuning"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 3
+      }
     },
     {
       "id": "omni2sound",
@@ -4117,7 +4472,33 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "models/multimodal/omni2sound.yaml",
-      "scenario_ids": []
+      "scenario_ids": [],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "public-dataset",
+          "synthetic"
+        ],
+        "operations": [
+          "multi-dataset-pretraining",
+          "text-to-audio-training",
+          "multitask-interleaving",
+          "semantic-bridge-training",
+          "temporal-conditioning",
+          "off-screen-synthesis",
+          "text-dropout",
+          "robustness-training"
+        ],
+        "data_reference_count": 10,
+        "linked_dataset_count": 10,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 3,
+        "unknown_count": 4
+      }
     },
     {
       "id": "hunyuanvideo-1-5",
@@ -4204,7 +4585,28 @@
       "source_path": "models/video/hunyuanvideo-1-5.yaml",
       "scenario_ids": [
         "video-generation"
-      ]
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [
+          "data-curation",
+          "progressive-training",
+          "image-video-joint-training",
+          "progressive-post-training",
+          "bilingual-conditioning"
+        ],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 2
+      }
     }
   ]
 }

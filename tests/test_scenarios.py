@@ -5,7 +5,7 @@ import unittest
 
 sys.path.insert(0, "scripts")
 
-from build_site_data import build_payload, load_scenarios, scenario_ids
+from build_site_data import build_payload, load_scenarios, scenario_ids, strategy_profile
 
 
 class ScenarioTaxonomyTests(unittest.TestCase):
@@ -44,6 +44,46 @@ class ScenarioTaxonomyTests(unittest.TestCase):
         self.assertEqual(
             scenario_ids(["virtual-try-on", "text-to-image"], scenarios),
             ["image-generation", "virtual-try-on"],
+        )
+
+    def test_strategy_profiles_are_derived_from_model_cards(self) -> None:
+        payload = build_payload()
+        self.assertEqual(payload["format_version"], 4)
+        models = {item["id"]: item for item in payload["models"]}
+
+        for model in models.values():
+            with self.subTest(model=model["id"]):
+                self.assertEqual(model["strategy_profile"], strategy_profile(model))
+
+    def test_strategy_profile_preserves_disclosure_boundaries(self) -> None:
+        models = {item["id"]: item for item in build_payload()["models"]}
+
+        fit_vto = models["fit-vto"]["strategy_profile"]
+        self.assertEqual(fit_vto["stage_names"], ["pretraining", "fine-tuning"])
+        self.assertEqual(
+            fit_vto["source_types"],
+            ["undisclosed", "synthetic", "public-dataset"],
+        )
+        self.assertEqual(fit_vto["data_reference_count"], 3)
+        self.assertEqual(fit_vto["linked_dataset_count"], 1)
+        self.assertEqual(fit_vto["scale_disclosed_stage_count"], 1)
+        self.assertEqual(fit_vto["stage_count"], 2)
+
+        flux_vto = models["flux-vto"]["strategy_profile"]
+        self.assertEqual(flux_vto["source_types"], ["undisclosed"])
+        self.assertEqual(flux_vto["data_reference_count"], 0)
+        self.assertEqual(flux_vto["linked_dataset_count"], 0)
+        self.assertEqual(flux_vto["scale_disclosed_stage_count"], 0)
+        self.assertEqual(flux_vto["stage_count"], 2)
+
+        avatar_v = models["avatar-v"]["strategy_profile"]
+        self.assertEqual(
+            avatar_v["stage_names"],
+            ["pretraining", "fine-tuning", "distillation", "preference"],
+        )
+        self.assertEqual(
+            avatar_v["source_types"],
+            ["public-web", "proprietary", "human-feedback", "synthetic"],
         )
 
 

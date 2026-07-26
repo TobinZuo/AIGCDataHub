@@ -58,6 +58,39 @@ def scenario_ids(tasks: list[str], scenarios: list[dict[str, Any]]) -> list[str]
     return [scenario["id"] for scenario in scenarios if task_set.intersection(scenario["tasks"])]
 
 
+def strategy_profile(card: dict[str, Any]) -> dict[str, Any]:
+    """Derive comparison fields without interpreting undisclosed evidence."""
+    stages = card["data"]["stages"]
+    data_references = card["data"]["datasets"]
+
+    return {
+        "stage_names": [stage["name"] for stage in stages],
+        "source_types": list(
+            dict.fromkeys(
+                source_type
+                for stage in stages
+                for source_type in stage["source_types"]
+            )
+        ),
+        "operations": list(
+            dict.fromkeys(
+                operation
+                for stage in stages
+                for operation in stage["operations"]
+            )
+        ),
+        "data_reference_count": len(data_references),
+        "linked_dataset_count": sum(
+            reference["catalog_id"] is not None for reference in data_references
+        ),
+        "scale_disclosed_stage_count": sum(
+            stage["scale_disclosed"] for stage in stages
+        ),
+        "stage_count": len(stages),
+        "unknown_count": len(card["data"]["unknowns"]),
+    }
+
+
 def build_payload() -> dict[str, Any]:
     scenarios = load_scenarios()
     datasets = []
@@ -75,6 +108,7 @@ def build_payload() -> dict[str, Any]:
         item = dict(card)
         item["source_path"] = path.relative_to(ROOT).as_posix()
         item["scenario_ids"] = scenario_ids(card["tasks"], scenarios)
+        item["strategy_profile"] = strategy_profile(card)
         models.append(item)
 
     datasets.sort(key=lambda item: (item["released_at"], item["name"].lower()), reverse=True)
@@ -82,7 +116,7 @@ def build_payload() -> dict[str, Any]:
     verified_dates = [item["last_verified"] for item in [*datasets, *models]]
 
     return {
-        "format_version": 3,
+        "format_version": 4,
         "generated_from": ["catalog/**/*.yaml", "models/**/*.yaml", "sources/scenarios.yaml"],
         "last_verified": max(verified_dates),
         "scenarios": [

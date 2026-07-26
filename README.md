@@ -172,7 +172,11 @@ only through a reviewed PR.
 
 The application taxonomy in [sources/scenarios.yaml](sources/scenarios.yaml)
 maps card tasks to stable scenario IDs. The generated site uses those IDs for
-the same filters across model, dataset, and data-strategy views.
+the same filters across model, dataset, and data-strategy views. Each generated
+model record also includes a source-bound `strategy_profile` derived directly
+from its stages, source types, data references, scale disclosures, and recorded
+unknowns. Selecting one scenario in the strategy view exposes those fields in a
+cross-model matrix without adding an inferred score.
 
 The latest evidence review is recorded in
 [updates/2026-07-26.md](updates/2026-07-26.md), including accepted releases,
