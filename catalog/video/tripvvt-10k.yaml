@@ -1,0 +1,75 @@
+id: tripvvt-10k
+name: TripVVT-10K
+organization: Nanjing University, JIUTIAN Research (CMCC), Jilin University, and ByteDance
+released_at: "2026-04-30"
+release_date_source: https://arxiv.org/abs/2604.27958
+modality: video
+tasks:
+  - video-virtual-try-on
+  - virtual-try-on
+  - garment-conditioned-generation
+  - video-to-video
+  - virtual-try-on-evaluation
+stages:
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  An in-the-wild video virtual try-on corpus of synchronized input video,
+  garment reference, and real target video triplets, with masks, pose, line
+  maps, captions, and a 100-case held-out benchmark.
+access:
+  status: gated
+  type: hosted
+  url: https://huggingface.co/datasets/TripVVT/TripVVT-10K
+  requires_account: true
+  notes: The public repository requires users to sign in, accept the access conditions, and share contact information before downloading 18 tar shards of about 72.6 GiB.
+scale:
+  samples: 10031
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The official split contains 9,931 training and 100 held-out benchmark triplets at 720 by 1280; construction begins from roughly 20,000 crawled source videos.
+annotations:
+  types:
+    - synthesized-input-video
+    - real-target-video
+    - garment-reference-image
+    - human-mask-video
+    - pose-video
+    - garment-line-map
+    - video-caption
+    - train-test-split
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-NC-4.0
+  media: CC-BY-NC-4.0 claimed by the dataset card; underlying crawled-web provenance is not enumerated
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The published license prohibits commercial use, while the absence of per-video source URLs and upstream rights requires a separate review before redistributing media snapshots.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - Source URLs, consent status, geographic distribution, and upstream media rights for the roughly 20K crawled human videos are not disclosed.
+    - Input videos and garment references are synthesized, so residual identity shifts, temporal flicker, reconstruction errors, and generator biases can remain after filtering.
+    - Access is manually gated and non-commercial, which limits unattended reproduction and production use.
+    - The 100-case benchmark is small relative to the training split and may not capture all body types, motions, environments, or multi-person failure modes.
+processing:
+  recipe: Normalize and filter web videos, sample 121-frame clips, build temporal human masks, synthesize a garment-swapped first frame and guided-inpainting video, reconstruct a product-style garment image, filter with Gemini for fidelity and artifacts, manually review, then derive pose, line-map, and video-caption conditions.
+  recommended_format: native
+  notes: Use the JSON or JSONL manifests to join MP4 videos and PNG conditions; preserve the 9,931/100 split and the reverse-training distinction between synthesized inputs and real target videos.
+evidence:
+  homepage: https://huggingface.co/datasets/TripVVT/TripVVT-10K
+  paper: https://arxiv.org/abs/2604.27958
+  used_by:
+    - TripVVT
+status: verified
+last_verified: "2026-07-26"

@@ -47,6 +47,7 @@ model's capabilities or outputs.
 | [GraphVid](models/video/graphvid.yaml) | University of Illinois Urbana-Champaign and Sony Research India | video | 2026-07-23 | announced | partial | LTX-Video base-model training mixture, [GraphVid-Bench](catalog/video/graphvid-bench.yaml) | 👀 |
 | [FLUX 3](models/multimodal/flux-3.yaml) | Black Forest Labs | image, video, audio, action | 2026-07-23 | early access | partial | General video training corpus, Human and robot manipulation video corpus, Robot action demonstrations | 👀 |
 | [Mage-Flow](models/image/mage-flow.yaml) | Microsoft Mage Team | image | 2026-07-21 | announced | partial | Mage-Flow curated image-text corpus, Mage-Flow-Edit training triples, Mage-Flow capability-routed RL prompt pools | 👀 |
+| [CtrlVTON](models/image/ctrlvton.yaml) | NXN Labs and KAIST | image | 2026-07-10 | announced | partial | FLUX.2 Klein inherited pretraining mixture, VIP-Seg fashion segmentation dataset, CtrlVTON training corpus, [VITON-HD-edit](catalog/image/viton-hd-edit.yaml) | 👀 |
 | [Muse Video](models/video/muse-video.yaml) | Meta Superintelligence Labs | video, audio | 2026-07-07 | announced | high level | not disclosed | 👀 |
 | [Muse Image](models/multimodal/muse-image.yaml) | Meta Superintelligence Labs | image | 2026-07-07 | product only | high level | not disclosed | 👀 |
 | [Gemini Omni Flash](models/video/gemini-omni-flash.yaml) | Google DeepMind | video, audio | 2026-06-30 | api only | high level | Undisclosed multimodal training mixture | ✅ |
@@ -54,6 +55,7 @@ model's capabilities or outputs.
 | [FLUX VTO](models/image/flux-vto.yaml) | Black Forest Labs | image | 2026-05-28 | api only | undisclosed | not disclosed | 👀 |
 | [Lens](models/image/lens.yaml) | Microsoft Research | image | 2026-05-20 | open weights | partial | [Lens-800M](catalog/image/lens-800m.yaml), [Lens-RL-8K](catalog/preference/lens-rl-8k.yaml) | ✅ |
 | [Lance](models/multimodal/lance.yaml) | ByteDance | image, video | 2026-05-18 | open weights | high level | not disclosed | ✅ |
+| [TripVVT](models/video/tripvvt.yaml) | Nanjing University, JIUTIAN Research (CMCC), Jilin University, and ByteDance | video | 2026-04-30 | announced | partial | Wan2.1-Fun-14B-control inherited pretraining mixture, TripVVT supplementary training set, [TripVVT-10K](catalog/video/tripvvt-10k.yaml) | ✅ |
 | [ERNIE-Image](models/image/ernie-image.yaml) | Baidu | image | 2026-04-15 | open weights | partial | Internal large-scale image pool, [ERIA-1K](catalog/evaluation/eria-1k.yaml) | ✅ |
 | [Fit-VTO](models/image/fit-vto.yaml) | University of Washington and Google Research | image | 2026-04-09 | research preview | partial | FLUX.1-dev inherited pretraining mixture, Full FIT training collection, [FIT-VTO-100K](catalog/image/fit-vto-100k.yaml) | ✅ |
 | [Avatar V](models/video/avatar-v.yaml) | HeyGen Research | video, audio | 2026-04-08 | product only | partial | Avatar V general video pretraining corpus, Avatar V audio-to-video fine-tuning corpus, Avatar V human preference data | ✅ |
@@ -78,11 +80,13 @@ generated table.
 | Dataset | Organization | Modality | Released | Tasks | Scale | Access | Commercial use | Status |
 |---|---|---|---|---|---:|---|---|:---:|
 | [GraphVid-Bench](catalog/video/graphvid-bench.yaml) | University of Illinois Urbana-Champaign and Sony Research India | video | 2026-07-23 | graph conditioned video generation, image to video, object interaction generation, video generation evaluation | ~27.5K | unavailable | unknown | 🟡 |
+| [VITON-HD-edit](catalog/image/viton-hd-edit.yaml) | NXN Labs and KAIST | image | 2026-07-10 | virtual try on, controllable virtual try on, garment instance segmentation, image editing, virtual try on evaluation | 2K | open | noncommercial | ✅ |
 | [GenSyn10](catalog/evaluation/gensyn10.yaml) | University of Western Australia | evaluation | 2026-07-10 | synthetic image detection, image classification, out of distribution evaluation | 60K | unavailable | review required | 🟡 |
 | [ERIA-1K](catalog/evaluation/eria-1k.yaml) | Baidu | evaluation | 2026-05-25 | image aesthetic assessment, aesthetic model evaluation | 1K | unavailable | unknown | 🟡 |
 | [Lens-RL-8K](catalog/preference/lens-rl-8k.yaml) | Microsoft Research | preference | 2026-05-20 | text to image reinforcement learning, rubric based reward modeling | ~8K | unavailable | unknown | 🟡 |
 | [Lens-800M](catalog/image/lens-800m.yaml) | Microsoft Research | image | 2026-05-20 | text to image, image text pretraining | 800M | unavailable | unknown | 🟡 |
 | [FIT-VTO-100K](catalog/image/fit-vto-100k.yaml) | University of Washington and Google Research | image | 2026-05-08 | virtual try on, fit aware generation, garment conditioned generation, virtual try on evaluation | 105K | open | noncommercial | ✅ |
+| [TripVVT-10K](catalog/video/tripvvt-10k.yaml) | Nanjing University, JIUTIAN Research (CMCC), Jilin University, and ByteDance | video | 2026-04-30 | video virtual try on, virtual try on, garment conditioned generation, video to video, virtual try on evaluation | 10K | gated | noncommercial | ✅ |
 | [Audiovisual Translation Dubbing Dataset](catalog/video/audiovisual-translation-dub.yaml) | Lightricks and Tel Aviv University | video | 2026-02-08 | video dubbing, audiovisual translation, lip sync training | 288 | open | noncommercial | ✅ |
 | [VGGSound-Omni](catalog/evaluation/vggsound-omni.yaml) | Tsinghua University, Monash University, and Shengshu AI | evaluation | 2026-01-06 | text to audio evaluation, video to audio evaluation, video text to audio evaluation, off screen audio evaluation | ~14K | gated | noncommercial | ✅ |
 | [SoundAtlas](catalog/audio/soundatlas.yaml) | Tsinghua University, Monash University, and Shengshu AI | audio | 2026-01-06 | text to audio, video to audio, video text to audio, audio captioning | ~470K | gated | noncommercial | ✅ |

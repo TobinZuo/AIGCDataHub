@@ -36,8 +36,12 @@ class ScenarioTaxonomyTests(unittest.TestCase):
         )
         self.assertIn("virtual-try-on", models["fit-vto"]["scenario_ids"])
         self.assertIn("virtual-try-on", models["flux-vto"]["scenario_ids"])
+        self.assertIn("virtual-try-on", models["ctrlvton"]["scenario_ids"])
+        self.assertIn("virtual-try-on", models["tripvvt"]["scenario_ids"])
         self.assertIn("video-localization", datasets["audiovisual-translation-dub"]["scenario_ids"])
         self.assertIn("virtual-try-on", datasets["fit-vto-100k"]["scenario_ids"])
+        self.assertIn("virtual-try-on", datasets["viton-hd-edit"]["scenario_ids"])
+        self.assertIn("virtual-try-on", datasets["tripvvt-10k"]["scenario_ids"])
 
     def test_generated_assignments_come_from_task_matches(self) -> None:
         scenarios = load_scenarios()
@@ -75,6 +79,24 @@ class ScenarioTaxonomyTests(unittest.TestCase):
         self.assertEqual(flux_vto["linked_dataset_count"], 0)
         self.assertEqual(flux_vto["scale_disclosed_stage_count"], 0)
         self.assertEqual(flux_vto["stage_count"], 2)
+
+        ctrlvton = models["ctrlvton"]["strategy_profile"]
+        self.assertEqual(ctrlvton["linked_dataset_count"], 1)
+        self.assertEqual(ctrlvton["stage_count"], 4)
+        self.assertTrue(
+            {"source-mixing", "vlm-screening", "mask-conditioning"}.issubset(
+                ctrlvton["operations"]
+            )
+        )
+
+        tripvvt = models["tripvvt"]["strategy_profile"]
+        self.assertEqual(tripvvt["linked_dataset_count"], 1)
+        self.assertEqual(tripvvt["scale_disclosed_stage_count"], 3)
+        self.assertTrue(
+            {"synthetic-triplet-generation", "mixed-resolution-training"}.issubset(
+                tripvvt["operations"]
+            )
+        )
 
         avatar_v = models["avatar-v"]["strategy_profile"]
         self.assertEqual(

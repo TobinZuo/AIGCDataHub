@@ -188,6 +188,12 @@ tracks:
       - url: https://huggingface.co/api/datasets/cvssp/WavCaps
         catalog_id: wavcaps
         priority: critical
+      - url: https://huggingface.co/api/datasets/NXN-Labs/VITON-HD-edit
+        catalog_id: viton-hd-edit
+        priority: critical
+      - url: https://huggingface.co/api/datasets/TripVVT/TripVVT-10K
+        catalog_id: tripvvt-10k
+        priority: critical
 
 acceptance_rules:
   - Require an official release, repository, model card, dataset card, or technical report.

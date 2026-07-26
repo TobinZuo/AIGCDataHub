@@ -16,7 +16,7 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(validate(), [])
 
     def test_cards_are_present(self) -> None:
-        self.assertGreaterEqual(len(load_cards()), 29)
+        self.assertGreaterEqual(len(load_cards()), 31)
 
     def test_audio_and_3d_coverage_is_present(self) -> None:
         modalities = {card["modality"] for _, card in load_cards()}
@@ -45,9 +45,18 @@ class CatalogTests(unittest.TestCase):
 
     def test_application_scenario_datasets_are_present(self) -> None:
         cards = {card["id"]: card for _, card in load_cards()}
-        self.assertTrue({"audiovisual-translation-dub", "fit-vto-100k"}.issubset(cards))
+        self.assertTrue(
+            {
+                "audiovisual-translation-dub",
+                "fit-vto-100k",
+                "viton-hd-edit",
+                "tripvvt-10k",
+            }.issubset(cards)
+        )
         self.assertIn("video-dubbing", cards["audiovisual-translation-dub"]["tasks"])
         self.assertIn("virtual-try-on", cards["fit-vto-100k"]["tasks"])
+        self.assertIn("controllable-virtual-try-on", cards["viton-hd-edit"]["tasks"])
+        self.assertIn("video-virtual-try-on", cards["tripvvt-10k"]["tasks"])
 
     def test_site_catalog_orders_datasets_by_release_date(self) -> None:
         datasets = build_payload()["datasets"]

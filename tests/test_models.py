@@ -16,7 +16,7 @@ class ModelCatalogTests(unittest.TestCase):
     def test_representative_modalities_are_present(self) -> None:
         cards = [card for _, card in load_models()]
         modalities = {modality for card in cards for modality in card["modalities"]}
-        self.assertGreaterEqual(len(cards), 20)
+        self.assertGreaterEqual(len(cards), 22)
         self.assertTrue({"image", "video", "audio", "multimodal"}.issubset(modalities))
 
     def test_product_only_releases_are_representable(self) -> None:
@@ -53,10 +53,29 @@ class ModelCatalogTests(unittest.TestCase):
     def test_virtual_try_on_records_disclosed_and_undisclosed_strategies(self) -> None:
         cards = {card["id"]: card for _, card in load_models()}
         fit_ids = {item["catalog_id"] for item in cards["fit-vto"]["data"]["datasets"]}
+        ctrlvton_ids = {item["catalog_id"] for item in cards["ctrlvton"]["data"]["datasets"]}
+        tripvvt_ids = {item["catalog_id"] for item in cards["tripvvt"]["data"]["datasets"]}
         self.assertEqual(fit_ids, {None, "fit-vto-100k"})
+        self.assertEqual(ctrlvton_ids, {None, "viton-hd-edit"})
+        self.assertEqual(tripvvt_ids, {None, "tripvvt-10k"})
         self.assertEqual(cards["fit-vto"]["data"]["disclosure_level"], "partial")
+        self.assertEqual(cards["ctrlvton"]["data"]["disclosure_level"], "partial")
+        self.assertEqual(cards["tripvvt"]["data"]["disclosure_level"], "partial")
         self.assertEqual(cards["flux-vto"]["data"]["disclosure_level"], "undisclosed")
         self.assertEqual(cards["flux-vto"]["data"]["datasets"], [])
+
+        ctrlvton_ops = {
+            operation
+            for stage in cards["ctrlvton"]["data"]["stages"]
+            for operation in stage["operations"]
+        }
+        self.assertTrue(
+            {"vlm-screening", "human-review", "mask-conditioning"}.issubset(ctrlvton_ops)
+        )
+        self.assertEqual(
+            [stage["scale_disclosed"] for stage in cards["tripvvt"]["data"]["stages"]],
+            [False, True, True, True],
+        )
 
     def test_released_dataset_lineage_is_resolved(self) -> None:
         omni2sound = next(card for card in [item for _, item in load_models()] if card["id"] == "omni2sound")

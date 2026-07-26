@@ -112,6 +112,8 @@ class DiscoveryTests(unittest.TestCase):
                 "https://www.heygen.com/research/avatar-v-data",
                 "https://justdubit.github.io/",
                 "https://johannakarras.github.io/FIT/",
+                "https://huggingface.co/api/datasets/NXN-Labs/VITON-HD-edit",
+                "https://huggingface.co/api/datasets/TripVVT/TripVVT-10K",
             }.issubset(urls)
         )
         self.assertIn("https://huggingface.co/api/datasets/nkp37/OpenVid-1M", urls)
@@ -126,6 +128,8 @@ class DiscoveryTests(unittest.TestCase):
     def test_dataset_impact_index_uses_canonical_model_references(self) -> None:
         impacts = dataset_impact_index()
         self.assertEqual(impacts["fit-vto-100k"], ("fit-vto",))
+        self.assertEqual(impacts["viton-hd-edit"], ("ctrlvton",))
+        self.assertEqual(impacts["tripvvt-10k"], ("tripvvt",))
         self.assertEqual(impacts["audiovisual-translation-dub"], ("just-dub-it",))
         self.assertEqual(impacts["wavcaps"], ("omni2sound",))
 

@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-07-26T10:50:46Z",
+  "generated_at": "2026-07-26T11:08:17Z",
   "sources": [
     {
       "track_id": "datasets",
@@ -803,6 +803,18 @@
     },
     {
       "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/NXN-Labs/VITON-HD-edit",
+      "resolved_url": "https://huggingface.co/api/datasets/NXN-Labs/VITON-HD-edit",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-07-15T03:41:09.000Z@9de94ee10e15f5069fd650ce4c914215f124eb6f",
+      "revision_url": "https://huggingface.co/datasets/NXN-Labs/VITON-HD-edit",
+      "catalog_id": "viton-hd-edit",
+      "priority": "critical"
+    },
+    {
+      "track_id": "important-dataset-updates",
       "source_url": "https://huggingface.co/api/datasets/OpenGVLab/InternVid",
       "resolved_url": "https://huggingface.co/api/datasets/OpenGVLab/InternVid",
       "status": 200,
@@ -812,6 +824,18 @@
       "revision_url": "https://huggingface.co/datasets/OpenGVLab/InternVid",
       "catalog_id": "internvid",
       "priority": "high"
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/TripVVT/TripVVT-10K",
+      "resolved_url": "https://huggingface.co/api/datasets/TripVVT/TripVVT-10K",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-06-25T16:54:31.000Z@596f650e5186a9d6a5fe694e3c2a3eccf2ab7dd3",
+      "revision_url": "https://huggingface.co/datasets/TripVVT/TripVVT-10K",
+      "catalog_id": "tripvvt-10k",
+      "priority": "critical"
     },
     {
       "track_id": "important-dataset-updates",
