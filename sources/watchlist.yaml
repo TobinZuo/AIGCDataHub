@@ -46,6 +46,14 @@ discovery:
     - https://huggingface.co/bytedance-research/Phantom
     - https://github.com/Wan-Video/Wan2.1
     - https://github.com/hpcaitech/Open-Sora
+    - https://github.com/OpenMOSS/MOVA
+    - https://huggingface.co/OpenMOSS-Team/MOVA-720p
+    - https://huggingface.co/datasets/microsoft/AVGen-Bench
+    - https://huggingface.co/datasets/netflix/Vera-Layered-Video-Dataset
+    - https://huggingface.co/datasets/BestWishYsh/ChronoMagic-Pro
+    - https://huggingface.co/datasets/dorni/SpeakerVid-5M-Dataset
+    - https://huggingface.co/datasets/mali6/autocap
+    - https://huggingface.co/datasets/amaai-lab/JamendoMaxCaps
 
 tracks:
   - id: image-generation
@@ -352,6 +360,30 @@ tracks:
       - metadata-change
       - license-change
     official_sources:
+      - url: https://huggingface.co/api/datasets/microsoft/AVGen-Bench
+        catalog_id: avgen-bench
+        priority: critical
+      - url: https://huggingface.co/api/datasets/netflix/Vera-Layered-Video-Dataset?expand=lastModified&expand=sha
+        catalog_id: vera-layered-video
+        priority: critical
+      - url: https://github.com/PeterL1n/BackgroundMattingV2/commits/master.atom
+        catalog_id: videomatte240k
+        priority: high
+      - url: https://huggingface.co/api/datasets/BestWishYsh/ChronoMagic-Pro
+        catalog_id: chronomagic-pro
+        priority: critical
+      - url: https://acav100m.github.io/
+        catalog_id: acav100m
+        priority: high
+      - url: https://huggingface.co/api/datasets/dorni/SpeakerVid-5M-Dataset
+        catalog_id: speakervid-5m
+        priority: critical
+      - url: https://huggingface.co/api/datasets/mali6/autocap
+        catalog_id: autorecap-xl
+        priority: high
+      - url: https://huggingface.co/api/datasets/amaai-lab/JamendoMaxCaps
+        catalog_id: jamendomaxcaps
+        priority: critical
       - url: https://huggingface.co/api/datasets/HuggingFaceFV/finevideo
         catalog_id: finevideo
         priority: high
@@ -537,6 +569,12 @@ tracks:
       - release-files
       - license-change
     official_sources:
+      - url: https://huggingface.co/api/models/OpenMOSS-Team/MOVA-720p
+        model_id: mova-720p
+        priority: critical
+      - url: https://vera-layered-diffusion.github.io/
+        model_id: vera-14b
+        priority: critical
       - url: https://seed.bytedance.com/en/blog/tech-report-of-seedance-1-0-is-now-publicly-available
         model_id: seedance-1-0-pro
         priority: high
@@ -636,7 +674,7 @@ tracks:
       - url: https://docs.bfl.ai/release-notes
         model_id: flux-2-max
         priority: critical
-      - url: https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/
+      - url: https://ai.google.dev/gemini-api/docs/models/veo-3.1-lite-generate-preview
         model_id: veo-3-1-lite
         priority: critical
       - url: https://blog.reve.com/posts/announcing-reve-2.0/

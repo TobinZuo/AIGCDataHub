@@ -69,5 +69,6 @@ evidence:
   paper: https://arxiv.org/abs/2412.00115
   used_by:
     - TalkVerse-5B
+    - MOVA-720p
 status: partial
 last_verified: "2026-07-26"

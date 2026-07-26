@@ -1,0 +1,99 @@
+id: vera-14b
+name: Vera-14B
+organization: Netflix and California Institute of Technology
+released_at: "2026-06-22"
+modalities:
+  - video
+tasks:
+  - video-editing
+  - object-addition
+  - background-replacement
+  - layered-video-generation
+access:
+  status: research-preview
+  license: Not publicly released
+  release_url: https://vera-layered-diffusion.github.io/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Three-branch layered Mixture-of-Transformers diffusion model
+  parameters: 42000000000
+  notes: >-
+    Initializes three separate DiTs for edit, alpha, and composite layers from
+    Wan2.1-14B, shares information through joint self-attention, and has 42B
+    total parameters despite the 14B variant name.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Wan2.1-14B base-model training mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: Vera initializes each layer branch from Wan2.1-14B; the foundation model corpus is not restated or released by the Vera paper.
+    - name: Vera Layered Video Dataset
+      catalog_id: vera-layered-video
+      role: fine-tuning
+      availability: public
+      scale: 486K frames across roughly 6K 81-frame layered training samples
+      notes: The public training release contains input, edit, alpha, and composite video layers for object addition and background replacement.
+    - name: VideoMatte240K
+      catalog_id: videomatte240k
+      role: fine-tuning
+      availability: public
+      scale: 240,709 alpha-matted foreground frames from 484 clips
+      notes: Used as the accurately matted foreground source for the synthetic portion of the Vera layered training corpus.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-foundation-model
+      scale_disclosed: false
+      strategy: Initialize the edit, alpha, and composite DiT branches from the pretrained Wan2.1-14B text-to-video model without re-disclosing its corpus.
+    - name: fine-tuning
+      modalities:
+        - video
+        - text
+      source_types:
+        - public-dataset
+        - licensed
+        - synthetic
+        - human-feedback
+      operations:
+        - synthetic-compositing
+        - background-generation
+        - video-segmentation
+        - video-matting
+        - object-removal
+        - omnimatte-optimization
+        - human-filtering
+        - vlm-captioning
+        - mask-dropping
+        - joint-layer-training
+      scale_disclosed: true
+      strategy: >-
+        Train for 8,000 steps at batch size 16 on 832x480, 49-frame crops from
+        486K layered frames, combining VideoMatte240K composites with
+        human-curated Pexels and Mixkit footage processed into edit, alpha, and
+        composite targets.
+  strategy_summary:
+    - Separate generated edit content, alpha matte, and final composite into interacting transformer branches so unchanged source pixels need not be regenerated.
+    - Combine accurate synthetic alpha supervision from VideoMatte240K with more diverse real camera motion and scenes from licensed stock footage.
+    - Add multi-object examples with shadows and reflections through omnimatte optimization and human alpha-matte curation.
+  unknowns:
+    - Exact sample counts and mixture weights for VideoMatte240K, Pexels, Mixkit, single-object, and multi-object subsets.
+    - Exact source-asset identifiers and whether every stock item in the released derivatives remains available under the same terms.
+    - Public code, model weights, checkpoint license, and production availability.
+    - Exact Wan2.1-14B base-model corpus and its source rights composition.
+evidence:
+  release: https://vera-layered-diffusion.github.io/
+  technical_report: https://arxiv.org/abs/2606.23610
+  repository: null
+status: verified
+last_verified: "2026-07-27"

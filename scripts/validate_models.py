@@ -62,10 +62,15 @@ def validate_models() -> list[str]:
                     f"{path_name}:data.datasets.{index}.catalog_id: public or gated named data requires a catalog card"
                 )
 
-        if data.get("exact_datasets_disclosed") and not data.get("datasets"):
+        training_references = [
+            reference
+            for reference in data.get("datasets", [])
+            if reference.get("role") != "evaluation"
+        ]
+        if data.get("exact_datasets_disclosed") and not training_references:
             errors.append(f"{path_name}: exact_datasets_disclosed requires at least one dataset")
-        if data.get("disclosure_level") == "undisclosed" and data.get("datasets"):
-            errors.append(f"{path_name}: undisclosed data must not claim named datasets")
+        if data.get("disclosure_level") == "undisclosed" and training_references:
+            errors.append(f"{path_name}: undisclosed data must not claim named training datasets")
 
         try:
             released = date.fromisoformat(model["released_at"])

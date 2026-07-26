@@ -218,6 +218,42 @@
       "last_reviewed": "2026-07-27"
     },
     {
+      "id": "mixkit",
+      "name": "Mixkit",
+      "homepage": "https://mixkit.co/",
+      "category": "stock-media",
+      "modalities": [
+        "video",
+        "audio",
+        "image",
+        "text"
+      ],
+      "relevant_scenarios": [
+        "image-generation",
+        "video-generation",
+        "digital-human"
+      ],
+      "content_scope": "Contributor stock video, music, sound effects, artwork, previews, tags, and downloadable media variants.",
+      "data_access": {
+        "status": "licensed-service",
+        "interface_name": "Mixkit stock-media catalog",
+        "interface_url": "https://mixkit.co/free-stock-video/",
+        "scope": "Browser-based search, preview, and item-level download for stock video and other media under asset-type and item-specific licenses.",
+        "requirements": "Review whether each asset uses the Free or Restricted license and confirm the intended ML, redistribution, privacy, and commercial use separately.",
+        "training_rights": "not-granted-by-interface"
+      },
+      "monitoring": {
+        "url": "https://mixkit.co/license/",
+        "mode": "content-revision",
+        "focus": "Free versus Restricted item licenses, asset-type terms, commercial use, redistribution, and policy changes.",
+        "priority": "high"
+      },
+      "source_status": "candidate",
+      "access_boundary": "source-platform-not-dataset",
+      "rights_review": "required",
+      "last_reviewed": "2026-07-27"
+    },
+    {
       "id": "pexels",
       "name": "Pexels",
       "homepage": "https://www.pexels.com/",
@@ -1031,6 +1067,115 @@
       "linked_model_ids": []
     },
     {
+      "id": "vera-layered-video",
+      "name": "Vera Layered Video Dataset",
+      "organization": "Netflix and California Institute of Technology",
+      "released_at": "2026-06-22",
+      "release_date_source": "https://arxiv.org/abs/2606.23610",
+      "modality": "video",
+      "tasks": [
+        "layered-video-generation",
+        "video-editing",
+        "object-addition",
+        "background-replacement",
+        "video-matting"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A public layered video-editing corpus containing source, edit, alpha-matte, and composite videos built from VideoMatte240K plus human-curated Pexels and Mixkit footage for content-preserving object addition and background change.",
+      "derived_from": [
+        {
+          "catalog_id": "videomatte240k",
+          "relationship": "transformed-derivative",
+          "contribution": "Accurately alpha-matted human foregrounds for synthetic composites",
+          "notes": "VideoMatte240K foregrounds and alpha mattes are paired with generated backgrounds and transformed into layered object-addition and background-change training tuples."
+        }
+      ],
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/netflix/Vera-Layered-Video-Dataset",
+        "requires_account": false,
+        "notes": "Layered video files and metadata are hosted openly on Hugging Face; current repository storage is about 220 GB and may change with revisions."
+      },
+      "scale": {
+        "samples": 18142,
+        "source_items": 6000,
+        "hours": null,
+        "approximate": true,
+        "notes": "The paper reports roughly 6K 81-frame training tuples and 486K frames. The hosted release exposes 11,996 49-frame train records, 6,005 81-frame train records, and 141 test records; these surfaces overlap and should not be interpreted as 18,142 independent source videos."
+      },
+      "annotations": {
+        "types": [
+          "source-video",
+          "edit-instruction",
+          "edit-layer",
+          "alpha-matte",
+          "composite-video",
+          "edit-task",
+          "source-provenance"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Apache-2.0",
+        "media": "Apache-2.0 repository terms plus VideoMatte240K, Pexels Free License, and Mixkit Free License source conditions",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The dataset repository is Apache-2.0, while the source components retain their own licenses; verify stock-asset provenance and the exact source terms before production reuse."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "temporal-consistency",
+          "motion",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Synthetic VideoMatte240K composites emphasize centered human subjects and static cameras.",
+          "Realistic stock-video subsets are filtered from Pexels and Mixkit and may not represent everyday, geographic, cultural, or long-form video distributions.",
+          "The corpus targets object addition and background replacement rather than the full space of video editing operations.",
+          "Hosted row and file counts reflect multiple frame-length variants and component layers, not unique source-video count."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Keep the four video layers joined by sample ID, preserve 49-frame versus 81-frame variants, task label, source family, resolution, and all alpha-matte precision."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/netflix/Vera-Layered-Video-Dataset",
+        "paper": "https://arxiv.org/abs/2606.23610",
+        "used_by": [
+          "Vera-14B"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/vera-layered-video.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~18.1K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/netflix/Vera-Layered-Video-Dataset?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [
+        "videomatte240k"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "vera-14b"
+      ]
+    },
+    {
       "id": "mv-fashion",
       "name": "MV-Fashion",
       "organization": "Max Planck Institute for Intelligent Systems and collaborators",
@@ -1776,6 +1921,117 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "tripvvt"
+      ]
+    },
+    {
+      "id": "avgen-bench",
+      "name": "AVGen-Bench",
+      "organization": "Microsoft Research",
+      "released_at": "2026-04-09",
+      "release_date_source": "https://arxiv.org/abs/2604.08540",
+      "modality": "evaluation",
+      "tasks": [
+        "joint-audio-video-evaluation",
+        "text-to-video-evaluation",
+        "lip-sync-evaluation",
+        "audiovisual-physics-evaluation"
+      ],
+      "stages": [
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A holistic benchmark for native and pipeline-based text-to-audio-video generation with 235 prompts across 11 content categories, 3,009 generated samples, multidimensional automatic metrics, and an official leaderboard.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/microsoft/AVGen-Bench",
+        "requires_account": false,
+        "notes": "Prompt metadata and about 20.1 GB of generated benchmark videos are hosted on Hugging Face without a gate."
+      },
+      "scale": {
+        "samples": 3009,
+        "source_items": 235,
+        "hours": null,
+        "approximate": false,
+        "notes": "The official release contains outputs from 13 model or pipeline configurations for 235 prompts spanning 11 categories."
+      },
+      "annotations": {
+        "types": [
+          "prompt",
+          "content-category",
+          "generator-name",
+          "visual-quality-score",
+          "audio-quality-score",
+          "audio-video-sync-score",
+          "lip-sync-score",
+          "text-rendering-score",
+          "face-consistency-score",
+          "physics-score",
+          "semantic-alignment-score"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "MIT",
+        "media": "Generated model outputs subject to repository terms and each generator provider's output terms",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The Hugging Face repository is marked MIT, but generated output rights and embedded people, brands, music, speech, or text may require separate review."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "temporal-consistency",
+          "motion",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The leaderboard mixes native joint generators and multi-model pipelines, so scores do not isolate every component model.",
+          "A 235-prompt suite cannot cover the full distribution of audiovisual storytelling, languages, cultures, safety, or long-form temporal structure.",
+          "Provider versions and inference settings can change after the fixed generated-output snapshot."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Preserve prompt category, exact generator or pipeline label, version, inference setting, output file, and metric version when reproducing comparisons."
+      },
+      "evidence": {
+        "homepage": "https://microsoft.github.io/AVGen-Bench/",
+        "paper": "https://arxiv.org/abs/2604.08540",
+        "used_by": [
+          "Seedance 2.0",
+          "Veo 3.1",
+          "Sora 2",
+          "Wan 2.6",
+          "LTX-2.3",
+          "MOVA-720p"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/evaluation/avgen-bench.yaml",
+      "scenario_ids": [],
+      "scale_label": "3K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/microsoft/AVGen-Bench"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "ltx-2-3",
+        "seedance-2-0",
+        "mova-720p",
+        "veo-3-1",
+        "wan-2-6",
+        "sora-2"
       ]
     },
     {
@@ -3121,6 +3377,108 @@
       ]
     },
     {
+      "id": "speakervid-5m",
+      "name": "SpeakerVid-5M",
+      "organization": "Nanjing University and collaborators",
+      "released_at": "2025-07-14",
+      "release_date_source": "https://arxiv.org/abs/2507.09862",
+      "modality": "video",
+      "tasks": [
+        "talking-head-generation",
+        "listening-head-generation",
+        "dyadic-conversation-generation",
+        "audio-driven-video-generation"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A 5.2M-clip, 8,743-hour speaker-video metadata corpus covering monadic speaking, listening, and dyadic conversation, with captions, transcripts, poses, face boxes, quality scores, and audio-video synchronization signals.",
+      "access": {
+        "status": "metadata-only",
+        "type": "metadata",
+        "url": "https://huggingface.co/datasets/dorni/SpeakerVid-5M-Dataset",
+        "requires_account": false,
+        "notes": "About 58.9 GB of annotations and YouTube identifiers are hosted openly; users reconstruct clips from source videos, and the optional pose archive is not part of the standard hosted media release."
+      },
+      "scale": {
+        "samples": 5200000,
+        "source_items": null,
+        "hours": 8743,
+        "approximate": true,
+        "notes": "The project reports 5.2M clips and 8,743 hours across pretraining and higher-quality fine-tuning partitions."
+      },
+      "annotations": {
+        "types": [
+          "youtube-id",
+          "clip-timestamp",
+          "transcript",
+          "video-caption",
+          "face-bounding-box",
+          "body-pose",
+          "visual-quality-score",
+          "audio-video-sync-score",
+          "interaction-type"
+        ],
+        "source": "mixed",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "No dataset-card license declared",
+        "media": "Source-dependent YouTube and rightsholder terms",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Hosted annotations do not grant rights to the referenced YouTube videos; verify creator permission, privacy, biometric use, and intended training rights separately."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source-video deletion and regional availability can make metadata records unreconstructable.",
+          "Face and pose filtering can bias identity, age, culture, accessibility, camera framing, and speaking-style coverage.",
+          "Transcript, caption, pose, and synchronization signals are automatically produced and can contain correlated errors."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "Preserve branch, interaction type, source ID, timestamps, transcript, caption, face and pose metadata, DOVER and sync scores, retrieval status, and rights review."
+      },
+      "evidence": {
+        "homepage": "https://dorniwang.github.io/SpeakerVid-5M/",
+        "paper": "https://arxiv.org/abs/2507.09862",
+        "used_by": [
+          "MOVA-720p"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/speakervid-5m.yaml",
+      "scenario_ids": [
+        "digital-human"
+      ],
+      "scale_label": "~5.2M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/dorni/SpeakerVid-5M-Dataset"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "mova-720p"
+      ]
+    },
+    {
       "id": "talkingheadbench",
       "name": "TalkingHeadBench",
       "organization": "University of North Carolina at Chapel Hill and Michigan State University",
@@ -3523,6 +3881,98 @@
       "linked_model_ids": []
     },
     {
+      "id": "jamendomaxcaps",
+      "name": "JamendoMaxCaps",
+      "organization": "AMAAI Lab and collaborators",
+      "released_at": "2025-02-11",
+      "release_date_source": "https://arxiv.org/abs/2502.07461",
+      "modality": "audio",
+      "tasks": [
+        "text-to-music",
+        "music-captioning",
+        "music-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A large music-caption corpus built from freely licensed Jamendo tracks, with generated natural-language descriptions and imputed metadata designed for text-to-music training and retrieval.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/amaai-lab/JamendoMaxCaps",
+        "requires_account": false,
+        "notes": "The current Hugging Face release exposes 362,298 records and about 1.66 TB of stored audio and metadata without an account gate."
+      },
+      "scale": {
+        "samples": 362298,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The paper describes more than 200K freely licensed instrumental tracks; the current hosted revision exposes 362,298 dataset rows, so track and row units should remain distinct."
+      },
+      "annotations": {
+        "types": [
+          "music-caption",
+          "genre",
+          "instrumentation",
+          "mood",
+          "tempo",
+          "imputed-metadata",
+          "source-license"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-SA-3.0",
+        "media": "Jamendo track-specific Creative Commons licenses plus CC-BY-SA-3.0 dataset terms",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Individual Jamendo tracks can carry different Creative Commons conditions; filter and attribute per track before commercial training or redistribution."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Generated captions and retrieved metadata can contain hallucinations or overgeneralized genre and mood labels.",
+          "Instrumental and Creative-Commons availability constraints make the distribution unlike mainstream commercial music catalogs.",
+          "Hosted row count is not necessarily the number of unique tracks described in the paper."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "Preserve track ID, audio, generated caption, original and imputed metadata, exact per-track license, attribution, and dataset revision."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/amaai-lab/JamendoMaxCaps",
+        "paper": "https://arxiv.org/abs/2502.07461",
+        "used_by": [
+          "MOVA-720p"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/audio/jamendomaxcaps.yaml",
+      "scenario_ids": [],
+      "scale_label": "362.3K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/amaai-lab/JamendoMaxCaps"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "mova-720p"
+      ]
+    },
+    {
       "id": "senorita-2m",
       "name": "Señorita-2M",
       "organization": "CUHK, PolyU, Tsinghua University, IntelliFusion, HKU, and UESTC",
@@ -3701,7 +4151,8 @@
         "homepage": "https://fudan-generative-vision.github.io/OpenHumanVid/",
         "paper": "https://arxiv.org/abs/2412.00115",
         "used_by": [
-          "TalkVerse-5B"
+          "TalkVerse-5B",
+          "MOVA-720p"
         ]
       },
       "status": "partial",
@@ -3722,7 +4173,8 @@
         "humoset"
       ],
       "linked_model_ids": [
-        "skyreels-v4"
+        "skyreels-v4",
+        "mova-720p"
       ]
     },
     {
@@ -4255,7 +4707,8 @@
         "paper": "https://arxiv.org/abs/2407.02371",
         "used_by": [
           "MVDiT",
-          "Open-Sora"
+          "Open-Sora",
+          "MOVA-720p"
         ]
       },
       "status": "verified",
@@ -4271,7 +4724,195 @@
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
-      "linked_model_ids": []
+      "linked_model_ids": [
+        "mova-720p"
+      ]
+    },
+    {
+      "id": "autorecap-xl",
+      "name": "AutoReCap-XL",
+      "organization": "Snap Research and collaborators",
+      "released_at": "2024-06-27",
+      "release_date_source": "https://arxiv.org/abs/2406.19388",
+      "modality": "audio",
+      "tasks": [
+        "text-to-audio",
+        "audio-captioning",
+        "audio-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A large automatically recaptioned audio-text corpus derived from YouTube video segments, with a 47M-pair released XL set and progressively filtered MQ, MQ-L, and HQ subsets based on CLAP alignment and duration.",
+      "access": {
+        "status": "metadata-only",
+        "type": "metadata",
+        "url": "https://huggingface.co/datasets/mali6/autocap",
+        "requires_account": false,
+        "notes": "About 17.4 GB of JSON metadata is hosted on Hugging Face; the official scripts reconstruct audio from referenced source videos rather than distributing raw media."
+      },
+      "scale": {
+        "samples": 47000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The released variants contain 47M XL, 20.7M MQ, 14.7M MQ-L, and 10.7M HQ pairs; the original paper describes a 57M-candidate collection before the final release filtering."
+      },
+      "annotations": {
+        "types": [
+          "youtube-id",
+          "clip-timestamp",
+          "generated-caption",
+          "automatic-transcript",
+          "clap-score",
+          "subset-membership"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "No dataset-card license declared",
+        "media": "Source-dependent YouTube and rightsholder terms",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The project limits the release to non-commercial research; raw audio is reconstructed from YouTube and remains subject to source rights and platform terms."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Automatic speech and music keyword removal can suppress useful mixed or ambiguous sound events.",
+          "Generated captions and CLAP thresholds can reinforce the teacher model's vocabulary and alignment biases.",
+          "Source videos can disappear or change, and the released metadata does not convey media rights."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "Preserve source ID, timestamps, original transcript signal, generated caption, CLAP score, subset membership, retrieval date, and rights decision."
+      },
+      "evidence": {
+        "homepage": "https://snap-research.github.io/GenAU/dataset.html",
+        "paper": "https://arxiv.org/abs/2406.19388",
+        "used_by": [
+          "MOVA-720p"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/audio/autorecap-xl.yaml",
+      "scenario_ids": [],
+      "scale_label": "~47M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/mali6/autocap"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "mova-720p"
+      ]
+    },
+    {
+      "id": "chronomagic-pro",
+      "name": "ChronoMagic-Pro",
+      "organization": "Peking University and Yuan Group",
+      "released_at": "2024-06-26",
+      "release_date_source": "https://arxiv.org/abs/2406.18522",
+      "modality": "video",
+      "tasks": [
+        "text-to-video",
+        "time-lapse-video-generation",
+        "video-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A 460K-example time-lapse video-text corpus for learning physical processes and long-range metamorphic motion, with a 150K-example high-quality ProH subset selected for visual quality and caption alignment.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/BestWishYsh/ChronoMagic-Pro",
+        "requires_account": false,
+        "notes": "Roughly 2.06 TB of videos and metadata are hosted on Hugging Face without a gate."
+      },
+      "scale": {
+        "samples": 460000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The official project reports 460K time-lapse videos and a 150K high-quality ChronoMagic-ProH subset."
+      },
+      "annotations": {
+        "types": [
+          "video-caption",
+          "time-lapse-category",
+          "visual-quality-score",
+          "text-video-alignment-score",
+          "source-metadata"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0",
+        "media": "CC-BY-4.0 dataset label plus source-video terms",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The hosted card is tagged CC-BY-4.0, but original video rights and any source-platform conditions should be checked before commercial training or redistribution."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Time-lapse capture and web sourcing bias the corpus toward visible processes and popular subjects.",
+          "Automated captioning and quality scoring can miss subtle process direction, duration, or causal details.",
+          "The headline corpus and ProH subset should not be combined as independent samples."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/video_text",
+        "recommended_format": "webdataset",
+        "notes": "Preserve full versus ProH membership, time-lapse category, original duration and frame rate, caption, quality scores, and source identifier."
+      },
+      "evidence": {
+        "homepage": "https://github.com/PKU-YuanGroup/ChronoMagic-Bench",
+        "paper": "https://arxiv.org/abs/2406.18522",
+        "used_by": [
+          "MOVA-720p"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/chronomagic-pro.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~460K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/BestWishYsh/ChronoMagic-Pro"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "mova-720p"
+      ]
     },
     {
       "id": "mvhumannet",
@@ -5282,7 +5923,8 @@
         "homepage": "https://github.com/XinhaoMei/WavCaps",
         "paper": "https://arxiv.org/abs/2303.17395",
         "used_by": [
-          "Omni2Sound"
+          "Omni2Sound",
+          "MOVA-720p"
         ]
       },
       "status": "partial",
@@ -5299,6 +5941,7 @@
       ],
       "downstream_dataset_ids": [],
       "linked_model_ids": [
+        "mova-720p",
         "omni2sound"
       ]
     },
@@ -5668,6 +6311,100 @@
       ]
     },
     {
+      "id": "videomatte240k",
+      "name": "VideoMatte240K",
+      "organization": "University of Washington",
+      "released_at": "2021-04-21",
+      "release_date_source": "https://github.com/PeterL1n/BackgroundMattingV2",
+      "modality": "video",
+      "tasks": [
+        "video-matting",
+        "foreground-extraction",
+        "background-replacement",
+        "layered-video-generation"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning"
+      ],
+      "description": "A high-resolution green-screen video matting dataset with 240,709 foreground and alpha-matte frames extracted from 484 stock or royalty-free human clips, including 384 4K clips and 100 HD clips.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://grail.cs.washington.edu/projects/background-matting-v2/#/datasets",
+        "requires_account": false,
+        "notes": "The official project provides downloadable dataset archives; Robust Video Matting also documents 6 GB SD and 60 GB HD preprocessed variants."
+      },
+      "scale": {
+        "samples": 240709,
+        "source_items": 484,
+        "hours": null,
+        "approximate": false,
+        "notes": "The paper reports a 479-to-5 train-validation split, 497.3 average frames per clip, and clip lengths from 124 to 1,500 frames."
+      },
+      "annotations": {
+        "types": [
+          "foreground-rgb",
+          "alpha-matte",
+          "video-sequence",
+          "resolution",
+          "train-validation-split"
+        ],
+        "source": "human",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "MIT",
+        "media": "MIT project license for released foregrounds and alpha mattes",
+        "commercial_use": "allowed",
+        "redistribution": "allowed",
+        "notes": "The official repository states MIT and commercial use; the paper says source clips were purchased stock or royalty-free, so downstream users should retain provenance when redistributing derivatives."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "All source footage is green-screen human video, limiting backgrounds, camera styles, non-human objects, and natural interaction effects.",
+          "Chroma-key extraction can retain spill or edge artifacts despite high-quality alpha boundaries.",
+          "The validation split contains only five source clips."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Preserve sequential frame order, foreground RGB, alpha precision, source clip ID, resolution, and train-validation split; composite backgrounds only as a derived view."
+      },
+      "evidence": {
+        "homepage": "https://grail.cs.washington.edu/projects/background-matting-v2/",
+        "paper": "https://arxiv.org/abs/2012.07810",
+        "used_by": [
+          "Vera Layered Video Dataset",
+          "Vera-14B"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/videomatte240k.yaml",
+      "scenario_ids": [],
+      "scale_label": "240.7K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://github.com/PeterL1n/BackgroundMattingV2/commits/master.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "vera-layered-video"
+      ],
+      "linked_model_ids": [
+        "vera-14b"
+      ]
+    },
+    {
       "id": "hdtf",
       "name": "HDTF",
       "organization": "University of Science and Technology of China and Microsoft Research Asia",
@@ -5762,6 +6499,97 @@
       "linked_model_ids": [
         "hunyuanvideo-avatar",
         "musetalk-1-5"
+      ]
+    },
+    {
+      "id": "acav100m",
+      "name": "ACAV100M",
+      "organization": "Facebook AI Research and Inria",
+      "released_at": "2021-01-26",
+      "release_date_source": "https://arxiv.org/abs/2101.10803",
+      "modality": "video",
+      "tasks": [
+        "audio-visual-pretraining",
+        "audio-visual-representation-learning",
+        "video-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A 100M-clip audio-visual corpus automatically curated from 140M long-form videos by selecting 10-second segments that maximize estimated mutual information between audio and visual embeddings.",
+      "access": {
+        "status": "metadata-only",
+        "type": "metadata",
+        "url": "https://acav100m.github.io/",
+        "requires_account": false,
+        "notes": "The official project releases CSV files with YouTube video IDs and start times for 20K, 200K, 2M, 10M, and 100M subsets rather than redistributing media."
+      },
+      "scale": {
+        "samples": 100000000,
+        "source_items": 140000000,
+        "hours": 277777.8,
+        "approximate": true,
+        "notes": "Each selected sample is 10 seconds; the source pool is described as 140M full-length videos and the 100M subset totals about 31 years."
+      },
+      "annotations": {
+        "types": [
+          "youtube-id",
+          "start-time",
+          "subset-membership",
+          "audio-visual-selection-score"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "No standardized dataset license declared on the project page",
+        "media": "Source-dependent YouTube and rightsholder terms",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Released CSVs identify source clips but do not grant rights to download, train on, or redistribute the underlying YouTube media."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-visual-alignment",
+          "motion",
+          "provenance"
+        ],
+        "known_limitations": [
+          "YouTube videos can be removed, region-blocked, or altered, reducing reproducibility over time.",
+          "Mutual-information sampling favors coincident audio and visual events and may underrepresent off-screen sound or abstract audiovisual relationships.",
+          "The multilingual, safety, copyright, privacy, and demographic distributions are not exhaustively documented."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "csv",
+        "notes": "Keep YouTube ID, start second, subset size, retrieval date, availability result, and a source-rights decision; never treat the CSV as a media license."
+      },
+      "evidence": {
+        "homepage": "https://acav100m.github.io/",
+        "paper": "https://arxiv.org/abs/2101.10803",
+        "used_by": [
+          "MOVA-720p"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/acav100m.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~100M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://acav100m.github.io/"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "mova-720p"
       ]
     },
     {
@@ -5930,7 +6758,8 @@
         "homepage": "https://github.com/hche11/VGGSound",
         "paper": "https://arxiv.org/abs/2004.14368",
         "used_by": [
-          "Omni2Sound"
+          "Omni2Sound",
+          "MOVA-720p"
         ]
       },
       "status": "partial",
@@ -5949,6 +6778,7 @@
       ],
       "linked_model_ids": [
         "skyreels-v4",
+        "mova-720p",
         "omni2sound"
       ]
     },
@@ -8233,6 +9063,170 @@
         }
       ],
       "linked_dataset_ids": []
+    },
+    {
+      "id": "vera-14b",
+      "name": "Vera-14B",
+      "organization": "Netflix and California Institute of Technology",
+      "released_at": "2026-06-22",
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "video-editing",
+        "object-addition",
+        "background-replacement",
+        "layered-video-generation"
+      ],
+      "access": {
+        "status": "research-preview",
+        "license": "Not publicly released",
+        "release_url": "https://vera-layered-diffusion.github.io/",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Three-branch layered Mixture-of-Transformers diffusion model",
+        "parameters": 42000000000,
+        "notes": "Initializes three separate DiTs for edit, alpha, and composite layers from Wan2.1-14B, shares information through joint self-attention, and has 42B total parameters despite the 14B variant name."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Wan2.1-14B base-model training mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "Vera initializes each layer branch from Wan2.1-14B; the foundation model corpus is not restated or released by the Vera paper."
+          },
+          {
+            "name": "Vera Layered Video Dataset",
+            "catalog_id": "vera-layered-video",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "486K frames across roughly 6K 81-frame layered training samples",
+            "notes": "The public training release contains input, edit, alpha, and composite video layers for object addition and background replacement."
+          },
+          {
+            "name": "VideoMatte240K",
+            "catalog_id": "videomatte240k",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "240,709 alpha-matted foreground frames from 484 clips",
+            "notes": "Used as the accurately matted foreground source for the synthetic portion of the Vera layered training corpus."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-foundation-model"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Initialize the edit, alpha, and composite DiT branches from the pretrained Wan2.1-14B text-to-video model without re-disclosing its corpus."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "licensed",
+              "synthetic",
+              "human-feedback"
+            ],
+            "operations": [
+              "synthetic-compositing",
+              "background-generation",
+              "video-segmentation",
+              "video-matting",
+              "object-removal",
+              "omnimatte-optimization",
+              "human-filtering",
+              "vlm-captioning",
+              "mask-dropping",
+              "joint-layer-training"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train for 8,000 steps at batch size 16 on 832x480, 49-frame crops from 486K layered frames, combining VideoMatte240K composites with human-curated Pexels and Mixkit footage processed into edit, alpha, and composite targets."
+          }
+        ],
+        "strategy_summary": [
+          "Separate generated edit content, alpha matte, and final composite into interacting transformer branches so unchanged source pixels need not be regenerated.",
+          "Combine accurate synthetic alpha supervision from VideoMatte240K with more diverse real camera motion and scenes from licensed stock footage.",
+          "Add multi-object examples with shadows and reflections through omnimatte optimization and human alpha-matte curation."
+        ],
+        "unknowns": [
+          "Exact sample counts and mixture weights for VideoMatte240K, Pexels, Mixkit, single-object, and multi-object subsets.",
+          "Exact source-asset identifiers and whether every stock item in the released derivatives remains available under the same terms.",
+          "Public code, model weights, checkpoint license, and production availability.",
+          "Exact Wan2.1-14B base-model corpus and its source rights composition."
+        ]
+      },
+      "evidence": {
+        "release": "https://vera-layered-diffusion.github.io/",
+        "technical_report": "https://arxiv.org/abs/2606.23610",
+        "repository": null
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/vera-14b.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed",
+          "public-dataset",
+          "licensed",
+          "synthetic",
+          "human-feedback"
+        ],
+        "operations": [
+          "inherited-foundation-model",
+          "synthetic-compositing",
+          "background-generation",
+          "video-segmentation",
+          "video-matting",
+          "object-removal",
+          "omnimatte-optimization",
+          "human-filtering",
+          "vlm-captioning",
+          "mask-dropping",
+          "joint-layer-training"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 2,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://vera-layered-diffusion.github.io/"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "vera-layered-video",
+        "videomatte240k"
+      ]
     },
     {
       "id": "happyhorse-1-1",
@@ -11378,7 +12372,7 @@
       },
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/"
+        "source_url": "https://ai.google.dev/gemini-api/docs/models/veo-3.1-lite-generate-preview"
       },
       "ranking_positions": [
         {
@@ -11928,6 +12922,14 @@
             "availability": "undisclosed",
             "scale": null,
             "notes": "Used to rebuild the LTX-2.3 latent space and improve fine detail."
+          },
+          {
+            "name": "AVGen-Bench",
+            "catalog_id": "avgen-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "235 prompts and 3,009 generated examples",
+            "notes": "The official benchmark evaluates the LTX-2.3 release; it is not part of the model's training mixture."
           }
         ],
         "stages": [
@@ -12006,8 +13008,8 @@
           "portrait-data-training",
           "vae-retraining"
         ],
-        "data_reference_count": 2,
-        "linked_dataset_count": 0,
+        "data_reference_count": 3,
+        "linked_dataset_count": 1,
         "scale_disclosed_stage_count": 0,
         "stage_count": 2,
         "unknown_count": 2
@@ -12017,7 +13019,9 @@
         "source_url": "https://huggingface.co/api/models/Lightricks/LTX-2.3"
       },
       "ranking_positions": [],
-      "linked_dataset_ids": []
+      "linked_dataset_ids": [
+        "avgen-bench"
+      ]
     },
     {
       "id": "seedance-2-0",
@@ -12054,7 +13058,16 @@
         "disclosure_level": "undisclosed",
         "exact_datasets_disclosed": false,
         "exact_mixture_disclosed": false,
-        "datasets": [],
+        "datasets": [
+          {
+            "name": "AVGen-Bench",
+            "catalog_id": "avgen-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "235 prompts and 3,009 generated examples",
+            "notes": "The official AVGen-Bench leaderboard reports Seedance 2.0 as the leading evaluated system in the current snapshot; this is evaluation evidence, not training disclosure."
+          }
+        ],
         "stages": [
           {
             "name": "pretraining",
@@ -12099,8 +13112,8 @@
           "undisclosed"
         ],
         "operations": [],
-        "data_reference_count": 0,
-        "linked_dataset_count": 0,
+        "data_reference_count": 1,
+        "linked_dataset_count": 1,
         "scale_disclosed_stage_count": 0,
         "stage_count": 1,
         "unknown_count": 2
@@ -12153,7 +13166,9 @@
           "score_label": "Elo"
         }
       ],
-      "linked_dataset_ids": []
+      "linked_dataset_ids": [
+        "avgen-bench"
+      ]
     },
     {
       "id": "qwen-image-2",
@@ -12589,6 +13604,268 @@
         }
       ],
       "linked_dataset_ids": []
+    },
+    {
+      "id": "mova-720p",
+      "name": "MOVA-720p",
+      "organization": "OpenMOSS",
+      "released_at": "2026-01-29",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "audio-video-generation",
+        "joint-audio-video-generation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0",
+        "release_url": "https://github.com/OpenMOSS/MOVA",
+        "weights_url": "https://huggingface.co/OpenMOSS-Team/MOVA-720p",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Dual-tower mixture-of-experts audio-video diffusion transformer",
+        "parameters": 32000000000,
+        "notes": "Combines a Wan2.2-A14B video tower, a 1.3B audio DiT, and a 2.6B bidirectional bridge with aligned RoPE; 18B of the 32B total parameters are active for a forward pass."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "AutoReCap-XL",
+            "catalog_id": "autorecap-xl",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "47M released audio-text pairs",
+            "notes": "Used among the public audio-video and audio-language sources; only metadata and source-video reconstruction instructions are released."
+          },
+          {
+            "name": "ChronoMagic-Pro",
+            "catalog_id": "chronomagic-pro",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "460K time-lapse videos",
+            "notes": "Contributes long-range and time-lapse motion examples to the public portion of the video mixture."
+          },
+          {
+            "name": "ACAV100M",
+            "catalog_id": "acav100m",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "100M ten-second audio-video clip references",
+            "notes": "Contributes automatically curated audio-visual clips through released YouTube identifiers and timestamps."
+          },
+          {
+            "name": "OpenHumanVid",
+            "catalog_id": "openhumanvid",
+            "role": "pretraining",
+            "availability": "gated",
+            "scale": "Current release reports 13.2M samples and 16.7K hours",
+            "notes": "Named in the joint audio-video training mixture for human-centric motion and speech-bearing video."
+          },
+          {
+            "name": "SpeakerVid-5M",
+            "catalog_id": "speakervid-5m",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "5.2M clips and 8,743 hours",
+            "notes": "Supplies talking, listening, and dyadic-conversation video annotations reconstructed from source videos."
+          },
+          {
+            "name": "OpenVid-1M",
+            "catalog_id": "openvid-1m",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "About 1M video-text pairs",
+            "notes": "Named as a public source in the joint audio-video training mixture."
+          },
+          {
+            "name": "VGGSound",
+            "catalog_id": "vggsound",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "More than 200K audio-video clips",
+            "notes": "Used both as a joint audio-video source and for general-sound pretraining of the audio tower."
+          },
+          {
+            "name": "WavCaps",
+            "catalog_id": "wavcaps",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "403,050 audio-caption pairs",
+            "notes": "Used for general-sound pretraining of the audio tower."
+          },
+          {
+            "name": "JamendoMaxCaps",
+            "catalog_id": "jamendomaxcaps",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "362,298 music-caption records in the hosted release",
+            "notes": "Used to specialize the audio tower on music generation."
+          },
+          {
+            "name": "MOVA in-house audio-video and TTS corpora",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "not-released",
+            "scale": "Included within more than 100K hours of raw joint audio-video data",
+            "notes": "Chinese drama, cartoons, movies, YouTube-derived media, and TTS data are described at source-type level but are not released as a named corpus."
+          },
+          {
+            "name": "AVGen-Bench",
+            "catalog_id": "avgen-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "235 prompts and 3,009 generated examples",
+            "notes": "The official leaderboard evaluates a Nano Banana 2 plus MOVA pipeline; this is not a standalone MOVA score or a training source."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "proprietary"
+            ],
+            "operations": [
+              "audio-caption-training",
+              "music-specialization",
+              "text-to-speech-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Pretrain the audio DiT on WavCaps and VGGSound for general sound, JamendoMaxCaps for music, and an unreleased in-house TTS corpus for speech."
+          },
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "public-web",
+              "proprietary"
+            ],
+            "operations": [
+              "aspect-ratio-normalization",
+              "shot-boundary-detection",
+              "voice-activity-detection",
+              "audio-quality-filtering",
+              "video-quality-filtering",
+              "audio-video-sync-filtering",
+              "semantic-alignment-filtering",
+              "multimodal-recaptioning"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Progress from 61,500 hours at 360p to a 37,600-hour, 16.8M-clip filtered stage and then 11,000 hours of highest-quality 720p clips; normalize clips to 9:16 or 16:9, 24 fps, and about 8.05 seconds."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "proprietary"
+            ],
+            "operations": [
+              "high-quality-resampling",
+              "resolution-upscaling",
+              "lip-sync-filtering",
+              "subtitle-filtering",
+              "joint-audio-video-training"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Concentrate the final stage on 11,000 hours of high-quality 720p data, including 2.5M lip-aligned and 2.4M visually high-quality clips selected in the preceding phase."
+          }
+        ],
+        "strategy_summary": [
+          "Train audio and video towers separately, then align them through a bidirectional bridge before joint audio-video optimization.",
+          "Use progressively stricter audio, video, synchronization, semantic, subtitle, and lip-alignment filters across three resolution and quality phases.",
+          "Build captions from MiMo-VL-7B-RL visual descriptions, Qwen3-Omni audio analysis, and GPT-OSS-120B caption fusion."
+        ],
+        "unknowns": [
+          "Exact sample counts and mixture weights for each named public dataset.",
+          "Identities, rights composition, and per-source scale of the unreleased drama, cartoon, movie, YouTube, and TTS corpora.",
+          "Deduplication thresholds, safety filtering details, and the precise split between pretraining and final joint tuning."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/OpenMOSS/MOVA",
+        "technical_report": "https://arxiv.org/abs/2602.08794",
+        "repository": "https://github.com/OpenMOSS/MOVA"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/mova-720p.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "public-dataset",
+          "proprietary",
+          "public-web"
+        ],
+        "operations": [
+          "audio-caption-training",
+          "music-specialization",
+          "text-to-speech-training",
+          "aspect-ratio-normalization",
+          "shot-boundary-detection",
+          "voice-activity-detection",
+          "audio-quality-filtering",
+          "video-quality-filtering",
+          "audio-video-sync-filtering",
+          "semantic-alignment-filtering",
+          "multimodal-recaptioning",
+          "high-quality-resampling",
+          "resolution-upscaling",
+          "lip-sync-filtering",
+          "subtitle-filtering",
+          "joint-audio-video-training"
+        ],
+        "data_reference_count": 11,
+        "linked_dataset_count": 10,
+        "scale_disclosed_stage_count": 2,
+        "stage_count": 3,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/OpenMOSS-Team/MOVA-720p"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "autorecap-xl",
+        "chronomagic-pro",
+        "acav100m",
+        "openhumanvid",
+        "speakervid-5m",
+        "openvid-1m",
+        "vggsound",
+        "wavcaps",
+        "jamendomaxcaps",
+        "avgen-bench"
+      ]
     },
     {
       "id": "grok-imagine-video",
@@ -13327,6 +14604,14 @@
             "availability": "undisclosed",
             "scale": null,
             "notes": "Google names the audio, video, and image modalities and processing steps but not the source datasets or licenses."
+          },
+          {
+            "name": "AVGen-Bench",
+            "catalog_id": "avgen-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "235 prompts and 3,009 generated examples",
+            "notes": "The official benchmark reports separate Veo 3.1 Fast and Quality configurations; neither is a training source."
           }
         ],
         "stages": [
@@ -13389,8 +14674,8 @@
           "quality-filtering",
           "semantic-deduplication"
         ],
-        "data_reference_count": 1,
-        "linked_dataset_count": 0,
+        "data_reference_count": 2,
+        "linked_dataset_count": 1,
         "scale_disclosed_stage_count": 0,
         "stage_count": 1,
         "unknown_count": 2
@@ -13513,7 +14798,9 @@
           "score_label": "Elo"
         }
       ],
-      "linked_dataset_ids": []
+      "linked_dataset_ids": [
+        "avgen-bench"
+      ]
     },
     {
       "id": "omni2sound",
@@ -13970,7 +15257,16 @@
         "disclosure_level": "undisclosed",
         "exact_datasets_disclosed": false,
         "exact_mixture_disclosed": false,
-        "datasets": [],
+        "datasets": [
+          {
+            "name": "AVGen-Bench",
+            "catalog_id": "avgen-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "235 prompts and 3,009 generated examples",
+            "notes": "The official benchmark evaluates Wan2.6; the benchmark is not part of the undisclosed training corpus."
+          }
+        ],
         "stages": [
           {
             "name": "pretraining",
@@ -14015,8 +15311,8 @@
           "undisclosed"
         ],
         "operations": [],
-        "data_reference_count": 0,
-        "linked_dataset_count": 0,
+        "data_reference_count": 1,
+        "linked_dataset_count": 1,
         "scale_disclosed_stage_count": 0,
         "stage_count": 1,
         "unknown_count": 2
@@ -14034,7 +15330,9 @@
           "score_label": "Arena"
         }
       ],
-      "linked_dataset_ids": []
+      "linked_dataset_ids": [
+        "avgen-bench"
+      ]
     },
     {
       "id": "gpt-image-1-5",
@@ -14900,7 +16198,16 @@
         "disclosure_level": "high-level",
         "exact_datasets_disclosed": false,
         "exact_mixture_disclosed": false,
-        "datasets": [],
+        "datasets": [
+          {
+            "name": "AVGen-Bench",
+            "catalog_id": "avgen-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "235 prompts and 3,009 generated examples",
+            "notes": "The official benchmark evaluates the Sora 2 service snapshot; this does not identify or imply any Sora training data."
+          }
+        ],
         "stages": [
           {
             "name": "pretraining",
@@ -14956,8 +16263,8 @@
           "quality-filtering",
           "safety-filtering"
         ],
-        "data_reference_count": 0,
-        "linked_dataset_count": 0,
+        "data_reference_count": 1,
+        "linked_dataset_count": 1,
         "scale_disclosed_stage_count": 0,
         "stage_count": 1,
         "unknown_count": 2
@@ -14982,7 +16289,9 @@
           "score_label": "Arena"
         }
       ],
-      "linked_dataset_ids": []
+      "linked_dataset_ids": [
+        "avgen-bench"
+      ]
     },
     {
       "id": "humo-17b",
@@ -16153,6 +17462,94 @@
       "reference_name": "Lens-RL-8K"
     },
     {
+      "model_id": "ltx-2-3",
+      "dataset_id": "avgen-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "235 prompts and 3,009 generated examples",
+      "reference_name": "AVGen-Bench"
+    },
+    {
+      "model_id": "mova-720p",
+      "dataset_id": "acav100m",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "100M ten-second audio-video clip references",
+      "reference_name": "ACAV100M"
+    },
+    {
+      "model_id": "mova-720p",
+      "dataset_id": "autorecap-xl",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "47M released audio-text pairs",
+      "reference_name": "AutoReCap-XL"
+    },
+    {
+      "model_id": "mova-720p",
+      "dataset_id": "avgen-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "235 prompts and 3,009 generated examples",
+      "reference_name": "AVGen-Bench"
+    },
+    {
+      "model_id": "mova-720p",
+      "dataset_id": "chronomagic-pro",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "460K time-lapse videos",
+      "reference_name": "ChronoMagic-Pro"
+    },
+    {
+      "model_id": "mova-720p",
+      "dataset_id": "jamendomaxcaps",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "362,298 music-caption records in the hosted release",
+      "reference_name": "JamendoMaxCaps"
+    },
+    {
+      "model_id": "mova-720p",
+      "dataset_id": "openhumanvid",
+      "role": "pretraining",
+      "availability": "gated",
+      "scale": "Current release reports 13.2M samples and 16.7K hours",
+      "reference_name": "OpenHumanVid"
+    },
+    {
+      "model_id": "mova-720p",
+      "dataset_id": "openvid-1m",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "About 1M video-text pairs",
+      "reference_name": "OpenVid-1M"
+    },
+    {
+      "model_id": "mova-720p",
+      "dataset_id": "speakervid-5m",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "5.2M clips and 8,743 hours",
+      "reference_name": "SpeakerVid-5M"
+    },
+    {
+      "model_id": "mova-720p",
+      "dataset_id": "vggsound",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "More than 200K audio-video clips",
+      "reference_name": "VGGSound"
+    },
+    {
+      "model_id": "mova-720p",
+      "dataset_id": "wavcaps",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "403,050 audio-caption pairs",
+      "reference_name": "WavCaps"
+    },
+    {
       "model_id": "musetalk-1-5",
       "dataset_id": "hdtf",
       "role": "fine-tuning",
@@ -16273,6 +17670,14 @@
       "reference_name": "Seedance 1 Pro Human Preferences"
     },
     {
+      "model_id": "seedance-2-0",
+      "dataset_id": "avgen-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "235 prompts and 3,009 generated examples",
+      "reference_name": "AVGen-Bench"
+    },
+    {
       "model_id": "skyreels-v4",
       "dataset_id": "audioset",
       "role": "pretraining",
@@ -16345,6 +17750,14 @@
       "reference_name": "WebVid-10M"
     },
     {
+      "model_id": "sora-2",
+      "dataset_id": "avgen-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "235 prompts and 3,009 generated examples",
+      "reference_name": "AVGen-Bench"
+    },
+    {
       "model_id": "talkverse-5b",
       "dataset_id": "talkverse",
       "role": "fine-tuning",
@@ -16361,12 +17774,44 @@
       "reference_name": "TripVVT-10K"
     },
     {
+      "model_id": "veo-3-1",
+      "dataset_id": "avgen-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "235 prompts and 3,009 generated examples",
+      "reference_name": "AVGen-Bench"
+    },
+    {
+      "model_id": "vera-14b",
+      "dataset_id": "vera-layered-video",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "486K frames across roughly 6K 81-frame layered training samples",
+      "reference_name": "Vera Layered Video Dataset"
+    },
+    {
+      "model_id": "vera-14b",
+      "dataset_id": "videomatte240k",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "240,709 alpha-matted foreground frames from 484 clips",
+      "reference_name": "VideoMatte240K"
+    },
+    {
       "model_id": "videocof",
       "dataset_id": "videocof-50k",
       "role": "fine-tuning",
       "availability": "public",
       "scale": "49,177 released rows; paper mixture of 50K pairs across four editing tasks",
       "reference_name": "VideoCoF-50K"
+    },
+    {
+      "model_id": "wan-2-6",
+      "dataset_id": "avgen-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "235 prompts and 3,009 generated examples",
+      "reference_name": "AVGen-Bench"
     }
   ],
   "dataset_relations": [
@@ -16474,6 +17919,13 @@
       "relationship": "benchmark-derivative",
       "contribution": "Primary benchmark videos from the VGGSound test split",
       "notes": "The main VGGSound-Omni track reuses VGGSound test media with new dense captions, modality labels, human verification, and a separate off-screen extension."
+    },
+    {
+      "source_dataset_id": "videomatte240k",
+      "derived_dataset_id": "vera-layered-video",
+      "relationship": "transformed-derivative",
+      "contribution": "Accurately alpha-matted human foregrounds for synthetic composites",
+      "notes": "VideoMatte240K foregrounds and alpha mattes are paired with generated backgrounds and transformed into layered object-addition and background-change training tuples."
     },
     {
       "source_dataset_id": "yfcc100m",

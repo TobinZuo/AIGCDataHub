@@ -40,6 +40,12 @@ data:
       availability: undisclosed
       scale: null
       notes: Google names the audio, video, and image modalities and processing steps but not the source datasets or licenses.
+    - name: AVGen-Bench
+      catalog_id: avgen-bench
+      role: evaluation
+      availability: public
+      scale: 235 prompts and 3,009 generated examples
+      notes: The official benchmark reports separate Veo 3.1 Fast and Quality configurations; neither is a training source.
   stages:
     - name: pretraining
       modalities:

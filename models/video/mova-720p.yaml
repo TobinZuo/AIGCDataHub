@@ -1,0 +1,163 @@
+id: mova-720p
+name: MOVA-720p
+organization: OpenMOSS
+released_at: "2026-01-29"
+modalities:
+  - video
+  - audio
+tasks:
+  - text-to-video
+  - image-to-video
+  - audio-video-generation
+  - joint-audio-video-generation
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://github.com/OpenMOSS/MOVA
+  weights_url: https://huggingface.co/OpenMOSS-Team/MOVA-720p
+  api_url: null
+architecture:
+  family: Dual-tower mixture-of-experts audio-video diffusion transformer
+  parameters: 32000000000
+  notes: >-
+    Combines a Wan2.2-A14B video tower, a 1.3B audio DiT, and a 2.6B
+    bidirectional bridge with aligned RoPE; 18B of the 32B total parameters are
+    active for a forward pass.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: AutoReCap-XL
+      catalog_id: autorecap-xl
+      role: pretraining
+      availability: public
+      scale: 47M released audio-text pairs
+      notes: Used among the public audio-video and audio-language sources; only metadata and source-video reconstruction instructions are released.
+    - name: ChronoMagic-Pro
+      catalog_id: chronomagic-pro
+      role: pretraining
+      availability: public
+      scale: 460K time-lapse videos
+      notes: Contributes long-range and time-lapse motion examples to the public portion of the video mixture.
+    - name: ACAV100M
+      catalog_id: acav100m
+      role: pretraining
+      availability: public
+      scale: 100M ten-second audio-video clip references
+      notes: Contributes automatically curated audio-visual clips through released YouTube identifiers and timestamps.
+    - name: OpenHumanVid
+      catalog_id: openhumanvid
+      role: pretraining
+      availability: gated
+      scale: Current release reports 13.2M samples and 16.7K hours
+      notes: Named in the joint audio-video training mixture for human-centric motion and speech-bearing video.
+    - name: SpeakerVid-5M
+      catalog_id: speakervid-5m
+      role: pretraining
+      availability: public
+      scale: 5.2M clips and 8,743 hours
+      notes: Supplies talking, listening, and dyadic-conversation video annotations reconstructed from source videos.
+    - name: OpenVid-1M
+      catalog_id: openvid-1m
+      role: pretraining
+      availability: public
+      scale: About 1M video-text pairs
+      notes: Named as a public source in the joint audio-video training mixture.
+    - name: VGGSound
+      catalog_id: vggsound
+      role: pretraining
+      availability: public
+      scale: More than 200K audio-video clips
+      notes: Used both as a joint audio-video source and for general-sound pretraining of the audio tower.
+    - name: WavCaps
+      catalog_id: wavcaps
+      role: pretraining
+      availability: public
+      scale: 403,050 audio-caption pairs
+      notes: Used for general-sound pretraining of the audio tower.
+    - name: JamendoMaxCaps
+      catalog_id: jamendomaxcaps
+      role: pretraining
+      availability: public
+      scale: 362,298 music-caption records in the hosted release
+      notes: Used to specialize the audio tower on music generation.
+    - name: MOVA in-house audio-video and TTS corpora
+      catalog_id: null
+      role: pretraining
+      availability: not-released
+      scale: Included within more than 100K hours of raw joint audio-video data
+      notes: Chinese drama, cartoons, movies, YouTube-derived media, and TTS data are described at source-type level but are not released as a named corpus.
+    - name: AVGen-Bench
+      catalog_id: avgen-bench
+      role: evaluation
+      availability: public
+      scale: 235 prompts and 3,009 generated examples
+      notes: The official leaderboard evaluates a Nano Banana 2 plus MOVA pipeline; this is not a standalone MOVA score or a training source.
+  stages:
+    - name: pretraining
+      modalities:
+        - audio
+        - text
+      source_types:
+        - public-dataset
+        - proprietary
+      operations:
+        - audio-caption-training
+        - music-specialization
+        - text-to-speech-training
+      scale_disclosed: false
+      strategy: Pretrain the audio DiT on WavCaps and VGGSound for general sound, JamendoMaxCaps for music, and an unreleased in-house TTS corpus for speech.
+    - name: pretraining
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - public-dataset
+        - public-web
+        - proprietary
+      operations:
+        - aspect-ratio-normalization
+        - shot-boundary-detection
+        - voice-activity-detection
+        - audio-quality-filtering
+        - video-quality-filtering
+        - audio-video-sync-filtering
+        - semantic-alignment-filtering
+        - multimodal-recaptioning
+      scale_disclosed: true
+      strategy: >-
+        Progress from 61,500 hours at 360p to a 37,600-hour, 16.8M-clip
+        filtered stage and then 11,000 hours of highest-quality 720p clips;
+        normalize clips to 9:16 or 16:9, 24 fps, and about 8.05 seconds.
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - public-dataset
+        - proprietary
+      operations:
+        - high-quality-resampling
+        - resolution-upscaling
+        - lip-sync-filtering
+        - subtitle-filtering
+        - joint-audio-video-training
+      scale_disclosed: true
+      strategy: Concentrate the final stage on 11,000 hours of high-quality 720p data, including 2.5M lip-aligned and 2.4M visually high-quality clips selected in the preceding phase.
+  strategy_summary:
+    - Train audio and video towers separately, then align them through a bidirectional bridge before joint audio-video optimization.
+    - Use progressively stricter audio, video, synchronization, semantic, subtitle, and lip-alignment filters across three resolution and quality phases.
+    - Build captions from MiMo-VL-7B-RL visual descriptions, Qwen3-Omni audio analysis, and GPT-OSS-120B caption fusion.
+  unknowns:
+    - Exact sample counts and mixture weights for each named public dataset.
+    - Identities, rights composition, and per-source scale of the unreleased drama, cartoon, movie, YouTube, and TTS corpora.
+    - Deduplication thresholds, safety filtering details, and the precise split between pretraining and final joint tuning.
+evidence:
+  release: https://github.com/OpenMOSS/MOVA
+  technical_report: https://arxiv.org/abs/2602.08794
+  repository: https://github.com/OpenMOSS/MOVA
+status: verified
+last_verified: "2026-07-27"

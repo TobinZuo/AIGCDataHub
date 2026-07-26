@@ -62,5 +62,6 @@ evidence:
   used_by:
     - MVDiT
     - Open-Sora
+    - MOVA-720p
 status: verified
 last_verified: "2026-07-26"

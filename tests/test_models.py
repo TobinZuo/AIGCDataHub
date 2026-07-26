@@ -268,6 +268,48 @@ class ModelCatalogTests(unittest.TestCase):
         self.assertTrue(cards["videocof"]["data"]["exact_mixture_disclosed"])
         self.assertEqual(cards["humo-17b"]["architecture"]["parameters"], 17000000000)
 
+    def test_mova_and_vera_resolve_public_training_data_and_external_evaluation(self) -> None:
+        cards = {card["id"]: card for _, card in load_models()}
+        mova = cards["mova-720p"]
+        vera = cards["vera-14b"]
+        mova_ids = {
+            item["catalog_id"]
+            for item in mova["data"]["datasets"]
+            if item["catalog_id"]
+        }
+        self.assertEqual(
+            mova_ids,
+            {
+                "autorecap-xl",
+                "chronomagic-pro",
+                "acav100m",
+                "openhumanvid",
+                "speakervid-5m",
+                "openvid-1m",
+                "vggsound",
+                "wavcaps",
+                "jamendomaxcaps",
+                "avgen-bench",
+            },
+        )
+        self.assertEqual(mova["architecture"]["parameters"], 32000000000)
+        self.assertTrue(mova["data"]["exact_datasets_disclosed"])
+        self.assertEqual(
+            {item["catalog_id"] for item in vera["data"]["datasets"]},
+            {None, "vera-layered-video", "videomatte240k"},
+        )
+        self.assertEqual(vera["architecture"]["parameters"], 42000000000)
+        self.assertEqual(vera["access"]["status"], "research-preview")
+
+    def test_undisclosed_training_cards_can_link_public_evaluation_sets(self) -> None:
+        cards = {card["id"]: card for _, card in load_models()}
+        for model_id in ("seedance-2-0", "wan-2-6"):
+            with self.subTest(model=model_id):
+                card = cards[model_id]
+                self.assertEqual(card["data"]["disclosure_level"], "undisclosed")
+                self.assertEqual(card["data"]["datasets"][0]["role"], "evaluation")
+                self.assertEqual(card["data"]["datasets"][0]["catalog_id"], "avgen-bench")
+
         cards = {card["id"]: card for _, card in load_models()}
         lens_ids = {item["catalog_id"] for item in cards["lens"]["data"]["datasets"]}
         self.assertEqual(lens_ids, {"lens-800m", "lens-rl-8k"})

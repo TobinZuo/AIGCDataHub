@@ -1,0 +1,81 @@
+id: avgen-bench
+name: AVGen-Bench
+organization: Microsoft Research
+released_at: "2026-04-09"
+release_date_source: https://arxiv.org/abs/2604.08540
+modality: evaluation
+tasks:
+  - joint-audio-video-evaluation
+  - text-to-video-evaluation
+  - lip-sync-evaluation
+  - audiovisual-physics-evaluation
+stages:
+  - evaluation
+  - data-curation
+description: >-
+  A holistic benchmark for native and pipeline-based text-to-audio-video
+  generation with 235 prompts across 11 content categories, 3,009 generated
+  samples, multidimensional automatic metrics, and an official leaderboard.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/microsoft/AVGen-Bench
+  requires_account: false
+  notes: Prompt metadata and about 20.1 GB of generated benchmark videos are hosted on Hugging Face without a gate.
+scale:
+  samples: 3009
+  source_items: 235
+  hours: null
+  approximate: false
+  notes: The official release contains outputs from 13 model or pipeline configurations for 235 prompts spanning 11 categories.
+annotations:
+  types:
+    - prompt
+    - content-category
+    - generator-name
+    - visual-quality-score
+    - audio-quality-score
+    - audio-video-sync-score
+    - lip-sync-score
+    - text-rendering-score
+    - face-consistency-score
+    - physics-score
+    - semantic-alignment-score
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: MIT
+  media: Generated model outputs subject to repository terms and each generator provider's output terms
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The Hugging Face repository is marked MIT, but generated output rights and embedded people, brands, music, speech, or text may require separate review.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - temporal-consistency
+    - motion
+    - provenance
+  known_limitations:
+    - The leaderboard mixes native joint generators and multi-model pipelines, so scores do not isolate every component model.
+    - A 235-prompt suite cannot cover the full distribution of audiovisual storytelling, languages, cultures, safety, or long-form temporal structure.
+    - Provider versions and inference settings can change after the fixed generated-output snapshot.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Preserve prompt category, exact generator or pipeline label, version, inference setting, output file, and metric version when reproducing comparisons.
+evidence:
+  homepage: https://microsoft.github.io/AVGen-Bench/
+  paper: https://arxiv.org/abs/2604.08540
+  used_by:
+    - Seedance 2.0
+    - Veo 3.1
+    - Sora 2
+    - Wan 2.6
+    - LTX-2.3
+    - MOVA-720p
+status: verified
+last_verified: "2026-07-27"

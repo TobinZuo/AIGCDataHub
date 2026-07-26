@@ -119,6 +119,29 @@ platforms:
     access_boundary: source-platform-not-dataset
     rights_review: required
     last_reviewed: "2026-07-27"
+  - id: mixkit
+    name: Mixkit
+    homepage: https://mixkit.co/
+    category: stock-media
+    modalities: [video, audio, image, text]
+    relevant_scenarios: [image-generation, video-generation, digital-human]
+    content_scope: Contributor stock video, music, sound effects, artwork, previews, tags, and downloadable media variants.
+    data_access:
+      status: licensed-service
+      interface_name: Mixkit stock-media catalog
+      interface_url: https://mixkit.co/free-stock-video/
+      scope: Browser-based search, preview, and item-level download for stock video and other media under asset-type and item-specific licenses.
+      requirements: Review whether each asset uses the Free or Restricted license and confirm the intended ML, redistribution, privacy, and commercial use separately.
+      training_rights: not-granted-by-interface
+    monitoring:
+      url: https://mixkit.co/license/
+      mode: content-revision
+      focus: Free versus Restricted item licenses, asset-type terms, commercial use, redistribution, and policy changes.
+      priority: high
+    source_status: candidate
+    access_boundary: source-platform-not-dataset
+    rights_review: required
+    last_reviewed: "2026-07-27"
   - id: netflix
     name: Netflix
     homepage: https://www.netflix.com/

@@ -1,0 +1,81 @@
+id: vera-layered-video
+name: Vera Layered Video Dataset
+organization: Netflix and California Institute of Technology
+released_at: "2026-06-22"
+release_date_source: https://arxiv.org/abs/2606.23610
+modality: video
+tasks:
+  - layered-video-generation
+  - video-editing
+  - object-addition
+  - background-replacement
+  - video-matting
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  A public layered video-editing corpus containing source, edit, alpha-matte,
+  and composite videos built from VideoMatte240K plus human-curated Pexels and
+  Mixkit footage for content-preserving object addition and background change.
+derived_from:
+  - catalog_id: videomatte240k
+    relationship: transformed-derivative
+    contribution: Accurately alpha-matted human foregrounds for synthetic composites
+    notes: VideoMatte240K foregrounds and alpha mattes are paired with generated backgrounds and transformed into layered object-addition and background-change training tuples.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/netflix/Vera-Layered-Video-Dataset
+  requires_account: false
+  notes: Layered video files and metadata are hosted openly on Hugging Face; current repository storage is about 220 GB and may change with revisions.
+scale:
+  samples: 18142
+  source_items: 6000
+  hours: null
+  approximate: true
+  notes: >-
+    The paper reports roughly 6K 81-frame training tuples and 486K frames. The
+    hosted release exposes 11,996 49-frame train records, 6,005 81-frame train
+    records, and 141 test records; these surfaces overlap and should not be
+    interpreted as 18,142 independent source videos.
+annotations:
+  types:
+    - source-video
+    - edit-instruction
+    - edit-layer
+    - alpha-matte
+    - composite-video
+    - edit-task
+    - source-provenance
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Apache-2.0
+  media: Apache-2.0 repository terms plus VideoMatte240K, Pexels Free License, and Mixkit Free License source conditions
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The dataset repository is Apache-2.0, while the source components retain their own licenses; verify stock-asset provenance and the exact source terms before production reuse.
+quality:
+  dimensions:
+    - visual-quality
+    - temporal-consistency
+    - motion
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Synthetic VideoMatte240K composites emphasize centered human subjects and static cameras.
+    - Realistic stock-video subsets are filtered from Pexels and Mixkit and may not represent everyday, geographic, cultural, or long-form video distributions.
+    - The corpus targets object addition and background replacement rather than the full space of video editing operations.
+    - Hosted row and file counts reflect multiple frame-length variants and component layers, not unique source-video count.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Keep the four video layers joined by sample ID, preserve 49-frame versus 81-frame variants, task label, source family, resolution, and all alpha-matte precision.
+evidence:
+  homepage: https://huggingface.co/datasets/netflix/Vera-Layered-Video-Dataset
+  paper: https://arxiv.org/abs/2606.23610
+  used_by:
+    - Vera-14B
+status: verified
+last_verified: "2026-07-27"

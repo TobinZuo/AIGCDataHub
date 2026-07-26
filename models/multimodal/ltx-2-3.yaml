@@ -39,6 +39,12 @@ data:
       availability: undisclosed
       scale: null
       notes: Used to rebuild the LTX-2.3 latent space and improve fine detail.
+    - name: AVGen-Bench
+      catalog_id: avgen-bench
+      role: evaluation
+      availability: public
+      scale: 235 prompts and 3,009 generated examples
+      notes: The official benchmark evaluates the LTX-2.3 release; it is not part of the model's training mixture.
   stages:
     - name: pretraining
       modalities:
@@ -79,4 +85,3 @@ evidence:
   repository: https://github.com/Lightricks/LTX-2
 status: verified
 last_verified: "2026-07-26"
-
