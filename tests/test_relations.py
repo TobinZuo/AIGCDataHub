@@ -21,7 +21,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
             for reference in model["data"]["datasets"]
         )
         self.assertEqual(len(self.payload["relations"]), expected)
-        self.assertGreaterEqual(len(self.payload["relations"]), 19)
+        self.assertGreaterEqual(len(self.payload["relations"]), 23)
 
     def test_model_and_dataset_backlinks_are_symmetric(self) -> None:
         relation_pairs = {
@@ -32,6 +32,37 @@ class ModelDatasetRelationTests(unittest.TestCase):
             with self.subTest(model=model_id, dataset=dataset_id):
                 self.assertIn(dataset_id, self.models[model_id]["linked_dataset_ids"])
                 self.assertIn(model_id, self.datasets[dataset_id]["linked_model_ids"])
+
+    def test_dataset_lineage_index_and_backlinks_are_symmetric(self) -> None:
+        self.assertEqual(len(self.payload["dataset_relations"]), 12)
+        relation_pairs = {
+            (relation["source_dataset_id"], relation["derived_dataset_id"])
+            for relation in self.payload["dataset_relations"]
+        }
+        self.assertIn(("openhumanvid", "talkverse"), relation_pairs)
+        self.assertIn(("panda-70m", "talkverse"), relation_pairs)
+        self.assertIn(("openhumanvid", "openhumanvid-talking"), relation_pairs)
+        self.assertIn(("audioset", "soundatlas"), relation_pairs)
+        self.assertIn(("vggsound", "vggsound-omni"), relation_pairs)
+        self.assertIn(("yfcc100m", "commoncatalog"), relation_pairs)
+        self.assertIn(("mvhumannet", "mvhumannet-plus-plus"), relation_pairs)
+        self.assertIn(("openve-3m", "openve-bench"), relation_pairs)
+
+        for source_id, derived_id in relation_pairs:
+            with self.subTest(source=source_id, derived=derived_id):
+                self.assertIn(derived_id, self.datasets[source_id]["downstream_dataset_ids"])
+                self.assertIn(source_id, self.datasets[derived_id]["upstream_dataset_ids"])
+
+    def test_dataset_lineage_preserves_relationship_evidence(self) -> None:
+        relation = next(
+            item
+            for item in self.payload["dataset_relations"]
+            if item["source_dataset_id"] == "openhumanvid"
+            and item["derived_dataset_id"] == "openhumanvid-talking"
+        )
+        self.assertEqual(relation["relationship"], "filtered-subset")
+        self.assertIn("parts 001 through 040", relation["contribution"])
+        self.assertIn("speech-active", relation["notes"])
 
     def test_representative_scenario_relations_are_navigable(self) -> None:
         self.assertIn("graphvid-bench", self.models["graphvid"]["linked_dataset_ids"])
@@ -52,6 +83,20 @@ class ModelDatasetRelationTests(unittest.TestCase):
         )
         self.assertIn("talkverse", self.models["talkverse-5b"]["linked_dataset_ids"])
         self.assertIn("talkverse-5b", self.datasets["talkverse"]["linked_model_ids"])
+        self.assertIn(
+            "commoncatalog",
+            self.models["commoncanvas-xl-c"]["linked_dataset_ids"],
+        )
+        self.assertIn(
+            "commoncanvas-xl-c",
+            self.datasets["commoncatalog"]["linked_model_ids"],
+        )
+        self.assertIn("gpic", self.models["gpic-baselines"]["linked_dataset_ids"])
+        self.assertIn("gpic-baselines", self.datasets["gpic"]["linked_model_ids"])
+        self.assertEqual(
+            set(self.models["openve-edit"]["linked_dataset_ids"]),
+            {"openve-3m", "openve-bench"},
+        )
 
     def test_dataset_monitoring_is_joined_by_canonical_catalog_id(self) -> None:
         self.assertEqual(
@@ -90,6 +135,12 @@ class ModelDatasetRelationTests(unittest.TestCase):
             },
         )
         self.assertEqual(self.datasets["finevideo"]["monitoring"]["priority"], "high")
+        self.assertEqual(self.datasets["koala-36m"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["freeman"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["commoncatalog"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["fine-t2i"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["gpic"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["openve-3m"]["monitoring"]["priority"], "critical")
         self.assertIsNone(self.datasets["graphvid-bench"]["monitoring"])
 
 

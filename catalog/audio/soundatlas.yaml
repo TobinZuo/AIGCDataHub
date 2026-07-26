@@ -16,6 +16,15 @@ stages:
 description: >-
   A roughly 470-thousand-pair audio-caption corpus derived from AudioSet and
   VGGSound with temporally grounded descriptions of audible and visual context.
+derived_from:
+  - catalog_id: audioset
+    relationship: source-component
+    contribution: Source audiovisual clips and event metadata
+    notes: AudioSet is one of the two named upstream collections routed through SoundAtlas captioning and multimodal-consistency filtering.
+  - catalog_id: vggsound
+    relationship: source-component
+    contribution: Source audiovisual clips and class metadata
+    notes: VGGSound is one of the two named upstream collections routed through SoundAtlas captioning and multimodal-consistency filtering.
 access:
   status: gated
   type: hosted

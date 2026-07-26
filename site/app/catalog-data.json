@@ -1,5 +1,5 @@
 {
-  "format_version": 6,
+  "format_version": 7,
   "generated_from": [
     "catalog/**/*.yaml",
     "models/**/*.yaml",
@@ -128,6 +128,8 @@
       ],
       "scale_label": "~27.5K",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "graphvid"
       ]
@@ -149,6 +151,14 @@
         "data-curation"
       ],
       "description": "A speech-active talking-head subset derived from OpenHumanVid, with camera trajectories, active-speaker intervals, face and lip boxes, motion scores, captions, and clips packaged for audio-conditioned avatar training.",
+      "derived_from": [
+        {
+          "catalog_id": "openhumanvid",
+          "relationship": "filtered-subset",
+          "contribution": "Source talking-head videos from parts 001 through 040",
+          "notes": "The derivative selects motion-rich, speech-active, single-speaker intervals from OpenHumanVid and adds camera, face, lip, motion, and caption annotations."
+        }
+      ],
       "access": {
         "status": "open",
         "type": "hosted",
@@ -228,6 +238,10 @@
         "priority": "critical",
         "source_url": "https://huggingface.co/api/datasets/Haosonnn/OpenHumanVid-Talking"
       },
+      "upstream_dataset_ids": [
+        "openhumanvid"
+      ],
+      "downstream_dataset_ids": [],
       "linked_model_ids": []
     },
     {
@@ -321,6 +335,8 @@
         "priority": "critical",
         "source_url": "https://huggingface.co/api/datasets/NXN-Labs/VITON-HD-edit"
       },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "ctrlvton"
       ]
@@ -406,7 +422,106 @@
       ],
       "scale_label": "60K",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": []
+    },
+    {
+      "id": "gpic",
+      "name": "GPIC",
+      "organization": "Stanford Vision Lab and collaborators",
+      "released_at": "2026-05-28",
+      "release_date_source": "https://arxiv.org/abs/2605.30341",
+      "modality": "image",
+      "tasks": [
+        "text-to-image",
+        "image-text-pretraining",
+        "generative-model-evaluation"
+      ],
+      "stages": [
+        "pretraining",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A centrally hosted, permissively licensed image corpus for visual generation, with 100M training images, held-out validation and test splits, multiple caption granularities, safety filtering, deduplication, and attribution.",
+      "access": {
+        "status": "gated",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/stanford-vision-lab/gpic",
+        "requires_account": true,
+        "notes": "The repository is public but users must sign in, accept the conditions, and share contact information before accessing files."
+      },
+      "scale": {
+        "samples": 101200000,
+        "source_items": 101200000,
+        "hours": null,
+        "approximate": false,
+        "notes": "The release contains 100M train, 200K validation, and 1M test examples, totaling about 28 trillion pixels."
+      },
+      "annotations": {
+        "types": [
+          "multi-granularity-caption",
+          "item-license",
+          "license-url",
+          "attribution",
+          "retrieval-time",
+          "image-dimensions",
+          "split-membership"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "MIT",
+        "media": "Per-image permissive licenses with attribution records",
+        "commercial_use": "allowed",
+        "redistribution": "review-required",
+        "notes": "The maintainers state every image is licensed for research and commercial use; consumers must still preserve the per-item license and attribution metadata."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "safety",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Model-generated captions can hallucinate or omit details and are primarily English.",
+          "Permissive licensing does not eliminate privacy, publicity, sensitive-content, or takedown obligations.",
+          "Safety and deduplication filters can introduce systematic coverage and representation gaps."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/image_text",
+        "recommended_format": "webdataset",
+        "notes": "Stream the tar shards, retain the JSON record beside every image, pin a commit revision, and propagate removals across local mirrors."
+      },
+      "evidence": {
+        "homepage": "https://gpic.stanford.edu/",
+        "paper": "https://arxiv.org/abs/2605.30341",
+        "used_by": [
+          "GPIC Baseline Models"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/image/gpic.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "101.2M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/stanford-vision-lab/gpic"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "gpic-baselines"
+      ]
     },
     {
       "id": "eria-1k",
@@ -487,6 +602,8 @@
       ],
       "scale_label": "1K",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "ernie-image"
       ]
@@ -571,6 +688,8 @@
       ],
       "scale_label": "~8K",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "lens"
       ]
@@ -653,6 +772,8 @@
       ],
       "scale_label": "800M",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "lens"
       ]
@@ -745,6 +866,8 @@
         "priority": "critical",
         "source_url": "https://huggingface.co/api/datasets/Yuanhao-Harry-Wang/fitvto-100k"
       },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "fit-vto"
       ]
@@ -846,9 +969,107 @@
         "priority": "critical",
         "source_url": "https://huggingface.co/api/datasets/TripVVT/TripVVT-10K"
       },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "tripvvt"
       ]
+    },
+    {
+      "id": "fine-t2i",
+      "name": "Fine-T2I",
+      "organization": "Northeastern University",
+      "released_at": "2026-02-10",
+      "release_date_source": "https://arxiv.org/abs/2602.09439",
+      "modality": "image",
+      "tasks": [
+        "text-to-image",
+        "image-text-fine-tuning",
+        "instruction-following-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A high-resolution text-to-image fine-tuning corpus that combines synthetic generations with curated professional photography, dual prompts, explicit task and style coverage, and aggressive alignment and quality filtering.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/ma-xu/fine-t2i",
+        "requires_account": false,
+        "notes": "WebDataset archives can be streamed from Hugging Face; the repository is large and has changed while the release was being completed."
+      },
+      "scale": {
+        "samples": 6314117,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The current card lists 6,145,693 synthetic samples plus 168,424 curated real images, totaling 6,314,117 pairs and about 2 TB."
+      },
+      "annotations": {
+        "types": [
+          "original-prompt",
+          "enhanced-prompt",
+          "task-category",
+          "visual-style",
+          "aspect-ratio",
+          "resolution",
+          "quality-metadata"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Apache-2.0",
+        "media": "Dataset release terms layered over synthetic outputs and licensed professional-photo sources",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The dataset card labels the repository Apache-2.0, but users should separately review the source platforms and generator-output terms for the underlying images."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "safety",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Synthetic samples dominate the mixture and can reproduce the biases and artifacts of the source generators and prompt designer.",
+          "Quality filters reject more than 95 percent of candidates and may narrow visual, cultural, and aesthetic diversity.",
+          "The curated real-image subset inherits source-platform terms and photographer representation biases."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/image_text",
+        "recommended_format": "webdataset",
+        "notes": "Pin the repository revision, stream shards, retain prompt variants and source type, and audit synthetic versus real mixture weights per training run."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/ma-xu/fine-t2i",
+        "paper": "https://arxiv.org/abs/2602.09439",
+        "used_by": [
+          "LlamaGen",
+          "Stable Diffusion XL"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/image/fine-t2i.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "6.3M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/ma-xu/fine-t2i"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
     },
     {
       "id": "audiovisual-translation-dub",
@@ -940,6 +1161,8 @@
         "priority": "critical",
         "source_url": "https://huggingface.co/api/datasets/justdubit/audiovisual_translation_dub"
       },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "just-dub-it"
       ]
@@ -962,6 +1185,14 @@
         "data-curation"
       ],
       "description": "A unified audio-generation benchmark derived from the VGGSound test set with human-verified dense captions for more than 14,000 videos and a dedicated 1,613-item off-screen track spanning natural events and synthetic music.",
+      "derived_from": [
+        {
+          "catalog_id": "vggsound",
+          "relationship": "benchmark-derivative",
+          "contribution": "Primary benchmark videos from the VGGSound test split",
+          "notes": "The main VGGSound-Omni track reuses VGGSound test media with new dense captions, modality labels, human verification, and a separate off-screen extension."
+        }
+      ],
       "access": {
         "status": "gated",
         "type": "hosted",
@@ -1034,6 +1265,10 @@
         "priority": "critical",
         "source_url": "https://huggingface.co/api/datasets/Dalision/Omni2Sound_Benchmark"
       },
+      "upstream_dataset_ids": [
+        "vggsound"
+      ],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -1057,6 +1292,20 @@
         "data-curation"
       ],
       "description": "A roughly 470-thousand-pair audio-caption corpus derived from AudioSet and VGGSound with temporally grounded descriptions of audible and visual context.",
+      "derived_from": [
+        {
+          "catalog_id": "audioset",
+          "relationship": "source-component",
+          "contribution": "Source audiovisual clips and event metadata",
+          "notes": "AudioSet is one of the two named upstream collections routed through SoundAtlas captioning and multimodal-consistency filtering."
+        },
+        {
+          "catalog_id": "vggsound",
+          "relationship": "source-component",
+          "contribution": "Source audiovisual clips and class metadata",
+          "notes": "VGGSound is one of the two named upstream collections routed through SoundAtlas captioning and multimodal-consistency filtering."
+        }
+      ],
       "access": {
         "status": "gated",
         "type": "hosted",
@@ -1123,6 +1372,11 @@
       "scenario_ids": [],
       "scale_label": "~470K",
       "monitoring": null,
+      "upstream_dataset_ids": [
+        "audioset",
+        "vggsound"
+      ],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -1144,6 +1398,20 @@
         "data-curation"
       ],
       "description": "The released metadata and annotation layer for TalkVerse's large-scale, human-centric audio-video training corpus, curated from OpenHumanVid and Panda-70M for audio-driven talking-video generation.",
+      "derived_from": [
+        {
+          "catalog_id": "openhumanvid",
+          "relationship": "source-component",
+          "contribution": "Human-centric source videos and metadata",
+          "notes": "The public TalkVerse metadata exposes an OpenHumanVid partition of approximately 796K rows after TalkVerse-specific filtering and annotation."
+        },
+        {
+          "catalog_id": "panda-70m",
+          "relationship": "source-component",
+          "contribution": "General human-related source videos and metadata",
+          "notes": "The public TalkVerse metadata exposes a Panda-70M partition of approximately 1.34M rows after TalkVerse-specific filtering and annotation."
+        }
+      ],
       "access": {
         "status": "gated",
         "type": "metadata",
@@ -1224,9 +1492,316 @@
         "priority": "critical",
         "source_url": "https://huggingface.co/api/datasets/zhenzhiwang/TalkVerse"
       },
+      "upstream_dataset_ids": [
+        "openhumanvid",
+        "panda-70m"
+      ],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "talkverse-5b"
       ]
+    },
+    {
+      "id": "openve-bench",
+      "name": "OpenVE-Bench",
+      "organization": "Zhejiang University and ByteDance",
+      "released_at": "2025-12-08",
+      "release_date_source": "https://arxiv.org/abs/2512.07826",
+      "modality": "evaluation",
+      "tasks": [
+        "instruction-guided-video-editing",
+        "video-editing-evaluation"
+      ],
+      "stages": [
+        "evaluation"
+      ],
+      "description": "A 431-pair benchmark for spatially and non-spatially aligned instruction-led video editing, covering the same eight edit categories as OpenVE-3M and using three metrics designed to track human judgments.",
+      "derived_from": [
+        {
+          "catalog_id": "openve-3m",
+          "relationship": "benchmark-derivative",
+          "contribution": "Editing taxonomy, source and edited video pairs, and instruction format",
+          "notes": "The OpenVE project presents the benchmark as the held-out evaluation companion constructed with the OpenVE-3M pipeline and categories."
+        }
+      ],
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/Lewandofski/OpenVE-Bench",
+        "requires_account": false,
+        "notes": "The 431-row video benchmark is directly hosted on Hugging Face."
+      },
+      "scale": {
+        "samples": 431,
+        "source_items": 431,
+        "hours": null,
+        "approximate": false,
+        "notes": "The project reports 431 video-edit pairs across eight fine-grained categories, averaging more than 50 clips per category."
+      },
+      "annotations": {
+        "types": [
+          "editing-instruction",
+          "source-video",
+          "edited-video",
+          "edit-category",
+          "metric-target"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0",
+        "media": "CC-BY-NC-4.0 release terms plus source-dependent rights",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The Hugging Face card labels the benchmark CC-BY-NC-4.0; users should retain source provenance and review any component-media constraints."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "temporal-consistency",
+          "motion",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "A 431-pair benchmark cannot exhaustively cover instructions, subjects, motion, or professional editing styles.",
+          "Benchmark construction and metric design share the OpenVE taxonomy and may favor systems trained on similar edit distributions."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "Keep task categories balanced in reporting and separate spatially aligned from non-spatially aligned scores."
+      },
+      "evidence": {
+        "homepage": "https://lewandofskee.github.io/projects/OpenVE/",
+        "paper": "https://arxiv.org/abs/2512.07826",
+        "used_by": [
+          "OpenVE-Edit"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/evaluation/openve-bench.yaml",
+      "scenario_ids": [],
+      "scale_label": "431",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/Lewandofski/OpenVE-Bench"
+      },
+      "upstream_dataset_ids": [
+        "openve-3m"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "openve-edit"
+      ]
+    },
+    {
+      "id": "openve-3m",
+      "name": "OpenVE-3M",
+      "organization": "Zhejiang University and ByteDance",
+      "released_at": "2025-12-08",
+      "release_date_source": "https://arxiv.org/abs/2512.07826",
+      "modality": "video",
+      "tasks": [
+        "instruction-guided-video-editing",
+        "video-to-video",
+        "text-guided-video-editing"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A large synthetic instruction-guided video-editing corpus spanning six spatially aligned and two non-spatially aligned edit categories, with source videos, edited videos, instructions, and rigorous generation-time filtering.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/Lewandofski/OpenVE-3M",
+        "requires_account": false,
+        "notes": "Video archives and per-category CSV triplets are hosted on Hugging Face in a multi-terabyte release."
+      },
+      "scale": {
+        "samples": 3000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The project reports more than 3M editing triplets at 720p and 65 to 129 frames; the Hugging Face viewer estimates about 4.52M individual video rows because records include component media."
+      },
+      "annotations": {
+        "types": [
+          "editing-instruction",
+          "source-video",
+          "edited-video",
+          "edit-category",
+          "spatial-alignment-class"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0",
+        "media": "CC-BY-NC-4.0 release terms plus source and generator dependencies",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The official card marks the dataset non-commercial; source-video and synthetic-generator terms must also be reviewed for derived releases."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "temporal-consistency",
+          "motion",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Synthetic edited targets can contain artifacts or biases inherited from the teacher pipeline.",
+          "The eight edit categories do not cover the full distribution of professional editing, localization, identity, or audio workflows.",
+          "Headline triplet counts and hosted row estimates use different units and should not be combined."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/video_text",
+        "recommended_format": "webdataset",
+        "notes": "Keep original and edited videos paired with instruction and category, verify archive joins, and record teacher and filter versions when available."
+      },
+      "evidence": {
+        "homepage": "https://lewandofskee.github.io/projects/OpenVE/",
+        "paper": "https://arxiv.org/abs/2512.07826",
+        "used_by": [
+          "OpenVE-Edit"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/video/openve-3m.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~3M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/Lewandofski/OpenVE-3M"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "openve-bench"
+      ],
+      "linked_model_ids": [
+        "openve-edit"
+      ]
+    },
+    {
+      "id": "mvhumannet-plus-plus",
+      "name": "MVHumanNet++",
+      "organization": "GAP-Lab, CUHK-Shenzhen",
+      "released_at": "2025-05-03",
+      "release_date_source": "https://arxiv.org/abs/2505.01838",
+      "modality": "3d",
+      "tasks": [
+        "digital-human",
+        "3d-avatar-generation",
+        "human-digitization",
+        "multi-view-human-reconstruction"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "An annotation-enhanced release of MVHumanNet that adds improved masks and SMPL-X estimates plus normal and depth maps for multi-view human digitization and generative-avatar research.",
+      "derived_from": [
+        {
+          "catalog_id": "mvhumannet",
+          "relationship": "annotation-derivative",
+          "contribution": "Original multi-view human captures, identities, outfits, motions, and calibrations",
+          "notes": "MVHumanNet++ retains the MVHumanNet capture corpus and publishes newly processed geometry and segmentation annotations."
+        }
+      ],
+      "access": {
+        "status": "gated",
+        "type": "request",
+        "url": "https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus",
+        "requires_account": true,
+        "notes": "Users must read the Terms of Use, submit the official form, and use the granted download links."
+      },
+      "scale": {
+        "samples": 645000000,
+        "source_items": 60000,
+        "hours": null,
+        "approximate": true,
+        "notes": "The underlying full corpus retains MVHumanNet's 645M-frame scope; the current packaged release filters about 7K outfits, uses 16 common camera views, and samples every 25 frames."
+      },
+      "annotations": {
+        "types": [
+          "multi-view-image",
+          "enhanced-human-mask",
+          "camera-parameters",
+          "2d-keypoints",
+          "3d-keypoints",
+          "improved-smplx-parameters",
+          "normal-map",
+          "depth-map",
+          "textual-description"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "MVHumanNet and MVHumanNet++ Terms of Use",
+        "media": "Non-commercial research and educational use only",
+        "commercial_use": "noncommercial",
+        "redistribution": "prohibited",
+        "notes": "Data use is controlled by the project-specific terms and form; the repository's CC-BY-NC-4.0 code license is not a blanket media license."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "geometry-quality",
+          "multi-view-consistency",
+          "temporal-consistency",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Current packaged coverage and sampling are smaller than the headline full-corpus counts.",
+          "Normal, depth, segmentation, and SMPL-X outputs are estimated annotations and can contain correlated model errors.",
+          "Human biometric and identity data remain sensitive even under non-commercial research terms."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Version the annotation pipeline separately from the underlying captures and keep confidence, camera, outfit, and identity metadata attached."
+      },
+      "evidence": {
+        "homepage": "https://kevinlee09.github.io/research/MVHumanNet%2B%2B/",
+        "paper": "https://arxiv.org/abs/2505.01838",
+        "used_by": []
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/3d/mvhumannet-plus-plus.yaml",
+      "scenario_ids": [],
+      "scale_label": "~645M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://api.github.com/repos/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus/commits/main"
+      },
+      "upstream_dataset_ids": [
+        "mvhumannet"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
     },
     {
       "id": "audiocaps-2-0",
@@ -1247,6 +1822,14 @@
         "evaluation"
       ],
       "description": "The second AudioCaps release, containing 98,606 human-written caption rows grounded in ten-second AudioSet and YouTube segments, roughly doubling the original audio-caption collection.",
+      "derived_from": [
+        {
+          "catalog_id": "audioset",
+          "relationship": "annotation-derivative",
+          "contribution": "Ten-second source segments and AudioSet offsets",
+          "notes": "AudioCaps selects AudioSet-referenced YouTube segments and adds human natural-language captions while retaining the source video ID and temporal offset."
+        }
+      ],
       "access": {
         "status": "gated",
         "type": "request",
@@ -1310,6 +1893,10 @@
       "scenario_ids": [],
       "scale_label": "98.6K",
       "monitoring": null,
+      "upstream_dataset_ids": [
+        "audioset"
+      ],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -1404,7 +1991,106 @@
         "video-generation"
       ],
       "scale_label": "~13.2M",
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://api.github.com/repos/fudan-generative-vision/OpenHumanVid/commits/main"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "openhumanvid-talking",
+        "talkverse"
+      ],
+      "linked_model_ids": []
+    },
+    {
+      "id": "koala-36m",
+      "name": "Koala-36M",
+      "organization": "Kling AI Research",
+      "released_at": "2024-10-10",
+      "release_date_source": "https://arxiv.org/abs/2410.08260",
+      "modality": "video",
+      "tasks": [
+        "text-to-video",
+        "video-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A large video-text corpus built with transition-aware temporal splitting, long structured captions, and a learned video-training-suitability score for text-to-video pretraining and condition-aware data selection.",
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://huggingface.co/datasets/Koala-36M/Koala-36M-v1",
+        "requires_account": false,
+        "notes": "The hosted release contains clip URLs, timestamps, captions, and quality scores rather than redistributable source video files."
+      },
+      "scale": {
+        "samples": 35961606,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "Hugging Face estimates 35,961,606 rows; the paper and project round the collection to 36M clips."
+      },
+      "annotations": {
+        "types": [
+          "structured-caption",
+          "clip-timestamp",
+          "clarity-score",
+          "aesthetic-score",
+          "motion-score",
+          "video-training-suitability-score"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Unknown",
+        "media": "Source-dependent YouTube terms and uploader rights",
+        "commercial_use": "unknown",
+        "redistribution": "review-required",
+        "notes": "The official dataset card does not state a dataset-specific license; URL metadata does not grant rights to download, train on, or redistribute source videos."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The release is a URL and metadata index, so availability can change when source videos are removed or restricted.",
+          "Very long model-generated captions can contain hallucinations or emphasize details that are weakly visible in the clip.",
+          "The learned suitability score encodes annotator and model preferences and can narrow cultural, stylistic, and motion diversity."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/video_text",
+        "recommended_format": "parquet",
+        "notes": "Preserve the source URL and timestamps, revalidate media rights, and pin the metadata revision before resolving any video."
+      },
+      "evidence": {
+        "homepage": "https://github.com/KlingAIResearch/Koala-36M",
+        "paper": "https://arxiv.org/abs/2410.08260",
+        "used_by": []
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/video/koala-36m.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~36M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/Koala-36M/Koala-36M-v1"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": []
     },
     {
@@ -1490,6 +2176,8 @@
         "priority": "high",
         "source_url": "https://huggingface.co/api/datasets/HuggingFaceFV/finevideo"
       },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": []
     },
     {
@@ -1572,6 +2260,8 @@
       ],
       "scale_label": "~5.8B",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": []
     },
     {
@@ -1660,6 +2350,103 @@
         "priority": "high",
         "source_url": "https://huggingface.co/api/datasets/nkp37/OpenVid-1M"
       },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
+    },
+    {
+      "id": "mvhumannet",
+      "name": "MVHumanNet",
+      "organization": "GAP-Lab, CUHK-Shenzhen",
+      "released_at": "2024-05-07",
+      "release_date_source": "https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet",
+      "modality": "3d",
+      "tasks": [
+        "digital-human",
+        "3d-avatar-generation",
+        "text-driven-human-image-generation",
+        "human-nerf-reconstruction"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning"
+      ],
+      "description": "A large multi-view daily-dressing human capture corpus with identities, outfits, motion sequences, calibrated imagery, parametric bodies, and text descriptions for human rendering, reconstruction, and avatar generation.",
+      "access": {
+        "status": "gated",
+        "type": "request",
+        "url": "https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet",
+        "requires_account": true,
+        "notes": "Users accept the project terms, submit a form, and receive expiring download links for the released parts."
+      },
+      "scale": {
+        "samples": 645000000,
+        "source_items": 60000,
+        "hours": null,
+        "approximate": true,
+        "notes": "The full project scope is 645M frames, 60K motion sequences, 9K outfits, and 4.5K identities; the repository says the public Part 1 plus Part 2 release covers about 4K identities and 8K outfits."
+      },
+      "annotations": {
+        "types": [
+          "multi-view-image",
+          "human-mask",
+          "camera-parameters",
+          "2d-keypoints",
+          "3d-keypoints",
+          "smpl-parameters",
+          "smplx-parameters",
+          "textual-description"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "MVHumanNet Terms of Use",
+        "media": "Non-commercial research and educational use only",
+        "commercial_use": "noncommercial",
+        "redistribution": "prohibited",
+        "notes": "The data follows the project-specific Terms of Use; the repository's CC-BY-NC-4.0 license is stated for code and must not be assumed to replace the data agreement."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "geometry-quality",
+          "multi-view-consistency",
+          "temporal-consistency",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Full-scale headline counts differ from the currently documented public release coverage.",
+          "The capture setup and selected outfits, identities, motions, and camera views may bias downstream avatars toward the collection protocol.",
+          "Consent, identity, biometric, and clothing-rights constraints require review before any derived model is deployed."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Preserve outfit, identity, sequence, camera, calibration, body-model, and terms-of-use lineage through every derived view or mesh."
+      },
+      "evidence": {
+        "homepage": "https://x-zhangyang.github.io/MVHumanNet/",
+        "paper": "https://arxiv.org/abs/2312.02963",
+        "used_by": []
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/3d/mvhumannet.yaml",
+      "scenario_ids": [],
+      "scale_label": "~645M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://api.github.com/repos/GAP-LAB-CUHK-SZ/MVHumanNet/commits/main"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "mvhumannet-plus-plus"
+      ],
       "linked_model_ids": []
     },
     {
@@ -1742,8 +2529,119 @@
         "video-generation"
       ],
       "scale_label": "70.7M",
-      "monitoring": null,
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://api.github.com/repos/snap-research/Panda-70M/commits/main"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "talkverse"
+      ],
       "linked_model_ids": []
+    },
+    {
+      "id": "commoncatalog",
+      "name": "CommonCatalog",
+      "organization": "CommonCanvas collaborators",
+      "released_at": "2023-10-25",
+      "release_date_source": "https://arxiv.org/abs/2310.16825",
+      "modality": "image",
+      "tasks": [
+        "text-to-image",
+        "image-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A family of filtered YFCC100M image subsets with item-level Creative Commons provenance and BLIP-2 synthetic captions, released in commercial and non-commercial license partitions for reproducible text-to-image training.",
+      "derived_from": [
+        {
+          "catalog_id": "yfcc100m",
+          "relationship": "transformed-derivative",
+          "contribution": "Flickr identifiers, source metadata, and Creative Commons licensed media pool",
+          "notes": "CommonCatalog re-resolves YFCC100M images, excludes non-derivative licenses, filters the media, and adds BLIP-2 captions."
+        }
+      ],
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/common-canvas",
+        "requires_account": false,
+        "notes": "Six Hugging Face repositories partition the corpus by CC-BY, SA, NC, and combined license variants."
+      },
+      "scale": {
+        "samples": 67015331,
+        "source_items": 100000000,
+        "hours": null,
+        "approximate": false,
+        "notes": "The paper reports 67,015,331 images in CommonCatalog-NC, including a 26,232,417-image commercial-use subset; hosted per-license shard counts sum to the same family-level scope."
+      },
+      "annotations": {
+        "types": [
+          "synthetic-caption",
+          "source-url",
+          "flickr-metadata",
+          "item-license",
+          "attribution",
+          "image-dimensions"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Per-repository Creative Commons label",
+        "media": "Item-level CC-BY, CC-BY-SA, and non-commercial variants; non-derivative items excluded",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Only the C subset is designed for commercial use; every use must preserve attribution and follow the exact item's Creative Commons variant."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "provenance",
+          "safety",
+          "deduplication"
+        ],
+        "known_limitations": [
+          "BLIP-2 captions are synthetic, mostly English, and can omit identity, context, or culturally specific details.",
+          "The source is decade-old Flickr data with geographic, demographic, and photographic-style skews.",
+          "Corpus-level labels do not remove the need for item-level attribution, privacy, and takedown handling."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/image_text",
+        "recommended_format": "parquet",
+        "notes": "Keep license partitions separate, retain attribution fields, and never mix the NC shards into a commercial training run."
+      },
+      "evidence": {
+        "homepage": "https://github.com/mosaicml/diffusion/blob/main/assets/common-canvas.md",
+        "paper": "https://arxiv.org/abs/2310.16825",
+        "used_by": [
+          "CommonCanvas-XL-C"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/image/commoncatalog.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "67M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/common-canvas/commoncatalog-cc-by"
+      },
+      "upstream_dataset_ids": [
+        "yfcc100m"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "commoncanvas-xl-c"
+      ]
     },
     {
       "id": "pick-a-pic-v2",
@@ -1824,6 +2722,98 @@
       ],
       "scale_label": "~1M",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
+    },
+    {
+      "id": "freeman",
+      "name": "FreeMan",
+      "organization": "CUHK-Shenzhen, Tencent, and IDEA",
+      "released_at": "2023-09-10",
+      "release_date_source": "https://arxiv.org/abs/2309.05073",
+      "modality": "3d",
+      "tasks": [
+        "3d-human-pose-estimation",
+        "human-motion-reconstruction",
+        "digital-human"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "A real-world multi-view human-motion dataset captured with eight synchronized smartphones, pairing RGB video with cameras, 2D and 3D keypoints, SMPL parameters, and bounding boxes for human sensing and digital-human research.",
+      "access": {
+        "status": "gated",
+        "type": "request",
+        "url": "https://wangjiongw.github.io/freeman/download.html",
+        "requires_account": true,
+        "notes": "Access requires a signed usage agreement, an application form, and approval on Hugging Face or OpenXLab."
+      },
+      "scale": {
+        "samples": 11300000,
+        "source_items": 8000,
+        "hours": null,
+        "approximate": true,
+        "notes": "The project reports 11.3M frames from 8,000 sequences, 40 subjects, 10 scenario types, and eight movable camera views."
+      },
+      "annotations": {
+        "types": [
+          "rgb-video",
+          "camera-parameters",
+          "2d-keypoints",
+          "3d-keypoints",
+          "smpl-parameters",
+          "bounding-box"
+        ],
+        "source": "mixed",
+        "languages": [
+          "language-agnostic"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0 usage agreement",
+        "media": "Research-only participant data under the signed FreeMan agreement",
+        "commercial_use": "noncommercial",
+        "redistribution": "prohibited",
+        "notes": "Official pages differ between CC-BY-NC-4.0 and CC-BY-NC-SA-4.0 wording; the signed agreement and current download terms control use."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "geometry-quality",
+          "multi-view-consistency",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The dataset contains only 40 consenting subjects and cannot represent the full range of identities, bodies, clothing, or mobility.",
+          "Real-world capture improves scene diversity but introduces occlusion, lighting, calibration, and pose-estimation noise.",
+          "Human biometric and motion data require privacy review even when the original collection used consent and anonymization procedures."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Keep sequence, subject, camera, calibration, consent, and usage-agreement metadata attached to every derived artifact."
+      },
+      "evidence": {
+        "homepage": "https://wangjiongw.github.io/freeman/",
+        "paper": "https://arxiv.org/abs/2309.05073",
+        "used_by": []
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/3d/freeman.yaml",
+      "scenario_ids": [],
+      "scale_label": "~11.3M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/wjwow/FreeMan"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": []
     },
     {
@@ -1912,6 +2902,8 @@
         "priority": "high",
         "source_url": "https://huggingface.co/api/datasets/OpenGVLab/InternVid"
       },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": []
     },
     {
@@ -1996,6 +2988,10 @@
       "scenario_ids": [],
       "scale_label": "~10M",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "cap3d"
+      ],
       "linked_model_ids": []
     },
     {
@@ -2077,6 +3073,8 @@
       ],
       "scale_label": "4.4M",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": []
     },
     {
@@ -2098,6 +3096,14 @@
         "data-curation"
       ],
       "description": "A large 3D-text release with automated captions for Objaverse and Objaverse-XL objects plus point clouds, multi-view renders, camera metadata, depth, alpha masks, and Shap-E latents for substantial subsets.",
+      "derived_from": [
+        {
+          "catalog_id": "objaverse-xl",
+          "relationship": "source-component",
+          "contribution": "Source 3D objects outside the original Objaverse partition",
+          "notes": "The current Cap3D release combines 785,150 original Objaverse objects with additional Objaverse-XL objects and adds captions plus derived 3D representations."
+        }
+      ],
       "access": {
         "status": "open",
         "type": "hosted",
@@ -2169,6 +3175,10 @@
         "priority": "high",
         "source_url": "https://huggingface.co/api/datasets/tiange/Cap3D"
       },
+      "upstream_dataset_ids": [
+        "objaverse-xl"
+      ],
+      "downstream_dataset_ids": [],
       "linked_model_ids": []
     },
     {
@@ -2253,6 +3263,8 @@
         "priority": "high",
         "source_url": "https://huggingface.co/api/datasets/mlfoundations/datacomp_1b"
       },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": []
     },
     {
@@ -2274,6 +3286,14 @@
         "data-curation"
       ],
       "description": "A 403,050-pair weakly labelled audio-caption corpus assembled from FreeSound, BBC Sound Effects, SoundBible, and the strongly labelled AudioSet subset, with noisy source descriptions filtered and rewritten using ChatGPT.",
+      "derived_from": [
+        {
+          "catalog_id": "audioset",
+          "relationship": "source-component",
+          "contribution": "Strongly labelled AudioSet subset",
+          "notes": "AudioSet contributes one of four source partitions; WavCaps filters its descriptions and rewrites them into captions alongside three independently sourced partitions."
+        }
+      ],
       "access": {
         "status": "open",
         "type": "hosted",
@@ -2342,6 +3362,10 @@
         "priority": "critical",
         "source_url": "https://huggingface.co/api/datasets/cvssp/WavCaps"
       },
+      "upstream_dataset_ids": [
+        "audioset"
+      ],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -2430,6 +3454,8 @@
         "priority": "high",
         "source_url": "https://huggingface.co/api/datasets/kakaobrain/coyo-700m"
       },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": []
     },
     {
@@ -2509,6 +3535,8 @@
       ],
       "scale_label": "~10M",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": []
     },
     {
@@ -2595,6 +3623,8 @@
       "scenario_ids": [],
       "scale_label": "7K",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -2682,6 +3712,8 @@
       "scenario_ids": [],
       "scale_label": "51.2K",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -2769,6 +3801,11 @@
       "scenario_ids": [],
       "scale_label": "~210K",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "vggsound-omni",
+        "soundatlas"
+      ],
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -2858,6 +3895,8 @@
       "scenario_ids": [],
       "scale_label": "~106.6K",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -2945,9 +3984,109 @@
       "scenario_ids": [],
       "scale_label": "~2.1M",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "soundatlas",
+        "audiocaps-2-0",
+        "wavcaps"
+      ],
       "linked_model_ids": [
         "omni2sound"
       ]
+    },
+    {
+      "id": "yfcc100m",
+      "name": "YFCC100M",
+      "organization": "Yahoo Labs and collaborators",
+      "released_at": "2015-03-05",
+      "release_date_source": "https://arxiv.org/abs/1503.01817",
+      "modality": "image",
+      "tasks": [
+        "image-text-pretraining",
+        "video-text-pretraining",
+        "multimedia-retrieval"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A historical Flickr Creative Commons multimedia index containing identifiers, uploader metadata, titles, tags, geolocation, and license records for roughly 99.2M photos and 0.8M videos shared before 2014.",
+      "access": {
+        "status": "metadata-only",
+        "type": "metadata",
+        "url": "https://multimediacommons.wordpress.com/yfcc100m-core-dataset/",
+        "requires_account": false,
+        "notes": "The official page says Yahoo Webscope is no longer offering the core metadata download; archived media, features, and third-party mirrors have separate availability and terms."
+      },
+      "scale": {
+        "samples": 100000000,
+        "source_items": 100000000,
+        "hours": 8081,
+        "approximate": true,
+        "notes": "The collection indexes about 99.2M photos and 0.8M videos; Multimedia Commons reports roughly 8,081 video hours."
+      },
+      "annotations": {
+        "types": [
+          "flickr-identifier",
+          "title",
+          "user-tag",
+          "uploader",
+          "timestamp",
+          "geolocation",
+          "camera-metadata",
+          "creative-commons-license"
+        ],
+        "source": "web-metadata",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "Project distribution terms",
+        "media": "Per-item Creative Commons licenses selected by Flickr uploaders",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Creative Commons variants differ by item, and current rights or removals must be checked against the preserved license and source records."
+      },
+      "quality": {
+        "dimensions": [
+          "provenance",
+          "deduplication",
+          "visual-quality",
+          "text-media-alignment"
+        ],
+        "known_limitations": [
+          "The official metadata distribution is currently suspended and source media availability changes over time.",
+          "Titles and tags are sparse, multilingual, noisy, and not equivalent to generation-quality captions.",
+          "The pre-2014 Flickr population overrepresents internet-connected regions and historical camera and content distributions."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "Preserve item-level uploader, source URL, capture time, license, and removal status; do not collapse multiple Creative Commons licenses into one corpus-wide label."
+      },
+      "evidence": {
+        "homepage": "https://multimediacommons.wordpress.com/yfcc100m-core-dataset/",
+        "paper": "https://arxiv.org/abs/1503.01817",
+        "used_by": [
+          "CommonCanvas-XL-C"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "catalog/image/yfcc100m.yaml",
+      "scenario_ids": [
+        "image-generation",
+        "video-generation"
+      ],
+      "scale_label": "~100M",
+      "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "commoncatalog"
+      ],
+      "linked_model_ids": []
     },
     {
       "id": "million-song-dataset",
@@ -3032,6 +4171,8 @@
       "scenario_ids": [],
       "scale_label": "1M",
       "monitoring": null,
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
       "linked_model_ids": [
         "omni2sound"
       ]
@@ -4495,6 +5636,108 @@
         "unknown_count": 3
       },
       "linked_dataset_ids": []
+    },
+    {
+      "id": "gpic-baselines",
+      "name": "GPIC Baseline Models",
+      "organization": "Stanford Vision Lab and collaborators",
+      "released_at": "2026-05-28",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "generative-model-evaluation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "MIT",
+        "release_url": "https://huggingface.co/stanford-vision-lab/gpic-baselines",
+        "weights_url": "https://huggingface.co/stanford-vision-lab/gpic-baselines",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Pixel-space flow-matching reference model family",
+        "parameters": null,
+        "notes": "The public model repository groups reference generators used to establish scalable visual-generation baselines on GPIC; exact variant sizes are not summarized in the model card."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "GPIC",
+            "catalog_id": "gpic",
+            "role": "pretraining",
+            "availability": "gated",
+            "scale": "100M training images plus 200K validation and 1M test examples",
+            "notes": "The family is explicitly released as the reference pixel-space flow-matching baseline trained and evaluated on GPIC."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset"
+            ],
+            "operations": [
+              "pixel-space-flow-matching",
+              "multi-granularity-captioning",
+              "safety-filtering",
+              "deduplication"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train pixel-space flow-matching reference generators on the centrally hosted GPIC train split and use pinned validation and test splits for scaling comparisons."
+          }
+        ],
+        "strategy_summary": [
+          "Use one permissively licensed and centrally hosted corpus to make large-scale text-to-image experiments reproducible.",
+          "Retain per-item attribution and license metadata alongside safety-filtered, deduplicated images and captions.",
+          "Publish reference weights and evaluation statistics so new methods can compare on fixed train, validation, and test splits."
+        ],
+        "unknowns": [
+          "Exact parameter count, architecture configuration, optimizer, and sampling recipe for every checkpoint grouped in the repository.",
+          "Per-caption-granularity sampling weights and whether all 100M training examples contribute equally to each baseline."
+        ]
+      },
+      "evidence": {
+        "release": "https://huggingface.co/stanford-vision-lab/gpic-baselines",
+        "technical_report": "https://arxiv.org/abs/2605.30341",
+        "repository": "https://github.com/keshik6/gpic"
+      },
+      "status": "partial",
+      "last_verified": "2026-07-26",
+      "source_path": "models/image/gpic-baselines.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "public-dataset"
+        ],
+        "operations": [
+          "pixel-space-flow-matching",
+          "multi-granularity-captioning",
+          "safety-filtering",
+          "deduplication"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "linked_dataset_ids": [
+        "gpic"
+      ]
     },
     {
       "id": "flux-vto",
@@ -6353,6 +7596,123 @@
       ]
     },
     {
+      "id": "openve-edit",
+      "name": "OpenVE-Edit",
+      "organization": "Zhejiang University and ByteDance",
+      "released_at": "2025-12-08",
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "instruction-guided-video-editing",
+        "video-to-video"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Model release is under review; no public model license is stated",
+        "release_url": "https://lewandofskee.github.io/projects/OpenVE/",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "MLLM plus task-aware mixture-of-experts connector and diffusion transformer",
+        "parameters": 5000000000,
+        "notes": "The design combines instruction and source-video semantics in an MLLM, routes features through an MoE connector, and conditions a DiT on source-video latents, text, and noise."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "OpenVE-3M",
+            "catalog_id": "openve-3m",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "More than 3M instruction, source-video, and edited-video triplets across eight edit categories",
+            "notes": "The project states OpenVE-Edit is trained on OpenVE-3M; category-level mixture weights and teacher-generation details are not fully released."
+          },
+          {
+            "name": "OpenVE-Bench",
+            "catalog_id": "openve-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "431 instruction-guided video-edit pairs",
+            "notes": "The project reports state-of-the-art results on the companion benchmark but has not yet published a complete reproducibility package for the model."
+          }
+        ],
+        "stages": [
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "synthetic",
+              "public-dataset"
+            ],
+            "operations": [
+              "instruction-conditioning",
+              "source-latent-conditioning",
+              "task-aware-mixture-of-experts",
+              "spatially-aligned-edit-training",
+              "non-spatially-aligned-edit-training",
+              "quality-filtering"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train a 5B instruction-guided video editor on the eight-category OpenVE-3M mixture, routing MLLM semantics through task experts into a source-conditioned DiT."
+          }
+        ],
+        "strategy_summary": [
+          "Separate spatially aligned edits from creative motion-changing edits so supervision preserves the right invariants per task.",
+          "Pair every instruction with source and edited video latents and use a task-aware connector to decouple edit semantics.",
+          "Evaluate on the held-out OpenVE-Bench taxonomy while the code, weights, and full training recipe remain under review."
+        ],
+        "unknowns": [
+          "Base checkpoints, teacher models, category sampling weights, optimizer schedule, and full source-video provenance.",
+          "Public release date, checkpoint license, inference code, and whether the announced results can be reproduced from the eventual artifacts."
+        ]
+      },
+      "evidence": {
+        "release": "https://lewandofskee.github.io/projects/OpenVE/",
+        "technical_report": "https://arxiv.org/abs/2512.07826",
+        "repository": "https://github.com/OpenVE-Team/OpenVE-3M"
+      },
+      "status": "watch",
+      "last_verified": "2026-07-26",
+      "source_path": "models/video/openve-edit.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "fine-tuning"
+        ],
+        "source_types": [
+          "synthetic",
+          "public-dataset"
+        ],
+        "operations": [
+          "instruction-conditioning",
+          "source-latent-conditioning",
+          "task-aware-mixture-of-experts",
+          "spatially-aligned-edit-training",
+          "non-spatially-aligned-edit-training",
+          "quality-filtering"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 2,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "linked_dataset_ids": [
+        "openve-3m",
+        "openve-bench"
+      ]
+    },
+    {
       "id": "hunyuanvideo-1-5",
       "name": "HunyuanVideo 1.5",
       "organization": "Tencent Hunyuan",
@@ -6460,9 +7820,122 @@
         "unknown_count": 2
       },
       "linked_dataset_ids": []
+    },
+    {
+      "id": "commoncanvas-xl-c",
+      "name": "CommonCanvas-XL-C",
+      "organization": "CommonCanvas collaborators",
+      "released_at": "2024-05-16",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "CC-BY-SA-4.0",
+        "release_url": "https://huggingface.co/common-canvas/CommonCanvas-XL-C",
+        "weights_url": "https://huggingface.co/common-canvas/CommonCanvas-XL-C",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Stable Diffusion XL latent diffusion pipeline",
+        "parameters": 3000000000,
+        "notes": "The commercial-use CommonCanvas variant uses an SDXL-family latent diffusion architecture and is published in Diffusers and Safetensors formats."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "CommonCatalog commercial subset",
+            "catalog_id": "commoncatalog",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "26,232,417 CC-BY and CC-BY-SA images in the paper's commercial-use partition",
+            "notes": "The model card links the commoncatalog-cc-by and commoncatalog-cc-by-sa repositories; both carry BLIP-2 synthetic captions and item-level attribution."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "synthetic"
+            ],
+            "operations": [
+              "license-filtering",
+              "high-resolution-redownload",
+              "synthetic-captioning",
+              "aspect-ratio-bucketing",
+              "optimized-diffusion-training"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train an SDXL-family latent diffusion model from scratch on the commercial-use CommonCatalog license partitions, using BLIP-2 captions and a systems-optimized training recipe."
+          }
+        ],
+        "strategy_summary": [
+          "Replace web-scale unknown-rights mixtures with a fully named Creative Commons image corpus split by item license.",
+          "Generate English captions with BLIP-2 while preserving the Flickr source, attribution, and license fields.",
+          "Use an SDXL-scale architecture and training optimizations to compensate for a corpus far smaller than LAION-2B."
+        ],
+        "unknowns": [
+          "Exact sampling weights between CC-BY and CC-BY-SA shards and whether every hosted record was used.",
+          "Final per-filter retention, takedown synchronization, and the exact caption-model checkpoint and decoding settings for every item."
+        ]
+      },
+      "evidence": {
+        "release": "https://huggingface.co/common-canvas/CommonCanvas-XL-C",
+        "technical_report": "https://arxiv.org/abs/2310.16825",
+        "repository": "https://github.com/mosaicml/diffusion"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/image/commoncanvas-xl-c.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "public-dataset",
+          "synthetic"
+        ],
+        "operations": [
+          "license-filtering",
+          "high-resolution-redownload",
+          "synthetic-captioning",
+          "aspect-ratio-bucketing",
+          "optimized-diffusion-training"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "linked_dataset_ids": [
+        "commoncatalog"
+      ]
     }
   ],
   "relations": [
+    {
+      "model_id": "commoncanvas-xl-c",
+      "dataset_id": "commoncatalog",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "26,232,417 CC-BY and CC-BY-SA images in the paper's commercial-use partition",
+      "reference_name": "CommonCatalog commercial subset"
+    },
     {
       "model_id": "ctrlvton",
       "dataset_id": "viton-hd-edit",
@@ -6486,6 +7959,14 @@
       "availability": "public",
       "scale": "100,000 training and 5,000 evaluation triplets",
       "reference_name": "FIT-VTO-100K"
+    },
+    {
+      "model_id": "gpic-baselines",
+      "dataset_id": "gpic",
+      "role": "pretraining",
+      "availability": "gated",
+      "scale": "100M training images plus 200K validation and 1M test examples",
+      "reference_name": "GPIC"
     },
     {
       "model_id": "graphvid",
@@ -6600,6 +8081,22 @@
       "reference_name": "WavCaps"
     },
     {
+      "model_id": "openve-edit",
+      "dataset_id": "openve-3m",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "More than 3M instruction, source-video, and edited-video triplets across eight edit categories",
+      "reference_name": "OpenVE-3M"
+    },
+    {
+      "model_id": "openve-edit",
+      "dataset_id": "openve-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "431 instruction-guided video-edit pairs",
+      "reference_name": "OpenVE-Bench"
+    },
+    {
       "model_id": "talkverse-5b",
       "dataset_id": "talkverse",
       "role": "fine-tuning",
@@ -6614,6 +8111,92 @@
       "availability": "gated",
       "scale": "9,931 training triplets and 100 held-out benchmark triplets",
       "reference_name": "TripVVT-10K"
+    }
+  ],
+  "dataset_relations": [
+    {
+      "source_dataset_id": "audioset",
+      "derived_dataset_id": "audiocaps-2-0",
+      "relationship": "annotation-derivative",
+      "contribution": "Ten-second source segments and AudioSet offsets",
+      "notes": "AudioCaps selects AudioSet-referenced YouTube segments and adds human natural-language captions while retaining the source video ID and temporal offset."
+    },
+    {
+      "source_dataset_id": "audioset",
+      "derived_dataset_id": "soundatlas",
+      "relationship": "source-component",
+      "contribution": "Source audiovisual clips and event metadata",
+      "notes": "AudioSet is one of the two named upstream collections routed through SoundAtlas captioning and multimodal-consistency filtering."
+    },
+    {
+      "source_dataset_id": "audioset",
+      "derived_dataset_id": "wavcaps",
+      "relationship": "source-component",
+      "contribution": "Strongly labelled AudioSet subset",
+      "notes": "AudioSet contributes one of four source partitions; WavCaps filters its descriptions and rewrites them into captions alongside three independently sourced partitions."
+    },
+    {
+      "source_dataset_id": "mvhumannet",
+      "derived_dataset_id": "mvhumannet-plus-plus",
+      "relationship": "annotation-derivative",
+      "contribution": "Original multi-view human captures, identities, outfits, motions, and calibrations",
+      "notes": "MVHumanNet++ retains the MVHumanNet capture corpus and publishes newly processed geometry and segmentation annotations."
+    },
+    {
+      "source_dataset_id": "objaverse-xl",
+      "derived_dataset_id": "cap3d",
+      "relationship": "source-component",
+      "contribution": "Source 3D objects outside the original Objaverse partition",
+      "notes": "The current Cap3D release combines 785,150 original Objaverse objects with additional Objaverse-XL objects and adds captions plus derived 3D representations."
+    },
+    {
+      "source_dataset_id": "openhumanvid",
+      "derived_dataset_id": "openhumanvid-talking",
+      "relationship": "filtered-subset",
+      "contribution": "Source talking-head videos from parts 001 through 040",
+      "notes": "The derivative selects motion-rich, speech-active, single-speaker intervals from OpenHumanVid and adds camera, face, lip, motion, and caption annotations."
+    },
+    {
+      "source_dataset_id": "openhumanvid",
+      "derived_dataset_id": "talkverse",
+      "relationship": "source-component",
+      "contribution": "Human-centric source videos and metadata",
+      "notes": "The public TalkVerse metadata exposes an OpenHumanVid partition of approximately 796K rows after TalkVerse-specific filtering and annotation."
+    },
+    {
+      "source_dataset_id": "openve-3m",
+      "derived_dataset_id": "openve-bench",
+      "relationship": "benchmark-derivative",
+      "contribution": "Editing taxonomy, source and edited video pairs, and instruction format",
+      "notes": "The OpenVE project presents the benchmark as the held-out evaluation companion constructed with the OpenVE-3M pipeline and categories."
+    },
+    {
+      "source_dataset_id": "panda-70m",
+      "derived_dataset_id": "talkverse",
+      "relationship": "source-component",
+      "contribution": "General human-related source videos and metadata",
+      "notes": "The public TalkVerse metadata exposes a Panda-70M partition of approximately 1.34M rows after TalkVerse-specific filtering and annotation."
+    },
+    {
+      "source_dataset_id": "vggsound",
+      "derived_dataset_id": "soundatlas",
+      "relationship": "source-component",
+      "contribution": "Source audiovisual clips and class metadata",
+      "notes": "VGGSound is one of the two named upstream collections routed through SoundAtlas captioning and multimodal-consistency filtering."
+    },
+    {
+      "source_dataset_id": "vggsound",
+      "derived_dataset_id": "vggsound-omni",
+      "relationship": "benchmark-derivative",
+      "contribution": "Primary benchmark videos from the VGGSound test split",
+      "notes": "The main VGGSound-Omni track reuses VGGSound test media with new dense captions, modality labels, human verification, and a separate off-screen extension."
+    },
+    {
+      "source_dataset_id": "yfcc100m",
+      "derived_dataset_id": "commoncatalog",
+      "relationship": "transformed-derivative",
+      "contribution": "Flickr identifiers, source metadata, and Creative Commons licensed media pool",
+      "notes": "CommonCatalog re-resolves YFCC100M images, excludes non-derivative licenses, filters the media, and adds BLIP-2 captions."
     }
   ]
 }

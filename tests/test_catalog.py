@@ -16,7 +16,7 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(validate(), [])
 
     def test_cards_are_present(self) -> None:
-        self.assertGreaterEqual(len(load_cards()), 34)
+        self.assertGreaterEqual(len(load_cards()), 44)
 
     def test_audio_and_3d_coverage_is_present(self) -> None:
         modalities = {card["modality"] for _, card in load_cards()}
@@ -66,6 +66,54 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(cards["openhumanvid"]["access"]["status"], "gated")
         self.assertIn("talking-head-generation", cards["openhumanvid-talking"]["tasks"])
         self.assertEqual(cards["openhumanvid-talking"]["scale"]["samples"], 32176)
+
+    def test_reference_wiki_candidates_are_backed_by_public_sources(self) -> None:
+        cards = {card["id"]: card for _, card in load_cards()}
+        self.assertTrue(
+            {
+                "koala-36m",
+                "freeman",
+                "mvhumannet",
+                "mvhumannet-plus-plus",
+                "yfcc100m",
+                "commoncatalog",
+                "fine-t2i",
+                "gpic",
+                "openve-3m",
+                "openve-bench",
+            }.issubset(cards)
+        )
+        self.assertEqual(cards["koala-36m"]["access"]["status"], "metadata-only")
+        self.assertEqual(cards["freeman"]["license"]["commercial_use"], "noncommercial")
+        self.assertEqual(cards["gpic"]["scale"]["samples"], 101200000)
+        self.assertEqual(cards["openve-bench"]["scale"]["samples"], 431)
+
+    def test_dataset_lineage_uses_canonical_catalog_ids(self) -> None:
+        cards = {card["id"]: card for _, card in load_cards()}
+        self.assertEqual(
+            {item["catalog_id"] for item in cards["talkverse"]["derived_from"]},
+            {"openhumanvid", "panda-70m"},
+        )
+        self.assertEqual(
+            cards["openhumanvid-talking"]["derived_from"][0]["relationship"],
+            "filtered-subset",
+        )
+        self.assertEqual(
+            cards["vggsound-omni"]["derived_from"][0]["catalog_id"],
+            "vggsound",
+        )
+        self.assertEqual(
+            cards["commoncatalog"]["derived_from"][0]["catalog_id"],
+            "yfcc100m",
+        )
+        self.assertEqual(
+            cards["mvhumannet-plus-plus"]["derived_from"][0]["catalog_id"],
+            "mvhumannet",
+        )
+        self.assertEqual(
+            cards["openve-bench"]["derived_from"][0]["catalog_id"],
+            "openve-3m",
+        )
 
     def test_site_catalog_orders_datasets_by_release_date(self) -> None:
         datasets = build_payload()["datasets"]

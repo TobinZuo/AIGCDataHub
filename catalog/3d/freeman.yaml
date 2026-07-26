@@ -1,0 +1,68 @@
+id: freeman
+name: FreeMan
+organization: CUHK-Shenzhen, Tencent, and IDEA
+released_at: "2023-09-10"
+release_date_source: https://arxiv.org/abs/2309.05073
+modality: 3d
+tasks:
+  - 3d-human-pose-estimation
+  - human-motion-reconstruction
+  - digital-human
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+description: >-
+  A real-world multi-view human-motion dataset captured with eight synchronized
+  smartphones, pairing RGB video with cameras, 2D and 3D keypoints, SMPL
+  parameters, and bounding boxes for human sensing and digital-human research.
+access:
+  status: gated
+  type: request
+  url: https://wangjiongw.github.io/freeman/download.html
+  requires_account: true
+  notes: Access requires a signed usage agreement, an application form, and approval on Hugging Face or OpenXLab.
+scale:
+  samples: 11300000
+  source_items: 8000
+  hours: null
+  approximate: true
+  notes: The project reports 11.3M frames from 8,000 sequences, 40 subjects, 10 scenario types, and eight movable camera views.
+annotations:
+  types:
+    - rgb-video
+    - camera-parameters
+    - 2d-keypoints
+    - 3d-keypoints
+    - smpl-parameters
+    - bounding-box
+  source: mixed
+  languages:
+    - language-agnostic
+license:
+  metadata: CC-BY-NC-4.0 usage agreement
+  media: Research-only participant data under the signed FreeMan agreement
+  commercial_use: noncommercial
+  redistribution: prohibited
+  notes: Official pages differ between CC-BY-NC-4.0 and CC-BY-NC-SA-4.0 wording; the signed agreement and current download terms control use.
+quality:
+  dimensions:
+    - visual-quality
+    - geometry-quality
+    - multi-view-consistency
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - The dataset contains only 40 consenting subjects and cannot represent the full range of identities, bodies, clothing, or mobility.
+    - Real-world capture improves scene diversity but introduces occlusion, lighting, calibration, and pose-estimation noise.
+    - Human biometric and motion data require privacy review even when the original collection used consent and anonymization procedures.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Keep sequence, subject, camera, calibration, consent, and usage-agreement metadata attached to every derived artifact.
+evidence:
+  homepage: https://wangjiongw.github.io/freeman/
+  paper: https://arxiv.org/abs/2309.05073
+  used_by: []
+status: partial
+last_verified: "2026-07-26"

@@ -15,6 +15,11 @@ description: >-
   A speech-active talking-head subset derived from OpenHumanVid, with camera
   trajectories, active-speaker intervals, face and lip boxes, motion scores,
   captions, and clips packaged for audio-conditioned avatar training.
+derived_from:
+  - catalog_id: openhumanvid
+    relationship: filtered-subset
+    contribution: Source talking-head videos from parts 001 through 040
+    notes: The derivative selects motion-rich, speech-active, single-speaker intervals from OpenHumanVid and adds camera, face, lip, motion, and caption annotations.
 access:
   status: open
   type: hosted

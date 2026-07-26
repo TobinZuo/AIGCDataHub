@@ -17,6 +17,11 @@ description: >-
   The second AudioCaps release, containing 98,606 human-written caption rows
   grounded in ten-second AudioSet and YouTube segments, roughly doubling the
   original audio-caption collection.
+derived_from:
+  - catalog_id: audioset
+    relationship: annotation-derivative
+    contribution: Ten-second source segments and AudioSet offsets
+    notes: AudioCaps selects AudioSet-referenced YouTube segments and adds human natural-language captions while retaining the source video ID and temporal offset.
 access:
   status: gated
   type: request
@@ -66,4 +71,3 @@ evidence:
     - Omni2Sound
 status: partial
 last_verified: "2026-07-26"
-

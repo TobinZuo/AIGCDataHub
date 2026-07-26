@@ -1,0 +1,68 @@
+id: openve-3m
+name: OpenVE-3M
+organization: Zhejiang University and ByteDance
+released_at: "2025-12-08"
+release_date_source: https://arxiv.org/abs/2512.07826
+modality: video
+tasks:
+  - instruction-guided-video-editing
+  - video-to-video
+  - text-guided-video-editing
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A large synthetic instruction-guided video-editing corpus spanning six
+  spatially aligned and two non-spatially aligned edit categories, with source
+  videos, edited videos, instructions, and rigorous generation-time filtering.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/Lewandofski/OpenVE-3M
+  requires_account: false
+  notes: Video archives and per-category CSV triplets are hosted on Hugging Face in a multi-terabyte release.
+scale:
+  samples: 3000000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The project reports more than 3M editing triplets at 720p and 65 to 129 frames; the Hugging Face viewer estimates about 4.52M individual video rows because records include component media.
+annotations:
+  types:
+    - editing-instruction
+    - source-video
+    - edited-video
+    - edit-category
+    - spatial-alignment-class
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: CC-BY-NC-4.0
+  media: CC-BY-NC-4.0 release terms plus source and generator dependencies
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The official card marks the dataset non-commercial; source-video and synthetic-generator terms must also be reviewed for derived releases.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - temporal-consistency
+    - motion
+    - provenance
+  known_limitations:
+    - Synthetic edited targets can contain artifacts or biases inherited from the teacher pipeline.
+    - The eight edit categories do not cover the full distribution of professional editing, localization, identity, or audio workflows.
+    - Headline triplet counts and hosted row estimates use different units and should not be combined.
+processing:
+  recipe: recipes/video_text
+  recommended_format: webdataset
+  notes: Keep original and edited videos paired with instruction and category, verify archive joins, and record teacher and filter versions when available.
+evidence:
+  homepage: https://lewandofskee.github.io/projects/OpenVE/
+  paper: https://arxiv.org/abs/2512.07826
+  used_by:
+    - OpenVE-Edit
+status: verified
+last_verified: "2026-07-26"

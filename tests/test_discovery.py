@@ -62,6 +62,15 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(revision, "2026-07-25T10:00:00Z@abc123")
         self.assertEqual(url, "https://huggingface.co/datasets/nkp37/OpenVid-1M")
 
+    def test_extracts_github_repository_revision(self) -> None:
+        revision, url = extract_source_revision(
+            '{"sha":"abc123","html_url":"https://github.com/org/repo/commit/abc123",'
+            '"commit":{"committer":{"date":"2026-07-25T10:00:00Z"}}}',
+            "https://api.github.com/repos/org/repo/commits/main",
+        )
+        self.assertEqual(revision, "2026-07-25T10:00:00Z@abc123")
+        self.assertEqual(url, "https://github.com/org/repo/commit/abc123")
+
     def test_extracts_relevant_sitemap_locations(self) -> None:
         xml = """
         <urlset>
@@ -119,6 +128,17 @@ class DiscoveryTests(unittest.TestCase):
                 "https://huggingface.co/api/datasets/zhenzhiwang/TalkVerse",
                 "https://github.com/fudan-generative-vision/OpenHumanVid",
                 "https://huggingface.co/api/datasets/Haosonnn/OpenHumanVid-Talking",
+                "https://api.github.com/repos/fudan-generative-vision/OpenHumanVid/commits/main",
+                "https://api.github.com/repos/snap-research/Panda-70M/commits/main",
+                "https://huggingface.co/api/datasets/Koala-36M/Koala-36M-v1",
+                "https://huggingface.co/api/datasets/wjwow/FreeMan",
+                "https://api.github.com/repos/GAP-LAB-CUHK-SZ/MVHumanNet/commits/main",
+                "https://api.github.com/repos/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus/commits/main",
+                "https://huggingface.co/api/datasets/common-canvas/commoncatalog-cc-by",
+                "https://huggingface.co/api/datasets/ma-xu/fine-t2i",
+                "https://huggingface.co/api/datasets/stanford-vision-lab/gpic",
+                "https://huggingface.co/api/datasets/Lewandofski/OpenVE-3M",
+                "https://huggingface.co/api/datasets/Lewandofski/OpenVE-Bench",
             }.issubset(urls)
         )
         self.assertIn("https://huggingface.co/api/datasets/nkp37/OpenVid-1M", urls)
@@ -132,12 +152,38 @@ class DiscoveryTests(unittest.TestCase):
 
     def test_dataset_impact_index_uses_canonical_model_references(self) -> None:
         impacts = dataset_impact_index()
-        self.assertEqual(impacts["fit-vto-100k"], ("fit-vto",))
-        self.assertEqual(impacts["viton-hd-edit"], ("ctrlvton",))
-        self.assertEqual(impacts["tripvvt-10k"], ("tripvvt",))
-        self.assertEqual(impacts["audiovisual-translation-dub"], ("just-dub-it",))
-        self.assertEqual(impacts["talkverse"], ("talkverse-5b",))
-        self.assertEqual(impacts["wavcaps"], ("omni2sound",))
+        self.assertEqual(impacts["fit-vto-100k"]["model_ids"], ("fit-vto",))
+        self.assertEqual(impacts["viton-hd-edit"]["model_ids"], ("ctrlvton",))
+        self.assertEqual(impacts["tripvvt-10k"]["model_ids"], ("tripvvt",))
+        self.assertEqual(impacts["audiovisual-translation-dub"]["model_ids"], ("just-dub-it",))
+        self.assertEqual(impacts["talkverse"]["model_ids"], ("talkverse-5b",))
+        self.assertEqual(impacts["wavcaps"]["model_ids"], ("omni2sound",))
+        self.assertEqual(impacts["commoncatalog"]["model_ids"], ("commoncanvas-xl-c",))
+        self.assertEqual(impacts["gpic"]["model_ids"], ("gpic-baselines",))
+        self.assertEqual(impacts["openve-bench"]["model_ids"], ("openve-edit",))
+
+    def test_dataset_impact_index_propagates_through_dataset_lineage(self) -> None:
+        impacts = dataset_impact_index()
+        self.assertEqual(
+            impacts["openhumanvid"]["dataset_ids"],
+            ("openhumanvid-talking", "talkverse"),
+        )
+        self.assertEqual(impacts["openhumanvid"]["model_ids"], ("talkverse-5b",))
+        self.assertEqual(impacts["panda-70m"]["dataset_ids"], ("talkverse",))
+        self.assertEqual(impacts["panda-70m"]["model_ids"], ("talkverse-5b",))
+        self.assertEqual(
+            impacts["audioset"]["dataset_ids"],
+            ("audiocaps-2-0", "soundatlas", "wavcaps"),
+        )
+        self.assertEqual(impacts["audioset"]["model_ids"], ("omni2sound",))
+        self.assertEqual(impacts["yfcc100m"]["dataset_ids"], ("commoncatalog",))
+        self.assertEqual(impacts["yfcc100m"]["model_ids"], ("commoncanvas-xl-c",))
+        self.assertEqual(
+            impacts["mvhumannet"]["dataset_ids"],
+            ("mvhumannet-plus-plus",),
+        )
+        self.assertEqual(impacts["openve-3m"]["dataset_ids"], ("openve-bench",))
+        self.assertEqual(impacts["openve-3m"]["model_ids"], ("openve-edit",))
 
     def test_compares_candidates_failures_recoveries_and_known_urls(self) -> None:
         baseline = {
@@ -209,7 +255,12 @@ class DiscoveryTests(unittest.TestCase):
             baseline,
             current,
             {"https://example.com/known"},
-            {"openvid-1m": ("video-model",)},
+            {
+                "openvid-1m": {
+                    "dataset_ids": ("derived-video",),
+                    "model_ids": ("video-model",),
+                }
+            },
         )
         self.assertEqual([item["url"] for item in diff.new_candidates], ["https://example.com/new"])
         self.assertEqual([item["error"] for item in diff.failures], ["HTTP 429"])
@@ -220,6 +271,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(diff.source_updates[0]["catalog_id"], "openvid-1m")
         self.assertEqual(diff.source_updates[0]["priority"], "high")
+        self.assertEqual(diff.source_updates[0]["impacted_dataset_ids"], ["derived-video"])
         self.assertEqual(diff.source_updates[0]["impacted_model_ids"], ["video-model"])
 
     def test_report_preserves_human_review_contract(self) -> None:

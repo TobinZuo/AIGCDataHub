@@ -17,6 +17,11 @@ description: >-
   A large 3D-text release with automated captions for Objaverse and
   Objaverse-XL objects plus point clouds, multi-view renders, camera metadata,
   depth, alpha masks, and Shap-E latents for substantial subsets.
+derived_from:
+  - catalog_id: objaverse-xl
+    relationship: source-component
+    contribution: Source 3D objects outside the original Objaverse partition
+    notes: The current Cap3D release combines 785,150 original Objaverse objects with additional Objaverse-XL objects and adds captions plus derived 3D representations.
 access:
   status: open
   type: hosted

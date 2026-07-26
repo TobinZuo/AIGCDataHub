@@ -149,6 +149,40 @@ def build_payload() -> dict[str, Any]:
 
     datasets.sort(key=lambda item: (item["released_at"], item["name"].lower()), reverse=True)
     models.sort(key=lambda item: (item["released_at"], item["name"].lower()), reverse=True)
+    dataset_by_id = {item["id"]: item for item in datasets}
+    dataset_relations: list[dict[str, Any]] = []
+    seen_dataset_relations: set[tuple[str, str]] = set()
+    upstream_datasets: dict[str, list[str]] = {item["id"]: [] for item in datasets}
+    downstream_datasets: dict[str, list[str]] = {item["id"]: [] for item in datasets}
+    for dataset in datasets:
+        for reference in dataset.get("derived_from", []):
+            source_dataset_id = reference["catalog_id"]
+            key = (source_dataset_id, dataset["id"])
+            if source_dataset_id not in dataset_by_id:
+                raise ValueError(
+                    f"dataset lineage references unknown catalog id: {source_dataset_id!r}"
+                )
+            if source_dataset_id == dataset["id"]:
+                raise ValueError(f"dataset cannot derive from itself: {dataset['id']!r}")
+            if key in seen_dataset_relations:
+                raise ValueError(f"duplicate dataset lineage relation: {key!r}")
+            seen_dataset_relations.add(key)
+            dataset_relations.append(
+                {
+                    "source_dataset_id": source_dataset_id,
+                    "derived_dataset_id": dataset["id"],
+                    "relationship": reference["relationship"],
+                    "contribution": reference["contribution"],
+                    "notes": reference["notes"],
+                }
+            )
+            upstream_datasets[dataset["id"]].append(source_dataset_id)
+            downstream_datasets[source_dataset_id].append(dataset["id"])
+
+    for dataset in datasets:
+        dataset["upstream_dataset_ids"] = upstream_datasets[dataset["id"]]
+        dataset["downstream_dataset_ids"] = downstream_datasets[dataset["id"]]
+
     relations: list[dict[str, Any]] = []
     seen_relations: set[tuple[str, str, str]] = set()
     linked_models: dict[str, list[str]] = {item["id"]: [] for item in datasets}
@@ -182,10 +216,17 @@ def build_payload() -> dict[str, Any]:
         dataset["linked_model_ids"] = linked_models[dataset["id"]]
 
     relations.sort(key=lambda item: (item["model_id"], item["dataset_id"], item["role"]))
+    dataset_relations.sort(
+        key=lambda item: (
+            item["source_dataset_id"],
+            item["derived_dataset_id"],
+            item["relationship"],
+        )
+    )
     verified_dates = [item["last_verified"] for item in [*datasets, *models]]
 
     return {
-        "format_version": 6,
+        "format_version": 7,
         "generated_from": [
             "catalog/**/*.yaml",
             "models/**/*.yaml",
@@ -200,6 +241,7 @@ def build_payload() -> dict[str, Any]:
         "datasets": datasets,
         "models": models,
         "relations": relations,
+        "dataset_relations": dataset_relations,
     }
 
 

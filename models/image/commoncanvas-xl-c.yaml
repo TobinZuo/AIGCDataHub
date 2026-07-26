@@ -1,0 +1,58 @@
+id: commoncanvas-xl-c
+name: CommonCanvas-XL-C
+organization: CommonCanvas collaborators
+released_at: "2024-05-16"
+modalities:
+  - image
+tasks:
+  - text-to-image
+access:
+  status: open-weights
+  license: CC-BY-SA-4.0
+  release_url: https://huggingface.co/common-canvas/CommonCanvas-XL-C
+  weights_url: https://huggingface.co/common-canvas/CommonCanvas-XL-C
+  api_url: null
+architecture:
+  family: Stable Diffusion XL latent diffusion pipeline
+  parameters: 3000000000
+  notes: The commercial-use CommonCanvas variant uses an SDXL-family latent diffusion architecture and is published in Diffusers and Safetensors formats.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: CommonCatalog commercial subset
+      catalog_id: commoncatalog
+      role: pretraining
+      availability: public
+      scale: 26,232,417 CC-BY and CC-BY-SA images in the paper's commercial-use partition
+      notes: The model card links the commoncatalog-cc-by and commoncatalog-cc-by-sa repositories; both carry BLIP-2 synthetic captions and item-level attribution.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - public-dataset
+        - synthetic
+      operations:
+        - license-filtering
+        - high-resolution-redownload
+        - synthetic-captioning
+        - aspect-ratio-bucketing
+        - optimized-diffusion-training
+      scale_disclosed: true
+      strategy: Train an SDXL-family latent diffusion model from scratch on the commercial-use CommonCatalog license partitions, using BLIP-2 captions and a systems-optimized training recipe.
+  strategy_summary:
+    - Replace web-scale unknown-rights mixtures with a fully named Creative Commons image corpus split by item license.
+    - Generate English captions with BLIP-2 while preserving the Flickr source, attribution, and license fields.
+    - Use an SDXL-scale architecture and training optimizations to compensate for a corpus far smaller than LAION-2B.
+  unknowns:
+    - Exact sampling weights between CC-BY and CC-BY-SA shards and whether every hosted record was used.
+    - Final per-filter retention, takedown synchronization, and the exact caption-model checkpoint and decoding settings for every item.
+evidence:
+  release: https://huggingface.co/common-canvas/CommonCanvas-XL-C
+  technical_report: https://arxiv.org/abs/2310.16825
+  repository: https://github.com/mosaicml/diffusion
+status: verified
+last_verified: "2026-07-26"

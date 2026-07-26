@@ -17,6 +17,12 @@ unreviewed links.
   as separate claims.
 - Use `unknown` or `review_required` where a primary source is silent.
 - Put important caveats in `license.notes` or `quality.known_limitations`.
+- When a primary source explicitly identifies an upstream catalog dataset, add
+  one `derived_from` entry with its `catalog_id`, relationship type,
+  contribution, and evidence-bounded notes. Do not infer lineage from similar
+  tasks, overlapping names, or an `evidence.used_by` claim.
+- Keep dataset lineage acyclic. Generated upstream/downstream backlinks and the
+  top-level dataset relation index must not be hand-edited.
 - Do not copy marketing claims into a `verified` card without evidence.
 
 ## Model and data-strategy card requirements
@@ -74,8 +80,9 @@ separately because remote sites can be transient.
 Important dataset revision probes live under `important-dataset-updates` in
 `sources/watchlist.yaml`. Each probe must be an object with an official HTTPS
 `url`, an existing dataset `catalog_id`, and a `priority` of `critical`, `high`,
-or `standard`. The scanner derives affected models from model-side
-`catalog_id`; do not maintain an independent model list in the watchlist.
+or `standard`. The scanner derives downstream datasets from `derived_from` and
+affected models from model-side `catalog_id`; do not maintain either impact list
+in the watchlist.
 
 ## Recipes and benchmarks
 

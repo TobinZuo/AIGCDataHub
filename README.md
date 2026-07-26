@@ -52,6 +52,7 @@ model's capabilities or outputs.
 | [Muse Image](models/multimodal/muse-image.yaml) | Meta Superintelligence Labs | image | 2026-07-07 | product only | high level | not disclosed | 👀 |
 | [Gemini Omni Flash](models/video/gemini-omni-flash.yaml) | Google DeepMind | video, audio | 2026-06-30 | api only | high level | Undisclosed multimodal training mixture | ✅ |
 | [Gemini 3.1 Flash-Lite Image](models/image/gemini-3-1-flash-lite-image.yaml) | Google DeepMind | image | 2026-06-30 | api only | high level | Gemini 3 family multimodal training mixture | ✅ |
+| [GPIC Baseline Models](models/image/gpic-baselines.yaml) | Stanford Vision Lab and collaborators | image | 2026-05-28 | open weights | partial | [GPIC](catalog/image/gpic.yaml) | 🟡 |
 | [FLUX VTO](models/image/flux-vto.yaml) | Black Forest Labs | image | 2026-05-28 | api only | undisclosed | not disclosed | 👀 |
 | [Lens](models/image/lens.yaml) | Microsoft Research | image | 2026-05-20 | open weights | partial | [Lens-800M](catalog/image/lens-800m.yaml), [Lens-RL-8K](catalog/preference/lens-rl-8k.yaml) | ✅ |
 | [Lance](models/multimodal/lance.yaml) | ByteDance | image, video | 2026-05-18 | open weights | high level | not disclosed | ✅ |
@@ -64,7 +65,9 @@ model's capabilities or outputs.
 | [JUST-DUB-IT](models/video/just-dub-it.yaml) | Lightricks and Tel Aviv University | video, audio | 2026-02-10 | gated weights | partial | LTX-2 base-model training mixture, [Audiovisual Translation Dubbing Dataset](catalog/video/audiovisual-translation-dub.yaml) | ✅ |
 | [Omni2Sound](models/multimodal/omni2sound.yaml) | Tsinghua University, Monash University, and Shengshu AI | audio, video | 2026-01-06 | open weights | partial | [AudioCaps](catalog/audio/audiocaps-2-0.yaml), [WavCaps](catalog/audio/wavcaps.yaml), [Clotho](catalog/audio/clotho-2-1.yaml), [AudioSet](catalog/audio/audioset.yaml), [VGGSound](catalog/audio/vggsound.yaml), [FSD50K](catalog/audio/fsd50k.yaml), [Million Song Dataset](catalog/audio/million-song-dataset.yaml), [FMA](catalog/audio/fma.yaml), [SoundAtlas](catalog/audio/soundatlas.yaml), [VGGSound-Omni](catalog/evaluation/vggsound-omni.yaml) | ✅ |
 | [TalkVerse-5B](models/video/talkverse-5b.yaml) | CUHK MMLab and Snap Research | video, audio | 2025-12-24 | open weights | partial | Wan2.2-TI2V-5B inherited training mixture, [TalkVerse](catalog/video/talkverse.yaml) | ✅ |
+| [OpenVE-Edit](models/video/openve-edit.yaml) | Zhejiang University and ByteDance | video | 2025-12-08 | announced | partial | [OpenVE-3M](catalog/video/openve-3m.yaml), [OpenVE-Bench](catalog/evaluation/openve-bench.yaml) | 👀 |
 | [HunyuanVideo 1.5](models/video/hunyuanvideo-1-5.yaml) | Tencent Hunyuan | video | 2025-11-24 | open weights | high level | not disclosed | 🟡 |
+| [CommonCanvas-XL-C](models/image/commoncanvas-xl-c.yaml) | CommonCanvas collaborators | image | 2024-05-16 | open weights | partial | [CommonCatalog commercial subset](catalog/image/commoncatalog.yaml) | ✅ |
 <!-- END MODEL CATALOG -->
 
 Legend: ✅ strategy checked against primary technical sources; 🟡 only part of
@@ -84,22 +87,31 @@ generated table.
 | [OpenHumanVid-Talking](catalog/video/openhumanvid-talking.yaml) | Haoson Zhang | video | 2026-07-15 | audio driven avatar, talking head generation, text to video | ~32.2K | open | noncommercial | ✅ |
 | [VITON-HD-edit](catalog/image/viton-hd-edit.yaml) | NXN Labs and KAIST | image | 2026-07-10 | virtual try on, controllable virtual try on, garment instance segmentation, image editing, virtual try on evaluation | 2K | open | noncommercial | ✅ |
 | [GenSyn10](catalog/evaluation/gensyn10.yaml) | University of Western Australia | evaluation | 2026-07-10 | synthetic image detection, image classification, out of distribution evaluation | 60K | unavailable | review required | 🟡 |
+| [GPIC](catalog/image/gpic.yaml) | Stanford Vision Lab and collaborators | image | 2026-05-28 | text to image, image text pretraining, generative model evaluation | 101.2M | gated | allowed | ✅ |
 | [ERIA-1K](catalog/evaluation/eria-1k.yaml) | Baidu | evaluation | 2026-05-25 | image aesthetic assessment, aesthetic model evaluation | 1K | unavailable | unknown | 🟡 |
 | [Lens-RL-8K](catalog/preference/lens-rl-8k.yaml) | Microsoft Research | preference | 2026-05-20 | text to image reinforcement learning, rubric based reward modeling | ~8K | unavailable | unknown | 🟡 |
 | [Lens-800M](catalog/image/lens-800m.yaml) | Microsoft Research | image | 2026-05-20 | text to image, image text pretraining | 800M | unavailable | unknown | 🟡 |
 | [FIT-VTO-100K](catalog/image/fit-vto-100k.yaml) | University of Washington and Google Research | image | 2026-05-08 | virtual try on, fit aware generation, garment conditioned generation, virtual try on evaluation | 105K | open | noncommercial | ✅ |
 | [TripVVT-10K](catalog/video/tripvvt-10k.yaml) | Nanjing University, JIUTIAN Research (CMCC), Jilin University, and ByteDance | video | 2026-04-30 | video virtual try on, virtual try on, garment conditioned generation, video to video, virtual try on evaluation | 10K | gated | noncommercial | ✅ |
+| [Fine-T2I](catalog/image/fine-t2i.yaml) | Northeastern University | image | 2026-02-10 | text to image, image text fine tuning, instruction following generation | 6.3M | open | review required | 🟡 |
 | [Audiovisual Translation Dubbing Dataset](catalog/video/audiovisual-translation-dub.yaml) | Lightricks and Tel Aviv University | video | 2026-02-08 | video dubbing, audiovisual translation, lip sync training | 288 | open | noncommercial | ✅ |
 | [VGGSound-Omni](catalog/evaluation/vggsound-omni.yaml) | Tsinghua University, Monash University, and Shengshu AI | evaluation | 2026-01-06 | text to audio evaluation, video to audio evaluation, video text to audio evaluation, off screen audio evaluation | ~14K | gated | noncommercial | ✅ |
 | [SoundAtlas](catalog/audio/soundatlas.yaml) | Tsinghua University, Monash University, and Shengshu AI | audio | 2026-01-06 | text to audio, video to audio, video text to audio, audio captioning | ~470K | gated | noncommercial | ✅ |
 | [TalkVerse](catalog/video/talkverse.yaml) | CUHK MMLab and Snap Research | video | 2026-01-02 | audio driven avatar, talking head generation, image to video | ~2.1M | gated | noncommercial | 🟡 |
+| [OpenVE-Bench](catalog/evaluation/openve-bench.yaml) | Zhejiang University and ByteDance | evaluation | 2025-12-08 | instruction guided video editing, video editing evaluation | 431 | open | noncommercial | ✅ |
+| [OpenVE-3M](catalog/video/openve-3m.yaml) | Zhejiang University and ByteDance | video | 2025-12-08 | instruction guided video editing, video to video, text guided video editing | ~3M | open | noncommercial | ✅ |
+| [MVHumanNet++](catalog/3d/mvhumannet-plus-plus.yaml) | GAP-Lab, CUHK-Shenzhen | 3d | 2025-05-03 | digital human, 3d avatar generation, human digitization, multi view human reconstruction | ~645M | gated | noncommercial | 🟡 |
 | [AudioCaps 2.0](catalog/audio/audiocaps-2-0.yaml) | Seoul National University | audio | 2025-02-24 | audio captioning, text to audio, audio language pretraining, text to audio evaluation | 98.6K | gated | noncommercial | 🟡 |
 | [OpenHumanVid](catalog/video/openhumanvid.yaml) | Fudan University and collaborators | video | 2024-11-28 | text to video, video text pretraining, human centric video generation, pose conditioned generation | ~13.2M | gated | noncommercial | 🟡 |
+| [Koala-36M](catalog/video/koala-36m.yaml) | Kling AI Research | video | 2024-10-10 | text to video, video text pretraining | ~36M | metadata only | unknown | 🟡 |
 | [FineVideo](catalog/video/finevideo.yaml) | Hugging Face | video | 2024-09-23 | video understanding, text to video | ~43K | gated | review required | ✅ |
 | [Re-LAION-5B](catalog/image/re-laion-5b.yaml) | LAION | image | 2024-08-30 | image text pretraining, text to image | ~5.8B | open | review required | 🟡 |
 | [OpenVid-1M](catalog/video/openvid-1m.yaml) | Nanjing University PCALab | video | 2024-07-02 | text to video, image to video | ~1M | open | noncommercial | ✅ |
+| [MVHumanNet](catalog/3d/mvhumannet.yaml) | GAP-Lab, CUHK-Shenzhen | 3d | 2024-05-07 | digital human, 3d avatar generation, text driven human image generation, human nerf reconstruction | ~645M | gated | noncommercial | 🟡 |
 | [Panda-70M](catalog/video/panda-70m.yaml) | Snap Research | video | 2024-02-29 | text to video, video text pretraining | 70.7M | open | review required | ✅ |
+| [CommonCatalog](catalog/image/commoncatalog.yaml) | CommonCanvas collaborators | image | 2023-10-25 | text to image, image text pretraining | 67M | open | review required | ✅ |
 | [Pick-a-Pic v2](catalog/preference/pick-a-pic-v2.yaml) | Tel Aviv University and Meta AI | preference | 2023-09-25 | text to image preference, reward modeling | ~1M | gated | review required | 🟡 |
+| [FreeMan](catalog/3d/freeman.yaml) | CUHK-Shenzhen, Tencent, and IDEA | 3d | 2023-09-10 | 3d human pose estimation, human motion reconstruction, digital human | ~11.3M | gated | noncommercial | 🟡 |
 | [InternVid](catalog/video/internvid.yaml) | OpenGVLab | video | 2023-07-13 | video text pretraining, text to video | ~234M | open | review required | 🟡 |
 | [Objaverse-XL](catalog/3d/objaverse-xl.yaml) | Allen Institute for AI | 3d | 2023-07-11 | 3d pretraining, image to 3d, text to 3d, novel view synthesis | ~10M | open | review required | 🟡 |
 | [JourneyDB](catalog/image/journeydb.yaml) | CUHK MMLab and Shanghai AI Laboratory | image | 2023-07-03 | text to image, generative image understanding, evaluation | 4.4M | gated | review required | 🟡 |
@@ -113,6 +125,7 @@ generated table.
 | [VGGSound](catalog/audio/vggsound.yaml) | Visual Geometry Group, University of Oxford | audio | 2020-04-29 | audio event classification, audio visual learning, video to audio, audio language pretraining | ~210K | metadata only | review required | 🟡 |
 | [FMA](catalog/audio/fma.yaml) | École Polytechnique Fédérale de Lausanne | audio | 2017-05-09 | music generation pretraining, music information retrieval, music tagging, genre classification | ~106.6K | open | review required | ✅ |
 | [AudioSet](catalog/audio/audioset.yaml) | Google Research | audio | 2017-03-30 | audio event classification, audio language pretraining, audio representation learning, text to audio | ~2.1M | metadata only | review required | 🟡 |
+| [YFCC100M](catalog/image/yfcc100m.yaml) | Yahoo Labs and collaborators | image | 2015-03-05 | image text pretraining, video text pretraining, multimedia retrieval | ~100M | metadata only | review required | 🟡 |
 | [Million Song Dataset](catalog/audio/million-song-dataset.yaml) | The Echo Nest and LabROSA, Columbia University | audio | 2011-02-08 | music information retrieval, music representation learning, music metadata modeling, music recommendation | 1M | unavailable | review required | 🗄️ |
 <!-- END DATASET CATALOG -->
 
@@ -180,11 +193,13 @@ virtual try-on, and commerce-oriented conditional generation. It opens or
 updates one GitHub Issue when it finds new candidates, source failures, or an
 important dataset revision. For selected Hugging Face datasets it records both
 `lastModified` and the repository commit SHA, so a changed release is surfaced
-even when its URL stays the same. Every important revision probe also declares
-a dataset `catalog_id` and monitoring priority. The Issue therefore identifies
-the catalog card and lists every model currently linked to that dataset, making
-the review impact-aware instead of reporting an isolated URL change. It closes
-the Issue when the queue is clear.
+even when its URL stays the same. Selected official GitHub repositories are
+tracked by commit date and SHA through the same contract. Every important
+revision probe also declares a dataset `catalog_id` and monitoring priority.
+The Issue therefore identifies the catalog card, downstream derived datasets,
+and every directly or transitively affected model, making the review
+impact-aware instead of reporting an isolated URL change. It closes the Issue
+when the queue is clear.
 This is triage rather than automatic fact generation: a card, license
 conclusion, or `last_verified` date changes only through a reviewed PR.
 
@@ -199,11 +214,15 @@ cross-model matrix without adding an inferred score.
 Model-to-dataset relationships have one canonical source: a model data
 reference with a non-null `catalog_id`. Site generation converts those reviewed
 references into a relation index plus model and dataset backlinks, so users can
-use the dedicated **模型 ↔ 数据** view or navigate in either direction without
-maintaining two editable copies. Dataset cards covered by the revision scanner
-also expose their monitoring tier and probe source. A
-dataset card's `evidence.used_by` remains an upstream claim and is never
-silently promoted to a canonical relationship.
+use the dedicated **关系图谱** view or navigate in either direction without
+maintaining two editable copies. Dataset derivation is separate and equally
+explicit: a child card's `derived_from` entries identify its reviewed upstream
+`catalog_id`, relationship type, contribution, and evidence boundary. Site
+generation creates the dataset-to-dataset relation index and symmetric upstream
+and downstream backlinks. Dataset cards covered by the revision scanner also
+expose their monitoring tier and probe source. A dataset card's
+`evidence.used_by` remains an upstream claim and is never silently promoted to
+a canonical model relationship.
 
 The latest evidence review is recorded in
 [updates/2026-07-26.md](updates/2026-07-26.md), including accepted releases,

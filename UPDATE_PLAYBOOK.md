@@ -12,9 +12,10 @@ as an exhaustive list.
    It also compares stable revisions for selected important datasets. A changed
    Hugging Face `lastModified` or repository commit SHA requires reviewing
    access, files, scale, terms, and the affected model relationships. Review
-   `priority`, `catalog_id`, and `impacted_model_ids` first: these fields are
-   joined from the monitored dataset to canonical model-side `catalog_id`
-   references and define the immediate blast radius.
+   `priority`, `catalog_id`, `impacted_dataset_ids`, and `impacted_model_ids`
+   first. The scanner follows reviewed dataset `derived_from` edges and then
+   canonical model-side `catalog_id` references to define the transitive blast
+   radius.
    The scenario layer explicitly covers digital humans, talking avatars, video
    translation/dubbing, lip sync, virtual try-on, and commerce creatives.
    Search beyond the generated candidates when an official organization uses a
@@ -33,6 +34,10 @@ as an exhaustive list.
    generator derives `relations`, `linked_dataset_ids`, and `linked_model_ids`;
    never hand-maintain a second backlink. Dataset `evidence.used_by` is an
    editorial claim from upstream evidence, not a substitute for `catalog_id`.
+   For dataset derivation, put `derived_from` only on the child card. The site
+   generator derives `dataset_relations`, `upstream_dataset_ids`, and
+   `downstream_dataset_ids`; unknown parents, duplicates, self-links, and cycles
+   fail validation.
 5. Distinguish facts from analysis:
    - `strategy`: directly supported by primary evidence;
    - `unknowns`: material information the source does not provide;
@@ -50,9 +55,10 @@ as an exhaustive list.
 
 When adding an important dataset revision probe, use an object in the
 `important-dataset-updates` track with an official HTTPS API `url`, an existing
-dataset `catalog_id`, and `priority: critical|high|standard`. Do not monitor a
-dataset by URL alone: the canonical ID is what connects a revision to the site
-card and its affected models.
+dataset `catalog_id`, and `priority: critical|high|standard`. Hugging Face
+dataset APIs and official GitHub commit APIs are supported revision sources. Do
+not monitor a dataset by URL alone: the canonical ID connects a revision to the
+site card, downstream datasets, and affected models.
 
 ## Automation boundary
 

@@ -54,6 +54,19 @@ type EnrichedRelation = ModelDatasetRelation & {
   dataset: DatasetCard;
 };
 
+type DatasetLineageRelation = {
+  source_dataset_id: string;
+  derived_dataset_id: string;
+  relationship: string;
+  contribution: string;
+  notes: string;
+};
+
+type EnrichedDatasetLineage = DatasetLineageRelation & {
+  sourceDataset: DatasetCard;
+  derivedDataset: DatasetCard;
+};
+
 type ModelCard = {
   id: string;
   name: string;
@@ -105,6 +118,12 @@ type DatasetCard = {
   tasks: string[];
   stages: string[];
   description: string;
+  derived_from?: {
+    catalog_id: string;
+    relationship: string;
+    contribution: string;
+    notes: string;
+  }[];
   access: {
     status: string;
     type: string;
@@ -151,6 +170,8 @@ type DatasetCard = {
   source_path: string;
   scenario_ids: string[];
   linked_model_ids: string[];
+  upstream_dataset_ids: string[];
+  downstream_dataset_ids: string[];
   monitoring: {
     priority: string;
     source_url: string;
@@ -163,12 +184,13 @@ type Catalog = {
   models: ModelCard[];
   datasets: DatasetCard[];
   relations: ModelDatasetRelation[];
+  dataset_relations: DatasetLineageRelation[];
 };
 
 const MODE_LABELS: Record<Mode, string> = {
   models: "最新模型",
   datasets: "最新数据集",
-  lineage: "模型 ↔ 数据",
+  lineage: "关系图谱",
   strategies: "数据策略",
 };
 
@@ -243,6 +265,14 @@ const DATA_AVAILABILITY_LABELS: Record<string, string> = {
   gated: "受限访问",
   "not-released": "尚未发布",
   undisclosed: "未披露",
+};
+
+const DATASET_LINEAGE_LABELS: Record<string, string> = {
+  "source-component": "来源组成",
+  "filtered-subset": "筛选子集",
+  "annotation-derivative": "标注衍生",
+  "benchmark-derivative": "评测衍生",
+  "transformed-derivative": "转换衍生",
 };
 
 const STATUS_LABELS: Record<string, string> = {
@@ -410,14 +440,28 @@ function ModelResult({ model, scenarioLabels, expanded, onToggle, onOpenDataset 
   );
 }
 
-function DatasetResult({ dataset, scenarioLabels, linkedModels, expanded, onToggle, onOpenModel }: {
+function DatasetResult({
+  dataset,
+  scenarioLabels,
+  linkedModels,
+  upstreamDatasets,
+  downstreamDatasets,
+  expanded,
+  onToggle,
+  onOpenModel,
+  onOpenDataset,
+}: {
   dataset: DatasetCard;
   scenarioLabels: string[];
   linkedModels: ModelCard[];
+  upstreamDatasets: DatasetCard[];
+  downstreamDatasets: DatasetCard[];
   expanded: boolean;
   onToggle: () => void;
   onOpenModel: (modelId: string) => void;
+  onOpenDataset: (datasetId: string) => void;
 }) {
+  const datasetLineageCount = upstreamDatasets.length + downstreamDatasets.length;
   return (
     <article id={`dataset-${dataset.id}`} className={`result-card dataset-card ${expanded ? "is-expanded" : ""}`}>
       <button className="card-toggle" onClick={onToggle} aria-expanded={expanded}>
@@ -437,6 +481,7 @@ function DatasetResult({ dataset, scenarioLabels, linkedModels, expanded, onTogg
             {dataset.tasks.slice(0, 2).map((item) => <span className="tag" key={item}>{item}</span>)}
             {dataset.monitoring && <span className="tag tag-monitor">{MONITORING_LABELS[dataset.monitoring.priority]}</span>}
             {linkedModels.length > 0 && <span className="tag tag-relation">{linkedModels.length} 个模型关联</span>}
+            {datasetLineageCount > 0 && <span className="tag tag-lineage">{datasetLineageCount} 条数据血缘</span>}
           </div>
         </div>
         <div className="card-metrics">
@@ -477,14 +522,48 @@ function DatasetResult({ dataset, scenarioLabels, linkedModels, expanded, onTogg
             </dl>
             <p className="license-note">{dataset.license.notes}</p>
           </section>
-          {(linkedModels.length > 0 || dataset.evidence.used_by.length > 0) && (
+          {(linkedModels.length > 0
+            || upstreamDatasets.length > 0
+            || downstreamDatasets.length > 0
+            || dataset.evidence.used_by.length > 0) && (
             <section className="relation-panel">
-              <p className="detail-label">模型关系</p>
+              <p className="detail-label">模型关系与数据血缘</p>
               {linkedModels.length > 0 && (
-                <div className="relation-list">
+                <div className="relation-list relation-group">
+                  <span className="relation-group-label">关联模型</span>
                   {linkedModels.map((model) => (
                     <button className="relation-link" onClick={() => onOpenModel(model.id)} key={model.id}>
                       <span>{model.name}</span><small>{model.data.datasets.find((item) => item.catalog_id === dataset.id)?.role ?? "关联"}</small><b aria-hidden="true">→</b>
+                    </button>
+                  ))}
+                </div>
+              )}
+              {upstreamDatasets.length > 0 && (
+                <div className="relation-list relation-group">
+                  <span className="relation-group-label">上游数据集</span>
+                  {upstreamDatasets.map((source) => {
+                    const lineage = dataset.derived_from?.find((item) => item.catalog_id === source.id);
+                    return (
+                      <button className="relation-link" onClick={() => onOpenDataset(source.id)} key={source.id}>
+                        <span>{source.name}</span>
+                        <small>{taxonomyLabel(lineage?.relationship ?? "", DATASET_LINEAGE_LABELS)}</small>
+                        <b aria-hidden="true">↑</b>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+              {downstreamDatasets.length > 0 && (
+                <div className="relation-list relation-group">
+                  <span className="relation-group-label">下游衍生数据集</span>
+                  {downstreamDatasets.map((derived) => (
+                    <button className="relation-link" onClick={() => onOpenDataset(derived.id)} key={derived.id}>
+                      <span>{derived.name}</span>
+                      <small>{taxonomyLabel(
+                        derived.derived_from?.find((item) => item.catalog_id === dataset.id)?.relationship ?? "",
+                        DATASET_LINEAGE_LABELS,
+                      )}</small>
+                      <b aria-hidden="true">↓</b>
                     </button>
                   ))}
                 </div>
@@ -521,60 +600,107 @@ function DatasetResult({ dataset, scenarioLabels, linkedModels, expanded, onTogg
   );
 }
 
-function LineageOverview({ relations, onOpenModel, onOpenDataset }: {
-  relations: EnrichedRelation[];
+function LineageOverview({ modelRelations, datasetRelations, onOpenModel, onOpenDataset }: {
+  modelRelations: EnrichedRelation[];
+  datasetRelations: EnrichedDatasetLineage[];
   onOpenModel: (modelId: string) => void;
   onOpenDataset: (datasetId: string) => void;
 }) {
-  const modelCount = new Set(relations.map((item) => item.model_id)).size;
-  const datasetCount = new Set(relations.map((item) => item.dataset_id)).size;
+  const modelCount = new Set(modelRelations.map((item) => item.model_id)).size;
+  const datasetCount = new Set([
+    ...modelRelations.map((item) => item.dataset_id),
+    ...datasetRelations.flatMap((item) => [item.source_dataset_id, item.derived_dataset_id]),
+  ]).size;
+  const relationCount = modelRelations.length + datasetRelations.length;
 
   return (
     <section className="lineage-overview" aria-labelledby="lineage-title">
       <header className="lineage-summary">
         <div>
           <p className="comparison-kicker">LINEAGE / CANONICAL</p>
-          <h3 id="lineage-title">模型和数据，不再是两张孤立清单。</h3>
-          <p>每条关系都来自模型卡中经过核验的 <code>catalog_id</code>，角色、可用性和规模保持原始证据边界。</p>
+          <h3 id="lineage-title">从上游数据，一路追到衍生集和模型。</h3>
+          <p>模型关系来自模型卡的 <code>catalog_id</code>；数据血缘来自子数据集的 <code>derived_from</code>。两类边都保留原始证据边界。</p>
         </div>
         <dl>
-          <div><dt>当前关系</dt><dd>{relations.length}</dd></div>
+          <div><dt>当前关系</dt><dd>{relationCount}</dd></div>
           <div><dt>关联模型</dt><dd>{modelCount}</dd></div>
           <div><dt>关联数据集</dt><dd>{datasetCount}</dd></div>
         </dl>
       </header>
-      <div className="lineage-grid">
-        {relations.map((relation) => (
-          <article className="lineage-row" key={`${relation.model_id}-${relation.dataset_id}-${relation.role}`}>
-            <button
-              className="lineage-entity lineage-model"
-              onClick={() => onOpenModel(relation.model_id)}
-              aria-label={`打开模型 ${relation.model.name}`}
-            >
-              <span>M</span>
-              <strong>{relation.model.name}</strong>
-              <small>{relation.model.organization}</small>
-            </button>
-            <div className="lineage-edge">
-              <strong>{taxonomyLabel(relation.role, RELATION_ROLE_LABELS)}</strong>
-              <span>{taxonomyLabel(relation.availability, DATA_AVAILABILITY_LABELS)}</span>
-              <small>{relation.scale ?? "规模未披露"}</small>
-            </div>
-            <button
-              className="lineage-entity lineage-dataset"
-              onClick={() => onOpenDataset(relation.dataset_id)}
-              aria-label={`打开数据集 ${relation.dataset.name}`}
-            >
-              <span>D</span>
-              <strong>{relation.dataset.name}</strong>
-              <small>
-                {MODALITY_LABELS[relation.dataset.modality] ?? relation.dataset.modality} · {ACCESS_LABELS[relation.dataset.access.status] ?? relation.dataset.access.status}
-                {relation.dataset.monitoring ? ` · ${MONITORING_LABELS[relation.dataset.monitoring.priority]}` : ""}
-              </small>
-            </button>
-          </article>
-        ))}
-      </div>
+      {modelRelations.length > 0 && (
+        <section className="lineage-section">
+          <div className="lineage-section-heading"><span>MODEL → DATASET</span><strong>模型使用了哪些数据</strong></div>
+          <div className="lineage-grid">
+            {modelRelations.map((relation) => (
+              <article className="lineage-row" key={`${relation.model_id}-${relation.dataset_id}-${relation.role}`}>
+                <button
+                  className="lineage-entity lineage-model"
+                  onClick={() => onOpenModel(relation.model_id)}
+                  aria-label={`打开模型 ${relation.model.name}`}
+                >
+                  <span>M</span>
+                  <strong>{relation.model.name}</strong>
+                  <small>{relation.model.organization}</small>
+                </button>
+                <div className="lineage-edge">
+                  <strong>{taxonomyLabel(relation.role, RELATION_ROLE_LABELS)}</strong>
+                  <span>{taxonomyLabel(relation.availability, DATA_AVAILABILITY_LABELS)}</span>
+                  <small>{relation.scale ?? "规模未披露"}</small>
+                </div>
+                <button
+                  className="lineage-entity lineage-dataset"
+                  onClick={() => onOpenDataset(relation.dataset_id)}
+                  aria-label={`打开数据集 ${relation.dataset.name}`}
+                >
+                  <span>D</span>
+                  <strong>{relation.dataset.name}</strong>
+                  <small>
+                    {MODALITY_LABELS[relation.dataset.modality] ?? relation.dataset.modality} · {ACCESS_LABELS[relation.dataset.access.status] ?? relation.dataset.access.status}
+                    {relation.dataset.monitoring ? ` · ${MONITORING_LABELS[relation.dataset.monitoring.priority]}` : ""}
+                  </small>
+                </button>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+      {datasetRelations.length > 0 && (
+        <section className="lineage-section">
+          <div className="lineage-section-heading"><span>DATASET → DATASET</span><strong>上游数据如何形成衍生集</strong></div>
+          <div className="lineage-grid">
+            {datasetRelations.map((relation) => (
+              <article className="lineage-row" key={`${relation.source_dataset_id}-${relation.derived_dataset_id}`}>
+                <button
+                  className="lineage-entity lineage-dataset"
+                  onClick={() => onOpenDataset(relation.source_dataset_id)}
+                  aria-label={`打开上游数据集 ${relation.sourceDataset.name}`}
+                >
+                  <span>D</span>
+                  <strong>{relation.sourceDataset.name}</strong>
+                  <small>上游 · {MODALITY_LABELS[relation.sourceDataset.modality] ?? relation.sourceDataset.modality}</small>
+                </button>
+                <div className="lineage-edge lineage-edge-dataset">
+                  <strong>{taxonomyLabel(relation.relationship, DATASET_LINEAGE_LABELS)}</strong>
+                  <span>{relation.contribution}</span>
+                  <small>已核验派生关系</small>
+                </div>
+                <button
+                  className="lineage-entity lineage-derived"
+                  onClick={() => onOpenDataset(relation.derived_dataset_id)}
+                  aria-label={`打开衍生数据集 ${relation.derivedDataset.name}`}
+                >
+                  <span>D′</span>
+                  <strong>{relation.derivedDataset.name}</strong>
+                  <small>
+                    衍生 · {ACCESS_LABELS[relation.derivedDataset.access.status] ?? relation.derivedDataset.access.status}
+                    {relation.derivedDataset.monitoring ? ` · ${MONITORING_LABELS[relation.derivedDataset.monitoring.priority]}` : ""}
+                  </small>
+                </button>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
     </section>
   );
 }
@@ -756,6 +882,14 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
     }),
     [catalog.relations, datasetById, modelById],
   );
+  const datasetLineageRecords = useMemo(
+    () => catalog.dataset_relations.flatMap((relation): EnrichedDatasetLineage[] => {
+      const sourceDataset = datasetById.get(relation.source_dataset_id);
+      const derivedDataset = datasetById.get(relation.derived_dataset_id);
+      return sourceDataset && derivedDataset ? [{ ...relation, sourceDataset, derivedDataset }] : [];
+    }),
+    [catalog.dataset_relations, datasetById],
+  );
 
   const modelResults = useMemo(() => {
     const search = normalize(query.trim());
@@ -791,12 +925,19 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         dataset.monitoring?.priority ?? "",
         dataset.monitoring ? MONITORING_LABELS[dataset.monitoring.priority] : "",
         ...dataset.linked_model_ids.map((id) => modelById.get(id)?.name ?? id),
+        ...dataset.upstream_dataset_ids.map((id) => datasetById.get(id)?.name ?? id),
+        ...dataset.downstream_dataset_ids.map((id) => datasetById.get(id)?.name ?? id),
+        ...(dataset.derived_from ?? []).flatMap((item) => [
+          item.relationship,
+          item.contribution,
+          item.notes,
+        ]),
       ].join(" "));
       return inModality && inScenario && (!search || haystack.includes(search));
     });
-  }, [catalog.datasets, modality, modelById, query, scenario]);
+  }, [catalog.datasets, datasetById, modality, modelById, query, scenario]);
 
-  const lineageResults = useMemo(() => {
+  const modelLineageResults = useMemo(() => {
     const search = normalize(query.trim());
     return lineageRecords.filter((relation) => {
       const inModality = modality === "all"
@@ -823,13 +964,40 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
     });
   }, [lineageRecords, modality, query, scenario]);
 
+  const datasetLineageResults = useMemo(() => {
+    const search = normalize(query.trim());
+    return datasetLineageRecords.filter((relation) => {
+      const inModality = modality === "all"
+        || relation.sourceDataset.modality === modality
+        || relation.derivedDataset.modality === modality;
+      const inScenario = scenario === "all"
+        || relation.sourceDataset.scenario_ids.includes(scenario)
+        || relation.derivedDataset.scenario_ids.includes(scenario);
+      const haystack = normalize([
+        relation.sourceDataset.name,
+        relation.sourceDataset.organization,
+        relation.derivedDataset.name,
+        relation.derivedDataset.organization,
+        relation.relationship,
+        DATASET_LINEAGE_LABELS[relation.relationship] ?? "",
+        relation.contribution,
+        relation.notes,
+        ...relation.sourceDataset.tasks,
+        ...relation.derivedDataset.tasks,
+      ].join(" "));
+      return inModality && inScenario && (!search || haystack.includes(search));
+    });
+  }, [datasetLineageRecords, modality, query, scenario]);
+
   const visibleModalities = mode === "datasets"
     ? ["all", "image", "video", "audio", "3d", "preference"]
+    : mode === "lineage"
+      ? ["all", "image", "video", "audio", "3d", "preference", "multimodal", "action"]
     : ["all", "image", "video", "audio", "3d", "multimodal", "action"];
   const visibleCount = mode === "datasets"
     ? datasetResults.length
     : mode === "lineage"
-      ? lineageResults.length
+      ? modelLineageResults.length + datasetLineageResults.length
       : modelResults.length;
   const activeScenario = scenario === "all"
     ? null
@@ -843,6 +1011,9 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         lineageRecords.filter((relation) => (
           relation.model.scenario_ids.includes(item.id)
           || relation.dataset.scenario_ids.includes(item.id)
+        )).length + datasetLineageRecords.filter((relation) => (
+          relation.sourceDataset.scenario_ids.includes(item.id)
+          || relation.derivedDataset.scenario_ids.includes(item.id)
         )).length,
       ]));
     }
@@ -851,11 +1022,11 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
       item.id,
       items.filter((entry) => entry.scenario_ids.includes(item.id)).length,
     ]));
-  }, [catalog.datasets, catalog.models, catalog.scenarios, lineageRecords, mode]);
+  }, [catalog.datasets, catalog.models, catalog.scenarios, datasetLineageRecords, lineageRecords, mode]);
 
   function totalForMode(item: Mode) {
     if (item === "datasets") return catalog.datasets.length;
-    if (item === "lineage") return catalog.relations.length;
+    if (item === "lineage") return catalog.relations.length + catalog.dataset_relations.length;
     return catalog.models.length;
   }
 
@@ -915,7 +1086,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
             <div><strong>{catalog.datasets.length}</strong><span>结构化数据集</span></div>
             <div><strong>{openDatasets}</strong><span>公开可访问</span></div>
             <div><strong>{exactDatasetModels}</strong><span>披露具体数据</span></div>
-            <div><strong>{catalog.relations.length}</strong><span>模型—数据关系</span></div>
+            <div><strong>{catalog.relations.length + catalog.dataset_relations.length}</strong><span>模型与数据血缘</span></div>
           </div>
           <div className="stats-note">每条结论保留发布日期、核验时间和官方证据。未知不是空白，也是结论。</div>
         </aside>
@@ -991,7 +1162,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
               placeholder={mode === "datasets"
                 ? "搜索数据集、任务、标注类型…"
                 : mode === "lineage"
-                  ? "搜索模型、数据集、训练角色或可用性…"
+                  ? "搜索模型、上游数据、衍生集或关系类型…"
                   : "搜索模型、机构、数据集或训练操作…"}
             />
             {query && <button onClick={() => setQuery("")} aria-label="清空搜索">×</button>}
@@ -1010,9 +1181,10 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
           {mode === "strategies" && (
             <StrategyMatrix models={modelResults} scenario={activeScenario} />
           )}
-          {mode === "lineage" && lineageResults.length > 0 && (
+          {mode === "lineage" && visibleCount > 0 && (
             <LineageOverview
-              relations={lineageResults}
+              modelRelations={modelLineageResults}
+              datasetRelations={datasetLineageResults}
               onOpenModel={(id) => openRelation("models", id)}
               onOpenDataset={(id) => openRelation("datasets", id)}
             />
@@ -1035,10 +1207,19 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
                 const model = modelById.get(id);
                 return model ? [model] : [];
               })}
+              upstreamDatasets={dataset.upstream_dataset_ids.flatMap((id) => {
+                const source = datasetById.get(id);
+                return source ? [source] : [];
+              })}
+              downstreamDatasets={dataset.downstream_dataset_ids.flatMap((id) => {
+                const derived = datasetById.get(id);
+                return derived ? [derived] : [];
+              })}
               scenarioLabels={dataset.scenario_ids.map((item) => scenarioLabels.get(item) ?? item)}
               expanded={expanded === dataset.id}
               onToggle={() => setExpanded(expanded === dataset.id ? null : dataset.id)}
               onOpenModel={(id) => openRelation("models", id)}
+              onOpenDataset={(id) => openRelation("datasets", id)}
             />
           ))}
           {mode === "strategies" && modelResults.map((model) => (

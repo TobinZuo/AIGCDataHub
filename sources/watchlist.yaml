@@ -27,6 +27,16 @@ discovery:
     - https://zenodo.org/records/4060432
     - https://millionsongdataset.com/
     - https://github.com/mdeff/fma
+    - https://huggingface.co/datasets/Koala-36M/Koala-36M-v1
+    - https://wangjiongw.github.io/freeman/
+    - https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet
+    - https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus
+    - https://multimediacommons.wordpress.com/yfcc100m-core-dataset/
+    - https://huggingface.co/common-canvas
+    - https://huggingface.co/datasets/ma-xu/fine-t2i
+    - https://huggingface.co/datasets/stanford-vision-lab/gpic
+    - https://huggingface.co/datasets/Lewandofski/OpenVE-3M
+    - https://huggingface.co/datasets/Lewandofski/OpenVE-Bench
 
 tracks:
   - id: image-generation
@@ -156,6 +166,16 @@ tracks:
       - https://huggingface.co/datasets/zhenzhiwang/TalkVerse
       - https://github.com/fudan-generative-vision/OpenHumanVid
       - https://huggingface.co/datasets/Haosonnn/OpenHumanVid-Talking
+      - https://huggingface.co/datasets/Koala-36M/Koala-36M-v1
+      - https://wangjiongw.github.io/freeman/
+      - https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet
+      - https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus
+      - https://multimediacommons.wordpress.com/yfcc100m-core-dataset/
+      - https://huggingface.co/common-canvas
+      - https://huggingface.co/datasets/ma-xu/fine-t2i
+      - https://huggingface.co/datasets/stanford-vision-lab/gpic
+      - https://huggingface.co/datasets/Lewandofski/OpenVE-3M
+      - https://huggingface.co/datasets/Lewandofski/OpenVE-Bench
 
   - id: important-dataset-updates
     topics:
@@ -205,6 +225,39 @@ tracks:
         priority: critical
       - url: https://huggingface.co/api/datasets/Haosonnn/OpenHumanVid-Talking
         catalog_id: openhumanvid-talking
+        priority: critical
+      - url: https://api.github.com/repos/fudan-generative-vision/OpenHumanVid/commits/main
+        catalog_id: openhumanvid
+        priority: critical
+      - url: https://api.github.com/repos/snap-research/Panda-70M/commits/main
+        catalog_id: panda-70m
+        priority: critical
+      - url: https://huggingface.co/api/datasets/Koala-36M/Koala-36M-v1
+        catalog_id: koala-36m
+        priority: critical
+      - url: https://huggingface.co/api/datasets/wjwow/FreeMan
+        catalog_id: freeman
+        priority: critical
+      - url: https://api.github.com/repos/GAP-LAB-CUHK-SZ/MVHumanNet/commits/main
+        catalog_id: mvhumannet
+        priority: critical
+      - url: https://api.github.com/repos/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus/commits/main
+        catalog_id: mvhumannet-plus-plus
+        priority: critical
+      - url: https://huggingface.co/api/datasets/common-canvas/commoncatalog-cc-by
+        catalog_id: commoncatalog
+        priority: critical
+      - url: https://huggingface.co/api/datasets/ma-xu/fine-t2i
+        catalog_id: fine-t2i
+        priority: critical
+      - url: https://huggingface.co/api/datasets/stanford-vision-lab/gpic
+        catalog_id: gpic
+        priority: critical
+      - url: https://huggingface.co/api/datasets/Lewandofski/OpenVE-3M
+        catalog_id: openve-3m
+        priority: critical
+      - url: https://huggingface.co/api/datasets/Lewandofski/OpenVE-Bench
+        catalog_id: openve-bench
         priority: critical
 
 acceptance_rules:

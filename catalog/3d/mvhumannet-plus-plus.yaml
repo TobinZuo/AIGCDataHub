@@ -1,0 +1,78 @@
+id: mvhumannet-plus-plus
+name: MVHumanNet++
+organization: GAP-Lab, CUHK-Shenzhen
+released_at: "2025-05-03"
+release_date_source: https://arxiv.org/abs/2505.01838
+modality: 3d
+tasks:
+  - digital-human
+  - 3d-avatar-generation
+  - human-digitization
+  - multi-view-human-reconstruction
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  An annotation-enhanced release of MVHumanNet that adds improved masks and
+  SMPL-X estimates plus normal and depth maps for multi-view human digitization
+  and generative-avatar research.
+derived_from:
+  - catalog_id: mvhumannet
+    relationship: annotation-derivative
+    contribution: Original multi-view human captures, identities, outfits, motions, and calibrations
+    notes: MVHumanNet++ retains the MVHumanNet capture corpus and publishes newly processed geometry and segmentation annotations.
+access:
+  status: gated
+  type: request
+  url: https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus
+  requires_account: true
+  notes: Users must read the Terms of Use, submit the official form, and use the granted download links.
+scale:
+  samples: 645000000
+  source_items: 60000
+  hours: null
+  approximate: true
+  notes: The underlying full corpus retains MVHumanNet's 645M-frame scope; the current packaged release filters about 7K outfits, uses 16 common camera views, and samples every 25 frames.
+annotations:
+  types:
+    - multi-view-image
+    - enhanced-human-mask
+    - camera-parameters
+    - 2d-keypoints
+    - 3d-keypoints
+    - improved-smplx-parameters
+    - normal-map
+    - depth-map
+    - textual-description
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: MVHumanNet and MVHumanNet++ Terms of Use
+  media: Non-commercial research and educational use only
+  commercial_use: noncommercial
+  redistribution: prohibited
+  notes: Data use is controlled by the project-specific terms and form; the repository's CC-BY-NC-4.0 code license is not a blanket media license.
+quality:
+  dimensions:
+    - visual-quality
+    - geometry-quality
+    - multi-view-consistency
+    - temporal-consistency
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Current packaged coverage and sampling are smaller than the headline full-corpus counts.
+    - Normal, depth, segmentation, and SMPL-X outputs are estimated annotations and can contain correlated model errors.
+    - Human biometric and identity data remain sensitive even under non-commercial research terms.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Version the annotation pipeline separately from the underlying captures and keep confidence, camera, outfit, and identity metadata attached.
+evidence:
+  homepage: https://kevinlee09.github.io/research/MVHumanNet%2B%2B/
+  paper: https://arxiv.org/abs/2505.01838
+  used_by: []
+status: partial
+last_verified: "2026-07-26"
