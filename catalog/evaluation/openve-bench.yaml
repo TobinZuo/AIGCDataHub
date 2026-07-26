@@ -1,0 +1,70 @@
+id: openve-bench
+name: OpenVE-Bench
+organization: Zhejiang University and ByteDance
+released_at: "2025-12-08"
+release_date_source: https://arxiv.org/abs/2512.07826
+modality: evaluation
+tasks:
+  - instruction-guided-video-editing
+  - video-editing-evaluation
+stages:
+  - evaluation
+description: >-
+  A 431-pair benchmark for spatially and non-spatially aligned instruction-led
+  video editing, covering the same eight edit categories as OpenVE-3M and using
+  three metrics designed to track human judgments.
+derived_from:
+  - catalog_id: openve-3m
+    relationship: benchmark-derivative
+    contribution: Editing taxonomy, source and edited video pairs, and instruction format
+    notes: The OpenVE project presents the benchmark as the held-out evaluation companion constructed with the OpenVE-3M pipeline and categories.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/Lewandofski/OpenVE-Bench
+  requires_account: false
+  notes: The 431-row video benchmark is directly hosted on Hugging Face.
+scale:
+  samples: 431
+  source_items: 431
+  hours: null
+  approximate: false
+  notes: The project reports 431 video-edit pairs across eight fine-grained categories, averaging more than 50 clips per category.
+annotations:
+  types:
+    - editing-instruction
+    - source-video
+    - edited-video
+    - edit-category
+    - metric-target
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-NC-4.0
+  media: CC-BY-NC-4.0 release terms plus source-dependent rights
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The Hugging Face card labels the benchmark CC-BY-NC-4.0; users should retain source provenance and review any component-media constraints.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - temporal-consistency
+    - motion
+    - human-preference
+    - provenance
+  known_limitations:
+    - A 431-pair benchmark cannot exhaustively cover instructions, subjects, motion, or professional editing styles.
+    - Benchmark construction and metric design share the OpenVE taxonomy and may favor systems trained on similar edit distributions.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: Keep task categories balanced in reporting and separate spatially aligned from non-spatially aligned scores.
+evidence:
+  homepage: https://lewandofskee.github.io/projects/OpenVE/
+  paper: https://arxiv.org/abs/2512.07826
+  used_by:
+    - OpenVE-Edit
+status: verified
+last_verified: "2026-07-26"

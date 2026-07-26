@@ -15,6 +15,15 @@ description: >-
   The released metadata and annotation layer for TalkVerse's large-scale,
   human-centric audio-video training corpus, curated from OpenHumanVid and
   Panda-70M for audio-driven talking-video generation.
+derived_from:
+  - catalog_id: openhumanvid
+    relationship: source-component
+    contribution: Human-centric source videos and metadata
+    notes: The public TalkVerse metadata exposes an OpenHumanVid partition of approximately 796K rows after TalkVerse-specific filtering and annotation.
+  - catalog_id: panda-70m
+    relationship: source-component
+    contribution: General human-related source videos and metadata
+    notes: The public TalkVerse metadata exposes a Panda-70M partition of approximately 1.34M rows after TalkVerse-specific filtering and annotation.
 access:
   status: gated
   type: metadata

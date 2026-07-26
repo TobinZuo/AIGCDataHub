@@ -1,0 +1,71 @@
+id: fine-t2i
+name: Fine-T2I
+organization: Northeastern University
+released_at: "2026-02-10"
+release_date_source: https://arxiv.org/abs/2602.09439
+modality: image
+tasks:
+  - text-to-image
+  - image-text-fine-tuning
+  - instruction-following-generation
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  A high-resolution text-to-image fine-tuning corpus that combines synthetic
+  generations with curated professional photography, dual prompts, explicit
+  task and style coverage, and aggressive alignment and quality filtering.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/ma-xu/fine-t2i
+  requires_account: false
+  notes: WebDataset archives can be streamed from Hugging Face; the repository is large and has changed while the release was being completed.
+scale:
+  samples: 6314117
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The current card lists 6,145,693 synthetic samples plus 168,424 curated real images, totaling 6,314,117 pairs and about 2 TB.
+annotations:
+  types:
+    - original-prompt
+    - enhanced-prompt
+    - task-category
+    - visual-style
+    - aspect-ratio
+    - resolution
+    - quality-metadata
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Apache-2.0
+  media: Dataset release terms layered over synthetic outputs and licensed professional-photo sources
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The dataset card labels the repository Apache-2.0, but users should separately review the source platforms and generator-output terms for the underlying images.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - aesthetics
+    - safety
+    - deduplication
+    - provenance
+  known_limitations:
+    - Synthetic samples dominate the mixture and can reproduce the biases and artifacts of the source generators and prompt designer.
+    - Quality filters reject more than 95 percent of candidates and may narrow visual, cultural, and aesthetic diversity.
+    - The curated real-image subset inherits source-platform terms and photographer representation biases.
+processing:
+  recipe: recipes/image_text
+  recommended_format: webdataset
+  notes: Pin the repository revision, stream shards, retain prompt variants and source type, and audit synthetic versus real mixture weights per training run.
+evidence:
+  homepage: https://huggingface.co/datasets/ma-xu/fine-t2i
+  paper: https://arxiv.org/abs/2602.09439
+  used_by:
+    - LlamaGen
+    - Stable Diffusion XL
+status: partial
+last_verified: "2026-07-26"

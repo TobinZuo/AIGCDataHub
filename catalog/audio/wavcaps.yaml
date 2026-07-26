@@ -17,6 +17,11 @@ description: >-
   A 403,050-pair weakly labelled audio-caption corpus assembled from FreeSound,
   BBC Sound Effects, SoundBible, and the strongly labelled AudioSet subset,
   with noisy source descriptions filtered and rewritten using ChatGPT.
+derived_from:
+  - catalog_id: audioset
+    relationship: source-component
+    contribution: Strongly labelled AudioSet subset
+    notes: AudioSet contributes one of four source partitions; WavCaps filters its descriptions and rewrites them into captions alongside three independently sourced partitions.
 access:
   status: open
   type: hosted
@@ -69,4 +74,3 @@ evidence:
     - Omni2Sound
 status: partial
 last_verified: "2026-07-26"
-

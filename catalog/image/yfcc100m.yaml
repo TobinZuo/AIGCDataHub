@@ -1,0 +1,69 @@
+id: yfcc100m
+name: YFCC100M
+organization: Yahoo Labs and collaborators
+released_at: "2015-03-05"
+release_date_source: https://arxiv.org/abs/1503.01817
+modality: image
+tasks:
+  - image-text-pretraining
+  - video-text-pretraining
+  - multimedia-retrieval
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A historical Flickr Creative Commons multimedia index containing identifiers,
+  uploader metadata, titles, tags, geolocation, and license records for roughly
+  99.2M photos and 0.8M videos shared before 2014.
+access:
+  status: metadata-only
+  type: metadata
+  url: https://multimediacommons.wordpress.com/yfcc100m-core-dataset/
+  requires_account: false
+  notes: The official page says Yahoo Webscope is no longer offering the core metadata download; archived media, features, and third-party mirrors have separate availability and terms.
+scale:
+  samples: 100000000
+  source_items: 100000000
+  hours: 8081
+  approximate: true
+  notes: The collection indexes about 99.2M photos and 0.8M videos; Multimedia Commons reports roughly 8,081 video hours.
+annotations:
+  types:
+    - flickr-identifier
+    - title
+    - user-tag
+    - uploader
+    - timestamp
+    - geolocation
+    - camera-metadata
+    - creative-commons-license
+  source: web-metadata
+  languages:
+    - multilingual
+license:
+  metadata: Project distribution terms
+  media: Per-item Creative Commons licenses selected by Flickr uploaders
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Creative Commons variants differ by item, and current rights or removals must be checked against the preserved license and source records.
+quality:
+  dimensions:
+    - provenance
+    - deduplication
+    - visual-quality
+    - text-media-alignment
+  known_limitations:
+    - The official metadata distribution is currently suspended and source media availability changes over time.
+    - Titles and tags are sparse, multilingual, noisy, and not equivalent to generation-quality captions.
+    - The pre-2014 Flickr population overrepresents internet-connected regions and historical camera and content distributions.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: Preserve item-level uploader, source URL, capture time, license, and removal status; do not collapse multiple Creative Commons licenses into one corpus-wide label.
+evidence:
+  homepage: https://multimediacommons.wordpress.com/yfcc100m-core-dataset/
+  paper: https://arxiv.org/abs/1503.01817
+  used_by:
+    - CommonCanvas-XL-C
+status: partial
+last_verified: "2026-07-26"

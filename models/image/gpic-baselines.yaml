@@ -1,0 +1,57 @@
+id: gpic-baselines
+name: GPIC Baseline Models
+organization: Stanford Vision Lab and collaborators
+released_at: "2026-05-28"
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - generative-model-evaluation
+access:
+  status: open-weights
+  license: MIT
+  release_url: https://huggingface.co/stanford-vision-lab/gpic-baselines
+  weights_url: https://huggingface.co/stanford-vision-lab/gpic-baselines
+  api_url: null
+architecture:
+  family: Pixel-space flow-matching reference model family
+  parameters: null
+  notes: The public model repository groups reference generators used to establish scalable visual-generation baselines on GPIC; exact variant sizes are not summarized in the model card.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: GPIC
+      catalog_id: gpic
+      role: pretraining
+      availability: gated
+      scale: 100M training images plus 200K validation and 1M test examples
+      notes: The family is explicitly released as the reference pixel-space flow-matching baseline trained and evaluated on GPIC.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - public-dataset
+      operations:
+        - pixel-space-flow-matching
+        - multi-granularity-captioning
+        - safety-filtering
+        - deduplication
+      scale_disclosed: true
+      strategy: Train pixel-space flow-matching reference generators on the centrally hosted GPIC train split and use pinned validation and test splits for scaling comparisons.
+  strategy_summary:
+    - Use one permissively licensed and centrally hosted corpus to make large-scale text-to-image experiments reproducible.
+    - Retain per-item attribution and license metadata alongside safety-filtered, deduplicated images and captions.
+    - Publish reference weights and evaluation statistics so new methods can compare on fixed train, validation, and test splits.
+  unknowns:
+    - Exact parameter count, architecture configuration, optimizer, and sampling recipe for every checkpoint grouped in the repository.
+    - Per-caption-granularity sampling weights and whether all 100M training examples contribute equally to each baseline.
+evidence:
+  release: https://huggingface.co/stanford-vision-lab/gpic-baselines
+  technical_report: https://arxiv.org/abs/2605.30341
+  repository: https://github.com/keshik6/gpic
+status: partial
+last_verified: "2026-07-26"

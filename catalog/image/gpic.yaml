@@ -1,0 +1,70 @@
+id: gpic
+name: GPIC
+organization: Stanford Vision Lab and collaborators
+released_at: "2026-05-28"
+release_date_source: https://arxiv.org/abs/2605.30341
+modality: image
+tasks:
+  - text-to-image
+  - image-text-pretraining
+  - generative-model-evaluation
+stages:
+  - pretraining
+  - evaluation
+  - data-curation
+description: >-
+  A centrally hosted, permissively licensed image corpus for visual generation,
+  with 100M training images, held-out validation and test splits, multiple
+  caption granularities, safety filtering, deduplication, and attribution.
+access:
+  status: gated
+  type: hosted
+  url: https://huggingface.co/datasets/stanford-vision-lab/gpic
+  requires_account: true
+  notes: The repository is public but users must sign in, accept the conditions, and share contact information before accessing files.
+scale:
+  samples: 101200000
+  source_items: 101200000
+  hours: null
+  approximate: false
+  notes: The release contains 100M train, 200K validation, and 1M test examples, totaling about 28 trillion pixels.
+annotations:
+  types:
+    - multi-granularity-caption
+    - item-license
+    - license-url
+    - attribution
+    - retrieval-time
+    - image-dimensions
+    - split-membership
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: MIT
+  media: Per-image permissive licenses with attribution records
+  commercial_use: allowed
+  redistribution: review-required
+  notes: The maintainers state every image is licensed for research and commercial use; consumers must still preserve the per-item license and attribution metadata.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - safety
+    - deduplication
+    - provenance
+  known_limitations:
+    - Model-generated captions can hallucinate or omit details and are primarily English.
+    - Permissive licensing does not eliminate privacy, publicity, sensitive-content, or takedown obligations.
+    - Safety and deduplication filters can introduce systematic coverage and representation gaps.
+processing:
+  recipe: recipes/image_text
+  recommended_format: webdataset
+  notes: Stream the tar shards, retain the JSON record beside every image, pin a commit revision, and propagate removals across local mirrors.
+evidence:
+  homepage: https://gpic.stanford.edu/
+  paper: https://arxiv.org/abs/2605.30341
+  used_by:
+    - GPIC Baseline Models
+status: verified
+last_verified: "2026-07-26"

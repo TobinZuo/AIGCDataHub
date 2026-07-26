@@ -16,6 +16,11 @@ description: >-
   A unified audio-generation benchmark derived from the VGGSound test set with
   human-verified dense captions for more than 14,000 videos and a dedicated
   1,613-item off-screen track spanning natural events and synthetic music.
+derived_from:
+  - catalog_id: vggsound
+    relationship: benchmark-derivative
+    contribution: Primary benchmark videos from the VGGSound test split
+    notes: The main VGGSound-Omni track reuses VGGSound test media with new dense captions, modality labels, human verification, and a separate off-screen extension.
 access:
   status: gated
   type: hosted
@@ -71,4 +76,3 @@ evidence:
     - HunyuanVideo-Foley
 status: verified
 last_verified: "2026-07-26"
-

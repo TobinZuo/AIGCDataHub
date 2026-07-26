@@ -1,0 +1,72 @@
+id: commoncatalog
+name: CommonCatalog
+organization: CommonCanvas collaborators
+released_at: "2023-10-25"
+release_date_source: https://arxiv.org/abs/2310.16825
+modality: image
+tasks:
+  - text-to-image
+  - image-text-pretraining
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A family of filtered YFCC100M image subsets with item-level Creative Commons
+  provenance and BLIP-2 synthetic captions, released in commercial and
+  non-commercial license partitions for reproducible text-to-image training.
+derived_from:
+  - catalog_id: yfcc100m
+    relationship: transformed-derivative
+    contribution: Flickr identifiers, source metadata, and Creative Commons licensed media pool
+    notes: CommonCatalog re-resolves YFCC100M images, excludes non-derivative licenses, filters the media, and adds BLIP-2 captions.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/common-canvas
+  requires_account: false
+  notes: Six Hugging Face repositories partition the corpus by CC-BY, SA, NC, and combined license variants.
+scale:
+  samples: 67015331
+  source_items: 100000000
+  hours: null
+  approximate: false
+  notes: The paper reports 67,015,331 images in CommonCatalog-NC, including a 26,232,417-image commercial-use subset; hosted per-license shard counts sum to the same family-level scope.
+annotations:
+  types:
+    - synthetic-caption
+    - source-url
+    - flickr-metadata
+    - item-license
+    - attribution
+    - image-dimensions
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Per-repository Creative Commons label
+  media: Item-level CC-BY, CC-BY-SA, and non-commercial variants; non-derivative items excluded
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Only the C subset is designed for commercial use; every use must preserve attribution and follow the exact item's Creative Commons variant.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - provenance
+    - safety
+    - deduplication
+  known_limitations:
+    - BLIP-2 captions are synthetic, mostly English, and can omit identity, context, or culturally specific details.
+    - The source is decade-old Flickr data with geographic, demographic, and photographic-style skews.
+    - Corpus-level labels do not remove the need for item-level attribution, privacy, and takedown handling.
+processing:
+  recipe: recipes/image_text
+  recommended_format: parquet
+  notes: Keep license partitions separate, retain attribution fields, and never mix the NC shards into a commercial training run.
+evidence:
+  homepage: https://github.com/mosaicml/diffusion/blob/main/assets/common-canvas.md
+  paper: https://arxiv.org/abs/2310.16825
+  used_by:
+    - CommonCanvas-XL-C
+status: verified
+last_verified: "2026-07-26"

@@ -28,6 +28,16 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /TalkVerse-5B/);
   assert.match(html, /OpenHumanVid-Talking/);
   assert.match(html, /OpenHumanVid/);
+  assert.match(html, /Koala-36M/);
+  assert.match(html, /FreeMan/);
+  assert.match(html, /MVHumanNet\+\+/);
+  assert.match(html, /CommonCatalog/);
+  assert.match(html, /Fine-T2I/);
+  assert.match(html, /GPIC/);
+  assert.match(html, /OpenVE-3M/);
+  assert.match(html, /OpenVE-Bench/);
+  assert.match(html, /CommonCanvas-XL-C/);
+  assert.match(html, /OpenVE-Edit/);
   assert.match(html, /SANA-Video 2\.0/);
   assert.match(html, /GraphVid-Bench/);
   assert.match(html, /Mage-Flow/);
@@ -36,8 +46,9 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /视频翻译/);
   assert.match(html, /Try-On/);
   assert.match(html, /10\/10/);
-  assert.match(html, /模型—数据关系/);
-  assert.match(html, /模型 ↔ 数据/);
+  assert.match(html, /模型与数据血缘/);
+  assert.match(html, /关系图谱/);
+  assert.match(html, /dataset_relations/);
   assert.ok(html.includes('monitoring\\":{\\"priority\\":\\"critical'));
   assert.match(html, /\/AIGCDataHub\/_next\/static\//);
   assert.match(html, /https:\/\/tobinzuo\.github\.io\/AIGCDataHub\/og\.png/);

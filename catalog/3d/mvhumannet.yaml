@@ -1,0 +1,71 @@
+id: mvhumannet
+name: MVHumanNet
+organization: GAP-Lab, CUHK-Shenzhen
+released_at: "2024-05-07"
+release_date_source: https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet
+modality: 3d
+tasks:
+  - digital-human
+  - 3d-avatar-generation
+  - text-driven-human-image-generation
+  - human-nerf-reconstruction
+stages:
+  - pretraining
+  - fine-tuning
+description: >-
+  A large multi-view daily-dressing human capture corpus with identities,
+  outfits, motion sequences, calibrated imagery, parametric bodies, and text
+  descriptions for human rendering, reconstruction, and avatar generation.
+access:
+  status: gated
+  type: request
+  url: https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet
+  requires_account: true
+  notes: Users accept the project terms, submit a form, and receive expiring download links for the released parts.
+scale:
+  samples: 645000000
+  source_items: 60000
+  hours: null
+  approximate: true
+  notes: The full project scope is 645M frames, 60K motion sequences, 9K outfits, and 4.5K identities; the repository says the public Part 1 plus Part 2 release covers about 4K identities and 8K outfits.
+annotations:
+  types:
+    - multi-view-image
+    - human-mask
+    - camera-parameters
+    - 2d-keypoints
+    - 3d-keypoints
+    - smpl-parameters
+    - smplx-parameters
+    - textual-description
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: MVHumanNet Terms of Use
+  media: Non-commercial research and educational use only
+  commercial_use: noncommercial
+  redistribution: prohibited
+  notes: The data follows the project-specific Terms of Use; the repository's CC-BY-NC-4.0 license is stated for code and must not be assumed to replace the data agreement.
+quality:
+  dimensions:
+    - visual-quality
+    - geometry-quality
+    - multi-view-consistency
+    - temporal-consistency
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Full-scale headline counts differ from the currently documented public release coverage.
+    - The capture setup and selected outfits, identities, motions, and camera views may bias downstream avatars toward the collection protocol.
+    - Consent, identity, biometric, and clothing-rights constraints require review before any derived model is deployed.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Preserve outfit, identity, sequence, camera, calibration, body-model, and terms-of-use lineage through every derived view or mesh.
+evidence:
+  homepage: https://x-zhangyang.github.io/MVHumanNet/
+  paper: https://arxiv.org/abs/2312.02963
+  used_by: []
+status: partial
+last_verified: "2026-07-26"

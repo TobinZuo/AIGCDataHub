@@ -974,6 +974,12 @@ input:focus-visible {
   color: var(--signal);
 }
 
+.tag-lineage {
+  border-color: var(--green);
+  border-style: dashed;
+  color: var(--green);
+}
+
 .relation-panel {
   background: #f1f6e8;
 }
@@ -981,6 +987,18 @@ input:focus-visible {
 .relation-list {
   display: grid;
   gap: 8px;
+}
+
+.relation-group + .relation-group {
+  margin-top: 18px;
+}
+
+.relation-group-label {
+  color: var(--muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 8px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .relation-list .relation-link {
@@ -1087,6 +1105,33 @@ input:focus-visible {
   background: var(--line-dark);
 }
 
+.lineage-section + .lineage-section {
+  border-top: 1px solid var(--ink);
+}
+
+.lineage-section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 13px 24px;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.lineage-section-heading span {
+  color: var(--acid);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+
+.lineage-section-heading strong {
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+
 .lineage-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 210px minmax(0, 1fr);
@@ -1127,9 +1172,14 @@ input:focus-visible {
   font-size: 9px;
 }
 
-.lineage-dataset > span {
+.lineage-dataset > span,
+.lineage-derived > span {
   border-color: var(--green);
   color: var(--green);
+}
+
+.lineage-derived > span {
+  border-style: dashed;
 }
 
 .lineage-entity strong {
@@ -1179,6 +1229,10 @@ input:focus-visible {
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 10px;
   font-weight: 500;
+}
+
+.lineage-edge-dataset strong {
+  color: var(--green);
 }
 
 .lineage-edge span,

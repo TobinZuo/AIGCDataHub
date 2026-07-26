@@ -22,7 +22,7 @@ from catalog import load_cards
 from models import load_models
 
 
-SCHEMA_VERSION = 3
+SCHEMA_VERSION = 4
 USER_AGENT = "AIGCDataHub-discovery/0.1 (+https://github.com/TobinZuo/AIGCDataHub)"
 MEDIA_TERMS = (
     "image",
@@ -289,21 +289,35 @@ def _strip_tags(fragment: str) -> str:
 def extract_source_revision(payload: str, source_url: str) -> tuple[str | None, str | None]:
     """Extract a stable revision from supported first-party dataset APIs."""
     parsed_url = urllib.parse.urlsplit(source_url)
-    if parsed_url.hostname != "huggingface.co" or not parsed_url.path.startswith("/api/datasets/"):
-        return None, None
     try:
         metadata = json.loads(payload)
     except (json.JSONDecodeError, TypeError):
         return None, None
     if not isinstance(metadata, dict):
         return None, None
-    dataset_id = metadata.get("id")
-    sha = metadata.get("sha")
-    modified = metadata.get("lastModified")
-    if not isinstance(dataset_id, str) or not isinstance(sha, str) or not sha:
-        return None, None
-    revision = sha if not isinstance(modified, str) or not modified else f"{modified}@{sha}"
-    return revision, f"https://huggingface.co/datasets/{dataset_id}"
+    if parsed_url.hostname == "huggingface.co" and parsed_url.path.startswith("/api/datasets/"):
+        dataset_id = metadata.get("id")
+        sha = metadata.get("sha")
+        modified = metadata.get("lastModified")
+        if not isinstance(dataset_id, str) or not isinstance(sha, str) or not sha:
+            return None, None
+        revision = sha if not isinstance(modified, str) or not modified else f"{modified}@{sha}"
+        return revision, f"https://huggingface.co/datasets/{dataset_id}"
+
+    if parsed_url.hostname == "api.github.com" and re.fullmatch(
+        r"/repos/[^/]+/[^/]+/commits/[^/]+", parsed_url.path
+    ):
+        sha = metadata.get("sha")
+        html_url = metadata.get("html_url")
+        commit = metadata.get("commit")
+        committer = commit.get("committer") if isinstance(commit, dict) else None
+        committed_at = committer.get("date") if isinstance(committer, dict) else None
+        if not isinstance(sha, str) or not sha:
+            return None, None
+        revision = sha if not isinstance(committed_at, str) or not committed_at else f"{committed_at}@{sha}"
+        return revision, html_url if isinstance(html_url, str) else None
+
+    return None, None
 
 
 def extract_candidate_links(html: str, base_url: str, contextual: bool = False) -> tuple[Candidate, ...]:
@@ -350,7 +364,10 @@ def extract_candidate_links(html: str, base_url: str, contextual: bool = False) 
 def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> SourceSnapshot:
     track_id = source.track_id
     source_url = source.source_url
-    headers = {"User-Agent": USER_AGENT, "Accept": "text/html,application/xhtml+xml;q=0.9,*/*;q=0.5"}
+    headers = {
+        "User-Agent": USER_AGENT,
+        "Accept": "application/vnd.github+json,application/json,text/html;q=0.9,*/*;q=0.5",
+    }
     request = urllib.request.Request(source_url, headers=headers)
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
@@ -484,24 +501,47 @@ def snapshot_payload(snapshots: tuple[SourceSnapshot, ...], generated_at: str) -
     }
 
 
-def dataset_impact_index() -> dict[str, tuple[str, ...]]:
-    impacts: dict[str, set[str]] = {}
+def dataset_impact_index() -> dict[str, dict[str, tuple[str, ...]]]:
+    cards = {card["id"]: card for _, card in load_cards()}
+    direct_models: dict[str, set[str]] = {card_id: set() for card_id in cards}
     for _, model in load_models():
         for reference in model["data"]["datasets"]:
             catalog_id = reference["catalog_id"]
             if catalog_id is not None:
-                impacts.setdefault(catalog_id, set()).add(model["id"])
-    return {
-        catalog_id: tuple(sorted(model_ids))
-        for catalog_id, model_ids in sorted(impacts.items())
-    }
+                direct_models.setdefault(catalog_id, set()).add(model["id"])
+
+    children: dict[str, set[str]] = {card_id: set() for card_id in cards}
+    for child_id, card in cards.items():
+        for reference in card.get("derived_from", []):
+            parent_id = reference["catalog_id"]
+            if parent_id in children:
+                children[parent_id].add(child_id)
+
+    impacts: dict[str, dict[str, tuple[str, ...]]] = {}
+    for source_id in sorted(cards):
+        downstream: set[str] = set()
+        queue = list(children[source_id])
+        while queue:
+            child_id = queue.pop()
+            if child_id in downstream:
+                continue
+            downstream.add(child_id)
+            queue.extend(children[child_id])
+        model_ids = set(direct_models.get(source_id, set()))
+        for dataset_id in downstream:
+            model_ids.update(direct_models.get(dataset_id, set()))
+        impacts[source_id] = {
+            "dataset_ids": tuple(sorted(downstream)),
+            "model_ids": tuple(sorted(model_ids)),
+        }
+    return impacts
 
 
 def compare_snapshots(
     baseline: dict[str, Any],
     current: tuple[SourceSnapshot, ...],
     known_urls: set[str],
-    dataset_impacts: dict[str, tuple[str, ...]] | None = None,
+    dataset_impacts: dict[str, dict[str, tuple[str, ...]]] | None = None,
 ) -> DiscoveryDiff:
     baseline_sources = {
         (item["track_id"], item["source_url"]): item for item in baseline.get("sources", [])
@@ -534,6 +574,7 @@ def compare_snapshots(
             and source.revision
             and source.revision != previous_revision
         ):
+            impact = dataset_impacts.get(source.catalog_id or "", {})
             source_updates.append(
                 {
                     "track_id": source.track_id,
@@ -543,7 +584,8 @@ def compare_snapshots(
                     "revision": source.revision,
                     "catalog_id": source.catalog_id,
                     "priority": source.priority or "standard",
-                    "impacted_model_ids": list(dataset_impacts.get(source.catalog_id or "", ())),
+                    "impacted_dataset_ids": list(impact.get("dataset_ids", ())),
+                    "impacted_model_ids": list(impact.get("model_ids", ())),
                 }
             )
         previous_error = previous.get("error")
@@ -554,11 +596,13 @@ def compare_snapshots(
                 "error": source.error,
             }
             if source.catalog_id:
+                impact = dataset_impacts.get(source.catalog_id, {})
                 failure.update(
                     {
                         "catalog_id": source.catalog_id,
                         "priority": source.priority or "standard",
-                        "impacted_model_ids": list(dataset_impacts.get(source.catalog_id, ())),
+                        "impacted_dataset_ids": list(impact.get("dataset_ids", ())),
+                        "impacted_model_ids": list(impact.get("model_ids", ())),
                     }
                 )
             failures.append(failure)
@@ -630,10 +674,14 @@ def render_report(report: dict[str, Any], limit: int = 100) -> str:
     if report["source_updates"]:
         lines.extend(["## Important dataset revisions", ""])
         for item in report["source_updates"]:
+            dataset_impact = ", ".join(
+                f"`{dataset_id}`" for dataset_id in item["impacted_dataset_ids"]
+            ) or "no downstream catalog dataset"
             impact = ", ".join(f"`{model_id}`" for model_id in item["impacted_model_ids"]) or "no catalog-linked model"
             lines.append(
                 f"- [ ] [`{item['catalog_id']}`]({item['url']}) — **{item['priority']}** priority; "
-                f"`{item['previous_revision']}` → `{item['revision']}`; impacted models: {impact}"
+                f"`{item['previous_revision']}` → `{item['revision']}`; downstream datasets: {dataset_impact}; "
+                f"impacted models: {impact}"
             )
         lines.append("")
     if report["failures"]:

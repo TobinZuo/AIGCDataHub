@@ -61,6 +61,59 @@ def validate() -> list[str]:
     for card_id in sorted(duplicates):
         errors.append(f"duplicate dataset id: {card_id}")
 
+    cards_by_id = {
+        card["id"]: (path, card)
+        for path, card in cards
+        if isinstance(card.get("id"), str)
+    }
+    lineage_graph: dict[str, list[str]] = {card_id: [] for card_id in cards_by_id}
+    for child_id, (path, card) in cards_by_id.items():
+        seen_parents: set[str] = set()
+        for reference in card.get("derived_from", []):
+            if not isinstance(reference, dict):
+                continue
+            parent_id = reference.get("catalog_id")
+            if not isinstance(parent_id, str):
+                continue
+            if parent_id in seen_parents:
+                errors.append(
+                    f"{relative(path)}: duplicate derived_from catalog_id {parent_id!r}"
+                )
+                continue
+            seen_parents.add(parent_id)
+            if parent_id == child_id:
+                errors.append(f"{relative(path)}: dataset cannot derive from itself")
+                continue
+            if parent_id not in cards_by_id:
+                errors.append(
+                    f"{relative(path)}: derived_from references unknown catalog id {parent_id!r}"
+                )
+                continue
+            lineage_graph[child_id].append(parent_id)
+
+    visiting: list[str] = []
+    state: dict[str, int] = {}
+    reported_cycles: set[tuple[str, ...]] = set()
+
+    def visit(card_id: str) -> None:
+        state[card_id] = 1
+        visiting.append(card_id)
+        for parent_id in lineage_graph[card_id]:
+            if state.get(parent_id, 0) == 0:
+                visit(parent_id)
+            elif state.get(parent_id) == 1:
+                start = visiting.index(parent_id)
+                cycle = tuple([*visiting[start:], parent_id])
+                if cycle not in reported_cycles:
+                    reported_cycles.add(cycle)
+                    errors.append(f"dataset lineage cycle: {' -> '.join(cycle)}")
+        visiting.pop()
+        state[card_id] = 2
+
+    for card_id in sorted(lineage_graph):
+        if state.get(card_id, 0) == 0:
+            visit(card_id)
+
     return errors
 
 

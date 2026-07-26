@@ -1,0 +1,66 @@
+id: openve-edit
+name: OpenVE-Edit
+organization: Zhejiang University and ByteDance
+released_at: "2025-12-08"
+modalities:
+  - video
+tasks:
+  - instruction-guided-video-editing
+  - video-to-video
+access:
+  status: announced
+  license: Model release is under review; no public model license is stated
+  release_url: https://lewandofskee.github.io/projects/OpenVE/
+  weights_url: null
+  api_url: null
+architecture:
+  family: MLLM plus task-aware mixture-of-experts connector and diffusion transformer
+  parameters: 5000000000
+  notes: The design combines instruction and source-video semantics in an MLLM, routes features through an MoE connector, and conditions a DiT on source-video latents, text, and noise.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: OpenVE-3M
+      catalog_id: openve-3m
+      role: fine-tuning
+      availability: public
+      scale: More than 3M instruction, source-video, and edited-video triplets across eight edit categories
+      notes: The project states OpenVE-Edit is trained on OpenVE-3M; category-level mixture weights and teacher-generation details are not fully released.
+    - name: OpenVE-Bench
+      catalog_id: openve-bench
+      role: evaluation
+      availability: public
+      scale: 431 instruction-guided video-edit pairs
+      notes: The project reports state-of-the-art results on the companion benchmark but has not yet published a complete reproducibility package for the model.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - video
+        - text
+      source_types:
+        - synthetic
+        - public-dataset
+      operations:
+        - instruction-conditioning
+        - source-latent-conditioning
+        - task-aware-mixture-of-experts
+        - spatially-aligned-edit-training
+        - non-spatially-aligned-edit-training
+        - quality-filtering
+      scale_disclosed: true
+      strategy: Train a 5B instruction-guided video editor on the eight-category OpenVE-3M mixture, routing MLLM semantics through task experts into a source-conditioned DiT.
+  strategy_summary:
+    - Separate spatially aligned edits from creative motion-changing edits so supervision preserves the right invariants per task.
+    - Pair every instruction with source and edited video latents and use a task-aware connector to decouple edit semantics.
+    - Evaluate on the held-out OpenVE-Bench taxonomy while the code, weights, and full training recipe remain under review.
+  unknowns:
+    - Base checkpoints, teacher models, category sampling weights, optimizer schedule, and full source-video provenance.
+    - Public release date, checkpoint license, inference code, and whether the announced results can be reproduced from the eventual artifacts.
+evidence:
+  release: https://lewandofskee.github.io/projects/OpenVE/
+  technical_report: https://arxiv.org/abs/2512.07826
+  repository: https://github.com/OpenVE-Team/OpenVE-3M
+status: watch
+last_verified: "2026-07-26"

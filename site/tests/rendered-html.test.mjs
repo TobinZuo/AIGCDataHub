@@ -70,14 +70,24 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /TalkVerse-5B/);
   assert.match(html, /OpenHumanVid-Talking/);
   assert.match(html, /OpenHumanVid/);
+  assert.match(html, /Koala-36M/);
+  assert.match(html, /FreeMan/);
+  assert.match(html, /MVHumanNet\+\+/);
+  assert.match(html, /CommonCatalog/);
+  assert.match(html, /Fine-T2I/);
+  assert.match(html, /GPIC/);
+  assert.match(html, /OpenVE-3M/);
+  assert.match(html, /OpenVE-Bench/);
+  assert.match(html, /CommonCanvas-XL-C/);
+  assert.match(html, /OpenVE-Edit/);
   assert.match(html, /应用场景/);
   assert.match(html, /数字人/);
   assert.match(html, /视频翻译/);
   assert.match(html, /Try-On/);
   assert.match(html, /10\/10/);
   assert.match(html, /目录关联/);
-  assert.match(html, /模型—数据关系/);
-  assert.match(html, /模型 ↔ 数据/);
+  assert.match(html, /模型与数据血缘/);
+  assert.match(html, /关系图谱/);
   assert.match(html, /最新数据集/);
   assert.match(html, /最新模型/);
   assert.match(html, /结构化数据集/);
@@ -128,9 +138,20 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"graphvid-bench"/);
   assert.match(catalog, /"sana-video-2-0"/);
   assert.match(catalog, /"mage-flow"/);
+  assert.match(catalog, /"koala-36m"/);
+  assert.match(catalog, /"mvhumannet-plus-plus"/);
+  assert.match(catalog, /"commoncatalog"/);
+  assert.match(catalog, /"fine-t2i"/);
+  assert.match(catalog, /"gpic"/);
+  assert.match(catalog, /"openve-3m"/);
+  assert.match(catalog, /"openve-bench"/);
+  assert.match(catalog, /"commoncanvas-xl-c"/);
+  assert.match(catalog, /"gpic-baselines"/);
+  assert.match(catalog, /"openve-edit"/);
   assert.match(catalog, /"relations"/);
+  assert.match(catalog, /"dataset_relations"/);
   const parsedCatalog = JSON.parse(catalog);
-  assert.equal(parsedCatalog.format_version, 6);
+  assert.equal(parsedCatalog.format_version, 7);
   assert.deepEqual(
     parsedCatalog.scenarios.map((scenario) => scenario.id),
     ["image-generation", "video-generation", "digital-human", "video-localization", "virtual-try-on"],
@@ -153,6 +174,9 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.deepEqual(models.ctrlvton.linked_dataset_ids, ["viton-hd-edit"]);
   assert.deepEqual(models.tripvvt.linked_dataset_ids, ["tripvvt-10k"]);
   assert.deepEqual(models["talkverse-5b"].linked_dataset_ids, ["talkverse"]);
+  assert.deepEqual(models["commoncanvas-xl-c"].linked_dataset_ids, ["commoncatalog"]);
+  assert.deepEqual(models["gpic-baselines"].linked_dataset_ids, ["gpic"]);
+  assert.deepEqual(models["openve-edit"].linked_dataset_ids, ["openve-3m", "openve-bench"]);
   assert.ok(parsedCatalog.relations.some(
     (relation) => relation.model_id === "graphvid" && relation.dataset_id === "graphvid-bench",
   ));
@@ -165,14 +189,47 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.ok(parsedCatalog.relations.some(
     (relation) => relation.model_id === "talkverse-5b" && relation.dataset_id === "talkverse",
   ));
+  assert.ok(parsedCatalog.dataset_relations.some(
+    (relation) => relation.source_dataset_id === "openhumanvid" && relation.derived_dataset_id === "talkverse",
+  ));
+  assert.ok(parsedCatalog.dataset_relations.some(
+    (relation) => relation.source_dataset_id === "panda-70m" && relation.derived_dataset_id === "talkverse",
+  ));
+  assert.ok(parsedCatalog.dataset_relations.some(
+    (relation) => relation.source_dataset_id === "openhumanvid" && relation.derived_dataset_id === "openhumanvid-talking",
+  ));
+  assert.ok(parsedCatalog.dataset_relations.some(
+    (relation) => relation.source_dataset_id === "yfcc100m" && relation.derived_dataset_id === "commoncatalog",
+  ));
+  assert.ok(parsedCatalog.dataset_relations.some(
+    (relation) => relation.source_dataset_id === "mvhumannet" && relation.derived_dataset_id === "mvhumannet-plus-plus",
+  ));
+  assert.ok(parsedCatalog.dataset_relations.some(
+    (relation) => relation.source_dataset_id === "openve-3m" && relation.derived_dataset_id === "openve-bench",
+  ));
   const datasets = Object.fromEntries(parsedCatalog.datasets.map((dataset) => [dataset.id, dataset]));
   assert.equal(datasets["fit-vto-100k"].monitoring.priority, "critical");
   assert.equal(datasets["viton-hd-edit"].monitoring.priority, "critical");
   assert.equal(datasets["tripvvt-10k"].monitoring.priority, "critical");
   assert.equal(datasets.talkverse.monitoring.priority, "critical");
   assert.equal(datasets["openhumanvid-talking"].monitoring.priority, "critical");
+  assert.equal(datasets["koala-36m"].monitoring.priority, "critical");
+  assert.equal(datasets.freeman.monitoring.priority, "critical");
+  assert.equal(datasets.commoncatalog.monitoring.priority, "critical");
+  assert.equal(datasets["fine-t2i"].monitoring.priority, "critical");
+  assert.equal(datasets.gpic.monitoring.priority, "critical");
+  assert.equal(datasets["openve-3m"].monitoring.priority, "critical");
+  assert.equal(datasets["openve-bench"].monitoring.priority, "critical");
   assert.equal(datasets.finevideo.monitoring.priority, "high");
   assert.equal(datasets["graphvid-bench"].monitoring, null);
+  assert.deepEqual(datasets.talkverse.upstream_dataset_ids, ["openhumanvid", "panda-70m"]);
+  assert.deepEqual(
+    datasets.openhumanvid.downstream_dataset_ids,
+    ["openhumanvid-talking", "talkverse"],
+  );
+  assert.deepEqual(datasets.yfcc100m.downstream_dataset_ids, ["commoncatalog"]);
+  assert.deepEqual(datasets.mvhumannet.downstream_dataset_ids, ["mvhumannet-plus-plus"]);
+  assert.deepEqual(datasets["openve-3m"].downstream_dataset_ids, ["openve-bench"]);
   assert.deepEqual(models["fit-vto"].scenario_ids, ["virtual-try-on"]);
   assert.deepEqual(models["flux-vto"].scenario_ids, ["virtual-try-on"]);
   assert.deepEqual(models.ctrlvton.scenario_ids, ["image-generation", "virtual-try-on"]);
@@ -188,12 +245,14 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(page, /CatalogExplorer/);
   assert.match(catalogExplorer, /StrategyMatrix/);
   assert.match(catalogExplorer, /LineageOverview/);
-  assert.match(catalogExplorer, /模型和数据，不再是两张孤立清单/);
+  assert.match(catalogExplorer, /从上游数据，一路追到衍生集和模型/);
   assert.match(catalogExplorer, /核心监控/);
   assert.match(catalogExplorer, /同场景数据策略对比/);
   assert.match(catalogExplorer, /不做综合评分/);
   assert.match(catalogExplorer, /打开数据卡/);
   assert.match(catalogExplorer, /目录内反向链接只由模型卡/);
+  assert.match(catalogExplorer, /DATASET → DATASET/);
+  assert.match(catalogExplorer, /上游数据如何形成衍生集/);
   assert.match(layout, /AIGCDataHub/);
   assert.doesNotMatch(layout, /codex-preview|Starter Project/i);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
