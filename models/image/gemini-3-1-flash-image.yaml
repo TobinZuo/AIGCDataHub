@@ -5,6 +5,7 @@ released_at: "2026-02-26"
 ranking_names:
   - Nano Banana 2 (Gemini 3.1 Flash Image Preview)
   - Nano Banana 2
+  - gemini-3.1-flash-image (nano-banana-2) [web-search]
 modalities:
   - image
 tasks:

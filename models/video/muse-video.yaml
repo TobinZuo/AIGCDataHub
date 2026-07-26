@@ -2,6 +2,8 @@ id: muse-video
 name: Muse Video
 organization: Meta Superintelligence Labs
 released_at: "2026-07-07"
+ranking_names:
+  - muse-video
 modalities:
   - video
   - audio

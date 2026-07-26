@@ -19,10 +19,16 @@ as an exhaustive list.
    model, it reports the model itself and its directly linked catalog datasets.
    The scenario layer explicitly covers digital humans, talking avatars, video
    translation/dubbing, lip sync, virtual try-on, and commerce creatives.
-   Five Artificial Analysis leaderboards are snapshotted to Top 15; review a
-   ranking alert when membership or ordering changes, regardless of whether the
-   model is open-weight or closed. Eight Hugging Face dataset API feeds sorted
-   by creation time provide a separate new-release queue for the same scenarios.
+   Five Artificial Analysis and five Arena leaderboards are snapshotted to Top
+   15; review a ranking alert when membership or ordering changes, regardless of
+   whether the model is open-weight or closed. Arena data comes from the
+   provider's public `lmarena-ai/leaderboard-dataset` latest splits. Unmapped
+   ranked entries remain in the Issue as coverage gaps even when the ranking
+   order does not change. Eight Hugging Face dataset API feeds sorted by
+   creation time provide a separate new-release queue for the same scenarios.
+   Every candidate remains visible and receives a high, standard, or low review
+   priority from explicit metadata signals. Treat that value as triage order,
+   not dataset-quality evidence.
    GitHub API revision probes use the workflow token rather than the anonymous
    rate limit. A connection reset, TLS error, or other source-level network
    failure is recorded for review without aborting the remaining source scan.
@@ -96,11 +102,15 @@ failure. Every platform access profile must state that the interface itself
 does not grant model-training rights.
 
 Ranking sources belong in `industry-model-rankings` and require a unique
-`ranking_id` plus `ranking_limit`. A leaderboard is authoritative only for its
-own observed ranking; model release, access, and data-strategy facts still need
-first-party evidence. Dataset discovery feeds belong in
+`ranking_id` plus provider, label, modality, parser, score/date labels, coverage
+policy, public page URL, and `ranking_limit`. Use `required` only when every
+tracked seat already resolves to a verified model card; use `monitor` to retain
+unmapped ranked models in the review queue. A leaderboard is authoritative only
+for its own observed ranking; model release, access, and data-strategy facts
+still need first-party evidence. Dataset discovery feeds belong in
 `dataset-release-feeds`; their candidates are never accepted as catalog facts
-without primary-source review.
+without primary-source review. Candidate priority may use API metadata but must
+never be presented as a quality or licensing conclusion.
 
 ## Automation boundary
 

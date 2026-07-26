@@ -4,6 +4,7 @@ organization: OpenAI
 released_at: "2026-04-21"
 ranking_names:
   - GPT Image 2 (high)
+  - gpt-image-2 (medium)
 modalities:
   - image
 tasks:

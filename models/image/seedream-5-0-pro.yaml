@@ -4,6 +4,7 @@ organization: ByteDance Seed
 released_at: "2026-07-17"
 ranking_names:
   - Seedream 5.0 Pro
+  - seedream-5.0-pro
 modalities:
   - image
 tasks:

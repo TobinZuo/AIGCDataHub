@@ -151,7 +151,14 @@ def load_rankings() -> list[dict[str, Any]]:
         boards.append(
             {
                 "id": ranking_id,
-                "source_url": source["source_url"],
+                "provider": source.get("ranking_provider") or "Unknown",
+                "label": source.get("ranking_label") or ranking_id,
+                "modality": source.get("ranking_modality") or "video",
+                "score_label": source.get("ranking_score_label") or "Score",
+                "date_label": source.get("ranking_date_label") or "快照",
+                "coverage_policy": source.get("ranking_coverage_policy") or "monitor",
+                "source_url": source.get("ranking_page_url") or source["source_url"],
+                "fetch_url": source["source_url"],
                 "entries": entries,
             }
         )
@@ -226,8 +233,10 @@ def build_payload() -> dict[str, Any]:
                 model_by_id[model_id]["ranking_positions"].append(
                     {
                         "ranking_id": board["id"],
+                        "provider": board["provider"],
                         "rank": entry["rank"],
-                        "elo": entry["elo"],
+                        "score": entry.get("score", entry.get("elo")),
+                        "score_label": board["score_label"],
                     }
                 )
     dataset_by_id = {item["id"]: item for item in datasets}
@@ -307,7 +316,7 @@ def build_payload() -> dict[str, Any]:
     verified_dates = [item["last_verified"] for item in [*datasets, *models]]
 
     return {
-        "format_version": 11,
+        "format_version": 12,
         "generated_from": [
             "catalog/**/*.yaml",
             "models/**/*.yaml",

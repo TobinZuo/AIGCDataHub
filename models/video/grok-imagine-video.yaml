@@ -4,6 +4,8 @@ organization: xAI
 released_at: "2026-01-28"
 ranking_names:
   - grok-imagine-video
+  - grok-imagine-video-720p
+  - grok-imagine-video-480p
 modalities:
   - video
   - audio

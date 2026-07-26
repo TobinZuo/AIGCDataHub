@@ -235,18 +235,113 @@ tracks:
       - url: https://artificialanalysis.ai/image/leaderboard/text-to-image/
         ranking_id: text-to-image
         ranking_limit: 15
+        ranking_provider: Artificial Analysis
+        ranking_label: 文生图
+        ranking_modality: image
+        ranking_parser: artificial-analysis-html
+        ranking_score_label: Elo
+        ranking_date_label: 模型发布
+        ranking_coverage_policy: required
+        ranking_page_url: https://artificialanalysis.ai/image/leaderboard/text-to-image/
       - url: https://artificialanalysis.ai/image/leaderboard/editing/
         ranking_id: image-editing
         ranking_limit: 15
+        ranking_provider: Artificial Analysis
+        ranking_label: 图片编辑
+        ranking_modality: image
+        ranking_parser: artificial-analysis-html
+        ranking_score_label: Elo
+        ranking_date_label: 模型发布
+        ranking_coverage_policy: required
+        ranking_page_url: https://artificialanalysis.ai/image/leaderboard/editing/
       - url: https://artificialanalysis.ai/video/leaderboard/text-to-video
         ranking_id: text-to-video
         ranking_limit: 15
+        ranking_provider: Artificial Analysis
+        ranking_label: 文生视频
+        ranking_modality: video
+        ranking_parser: artificial-analysis-html
+        ranking_score_label: Elo
+        ranking_date_label: 模型发布
+        ranking_coverage_policy: required
+        ranking_page_url: https://artificialanalysis.ai/video/leaderboard/text-to-video
       - url: https://artificialanalysis.ai/video/leaderboard/image-to-video
         ranking_id: image-to-video
         ranking_limit: 15
+        ranking_provider: Artificial Analysis
+        ranking_label: 图生视频
+        ranking_modality: video
+        ranking_parser: artificial-analysis-html
+        ranking_score_label: Elo
+        ranking_date_label: 模型发布
+        ranking_coverage_policy: required
+        ranking_page_url: https://artificialanalysis.ai/video/leaderboard/image-to-video
       - url: https://artificialanalysis.ai/video/leaderboard/video-editing
         ranking_id: video-editing
         ranking_limit: 15
+        ranking_provider: Artificial Analysis
+        ranking_label: 视频编辑
+        ranking_modality: video
+        ranking_parser: artificial-analysis-html
+        ranking_score_label: Elo
+        ranking_date_label: 模型发布
+        ranking_coverage_policy: required
+        ranking_page_url: https://artificialanalysis.ai/video/leaderboard/video-editing
+      - url: "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=text_to_image&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100"
+        ranking_id: arena-text-to-image
+        ranking_limit: 15
+        ranking_provider: Arena
+        ranking_label: 文生图
+        ranking_modality: image
+        ranking_parser: arena-hf-dataset
+        ranking_score_label: Arena
+        ranking_date_label: 榜单快照
+        ranking_coverage_policy: monitor
+        ranking_page_url: https://arena.ai/leaderboard/text-to-image
+      - url: "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=image_edit&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100"
+        ranking_id: arena-image-edit
+        ranking_limit: 15
+        ranking_provider: Arena
+        ranking_label: 图片编辑
+        ranking_modality: image
+        ranking_parser: arena-hf-dataset
+        ranking_score_label: Arena
+        ranking_date_label: 榜单快照
+        ranking_coverage_policy: monitor
+        ranking_page_url: https://arena.ai/leaderboard/image-edit
+      - url: "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=text_to_video&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100"
+        ranking_id: arena-text-to-video
+        ranking_limit: 15
+        ranking_provider: Arena
+        ranking_label: 文生视频
+        ranking_modality: video
+        ranking_parser: arena-hf-dataset
+        ranking_score_label: Arena
+        ranking_date_label: 榜单快照
+        ranking_coverage_policy: monitor
+        ranking_page_url: https://arena.ai/leaderboard/text-to-video
+      - url: "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=image_to_video&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100"
+        ranking_id: arena-image-to-video
+        ranking_limit: 15
+        ranking_provider: Arena
+        ranking_label: 图生视频
+        ranking_modality: video
+        ranking_parser: arena-hf-dataset
+        ranking_score_label: Arena
+        ranking_date_label: 榜单快照
+        ranking_coverage_policy: monitor
+        ranking_page_url: https://arena.ai/leaderboard/image-to-video
+      - url: "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=video_edit&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100"
+        ranking_id: arena-video-edit
+        ranking_limit: 15
+        ranking_provider: Arena
+        ranking_label: 视频编辑
+        ranking_modality: video
+        ranking_parser: arena-hf-dataset
+        ranking_score_label: Arena
+        ranking_date_label: 榜单快照
+        ranking_coverage_policy: monitor
+        ranking_page_url: https://arena.ai/leaderboard/video-edit
 
   - id: important-dataset-updates
     topics:

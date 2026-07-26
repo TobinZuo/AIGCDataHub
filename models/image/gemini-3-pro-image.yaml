@@ -4,6 +4,8 @@ organization: Google DeepMind
 released_at: "2025-11-20"
 ranking_names:
   - Nano Banana Pro (Gemini 3 Pro Image)
+  - gemini-3-pro-image-2k (nano-banana-pro)
+  - gemini-3-pro-image-preview (nano-banana-pro)
 modalities:
   - image
 tasks:

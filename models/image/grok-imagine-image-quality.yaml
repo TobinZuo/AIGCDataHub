@@ -4,6 +4,7 @@ organization: xAI
 released_at: "2026-05-06"
 ranking_names:
   - grok-imagine-image-quality
+  - grok-imagine-image-quality (20260519)
 modalities:
   - image
 tasks:

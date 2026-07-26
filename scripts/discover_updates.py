@@ -25,7 +25,7 @@ from models import load_models
 from source_platforms import load_source_platforms
 
 
-SCHEMA_VERSION = 7
+SCHEMA_VERSION = 8
 USER_AGENT = "AIGCDataHub-discovery/0.1 (+https://github.com/TobinZuo/AIGCDataHub)"
 MEDIA_TERMS = (
     "image",
@@ -179,6 +179,13 @@ IGNORED_EXTENSIONS = (
 class Candidate:
     title: str
     url: str
+    review_priority: str = "standard"
+    priority_score: int = 0
+    priority_signals: tuple[str, ...] = ()
+    created_at: str | None = None
+    downloads: int | None = None
+    likes: int | None = None
+    gated: bool | str | None = None
 
 
 @dataclass(frozen=True)
@@ -186,11 +193,17 @@ class RankingEntry:
     rank: int
     creator: str
     model: str
-    elo: int
+    score: float
     confidence_interval: str
     samples: int | None
     released: str
     open_weights: bool
+    license: str | None = None
+
+    @property
+    def elo(self) -> int:
+        """Backward-compatible view for callers that still name AA scores Elo."""
+        return round(self.score)
 
 
 @dataclass(frozen=True, order=True)
@@ -202,6 +215,14 @@ class WatchSource:
     model_id: str | None = None
     ranking_id: str | None = None
     ranking_limit: int | None = None
+    ranking_provider: str | None = None
+    ranking_label: str | None = None
+    ranking_modality: str | None = None
+    ranking_parser: str | None = None
+    ranking_score_label: str | None = None
+    ranking_date_label: str | None = None
+    ranking_coverage_policy: str | None = None
+    ranking_page_url: str | None = None
     platform_id: str | None = None
     revision_mode: str | None = None
 
@@ -221,6 +242,14 @@ class SourceSnapshot:
     model_id: str | None = None
     ranking_id: str | None = None
     rankings: tuple[RankingEntry, ...] = ()
+    ranking_provider: str | None = None
+    ranking_label: str | None = None
+    ranking_modality: str | None = None
+    ranking_parser: str | None = None
+    ranking_score_label: str | None = None
+    ranking_date_label: str | None = None
+    ranking_coverage_policy: str | None = None
+    ranking_page_url: str | None = None
     platform_id: str | None = None
     revision_mode: str | None = None
 
@@ -238,6 +267,7 @@ class DiscoveryDiff:
     failures: tuple[dict[str, Any], ...]
     recoveries: tuple[dict[str, Any], ...]
     ranking_updates: tuple[dict[str, Any], ...] = ()
+    ranking_coverage_gaps: tuple[dict[str, Any], ...] = ()
 
     @property
     def has_updates(self) -> bool:
@@ -247,6 +277,7 @@ class DiscoveryDiff:
             or self.failures
             or self.recoveries
             or self.ranking_updates
+            or self.ranking_coverage_gaps
         )
 
 
@@ -360,6 +391,10 @@ class RevisionTextParser(HTMLParser):
 
 def normalize_text(value: str) -> str:
     return re.sub(r"\s+", " ", value).strip()
+
+
+def normalize_ranking_name(value: str) -> str:
+    return normalize_text(value).casefold()
 
 
 def normalize_url(value: str, base_url: str | None = None) -> str | None:
@@ -518,7 +553,12 @@ def extract_candidate_links(html: str, base_url: str, contextual: bool = False) 
 
 
 def extract_huggingface_dataset_candidates(payload: str) -> tuple[Candidate, ...]:
-    """Turn a Hugging Face datasets API search response into canonical candidate links."""
+    """Turn a Hugging Face search response into ranked human-review candidates.
+
+    The score prioritizes review effort; it is not a claim about dataset quality.
+    Low-signal records remain in the queue so a new dataset is never hidden merely
+    because it has not accumulated downloads or likes yet.
+    """
     try:
         records = json.loads(payload)
     except (json.JSONDecodeError, TypeError):
@@ -532,9 +572,85 @@ def extract_huggingface_dataset_candidates(payload: str) -> tuple[Candidate, ...
         if not isinstance(dataset_id, str) or not dataset_id or "/" not in dataset_id:
             continue
         url = normalize_url(f"https://huggingface.co/datasets/{dataset_id}")
-        if url:
-            candidates[url] = Candidate(title=dataset_id[:240], url=url)
-    return tuple(sorted(candidates.values(), key=lambda item: item.url.lower()))
+        if not url:
+            continue
+
+        tags = record.get("tags") if isinstance(record.get("tags"), list) else []
+        string_tags = [tag for tag in tags if isinstance(tag, str)]
+        card_data = record.get("cardData") if isinstance(record.get("cardData"), dict) else {}
+        dataset_info = card_data.get("dataset_info")
+        description = record.get("description") if isinstance(record.get("description"), str) else ""
+        blob = " ".join([dataset_id, description, *string_tags]).casefold()
+        core_terms = (
+            "text-to-image", "text to image", "image-generation", "image generation",
+            "text-to-video", "text to video", "video-generation", "video generation",
+            "image-to-video", "image to video", "talking-head", "talking head",
+            "video-dubbing", "video dubbing", "virtual-try-on", "virtual try-on",
+        )
+        score = 0
+        signals: list[str] = []
+        if any(term in blob for term in core_terms):
+            score += 4
+            signals.append("explicit-generative-media-match")
+        if any(tag in {"modality:image", "modality:video"} for tag in string_tags):
+            score += 2
+            signals.append("image-or-video-modality")
+        if any(tag.startswith("arxiv:") for tag in string_tags):
+            score += 2
+            signals.append("paper-linked")
+        if description.strip() or isinstance(dataset_info, dict):
+            score += 2
+            signals.append("dataset-card-metadata")
+        if any(tag.startswith("license:") for tag in string_tags) or card_data.get("license"):
+            score += 1
+            signals.append("license-declared")
+        if any(tag.startswith("size_categories:") for tag in string_tags) or (
+            isinstance(dataset_info, dict) and dataset_info.get("splits")
+        ):
+            score += 1
+            signals.append("size-declared")
+
+        downloads = record.get("downloads") if isinstance(record.get("downloads"), int) else None
+        likes = record.get("likes") if isinstance(record.get("likes"), int) else None
+        if (downloads or 0) >= 100 or (likes or 0) >= 2:
+            score += 1
+            signals.append("usage-signal")
+        if record.get("gated") not in {None, False}:
+            signals.append("gated-access")
+        if record.get("private") is True or record.get("disabled") is True:
+            score -= 4
+            signals.append("disabled-or-private")
+        if not description.strip() and not isinstance(dataset_info, dict):
+            score -= 2
+            signals.append("thin-metadata")
+        if re.search(r"\.(?:zip|tar|gz|7z)$", dataset_id, re.IGNORECASE):
+            score -= 2
+            signals.append("archive-like-name")
+
+        priority = "high" if score >= 7 else "standard" if score >= 3 else "low"
+        created_at = record.get("createdAt")
+        candidates[url] = Candidate(
+            title=dataset_id[:240],
+            url=url,
+            review_priority=priority,
+            priority_score=score,
+            priority_signals=tuple(signals),
+            created_at=created_at if isinstance(created_at, str) else None,
+            downloads=downloads,
+            likes=likes,
+            gated=record.get("gated") if isinstance(record.get("gated"), (bool, str)) else None,
+        )
+    priority_order = {"high": 0, "standard": 1, "low": 2}
+    return tuple(
+        sorted(
+            candidates.values(),
+            key=lambda item: (
+                priority_order[item.review_priority],
+                -item.priority_score,
+                item.url.lower(),
+            ),
+        )
+    )
 
 
 def extract_ranking_entries(html: str, limit: int = 15) -> tuple[RankingEntry, ...]:
@@ -562,11 +678,61 @@ def extract_ranking_entries(html: str, limit: int = 15) -> tuple[RankingEntry, .
                 rank=rank,
                 creator=row[2],
                 model=model,
-                elo=elo,
+                score=elo,
                 confidence_interval=row[5],
                 samples=samples,
                 released=row[7],
                 open_weights=open_weights,
+                license="Open weights" if open_weights else "Proprietary / service",
+            )
+        )
+    return tuple(sorted(entries, key=lambda item: item.rank)[:limit])
+
+
+def extract_arena_ranking_entries(payload: str, limit: int = 15) -> tuple[RankingEntry, ...]:
+    """Parse Arena's official Hugging Face leaderboard dataset API."""
+    try:
+        response = json.loads(payload)
+    except (json.JSONDecodeError, TypeError):
+        return ()
+    rows = response.get("rows") if isinstance(response, dict) else None
+    if not isinstance(rows, list):
+        return ()
+
+    entries: list[RankingEntry] = []
+    for item in rows:
+        row = item.get("row") if isinstance(item, dict) else None
+        if not isinstance(row, dict) or row.get("category") != "overall":
+            continue
+        rank = row.get("rank")
+        rating = row.get("rating")
+        if not isinstance(rank, int) or rank < 1 or rank > limit or not isinstance(rating, (int, float)):
+            continue
+        model = row.get("model_name")
+        creator = row.get("organization")
+        license_name = row.get("license")
+        if not isinstance(model, str) or not model or not isinstance(creator, str):
+            continue
+        lower = row.get("rating_lower")
+        upper = row.get("rating_upper")
+        confidence_interval = ""
+        if isinstance(lower, (int, float)) and isinstance(upper, (int, float)):
+            confidence_interval = f"{round(lower)}–{round(upper)}"
+        samples = row.get("vote_count") if isinstance(row.get("vote_count"), int) else None
+        released = row.get("leaderboard_publish_date")
+        license_text = license_name if isinstance(license_name, str) and license_name else None
+        open_weights = bool(license_text and license_text.casefold() != "proprietary")
+        entries.append(
+            RankingEntry(
+                rank=rank,
+                creator=creator,
+                model=model,
+                score=round(float(rating), 1),
+                confidence_interval=confidence_interval,
+                samples=samples,
+                released=released if isinstance(released, str) else "",
+                open_weights=open_weights,
+                license=license_text,
             )
         )
     return tuple(sorted(entries, key=lambda item: item.rank)[:limit])
@@ -600,6 +766,14 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
                     priority=source.priority,
                     model_id=source.model_id,
                     ranking_id=source.ranking_id,
+                    ranking_provider=source.ranking_provider,
+                    ranking_label=source.ranking_label,
+                    ranking_modality=source.ranking_modality,
+                    ranking_parser=source.ranking_parser,
+                    ranking_score_label=source.ranking_score_label,
+                    ranking_date_label=source.ranking_date_label,
+                    ranking_coverage_policy=source.ranking_coverage_policy,
+                    ranking_page_url=source.ranking_page_url,
                     platform_id=source.platform_id,
                     revision_mode=source.revision_mode,
                 )
@@ -624,7 +798,11 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
                 rankings = ()
                 candidates = ()
             elif source.ranking_id:
-                rankings = extract_ranking_entries(html, source.ranking_limit or 15)
+                rankings = (
+                    extract_arena_ranking_entries(html, source.ranking_limit or 15)
+                    if source.ranking_parser == "arena-hf-dataset"
+                    else extract_ranking_entries(html, source.ranking_limit or 15)
+                )
                 candidates: tuple[Candidate, ...] = ()
                 if not rankings:
                     raise ValueError("ranking-table-empty")
@@ -652,6 +830,14 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
                 model_id=source.model_id,
                 ranking_id=source.ranking_id,
                 rankings=rankings,
+                ranking_provider=source.ranking_provider,
+                ranking_label=source.ranking_label,
+                ranking_modality=source.ranking_modality,
+                ranking_parser=source.ranking_parser,
+                ranking_score_label=source.ranking_score_label,
+                ranking_date_label=source.ranking_date_label,
+                ranking_coverage_policy=source.ranking_coverage_policy,
+                ranking_page_url=source.ranking_page_url,
                 platform_id=source.platform_id,
                 revision_mode=source.revision_mode,
             )
@@ -694,6 +880,14 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
         priority=source.priority,
         model_id=source.model_id,
         ranking_id=source.ranking_id,
+        ranking_provider=source.ranking_provider,
+        ranking_label=source.ranking_label,
+        ranking_modality=source.ranking_modality,
+        ranking_parser=source.ranking_parser,
+        ranking_score_label=source.ranking_score_label,
+        ranking_date_label=source.ranking_date_label,
+        ranking_coverage_policy=source.ranking_coverage_policy,
+        ranking_page_url=source.ranking_page_url,
         platform_id=source.platform_id,
         revision_mode=source.revision_mode,
     )
@@ -718,6 +912,14 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
             model_id = None
             ranking_id = None
             ranking_limit = None
+            ranking_provider = None
+            ranking_label = None
+            ranking_modality = None
+            ranking_parser = None
+            ranking_score_label = None
+            ranking_date_label = None
+            ranking_coverage_policy = None
+            ranking_page_url = None
             if isinstance(source, dict):
                 unexpected = set(source) - {
                     "url",
@@ -726,6 +928,14 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
                     "priority",
                     "ranking_id",
                     "ranking_limit",
+                    "ranking_provider",
+                    "ranking_label",
+                    "ranking_modality",
+                    "ranking_parser",
+                    "ranking_score_label",
+                    "ranking_date_label",
+                    "ranking_coverage_policy",
+                    "ranking_page_url",
                 }
                 if unexpected:
                     raise ValueError(f"watch source has unsupported keys: {sorted(unexpected)}")
@@ -735,6 +945,14 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
                 model_id = source.get("model_id")
                 ranking_id = source.get("ranking_id")
                 ranking_limit = source.get("ranking_limit")
+                ranking_provider = source.get("ranking_provider")
+                ranking_label = source.get("ranking_label")
+                ranking_modality = source.get("ranking_modality")
+                ranking_parser = source.get("ranking_parser")
+                ranking_score_label = source.get("ranking_score_label")
+                ranking_date_label = source.get("ranking_date_label")
+                ranking_coverage_policy = source.get("ranking_coverage_policy")
+                ranking_page_url = source.get("ranking_page_url")
             else:
                 url = source
             if not isinstance(url, str) or not url.startswith("https://"):
@@ -753,6 +971,16 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
                 not isinstance(ranking_limit, int) or not 1 <= ranking_limit <= 100
             ):
                 raise ValueError(f"watch source has invalid ranking_limit: {ranking_limit!r}")
+            ranking_metadata = {
+                "ranking_provider": ranking_provider,
+                "ranking_label": ranking_label,
+                "ranking_modality": ranking_modality,
+                "ranking_parser": ranking_parser,
+                "ranking_score_label": ranking_score_label,
+                "ranking_date_label": ranking_date_label,
+                "ranking_coverage_policy": ranking_coverage_policy,
+                "ranking_page_url": ranking_page_url,
+            }
             if track_id == "important-dataset-updates":
                 if catalog_id is None or priority is None or model_id is not None:
                     raise ValueError(
@@ -767,6 +995,7 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
                 if (
                     ranking_id is None
                     or ranking_limit is None
+                    or not all(isinstance(value, str) and value for value in ranking_metadata.values())
                     or catalog_id is not None
                     or model_id is not None
                     or priority is not None
@@ -774,7 +1003,19 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
                     raise ValueError(
                         "ranking watch sources require ranking_id and ranking_limit only"
                     )
-            elif ranking_id is not None or ranking_limit is not None:
+                if ranking_modality not in {"image", "video"}:
+                    raise ValueError(f"ranking source has invalid modality: {ranking_modality!r}")
+                if ranking_parser not in {"artificial-analysis-html", "arena-hf-dataset"}:
+                    raise ValueError(f"ranking source has invalid parser: {ranking_parser!r}")
+                if ranking_coverage_policy not in {"required", "monitor"}:
+                    raise ValueError(
+                        f"ranking source has invalid coverage policy: {ranking_coverage_policy!r}"
+                    )
+                if not ranking_page_url.startswith("https://"):
+                    raise ValueError(f"ranking page requires an HTTPS url: {ranking_page_url!r}")
+            elif ranking_id is not None or ranking_limit is not None or any(
+                value is not None for value in ranking_metadata.values()
+            ):
                 raise ValueError("ranking metadata is only valid for industry-model-rankings")
             normalized = normalize_url(url) or url
             if normalized in seen_urls or normalized in excluded:
@@ -789,6 +1030,14 @@ def load_watchlist(path: Path) -> tuple[dict[str, Any], list[WatchSource]]:
                     model_id,
                     ranking_id,
                     ranking_limit,
+                    ranking_provider,
+                    ranking_label,
+                    ranking_modality,
+                    ranking_parser,
+                    ranking_score_label,
+                    ranking_date_label,
+                    ranking_coverage_policy,
+                    ranking_page_url,
                 )
             )
     if not included or "source-platform-updates" in included:
@@ -917,6 +1166,14 @@ def model_impact_index() -> dict[str, dict[str, tuple[str, ...]]]:
     return impacts
 
 
+def model_ranking_aliases() -> set[str]:
+    aliases: set[str] = set()
+    for _, model in load_models():
+        for value in [model["name"], *model.get("ranking_names", [])]:
+            aliases.add(normalize_ranking_name(value))
+    return aliases
+
+
 def source_entity_payload(
     source: SourceSnapshot,
     dataset_impacts: dict[str, dict[str, tuple[str, ...]]],
@@ -964,6 +1221,7 @@ def compare_snapshots(
     known_urls: set[str],
     dataset_impacts: dict[str, dict[str, tuple[str, ...]]] | None = None,
     model_impacts: dict[str, dict[str, tuple[str, ...]]] | None = None,
+    ranking_aliases: set[str] | None = None,
 ) -> DiscoveryDiff:
     baseline_sources = {
         (item["track_id"], item["source_url"]): item for item in baseline.get("sources", [])
@@ -973,6 +1231,7 @@ def compare_snapshots(
     failures: list[dict[str, Any]] = []
     recoveries: list[dict[str, Any]] = []
     ranking_updates: list[dict[str, Any]] = []
+    ranking_coverage_gaps: list[dict[str, Any]] = []
     dataset_impacts = dataset_impacts or {}
     model_impacts = model_impacts or {}
 
@@ -983,14 +1242,11 @@ def compare_snapshots(
         for candidate in source.candidates:
             if candidate.url in previous_urls or candidate.url in known_urls:
                 continue
-            new_candidates.append(
-                {
-                    "track_id": source.track_id,
-                    "source_url": source.source_url,
-                    "title": candidate.title,
-                    "url": candidate.url,
-                }
-            )
+            new_candidates.append({
+                "track_id": source.track_id,
+                "source_url": source.source_url,
+                **asdict(candidate),
+            })
         previous_revision = previous.get("revision")
         if (
             not source.error
@@ -1045,14 +1301,40 @@ def compare_snapshots(
                 ranking_updates.append(
                     {
                         "ranking_id": source.ranking_id,
-                        "source_url": source.source_url,
+                        "ranking_provider": source.ranking_provider,
+                        "source_url": source.ranking_page_url or source.source_url,
                         "changes": changes,
                         "current": [asdict(entry) for entry in source.rankings],
                     }
                 )
 
+        if source.ranking_id and not source.error and ranking_aliases is not None:
+            for entry in source.rankings:
+                if normalize_ranking_name(entry.model) in ranking_aliases:
+                    continue
+                ranking_coverage_gaps.append(
+                    {
+                        "ranking_id": source.ranking_id,
+                        "ranking_provider": source.ranking_provider,
+                        "coverage_policy": source.ranking_coverage_policy,
+                        "rank": entry.rank,
+                        "model": entry.model,
+                        "creator": entry.creator,
+                        "source_url": source.ranking_page_url or source.source_url,
+                    }
+                )
+
+    priority_order = {"high": 0, "standard": 1, "low": 2}
     return DiscoveryDiff(
-        new_candidates=tuple(sorted(new_candidates, key=lambda item: (item["track_id"], item["url"]))),
+        new_candidates=tuple(sorted(
+            new_candidates,
+            key=lambda item: (
+                priority_order.get(item.get("review_priority", "standard"), 1),
+                -item.get("priority_score", 0),
+                item["track_id"],
+                item["url"],
+            ),
+        )),
         source_updates=tuple(
             sorted(source_updates, key=lambda item: (item["track_id"], item["source_url"]))
         ),
@@ -1060,6 +1342,12 @@ def compare_snapshots(
         recoveries=tuple(sorted(recoveries, key=lambda item: (item["track_id"], item["source_url"]))),
         ranking_updates=tuple(
             sorted(ranking_updates, key=lambda item: item["ranking_id"])
+        ),
+        ranking_coverage_gaps=tuple(
+            sorted(
+                ranking_coverage_gaps,
+                key=lambda item: (item["ranking_id"], item["rank"], item["model"]),
+            )
         ),
     )
 
@@ -1083,6 +1371,7 @@ def report_payload(
         "failures": list(diff.failures),
         "recoveries": list(diff.recoveries),
         "ranking_updates": list(diff.ranking_updates),
+        "ranking_coverage_gaps": list(diff.ranking_coverage_gaps),
     }
 
 
@@ -1100,6 +1389,7 @@ def render_report(report: dict[str, Any], limit: int = 100) -> str:
         f"- New source failures: {len(report['failures'])}",
         f"- Source recoveries: {len(report['recoveries'])}",
         f"- Ranking boards changed: {len(report['ranking_updates'])}",
+        f"- Ranked models awaiting a verified catalog card: {len(report['ranking_coverage_gaps'])}",
         "",
     ]
     if report["ranking_updates"]:
@@ -1115,12 +1405,41 @@ def render_report(report: dict[str, Any], limit: int = 100) -> str:
             lines.append("")
     if report["new_candidates"]:
         lines.extend(["## Candidate links", ""])
-        for item in report["new_candidates"][:limit]:
-            lines.append(
-                f"- [ ] [{item['title']}]({item['url']}) — `{item['track_id']}` via [watch source]({item['source_url']})"
-            )
+        shown = report["new_candidates"][:limit]
+        for priority in ("high", "standard", "low"):
+            group = [item for item in shown if item.get("review_priority", "standard") == priority]
+            if not group:
+                continue
+            lines.extend([f"### {priority.title()} review priority", ""])
+            for item in group:
+                metadata = []
+                if item.get("created_at"):
+                    metadata.append(f"created {item['created_at'][:10]}")
+                if item.get("downloads") is not None:
+                    metadata.append(f"{item['downloads']:,} downloads")
+                if item.get("priority_signals"):
+                    metadata.append(", ".join(item["priority_signals"]))
+                suffix = f"; {'; '.join(metadata)}" if metadata else ""
+                lines.append(
+                    f"- [ ] [{item['title']}]({item['url']}) — score {item.get('priority_score', 0)}; "
+                    f"`{item['track_id']}` via [watch source]({item['source_url']}){suffix}"
+                )
+            lines.append("")
         if len(report["new_candidates"]) > limit:
             lines.append(f"- … {len(report['new_candidates']) - limit} additional candidates are available in the JSON artifact.")
+        lines.append("")
+    if report["ranking_coverage_gaps"]:
+        lines.extend(["## Ranked models awaiting catalog cards", ""])
+        lines.append(
+            "These models remain monitored even when a first-party model card has not yet been verified."
+        )
+        lines.append("")
+        for item in report["ranking_coverage_gaps"]:
+            lines.append(
+                f"- [ ] #{item['rank']} {item['model']} ({item['creator']}) — "
+                f"`{item['ranking_id']}` / {item.get('ranking_provider') or 'ranking provider'}; "
+                f"[leaderboard]({item['source_url']})"
+            )
         lines.append("")
     if report["source_updates"]:
         lines.extend(["## Important catalog revisions", ""])
@@ -1214,6 +1533,7 @@ def main() -> int:
         declared_urls(),
         dataset_impact_index(),
         model_impact_index(),
+        model_ranking_aliases(),
     )
     discovery = watchlist.get("discovery", {})
     report = report_payload(

@@ -6,6 +6,8 @@ ranking_names:
   - Wan2.7-260612
   - Wan 2.7
   - Wan2.7
+  - wan2.7-t2v
+  - wan2.7-i2v
 modalities:
   - video
   - audio

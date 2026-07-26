@@ -4,6 +4,8 @@ organization: OpenAI
 released_at: "2025-12-16"
 ranking_names:
   - GPT Image 1.5 (high)
+  - gpt-image-1.5-high-fidelity
+  - chatgpt-image-latest-high-fidelity (20251216)
 modalities:
   - image
 tasks:

@@ -5,6 +5,7 @@ released_at: "2026-06-16"
 ranking_names:
   - grok-imagine-video-1.5-preview
   - grok-imagine-video-1.5
+  - grok-imagine-video-1.5-preview-720p
 modalities:
   - video
   - audio
