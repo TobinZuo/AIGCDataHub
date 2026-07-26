@@ -33,6 +33,16 @@ unreviewed links.
   behavior, a benchmark table, or a similar model from the same organization.
 - Use `watch` for a recent preview whose technical details are still changing.
 
+## Application scenario taxonomy
+
+- Keep card `tasks` factual and specific; do not add a task solely to make a
+  model appear under a desired filter.
+- Map supported tasks to stable scenario IDs in `sources/scenarios.yaml`.
+- A scenario shown on the site must match at least one model and one dataset so
+  users can compare capability, training strategy, and reusable data together.
+- Add a new scenario only when it has durable meaning across organizations, not
+  for a single product name or marketing phrase.
+
 ## Status definitions
 
 - `verified`: scale, access, and licensing fields were checked against primary
@@ -54,8 +64,8 @@ make check
 ```
 
 The generated catalogs in `README.md` and `site/app/catalog-data.json` must be
-committed with changed dataset or model cards. Link checks run separately because
-remote sites can be transient.
+committed with changed dataset, model, or scenario sources. Link checks run
+separately because remote sites can be transient.
 
 ## Recipes and benchmarks
 

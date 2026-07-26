@@ -1,0 +1,58 @@
+id: flux-vto
+name: FLUX VTO
+organization: Black Forest Labs
+released_at: "2026-05-28"
+modalities:
+  - image
+tasks:
+  - virtual-try-on
+  - multi-garment-try-on
+  - garment-transfer
+  - identity-preserving-editing
+access:
+  status: api-only
+  license: FLUX API Service Terms
+  release_url: https://bfl.ai/blog/flux-vto-virtual-try-on-at-catalog-scale
+  weights_url: null
+  api_url: https://docs.bfl.ai/flux_tools/flux_vto
+architecture:
+  family: Undisclosed proprietary virtual try-on image model
+  parameters: null
+  notes: Accepts a person image, one or more garment references, and a styling prompt while targeting preservation of face, pose, garment branding, prints, stitching, and hardware.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - unknown
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: Black Forest Labs does not identify a base model, training corpus, source types, scale, or curation process for FLUX VTO.
+    - name: fine-tuning
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: The release describes production goals and inference inputs but does not disclose whether or how a virtual try-on specialization dataset was constructed.
+  strategy_summary:
+    - Publish production targets for identity fidelity, garment fidelity, multi-item layering, latency, and cost without disclosing the training corpus behind them.
+    - Support packshot or on-model garment references, up to four garments, and person-preserving transfer through a public API endpoint.
+    - Keep inference-time image preparation and moderation guidance separate from training-data claims because the official sources do not connect them.
+  unknowns:
+    - All training dataset identities, source types, sample counts, rights composition, filters, deduplication, and mixture ratios.
+    - Base architecture, parameter count, whether training uses paired real or synthetic try-on data, and whether preference or human-feedback stages are used.
+    - Terms and technical relationship of the separately offered self-hosted deployment to the public API model.
+evidence:
+  release: https://bfl.ai/blog/flux-vto-virtual-try-on-at-catalog-scale
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-26"

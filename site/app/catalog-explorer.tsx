@@ -4,6 +4,13 @@ import { useMemo, useState } from "react";
 
 type Mode = "models" | "datasets" | "strategies";
 
+type ScenarioDefinition = {
+  id: string;
+  label: string;
+  short_label: string;
+  description: string;
+};
+
 type DataReference = {
   name: string;
   catalog_id: string | null;
@@ -58,6 +65,7 @@ type ModelCard = {
   status: string;
   last_verified: string;
   source_path: string;
+  scenario_ids: string[];
 };
 
 type DatasetCard = {
@@ -114,10 +122,12 @@ type DatasetCard = {
   status: string;
   last_verified: string;
   source_path: string;
+  scenario_ids: string[];
 };
 
 type Catalog = {
   last_verified: string;
+  scenarios: ScenarioDefinition[];
   models: ModelCard[];
   datasets: DatasetCard[];
 };
@@ -204,13 +214,14 @@ function EmptyState({ query }: { query: string }) {
     <div className="empty-state">
       <span className="empty-symbol" aria-hidden="true">∅</span>
       <h3>没有匹配项</h3>
-      <p>试试缩短“{query || "当前条件"}”，或切换到全部模态。</p>
+      <p>试试缩短“{query || "当前条件"}”，或切换到全部场景和全部模态。</p>
     </div>
   );
 }
 
-function ModelResult({ model, expanded, onToggle }: {
+function ModelResult({ model, scenarioLabels, expanded, onToggle }: {
   model: ModelCard;
+  scenarioLabels: string[];
   expanded: boolean;
   onToggle: () => void;
 }) {
@@ -228,6 +239,9 @@ function ModelResult({ model, expanded, onToggle }: {
           <h3>{model.name}</h3>
           <p>{model.data.strategy_summary[0]}</p>
           <div className="tag-row">
+            {scenarioLabels.slice(0, 2).map((item) => (
+              <span className="tag tag-scenario" key={item}>{item}</span>
+            ))}
             {model.modalities.slice(0, 4).map((item) => (
               <span className="tag" key={item}>{MODALITY_LABELS[item] ?? item}</span>
             ))}
@@ -240,7 +254,7 @@ function ModelResult({ model, expanded, onToggle }: {
           </div>
           <div>
             <span className="metric-label">目录关联</span>
-            <strong>{model.data.datasets.length ? `${namedDatasets.length}/${model.data.datasets.length}` : "—"}</strong>
+            <strong>{model.data.datasets.length ? `${namedDatasets.length}/${model.data.datasets.length}` : "无"}</strong>
           </div>
           <StatusMark status={model.status} />
         </div>
@@ -311,8 +325,9 @@ function ModelResult({ model, expanded, onToggle }: {
   );
 }
 
-function DatasetResult({ dataset, expanded, onToggle }: {
+function DatasetResult({ dataset, scenarioLabels, expanded, onToggle }: {
   dataset: DatasetCard;
+  scenarioLabels: string[];
   expanded: boolean;
   onToggle: () => void;
 }) {
@@ -328,8 +343,11 @@ function DatasetResult({ dataset, expanded, onToggle }: {
           <h3>{dataset.name}</h3>
           <p>{dataset.description}</p>
           <div className="tag-row">
+            {scenarioLabels.slice(0, 2).map((item) => (
+              <span className="tag tag-scenario" key={item}>{item}</span>
+            ))}
             <span className="tag">{MODALITY_LABELS[dataset.modality] ?? dataset.modality}</span>
-            {dataset.tasks.slice(0, 3).map((item) => <span className="tag" key={item}>{item}</span>)}
+            {dataset.tasks.slice(0, 2).map((item) => <span className="tag" key={item}>{item}</span>)}
           </div>
         </div>
         <div className="card-metrics">
@@ -393,7 +411,7 @@ function DatasetResult({ dataset, expanded, onToggle }: {
   );
 }
 
-function StrategyResult({ model }: { model: ModelCard }) {
+function StrategyResult({ model, scenarioLabels }: { model: ModelCard; scenarioLabels: string[] }) {
   const disclosed = disclosureScore(model.data.disclosure_level);
   const linkedDatasets = model.data.datasets.filter((item) => item.catalog_id).length;
 
@@ -403,6 +421,11 @@ function StrategyResult({ model }: { model: ModelCard }) {
         <div>
           <span className="strategy-org">{model.organization}</span>
           <h3>{model.name}</h3>
+          <div className="tag-row">
+            {scenarioLabels.slice(0, 2).map((item) => (
+              <span className="tag tag-scenario" key={item}>{item}</span>
+            ))}
+          </div>
         </div>
         <div className="disclosure-meter" aria-label={`披露程度：${DISCLOSURE_LABELS[model.data.disclosure_level]}`}>
           {[1, 2, 3, 4].map((level) => <span className={level <= disclosed ? "is-on" : ""} key={level} />)}
@@ -431,7 +454,7 @@ function StrategyResult({ model }: { model: ModelCard }) {
         </div>
       </div>
       <footer>
-        <span>{DISCLOSURE_LABELS[model.data.disclosure_level]} · {linkedDatasets}/{model.data.datasets.length || "—"} 数据卡关联 · {model.data.unknowns.length} 项未知</span>
+        <span>{DISCLOSURE_LABELS[model.data.disclosure_level]} / {linkedDatasets}/{model.data.datasets.length || "无"} 数据卡关联 / {model.data.unknowns.length} 项未知</span>
         <ExternalLink href={model.evidence.technical_report ?? model.evidence.release}>查看一手证据</ExternalLink>
       </footer>
     </article>
@@ -442,12 +465,19 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
   const [mode, setMode] = useState<Mode>("models");
   const [query, setQuery] = useState("");
   const [modality, setModality] = useState("all");
+  const [scenario, setScenario] = useState("all");
   const [expanded, setExpanded] = useState<string | null>("flux-3");
+
+  const scenarioLabels = useMemo(
+    () => new Map(catalog.scenarios.map((item) => [item.id, item.short_label])),
+    [catalog.scenarios],
+  );
 
   const modelResults = useMemo(() => {
     const search = normalize(query.trim());
     return catalog.models.filter((model) => {
       const inModality = modality === "all" || model.modalities.includes(modality);
+      const inScenario = scenario === "all" || model.scenario_ids.includes(scenario);
       const haystack = normalize([
         model.name,
         model.organization,
@@ -457,14 +487,15 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         ...model.data.datasets.map((item) => item.name),
         ...model.data.stages.flatMap((stage) => stage.operations),
       ].join(" "));
-      return inModality && (!search || haystack.includes(search));
+      return inModality && inScenario && (!search || haystack.includes(search));
     });
-  }, [catalog.models, modality, query]);
+  }, [catalog.models, modality, query, scenario]);
 
   const datasetResults = useMemo(() => {
     const search = normalize(query.trim());
     return catalog.datasets.filter((dataset) => {
       const inModality = modality === "all" || dataset.modality === modality;
+      const inScenario = scenario === "all" || dataset.scenario_ids.includes(scenario);
       const haystack = normalize([
         dataset.name,
         dataset.organization,
@@ -474,9 +505,9 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         ...dataset.annotations.types,
         ...dataset.evidence.used_by,
       ].join(" "));
-      return inModality && (!search || haystack.includes(search));
+      return inModality && inScenario && (!search || haystack.includes(search));
     });
-  }, [catalog.datasets, modality, query]);
+  }, [catalog.datasets, modality, query, scenario]);
 
   const visibleModalities = mode === "datasets"
     ? ["all", "image", "video", "audio", "3d", "preference"]
@@ -484,11 +515,18 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
   const visibleCount = mode === "datasets" ? datasetResults.length : modelResults.length;
   const exactDatasetModels = catalog.models.filter((item) => item.data.exact_datasets_disclosed).length;
   const openDatasets = catalog.datasets.filter((item) => item.access.status === "open").length;
+  const scenarioCounts = useMemo(() => {
+    const items = mode === "datasets" ? catalog.datasets : catalog.models;
+    return Object.fromEntries(catalog.scenarios.map((item) => [
+      item.id,
+      items.filter((entry) => entry.scenario_ids.includes(item.id)).length,
+    ]));
+  }, [catalog.datasets, catalog.models, catalog.scenarios, mode]);
 
   function switchMode(nextMode: Mode) {
     setMode(nextMode);
     setModality("all");
-    setExpanded(nextMode === "models" ? catalog.models[0]?.id ?? null : null);
+    setExpanded(null);
   }
 
   return (
@@ -509,20 +547,19 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="kicker"><span>01</span> 生成式 AI 数据情报</p>
+          <p className="kicker">生成式 AI 数据情报</p>
           <h1>追踪模型，<br />追到它的<span>数据源头。</span></h1>
           <p className="hero-description">
             不止告诉你“有哪些数据集”。这里持续拆解最新 AIGC 模型用了什么数据、怎样清洗与训练，以及官方仍未披露什么。
           </p>
           <div className="hero-actions">
             <button onClick={() => document.querySelector("#explorer")?.scrollIntoView({ behavior: "smooth" })}>
-              开始检索 <span aria-hidden="true">↓</span>
+              打开目录
             </button>
-            <span>一手来源 · 显式未知项 · 每周复核</span>
           </div>
         </div>
         <aside className="hero-stats" aria-label="目录统计">
-          <div className="stats-topline"><span>INDEX / 2026</span><span>CN—EN</span></div>
+          <div className="stats-topline"><span>INDEX / 2026</span><span>CN / EN</span></div>
           <div className="stat-main"><strong>{catalog.models.length}</strong><span>最新模型<br />及数据策略</span></div>
           <div className="stat-grid">
             <div><strong>{catalog.datasets.length}</strong><span>结构化数据集</span></div>
@@ -547,7 +584,6 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
       <section className="explorer" id="explorer">
         <div className="explorer-heading">
           <div>
-            <p className="kicker"><span>02</span> 可核验目录</p>
             <h2>查模型，也查它背后的数据逻辑。</h2>
           </div>
           <p>目录直接由仓库中的 YAML 数据卡生成；更新事实源，页面随之更新。</p>
@@ -566,6 +602,32 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
               <small>{item === "datasets" ? catalog.datasets.length : catalog.models.length}</small>
             </button>
           ))}
+        </div>
+
+        <div className="scenario-rail" role="group" aria-label="应用场景筛选">
+          <span className="scenario-caption">应用场景</span>
+          <div className="scenario-options">
+            <button
+              className={scenario === "all" ? "is-active" : ""}
+              onClick={() => { setScenario("all"); setExpanded(null); }}
+              aria-pressed={scenario === "all"}
+            >
+              <span>全部场景</span>
+              <small>{mode === "datasets" ? catalog.datasets.length : catalog.models.length}</small>
+            </button>
+            {catalog.scenarios.map((item) => (
+              <button
+                className={scenario === item.id ? "is-active" : ""}
+                onClick={() => { setScenario(item.id); setExpanded(null); }}
+                aria-pressed={scenario === item.id}
+                title={item.description}
+                key={item.id}
+              >
+                <span>{item.short_label}</span>
+                <small>{scenarioCounts[item.id]}</small>
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="search-panel">
@@ -595,6 +657,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
             <ModelResult
               key={model.id}
               model={model}
+              scenarioLabels={model.scenario_ids.map((item) => scenarioLabels.get(item) ?? item)}
               expanded={expanded === model.id}
               onToggle={() => setExpanded(expanded === model.id ? null : model.id)}
             />
@@ -603,18 +666,24 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
             <DatasetResult
               key={dataset.id}
               dataset={dataset}
+              scenarioLabels={dataset.scenario_ids.map((item) => scenarioLabels.get(item) ?? item)}
               expanded={expanded === dataset.id}
               onToggle={() => setExpanded(expanded === dataset.id ? null : dataset.id)}
             />
           ))}
-          {mode === "strategies" && modelResults.map((model) => <StrategyResult model={model} key={model.id} />)}
+          {mode === "strategies" && modelResults.map((model) => (
+            <StrategyResult
+              model={model}
+              scenarioLabels={model.scenario_ids.map((item) => scenarioLabels.get(item) ?? item)}
+              key={model.id}
+            />
+          ))}
           {visibleCount === 0 && <EmptyState query={query} />}
         </div>
       </section>
 
       <section className="method-section">
         <div className="method-heading">
-          <p className="kicker"><span>03</span> 证据方法</p>
           <h2>我们把“没说”也写下来。</h2>
         </div>
         <div className="method-grid">

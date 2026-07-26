@@ -23,13 +23,14 @@ The current scope covers:
 - current image, video, audio-video, unified multimodal, and physical-AI models;
 - the public, gated, internal, synthetic, and undisclosed data behind each model;
 - image, video, audio, 3D, and preference datasets;
+- scenario-first coverage for image/video generation, digital humans, video
+  localization, and virtual try-on;
 - data engineering: acquisition, validation, filtering, deduplication,
   recaptioning, sharding, and loading;
 - quality and governance: alignment, visual quality, motion, safety, privacy,
   provenance, licensing, and redistribution constraints.
 
-Digital-human coverage will expand as verified cards are added. Text-only LLM
-corpora are intentionally out of scope.
+Text-only LLM corpora are intentionally out of scope.
 
 ## Latest models and data strategies
 
@@ -47,9 +48,11 @@ model's capabilities or outputs.
 | [Muse Image](models/multimodal/muse-image.yaml) | Meta Superintelligence Labs | image | 2026-07-07 | product only | high level | not disclosed | 👀 |
 | [Gemini Omni Flash](models/video/gemini-omni-flash.yaml) | Google DeepMind | video, audio | 2026-06-30 | api only | high level | Undisclosed multimodal training mixture | ✅ |
 | [Gemini 3.1 Flash-Lite Image](models/image/gemini-3-1-flash-lite-image.yaml) | Google DeepMind | image | 2026-06-30 | api only | high level | Gemini 3 family multimodal training mixture | ✅ |
+| [FLUX VTO](models/image/flux-vto.yaml) | Black Forest Labs | image | 2026-05-28 | api only | undisclosed | not disclosed | 👀 |
 | [Lens](models/image/lens.yaml) | Microsoft Research | image | 2026-05-20 | open weights | partial | [Lens-800M](catalog/image/lens-800m.yaml), [Lens-RL-8K](catalog/preference/lens-rl-8k.yaml) | ✅ |
 | [Lance](models/multimodal/lance.yaml) | ByteDance | image, video | 2026-05-18 | open weights | high level | not disclosed | ✅ |
 | [ERNIE-Image](models/image/ernie-image.yaml) | Baidu | image | 2026-04-15 | open weights | partial | Internal large-scale image pool, [ERIA-1K](catalog/evaluation/eria-1k.yaml) | ✅ |
+| [Fit-VTO](models/image/fit-vto.yaml) | University of Washington and Google Research | image | 2026-04-09 | research preview | partial | FLUX.1-dev inherited pretraining mixture, Full FIT training collection, [FIT-VTO-100K](catalog/image/fit-vto-100k.yaml) | ✅ |
 | [Avatar V](models/video/avatar-v.yaml) | HeyGen Research | video, audio | 2026-04-08 | product only | partial | Avatar V general video pretraining corpus, Avatar V audio-to-video fine-tuning corpus, Avatar V human preference data | ✅ |
 | [LTX-2.3](models/multimodal/ltx-2-3.yaml) | Lightricks | video, audio | 2026-02-23 | open weights | partial | Audio-informative subset of the LTX-Video training corpus, Higher-quality VAE training subset | ✅ |
 | [Seedance 2.0](models/video/seedance-2-0.yaml) | ByteDance Seed | video, audio | 2026-02-12 | api only | undisclosed | not disclosed | 👀 |
@@ -110,6 +113,7 @@ material unknowns; 🗄️ archived or unavailable from the original distributor
 |---|---|---|
 | Catalog | Machine-readable dataset cards | What data exists and is it accessible? |
 | Models | Model cards linked to datasets and training stages | What data strategy produced each model? |
+| Scenarios | Task-derived application taxonomy shared by the generated site | Which models and datasets support a concrete workflow? |
 | Recipes | Reproducible processing blueprints | How does raw media become training data? |
 | Quality | Metrics, filters, and audit guidance | Is the data good enough? |
 | Governance | License, privacy, safety, and provenance | May the data be used or redistributed? |
@@ -165,6 +169,10 @@ updates one GitHub Issue when it finds new candidates or source failures, and
 closes the Issue when the queue is clear. This is triage rather than automatic
 fact generation: a card, license conclusion, or `last_verified` date changes
 only through a reviewed PR.
+
+The application taxonomy in [sources/scenarios.yaml](sources/scenarios.yaml)
+maps card tasks to stable scenario IDs. The generated site uses those IDs for
+the same filters across model, dataset, and data-strategy views.
 
 The latest evidence review is recorded in
 [updates/2026-07-26.md](updates/2026-07-26.md), including accepted releases,

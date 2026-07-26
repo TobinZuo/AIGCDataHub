@@ -16,7 +16,7 @@ class ModelCatalogTests(unittest.TestCase):
     def test_representative_modalities_are_present(self) -> None:
         cards = [card for _, card in load_models()]
         modalities = {modality for card in cards for modality in card["modalities"]}
-        self.assertGreaterEqual(len(cards), 15)
+        self.assertGreaterEqual(len(cards), 17)
         self.assertTrue({"image", "video", "audio", "multimodal"}.issubset(modalities))
 
     def test_product_only_releases_are_representable(self) -> None:
@@ -43,6 +43,14 @@ class ModelCatalogTests(unittest.TestCase):
         just_dub_it_ids = {item["catalog_id"] for item in cards["just-dub-it"]["data"]["datasets"]}
         self.assertEqual(avatar_stages, {"pretraining", "fine-tuning", "distillation", "preference"})
         self.assertEqual(just_dub_it_ids, {None, "audiovisual-translation-dub"})
+
+    def test_virtual_try_on_records_disclosed_and_undisclosed_strategies(self) -> None:
+        cards = {card["id"]: card for _, card in load_models()}
+        fit_ids = {item["catalog_id"] for item in cards["fit-vto"]["data"]["datasets"]}
+        self.assertEqual(fit_ids, {None, "fit-vto-100k"})
+        self.assertEqual(cards["fit-vto"]["data"]["disclosure_level"], "partial")
+        self.assertEqual(cards["flux-vto"]["data"]["disclosure_level"], "undisclosed")
+        self.assertEqual(cards["flux-vto"]["data"]["datasets"], [])
 
     def test_released_dataset_lineage_is_resolved(self) -> None:
         omni2sound = next(card for card in [item for _, item in load_models()] if card["id"] == "omni2sound")

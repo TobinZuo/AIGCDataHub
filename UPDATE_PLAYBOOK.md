@@ -21,6 +21,8 @@ as an exhaustive list.
 4. Add or update cards. Connect named datasets through `catalog_id`; keep
    unavailable internal corpora as named model-card entries or standalone
    unavailable dataset cards when the corpus itself is an important result.
+   If a task belongs to a maintained application scenario, confirm its mapping
+   in `sources/scenarios.yaml` instead of adding front-end-only filter logic.
 5. Distinguish facts from analysis:
    - `strategy`: directly supported by primary evidence;
    - `unknowns`: material information the source does not provide;

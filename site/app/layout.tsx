@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const title = "AIGCDataHub — 模型背后的数据策略";
+const title = "AIGCDataHub | 模型背后的数据策略";
 const description =
   "持续追踪最新 AIGC 模型、训练数据策略与可用数据集，并明确记录公开信息与未知项。";
 const githubPages = process.env.GITHUB_PAGES === "true";
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     description,
     type: "website",
     url: origin,
-    images: [{ url: imageUrl, width: 1200, height: 630, alt: "AIGCDataHub — Models to Data" }],
+    images: [{ url: imageUrl, width: 1200, height: 630, alt: "AIGCDataHub | Models to Data" }],
   },
   twitter: {
     card: "summary_large_image",

@@ -19,6 +19,12 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /JUST-DUB-IT/);
   assert.match(html, /Audiovisual Translation Dubbing Dataset/);
   assert.match(html, /FIT-VTO-100K/);
+  assert.match(html, /Fit-VTO/);
+  assert.match(html, /FLUX VTO/);
+  assert.match(html, /应用场景/);
+  assert.match(html, /数字人/);
+  assert.match(html, /视频翻译/);
+  assert.match(html, /Try-On/);
   assert.match(html, /10\/10/);
   assert.match(html, /\/AIGCDataHub\/_next\/static\//);
   assert.match(html, /https:\/\/tobinzuo\.github\.io\/AIGCDataHub\/og\.png/);

@@ -1,10 +1,43 @@
 {
-  "format_version": 2,
+  "format_version": 3,
   "generated_from": [
     "catalog/**/*.yaml",
-    "models/**/*.yaml"
+    "models/**/*.yaml",
+    "sources/scenarios.yaml"
   ],
   "last_verified": "2026-07-26",
+  "scenarios": [
+    {
+      "id": "image-generation",
+      "label": "生图与图像编辑",
+      "short_label": "生图",
+      "description": "文生图、图像编辑、个性化生成，以及支撑这些能力的图文与偏好数据。"
+    },
+    {
+      "id": "video-generation",
+      "label": "生视频与视频编辑",
+      "short_label": "生视频",
+      "description": "文生视频、图生视频、参考视频生成、联合音视频生成及视频编辑。"
+    },
+    {
+      "id": "digital-human",
+      "label": "数字人与口型驱动",
+      "short_label": "数字人",
+      "description": "参考人物保持、音频驱动头像、Talking Head、口型同步和跨场景身份保持。"
+    },
+    {
+      "id": "video-localization",
+      "label": "视频翻译与本地化",
+      "short_label": "视频翻译",
+      "description": "跨语言配音、声线保持、音画联合翻译及面部运动本地化。"
+    },
+    {
+      "id": "virtual-try-on",
+      "label": "试穿与服装生成",
+      "short_label": "Try-On",
+      "description": "人物与服装条件生成、尺寸感知试穿、多服装组合和服装迁移。"
+    }
+  ],
   "datasets": [
     {
       "id": "gensyn10",
@@ -82,6 +115,9 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/evaluation/gensyn10.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
       "scale_label": "60K"
     },
     {
@@ -158,6 +194,9 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/evaluation/eria-1k.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
       "scale_label": "1K"
     },
     {
@@ -235,6 +274,9 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/preference/lens-rl-8k.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
       "scale_label": "~8K"
     },
     {
@@ -310,6 +352,9 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/image/lens-800m.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
       "scale_label": "800M"
     },
     {
@@ -392,6 +437,9 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/image/fit-vto-100k.yaml",
+      "scenario_ids": [
+        "virtual-try-on"
+      ],
       "scale_label": "105K"
     },
     {
@@ -475,6 +523,10 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/video/audiovisual-translation-dub.yaml",
+      "scenario_ids": [
+        "digital-human",
+        "video-localization"
+      ],
       "scale_label": "288"
     },
     {
@@ -561,6 +613,7 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/evaluation/vggsound-omni.yaml",
+      "scenario_ids": [],
       "scale_label": "~14K"
     },
     {
@@ -645,6 +698,7 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/soundatlas.yaml",
+      "scenario_ids": [],
       "scale_label": "~470K"
     },
     {
@@ -726,6 +780,7 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/audiocaps-2-0.yaml",
+      "scenario_ids": [],
       "scale_label": "98.6K"
     },
     {
@@ -803,6 +858,9 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/video/finevideo.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
       "scale_label": "~43K"
     },
     {
@@ -880,6 +938,9 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/image/re-laion-5b.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
       "scale_label": "~5.8B"
     },
     {
@@ -960,6 +1021,9 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/video/openvid-1m.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
       "scale_label": "~1M"
     },
     {
@@ -1038,6 +1102,9 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/video/panda-70m.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
       "scale_label": "70.7M"
     },
     {
@@ -1114,6 +1181,9 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/preference/pick-a-pic-v2.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
       "scale_label": "~1M"
     },
     {
@@ -1194,6 +1264,9 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/video/internvid.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
       "scale_label": "~234M"
     },
     {
@@ -1275,6 +1348,7 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/3d/objaverse-xl.yaml",
+      "scenario_ids": [],
       "scale_label": "~10M"
     },
     {
@@ -1351,6 +1425,9 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/image/journeydb.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
       "scale_label": "4.4M"
     },
     {
@@ -1437,6 +1514,7 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/3d/cap3d.yaml",
+      "scenario_ids": [],
       "scale_label": "1.6M"
     },
     {
@@ -1513,6 +1591,9 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/image/datacomp-1b.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
       "scale_label": "~1B"
     },
     {
@@ -1596,6 +1677,7 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/wavcaps.yaml",
+      "scenario_ids": [],
       "scale_label": "~403.1K"
     },
     {
@@ -1674,6 +1756,9 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/image/coyo-700m.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
       "scale_label": "~700M"
     },
     {
@@ -1748,6 +1833,9 @@
       "status": "archived",
       "last_verified": "2026-07-26",
       "source_path": "catalog/video/webvid-10m.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
       "scale_label": "~10M"
     },
     {
@@ -1831,6 +1919,7 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/clotho-2-1.yaml",
+      "scenario_ids": [],
       "scale_label": "7K"
     },
     {
@@ -1913,6 +2002,7 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/fsd50k.yaml",
+      "scenario_ids": [],
       "scale_label": "51.2K"
     },
     {
@@ -1995,6 +2085,7 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/vggsound.yaml",
+      "scenario_ids": [],
       "scale_label": "~210K"
     },
     {
@@ -2079,6 +2170,7 @@
       "status": "verified",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/fma.yaml",
+      "scenario_ids": [],
       "scale_label": "~106.6K"
     },
     {
@@ -2161,6 +2253,7 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/audioset.yaml",
+      "scenario_ids": [],
       "scale_label": "~2.1M"
     },
     {
@@ -2243,6 +2336,7 @@
       "status": "archived",
       "last_verified": "2026-07-26",
       "source_path": "catalog/audio/million-song-dataset.yaml",
+      "scenario_ids": [],
       "scale_label": "1M"
     }
   ],
@@ -2332,7 +2426,10 @@
       },
       "status": "watch",
       "last_verified": "2026-07-26",
-      "source_path": "models/image/midjourney-v8-2.yaml"
+      "source_path": "models/image/midjourney-v8-2.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ]
     },
     {
       "id": "flux-3",
@@ -2452,7 +2549,11 @@
       },
       "status": "watch",
       "last_verified": "2026-07-26",
-      "source_path": "models/multimodal/flux-3.yaml"
+      "source_path": "models/multimodal/flux-3.yaml",
+      "scenario_ids": [
+        "image-generation",
+        "video-generation"
+      ]
     },
     {
       "id": "muse-video",
@@ -2517,7 +2618,10 @@
       },
       "status": "watch",
       "last_verified": "2026-07-26",
-      "source_path": "models/video/muse-video.yaml"
+      "source_path": "models/video/muse-video.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ]
     },
     {
       "id": "muse-image",
@@ -2603,7 +2707,10 @@
       },
       "status": "watch",
       "last_verified": "2026-07-26",
-      "source_path": "models/multimodal/muse-image.yaml"
+      "source_path": "models/multimodal/muse-image.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ]
     },
     {
       "id": "gemini-omni-flash",
@@ -2688,7 +2795,10 @@
       },
       "status": "verified",
       "last_verified": "2026-07-26",
-      "source_path": "models/video/gemini-omni-flash.yaml"
+      "source_path": "models/video/gemini-omni-flash.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ]
     },
     {
       "id": "gemini-3-1-flash-lite-image",
@@ -2810,7 +2920,91 @@
       },
       "status": "verified",
       "last_verified": "2026-07-26",
-      "source_path": "models/image/gemini-3-1-flash-lite-image.yaml"
+      "source_path": "models/image/gemini-3-1-flash-lite-image.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ]
+    },
+    {
+      "id": "flux-vto",
+      "name": "FLUX VTO",
+      "organization": "Black Forest Labs",
+      "released_at": "2026-05-28",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "virtual-try-on",
+        "multi-garment-try-on",
+        "garment-transfer",
+        "identity-preserving-editing"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "FLUX API Service Terms",
+        "release_url": "https://bfl.ai/blog/flux-vto-virtual-try-on-at-catalog-scale",
+        "weights_url": null,
+        "api_url": "https://docs.bfl.ai/flux_tools/flux_vto"
+      },
+      "architecture": {
+        "family": "Undisclosed proprietary virtual try-on image model",
+        "parameters": null,
+        "notes": "Accepts a person image, one or more garment references, and a styling prompt while targeting preservation of face, pose, garment branding, prints, stitching, and hardware."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "unknown"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "Black Forest Labs does not identify a base model, training corpus, source types, scale, or curation process for FLUX VTO."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "The release describes production goals and inference inputs but does not disclose whether or how a virtual try-on specialization dataset was constructed."
+          }
+        ],
+        "strategy_summary": [
+          "Publish production targets for identity fidelity, garment fidelity, multi-item layering, latency, and cost without disclosing the training corpus behind them.",
+          "Support packshot or on-model garment references, up to four garments, and person-preserving transfer through a public API endpoint.",
+          "Keep inference-time image preparation and moderation guidance separate from training-data claims because the official sources do not connect them."
+        ],
+        "unknowns": [
+          "All training dataset identities, source types, sample counts, rights composition, filters, deduplication, and mixture ratios.",
+          "Base architecture, parameter count, whether training uses paired real or synthetic try-on data, and whether preference or human-feedback stages are used.",
+          "Terms and technical relationship of the separately offered self-hosted deployment to the public API model."
+        ]
+      },
+      "evidence": {
+        "release": "https://bfl.ai/blog/flux-vto-virtual-try-on-at-catalog-scale",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-26",
+      "source_path": "models/image/flux-vto.yaml",
+      "scenario_ids": [
+        "virtual-try-on"
+      ]
     },
     {
       "id": "lens",
@@ -2926,7 +3120,10 @@
       },
       "status": "verified",
       "last_verified": "2026-07-26",
-      "source_path": "models/image/lens.yaml"
+      "source_path": "models/image/lens.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ]
     },
     {
       "id": "lance",
@@ -3000,7 +3197,11 @@
       },
       "status": "verified",
       "last_verified": "2026-07-26",
-      "source_path": "models/multimodal/lance.yaml"
+      "source_path": "models/multimodal/lance.yaml",
+      "scenario_ids": [
+        "image-generation",
+        "video-generation"
+      ]
     },
     {
       "id": "ernie-image",
@@ -3137,7 +3338,128 @@
       },
       "status": "verified",
       "last_verified": "2026-07-26",
-      "source_path": "models/image/ernie-image.yaml"
+      "source_path": "models/image/ernie-image.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ]
+    },
+    {
+      "id": "fit-vto",
+      "name": "Fit-VTO",
+      "organization": "University of Washington and Google Research",
+      "released_at": "2026-04-09",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "virtual-try-on",
+        "fit-aware-generation",
+        "garment-conditioned-generation",
+        "identity-preserving-editing"
+      ],
+      "access": {
+        "status": "research-preview",
+        "license": "Model-specific checkpoint terms are not published",
+        "release_url": "https://johannakarras.github.io/FIT/",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Measurement-conditioned FLUX.1-dev MMDiT LoRA",
+        "parameters": null,
+        "notes": "Encodes person and lay-flat garment images separately, replaces text embeddings with body and garment measurements, and combines the conditions with noisy target latents."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "FLUX.1-dev inherited pretraining mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "Fit-VTO inherits the FLUX.1-dev visual prior, whose exact source corpus and mixture are not restated by this release."
+          },
+          {
+            "name": "Full FIT training collection",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "1,064,824 training triplets",
+            "notes": "The project describes the full synthetic training collection, but only the smaller preview is currently downloadable."
+          },
+          {
+            "name": "FIT-VTO-100K",
+            "catalog_id": "fit-vto-100k",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "100,000 training and 5,000 evaluation triplets",
+            "notes": "This public preview exposes the same person, garment, target, and measurement structure for partial reproduction and evaluation."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-foundation-model"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Reuse the pretrained FLUX.1-dev MMDiT and VAE visual prior; this release does not restate the foundation model's source corpus."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image"
+            ],
+            "source_types": [
+              "synthetic",
+              "public-dataset"
+            ],
+            "operations": [
+              "lora-fine-tuning",
+              "paired-person-conditioning",
+              "garment-conditioning",
+              "measurement-conditioning",
+              "vae-latent-encoding",
+              "channel-concatenation",
+              "sequence-concatenation",
+              "identity-preserving-training"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Fine-tune FLUX.1-dev with LoRA on FIT triplets, using separate person and garment latents plus explicit body and garment measurement embeddings to preserve identity while controlling fit."
+          }
+        ],
+        "strategy_summary": [
+          "Turn procedurally simulated, physics-draped garments into more than one million photorealistic supervised try-on triplets with exact body and garment measurements.",
+          "Preserve identity by pairing the same generated person across different garments, then condition the model on person, garment, and measurement signals separately.",
+          "Release a 105K preview and generation pipeline while leaving the full training collection and Fit-VTO checkpoint unavailable."
+        ],
+        "unknowns": [
+          "Exact FLUX.1-dev source corpus, rights composition, and inherited mixture weights.",
+          "Whether every reported Fit-VTO result uses the complete 1,064,824-row training split and the exact rejection rate after data quality filtering.",
+          "Fit-VTO checkpoint availability, model-specific license, training hyperparameters, and total compute."
+        ]
+      },
+      "evidence": {
+        "release": "https://johannakarras.github.io/FIT/",
+        "technical_report": "https://arxiv.org/abs/2604.08526",
+        "repository": "https://github.com/HarryWang355/FIT-VTO"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-26",
+      "source_path": "models/image/fit-vto.yaml",
+      "scenario_ids": [
+        "virtual-try-on"
+      ]
     },
     {
       "id": "avatar-v",
@@ -3310,7 +3632,10 @@
       },
       "status": "verified",
       "last_verified": "2026-07-26",
-      "source_path": "models/video/avatar-v.yaml"
+      "source_path": "models/video/avatar-v.yaml",
+      "scenario_ids": [
+        "digital-human"
+      ]
     },
     {
       "id": "ltx-2-3",
@@ -3418,7 +3743,10 @@
       },
       "status": "verified",
       "last_verified": "2026-07-26",
-      "source_path": "models/multimodal/ltx-2-3.yaml"
+      "source_path": "models/multimodal/ltx-2-3.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ]
     },
     {
       "id": "seedance-2-0",
@@ -3484,7 +3812,10 @@
       },
       "status": "watch",
       "last_verified": "2026-07-26",
-      "source_path": "models/video/seedance-2-0.yaml"
+      "source_path": "models/video/seedance-2-0.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ]
     },
     {
       "id": "just-dub-it",
@@ -3592,7 +3923,11 @@
       },
       "status": "verified",
       "last_verified": "2026-07-26",
-      "source_path": "models/video/just-dub-it.yaml"
+      "source_path": "models/video/just-dub-it.yaml",
+      "scenario_ids": [
+        "digital-human",
+        "video-localization"
+      ]
     },
     {
       "id": "omni2sound",
@@ -3781,7 +4116,8 @@
       },
       "status": "verified",
       "last_verified": "2026-07-26",
-      "source_path": "models/multimodal/omni2sound.yaml"
+      "source_path": "models/multimodal/omni2sound.yaml",
+      "scenario_ids": []
     },
     {
       "id": "hunyuanvideo-1-5",
@@ -3865,7 +4201,10 @@
       },
       "status": "partial",
       "last_verified": "2026-07-26",
-      "source_path": "models/video/hunyuanvideo-1-5.yaml"
+      "source_path": "models/video/hunyuanvideo-1-5.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ]
     }
   ]
 }

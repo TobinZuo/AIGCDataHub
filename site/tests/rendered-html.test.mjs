@@ -31,7 +31,7 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>AIGCDataHub — 模型背后的数据策略<\/title>/i);
+  assert.match(html, /<title>AIGCDataHub \| 模型背后的数据策略<\/title>/i);
   assert.match(html, /追踪模型/);
   assert.match(html, /Midjourney V8\.2/);
   assert.match(html, /Muse Image/);
@@ -57,6 +57,12 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /JUST-DUB-IT/);
   assert.match(html, /Audiovisual Translation Dubbing Dataset/);
   assert.match(html, /FIT-VTO-100K/);
+  assert.match(html, /Fit-VTO/);
+  assert.match(html, /FLUX VTO/);
+  assert.match(html, /应用场景/);
+  assert.match(html, /数字人/);
+  assert.match(html, /视频翻译/);
+  assert.match(html, /Try-On/);
   assert.match(html, /10\/10/);
   assert.match(html, /目录关联/);
   assert.match(html, /最新数据集/);
@@ -98,7 +104,11 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"million-song-dataset"/);
   assert.match(catalog, /"fma"/);
   const parsedCatalog = JSON.parse(catalog);
-  assert.equal(parsedCatalog.format_version, 2);
+  assert.equal(parsedCatalog.format_version, 3);
+  assert.deepEqual(
+    parsedCatalog.scenarios.map((scenario) => scenario.id),
+    ["image-generation", "video-generation", "digital-human", "video-localization", "virtual-try-on"],
+  );
   assert.equal(parsedCatalog.datasets[0].id, "gensyn10");
   const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
   assert.deepEqual(
@@ -113,6 +123,8 @@ test("uses generated catalog data and removes starter preview assets", async () 
     models["just-dub-it"].data.datasets.map((dataset) => dataset.catalog_id),
     [null, "audiovisual-translation-dub"],
   );
+  assert.deepEqual(models["fit-vto"].scenario_ids, ["virtual-try-on"]);
+  assert.deepEqual(models["flux-vto"].scenario_ids, ["virtual-try-on"]);
   assert.match(page, /CatalogExplorer/);
   assert.match(layout, /AIGCDataHub/);
   assert.doesNotMatch(layout, /codex-preview|Starter Project/i);

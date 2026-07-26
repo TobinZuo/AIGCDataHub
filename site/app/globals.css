@@ -247,7 +247,7 @@ input:focus-visible {
 .hero-actions button {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 190px;
   padding: 15px 17px;
   border: 1px solid var(--ink);
@@ -260,13 +260,6 @@ input:focus-visible {
 
 .hero-actions button:hover {
   background: var(--signal);
-}
-
-.hero-actions > span {
-  color: var(--muted);
-  font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 10px;
-  letter-spacing: 0.04em;
 }
 
 .hero-stats {
@@ -487,6 +480,75 @@ input:focus-visible {
   font-size: 10px;
 }
 
+.scenario-rail {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  align-items: stretch;
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.scenario-caption {
+  display: flex;
+  align-items: center;
+  padding: 0 18px 0 0;
+  color: var(--muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.scenario-options {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.scenario-options button {
+  display: flex;
+  min-width: 0;
+  min-height: 62px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 13px;
+  border: 0;
+  border-left: 1px solid var(--line);
+  background: transparent;
+  color: #555850;
+  cursor: pointer;
+  font-size: 11px;
+  text-align: left;
+}
+
+.scenario-options button:hover {
+  background: var(--white);
+  color: var(--ink);
+}
+
+.scenario-options button.is-active {
+  background: var(--acid);
+  color: var(--ink);
+}
+
+.scenario-options button:active,
+.filter-row button:active,
+.mode-tabs button:active {
+  transform: translateY(1px);
+}
+
+.scenario-options button span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scenario-options small {
+  color: inherit;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  opacity: 0.72;
+}
+
 .search-panel {
   position: sticky;
   top: 0;
@@ -681,6 +743,12 @@ input:focus-visible {
   font-size: 8px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+}
+
+.tag-scenario {
+  border-color: color-mix(in srgb, var(--ink) 62%, transparent);
+  background: var(--acid);
+  color: var(--ink);
 }
 
 .card-metrics {
@@ -1214,6 +1282,24 @@ input:focus-visible {
     grid-template-columns: 1fr auto;
   }
 
+  .scenario-rail {
+    grid-template-columns: 1fr;
+  }
+
+  .scenario-caption {
+    min-height: 34px;
+    padding: 0;
+  }
+
+  .scenario-options {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--line);
+  }
+
+  .scenario-options button:nth-child(4) {
+    border-left: 0;
+  }
+
   .filter-row {
     grid-row: 2;
     grid-column: 1 / -1;
@@ -1309,6 +1395,34 @@ input:focus-visible {
 
   .mode-tabs small {
     display: none;
+  }
+
+  .scenario-rail {
+    display: block;
+    padding: 12px 0;
+  }
+
+  .scenario-caption {
+    min-height: 22px;
+  }
+
+  .scenario-options {
+    display: flex;
+    overflow-x: auto;
+    border-top: 0;
+    padding-bottom: 4px;
+  }
+
+  .scenario-options button,
+  .scenario-options button:nth-child(4) {
+    flex: 0 0 auto;
+    min-height: 42px;
+    border: 1px solid var(--line-dark);
+    border-right: 0;
+  }
+
+  .scenario-options button:last-child {
+    border-right: 1px solid var(--line-dark);
   }
 
   .search-panel {
