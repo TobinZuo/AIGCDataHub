@@ -1,0 +1,149 @@
+id: skyreels-v4
+name: SkyReels V4
+organization: Skywork AI
+released_at: "2026-02-25"
+ranking_names:
+  - SkyReels V4
+modalities:
+  - video
+  - audio
+tasks:
+  - text-to-video
+  - image-to-video
+  - video-editing
+  - reference-to-video
+  - video-inpainting
+  - audio-video-generation
+access:
+  status: api-only
+  license: SkyReels service terms
+  release_url: https://arxiv.org/abs/2602.21818
+  weights_url: null
+  api_url: https://www.skyreels.ai/api-platform
+architecture:
+  family: Dual-stream Multimodal Diffusion Transformer for joint video-audio generation
+  parameters: null
+  notes: Symmetric video and audio MMDiT branches use bidirectional cross-attention, a shared frozen MLLM encoder, channel-concatenation inpainting, and low-resolution plus high-resolution keyframe refinement.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: LAION (version not specified)
+      catalog_id: re-laion-5b
+      role: pretraining
+      availability: public
+      scale: null
+      notes: The paper names LAION without a version; the linked card documents the maintained Re-LAION-5B lineage and does not assert the exact snapshot used.
+    - name: Flickr
+      catalog_id: flickr-5b
+      role: pretraining
+      availability: public
+      scale: approximately 5B URL records
+      notes: The paper directly cites the bigdata-pw/Flickr metadata repository.
+    - name: WebVid-10M
+      catalog_id: webvid-10m
+      role: pretraining
+      availability: public
+      scale: approximately 10M videos in the original release
+      notes: Named as an example public video source; the original media distribution is no longer durable.
+    - name: Koala-36M
+      catalog_id: koala-36m
+      role: pretraining
+      availability: public
+      scale: approximately 36M metadata rows
+      notes: Named as an example public video source; the catalog card records its metadata-only access boundary.
+    - name: OpenHumanVid
+      catalog_id: openhumanvid
+      role: pretraining
+      availability: gated
+      scale: approximately 13.2M clips
+      notes: Named as an example public video source; access requires the publisher's agreement.
+    - name: Emilia
+      catalog_id: emilia
+      role: pretraining
+      availability: public
+      scale: approximately 101K hours
+      notes: Named as an example speech/audio source in the SkyReels V4 data pipeline.
+    - name: AudioSet
+      catalog_id: audioset
+      role: pretraining
+      availability: public
+      scale: approximately 2.1M labeled segments
+      notes: Named as an example public audio source; only metadata and source identifiers are distributed.
+    - name: VGGSound
+      catalog_id: vggsound
+      role: pretraining
+      availability: public
+      scale: more than 210K source segments in the original release
+      notes: Named as an example public audio-visual source; media availability changes with upstream videos.
+    - name: SoundNet
+      catalog_id: soundnet
+      role: pretraining
+      availability: public
+      scale: approximately 2M videos
+      notes: Named as an example public audio source; the official project distributes audio, features, frames, and URL lists.
+    - name: Licensed SkyReels film and web-video corpus
+      catalog_id: null
+      role: pretraining
+      availability: not-released
+      scale: null
+      notes: Authorized movies, TV series, short videos, and web series are described but not distributed.
+    - name: Synthetic multilingual and editing corpora
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: null
+      notes: Includes rendered text, multilingual TTS, and synthetic inpainting and editing pairs produced with segmentation and controllable generation pipelines.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - audio
+        - text
+      source_types:
+        - public-dataset
+        - licensed
+        - synthetic
+      operations:
+        - strict-deduplication
+        - quality-filtering
+        - watermark-filtering
+        - embedding-cluster-balancing
+        - multimodal-captioning
+        - shot-boundary-detection
+        - audio-video-alignment
+      scale_disclosed: false
+      strategy: Mix named public datasets with authorized film and web video, deduplicate and filter each modality, balance image clusters, segment videos into shots, and create structured visual and acoustic captions.
+    - name: fine-tuning
+      modalities:
+        - image
+        - video
+        - audio
+        - text
+      source_types:
+        - licensed
+        - synthetic
+        - proprietary
+      operations:
+        - multilingual-text-synthesis
+        - multilingual-tts
+        - editing-pair-synthesis
+        - inpainting-pair-synthesis
+        - joint-audio-video-training
+      scale_disclosed: false
+      strategy: Add synthetic multilingual typography, speech, visual editing, and inpainting supervision, then jointly fine-tune the audio and video streams for instruction following and synchronized output.
+  strategy_summary:
+    - Combine public image, video, and audio datasets with licensed film, television, short-video, and web-series content.
+    - Build missing supervision synthetically for multilingual text, multilingual speech, inpainting, and editing.
+    - Apply modality-specific deduplication, quality and watermark filters, balancing, shot segmentation, and structured multimodal captioning.
+  unknowns:
+    - Complete dataset inventory behind each “etc.”, exact snapshots, licenses applied by Skywork, sample counts, and mixture ratios.
+    - Exact SFT mixture, rater or preference data, and whether the API checkpoint differs from the report.
+evidence:
+  release: https://arxiv.org/abs/2602.21818
+  technical_report: https://arxiv.org/html/2602.21818v3
+  repository: null
+status: verified
+last_verified: "2026-07-27"

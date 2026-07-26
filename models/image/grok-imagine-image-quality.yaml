@@ -1,0 +1,48 @@
+id: grok-imagine-image-quality
+name: Grok Imagine Image Quality
+organization: xAI
+released_at: "2026-05-06"
+ranking_names:
+  - grok-imagine-image-quality
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - multi-image-editing
+access:
+  status: api-only
+  license: xAI terms of service
+  release_url: https://x.ai/news/grok-imagine-quality-mode
+  weights_url: null
+  api_url: https://docs.x.ai/developers/models/grok-imagine-image-quality
+architecture:
+  family: Undisclosed image generation and editing model
+  parameters: null
+  notes: xAI publishes the quality endpoint, dated checkpoint alias, and product behavior but not its architecture or parameter count.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: xAI's launch and API documentation do not identify any training or post-training dataset for the quality endpoint.
+  strategy_summary:
+    - The official model alias identifies an April 3 checkpoint, while the public quality-mode launch is dated May 6; neither source discloses training data.
+  unknowns:
+    - Image and text sources, provenance, rights, scale, filtering, deduplication, captions, and mixture weights.
+    - Editing, preference, safety, and quality-mode post-training data.
+evidence:
+  release: https://x.ai/news/grok-imagine-quality-mode
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-27"

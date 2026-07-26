@@ -19,7 +19,7 @@ description: >-
 access:
   status: gated
   type: request
-  url: https://github.com/fudan-generative-vision/OpenHumanVid
+  url: https://forms.gle/moqec5Qod7mz9pfD6
   requires_account: true
   notes: Applicants submit the official form and wait for manual review before receiving the current downloadable release; access is not suitable for unattended CI retrieval.
 scale:

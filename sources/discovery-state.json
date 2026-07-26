@@ -1,6 +1,6 @@
 {
   "schema_version": 6,
-  "generated_at": "2026-07-26T15:47:34Z",
+  "generated_at": "2026-07-26T16:26:32Z",
   "sources": [
     {
       "track_id": "dataset-release-feeds",
@@ -1570,11 +1570,11 @@
     },
     {
       "track_id": "image-generation",
-      "source_url": "https://blog.reve.com/posts",
-      "resolved_url": null,
-      "status": null,
+      "source_url": "https://blog.reve.com/",
+      "resolved_url": "https://blog.reve.com/",
+      "status": 200,
       "candidates": [],
-      "error": "network-gaierror",
+      "error": null,
       "revision": null,
       "revision_url": null,
       "catalog_id": null,
@@ -1765,7 +1765,7 @@
           "url": "https://huggingface.co/models?pipeline_tag=text-to-video"
         },
         {
-          "title": "nvidia/Qwen-Image-Flash Text-to-Image • 20B • Updated 3 days ago • 238 • 42",
+          "title": "nvidia/Qwen-Image-Flash Text-to-Image • 20B • Updated 3 days ago • 238 • 44",
           "url": "https://huggingface.co/nvidia/Qwen-Image-Flash"
         },
         {
@@ -2144,6 +2144,21 @@
     },
     {
       "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/amphion/Emilia-Dataset",
+      "resolved_url": "https://huggingface.co/api/datasets/amphion/Emilia-Dataset",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2025-02-28T05:41:37.000Z@d7f2f7340a6385696f3766c8049fa920a4707c07",
+      "revision_url": "https://huggingface.co/datasets/amphion/Emilia-Dataset",
+      "catalog_id": "emilia",
+      "priority": "critical",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-dataset-updates",
       "source_url": "https://huggingface.co/api/datasets/common-canvas/commoncatalog-cc-by",
       "resolved_url": "https://huggingface.co/api/datasets/common-canvas/commoncatalog-cc-by",
       "status": 200,
@@ -2308,6 +2323,21 @@
       "rankings": []
     },
     {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://projects.csail.mit.edu/soundnet/",
+      "resolved_url": "https://projects.csail.mit.edu/soundnet",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:ae404d925fb0a363d0a6c0a5b14ad31437e2944d219ac5dafb76017d5a7d46cd",
+      "revision_url": "https://projects.csail.mit.edu/soundnet",
+      "catalog_id": "soundnet",
+      "priority": "critical",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
       "track_id": "important-model-updates",
       "source_url": "https://api.github.com/repos/HarryWang355/FIT-VTO/commits/main",
       "resolved_url": "https://api.github.com/repos/HarryWang355/FIT-VTO/commits/main",
@@ -2319,6 +2349,21 @@
       "catalog_id": null,
       "priority": "critical",
       "model_id": "fit-vto",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://api.github.com/repos/HiDream-ai/HiDream-O1-Image/commits/main",
+      "resolved_url": "https://api.github.com/repos/HiDream-ai/HiDream-O1-Image/commits/main",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-06-22T07:50:58Z@2c2d29ff729e48f33e41f49edfdbd81d5ac103b4",
+      "revision_url": "https://github.com/HiDream-ai/HiDream-O1-Image/commit/2c2d29ff729e48f33e41f49edfdbd81d5ac103b4",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "hidream-o1-image-1-5",
       "ranking_id": null,
       "rankings": []
     },
@@ -2349,6 +2394,193 @@
       "catalog_id": null,
       "priority": "critical",
       "model_id": "ctrlvton",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://arxiv.org/abs/2602.21818",
+      "resolved_url": "https://arxiv.org/abs/2602.21818",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:58e81f73750467f18cb0ff27fc8d4bff7b85833efd9402640e0d1eff2492c737",
+      "revision_url": "https://arxiv.org/abs/2602.21818",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "skyreels-v4",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://docs.byteplus.com/en/docs/ModelArk/2582775",
+      "resolved_url": "https://docs.byteplus.com/en/docs/ModelArk/2582775",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Image understanding",
+          "url": "https://docs.byteplus.com/docs/ModelArk/1362931"
+        },
+        {
+          "title": "Visual grounding",
+          "url": "https://docs.byteplus.com/docs/ModelArk/1616136"
+        },
+        {
+          "title": "Image generation tutorial",
+          "url": "https://docs.byteplus.com/docs/ModelArk/1824121"
+        },
+        {
+          "title": "VideoPilot feature overview",
+          "url": "https://docs.byteplus.com/docs/ModelArk/1883982"
+        },
+        {
+          "title": "Video understanding",
+          "url": "https://docs.byteplus.com/docs/ModelArk/1895586"
+        },
+        {
+          "title": "VideoPilot API",
+          "url": "https://docs.byteplus.com/docs/ModelArk/2085689"
+        },
+        {
+          "title": "Dreamina Seedance 2.0 series prompt guide",
+          "url": "https://docs.byteplus.com/docs/ModelArk/2222480"
+        },
+        {
+          "title": "Dreamina Seedance 2.0 series tutorial",
+          "url": "https://docs.byteplus.com/docs/ModelArk/2291680"
+        },
+        {
+          "title": "Video generation tutorial",
+          "url": "https://docs.byteplus.com/docs/ModelArk/2298881"
+        }
+      ],
+      "error": null,
+      "revision": "sha256:6f25002d7522d7eb61914e4e2b0e5e2e7c777067642f7a52f1925cd7a8e3f68d",
+      "revision_url": "https://docs.byteplus.com/en/docs/ModelArk/2582775",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "seedream-5-0-pro",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://docs.x.ai/developers/models/grok-imagine-image-quality",
+      "resolved_url": "https://docs.x.ai/developers/models/grok-imagine-image-quality",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Try in playground",
+          "url": "https://console.x.ai/team/default/image?model=grok-imagine-image-quality"
+        },
+        {
+          "title": "Image Editing",
+          "url": "https://docs.x.ai/developers/model-capabilities/images/editing"
+        },
+        {
+          "title": "Image Generation",
+          "url": "https://docs.x.ai/developers/model-capabilities/images/generation"
+        },
+        {
+          "title": "Multi-Image Editing",
+          "url": "https://docs.x.ai/developers/model-capabilities/images/multi-image-editing"
+        },
+        {
+          "title": "Video Editing",
+          "url": "https://docs.x.ai/developers/model-capabilities/video/editing"
+        },
+        {
+          "title": "Video Extension",
+          "url": "https://docs.x.ai/developers/model-capabilities/video/extension"
+        },
+        {
+          "title": "Video Generation",
+          "url": "https://docs.x.ai/developers/model-capabilities/video/generation"
+        },
+        {
+          "title": "Image-to-Video",
+          "url": "https://docs.x.ai/developers/model-capabilities/video/image-to-video"
+        },
+        {
+          "title": "Reference-to-Video",
+          "url": "https://docs.x.ai/developers/model-capabilities/video/reference-to-video"
+        },
+        {
+          "title": "View as Markdown",
+          "url": "https://docs.x.ai/developers/models/grok-imagine-image-quality.md"
+        },
+        {
+          "title": "Learn more Generate images Use Grok to generate images.",
+          "url": "https://docs.x.ai/docs/guides/image-generation"
+        }
+      ],
+      "error": null,
+      "revision": "sha256:2433dcdf9e9d9fecf7c10b5811d8775a7020e2ddc923d9c8d8b15e2e76904c88",
+      "revision_url": "https://docs.x.ai/developers/models/grok-imagine-image-quality",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "grok-imagine-image-quality",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://docs.x.ai/developers/models/grok-imagine-video",
+      "resolved_url": "https://docs.x.ai/developers/models/grok-imagine-video",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Try in playground",
+          "url": "https://console.x.ai/team/default/video?model=grok-imagine-video"
+        },
+        {
+          "title": "Image Editing",
+          "url": "https://docs.x.ai/developers/model-capabilities/images/editing"
+        },
+        {
+          "title": "Image Generation",
+          "url": "https://docs.x.ai/developers/model-capabilities/images/generation"
+        },
+        {
+          "title": "Multi-Image Editing",
+          "url": "https://docs.x.ai/developers/model-capabilities/images/multi-image-editing"
+        },
+        {
+          "title": "Video Editing",
+          "url": "https://docs.x.ai/developers/model-capabilities/video/editing"
+        },
+        {
+          "title": "Video Extension",
+          "url": "https://docs.x.ai/developers/model-capabilities/video/extension"
+        },
+        {
+          "title": "Video Generation",
+          "url": "https://docs.x.ai/developers/model-capabilities/video/generation"
+        },
+        {
+          "title": "Image-to-Video",
+          "url": "https://docs.x.ai/developers/model-capabilities/video/image-to-video"
+        },
+        {
+          "title": "Reference-to-Video",
+          "url": "https://docs.x.ai/developers/model-capabilities/video/reference-to-video"
+        },
+        {
+          "title": "View as Markdown",
+          "url": "https://docs.x.ai/developers/models/grok-imagine-video.md"
+        },
+        {
+          "title": "Learn more Generate video Use Grok to generate videos.",
+          "url": "https://docs.x.ai/docs/guides/video-generation"
+        }
+      ],
+      "error": null,
+      "revision": "sha256:66ebfcab757f5f1cc1ef6a757d97a8e9f26694e57405e153664c34c4b903ced1",
+      "revision_url": "https://docs.x.ai/developers/models/grok-imagine-video",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "grok-imagine-video",
       "ranking_id": null,
       "rankings": []
     },
@@ -2459,6 +2691,21 @@
     },
     {
       "track_id": "important-model-updates",
+      "source_url": "https://huggingface.co/api/models/nvidia/Cosmos3-Super-Text2Image",
+      "resolved_url": "https://huggingface.co/api/models/nvidia/Cosmos3-Super-Text2Image",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-07-09T16:29:23.000Z@c92432b9dff7eeb055d11ef5cf01c2c85bda0f28",
+      "revision_url": "https://huggingface.co/nvidia/Cosmos3-Super-Text2Image",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "cosmos3-super-text2image",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
       "source_url": "https://huggingface.co/api/models/snap-research/talkverse-s2v-5b",
       "resolved_url": "https://huggingface.co/api/models/snap-research/talkverse-s2v-5b",
       "status": 200,
@@ -2489,6 +2736,21 @@
     },
     {
       "track_id": "important-model-updates",
+      "source_url": "https://huggingface.co/api/models/tencent/HunyuanImage-3.0-Instruct",
+      "resolved_url": "https://huggingface.co/api/models/tencent/HunyuanImage-3.0-Instruct",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-02-03T13:32:18.000Z@2ec2c78bee7d4b94157341fba86c4c2c7b1858b2",
+      "revision_url": "https://huggingface.co/tencent/HunyuanImage-3.0-Instruct",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "hunyuanimage-3-instruct",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
       "source_url": "https://huggingface.co/api/models/tencent/HunyuanVideo-Avatar",
       "resolved_url": "https://huggingface.co/api/models/tencent/HunyuanVideo-Avatar",
       "status": 200,
@@ -2499,6 +2761,45 @@
       "catalog_id": null,
       "priority": "critical",
       "model_id": "hunyuanvideo-avatar",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://lumalabs.ai/news/uni-1-1-api",
+      "resolved_url": "https://lumalabs.ai/news/uni-1-1-api",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "AI Video Generator",
+          "url": "https://lumalabs.ai/create/ai-video-generator"
+        },
+        {
+          "title": "AI Image Generator",
+          "url": "https://lumalabs.ai/create/ai-video-generator-from-image"
+        }
+      ],
+      "error": null,
+      "revision": "sha256:f0195d29eb49184e09eb411b73d8d83aefc8318f357bf13583bfa5796a7ba776",
+      "revision_url": "https://lumalabs.ai/news/uni-1-1-api",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "luma-uni-1-max",
+      "ranking_id": null,
+      "rankings": []
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Veo-3-Model-Card.pdf",
+      "resolved_url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Veo-3-Model-Card.pdf",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:805ca645079c287664890bdea737e22ebc8a66aca6e8f0a03d0ffeca86c4d17f",
+      "revision_url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Veo-3-Model-Card.pdf",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "veo-3-1",
       "ranking_id": null,
       "rankings": []
     },
@@ -3623,11 +3924,11 @@
     },
     {
       "track_id": "video-and-audio-generation",
-      "source_url": "https://ir.kuaishou.com/news-releases",
-      "resolved_url": null,
-      "status": null,
+      "source_url": "https://ir.kuaishou.com/news-events/company-news/",
+      "resolved_url": "https://ir.kuaishou.com/news-events/company-news",
+      "status": 200,
       "candidates": [],
-      "error": "HTTP 404",
+      "error": null,
       "revision": null,
       "revision_url": null,
       "catalog_id": null,

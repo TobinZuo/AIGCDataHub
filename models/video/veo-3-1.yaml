@@ -1,0 +1,67 @@
+id: veo-3-1
+name: Veo 3.1
+organization: Google DeepMind
+released_at: "2026-01-13"
+ranking_names:
+  - Veo 3.1
+  - Veo 3.1 Fast
+modalities:
+  - video
+  - audio
+tasks:
+  - text-to-video
+  - image-to-video
+  - reference-to-video
+  - audio-video-generation
+access:
+  status: api-only
+  license: Google Gemini API and Vertex AI terms
+  release_url: https://blog.google/innovation-and-ai/technology/developers-tools/veo-3-1-gemini-api/
+  weights_url: null
+  api_url: https://ai.google.dev/gemini-api/docs/video
+architecture:
+  family: Joint latent audio-video diffusion model
+  parameters: null
+  notes: The model card describes diffusion over temporal audio latents and spatiotemporal video latents, but does not publish parameter count or full network topology.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Veo 3 multimodal training corpus
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: Google names the audio, video, and image modalities and processing steps but not the source datasets or licenses.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - audio
+        - text
+      source_types:
+        - undisclosed
+        - synthetic
+      operations:
+        - multilevel-captioning
+        - pii-filtering
+        - safety-filtering
+        - quality-filtering
+        - semantic-deduplication
+      scale_disclosed: false
+      strategy: Annotate audio and video with multi-level Gemini captions, remove unsafe captions and personal information, filter videos for compliance, safety, and quality, and deduplicate semantically across sources.
+  strategy_summary:
+    - Train jointly on audio, video, and image data while using Gemini-generated captions at multiple levels of detail.
+    - Apply compliance, safety, quality, PII, and semantic duplicate filters before training.
+    - Google does not identify the underlying datasets, corpus scale, rights mixture, or Fast-variant training delta.
+  unknowns:
+    - Source dataset identities, licenses, scale, geographic and language mix, and modality ratios.
+    - Post-training data and differences among Veo 3.1, Fast, and product-specific serving variants.
+evidence:
+  release: https://blog.google/innovation-and-ai/technology/developers-tools/veo-3-1-gemini-api/
+  technical_report: https://storage.googleapis.com/deepmind-media/Model-Cards/Veo-3-Model-Card.pdf
+  repository: null
+status: verified
+last_verified: "2026-07-27"

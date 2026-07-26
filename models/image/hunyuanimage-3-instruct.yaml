@@ -1,0 +1,109 @@
+id: hunyuanimage-3-instruct
+name: HunyuanImage 3.0 Instruct
+organization: Tencent Hunyuan
+released_at: "2026-01-26"
+ranking_names:
+  - HunyuanImage 3.0 Instruct (Fal)
+  - HunyuanImage 3.0 Instruct
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - text-rendering
+  - reasoning-image-generation
+access:
+  status: open-weights
+  license: Tencent Hunyuan Community License
+  release_url: https://huggingface.co/tencent/HunyuanImage-3.0-Instruct
+  weights_url: https://huggingface.co/tencent/HunyuanImage-3.0-Instruct
+  api_url: null
+architecture:
+  family: Native multimodal autoregressive Mixture-of-Experts with diffusion image tokens
+  parameters: 80000000000
+  notes: The Hunyuan-A13B backbone has more than 80B total parameters, 13B activated per token, 64 experts, a VAE and vision encoder, and generalized causal attention for text and image sequences.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Filtered Hunyuan image corpus
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: nearly 5B images
+      notes: The report discloses the retained scale and curation pipeline but not the source collections or licenses.
+    - name: Hunyuan interleaved image-pair corpus
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: more than 100M image pairs and multi-image samples
+      notes: Constructed from image clustering, internet interleaved data, and video-frame mining; exact source identities are not listed.
+    - name: Hunyuan reasoning and editing corpora
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: null
+      notes: Includes T2T, T2TI, and TI2TI reasoning traces plus Wikipedia infographics, but the compiled corpora were not released.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - public-web
+        - proprietary
+      operations:
+        - md5-deduplication
+        - embedding-deduplication
+        - quality-filtering
+        - watermark-filtering
+        - aigc-filtering
+        - bilingual-captioning
+        - entity-verification
+        - video-frame-mining
+      scale_disclosed: true
+      strategy: Filter more than 10B raw images to nearly 5B, mine more than 100M related image pairs, and generate hierarchical English and Chinese captions with OCR/entity agents and bidirectional verification.
+    - name: fine-tuning
+      modalities:
+        - image
+        - text
+      source_types:
+        - proprietary
+        - synthetic
+        - human-feedback
+      operations:
+        - reasoning-trace-annotation
+        - progressive-resolution-training
+        - supervised-fine-tuning
+        - editing-pair-curation
+      scale_disclosed: false
+      strategy: Add T2T, T2TI, and TI2TI reasoning traces, human-annotated high-quality samples, editing pairs, and progressively higher-fidelity image subsets.
+    - name: preference
+      modalities:
+        - image
+        - text
+      source_types:
+        - proprietary
+        - human-feedback
+        - synthetic
+      operations:
+        - direct-preference-optimization
+        - reward-model-training
+        - online-reinforcement-learning
+      scale_disclosed: false
+      strategy: Apply two-stage DPO, MixGRPO, SRPO, and Reward Distribution Alignment to reduce artifacts and improve realism, aesthetics, alignment, and identity preservation.
+  strategy_summary:
+    - Retain less than 45 percent of more than 10B raw images through technical, semantic, quality, safety, and duplicate filtering.
+    - Build bilingual 30-to-1,000-word captions and validate OCR and named entities before admitting samples.
+    - Combine progressive multimodal pretraining with reasoning traces, editing data, preference optimization, and online reinforcement learning.
+  unknowns:
+    - Exact source datasets, provenance, licenses, domain composition, and mixture weights for the nearly 5B-image corpus.
+    - Scale and release status of the human-annotated SFT, DPO, reward-model, and editing datasets.
+evidence:
+  release: https://huggingface.co/tencent/HunyuanImage-3.0-Instruct
+  technical_report: https://arxiv.org/abs/2509.23951
+  repository: https://github.com/Tencent-Hunyuan/HunyuanImage-3.0
+status: verified
+last_verified: "2026-07-27"

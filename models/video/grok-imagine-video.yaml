@@ -1,0 +1,54 @@
+id: grok-imagine-video
+name: Grok Imagine Video
+organization: xAI
+released_at: "2026-01-28"
+ranking_names:
+  - grok-imagine-video
+modalities:
+  - video
+  - audio
+tasks:
+  - text-to-video
+  - image-to-video
+  - video-editing
+  - reference-to-video
+  - video-extension
+  - audio-video-generation
+access:
+  status: api-only
+  license: xAI terms of service
+  release_url: https://x.ai/news/grok-imagine-api
+  weights_url: null
+  api_url: https://docs.x.ai/developers/models/grok-imagine-video
+architecture:
+  family: Undisclosed unified video-audio generation and editing model
+  parameters: null
+  notes: xAI documents multimodal inputs, synchronized audio output, and a common API surface but does not disclose architecture or parameter count.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - audio
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: The launch and API documentation describe generation, editing, extension, reference conditioning, and native audio but publish no data recipe.
+  strategy_summary:
+    - Treat the original Grok Imagine Video endpoint separately from the 1.5 preview; its training corpus remains undisclosed.
+  unknowns:
+    - Video, image, audio, and text source identities, rights, scale, language mix, captions, filtering, and deduplication.
+    - Editing, preference, synchronization, safety, and post-training datasets.
+evidence:
+  release: https://x.ai/news/grok-imagine-api
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-07-27"

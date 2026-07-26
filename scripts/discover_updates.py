@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import concurrent.futures
+import hashlib
 import json
 import re
 import urllib.error
@@ -396,6 +397,11 @@ def extract_source_revision(payload: str, source_url: str) -> tuple[str | None, 
     return None, None
 
 
+def content_revision(payload: bytes) -> str:
+    """Return a deterministic fallback revision for official pages and PDFs."""
+    return f"sha256:{hashlib.sha256(payload).hexdigest()}"
+
+
 def extract_candidate_links(html: str, base_url: str, contextual: bool = False) -> tuple[Candidate, ...]:
     parser = AnchorParser()
     parser.feed(html)
@@ -520,6 +526,12 @@ def _fetch_source(source: WatchSource, timeout: float, max_bytes: int) -> Source
             html = payload.decode(charset, errors="replace")
             hostname = (urllib.parse.urlsplit(response.url).hostname or "").lower()
             revision, revision_url = extract_source_revision(html, response.url)
+            if revision is None and track_id in {
+                "important-dataset-updates",
+                "important-model-updates",
+            }:
+                revision = content_revision(payload)
+                revision_url = normalize_url(response.url)
             if source.ranking_id:
                 rankings = extract_ranking_entries(html, source.ranking_limit or 15)
                 candidates: tuple[Candidate, ...] = ()

@@ -1,0 +1,58 @@
+id: luma-uni-1-max
+name: Luma UNI 1 Max
+organization: Luma AI
+released_at: "2026-05-05"
+ranking_names:
+  - Luma UNI 1 Max
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - reference-image-generation
+  - visual-reasoning-generation
+access:
+  status: api-only
+  license: Luma service terms
+  release_url: https://lumalabs.ai/news/uni-1-1-api
+  weights_url: null
+  api_url: https://lumalabs.ai/news/uni-1-1-api
+architecture:
+  family: Decoder-only autoregressive unified image-text transformer
+  parameters: null
+  notes: Text and image tokens share one interleaved input/output sequence; Luma does not publish the parameter count for the Max service variant.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Luma UNI creative training corpus
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: Luma says Uni was trained in collaboration with cinematographers, VFX artists, and artists, but does not identify a distributable dataset.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - proprietary
+        - human-feedback
+      operations:
+        - expert-collaboration
+        - unified-token-training
+      scale_disclosed: false
+      strategy: Train a shared image-text sequence model with creative-domain collaboration; the source corpus and curation details remain undisclosed.
+  strategy_summary:
+    - Luma exposes a unified autoregressive image-text architecture and creative-expert collaboration, but no named dataset or mixture.
+  unknowns:
+    - Dataset identities, provenance, rights, scale, filtering, deduplication, captions, and mixture weights.
+    - Differences between Uni-1, Uni-1.1, and the leaderboard Max serving variant's training data.
+evidence:
+  release: https://lumalabs.ai/news/uni-1-1-api
+  technical_report: https://lumalabs.ai/uni-1/tech-specs
+  repository: null
+status: watch
+last_verified: "2026-07-27"

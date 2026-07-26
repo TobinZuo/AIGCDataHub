@@ -1,0 +1,68 @@
+id: flickr-5b
+name: Flickr 5B metadata
+organization: hlky / bigdata-pw
+released_at: "2024-08-15"
+release_date_source: https://huggingface.co/datasets/bigdata-pw/Flickr
+modality: image
+tasks:
+  - image-text-pretraining
+  - text-to-image
+  - image-retrieval
+  - geospatial-image-analysis
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A very large Flickr metadata collection whose rows provide image URLs at
+  multiple resolutions plus available license, geolocation, date, description,
+  and machine-tag fields; it does not redistribute a canonical media archive.
+access:
+  status: metadata-only
+  type: urls
+  url: https://huggingface.co/datasets/bigdata-pw/Flickr
+  requires_account: true
+  notes: The Hugging Face repository distributes sharded URL metadata; an account or authentication may be required, and each source image can disappear independently.
+scale:
+  samples: 5000000000
+  source_items: 5000000000
+  approximate: true
+  notes: The current dataset description says approximately 5B Flickr images; earlier snapshots and mirrors reported smaller row counts.
+annotations:
+  types:
+    - image-url
+    - description
+    - machine-tags
+    - license-metadata
+    - geolocation
+    - capture-date
+  source: web-metadata
+  languages:
+    - multilingual
+license:
+  metadata: Open Data Commons Attribution License 1.0
+  media: Rights and Creative Commons terms vary by the original Flickr item
+  commercial_use: review-required
+  redistribution: review-required
+  notes: >-
+    ODC-By applies to the metadata database, not automatically to every linked
+    image; users must preserve item-level licenses and verify current source rights.
+quality:
+  dimensions:
+    - provenance
+    - deduplication
+    - text-media-alignment
+  known_limitations:
+    - URL survival, rate limits, and access permissions change over time.
+    - Web descriptions and tags are noisy and are not guaranteed to describe visible content.
+    - The repository-scale count has changed across published snapshots and should be treated as approximate.
+processing:
+  recipe: recipes/image_text
+  recommended_format: parquet
+  notes: Stream metadata shards, retain the original row and item license, fetch only permitted media, record fetch time and result, hash payloads, and deduplicate before use.
+evidence:
+  homepage: https://huggingface.co/datasets/bigdata-pw/Flickr
+  paper: null
+  used_by:
+    - SkyReels V4
+status: partial
+last_verified: "2026-07-27"
