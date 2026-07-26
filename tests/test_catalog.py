@@ -225,6 +225,22 @@ class CatalogTests(unittest.TestCase):
                 required = min(15, len(board["entries"]))
                 self.assertGreaterEqual(required, 6)
                 self.assertTrue(all(entry["model_id"] for entry in board["entries"][:required]))
+                self.assertTrue(all(
+                    component["model_id"]
+                    for entry in board["entries"][:required]
+                    for component in entry["components"]
+                ))
+
+        avgen = next(board for board in rankings if board["id"] == "avgen-text-to-audio-video")
+        pipeline = next(entry for entry in avgen["entries"] if entry["model"] == "Wan2.2 + HunyuanVideo-Foley")
+        self.assertEqual(
+            pipeline["components"],
+            [
+                {"name": "Wan2.2", "model_id": "wan-2-2"},
+                {"name": "HunyuanVideo-Foley", "model_id": "hunyuanvideo-foley"},
+            ],
+        )
+        self.assertEqual(pipeline["model_ids"], ["wan-2-2", "hunyuanvideo-foley"])
 
         monitored_boards = [board for board in rankings if board["coverage_policy"] == "monitor"]
         self.assertEqual(monitored_boards, [])

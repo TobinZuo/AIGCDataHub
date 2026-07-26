@@ -219,7 +219,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"relations"/);
   assert.match(catalog, /"dataset_relations"/);
   const parsedCatalog = JSON.parse(catalog);
-  assert.equal(parsedCatalog.format_version, 12);
+  assert.equal(parsedCatalog.format_version, 13);
   assert.equal(parsedCatalog.rankings.length, 11);
   assert.equal(parsedCatalog.source_platforms.length, 18);
   assert.equal(
@@ -241,9 +241,9 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.equal(parsedCatalog.datasets[0].id, "graphvid-bench");
   const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
   const rankedModelIds = new Set(
-    parsedCatalog.rankings.flatMap((board) => board.entries.map((entry) => entry.model_id)),
+    parsedCatalog.rankings.flatMap((board) => board.entries.flatMap((entry) => entry.model_ids)),
   );
-  assert.equal(rankedModelIds.size, 48);
+  assert.equal(rankedModelIds.size, 49);
   assert.ok([...rankedModelIds].every((modelId) => models[modelId].monitoring));
   assert.equal(models["gpt-image-2"].monitoring.priority, "critical");
   assert.equal(models["gemini-omni-flash"].monitoring.priority, "critical");

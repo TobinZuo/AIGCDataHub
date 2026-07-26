@@ -262,11 +262,12 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.models["pixverse-v6"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["flux-2-max"]["monitoring"]["priority"], "critical")
         ranked_model_ids = {
-            entry["model_id"]
+            model_id
             for board in self.payload["rankings"]
             for entry in board["entries"]
+            for model_id in entry["model_ids"]
         }
-        self.assertEqual(len(ranked_model_ids), 48)
+        self.assertEqual(len(ranked_model_ids), 49)
         self.assertEqual(
             {
                 model_id

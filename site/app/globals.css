@@ -1523,7 +1523,7 @@ input:focus-visible {
 
 .ranking-summary dl {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   margin: 0;
   border: 1px solid var(--ink);
@@ -1591,7 +1591,7 @@ input:focus-visible {
 
 .ranking-board li {
   display: grid;
-  grid-template-columns: 34px minmax(0, 1fr) 48px 74px 72px;
+  grid-template-columns: 34px minmax(0, 1fr) 48px 74px minmax(112px, 150px);
   min-height: 75px;
   align-items: center;
   gap: 12px;
@@ -1660,6 +1660,32 @@ input:focus-visible {
 
 .ranking-board li button:hover {
   background: var(--acid);
+}
+
+.ranking-model-links {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.ranking-model-links button {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+  text-align: left;
+}
+
+.ranking-model-links button strong,
+.ranking-model-links button small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ranking-model-links button strong {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 8px;
+  font-weight: 500;
 }
 
 .unknown-panel {
@@ -2490,9 +2516,13 @@ input:focus-visible {
   }
 
   .ranking-board li button,
-  .ranking-board li > small:last-child {
+  .ranking-model-links {
     grid-column: 2 / -1;
     justify-self: start;
+  }
+
+  .ranking-model-links {
+    width: min(100%, 320px);
   }
 
   .lineage-row {
