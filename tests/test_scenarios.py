@@ -34,6 +34,11 @@ class ScenarioTaxonomyTests(unittest.TestCase):
         self.assertTrue(
             {"digital-human", "video-localization"}.issubset(models["just-dub-it"]["scenario_ids"])
         )
+        self.assertTrue(
+            {"video-generation", "digital-human", "video-localization"}.issubset(
+                models["talkverse-5b"]["scenario_ids"]
+            )
+        )
         self.assertIn("virtual-try-on", models["fit-vto"]["scenario_ids"])
         self.assertIn("virtual-try-on", models["flux-vto"]["scenario_ids"])
         self.assertIn("virtual-try-on", models["ctrlvton"]["scenario_ids"])
@@ -42,6 +47,17 @@ class ScenarioTaxonomyTests(unittest.TestCase):
         self.assertIn("virtual-try-on", datasets["fit-vto-100k"]["scenario_ids"])
         self.assertIn("virtual-try-on", datasets["viton-hd-edit"]["scenario_ids"])
         self.assertIn("virtual-try-on", datasets["tripvvt-10k"]["scenario_ids"])
+        self.assertTrue(
+            {"video-generation", "digital-human"}.issubset(
+                datasets["talkverse"]["scenario_ids"]
+            )
+        )
+        self.assertIn("video-generation", datasets["openhumanvid"]["scenario_ids"])
+        self.assertTrue(
+            {"video-generation", "digital-human"}.issubset(
+                datasets["openhumanvid-talking"]["scenario_ids"]
+            )
+        )
 
     def test_generated_assignments_come_from_task_matches(self) -> None:
         scenarios = load_scenarios()

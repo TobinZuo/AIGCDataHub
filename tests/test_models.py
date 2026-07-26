@@ -16,7 +16,7 @@ class ModelCatalogTests(unittest.TestCase):
     def test_representative_modalities_are_present(self) -> None:
         cards = [card for _, card in load_models()]
         modalities = {modality for card in cards for modality in card["modalities"]}
-        self.assertGreaterEqual(len(cards), 22)
+        self.assertGreaterEqual(len(cards), 23)
         self.assertTrue({"image", "video", "audio", "multimodal"}.issubset(modalities))
 
     def test_product_only_releases_are_representable(self) -> None:
@@ -47,8 +47,24 @@ class ModelCatalogTests(unittest.TestCase):
         cards = {card["id"]: card for _, card in load_models()}
         avatar_stages = {stage["name"] for stage in cards["avatar-v"]["data"]["stages"]}
         just_dub_it_ids = {item["catalog_id"] for item in cards["just-dub-it"]["data"]["datasets"]}
+        talkverse_ids = {item["catalog_id"] for item in cards["talkverse-5b"]["data"]["datasets"]}
+        talkverse_ops = {
+            operation
+            for stage in cards["talkverse-5b"]["data"]["stages"]
+            for operation in stage["operations"]
+        }
         self.assertEqual(avatar_stages, {"pretraining", "fine-tuning", "distillation", "preference"})
         self.assertEqual(just_dub_it_ids, {None, "audiovisual-translation-dub"})
+        self.assertEqual(talkverse_ids, {None, "talkverse"})
+        self.assertTrue(
+            {
+                "audio-video-sync-filtering",
+                "audio-style-captioning",
+                "pose-extraction",
+                "roi-loss-weighting",
+            }.issubset(talkverse_ops)
+        )
+        self.assertTrue(cards["talkverse-5b"]["data"]["stages"][1]["scale_disclosed"])
 
     def test_virtual_try_on_records_disclosed_and_undisclosed_strategies(self) -> None:
         cards = {card["id"]: card for _, card in load_models()}

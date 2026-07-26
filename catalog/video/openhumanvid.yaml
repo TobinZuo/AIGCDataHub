@@ -1,0 +1,73 @@
+id: openhumanvid
+name: OpenHumanVid
+organization: Fudan University and collaborators
+released_at: "2024-11-28"
+release_date_source: https://arxiv.org/abs/2412.00115
+modality: video
+tasks:
+  - text-to-video
+  - video-text-pretraining
+  - human-centric-video-generation
+  - pose-conditioned-generation
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A large human-centric video corpus with detailed captions, skeleton
+  sequences, speech audio, and quality metadata, distributed through an
+  application process for training general human-video generators.
+access:
+  status: gated
+  type: request
+  url: https://github.com/fudan-generative-vision/OpenHumanVid
+  requires_account: true
+  notes: Applicants submit the official form and wait for manual review before receiving the current downloadable release; access is not suitable for unattended CI retrieval.
+scale:
+  samples: 13200000
+  source_items: null
+  hours: 16700
+  approximate: true
+  notes: The current project and repository advertise 13.2M samples, 16.7K hours, and about 6.05 TB. The paper describes a larger 52.3M-sample, 70.6K-hour corpus, so consumers must pin the specific release rather than combining these figures.
+annotations:
+  types:
+    - detailed-video-caption
+    - pose-skeleton
+    - speech-audio
+    - motion-score
+    - visual-quality-score
+    - technical-quality-score
+    - source-metadata
+  source: mixed
+  languages:
+    - multilingual
+license:
+  metadata: CC-BY-NC-ND-4.0
+  media: CC-BY-NC-ND-4.0 release terms plus source-specific rights
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The repository license is non-commercial and no-derivatives; the media originates from publicly available datasets, whose source-specific terms and rights remain applicable.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - text-media-alignment
+    - aesthetics
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Current downloadable scale differs materially from the larger corpus described in the paper.
+    - Speech audio is provided where detected but is not guaranteed to be synchronized or suitable for lip-sync supervision without additional filtering.
+    - Manual access review, non-commercial terms, and source-specific rights restrict automated redistribution and production use.
+    - Human, motion, caption, and quality filters can bias coverage across identities, activities, cultures, camera styles, and low-resource languages.
+processing:
+  recipe: Decode and crop source media, split it into clips, filter luminance, blur, aesthetics, motion, and technical quality, extract skeleton and speech signals, and produce detailed captions with multiple vision-language teachers and voting-based refinement.
+  recommended_format: native
+  notes: Record the granted release version and preserve source identifiers; apply a separate synchronization stage before using the speech track for audio-driven avatar training.
+evidence:
+  homepage: https://fudan-generative-vision.github.io/OpenHumanVid/
+  paper: https://arxiv.org/abs/2412.00115
+  used_by:
+    - TalkVerse-5B
+status: partial
+last_verified: "2026-07-26"
