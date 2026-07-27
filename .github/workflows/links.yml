@@ -3,7 +3,8 @@ name: Check catalog links
 on:
   workflow_dispatch:
   schedule:
-    - cron: "17 3 * * 1"
+    # 11:17 Asia/Shanghai. GitHub Actions cron is evaluated in UTC.
+    - cron: "17 3 * * *"
 
 permissions:
   contents: read

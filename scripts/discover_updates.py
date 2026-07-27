@@ -1584,7 +1584,7 @@ def report_payload(
 def render_report(report: dict[str, Any], limit: int = 100) -> str:
     date = report["generated_at"][:10]
     lines = [
-        f"# Weekly generative-media discovery — {date}",
+        f"# Daily generative-media discovery — {date}",
         "",
         "Automated triage only: every candidate still requires primary-source verification before a card or `last_verified` value changes.",
         "",
@@ -1696,7 +1696,7 @@ def render_report(report: dict[str, Any], limit: int = 100) -> str:
             "3. Add unknowns instead of inferring data from model capabilities.",
             "4. After accepting or rejecting every candidate, refresh the reviewed discovery baseline in the same PR.",
             "",
-            "<!-- aigcdatahub-weekly-discovery -->",
+            "<!-- aigcdatahub-daily-discovery -->",
         ]
     )
     return "\n".join(lines)
@@ -1764,7 +1764,7 @@ def main() -> int:
     report = report_payload(
         diff=diff,
         generated_at=generated_at,
-        issue_title=discovery.get("issue_title", "[Auto] Weekly generative-media discovery"),
+        issue_title=discovery.get("issue_title", "[Auto] Daily generative-media discovery"),
         source_count=len(sources),
         focus=discovery.get("focus_modalities", ["image", "video"]),
     )

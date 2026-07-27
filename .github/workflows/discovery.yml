@@ -3,14 +3,15 @@ name: Discover generative-media updates
 on:
   workflow_dispatch:
   schedule:
-    - cron: "41 1 * * 1"
+    # 09:41 Asia/Shanghai. GitHub Actions cron is evaluated in UTC.
+    - cron: "41 1 * * *"
 
 permissions:
   contents: read
   issues: write
 
 concurrency:
-  group: weekly-generative-media-discovery
+  group: daily-generative-media-discovery
   cancel-in-progress: true
 
 jobs:

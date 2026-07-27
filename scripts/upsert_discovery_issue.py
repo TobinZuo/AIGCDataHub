@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create, update, reopen, or close the weekly discovery issue."""
+"""Create, update, reopen, or close the daily discovery issue."""
 
 from __future__ import annotations
 
@@ -13,7 +13,20 @@ from pathlib import Path
 from typing import Any
 
 
-MARKER = "<!-- aigcdatahub-weekly-discovery -->"
+MARKER = "<!-- aigcdatahub-daily-discovery -->"
+LEGACY_MARKER = "<!-- aigcdatahub-weekly-discovery -->"
+LEGACY_TITLE = "[Auto] Weekly generative-media discovery"
+
+
+def matches_discovery_issue(issue: dict[str, Any], title: str) -> bool:
+    """Match both the daily issue and the pre-migration weekly issue."""
+
+    body = issue.get("body") or ""
+    return (
+        "pull_request" not in issue
+        and issue.get("title") in {title, LEGACY_TITLE}
+        and (MARKER in body or LEGACY_MARKER in body)
+    )
 
 
 class GitHubClient:
@@ -47,16 +60,18 @@ class GitHubClient:
         query = urllib.parse.urlencode({"state": "all", "per_page": 100, "sort": "updated", "direction": "desc"})
         issues = self.request("GET", f"/repos/{self.repository}/issues?{query}")
         for issue in issues:
-            if "pull_request" not in issue and issue.get("title") == title and MARKER in issue.get("body", ""):
+            if matches_discovery_issue(issue, title):
                 return issue
         return None
 
     def create_issue(self, title: str, body: str) -> dict[str, Any]:
         return self.request("POST", f"/repos/{self.repository}/issues", {"title": title, "body": body})
 
-    def update_issue(self, number: int, body: str, state: str) -> dict[str, Any]:
+    def update_issue(self, number: int, title: str, body: str, state: str) -> dict[str, Any]:
         return self.request(
-            "PATCH", f"/repos/{self.repository}/issues/{number}", {"body": body, "state": state}
+            "PATCH",
+            f"/repos/{self.repository}/issues/{number}",
+            {"title": title, "body": body, "state": state},
         )
 
 
@@ -106,13 +121,13 @@ def main() -> int:
     existing = client.find_issue(report["issue_title"])
     action = issue_action(report["has_updates"], existing)
     if action == "update":
-        issue = client.update_issue(existing["number"], body, "open")
+        issue = client.update_issue(existing["number"], report["issue_title"], body, "open")
         print(f"Updated discovery issue #{issue['number']}: {issue['html_url']}")
     elif action == "create":
         issue = client.create_issue(report["issue_title"], body)
         print(f"Created discovery issue #{issue['number']}: {issue['html_url']}")
     elif action == "close":
-        issue = client.update_issue(existing["number"], body, "closed")
+        issue = client.update_issue(existing["number"], report["issue_title"], body, "closed")
         print(f"Closed discovery issue #{issue['number']}: no unresolved source changes")
     else:
         print("No unresolved source changes and no open discovery issue.")

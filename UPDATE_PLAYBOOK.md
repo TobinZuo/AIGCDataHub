@@ -1,10 +1,10 @@
 # Continuous update playbook
 
-AIGCDataHub is maintained as a living evidence base. Each update cycle covers
-the previous 14 days and uses `sources/watchlist.yaml` as a starting point, not
-as an exhaustive list.
+AIGCDataHub is maintained as a living evidence base. Each daily update cycle
+covers the previous 7 days and uses `sources/watchlist.yaml` as a starting
+point, not as an exhaustive list.
 
-## Weekly cycle
+## Daily cycle
 
 1. Review the candidate Issue produced by `.github/workflows/discovery.yml`.
    The scanner compares official-source links with
@@ -114,11 +114,19 @@ never be presented as a quality or licensing conclusion.
 
 ## Automation boundary
 
-The scheduled workflow may discover links and maintain a review Issue. It may
-also report revisions to selected important models, datasets, and source
+The scheduled GitHub workflow may discover links and maintain a review Issue.
+It may also report revisions to selected important models, datasets, and source
 platform access surfaces, but it must not create cards, infer a training
 corpus, change a license conclusion, advance `last_verified`, merge a PR, or
 deploy unreviewed data.
+
+The user-controlled Codex automation runs separately at 10:00 Asia/Shanghai in
+an isolated worktree. It may edit cards and push `master` only after it has
+reviewed primary evidence, recorded every candidate disposition, rebuilt the
+generated indexes, accepted a failure-free discovery baseline, and passed the
+repository, link, lint, server-render, and GitHub Pages export checks. It never
+force-pushes. No material change means no empty commit and no synthetic
+`last_verified` update.
 
 ## Freshness policy
 

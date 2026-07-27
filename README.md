@@ -165,7 +165,7 @@ catalog card; unreleased and undisclosed references explain why no card exists.
 
 ## Ranking and release monitoring
 
-The weekly discovery workflow watches ten generated-media boards from two
+The daily discovery workflow watches ten generated-media boards from two
 independent providers. Artificial Analysis contributes five Top 15 snapshots;
 Arena contributes the same five tasks through its official public leaderboard
 dataset on Hugging Face. Open-weight and closed/API models are treated equally.
@@ -380,12 +380,12 @@ contract.
 ## Continuous updates
 
 The [watchlist](sources/watchlist.yaml) defines modalities, topics, and official
-sources to review each week. The [update playbook](UPDATE_PLAYBOOK.md) defines
+sources to review each day. The [update playbook](UPDATE_PLAYBOOK.md) defines
 the evidence and freshness policy. `make freshness` fails when a `watch` model
 has not been rechecked for 14 days, another model for 45 days, or a dataset for
 90 days.
 
-The weekly discovery workflow compares image/video-related links from those
+The daily discovery workflow compares image/video-related links from those
 watched sources with a reviewed baseline. Its application tracks include
 digital humans, talking avatars, video translation and dubbing, lip sync,
 virtual try-on, and commerce-oriented conditional generation. It opens or
@@ -409,7 +409,7 @@ of reporting an unauthenticated failure as a working monitor. Every other
 dataset referenced by a model has a dedicated official probe.
 Ranking entries that do not yet resolve to a verified model card also keep the
 Issue open, so newly ranked closed or open models cannot disappear between
-weekly scans. Arena snapshots use its official Hugging Face leaderboard dataset
+daily scans. Arena snapshots use its official Hugging Face leaderboard dataset
 rather than a bot-protected web page.
 All 40 distinct model cards represented by the current 133 leaderboard seats
 have their own official revision probe, regardless of whether the model is open
@@ -423,8 +423,16 @@ conservative availability probe when no public data interface is cataloged.
 HTML content revisions hash normalized visible text rather than scripts,
 styles, hydration payloads, or build attributes, preventing dynamic page noise
 from opening false review items.
-This is triage rather than automatic fact generation: a card, license
-conclusion, or `last_verified` date changes only through a reviewed PR.
+This GitHub workflow is triage rather than automatic fact generation: a card,
+license conclusion, or `last_verified` date is never changed by the scanner
+alone. A separate user-controlled Codex automation runs at 10:00
+Asia/Shanghai in an isolated worktree. It reviews the candidates against
+primary sources, maintains cards and bidirectional relationships, rebuilds all
+indexes, and may push a non-forced update to `master` only after the full
+repository and site test gates pass. A push then triggers validation and the
+GitHub Pages deployment. If evidence conflicts, a test fails, or the remote
+cannot be fast-forwarded safely, the automation reports the problem without
+publishing.
 
 The application taxonomy in [sources/scenarios.yaml](sources/scenarios.yaml)
 maps card tasks to stable scenario IDs. The generated site uses those IDs for

@@ -1,10 +1,10 @@
 schema_version: 1
-cadence: weekly
-lookback_days: 14
+cadence: daily
+lookback_days: 7
 primary_sources_only: true
 
 discovery:
-  issue_title: "[Auto] Weekly generative-media discovery"
+  issue_title: "[Auto] Daily generative-media discovery"
   focus_modalities:
     - image
     - video

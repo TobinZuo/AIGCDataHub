@@ -33,7 +33,7 @@ from discover_updates import (
     render_report,
     report_payload,
 )
-from upsert_discovery_issue import issue_action, issue_body
+from upsert_discovery_issue import issue_action, issue_body, matches_discovery_issue
 
 
 class DiscoveryTests(unittest.TestCase):
@@ -954,7 +954,7 @@ class DiscoveryTests(unittest.TestCase):
         markdown = render_report(report)
         self.assertIn("New image model", markdown)
         self.assertIn("requires primary-source verification", markdown)
-        self.assertIn("<!-- aigcdatahub-weekly-discovery -->", markdown)
+        self.assertIn("<!-- aigcdatahub-daily-discovery -->", markdown)
         self.assertTrue(report["has_updates"])
 
     def test_platform_revision_has_a_platform_specific_review_signal(self) -> None:
@@ -1079,7 +1079,7 @@ class DiscoveryTests(unittest.TestCase):
 
     def test_issue_body_links_to_the_actions_run(self) -> None:
         body = issue_body(
-            "report\n<!-- aigcdatahub-weekly-discovery -->\n",
+            "report\n<!-- aigcdatahub-daily-discovery -->\n",
             "TobinZuo/AIGCDataHub",
             "123",
             "https://github.com",
@@ -1095,9 +1095,44 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(issue_action(False, closed_issue), "none")
         self.assertEqual(issue_action(False, None), "none")
 
-    def test_weekly_workflow_has_minimal_issue_permissions(self) -> None:
+    def test_daily_issue_matches_the_legacy_weekly_issue_for_migration(self) -> None:
+        daily_title = "[Auto] Daily generative-media discovery"
+        self.assertTrue(
+            matches_discovery_issue(
+                {
+                    "title": daily_title,
+                    "body": "<!-- aigcdatahub-daily-discovery -->",
+                },
+                daily_title,
+            )
+        )
+        self.assertTrue(
+            matches_discovery_issue(
+                {
+                    "title": "[Auto] Weekly generative-media discovery",
+                    "body": "<!-- aigcdatahub-weekly-discovery -->",
+                },
+                daily_title,
+            )
+        )
+        self.assertFalse(
+            matches_discovery_issue(
+                {
+                    "title": "Unrelated issue",
+                    "body": "<!-- aigcdatahub-daily-discovery -->",
+                },
+                daily_title,
+            )
+        )
+
+    def test_daily_workflows_have_minimal_permissions_and_staggered_schedules(self) -> None:
         workflow = Path(".github/workflows/discovery.yml").read_text(encoding="utf-8")
-        self.assertIn('cron: "41 1 * * 1"', workflow)
+        freshness = Path(".github/workflows/freshness.yml").read_text(encoding="utf-8")
+        links = Path(".github/workflows/links.yml").read_text(encoding="utf-8")
+        self.assertIn('cron: "41 1 * * *"', workflow)
+        self.assertIn('cron: "23 2 * * *"', freshness)
+        self.assertIn('cron: "17 3 * * *"', links)
+        self.assertIn("daily-generative-media-discovery", workflow)
         self.assertIn("contents: read", workflow)
         self.assertIn("issues: write", workflow)
         self.assertIn("scripts/discover_updates.py", workflow)

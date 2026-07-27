@@ -3,7 +3,8 @@ name: Check catalog freshness
 on:
   workflow_dispatch:
   schedule:
-    - cron: "23 2 * * 1"
+    # 10:23 Asia/Shanghai. GitHub Actions cron is evaluated in UTC.
+    - cron: "23 2 * * *"
 
 permissions:
   contents: read
