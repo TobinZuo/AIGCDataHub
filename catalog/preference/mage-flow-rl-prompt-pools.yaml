@@ -1,0 +1,68 @@
+id: mage-flow-rl-prompt-pools
+name: Mage-Flow Capability-Routed RL Prompt Pools
+organization: Microsoft Mage Team
+released_at: "2026-07-21"
+release_date_source: https://arxiv.org/abs/2607.19064
+modality: preference
+tasks:
+  - text-to-image-reinforcement-learning
+  - image-editing-reinforcement-learning
+  - reward-modeling
+stages:
+  - preference-tuning
+description: >-
+  The unreleased generation and editing prompt pools used to route Mage-Flow
+  online candidates to OCR, aesthetics, semantic-understanding, and
+  editing-specific rewards during Diffusion-NFT post-training.
+access:
+  status: unavailable
+  type: none
+  url: https://raw.githubusercontent.com/microsoft/Mage/main/mage_flow/README.md
+  requires_account: false
+  notes: The official repository releases the trained models and inference code, but not the prompt records, online samples, reward traces, or post-training splits.
+scale:
+  samples: 50000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The paper reports about 20K generation prompts, split into 10K text-rendering, 4K aesthetics, and 6K semantic prompts, plus about 30K editing prompts. These are separate capability pools and exact unique-row counts are not published.
+annotations:
+  types:
+    - generation-prompt
+    - editing-prompt
+    - capability-route
+    - reward-model-route
+    - online-candidate
+    - reward-score
+  source: mixed
+  languages:
+    - en
+    - zh
+license:
+  metadata: Not disclosed
+  media: Online model generations with undisclosed prompt and source-image provenance
+  commercial_use: unknown
+  redistribution: unknown
+  notes: MIT covers the released code and checkpoints, not the unpublished prompts, editing inputs, generated candidates, or reward annotations.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - aesthetics
+    - human-preference
+    - provenance
+  known_limitations:
+    - Prompt sources, deduplication, language distribution, train-test leakage checks, and exact split sizes are not reported.
+    - Reward routing relies on PaddleOCR-VL-1.5, Qwen3.5-27B, and RationalRewards, so model-specific biases can shape optimization.
+    - Online candidates and rewards change with checkpoint and sampler versions and are not a fixed inspectable release.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: Reproducible records should preserve prompt and source-image provenance, capability route, checkpoint and seed, candidate image, reward implementation and version, raw scores, and optimization stage.
+evidence:
+  homepage: https://github.com/microsoft/Mage/tree/main/mage_flow
+  paper: https://arxiv.org/abs/2607.19064
+  used_by:
+    - Mage-Flow
+status: partial
+last_verified: "2026-07-27"

@@ -1,0 +1,69 @@
+id: agenthoi-mixed-source-corpus
+name: AgentHOI Mixed-Source Training Corpus
+organization: AgentHOI research team
+released_at: "2026-07-24"
+release_date_source: https://arxiv.org/abs/2607.22241
+modality: video
+tasks:
+  - human-object-interaction-video-generation
+  - image-to-video
+  - human-animation
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  The unreleased 108,000-clip human-object-interaction corpus used by AgentHOI,
+  combining 71,000 mined real clips with 37,000 synthetic interaction videos.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.22241
+  requires_account: false
+  notes: Code and checkpoints are public, but the official repository states that training data is not included and provides no dataset request path.
+scale:
+  samples: 108000
+  source_items: 10000000
+  hours: null
+  approximate: true
+  notes: The paper reports 71K real clips mined from 10M online videos and 37K synthetic clips. It also reports manually retaining 13K object images across 85 categories for synthetic generation.
+annotations:
+  types:
+    - human-reference-image
+    - object-reference-image
+    - interaction-caption
+    - action-timeline
+    - human-pose
+    - object-mask
+    - synthetic-provenance
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Not disclosed
+  media: Unnamed online video sources plus FLUX, Gemini, and Wan-generated derivatives
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Neither the mined media nor synthetic derivatives have published dataset-level license, attribution, commercial-use, or redistribution terms.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - human-preference
+    - provenance
+  known_limitations:
+    - Online source platforms, URLs, licenses, collection dates, consent checks, and filtering retention by stage are not disclosed.
+    - The synthetic component inherits limitations from FLUX, Gemini reference generation, FLUX Kontext, and Wan2.2-I2V.
+    - Human-object categories and motions remain imbalanced despite synthetic supplementation.
+processing:
+  recipe: recipes/video_text
+  recommended_format: webdataset
+  notes: Preserve source URL and rights, person and object references, pose and segmentation outputs, action timeline, real-versus-synthetic flag, every generator version and seed, and filter decisions.
+evidence:
+  homepage: https://github.com/bone-11/agenthoi
+  paper: https://arxiv.org/abs/2607.22241
+  used_by:
+    - AgentHOI
+status: partial
+last_verified: "2026-07-27"

@@ -1,0 +1,65 @@
+id: agenthoi
+name: AgentHOI
+organization: AgentHOI research team
+released_at: "2026-07-24"
+modalities:
+  - video
+tasks:
+  - human-object-interaction-video-generation
+  - image-to-video
+  - human-animation
+access:
+  status: open-weights
+  license: No license is declared in the official repository; verify dependencies and checkpoint terms before use
+  release_url: https://github.com/bone-11/agenthoi
+  weights_url: https://huggingface.co/ProAudience/agenthoi
+  api_url: null
+architecture:
+  family: Multi-agent interaction planner plus Wan2.1-I2V video diffusion
+  parameters: 14000000000
+  notes: Four InternVL3.5-38B reasoning agents create an action timeline; a Wan2.1-I2V-14B generator absorbs a frozen text-to-motion teacher through token-relation distillation.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: AgentHOI Mixed-Source Training Corpus
+      catalog_id: agenthoi-mixed-source-corpus
+      role: fine-tuning
+      availability: not-released
+      scale: 71K real and 37K synthetic HOI video clips
+      notes: Real clips are mined from 10M unnamed online videos; synthetic supervision uses 13K retained object images across 85 categories and FLUX, Gemini, FLUX Kontext, and Wan2.2-I2V stages.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - public-web
+        - synthetic
+      operations:
+        - large-scale-video-mining
+        - multi-stage-quality-filtering
+        - human-object-decomposition
+        - action-timeline-generation
+        - reference-based-image-generation
+        - image-to-video-synthesis
+        - mixed-source-training
+        - token-relation-distillation
+      scale_disclosed: true
+      strategy: Train on 71K filtered real and 37K synthetic HOI clips, first fitting a text-to-motion teacher for 8K steps and then distilling token relations into the final 480p generator for 9.5K steps.
+  strategy_summary:
+    - Mine sparse real HOI examples from a 10M-video pool, retaining clips with decomposable people, objects, and interaction timelines.
+    - Fill object-action coverage gaps with reference-conditioned synthetic images and Wan2.2-I2V motion generation.
+    - Distill text-to-motion relational structure during training so inference needs only person image, object image, and text.
+  unknowns:
+    - Online-video source identities, licenses, consent and rights checks, filter thresholds, and exact real/synthetic batch ratio.
+    - Full synthetic generator configurations, prompt sets, safety filtering, and per-category distribution.
+    - Dataset release plan and a license covering the AgentHOI repository and checkpoints.
+evidence:
+  release: https://github.com/bone-11/agenthoi
+  technical_report: https://arxiv.org/abs/2607.22241
+  repository: https://github.com/bone-11/agenthoi
+status: partial
+last_verified: "2026-07-27"

@@ -1,0 +1,70 @@
+id: mage-flow-edit-triples
+name: Mage-Flow-Edit Training Triples
+organization: Microsoft Mage Team
+released_at: "2026-07-21"
+release_date_source: https://arxiv.org/abs/2607.19064
+modality: image
+tasks:
+  - instruction-guided-image-editing
+  - image-editing
+  - image-generation
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  The unreleased 45-million-triple Mage-Flow-Edit pool retained from about 90
+  million open-source and synthetic source-instruction-target triples after
+  multi-expert VLM filtering and edit-category rebalancing.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2607.19064
+  requires_account: false
+  notes: The paper reports construction and training mixtures, but Microsoft has not published the triples, source dataset names, manifests, or an access request.
+scale:
+  samples: 45000000
+  source_items: 90000000
+  hours: null
+  approximate: true
+  notes: The raw pool is about 50M unnamed open-source triples plus 40M in-house synthetic triples, including 10M low-level and 30M semantic edits. Roughly 20M open-source and 25M synthetic triples survive filtering.
+annotations:
+  types:
+    - source-image
+    - edit-instruction
+    - target-image
+    - edit-category
+    - multi-expert-quality-vote
+    - synthetic-provenance
+  source: mixed
+  languages:
+    - en
+    - zh
+license:
+  metadata: Not disclosed
+  media: Unnamed open-source editing datasets and in-house synthetic images
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The code and checkpoints are MIT, but the editing corpus has no dataset license and its upstream media and generator terms are not identified.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - aesthetics
+    - safety
+    - human-preference
+    - provenance
+  known_limitations:
+    - The identities, versions, licenses, and per-source shares of the roughly 50M open-source triples are not disclosed.
+    - Three Qwen3.5-9B experts and majority voting define retention, but prompts, thresholds, and disagreement statistics are unavailable.
+    - Manual mapping into 19 edit categories does not publish the taxonomy records or final per-category distribution.
+processing:
+  recipe: recipes/image_text
+  recommended_format: parquet
+  notes: Store source, instruction, target, edit category, source dataset or generator, expert votes, filter outcome, and membership in the 35M/35M then 20M/10M editing-generation training stages.
+evidence:
+  homepage: https://github.com/microsoft/Mage/tree/main/mage_flow
+  paper: https://arxiv.org/abs/2607.19064
+  used_by:
+    - Mage-Flow
+status: partial
+last_verified: "2026-07-27"

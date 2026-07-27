@@ -1,0 +1,69 @@
+id: innotext-30k
+name: InnoText-30K
+organization: InnoText research team
+released_at: "2026-07-24"
+release_date_source: https://arxiv.org/abs/2607.22101
+modality: image
+tasks:
+  - visual-text-generation
+  - visual-text-editing
+  - bilingual-text-rendering
+stages:
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A 30,000-sample English-Chinese visual-text corpus that combines Lex-10K,
+  10,000 synthetic Chinese counterparts, and a curated 10,000-sample
+  AnyWord-3M subset for unified text generation and editing.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.22101
+  requires_account: false
+  notes: The paper describes the corpus and InnoText-Bench, but no dataset files, metadata repository, license, or request path is linked.
+scale:
+  samples: 30000
+  source_items: 30000
+  hours: null
+  approximate: false
+  notes: The paper reports 20K Chinese and 10K English samples. The Chinese portion contains 10K newly synthesized samples and a selected 10K AnyWord-3M subset; InnoText-Bench contains 1,500 images sampled across the three components.
+annotations:
+  types:
+    - bilingual-caption
+    - ocr-text
+    - text-region
+    - font-style
+    - font-size
+    - dense-caption
+  source: mixed
+  languages:
+    - en
+    - zh
+license:
+  metadata: Not disclosed
+  media: Lex-10K, AnyWord-3M, and Seedream-generated component terms require separate review
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The arXiv paper license does not license the dataset; no combined-corpus terms or upstream attribution manifest is published.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - aesthetics
+    - provenance
+  known_limitations:
+    - The release has no inspectable files, hashes, split manifest, or dataset-specific license.
+    - Synthetic Chinese images are generated through InternVL3 prompt expansion and Seedream, so model-specific artifacts and cultural bias can propagate.
+    - The paper evaluates aesthetics and naturalness but does not publish per-record scores or curation retention rates.
+processing:
+  recipe: recipes/image_text
+  recommended_format: parquet
+  notes: Preserve upstream component, translation and expansion prompts, generator version, aesthetic scores, PPOCR-v4 annotations, DeepSeek-VL2 captions, language, split, and license provenance.
+evidence:
+  homepage: https://arxiv.org/html/2607.22101
+  paper: https://arxiv.org/abs/2607.22101
+  used_by:
+    - InnoText
+status: partial
+last_verified: "2026-07-27"

@@ -160,6 +160,18 @@ class ModelDatasetRelationTests(unittest.TestCase):
             {"openve-3m", "openve-bench"},
         )
         self.assertEqual(
+            set(self.models["sana-video-2-0"]["linked_dataset_ids"]),
+            {"sana-video-2-progressive-training-pools", "sana-video-2-preference-pairs"},
+        )
+        self.assertEqual(
+            set(self.models["mage-flow"]["linked_dataset_ids"]),
+            {"mage-flow-curated-image-text", "mage-flow-edit-triples", "mage-flow-rl-prompt-pools"},
+        )
+        self.assertIn("mage-flow", self.datasets["mage-flow-edit-triples"]["linked_model_ids"])
+        self.assertEqual(self.models["innotext"]["linked_dataset_ids"], ["innotext-30k"])
+        self.assertEqual(self.models["agenthoi"]["linked_dataset_ids"], ["agenthoi-mixed-source-corpus"])
+        self.assertEqual(self.models["fmri2face"]["linked_dataset_ids"], ["fmri-face"])
+        self.assertEqual(
             set(self.models["hunyuanvideo-avatar"]["linked_dataset_ids"]),
             {"hdtf", "celebv-hq"},
         )
@@ -288,6 +300,14 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.datasets["fine-t2i"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["gpic"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["openve-3m"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["sana-video-2-progressive-training-pools"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["sana-video-2-preference-pairs"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["mage-flow-curated-image-text"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["mage-flow-edit-triples"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["mage-flow-rl-prompt-pools"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["innotext-30k"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["agenthoi-mixed-source-corpus"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["fmri-face"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["graphvid-bench"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["davis-2017"]["monitoring"]["priority"], "critical")
         self.assertEqual(
@@ -395,6 +415,14 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(
             self.models["openve-edit"]["monitoring"]["source_url"],
             "https://github.com/OpenVE-Team/OpenVE-3M/commits/main.atom",
+        )
+        self.assertEqual(
+            self.models["mage-flow"]["monitoring"]["source_url"],
+            "https://github.com/microsoft/Mage/commits/main.atom",
+        )
+        self.assertEqual(
+            self.models["agenthoi"]["monitoring"]["source_url"],
+            "https://github.com/bone-11/agenthoi/commits/main.atom",
         )
 
 

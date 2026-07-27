@@ -1,0 +1,70 @@
+id: sana-video-2-progressive-training-pools
+name: SANA-Video 2.0 Progressive Training Pools
+organization: NVIDIA
+released_at: "2026-07-23"
+release_date_source: https://arxiv.org/abs/2607.21553
+modality: video
+tasks:
+  - text-to-video
+  - image-to-video
+  - video-text-pretraining
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  The unreleased, progressively filtered image-video training collection
+  described for SANA-Video 2.0, separated into broad pretraining, stricter
+  continual-training, and small trusted supervised-fine-tuning pools.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.21553
+  requires_account: false
+  notes: The paper reports aggregate stage scales and curation methods, but NVIDIA has not published media, metadata, manifests, or an application path.
+scale:
+  samples: 30000000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The 5B production recipe reports about 30M pretraining clips, 10M continual-training clips, and 10K supervised-fine-tuning clips. The pools may be nested or overlapping, so they are not summed; 30M records the largest disclosed stage.
+annotations:
+  types:
+    - dense-structured-caption
+    - motion-description
+    - frame-rate
+    - duration
+    - visual-quality-score
+    - text-video-alignment-score
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Not disclosed
+  media: Proprietary in-house media pool; source identities and rights are not disclosed
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The paper's publication license and repository license do not license the underlying training media or generated annotations.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - safety
+    - provenance
+  known_limitations:
+    - Source dataset names, collection dates, media rights, and per-source mixture shares are not published.
+    - The report does not establish whether the 30M, 10M, and 10K stage pools are disjoint, nested, or partially overlapping.
+    - Image batches are interleaved during joint training, but their counts, sources, and sampling cadence are not quantified.
+processing:
+  recipe: recipes/video_text
+  recommended_format: webdataset
+  notes: Reproductions should preserve raw provenance, shot boundaries, all independent filter scores, caption and motion-description model versions, stage membership, resolution, frame rate, and duration.
+evidence:
+  homepage: https://nvlabs.github.io/Sana/Video2/
+  paper: https://arxiv.org/abs/2607.21553
+  used_by:
+    - SANA-Video 2.0
+status: partial
+last_verified: "2026-07-27"

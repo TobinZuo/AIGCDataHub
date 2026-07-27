@@ -1,0 +1,70 @@
+id: sana-video-2-preference-pairs
+name: SANA-Video 2.0 Preference Pairs
+organization: NVIDIA
+released_at: "2026-07-23"
+release_date_source: https://arxiv.org/abs/2607.21553
+modality: preference
+tasks:
+  - text-to-video-preference
+  - video-generation-preference
+  - reward-modeling
+stages:
+  - preference-tuning
+  - data-curation
+description: >-
+  The unreleased generated-video comparison data used for SANA-Video 2.0
+  Diffusion-DPO, with Gemini ranking candidates across fidelity, prompt
+  alignment, motion quality, and temporal coherence.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2607.21553
+  requires_account: false
+  notes: NVIDIA describes the ranking and unreliable-pair filtering recipe but publishes no prompts, candidates, pair records, rankings, or download request.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The report does not disclose the number of prompts, candidate videos, retained comparisons, or optimization samples.
+annotations:
+  types:
+    - generation-prompt
+    - preferred-video
+    - rejected-video
+    - visual-fidelity-ranking
+    - prompt-alignment-ranking
+    - motion-quality-ranking
+    - temporal-coherence-ranking
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Not disclosed
+  media: Generated videos with undisclosed model and prompt provenance
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Neither the preference records nor dataset-specific licensing and redistribution terms have been released.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - human-preference
+    - provenance
+  known_limitations:
+    - Gemini configuration, scoring prompts, agreement thresholds, and unreliable-ranking rejection rates are not disclosed.
+    - An automated judge can introduce model-specific preferences and does not substitute for independently published human evaluation.
+    - The later online ReFL reward stream is not a fixed downloadable dataset and is excluded from the pair count.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: A reproducible release should retain prompt IDs, candidate seeds and checkpoint versions, all per-axis judge outputs, pair-filter decisions, and the exact Diffusion-DPO split.
+evidence:
+  homepage: https://nvlabs.github.io/Sana/Video2/
+  paper: https://arxiv.org/abs/2607.21553
+  used_by:
+    - SANA-Video 2.0
+status: partial
+last_verified: "2026-07-27"

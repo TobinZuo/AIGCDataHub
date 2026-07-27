@@ -1,0 +1,63 @@
+id: fmri2face
+name: fMRI2Face
+organization: Fudan University
+released_at: "2026-07-24"
+modalities:
+  - video
+tasks:
+  - fmri-to-video
+  - digital-human-reconstruction
+  - dynamic-face-reconstruction
+access:
+  status: announced
+  license: Paper only; no code, weights, or model license is linked
+  release_url: https://arxiv.org/abs/2607.22302
+  weights_url: null
+  api_url: null
+architecture:
+  family: Geometry-guided neural video decoder with diffusion synthesis
+  parameters: null
+  notes: The framework predicts appearance context tokens and morphable 3D face controls from fMRI, then injects both into a video diffusion model with auxiliary latent completion.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: true
+  datasets:
+    - name: fMRI-Face
+      catalog_id: fmri-face
+      role: fine-tuning
+      availability: not-released
+      scale: 62,856 fMRI-video pairs from three subjects and 2,174 unique stimuli
+      notes: The paper discloses subject counts, acquisition, preprocessing, repeat trials, sliding-window construction, and train/test splits, but no public data-access path.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - video
+        - 3d
+      source_types:
+        - proprietary
+        - synthetic
+      operations:
+        - digital-human-rendering
+        - fmri-acquisition
+        - fmri-preprocessing
+        - temporal-windowing
+        - appearance-context-prediction
+        - morphable-face-parameter-prediction
+        - geometry-controlled-video-diffusion
+      scale_disclosed: true
+      strategy: Fit subject-conditioned appearance and 3D facial-motion predictors on 1,994 training stimuli, then synthesize temporally coherent face videos with geometry-guided diffusion and evaluate on 180 held-out stimuli.
+  strategy_summary:
+    - Use controlled, background-free full-HD digital-human stimuli to isolate identity, expression, and head-pose responses.
+    - Separate brain-derived global appearance from explicit morphable 3D motion control before video diffusion.
+    - Preserve participant-aware splits and temporal alignment across fMRI volumes and overlapping video windows.
+  unknowns:
+    - Code, base video checkpoint, training hyperparameters, parameter counts, checkpoint license, and release plan.
+    - Public data-use agreement, participant-level consent scope for redistribution, de-identification controls, and access-review process.
+    - Demographic diversity beyond the reported three participants aged 22 to 24.
+evidence:
+  release: https://arxiv.org/abs/2607.22302
+  technical_report: https://arxiv.org/abs/2607.22302
+  repository: null
+status: watch
+last_verified: "2026-07-27"

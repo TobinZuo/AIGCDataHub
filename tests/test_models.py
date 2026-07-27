@@ -192,6 +192,24 @@ class ModelCatalogTests(unittest.TestCase):
         self.assertTrue({"dataset-filtering", "human-preference-alignment", "critic-feedback"}.issubset(image_ops))
         self.assertTrue({"multi-granularity-captioning", "concept-balanced-sampling", "diffusion-nft"}.issubset(mage_ops))
 
+    def test_recent_models_link_disclosed_but_unreleased_training_data(self) -> None:
+        cards = {card["id"]: card for _, card in load_models()}
+        self.assertEqual(cards["mage-flow"]["access"]["status"], "open-weights")
+        self.assertEqual(cards["mage-flow"]["access"]["license"], "MIT for the official repository and published Hugging Face model cards")
+        self.assertEqual(
+            {item["catalog_id"] for item in cards["mage-flow"]["data"]["datasets"]},
+            {"mage-flow-curated-image-text", "mage-flow-edit-triples", "mage-flow-rl-prompt-pools"},
+        )
+        self.assertEqual(
+            {item["catalog_id"] for item in cards["sana-video-2-0"]["data"]["datasets"]},
+            {"sana-video-2-progressive-training-pools", "sana-video-2-preference-pairs"},
+        )
+        self.assertTrue(cards["sana-video-2-0"]["data"]["stages"][0]["scale_disclosed"])
+        self.assertEqual(cards["innotext"]["data"]["datasets"][0]["catalog_id"], "innotext-30k")
+        self.assertEqual(cards["agenthoi"]["access"]["status"], "open-weights")
+        self.assertEqual(cards["agenthoi"]["data"]["datasets"][0]["catalog_id"], "agenthoi-mixed-source-corpus")
+        self.assertEqual(cards["fmri2face"]["data"]["datasets"][0]["catalog_id"], "fmri-face")
+
     def test_digital_human_and_video_localization_lineage(self) -> None:
         cards = {card["id"]: card for _, card in load_models()}
         avatar_stages = {stage["name"] for stage in cards["avatar-v"]["data"]["stages"]}

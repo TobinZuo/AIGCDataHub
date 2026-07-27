@@ -84,6 +84,14 @@ class CatalogTests(unittest.TestCase):
                 "solaris-training-dataset",
                 "solaris-eval-datasets",
                 "vpt-contractor-demonstrations",
+                "sana-video-2-progressive-training-pools",
+                "sana-video-2-preference-pairs",
+                "mage-flow-curated-image-text",
+                "mage-flow-edit-triples",
+                "mage-flow-rl-prompt-pools",
+                "innotext-30k",
+                "agenthoi-mixed-source-corpus",
+                "fmri-face",
             }.issubset(cards)
         )
         self.assertIn("video-dubbing", cards["audiovisual-translation-dub"]["tasks"])
@@ -127,6 +135,19 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(cards["solaris-training-dataset"]["scale"]["source_items"], 9240)
         self.assertEqual(cards["solaris-eval-datasets"]["scale"]["samples"], 1280)
         self.assertEqual(cards["vpt-contractor-demonstrations"]["access"]["type"], "urls")
+        self.assertEqual(cards["sana-video-2-progressive-training-pools"]["scale"]["samples"], 30000000)
+        self.assertEqual(cards["sana-video-2-progressive-training-pools"]["access"]["status"], "unavailable")
+        self.assertIsNone(cards["sana-video-2-preference-pairs"]["scale"]["samples"])
+        self.assertEqual(cards["mage-flow-curated-image-text"]["scale"]["samples"], 1300000000)
+        self.assertEqual(cards["mage-flow-curated-image-text"]["scale"]["source_items"], 10000000000)
+        self.assertEqual(cards["mage-flow-edit-triples"]["scale"]["samples"], 45000000)
+        self.assertEqual(cards["mage-flow-edit-triples"]["scale"]["source_items"], 90000000)
+        self.assertEqual(cards["mage-flow-rl-prompt-pools"]["scale"]["samples"], 50000)
+        self.assertEqual(cards["innotext-30k"]["scale"]["samples"], 30000)
+        self.assertEqual(cards["agenthoi-mixed-source-corpus"]["scale"]["samples"], 108000)
+        self.assertEqual(cards["agenthoi-mixed-source-corpus"]["scale"]["source_items"], 10000000)
+        self.assertEqual(cards["fmri-face"]["scale"]["samples"], 62856)
+        self.assertEqual(cards["fmri-face"]["scale"]["source_items"], 2174)
         self.assertEqual(cards["voxceleb2"]["access"]["status"], "unavailable")
         self.assertEqual(cards["lrs3"]["access"]["status"], "unavailable")
         self.assertEqual(cards["celebv-text"]["access"]["type"], "urls")
@@ -262,13 +283,15 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(dates, sorted(dates, reverse=True))
         newest_date = dates[0]
         newest_ids = {card["id"] for card in datasets if card["released_at"] == newest_date}
-        self.assertTrue({"elasticttt-video-editing", "graphvid-bench"}.issubset(newest_ids))
+        self.assertEqual(newest_ids, {"innotext-30k", "agenthoi-mixed-source-corpus", "fmri-face"})
 
     def test_site_catalog_orders_models_by_release_date(self) -> None:
         models = build_payload()["models"]
         dates = [card["released_at"] for card in models]
         self.assertEqual(dates, sorted(dates, reverse=True))
-        self.assertEqual(models[0]["id"], "midjourney-v8-2")
+        newest_date = dates[0]
+        newest_ids = {card["id"] for card in models if card["released_at"] == newest_date}
+        self.assertEqual(newest_ids, {"midjourney-v8-2", "innotext", "agenthoi", "fmri2face"})
 
     def test_every_ranking_top_fifteen_entry_maps_to_a_model_card(self) -> None:
         rankings = build_payload()["rankings"]

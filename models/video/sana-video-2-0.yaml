@@ -23,13 +23,13 @@ data:
   exact_mixture_disclosed: false
   datasets:
     - name: Curated in-house image and video training pool
-      catalog_id: null
+      catalog_id: sana-video-2-progressive-training-pools
       role: pretraining
       availability: not-released
-      scale: null
-      notes: The report names no source datasets, but describes separate broad pretraining, stricter continual-training, and trusted supervised-fine-tuning pools.
+      scale: approximately 30M pretraining clips, 10M continual-training clips, and 10K supervised-fine-tuning clips
+      notes: The report names no source datasets and does not establish whether the three stage pools overlap, but it discloses their approximate clip counts and progressive 480p-to-720p schedule.
     - name: Gemini-ranked generated video preference pairs
-      catalog_id: null
+      catalog_id: sana-video-2-preference-pairs
       role: preference
       availability: not-released
       scale: null
@@ -51,8 +51,8 @@ data:
         - structured-recaptioning
         - image-video-joint-training
         - progressive-resolution-training
-      scale_disclosed: false
-      strategy: Build a broad pool through shot segmentation and independent visual, motion, exposure, artifact, alignment, and shot-integrity filters, then train progressively from 480p to 720p while increasing frame rate and duration.
+      scale_disclosed: true
+      strategy: Build an approximately 30M-clip broad pool through shot segmentation and independent visual, motion, exposure, artifact, alignment, and shot-integrity filters, then pretrain at 480p on five-second 16/24 FPS clips.
     - name: midtraining
       modalities:
         - image
@@ -65,8 +65,8 @@ data:
         - dense-recaptioning
         - motion-description
         - image-video-joint-training
-      scale_disclosed: false
-      strategy: Continue training on a stricter-quality pool with denser structured captions and appended motion descriptions while retaining interleaved image batches.
+      scale_disclosed: true
+      strategy: Continue training on an approximately 10M-clip stricter-quality pool while moving from 480p to 720p and five to eight seconds, adding denser structured captions and motion descriptions, and retaining interleaved image batches.
     - name: fine-tuning
       modalities:
         - video
@@ -76,8 +76,8 @@ data:
       operations:
         - trusted-subset-selection
         - supervised-fine-tuning
-      scale_disclosed: false
-      strategy: Supervise the model on a smaller trusted subset selected from the progressively curated video pool, without publishing the underlying clips or selection thresholds.
+      scale_disclosed: true
+      strategy: Supervise the model on an approximately 10K-clip trusted 720p, 24 FPS, eight-second subset selected from the progressively curated video pool, without publishing the clips or selection thresholds.
     - name: preference
       modalities:
         - video
@@ -97,7 +97,7 @@ data:
     - Increase resolution, frame rate, duration, and caption density in stages while interleaving images to preserve spatial quality.
     - Combine filtered pairwise preferences with an online visual-quality reward ensemble after supervised training.
   unknowns:
-    - Source dataset identities, corpus sizes, mixture ratios, collection dates, and media-rights composition.
+    - Source dataset identities, image-batch scale, stage-pool overlap, mixture ratios, collection dates, and media-rights composition.
     - Exact thresholds and retention rates for every filtering dimension and trusted-subset selection.
     - The complete preference-pair count, prompt distribution, Gemini configuration, and reward-optimization sample budget.
     - Release timing and license terms for SANA-Video 2.0 weights and training data.
@@ -106,4 +106,4 @@ evidence:
   technical_report: https://arxiv.org/abs/2607.21553
   repository: https://github.com/NVlabs/Sana
 status: watch
-last_verified: "2026-07-26"
+last_verified: "2026-07-27"

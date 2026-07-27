@@ -1,0 +1,63 @@
+id: innotext
+name: InnoText
+organization: InnoText research team
+released_at: "2026-07-24"
+modalities:
+  - image
+tasks:
+  - visual-text-generation
+  - visual-text-editing
+  - text-rendering
+access:
+  status: announced
+  license: Paper only; no code, weights, or model license is linked
+  release_url: https://arxiv.org/abs/2607.22101
+  weights_url: null
+  api_url: null
+architecture:
+  family: Unified diffusion transformer with font-size-aware modulation
+  parameters: null
+  notes: A shared DiT performs visual text generation and editing with font-size-aware modulation, small-character augmentation, and task-specific region-weighted loss.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: true
+  datasets:
+    - name: InnoText-30K
+      catalog_id: innotext-30k
+      role: fine-tuning
+      availability: not-released
+      scale: 20K Chinese and 10K English samples
+      notes: The corpus joins Lex-10K, a 10K Seedream-generated Chinese counterpart, and a curated 10K AnyWord-3M subset; the same taxonomy supports generation and editing.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - image
+        - text
+      source_types:
+        - public-dataset
+        - synthetic
+      operations:
+        - cross-lingual-semantic-mapping
+        - prompt-expansion
+        - synthetic-image-generation
+        - aesthetic-filtering
+        - ocr-reannotation
+        - dense-recaptioning
+        - joint-generation-editing-training
+      scale_disclosed: true
+      strategy: Jointly fine-tune generation and editing on the 30K bilingual mixture after InternVL3 prompt expansion, Seedream synthesis, aesthetic filtering, PPOCR-v4 correction, and DeepSeek-VL2 recaptioning.
+  strategy_summary:
+    - Balance 20K Chinese and 10K English visual-text samples while retaining both generated and real-world backgrounds.
+    - Correct OCR regions and recaption images after aesthetic filtering so glyph supervision and scene semantics stay aligned.
+    - Share one DiT across text generation and editing, with font-size-aware conditioning and region-weighted objectives.
+  unknowns:
+    - Base checkpoint identity, parameter count, optimization schedule, exact per-task sampling ratio, and random seeds.
+    - Dataset files, split manifests, source licenses, Seedream version and terms, filter thresholds, and retention counts.
+    - Code, checkpoint, license, and public release plan.
+evidence:
+  release: https://arxiv.org/abs/2607.22101
+  technical_report: https://arxiv.org/abs/2607.22101
+  repository: null
+status: watch
+last_verified: "2026-07-27"

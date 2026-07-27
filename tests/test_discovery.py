@@ -531,11 +531,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            105,
+            113,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            88,
+            91,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -554,7 +554,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
-        self.assertEqual(len(sources), 287)
+        self.assertEqual(len(sources), 298)
         self.assertIn(
             "https://huggingface.co/api/datasets/liuyueyi-8/ElasticTTT-video-editing-dataset?expand=lastModified&expand=sha",
             urls,
@@ -576,6 +576,18 @@ class DiscoveryTests(unittest.TestCase):
         self.assertIn("https://github.com/openai/Video-Pre-Training/commits/main.atom", urls)
         self.assertIn("https://github.com/VAIL-UCLA/WorldWeaver/commits/main.atom", urls)
         self.assertIn("https://github.com/solaris-wm/solaris/commits/main.atom", urls)
+        self.assertIn("https://arxiv.org/html/2607.21553", urls)
+        self.assertIn("https://export.arxiv.org/api/query?id_list=2607.21553", urls)
+        self.assertIn("https://arxiv.org/html/2607.19064", urls)
+        self.assertIn("https://export.arxiv.org/api/query?id_list=2607.19064", urls)
+        self.assertIn("https://raw.githubusercontent.com/microsoft/Mage/main/mage_flow/README.md", urls)
+        self.assertIn("https://github.com/microsoft/Mage/commits/main.atom", urls)
+        self.assertIn("https://arxiv.org/html/2607.22101", urls)
+        self.assertIn("https://arxiv.org/html/2607.22241", urls)
+        self.assertIn("https://arxiv.org/html/2607.22302", urls)
+        self.assertIn("https://arxiv.org/abs/2607.22101", urls)
+        self.assertIn("https://github.com/bone-11/agenthoi/commits/main.atom", urls)
+        self.assertIn("https://arxiv.org/abs/2607.22302", urls)
         self.assertEqual(
             {source.ranking_id for source in sources if source.ranking_id},
             {
@@ -654,7 +666,7 @@ class DiscoveryTests(unittest.TestCase):
                 "https://nvlabs.github.io/Sana/Video2/",
                 "https://export.arxiv.org/api/query?id_list=2607.21580",
                 "https://bfl.ai/blog/flux-3",
-                "https://arxiv.org/abs/2607.19064",
+                "https://github.com/microsoft/Mage/commits/main.atom",
                 "https://docs.bfl.ai/flux_tools/flux_vto",
                 "https://arxiv.org/html/2605.21573",
                 "https://shaodingbao.github.io/TripVVT/",

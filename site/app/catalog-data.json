@@ -675,6 +675,291 @@
   ],
   "datasets": [
     {
+      "id": "innotext-30k",
+      "name": "InnoText-30K",
+      "organization": "InnoText research team",
+      "released_at": "2026-07-24",
+      "release_date_source": "https://arxiv.org/abs/2607.22101",
+      "modality": "image",
+      "tasks": [
+        "visual-text-generation",
+        "visual-text-editing",
+        "bilingual-text-rendering"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A 30,000-sample English-Chinese visual-text corpus that combines Lex-10K, 10,000 synthetic Chinese counterparts, and a curated 10,000-sample AnyWord-3M subset for unified text generation and editing.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.22101",
+        "requires_account": false,
+        "notes": "The paper describes the corpus and InnoText-Bench, but no dataset files, metadata repository, license, or request path is linked."
+      },
+      "scale": {
+        "samples": 30000,
+        "source_items": 30000,
+        "hours": null,
+        "approximate": false,
+        "notes": "The paper reports 20K Chinese and 10K English samples. The Chinese portion contains 10K newly synthesized samples and a selected 10K AnyWord-3M subset; InnoText-Bench contains 1,500 images sampled across the three components."
+      },
+      "annotations": {
+        "types": [
+          "bilingual-caption",
+          "ocr-text",
+          "text-region",
+          "font-style",
+          "font-size",
+          "dense-caption"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en",
+          "zh"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "Lex-10K, AnyWord-3M, and Seedream-generated component terms require separate review",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The arXiv paper license does not license the dataset; no combined-corpus terms or upstream attribution manifest is published."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The release has no inspectable files, hashes, split manifest, or dataset-specific license.",
+          "Synthetic Chinese images are generated through InternVL3 prompt expansion and Seedream, so model-specific artifacts and cultural bias can propagate.",
+          "The paper evaluates aesthetics and naturalness but does not publish per-record scores or curation retention rates."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/image_text",
+        "recommended_format": "parquet",
+        "notes": "Preserve upstream component, translation and expansion prompts, generator version, aesthetic scores, PPOCR-v4 annotations, DeepSeek-VL2 captions, language, split, and license provenance."
+      },
+      "evidence": {
+        "homepage": "https://arxiv.org/html/2607.22101",
+        "paper": "https://arxiv.org/abs/2607.22101",
+        "used_by": [
+          "InnoText"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/image/innotext-30k.yaml",
+      "scenario_ids": [],
+      "scale_label": "30K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2607.22101"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "innotext"
+      ]
+    },
+    {
+      "id": "fmri-face",
+      "name": "fMRI-Face",
+      "organization": "Fudan University",
+      "released_at": "2026-07-24",
+      "release_date_source": "https://arxiv.org/abs/2607.22302",
+      "modality": "video",
+      "tasks": [
+        "fmri-to-video",
+        "digital-human-reconstruction",
+        "dynamic-face-reconstruction"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A controlled neural-decoding dataset containing 62,856 paired fMRI and full-HD digital-human face-video samples from three consenting participants.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.22302",
+        "requires_account": false,
+        "notes": "The paper fully describes acquisition and splits but does not link public files, a repository, a data-use agreement, or an application process."
+      },
+      "scale": {
+        "samples": 62856,
+        "source_items": 2174,
+        "hours": null,
+        "approximate": false,
+        "notes": "Three subjects viewed 2,174 unique 8-second, 240-frame, 30 FPS, 1920x1080 digital-human clips. Sliding 1.6-second fMRI windows yield 18,108 training and 2,844 test pairs per subject, totaling 62,856."
+      },
+      "annotations": {
+        "types": [
+          "fmri-response",
+          "digital-human-video",
+          "identity-parameter",
+          "expression-parameter",
+          "head-pose",
+          "train-test-split"
+        ],
+        "source": "mixed",
+        "languages": [
+          "n-a"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "Digital-human assets and sensitive fMRI responses; reuse terms are not published",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Ethics approval and written informed consent are reported, but no public data license, participant-level consent scope, or redistribution protocol is available."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "temporal-consistency",
+          "geometry-quality",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Only three participants aged 22 to 24 were scanned, limiting demographic and cross-subject generalization.",
+          "Controlled background-free digital-human stimuli differ from natural facial behavior and social context.",
+          "Brain data is sensitive personal data and should not be redistributed or re-identified without an explicit approved governance process."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Keep participant identifiers pseudonymized and separated, preserve ethics and consent scope, MRI acquisition and preprocessing provenance, stimulus hashes, 3D parameters, temporal alignment, and subject-safe train/test splits."
+      },
+      "evidence": {
+        "homepage": "https://arxiv.org/html/2607.22302",
+        "paper": "https://arxiv.org/abs/2607.22302",
+        "used_by": [
+          "fMRI2Face"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/fmri-face.yaml",
+      "scenario_ids": [],
+      "scale_label": "62.9K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2607.22302"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "fmri2face"
+      ]
+    },
+    {
+      "id": "agenthoi-mixed-source-corpus",
+      "name": "AgentHOI Mixed-Source Training Corpus",
+      "organization": "AgentHOI research team",
+      "released_at": "2026-07-24",
+      "release_date_source": "https://arxiv.org/abs/2607.22241",
+      "modality": "video",
+      "tasks": [
+        "human-object-interaction-video-generation",
+        "image-to-video",
+        "human-animation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "The unreleased 108,000-clip human-object-interaction corpus used by AgentHOI, combining 71,000 mined real clips with 37,000 synthetic interaction videos.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.22241",
+        "requires_account": false,
+        "notes": "Code and checkpoints are public, but the official repository states that training data is not included and provides no dataset request path."
+      },
+      "scale": {
+        "samples": 108000,
+        "source_items": 10000000,
+        "hours": null,
+        "approximate": true,
+        "notes": "The paper reports 71K real clips mined from 10M online videos and 37K synthetic clips. It also reports manually retaining 13K object images across 85 categories for synthetic generation."
+      },
+      "annotations": {
+        "types": [
+          "human-reference-image",
+          "object-reference-image",
+          "interaction-caption",
+          "action-timeline",
+          "human-pose",
+          "object-mask",
+          "synthetic-provenance"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "Unnamed online video sources plus FLUX, Gemini, and Wan-generated derivatives",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Neither the mined media nor synthetic derivatives have published dataset-level license, attribution, commercial-use, or redistribution terms."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Online source platforms, URLs, licenses, collection dates, consent checks, and filtering retention by stage are not disclosed.",
+          "The synthetic component inherits limitations from FLUX, Gemini reference generation, FLUX Kontext, and Wan2.2-I2V.",
+          "Human-object categories and motions remain imbalanced despite synthetic supplementation."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/video_text",
+        "recommended_format": "webdataset",
+        "notes": "Preserve source URL and rights, person and object references, pose and segmentation outputs, action timeline, real-versus-synthetic flag, every generator version and seed, and filter decisions."
+      },
+      "evidence": {
+        "homepage": "https://github.com/bone-11/agenthoi",
+        "paper": "https://arxiv.org/abs/2607.22241",
+        "used_by": [
+          "AgentHOI"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/agenthoi-mixed-source-corpus.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~108K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2607.22241"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "agenthoi"
+      ]
+    },
+    {
       "id": "worldweaver-minecraft-126h",
       "name": "WorldWeaver Minecraft 126h",
       "organization": "UCLA and Adobe Research",
@@ -773,6 +1058,198 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "worldweaver"
+      ]
+    },
+    {
+      "id": "sana-video-2-progressive-training-pools",
+      "name": "SANA-Video 2.0 Progressive Training Pools",
+      "organization": "NVIDIA",
+      "released_at": "2026-07-23",
+      "release_date_source": "https://arxiv.org/abs/2607.21553",
+      "modality": "video",
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "video-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "The unreleased, progressively filtered image-video training collection described for SANA-Video 2.0, separated into broad pretraining, stricter continual-training, and small trusted supervised-fine-tuning pools.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.21553",
+        "requires_account": false,
+        "notes": "The paper reports aggregate stage scales and curation methods, but NVIDIA has not published media, metadata, manifests, or an application path."
+      },
+      "scale": {
+        "samples": 30000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The 5B production recipe reports about 30M pretraining clips, 10M continual-training clips, and 10K supervised-fine-tuning clips. The pools may be nested or overlapping, so they are not summed; 30M records the largest disclosed stage."
+      },
+      "annotations": {
+        "types": [
+          "dense-structured-caption",
+          "motion-description",
+          "frame-rate",
+          "duration",
+          "visual-quality-score",
+          "text-video-alignment-score"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "Proprietary in-house media pool; source identities and rights are not disclosed",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The paper's publication license and repository license do not license the underlying training media or generated annotations."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "safety",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source dataset names, collection dates, media rights, and per-source mixture shares are not published.",
+          "The report does not establish whether the 30M, 10M, and 10K stage pools are disjoint, nested, or partially overlapping.",
+          "Image batches are interleaved during joint training, but their counts, sources, and sampling cadence are not quantified."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/video_text",
+        "recommended_format": "webdataset",
+        "notes": "Reproductions should preserve raw provenance, shot boundaries, all independent filter scores, caption and motion-description model versions, stage membership, resolution, frame rate, and duration."
+      },
+      "evidence": {
+        "homepage": "https://nvlabs.github.io/Sana/Video2/",
+        "paper": "https://arxiv.org/abs/2607.21553",
+        "used_by": [
+          "SANA-Video 2.0"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/sana-video-2-progressive-training-pools.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~30M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2607.21553"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "sana-video-2-0"
+      ]
+    },
+    {
+      "id": "sana-video-2-preference-pairs",
+      "name": "SANA-Video 2.0 Preference Pairs",
+      "organization": "NVIDIA",
+      "released_at": "2026-07-23",
+      "release_date_source": "https://arxiv.org/abs/2607.21553",
+      "modality": "preference",
+      "tasks": [
+        "text-to-video-preference",
+        "video-generation-preference",
+        "reward-modeling"
+      ],
+      "stages": [
+        "preference-tuning",
+        "data-curation"
+      ],
+      "description": "The unreleased generated-video comparison data used for SANA-Video 2.0 Diffusion-DPO, with Gemini ranking candidates across fidelity, prompt alignment, motion quality, and temporal coherence.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2607.21553",
+        "requires_account": false,
+        "notes": "NVIDIA describes the ranking and unreliable-pair filtering recipe but publishes no prompts, candidates, pair records, rankings, or download request."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The report does not disclose the number of prompts, candidate videos, retained comparisons, or optimization samples."
+      },
+      "annotations": {
+        "types": [
+          "generation-prompt",
+          "preferred-video",
+          "rejected-video",
+          "visual-fidelity-ranking",
+          "prompt-alignment-ranking",
+          "motion-quality-ranking",
+          "temporal-coherence-ranking"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "Generated videos with undisclosed model and prompt provenance",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Neither the preference records nor dataset-specific licensing and redistribution terms have been released."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Gemini configuration, scoring prompts, agreement thresholds, and unreliable-ranking rejection rates are not disclosed.",
+          "An automated judge can introduce model-specific preferences and does not substitute for independently published human evaluation.",
+          "The later online ReFL reward stream is not a fixed downloadable dataset and is excluded from the pair count."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "A reproducible release should retain prompt IDs, candidate seeds and checkpoint versions, all per-axis judge outputs, pair-filter decisions, and the exact Diffusion-DPO split."
+      },
+      "evidence": {
+        "homepage": "https://nvlabs.github.io/Sana/Video2/",
+        "paper": "https://arxiv.org/abs/2607.21553",
+        "used_by": [
+          "SANA-Video 2.0"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/preference/sana-video-2-preference-pairs.yaml",
+      "scenario_ids": [],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://export.arxiv.org/api/query?id_list=2607.21553"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "sana-video-2-0"
       ]
     },
     {
@@ -978,6 +1455,297 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "elasticttt"
+      ]
+    },
+    {
+      "id": "mage-flow-edit-triples",
+      "name": "Mage-Flow-Edit Training Triples",
+      "organization": "Microsoft Mage Team",
+      "released_at": "2026-07-21",
+      "release_date_source": "https://arxiv.org/abs/2607.19064",
+      "modality": "image",
+      "tasks": [
+        "instruction-guided-image-editing",
+        "image-editing",
+        "image-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "The unreleased 45-million-triple Mage-Flow-Edit pool retained from about 90 million open-source and synthetic source-instruction-target triples after multi-expert VLM filtering and edit-category rebalancing.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2607.19064",
+        "requires_account": false,
+        "notes": "The paper reports construction and training mixtures, but Microsoft has not published the triples, source dataset names, manifests, or an access request."
+      },
+      "scale": {
+        "samples": 45000000,
+        "source_items": 90000000,
+        "hours": null,
+        "approximate": true,
+        "notes": "The raw pool is about 50M unnamed open-source triples plus 40M in-house synthetic triples, including 10M low-level and 30M semantic edits. Roughly 20M open-source and 25M synthetic triples survive filtering."
+      },
+      "annotations": {
+        "types": [
+          "source-image",
+          "edit-instruction",
+          "target-image",
+          "edit-category",
+          "multi-expert-quality-vote",
+          "synthetic-provenance"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en",
+          "zh"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "Unnamed open-source editing datasets and in-house synthetic images",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The code and checkpoints are MIT, but the editing corpus has no dataset license and its upstream media and generator terms are not identified."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "safety",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The identities, versions, licenses, and per-source shares of the roughly 50M open-source triples are not disclosed.",
+          "Three Qwen3.5-9B experts and majority voting define retention, but prompts, thresholds, and disagreement statistics are unavailable.",
+          "Manual mapping into 19 edit categories does not publish the taxonomy records or final per-category distribution."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/image_text",
+        "recommended_format": "parquet",
+        "notes": "Store source, instruction, target, edit category, source dataset or generator, expert votes, filter outcome, and membership in the 35M/35M then 20M/10M editing-generation training stages."
+      },
+      "evidence": {
+        "homepage": "https://github.com/microsoft/Mage/tree/main/mage_flow",
+        "paper": "https://arxiv.org/abs/2607.19064",
+        "used_by": [
+          "Mage-Flow"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/image/mage-flow-edit-triples.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~45M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://export.arxiv.org/api/query?id_list=2607.19064"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "mage-flow"
+      ]
+    },
+    {
+      "id": "mage-flow-curated-image-text",
+      "name": "Mage-Flow Curated Image-Text Corpus",
+      "organization": "Microsoft Mage Team",
+      "released_at": "2026-07-21",
+      "release_date_source": "https://arxiv.org/abs/2607.19064",
+      "modality": "image",
+      "tasks": [
+        "text-to-image",
+        "image-text-pretraining",
+        "text-rendering"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "The unreleased 1.3-billion-pair corpus curated for Mage-Flow from roughly ten billion raw image-text pairs through filtering, semantic deduplication, Qwen3-VL recaptioning, concept-aware synthesis, and balancing.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.19064",
+        "requires_account": false,
+        "notes": "Microsoft publishes the training recipe and aggregate counts, but not the source list, manifests, metadata, media, or a dataset application path."
+      },
+      "scale": {
+        "samples": 1300000000,
+        "source_items": 10000000000,
+        "hours": null,
+        "approximate": true,
+        "notes": "About 1.3B pairs remain from a roughly 10B raw pool. Progressive subsets contain 1.2B 256px, 600M 512px, and 300M 1024px pairs, followed by a 150M-pair strict 1024px SFT subset; these are stage subsets, not additive totals."
+      },
+      "annotations": {
+        "types": [
+          "multi-granularity-caption",
+          "concept-label",
+          "resolution",
+          "aspect-ratio",
+          "quality-filter-score",
+          "synthetic-long-tail-sample"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en",
+          "zh"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "Unnamed open-source datasets plus undisclosed synthetic supplements",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The MIT code and model license does not establish permission for the training corpus; component dataset identities, licenses, and synthetic-source terms are unpublished."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "watermark",
+          "safety",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source dataset names, versions, collection dates, licenses, and mixture shares are not disclosed.",
+          "Per-filter retention, SSCD thresholds, caption failure rates, and synthetic long-tail proportions are not reported.",
+          "Qwen3-VL recaptioning and concept-aware synthesis can introduce model-dependent artifacts or semantic drift."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/image_text",
+        "recommended_format": "webdataset",
+        "notes": "Preserve original metadata beside generated captions, SSCD clusters, every filter decision, concept labels, synthetic provenance, stage membership, native dimensions, and license fields."
+      },
+      "evidence": {
+        "homepage": "https://github.com/microsoft/Mage/tree/main/mage_flow",
+        "paper": "https://arxiv.org/abs/2607.19064",
+        "used_by": [
+          "Mage-Flow"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/image/mage-flow-curated-image-text.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~1.3B",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2607.19064"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "mage-flow"
+      ]
+    },
+    {
+      "id": "mage-flow-rl-prompt-pools",
+      "name": "Mage-Flow Capability-Routed RL Prompt Pools",
+      "organization": "Microsoft Mage Team",
+      "released_at": "2026-07-21",
+      "release_date_source": "https://arxiv.org/abs/2607.19064",
+      "modality": "preference",
+      "tasks": [
+        "text-to-image-reinforcement-learning",
+        "image-editing-reinforcement-learning",
+        "reward-modeling"
+      ],
+      "stages": [
+        "preference-tuning"
+      ],
+      "description": "The unreleased generation and editing prompt pools used to route Mage-Flow online candidates to OCR, aesthetics, semantic-understanding, and editing-specific rewards during Diffusion-NFT post-training.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://raw.githubusercontent.com/microsoft/Mage/main/mage_flow/README.md",
+        "requires_account": false,
+        "notes": "The official repository releases the trained models and inference code, but not the prompt records, online samples, reward traces, or post-training splits."
+      },
+      "scale": {
+        "samples": 50000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The paper reports about 20K generation prompts, split into 10K text-rendering, 4K aesthetics, and 6K semantic prompts, plus about 30K editing prompts. These are separate capability pools and exact unique-row counts are not published."
+      },
+      "annotations": {
+        "types": [
+          "generation-prompt",
+          "editing-prompt",
+          "capability-route",
+          "reward-model-route",
+          "online-candidate",
+          "reward-score"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en",
+          "zh"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "Online model generations with undisclosed prompt and source-image provenance",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "MIT covers the released code and checkpoints, not the unpublished prompts, editing inputs, generated candidates, or reward annotations."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Prompt sources, deduplication, language distribution, train-test leakage checks, and exact split sizes are not reported.",
+          "Reward routing relies on PaddleOCR-VL-1.5, Qwen3.5-27B, and RationalRewards, so model-specific biases can shape optimization.",
+          "Online candidates and rewards change with checkpoint and sampler versions and are not a fixed inspectable release."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "Reproducible records should preserve prompt and source-image provenance, capability route, checkpoint and seed, candidate image, reward implementation and version, raw scores, and optimization stage."
+      },
+      "evidence": {
+        "homepage": "https://github.com/microsoft/Mage/tree/main/mage_flow",
+        "paper": "https://arxiv.org/abs/2607.19064",
+        "used_by": [
+          "Mage-Flow"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/preference/mage-flow-rl-prompt-pools.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~50K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://raw.githubusercontent.com/microsoft/Mage/main/mage_flow/README.md"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "mage-flow"
       ]
     },
     {
@@ -11050,6 +11818,358 @@
       "linked_dataset_ids": []
     },
     {
+      "id": "innotext",
+      "name": "InnoText",
+      "organization": "InnoText research team",
+      "released_at": "2026-07-24",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "visual-text-generation",
+        "visual-text-editing",
+        "text-rendering"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Paper only; no code, weights, or model license is linked",
+        "release_url": "https://arxiv.org/abs/2607.22101",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Unified diffusion transformer with font-size-aware modulation",
+        "parameters": null,
+        "notes": "A shared DiT performs visual text generation and editing with font-size-aware modulation, small-character augmentation, and task-specific region-weighted loss."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": true,
+        "datasets": [
+          {
+            "name": "InnoText-30K",
+            "catalog_id": "innotext-30k",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "20K Chinese and 10K English samples",
+            "notes": "The corpus joins Lex-10K, a 10K Seedream-generated Chinese counterpart, and a curated 10K AnyWord-3M subset; the same taxonomy supports generation and editing."
+          }
+        ],
+        "stages": [
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "synthetic"
+            ],
+            "operations": [
+              "cross-lingual-semantic-mapping",
+              "prompt-expansion",
+              "synthetic-image-generation",
+              "aesthetic-filtering",
+              "ocr-reannotation",
+              "dense-recaptioning",
+              "joint-generation-editing-training"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Jointly fine-tune generation and editing on the 30K bilingual mixture after InternVL3 prompt expansion, Seedream synthesis, aesthetic filtering, PPOCR-v4 correction, and DeepSeek-VL2 recaptioning."
+          }
+        ],
+        "strategy_summary": [
+          "Balance 20K Chinese and 10K English visual-text samples while retaining both generated and real-world backgrounds.",
+          "Correct OCR regions and recaption images after aesthetic filtering so glyph supervision and scene semantics stay aligned.",
+          "Share one DiT across text generation and editing, with font-size-aware conditioning and region-weighted objectives."
+        ],
+        "unknowns": [
+          "Base checkpoint identity, parameter count, optimization schedule, exact per-task sampling ratio, and random seeds.",
+          "Dataset files, split manifests, source licenses, Seedream version and terms, filter thresholds, and retention counts.",
+          "Code, checkpoint, license, and public release plan."
+        ]
+      },
+      "evidence": {
+        "release": "https://arxiv.org/abs/2607.22101",
+        "technical_report": "https://arxiv.org/abs/2607.22101",
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/image/innotext.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "fine-tuning"
+        ],
+        "source_types": [
+          "public-dataset",
+          "synthetic"
+        ],
+        "operations": [
+          "cross-lingual-semantic-mapping",
+          "prompt-expansion",
+          "synthetic-image-generation",
+          "aesthetic-filtering",
+          "ocr-reannotation",
+          "dense-recaptioning",
+          "joint-generation-editing-training"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 1,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2607.22101"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "innotext-30k"
+      ]
+    },
+    {
+      "id": "fmri2face",
+      "name": "fMRI2Face",
+      "organization": "Fudan University",
+      "released_at": "2026-07-24",
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "fmri-to-video",
+        "digital-human-reconstruction",
+        "dynamic-face-reconstruction"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Paper only; no code, weights, or model license is linked",
+        "release_url": "https://arxiv.org/abs/2607.22302",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Geometry-guided neural video decoder with diffusion synthesis",
+        "parameters": null,
+        "notes": "The framework predicts appearance context tokens and morphable 3D face controls from fMRI, then injects both into a video diffusion model with auxiliary latent completion."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": true,
+        "datasets": [
+          {
+            "name": "fMRI-Face",
+            "catalog_id": "fmri-face",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "62,856 fMRI-video pairs from three subjects and 2,174 unique stimuli",
+            "notes": "The paper discloses subject counts, acquisition, preprocessing, repeat trials, sliding-window construction, and train/test splits, but no public data-access path."
+          }
+        ],
+        "stages": [
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "3d"
+            ],
+            "source_types": [
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "digital-human-rendering",
+              "fmri-acquisition",
+              "fmri-preprocessing",
+              "temporal-windowing",
+              "appearance-context-prediction",
+              "morphable-face-parameter-prediction",
+              "geometry-controlled-video-diffusion"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Fit subject-conditioned appearance and 3D facial-motion predictors on 1,994 training stimuli, then synthesize temporally coherent face videos with geometry-guided diffusion and evaluate on 180 held-out stimuli."
+          }
+        ],
+        "strategy_summary": [
+          "Use controlled, background-free full-HD digital-human stimuli to isolate identity, expression, and head-pose responses.",
+          "Separate brain-derived global appearance from explicit morphable 3D motion control before video diffusion.",
+          "Preserve participant-aware splits and temporal alignment across fMRI volumes and overlapping video windows."
+        ],
+        "unknowns": [
+          "Code, base video checkpoint, training hyperparameters, parameter counts, checkpoint license, and release plan.",
+          "Public data-use agreement, participant-level consent scope for redistribution, de-identification controls, and access-review process.",
+          "Demographic diversity beyond the reported three participants aged 22 to 24."
+        ]
+      },
+      "evidence": {
+        "release": "https://arxiv.org/abs/2607.22302",
+        "technical_report": "https://arxiv.org/abs/2607.22302",
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/fmri2face.yaml",
+      "scenario_ids": [],
+      "strategy_profile": {
+        "stage_names": [
+          "fine-tuning"
+        ],
+        "source_types": [
+          "proprietary",
+          "synthetic"
+        ],
+        "operations": [
+          "digital-human-rendering",
+          "fmri-acquisition",
+          "fmri-preprocessing",
+          "temporal-windowing",
+          "appearance-context-prediction",
+          "morphable-face-parameter-prediction",
+          "geometry-controlled-video-diffusion"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 1,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2607.22302"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "fmri-face"
+      ]
+    },
+    {
+      "id": "agenthoi",
+      "name": "AgentHOI",
+      "organization": "AgentHOI research team",
+      "released_at": "2026-07-24",
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "human-object-interaction-video-generation",
+        "image-to-video",
+        "human-animation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "No license is declared in the official repository; verify dependencies and checkpoint terms before use",
+        "release_url": "https://github.com/bone-11/agenthoi",
+        "weights_url": "https://huggingface.co/ProAudience/agenthoi",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Multi-agent interaction planner plus Wan2.1-I2V video diffusion",
+        "parameters": 14000000000,
+        "notes": "Four InternVL3.5-38B reasoning agents create an action timeline; a Wan2.1-I2V-14B generator absorbs a frozen text-to-motion teacher through token-relation distillation."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "AgentHOI Mixed-Source Training Corpus",
+            "catalog_id": "agenthoi-mixed-source-corpus",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "71K real and 37K synthetic HOI video clips",
+            "notes": "Real clips are mined from 10M unnamed online videos; synthetic supervision uses 13K retained object images across 85 categories and FLUX, Gemini, FLUX Kontext, and Wan2.2-I2V stages."
+          }
+        ],
+        "stages": [
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "public-web",
+              "synthetic"
+            ],
+            "operations": [
+              "large-scale-video-mining",
+              "multi-stage-quality-filtering",
+              "human-object-decomposition",
+              "action-timeline-generation",
+              "reference-based-image-generation",
+              "image-to-video-synthesis",
+              "mixed-source-training",
+              "token-relation-distillation"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train on 71K filtered real and 37K synthetic HOI clips, first fitting a text-to-motion teacher for 8K steps and then distilling token relations into the final 480p generator for 9.5K steps."
+          }
+        ],
+        "strategy_summary": [
+          "Mine sparse real HOI examples from a 10M-video pool, retaining clips with decomposable people, objects, and interaction timelines.",
+          "Fill object-action coverage gaps with reference-conditioned synthetic images and Wan2.2-I2V motion generation.",
+          "Distill text-to-motion relational structure during training so inference needs only person image, object image, and text."
+        ],
+        "unknowns": [
+          "Online-video source identities, licenses, consent and rights checks, filter thresholds, and exact real/synthetic batch ratio.",
+          "Full synthetic generator configurations, prompt sets, safety filtering, and per-category distribution.",
+          "Dataset release plan and a license covering the AgentHOI repository and checkpoints."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/bone-11/agenthoi",
+        "technical_report": "https://arxiv.org/abs/2607.22241",
+        "repository": "https://github.com/bone-11/agenthoi"
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/agenthoi.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "fine-tuning"
+        ],
+        "source_types": [
+          "public-web",
+          "synthetic"
+        ],
+        "operations": [
+          "large-scale-video-mining",
+          "multi-stage-quality-filtering",
+          "human-object-decomposition",
+          "action-timeline-generation",
+          "reference-based-image-generation",
+          "image-to-video-synthesis",
+          "mixed-source-training",
+          "token-relation-distillation"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 1,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/bone-11/agenthoi/commits/main.atom"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "agenthoi-mixed-source-corpus"
+      ]
+    },
+    {
       "id": "worldweaver",
       "name": "WorldWeaver",
       "organization": "UCLA and Adobe Research",
@@ -11275,15 +12395,15 @@
         "datasets": [
           {
             "name": "Curated in-house image and video training pool",
-            "catalog_id": null,
+            "catalog_id": "sana-video-2-progressive-training-pools",
             "role": "pretraining",
             "availability": "not-released",
-            "scale": null,
-            "notes": "The report names no source datasets, but describes separate broad pretraining, stricter continual-training, and trusted supervised-fine-tuning pools."
+            "scale": "approximately 30M pretraining clips, 10M continual-training clips, and 10K supervised-fine-tuning clips",
+            "notes": "The report names no source datasets and does not establish whether the three stage pools overlap, but it discloses their approximate clip counts and progressive 480p-to-720p schedule."
           },
           {
             "name": "Gemini-ranked generated video preference pairs",
-            "catalog_id": null,
+            "catalog_id": "sana-video-2-preference-pairs",
             "role": "preference",
             "availability": "not-released",
             "scale": null,
@@ -11311,8 +12431,8 @@
               "image-video-joint-training",
               "progressive-resolution-training"
             ],
-            "scale_disclosed": false,
-            "strategy": "Build a broad pool through shot segmentation and independent visual, motion, exposure, artifact, alignment, and shot-integrity filters, then train progressively from 480p to 720p while increasing frame rate and duration."
+            "scale_disclosed": true,
+            "strategy": "Build an approximately 30M-clip broad pool through shot segmentation and independent visual, motion, exposure, artifact, alignment, and shot-integrity filters, then pretrain at 480p on five-second 16/24 FPS clips."
           },
           {
             "name": "midtraining",
@@ -11330,8 +12450,8 @@
               "motion-description",
               "image-video-joint-training"
             ],
-            "scale_disclosed": false,
-            "strategy": "Continue training on a stricter-quality pool with denser structured captions and appended motion descriptions while retaining interleaved image batches."
+            "scale_disclosed": true,
+            "strategy": "Continue training on an approximately 10M-clip stricter-quality pool while moving from 480p to 720p and five to eight seconds, adding denser structured captions and motion descriptions, and retaining interleaved image batches."
           },
           {
             "name": "fine-tuning",
@@ -11346,8 +12466,8 @@
               "trusted-subset-selection",
               "supervised-fine-tuning"
             ],
-            "scale_disclosed": false,
-            "strategy": "Supervise the model on a smaller trusted subset selected from the progressively curated video pool, without publishing the underlying clips or selection thresholds."
+            "scale_disclosed": true,
+            "strategy": "Supervise the model on an approximately 10K-clip trusted 720p, 24 FPS, eight-second subset selected from the progressively curated video pool, without publishing the clips or selection thresholds."
           },
           {
             "name": "preference",
@@ -11375,7 +12495,7 @@
           "Combine filtered pairwise preferences with an online visual-quality reward ensemble after supervised training."
         ],
         "unknowns": [
-          "Source dataset identities, corpus sizes, mixture ratios, collection dates, and media-rights composition.",
+          "Source dataset identities, image-batch scale, stage-pool overlap, mixture ratios, collection dates, and media-rights composition.",
           "Exact thresholds and retention rates for every filtering dimension and trusted-subset selection.",
           "The complete preference-pair count, prompt distribution, Gemini configuration, and reward-optimization sample budget.",
           "Release timing and license terms for SANA-Video 2.0 weights and training data."
@@ -11387,7 +12507,7 @@
         "repository": "https://github.com/NVlabs/Sana"
       },
       "status": "watch",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "source_path": "models/video/sana-video-2-0.yaml",
       "scenario_ids": [
         "video-generation"
@@ -11424,8 +12544,8 @@
           "reward-ensembling"
         ],
         "data_reference_count": 2,
-        "linked_dataset_count": 0,
-        "scale_disclosed_stage_count": 0,
+        "linked_dataset_count": 2,
+        "scale_disclosed_stage_count": 3,
         "stage_count": 4,
         "unknown_count": 4
       },
@@ -11434,7 +12554,10 @@
         "source_url": "https://nvlabs.github.io/Sana/Video2/"
       },
       "ranking_positions": [],
-      "linked_dataset_ids": []
+      "linked_dataset_ids": [
+        "sana-video-2-progressive-training-pools",
+        "sana-video-2-preference-pairs"
+      ]
     },
     {
       "id": "graphvid",
@@ -11893,10 +13016,10 @@
         "text-rendering"
       ],
       "access": {
-        "status": "announced",
-        "license": "Paper-only release; no model license or weights are published",
-        "release_url": "https://arxiv.org/abs/2607.19064",
-        "weights_url": null,
+        "status": "open-weights",
+        "license": "MIT for the official repository and published Hugging Face model cards",
+        "release_url": "https://github.com/microsoft/Mage/tree/main/mage_flow",
+        "weights_url": "https://huggingface.co/microsoft/Mage-Flow",
         "api_url": null
       },
       "architecture": {
@@ -11911,7 +13034,7 @@
         "datasets": [
           {
             "name": "Mage-Flow curated image-text corpus",
-            "catalog_id": null,
+            "catalog_id": "mage-flow-curated-image-text",
             "role": "pretraining",
             "availability": "not-released",
             "scale": "1.3B retained pairs from roughly 10B raw pairs",
@@ -11919,15 +13042,15 @@
           },
           {
             "name": "Mage-Flow-Edit training triples",
-            "catalog_id": null,
+            "catalog_id": "mage-flow-edit-triples",
             "role": "fine-tuning",
             "availability": "not-released",
-            "scale": "roughly 90M raw triples",
-            "notes": "The pool combines about 50M triples from unnamed open-source editing datasets with 40M in-house synthetic triples, then undergoes VLM filtering and edit-type balancing."
+            "scale": "roughly 45M retained triples from 90M raw triples",
+            "notes": "The raw pool combines about 50M triples from unnamed open-source editing datasets with 40M in-house synthetic triples; three Qwen3.5-9B filtering experts retain about 45M before edit-type balancing."
           },
           {
             "name": "Mage-Flow capability-routed RL prompt pools",
-            "catalog_id": null,
+            "catalog_id": "mage-flow-rl-prompt-pools",
             "role": "preference",
             "availability": "not-released",
             "scale": "approximately 20K generation prompts and 30K editing prompts",
@@ -12024,16 +13147,16 @@
           "Names, versions, licenses, collection dates, and mixture shares of the open-source image-text and editing datasets.",
           "Retention rates for individual filters, duplicate thresholds, and the exact composition of stage-wise subsets.",
           "Source and licensing of every synthetic target image, supplemental long-tail sample, and RL prompt.",
-          "Release timing and terms for code, checkpoints, tokenizer weights, and any training-data artifacts."
+          "Release timing and terms for any training-data artifacts; the code, tokenizer, and six Base, aligned, and Turbo generation/editing checkpoints are now public under MIT."
         ]
       },
       "evidence": {
-        "release": "https://arxiv.org/abs/2607.19064",
+        "release": "https://github.com/microsoft/Mage/tree/main/mage_flow",
         "technical_report": "https://arxiv.org/abs/2607.19064",
-        "repository": null
+        "repository": "https://github.com/microsoft/Mage"
       },
-      "status": "watch",
-      "last_verified": "2026-07-26",
+      "status": "verified",
+      "last_verified": "2026-07-27",
       "source_path": "models/image/mage-flow.yaml",
       "scenario_ids": [
         "image-generation"
@@ -12072,17 +13195,21 @@
           "four-step-distillation"
         ],
         "data_reference_count": 3,
-        "linked_dataset_count": 0,
+        "linked_dataset_count": 3,
         "scale_disclosed_stage_count": 3,
         "stage_count": 4,
         "unknown_count": 4
       },
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://arxiv.org/abs/2607.19064"
+        "source_url": "https://github.com/microsoft/Mage/commits/main.atom"
       },
       "ranking_positions": [],
-      "linked_dataset_ids": []
+      "linked_dataset_ids": [
+        "mage-flow-curated-image-text",
+        "mage-flow-edit-triples",
+        "mage-flow-rl-prompt-pools"
+      ]
     },
     {
       "id": "seedream-5-0-pro",
@@ -24679,6 +25806,14 @@
   ],
   "relations": [
     {
+      "model_id": "agenthoi",
+      "dataset_id": "agenthoi-mixed-source-corpus",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "71K real and 37K synthetic HOI video clips",
+      "reference_name": "AgentHOI Mixed-Source Training Corpus"
+    },
+    {
       "model_id": "commoncanvas-xl-c",
       "dataset_id": "commoncatalog",
       "role": "pretraining",
@@ -24895,6 +26030,14 @@
       "reference_name": "FIT-VTO-100K"
     },
     {
+      "model_id": "fmri2face",
+      "dataset_id": "fmri-face",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "62,856 fMRI-video pairs from three subjects and 2,174 unique stimuli",
+      "reference_name": "fMRI-Face"
+    },
+    {
       "model_id": "funcineforge",
       "dataset_id": "chem",
       "role": "evaluation",
@@ -25079,6 +26222,14 @@
       "reference_name": "VGGSound"
     },
     {
+      "model_id": "innotext",
+      "dataset_id": "innotext-30k",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "20K Chinese and 10K English samples",
+      "reference_name": "InnoText-30K"
+    },
+    {
       "model_id": "itryon",
       "dataset_id": "vivid",
       "role": "evaluation",
@@ -25157,6 +26308,30 @@
       "availability": "public",
       "scale": "235 prompts and 3,009 generated examples",
       "reference_name": "AVGen-Bench"
+    },
+    {
+      "model_id": "mage-flow",
+      "dataset_id": "mage-flow-curated-image-text",
+      "role": "pretraining",
+      "availability": "not-released",
+      "scale": "1.3B retained pairs from roughly 10B raw pairs",
+      "reference_name": "Mage-Flow curated image-text corpus"
+    },
+    {
+      "model_id": "mage-flow",
+      "dataset_id": "mage-flow-edit-triples",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "roughly 45M retained triples from 90M raw triples",
+      "reference_name": "Mage-Flow-Edit training triples"
+    },
+    {
+      "model_id": "mage-flow",
+      "dataset_id": "mage-flow-rl-prompt-pools",
+      "role": "preference",
+      "availability": "not-released",
+      "scale": "approximately 20K generation prompts and 30K editing prompts",
+      "reference_name": "Mage-Flow capability-routed RL prompt pools"
     },
     {
       "model_id": "mova-720p",
@@ -25373,6 +26548,22 @@
       "availability": "public",
       "scale": "Part of the long-video source pool; exact Phantom subset size is not disclosed",
       "reference_name": "Panda-70M"
+    },
+    {
+      "model_id": "sana-video-2-0",
+      "dataset_id": "sana-video-2-preference-pairs",
+      "role": "preference",
+      "availability": "not-released",
+      "scale": null,
+      "reference_name": "Gemini-ranked generated video preference pairs"
+    },
+    {
+      "model_id": "sana-video-2-0",
+      "dataset_id": "sana-video-2-progressive-training-pools",
+      "role": "pretraining",
+      "availability": "not-released",
+      "scale": "approximately 30M pretraining clips, 10M continual-training clips, and 10K supervised-fine-tuning clips",
+      "reference_name": "Curated in-house image and video training pool"
     },
     {
       "model_id": "seedance-1-0-pro",

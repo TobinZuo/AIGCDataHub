@@ -1,0 +1,68 @@
+id: fmri-face
+name: fMRI-Face
+organization: Fudan University
+released_at: "2026-07-24"
+release_date_source: https://arxiv.org/abs/2607.22302
+modality: video
+tasks:
+  - fmri-to-video
+  - digital-human-reconstruction
+  - dynamic-face-reconstruction
+stages:
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A controlled neural-decoding dataset containing 62,856 paired fMRI and
+  full-HD digital-human face-video samples from three consenting participants.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.22302
+  requires_account: false
+  notes: The paper fully describes acquisition and splits but does not link public files, a repository, a data-use agreement, or an application process.
+scale:
+  samples: 62856
+  source_items: 2174
+  hours: null
+  approximate: false
+  notes: Three subjects viewed 2,174 unique 8-second, 240-frame, 30 FPS, 1920x1080 digital-human clips. Sliding 1.6-second fMRI windows yield 18,108 training and 2,844 test pairs per subject, totaling 62,856.
+annotations:
+  types:
+    - fmri-response
+    - digital-human-video
+    - identity-parameter
+    - expression-parameter
+    - head-pose
+    - train-test-split
+  source: mixed
+  languages:
+    - n-a
+license:
+  metadata: Not disclosed
+  media: Digital-human assets and sensitive fMRI responses; reuse terms are not published
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Ethics approval and written informed consent are reported, but no public data license, participant-level consent scope, or redistribution protocol is available.
+quality:
+  dimensions:
+    - visual-quality
+    - temporal-consistency
+    - geometry-quality
+    - human-preference
+    - provenance
+  known_limitations:
+    - Only three participants aged 22 to 24 were scanned, limiting demographic and cross-subject generalization.
+    - Controlled background-free digital-human stimuli differ from natural facial behavior and social context.
+    - Brain data is sensitive personal data and should not be redistributed or re-identified without an explicit approved governance process.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Keep participant identifiers pseudonymized and separated, preserve ethics and consent scope, MRI acquisition and preprocessing provenance, stimulus hashes, 3D parameters, temporal alignment, and subject-safe train/test splits.
+evidence:
+  homepage: https://arxiv.org/html/2607.22302
+  paper: https://arxiv.org/abs/2607.22302
+  used_by:
+    - fMRI2Face
+status: partial
+last_verified: "2026-07-27"

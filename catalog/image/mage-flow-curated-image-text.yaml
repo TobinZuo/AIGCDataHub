@@ -1,0 +1,72 @@
+id: mage-flow-curated-image-text
+name: Mage-Flow Curated Image-Text Corpus
+organization: Microsoft Mage Team
+released_at: "2026-07-21"
+release_date_source: https://arxiv.org/abs/2607.19064
+modality: image
+tasks:
+  - text-to-image
+  - image-text-pretraining
+  - text-rendering
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  The unreleased 1.3-billion-pair corpus curated for Mage-Flow from roughly ten
+  billion raw image-text pairs through filtering, semantic deduplication,
+  Qwen3-VL recaptioning, concept-aware synthesis, and balancing.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.19064
+  requires_account: false
+  notes: Microsoft publishes the training recipe and aggregate counts, but not the source list, manifests, metadata, media, or a dataset application path.
+scale:
+  samples: 1300000000
+  source_items: 10000000000
+  hours: null
+  approximate: true
+  notes: About 1.3B pairs remain from a roughly 10B raw pool. Progressive subsets contain 1.2B 256px, 600M 512px, and 300M 1024px pairs, followed by a 150M-pair strict 1024px SFT subset; these are stage subsets, not additive totals.
+annotations:
+  types:
+    - multi-granularity-caption
+    - concept-label
+    - resolution
+    - aspect-ratio
+    - quality-filter-score
+    - synthetic-long-tail-sample
+  source: model-generated
+  languages:
+    - en
+    - zh
+license:
+  metadata: Not disclosed
+  media: Unnamed open-source datasets plus undisclosed synthetic supplements
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The MIT code and model license does not establish permission for the training corpus; component dataset identities, licenses, and synthetic-source terms are unpublished.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - aesthetics
+    - watermark
+    - safety
+    - deduplication
+    - provenance
+  known_limitations:
+    - Source dataset names, versions, collection dates, licenses, and mixture shares are not disclosed.
+    - Per-filter retention, SSCD thresholds, caption failure rates, and synthetic long-tail proportions are not reported.
+    - Qwen3-VL recaptioning and concept-aware synthesis can introduce model-dependent artifacts or semantic drift.
+processing:
+  recipe: recipes/image_text
+  recommended_format: webdataset
+  notes: Preserve original metadata beside generated captions, SSCD clusters, every filter decision, concept labels, synthetic provenance, stage membership, native dimensions, and license fields.
+evidence:
+  homepage: https://github.com/microsoft/Mage/tree/main/mage_flow
+  paper: https://arxiv.org/abs/2607.19064
+  used_by:
+    - Mage-Flow
+status: partial
+last_verified: "2026-07-27"

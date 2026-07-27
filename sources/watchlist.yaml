@@ -688,6 +688,30 @@ tracks:
       - url: https://arxiv.org/abs/2603.03882
         catalog_id: realworld-lipsync
         priority: critical
+      - url: https://arxiv.org/html/2607.21553
+        catalog_id: sana-video-2-progressive-training-pools
+        priority: critical
+      - url: https://export.arxiv.org/api/query?id_list=2607.21553
+        catalog_id: sana-video-2-preference-pairs
+        priority: critical
+      - url: https://arxiv.org/html/2607.19064
+        catalog_id: mage-flow-curated-image-text
+        priority: critical
+      - url: https://export.arxiv.org/api/query?id_list=2607.19064
+        catalog_id: mage-flow-edit-triples
+        priority: critical
+      - url: https://raw.githubusercontent.com/microsoft/Mage/main/mage_flow/README.md
+        catalog_id: mage-flow-rl-prompt-pools
+        priority: critical
+      - url: https://arxiv.org/html/2607.22101
+        catalog_id: innotext-30k
+        priority: critical
+      - url: https://arxiv.org/html/2607.22241
+        catalog_id: agenthoi-mixed-source-corpus
+        priority: critical
+      - url: https://arxiv.org/html/2607.22302
+        catalog_id: fmri-face
+        priority: critical
 
   - id: important-model-updates
     topics:
@@ -717,8 +741,17 @@ tracks:
       - url: https://bfl.ai/blog/flux-3
         model_id: flux-3
         priority: critical
-      - url: https://arxiv.org/abs/2607.19064
+      - url: https://github.com/microsoft/Mage/commits/main.atom
         model_id: mage-flow
+        priority: critical
+      - url: https://arxiv.org/abs/2607.22101
+        model_id: innotext
+        priority: critical
+      - url: https://github.com/bone-11/agenthoi/commits/main.atom
+        model_id: agenthoi
+        priority: critical
+      - url: https://arxiv.org/abs/2607.22302
+        model_id: fmri2face
         priority: critical
       - url: https://docs.bfl.ai/flux_tools/flux_vto
         model_id: flux-vto

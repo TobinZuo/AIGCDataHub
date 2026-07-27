@@ -188,6 +188,17 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"davis-2017"/);
   assert.match(catalog, /"sana-video-2-0"/);
   assert.match(catalog, /"mage-flow"/);
+  assert.match(catalog, /"sana-video-2-progressive-training-pools"/);
+  assert.match(catalog, /"sana-video-2-preference-pairs"/);
+  assert.match(catalog, /"mage-flow-curated-image-text"/);
+  assert.match(catalog, /"mage-flow-edit-triples"/);
+  assert.match(catalog, /"mage-flow-rl-prompt-pools"/);
+  assert.match(catalog, /"innotext-30k"/);
+  assert.match(catalog, /"agenthoi-mixed-source-corpus"/);
+  assert.match(catalog, /"fmri-face"/);
+  assert.match(catalog, /"innotext"/);
+  assert.match(catalog, /"agenthoi"/);
+  assert.match(catalog, /"fmri2face"/);
   assert.match(catalog, /"koala-36m"/);
   assert.match(catalog, /"mvhumannet-plus-plus"/);
   assert.match(catalog, /"commoncatalog"/);
@@ -256,7 +267,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
         .filter((dataset) => dataset.released_at === newestDatasetDate)
         .map((dataset) => dataset.id),
     ),
-    new Set(["elasticttt-video-editing", "graphvid-bench", "worldweaver-minecraft-126h"]),
+    new Set(["innotext-30k", "agenthoi-mixed-source-corpus", "fmri-face"]),
   );
   const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
   assert.ok(parsedCatalog.models.every((model) => model.monitoring));
@@ -297,6 +308,18 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.deepEqual(models["commoncanvas-xl-c"].linked_dataset_ids, ["commoncatalog"]);
   assert.deepEqual(models["gpic-baselines"].linked_dataset_ids, ["gpic"]);
   assert.deepEqual(models["openve-edit"].linked_dataset_ids, ["openve-3m", "openve-bench"]);
+  assert.deepEqual(
+    models["sana-video-2-0"].linked_dataset_ids,
+    ["sana-video-2-progressive-training-pools", "sana-video-2-preference-pairs"],
+  );
+  assert.deepEqual(
+    models["mage-flow"].linked_dataset_ids,
+    ["mage-flow-curated-image-text", "mage-flow-edit-triples", "mage-flow-rl-prompt-pools"],
+  );
+  assert.equal(models["mage-flow"].access.status, "open-weights");
+  assert.deepEqual(models.innotext.linked_dataset_ids, ["innotext-30k"]);
+  assert.deepEqual(models.agenthoi.linked_dataset_ids, ["agenthoi-mixed-source-corpus"]);
+  assert.deepEqual(models.fmri2face.linked_dataset_ids, ["fmri-face"]);
   assert.deepEqual(models["hunyuanvideo-avatar"].linked_dataset_ids, ["hdtf", "celebv-hq"]);
   assert.deepEqual(models["musetalk-1-5"].linked_dataset_ids, ["hdtf"]);
   assert.deepEqual(

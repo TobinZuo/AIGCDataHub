@@ -56,6 +56,8 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /CommonCanvas-XL-C/);
   assert.match(html, /OpenVE-Edit/);
   assert.match(html, /SANA-Video 2\.0/);
+  assert.match(html, /SANA-Video 2\.0 Progressive Training Pools/);
+  assert.match(html, /SANA-Video 2\.0 Preference Pairs/);
   assert.match(html, /GraphVid-Bench/);
   assert.match(html, /ElasticTTT/);
   assert.match(html, /ElasticTTT Video Editing Dataset/);
@@ -66,6 +68,15 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /Solaris Eval Datasets/);
   assert.match(html, /VPT Contractor Demonstrations/);
   assert.match(html, /Mage-Flow/);
+  assert.match(html, /Mage-Flow Curated Image-Text Corpus/);
+  assert.match(html, /Mage-Flow-Edit Training Triples/);
+  assert.match(html, /Mage-Flow Capability-Routed RL Prompt Pools/);
+  assert.match(html, /InnoText-30K/);
+  assert.match(html, /AgentHOI Mixed-Source Training Corpus/);
+  assert.match(html, /fMRI-Face/);
+  assert.match(html, /InnoText/);
+  assert.match(html, /AgentHOI/);
+  assert.match(html, /fMRI2Face/);
   assert.match(html, /HunyuanVideo-Avatar/);
   assert.match(html, /MuseTalk 1\.5/);
   assert.match(html, /FASHN VTON v1\.5/);

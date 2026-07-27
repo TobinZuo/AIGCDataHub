@@ -9,10 +9,10 @@ tasks:
   - image-editing
   - text-rendering
 access:
-  status: announced
-  license: Paper-only release; no model license or weights are published
-  release_url: https://arxiv.org/abs/2607.19064
-  weights_url: null
+  status: open-weights
+  license: MIT for the official repository and published Hugging Face model cards
+  release_url: https://github.com/microsoft/Mage/tree/main/mage_flow
+  weights_url: https://huggingface.co/microsoft/Mage-Flow
   api_url: null
 architecture:
   family: Native-resolution multimodal diffusion transformer with Mage-VAE
@@ -24,19 +24,19 @@ data:
   exact_mixture_disclosed: false
   datasets:
     - name: Mage-Flow curated image-text corpus
-      catalog_id: null
+      catalog_id: mage-flow-curated-image-text
       role: pretraining
       availability: not-released
       scale: 1.3B retained pairs from roughly 10B raw pairs
       notes: The raw pool comes from unnamed large-scale open-source datasets and is filtered, deduplicated, recaptioned, supplemented, and concept-balanced before progressive training.
     - name: Mage-Flow-Edit training triples
-      catalog_id: null
+      catalog_id: mage-flow-edit-triples
       role: fine-tuning
       availability: not-released
-      scale: roughly 90M raw triples
-      notes: The pool combines about 50M triples from unnamed open-source editing datasets with 40M in-house synthetic triples, then undergoes VLM filtering and edit-type balancing.
+      scale: roughly 45M retained triples from 90M raw triples
+      notes: The raw pool combines about 50M triples from unnamed open-source editing datasets with 40M in-house synthetic triples; three Qwen3.5-9B filtering experts retain about 45M before edit-type balancing.
     - name: Mage-Flow capability-routed RL prompt pools
-      catalog_id: null
+      catalog_id: mage-flow-rl-prompt-pools
       role: preference
       availability: not-released
       scale: approximately 20K generation prompts and 30K editing prompts
@@ -109,10 +109,10 @@ data:
     - Names, versions, licenses, collection dates, and mixture shares of the open-source image-text and editing datasets.
     - Retention rates for individual filters, duplicate thresholds, and the exact composition of stage-wise subsets.
     - Source and licensing of every synthetic target image, supplemental long-tail sample, and RL prompt.
-    - Release timing and terms for code, checkpoints, tokenizer weights, and any training-data artifacts.
+    - Release timing and terms for any training-data artifacts; the code, tokenizer, and six Base, aligned, and Turbo generation/editing checkpoints are now public under MIT.
 evidence:
-  release: https://arxiv.org/abs/2607.19064
+  release: https://github.com/microsoft/Mage/tree/main/mage_flow
   technical_report: https://arxiv.org/abs/2607.19064
-  repository: null
-status: watch
-last_verified: "2026-07-26"
+  repository: https://github.com/microsoft/Mage
+status: verified
+last_verified: "2026-07-27"
