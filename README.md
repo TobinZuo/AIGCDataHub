@@ -8,7 +8,24 @@ benchmarks. It is built for practitioners who need to answer not only “what is
 new?”, but also “what data did the model use, how was it processed, what remains
 undisclosed, and can the strategy be reproduced?”.
 
-**[Open the searchable AIGCDataHub index on GitHub Pages](https://tobinzuo.github.io/AIGCDataHub/)**
+## Start here on GitHub
+
+The repository is the source of truth. These links work entirely inside GitHub
+and do not depend on a separate preview host:
+
+- **[Dataset downloads and access status](DATASET_ACCESS_INDEX.md)** — one row
+  per dataset, including direct download/browse links and access restrictions.
+- **[Model ↔ dataset relationships](MODEL_DATASET_INDEX.md)** — bidirectional
+  training, fine-tuning, preference, evaluation, and inherited-data lineage.
+- **[Latest model cards](models/)** and **[dataset cards](catalog/)** — the
+  structured YAML records behind every generated index.
+- **[Monitoring and update log](updates/)** — reviewed changes from official
+  model, paper, repository, dataset, and ranking sources.
+
+The optional [interactive GitHub Pages view](https://tobinzuo.github.io/AIGCDataHub/)
+is built from the same `master` data. The retired
+`aigc-datahub-index.zuotongbin.chatgpt.site` preview is not an official or
+maintained entry point.
 
 > [!IMPORTANT]
 > A dataset being publicly downloadable does not imply that every underlying

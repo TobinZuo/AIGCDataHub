@@ -107,6 +107,10 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /dataset_relations/);
   assert.ok(html.includes('monitoring\\":{\\"priority\\":\\"critical'));
   assert.match(html, /\/AIGCDataHub\/_next\/static\//);
+  assert.match(
+    html,
+    /<link rel="canonical" href="https:\/\/tobinzuo\.github\.io\/AIGCDataHub\/"\/>/,
+  );
   assert.match(html, /https:\/\/tobinzuo\.github\.io\/AIGCDataHub\/og\.png/);
 
   await access(new URL("out/og.png", siteRoot));

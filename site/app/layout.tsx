@@ -12,6 +12,7 @@ const imageUrl = `${origin}/og.png`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(origin),
+  alternates: { canonical: origin },
   title,
   description,
   keywords: [

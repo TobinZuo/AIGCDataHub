@@ -1,8 +1,19 @@
-# vinext-starter
+# AIGCDataHub site
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+This directory contains the optional interactive view for the
+[AIGCDataHub GitHub repository](https://github.com/TobinZuo/AIGCDataHub). The
+repository indexes remain the source of truth:
+
+- [dataset downloads](../DATASET_ACCESS_INDEX.md)
+- [model ↔ dataset relationships](../MODEL_DATASET_INDEX.md)
+- [model cards](../models/)
+- [dataset cards](../catalog/)
+
+The public static export is deployed only through the repository's
+[`pages.yml`](../.github/workflows/pages.yml) workflow to
+`https://tobinzuo.github.io/AIGCDataHub/`. The retired
+`aigc-datahub-index.zuotongbin.chatgpt.site` preview is not part of the deploy
+pipeline and must not be used as a canonical link.
 
 ## Prerequisites
 
@@ -11,88 +22,28 @@ Drizzle support.
 ## Quick Start
 
 ```bash
-npm install
+npm ci
 npm run dev
-npm run build
 ```
 
-This starter does not use `wrangler.jsonc`.
+## Project shape
 
-## Included Shape
-
-- edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
-
-## Workspace Auth Headers
-
-OpenAI workspace sites can read the current user's email from
-`oai-authenticated-user-email`.
-
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
-
-Treat the full name as optional and fall back to email when it is absent:
-
-```tsx
-import { headers } from "next/headers";
-
-export default async function Home() {
-  const requestHeaders = await headers();
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
-```
-
-## Optional Dispatch-Owned ChatGPT Sign-In
-
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
-
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
-
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
-
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
-
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
+- `app/catalog-data.json` is generated from the repository cards by
+  `python scripts/build_site_data.py` at the repository root.
+- `app/catalog-explorer.tsx` renders the model, dataset, source, ranking, and
+  lineage views.
+- `next.config.ts` enables a static export with the `/AIGCDataHub` base path
+  when `GITHUB_PAGES=true`.
+- `tests/pages-export.test.mjs` verifies the exported GitHub Pages artifact.
 
 ## Useful Commands
 
 - `npm run dev`: start local development
-- `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
-- `npm run db:generate`: generate Drizzle migrations after schema changes
+- `npm run build`: build the vinext server-rendered variant
+- `npm test`: build and run rendered-output tests
+- `npm run lint`: lint the site
+- `GITHUB_PAGES=true npm run pages:build`: create the static export in `out/`
+- `npm run pages:test`: build and verify the static export
 
-## Learn More
-
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+From the repository root, `make check` validates all generated indexes and
+catalog invariants before the site is deployed.
