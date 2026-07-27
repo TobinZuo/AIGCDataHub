@@ -78,6 +78,8 @@ class CatalogTests(unittest.TestCase):
                 "cinedub-example",
                 "unisync-5k",
                 "realworld-lipsync",
+                "davis-2017",
+                "elasticttt-video-editing",
             }.issubset(cards)
         )
         self.assertIn("video-dubbing", cards["audiovisual-translation-dub"]["tasks"])
@@ -104,6 +106,16 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(cards["senorita-2m"]["access"]["status"], "open")
         self.assertEqual(cards["spatialvid"]["scale"]["hours"], 7089)
         self.assertEqual(cards["spatialvid"]["access"]["status"], "gated")
+        self.assertEqual(cards["davis-2017"]["scale"]["samples"], 10459)
+        self.assertEqual(cards["davis-2017"]["scale"]["source_items"], 150)
+        self.assertEqual(cards["davis-2017"]["access"]["status"], "open")
+        self.assertEqual(cards["elasticttt-video-editing"]["scale"]["samples"], 125)
+        self.assertEqual(cards["elasticttt-video-editing"]["scale"]["source_items"], 25)
+        self.assertEqual(cards["elasticttt-video-editing"]["access"]["status"], "open")
+        self.assertEqual(
+            cards["elasticttt-video-editing"]["derived_from"][0]["catalog_id"],
+            "davis-2017",
+        )
         self.assertEqual(cards["voxceleb2"]["access"]["status"], "unavailable")
         self.assertEqual(cards["lrs3"]["access"]["status"], "unavailable")
         self.assertEqual(cards["celebv-text"]["access"]["type"], "urls")
@@ -237,7 +249,9 @@ class CatalogTests(unittest.TestCase):
         datasets = build_payload()["datasets"]
         dates = [card["released_at"] for card in datasets]
         self.assertEqual(dates, sorted(dates, reverse=True))
-        self.assertEqual(datasets[0]["id"], "graphvid-bench")
+        newest_date = dates[0]
+        newest_ids = {card["id"] for card in datasets if card["released_at"] == newest_date}
+        self.assertTrue({"elasticttt-video-editing", "graphvid-bench"}.issubset(newest_ids))
 
     def test_site_catalog_orders_models_by_release_date(self) -> None:
         models = build_payload()["models"]

@@ -1,0 +1,77 @@
+id: elasticttt-video-editing
+name: ElasticTTT Video Editing Dataset
+organization: Tsinghua University and Beijing Academy of Artificial Intelligence
+released_at: "2026-07-23"
+release_date_source: https://arxiv.org/abs/2607.21529
+modality: evaluation
+tasks:
+  - video-editing
+  - video-to-video
+  - one-shot-video-editing
+  - instruction-guided-video-editing
+stages:
+  - evaluation
+  - data-curation
+description: >-
+  The public evaluation package for ElasticTTT: 25 DAVIS-selected source videos
+  paired with five target edit instructions per video, producing 125
+  text-video evaluation pairs across subject, background, addition, color, and
+  general editing.
+derived_from:
+  - catalog_id: davis-2017
+    relationship: filtered-subset
+    contribution: 25 source videos selected under the DAVIS evaluation protocol
+    notes: The ElasticTTT paper states that its test set follows the DAVIS selection protocol; the public repository contains 25 source videos and their prompt table.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/liuyueyi-8/ElasticTTT-video-editing-dataset
+  requires_account: false
+  notes: The Hugging Face repository publicly exposes 25 MP4 source videos and datasets.csv; no ground-truth edited target videos are included.
+scale:
+  samples: 125
+  source_items: 25
+  hours: null
+  approximate: false
+  notes: Five target edit instructions for each of 25 source videos yield 125 evaluation pairs; original_prompt and masked_prompt are supporting fields rather than additional target tasks.
+annotations:
+  types:
+    - source-video
+    - original-prompt
+    - masked-prompt
+    - background-editing-instruction
+    - subject-editing-instruction
+    - color-editing-instruction
+    - subject-addition-instruction
+    - general-editing-instruction
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: No license tag or dataset-card terms published
+  media: DAVIS-derived source videos; applicable upstream rights remain binding
+  commercial_use: unknown
+  redistribution: review-required
+  notes: The files are publicly downloadable, but the empty repository card and absent license tag do not grant commercial or redistribution rights.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - The release contains source videos and prompts, not reference edited videos or human preference labels.
+    - Twenty-five source videos cannot cover the full distribution of subjects, scenes, motion, editing instructions, or long-form video.
+    - The repository does not publish a dataset card, license, per-sample provenance statement, or construction code.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Join each MP4 to datasets.csv by the name field and treat the five target edit columns as separate evaluation prompts while preserving original_prompt and masked_prompt as context.
+evidence:
+  homepage: https://huggingface.co/datasets/liuyueyi-8/ElasticTTT-video-editing-dataset
+  paper: https://arxiv.org/abs/2607.21529
+  used_by:
+    - ElasticTTT
+status: partial
+last_verified: "2026-07-27"

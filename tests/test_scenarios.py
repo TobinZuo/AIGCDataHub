@@ -71,6 +71,8 @@ class ScenarioTaxonomyTests(unittest.TestCase):
         )
         self.assertIn("video-generation", models["consid-gen"]["scenario_ids"])
         self.assertIn("video-generation", datasets["considvid"]["scenario_ids"])
+        self.assertIn("video-generation", models["elasticttt"]["scenario_ids"])
+        self.assertIn("video-generation", datasets["elasticttt-video-editing"]["scenario_ids"])
 
     def test_generated_assignments_come_from_task_matches(self) -> None:
         scenarios = load_scenarios()
@@ -81,7 +83,7 @@ class ScenarioTaxonomyTests(unittest.TestCase):
 
     def test_strategy_profiles_are_derived_from_model_cards(self) -> None:
         payload = build_payload()
-        self.assertEqual(payload["format_version"], 14)
+        self.assertEqual(payload["format_version"], 15)
         models = {item["id"]: item for item in payload["models"]}
 
         for model in models.values():

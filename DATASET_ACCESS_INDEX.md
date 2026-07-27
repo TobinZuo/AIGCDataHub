@@ -2,7 +2,7 @@
 
 Generated from `catalog/**/*.yaml`, newest release first. Every row links to the publisher's current distribution, metadata/downloader, request form, or primary-source availability notice. A link here does not override the media rights recorded in the dataset card.
 
-- Datasets: 99 (gated 20, metadata only 19, open 47, unavailable 13)
+- Datasets: 101 (gated 20, metadata only 19, open 49, unavailable 13)
 - `hosted`: downloadable or browsable files are distributed at the link
 - `urls`: the publisher distributes source URLs or a downloader, not a durable media archive
 - `metadata`: metadata or tooling only
@@ -12,6 +12,7 @@ Generated from `catalog/**/*.yaml`, newest release first. Every row links to the
 | Dataset card | Released | Access status | Delivery | Get data / access evidence | Account | Access notes |
 |---|---:|---|---|---|:---:|---|
 | [GraphVid-Bench](catalog/video/graphvid-bench.yaml) | 2026-07-23 | unavailable | none | [Availability notice](https://arxiv.org/abs/2607.21580) | no | The paper describes the corpus and benchmark, but no official dataset files, annotations, or download procedure were available on 2026-07-26. |
+| [ElasticTTT Video Editing Dataset](catalog/evaluation/elasticttt-video-editing.yaml) | 2026-07-23 | open | hosted | [Download / browse files](https://huggingface.co/datasets/liuyueyi-8/ElasticTTT-video-editing-dataset) | no | The Hugging Face repository publicly exposes 25 MP4 source videos and datasets.csv; no ground-truth edited target videos are included. |
 | [OpenHumanVid-Talking](catalog/video/openhumanvid-talking.yaml) | 2026-07-15 | open | hosted | [Download / browse files](https://huggingface.co/datasets/Haosonnn/OpenHumanVid-Talking) | no | The public repository contains 17 Parquet shards, approximately 34 GB of embedded video data, and a companion NPZ annotation file. |
 | [VITON-HD-edit](catalog/image/viton-hd-edit.yaml) | 2026-07-10 | open | hosted | [Download / browse files](https://huggingface.co/datasets/NXN-Labs/VITON-HD-edit) | no | The Hugging Face repository is directly downloadable and reports 6,096 image rows totaling about 377 MB. |
 | [GenSyn10](catalog/evaluation/gensyn10.yaml) | 2026-07-10 | unavailable | none | [Availability notice](https://arxiv.org/abs/2607.16283) | no | The paper describes the full construction recipe, but no official dataset files or repository are currently linked. |
@@ -103,6 +104,7 @@ Generated from `catalog/**/*.yaml`, newest release first. Every row links to the
 | [VoxCeleb2](catalog/video/voxceleb2.yaml) | 2018-06-14 | unavailable | none | [Availability notice](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/vox2.html) | no | The official site now states that URL/timestamp lists, audio, video, and identifying metadata are no longer available from the website. |
 | [Conceptual Captions 3M](catalog/image/conceptual-captions-3m.yaml) | 2018-05-18 | metadata only | urls | [Source URLs / downloader](https://ai.google.com/research/ConceptualCaptions/) | no | Google publishes caption and source-URL metadata; image retrieval depends on current source availability and source-site permissions. |
 | [FMA](catalog/audio/fma.yaml) | 2017-05-09 | open | hosted | [Download / browse files](https://github.com/mdeff/fma) | no | The official repository links full, large, medium, and small audio archives plus metadata and features. |
+| [DAVIS 2017](catalog/video/davis-2017.yaml) | 2017-04-03 | open | hosted | [Download / browse files](https://davischallenge.org/davis2017/code.html) | no | The official DAVIS page provides direct 480p and full-resolution archives for videos and annotations without stating an account requirement. |
 | [AudioSet](catalog/audio/audioset.yaml) | 2017-03-30 | metadata only | urls | [Source URLs / downloader](https://research.google.com/audioset/download.html) | no | Google hosts segment CSV files and VGGish features; it does not distribute the source YouTube audio. |
 | [SoundNet Flickr video dataset](catalog/audio/soundnet.yaml) | 2016-10-28 | open | hosted | [Download / browse files](https://projects.csail.mit.edu/soundnet/) | no | The official project page links the MP3, image-feature, frame, URL-list, and split downloads; the large archives should be fetched selectively and checksummed. |
 | [Open Images V7](catalog/image/open-images-v7.yaml) | 2016-09-30 | open | hosted | [Download / browse files](https://storage.googleapis.com/openimages/web/download_v7.html) | no | Official download scripts, annotation files, and hosted image subsets are public; some full-transfer workflows require a Google Cloud account. |

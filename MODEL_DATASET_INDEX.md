@@ -1,10 +1,10 @@
 # Model ↔ Dataset reference index
 
-Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; unreleased or undisclosed data must state why no card exists.
+Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; runtime inputs, unreleased data, and undisclosed data must state why no card exists.
 
-- Models: 85
-- References linked to catalog cards: 115
-- References without a card, with an explicit evidence boundary: 94
+- Models: 86
+- References linked to catalog cards: 116
+- References without a card, with an explicit evidence boundary: 96
 - Ordering: model release date, newest first
 
 | Model | Released | Dataset or corpus named by source | Availability | Catalog resolution | Role | Evidence boundary |
@@ -17,6 +17,9 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [FLUX 3](models/multimodal/flux-3.yaml) | 2026-07-23 | General video training corpus | undisclosed | — exact source is not disclosed | pretraining | Exact sources, filtering, and rights composition are not named. |
 | [FLUX 3](models/multimodal/flux-3.yaml) | 2026-07-23 | Human and robot manipulation video corpus | undisclosed | — exact source is not disclosed | fine-tuning | Focused on human and robot manipulation tasks for visual intelligence. |
 | [FLUX 3](models/multimodal/flux-3.yaml) | 2026-07-23 | Robot action demonstrations | undisclosed | — exact source is not disclosed | fine-tuning | Used to add action prediction and adapt the FLUX-mimic action decoder. |
+| [ElasticTTT](models/video/elasticttt.yaml) | 2026-07-23 | Wan base-model training mixture | undisclosed | — exact source is not disclosed | pretraining | ElasticTTT inherits the visual prior and data lineage of its Wan backbone, but the paper does not enumerate the underlying source corpus or mixture. |
+| [ElasticTTT](models/video/elasticttt.yaml) | 2026-07-23 | User-provided source video | runtime-input | — per-run input, not a fixed published dataset | fine-tuning | Test-time tuning adapts a LoRA to each individual input video; this is per-run user input rather than a fixed publisher training dataset. |
+| [ElasticTTT](models/video/elasticttt.yaml) | 2026-07-23 | ElasticTTT Video Editing Dataset | public | [`elasticttt-video-editing`](catalog/evaluation/elasticttt-video-editing.yaml) | evaluation | The public DAVIS-selected evaluation package contains 25 source videos and five target edit instructions per video. |
 | [Mage-Flow](models/image/mage-flow.yaml) | 2026-07-21 | Mage-Flow curated image-text corpus | not-released | — publisher has not released it | pretraining | The raw pool comes from unnamed large-scale open-source datasets and is filtered, deduplicated, recaptioned, supplemented, and concept-balanced before progressive training. |
 | [Mage-Flow](models/image/mage-flow.yaml) | 2026-07-21 | Mage-Flow-Edit training triples | not-released | — publisher has not released it | fine-tuning | The pool combines about 50M triples from unnamed open-source editing datasets with 40M in-house synthetic triples, then undergoes VLM filtering and edit-type balancing. |
 | [Mage-Flow](models/image/mage-flow.yaml) | 2026-07-21 | Mage-Flow capability-routed RL prompt pools | not-released | — publisher has not released it | preference | Generation prompts cover text rendering, aesthetics, and semantic understanding; editing prompts are sampled across edit tasks and mixed with the generation stream. |

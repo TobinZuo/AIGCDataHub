@@ -1,5 +1,5 @@
 {
-  "format_version": 14,
+  "format_version": 15,
   "generated_from": [
     "catalog/**/*.yaml",
     "models/**/*.yaml",
@@ -769,6 +769,114 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "graphvid"
+      ]
+    },
+    {
+      "id": "elasticttt-video-editing",
+      "name": "ElasticTTT Video Editing Dataset",
+      "organization": "Tsinghua University and Beijing Academy of Artificial Intelligence",
+      "released_at": "2026-07-23",
+      "release_date_source": "https://arxiv.org/abs/2607.21529",
+      "modality": "evaluation",
+      "tasks": [
+        "video-editing",
+        "video-to-video",
+        "one-shot-video-editing",
+        "instruction-guided-video-editing"
+      ],
+      "stages": [
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "The public evaluation package for ElasticTTT: 25 DAVIS-selected source videos paired with five target edit instructions per video, producing 125 text-video evaluation pairs across subject, background, addition, color, and general editing.",
+      "derived_from": [
+        {
+          "catalog_id": "davis-2017",
+          "relationship": "filtered-subset",
+          "contribution": "25 source videos selected under the DAVIS evaluation protocol",
+          "notes": "The ElasticTTT paper states that its test set follows the DAVIS selection protocol; the public repository contains 25 source videos and their prompt table."
+        }
+      ],
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/liuyueyi-8/ElasticTTT-video-editing-dataset",
+        "requires_account": false,
+        "notes": "The Hugging Face repository publicly exposes 25 MP4 source videos and datasets.csv; no ground-truth edited target videos are included."
+      },
+      "scale": {
+        "samples": 125,
+        "source_items": 25,
+        "hours": null,
+        "approximate": false,
+        "notes": "Five target edit instructions for each of 25 source videos yield 125 evaluation pairs; original_prompt and masked_prompt are supporting fields rather than additional target tasks."
+      },
+      "annotations": {
+        "types": [
+          "source-video",
+          "original-prompt",
+          "masked-prompt",
+          "background-editing-instruction",
+          "subject-editing-instruction",
+          "color-editing-instruction",
+          "subject-addition-instruction",
+          "general-editing-instruction"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "No license tag or dataset-card terms published",
+        "media": "DAVIS-derived source videos; applicable upstream rights remain binding",
+        "commercial_use": "unknown",
+        "redistribution": "review-required",
+        "notes": "The files are publicly downloadable, but the empty repository card and absent license tag do not grant commercial or redistribution rights."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The release contains source videos and prompts, not reference edited videos or human preference labels.",
+          "Twenty-five source videos cannot cover the full distribution of subjects, scenes, motion, editing instructions, or long-form video.",
+          "The repository does not publish a dataset card, license, per-sample provenance statement, or construction code."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Join each MP4 to datasets.csv by the name field and treat the five target edit columns as separate evaluation prompts while preserving original_prompt and masked_prompt as context."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/liuyueyi-8/ElasticTTT-video-editing-dataset",
+        "paper": "https://arxiv.org/abs/2607.21529",
+        "used_by": [
+          "ElasticTTT"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/evaluation/elasticttt-video-editing.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "125",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/liuyueyi-8/ElasticTTT-video-editing-dataset?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [
+        "davis-2017"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "elasticttt"
       ]
     },
     {
@@ -9684,6 +9792,95 @@
       ]
     },
     {
+      "id": "davis-2017",
+      "name": "DAVIS 2017",
+      "organization": "ETH Zurich, University of Freiburg, and Disney Research Zurich",
+      "released_at": "2017-04-03",
+      "release_date_source": "https://arxiv.org/abs/1704.00675",
+      "modality": "video",
+      "tasks": [
+        "video-object-segmentation",
+        "multi-object-segmentation",
+        "video-editing-source"
+      ],
+      "stages": [
+        "data-curation",
+        "evaluation"
+      ],
+      "description": "A densely annotated video object segmentation benchmark with 150 sequences, 10,459 annotated frames, and 376 objects across train, validation, test-dev, and test-challenge splits.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://davischallenge.org/davis2017/code.html",
+        "requires_account": false,
+        "notes": "The official DAVIS page provides direct 480p and full-resolution archives for videos and annotations without stating an account requirement."
+      },
+      "scale": {
+        "samples": 10459,
+        "source_items": 150,
+        "hours": null,
+        "approximate": false,
+        "notes": "The official paper reports 10,459 annotated frames, 150 sequences, and 376 objects; the four sequence splits contain 60, 30, 30, and 30 videos."
+      },
+      "annotations": {
+        "types": [
+          "per-frame-object-mask",
+          "multi-object-instance-id",
+          "sequence-split"
+        ],
+        "source": "human",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "No explicit reuse license found on the official download page",
+        "media": "No explicit media reuse license found on the official download page",
+        "commercial_use": "unknown",
+        "redistribution": "review-required",
+        "notes": "Public download availability is not itself permission for commercial use or redistribution; users should obtain applicable rights before reuse."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The benchmark is small compared with modern web-scale video corpora and focuses on short object-centric segmentation sequences.",
+          "DAVIS 2017 re-annotates DAVIS 2016 sequences in its train and validation splits, so the editions are not independent corpora.",
+          "The official download page does not state a dataset-wide commercial-use or redistribution license."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Preserve the official split definitions and object identifiers; use the 480p release for benchmark-compatible evaluation unless a method explicitly evaluates full resolution."
+      },
+      "evidence": {
+        "homepage": "https://davischallenge.org/davis2017/code.html",
+        "paper": "https://arxiv.org/abs/1704.00675",
+        "used_by": [
+          "ElasticTTT"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/davis-2017.yaml",
+      "scenario_ids": [],
+      "scale_label": "10.5K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://davischallenge.org/davis2017/code.html"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "elasticttt-video-editing"
+      ],
+      "linked_model_ids": []
+    },
+    {
       "id": "audioset",
       "name": "AudioSet",
       "organization": "Google Research",
@@ -10941,6 +11138,155 @@
       },
       "ranking_positions": [],
       "linked_dataset_ids": []
+    },
+    {
+      "id": "elasticttt",
+      "name": "ElasticTTT",
+      "organization": "Tsinghua University and Beijing Academy of Artificial Intelligence",
+      "released_at": "2026-07-23",
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "video-editing",
+        "video-to-video",
+        "one-shot-video-editing",
+        "instruction-guided-video-editing"
+      ],
+      "access": {
+        "status": "research-preview",
+        "license": "MIT applies to the preview repository; final implementation and standalone model weights are not yet published",
+        "release_url": "https://liuyueyi-del.github.io/ElasticTTTprojectpage/",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Per-video test-time LoRA adaptation of a Wan diffusion transformer",
+        "parameters": null,
+        "notes": "The paper reports Wan2.1-1.3B experiments, while the public preview repository targets Wan2.2-TI2V-5B; no standalone ElasticTTT checkpoint is released."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Wan base-model training mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "ElasticTTT inherits the visual prior and data lineage of its Wan backbone, but the paper does not enumerate the underlying source corpus or mixture."
+          },
+          {
+            "name": "User-provided source video",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "runtime-input",
+            "scale": "one video per editing run",
+            "notes": "Test-time tuning adapts a LoRA to each individual input video; this is per-run user input rather than a fixed publisher training dataset."
+          },
+          {
+            "name": "ElasticTTT Video Editing Dataset",
+            "catalog_id": "elasticttt-video-editing",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "25 source videos and 125 text-video pairs",
+            "notes": "The public DAVIS-selected evaluation package contains 25 source videos and five target edit instructions per video."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-foundation-model"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Reuse a pretrained Wan video diffusion model without restating its complete training corpus, mixture, filtering, or rights composition."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "user-provided"
+            ],
+            "operations": [
+              "per-video-lora",
+              "source-video-reconstruction",
+              "target-distribution-regularization",
+              "semantic-mask-generation",
+              "contrastive-classifier-free-guidance",
+              "asynchronous-noise-scheduling"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Optimize a LoRA for 100 steps on one source video, regularize the reconstruction target with zero-mean noise, and separate edit and preserve regions during inference with semantic masks and asynchronous noise schedules."
+          }
+        ],
+        "strategy_summary": [
+          "Adapt to each input video at test time instead of collecting a separate large ElasticTTT training corpus.",
+          "Preserve source-video identity through reconstruction while target-distribution regularization reduces overfitting to a single deterministic target.",
+          "Use the source prompt as a negative constraint in contrastive classifier-free guidance and assign different noise trajectories to edit and preserve regions."
+        ],
+        "unknowns": [
+          "Complete training-data lineage, mixture, rights composition, and filtering of the inherited Wan backbone.",
+          "Whether the final code will reproduce the paper's Wan2.1-1.3B configuration or standardize on the Wan2.2-TI2V-5B preview path.",
+          "Final checkpoint availability, full implementation parity, and production licensing beyond the MIT preview repository.",
+          "How well per-video test-time tuning scales to long videos, multi-shot inputs, or masks with segmentation errors."
+        ]
+      },
+      "evidence": {
+        "release": "https://liuyueyi-del.github.io/ElasticTTTprojectpage/",
+        "technical_report": "https://arxiv.org/abs/2607.21529",
+        "repository": "https://github.com/liuyueyi-del/ElasticTTT-for-video-editing"
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/elasticttt.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed",
+          "user-provided"
+        ],
+        "operations": [
+          "inherited-foundation-model",
+          "per-video-lora",
+          "source-video-reconstruction",
+          "target-distribution-regularization",
+          "semantic-mask-generation",
+          "contrastive-classifier-free-guidance",
+          "asynchronous-noise-scheduling"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/liuyueyi-del/ElasticTTT-for-video-editing/commits/main.atom"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "elasticttt-video-editing"
+      ]
     },
     {
       "id": "mage-flow",
@@ -12731,7 +13077,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 7,
-          "score": 1246,
+          "score": 1245,
           "score_label": "Elo",
           "entry_model": "HiDream-O1-Image-1.5",
           "component_count": 1
@@ -14649,7 +14995,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 15,
-          "score": 1203,
+          "score": 1202,
           "score_label": "Elo",
           "entry_model": "HiDream-O1-Image",
           "component_count": 1
@@ -16776,7 +17122,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1261,
+          "score": 1260,
           "score_label": "Elo",
           "entry_model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
           "component_count": 1
@@ -23634,6 +23980,14 @@
       "reference_name": "LibriTTS"
     },
     {
+      "model_id": "elasticttt",
+      "dataset_id": "elasticttt-video-editing",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "25 source videos and 125 text-video pairs",
+      "reference_name": "ElasticTTT Video Editing Dataset"
+    },
+    {
       "model_id": "emu3-5",
       "dataset_id": "avgen-bench",
       "role": "evaluation",
@@ -24521,6 +24875,13 @@
       "relationship": "source-component",
       "contribution": "Real-world object-centric multi-view video source",
       "notes": "The paper explicitly names CO3D among the public candidate sources filtered and recaptioned for ConsIDVid."
+    },
+    {
+      "source_dataset_id": "davis-2017",
+      "derived_dataset_id": "elasticttt-video-editing",
+      "relationship": "filtered-subset",
+      "contribution": "25 source videos selected under the DAVIS evaluation protocol",
+      "notes": "The ElasticTTT paper states that its test set follows the DAVIS selection protocol; the public repository contains 25 source videos and their prompt table."
     },
     {
       "source_dataset_id": "koala-36m",
@@ -26542,7 +26903,7 @@
           "model": "GPT Image 2 (high)",
           "score": 1258,
           "confidence_interval": "-7/7",
-          "samples": 16349,
+          "samples": 16352,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -26564,7 +26925,7 @@
           "model": "GPT Image 1.5 (high)",
           "score": 1254,
           "confidence_interval": "-8/8",
-          "samples": 9777,
+          "samples": 9778,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -26586,7 +26947,7 @@
           "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
           "score": 1247,
           "confidence_interval": "-8/8",
-          "samples": 10784,
+          "samples": 10785,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -26608,7 +26969,7 @@
           "model": "MAI-Image-2.5",
           "score": 1243,
           "confidence_interval": "-9/9",
-          "samples": 6538,
+          "samples": 6541,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -26652,7 +27013,7 @@
           "model": "Seedream 5.0 Pro",
           "score": 1239,
           "confidence_interval": "-11/11",
-          "samples": 2756,
+          "samples": 2757,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -26674,7 +27035,7 @@
           "model": "MAI-Image-2.5-Flash",
           "score": 1230,
           "confidence_interval": "-9/9",
-          "samples": 4373,
+          "samples": 4374,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -26696,7 +27057,7 @@
           "model": "grok-imagine-image-quality",
           "score": 1230,
           "confidence_interval": "-8/8",
-          "samples": 8327,
+          "samples": 8328,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -26718,7 +27079,7 @@
           "model": "HunyuanImage 3.0 Instruct (Fal)",
           "score": 1224,
           "confidence_interval": "-8/8",
-          "samples": 8627,
+          "samples": 8629,
           "released": "Jan 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -26740,7 +27101,7 @@
           "model": "Luma UNI 1 Max",
           "score": 1221,
           "confidence_interval": "-9/9",
-          "samples": 5674,
+          "samples": 5675,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -26848,9 +27209,9 @@
           "rank": 15,
           "creator": "HiDream",
           "model": "HiDream-O1-Image",
-          "score": 1203,
+          "score": 1202,
           "confidence_interval": "-9/9",
-          "samples": 5945,
+          "samples": 5947,
           "released": "May 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -26885,7 +27246,7 @@
           "model": "Gemini Omni Flash",
           "score": 1200,
           "confidence_interval": "-11/11",
-          "samples": 3084,
+          "samples": 3085,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -26907,7 +27268,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1199,
           "confidence_interval": "-8/8",
-          "samples": 9089,
+          "samples": 9090,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -26929,7 +27290,7 @@
           "model": "grok-imagine-video-1.5-preview",
           "score": 1118,
           "confidence_interval": "-10/10",
-          "samples": 3868,
+          "samples": 3869,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -26973,7 +27334,7 @@
           "model": "Wan 2.7",
           "score": 1100,
           "confidence_interval": "-10/10",
-          "samples": 3305,
+          "samples": 3307,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -26995,7 +27356,7 @@
           "model": "HappyHorse-1.0",
           "score": 1093,
           "confidence_interval": "-9/9",
-          "samples": 6644,
+          "samples": 6646,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27061,7 +27422,7 @@
           "model": "grok-imagine-video",
           "score": 1082,
           "confidence_interval": "-8/8",
-          "samples": 8501,
+          "samples": 8503,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27105,7 +27466,7 @@
           "model": "Kling 3.0 1080p (Pro)",
           "score": 1075,
           "confidence_interval": "-8/8",
-          "samples": 8093,
+          "samples": 8094,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27149,7 +27510,7 @@
           "model": "Kling 3.0 720p (Standard)",
           "score": 1070,
           "confidence_interval": "-8/8",
-          "samples": 8143,
+          "samples": 8144,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27193,7 +27554,7 @@
           "model": "Kling 3.0 Omni 1080p (Pro)",
           "score": 1063,
           "confidence_interval": "-8/8",
-          "samples": 6293,
+          "samples": 6294,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27250,7 +27611,7 @@
           "model": "Reve 2.1",
           "score": 1301,
           "confidence_interval": "-11/11",
-          "samples": 9349,
+          "samples": 9350,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27272,7 +27633,7 @@
           "model": "MAI-Image-2.5",
           "score": 1269,
           "confidence_interval": "-9/9",
-          "samples": 9339,
+          "samples": 9341,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27294,7 +27655,7 @@
           "model": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
           "score": 1261,
           "confidence_interval": "-10/10",
-          "samples": 9266,
+          "samples": 9268,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27314,9 +27675,9 @@
           "rank": 5,
           "creator": "Google",
           "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-          "score": 1261,
+          "score": 1260,
           "confidence_interval": "-7/7",
-          "samples": 19358,
+          "samples": 19359,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27358,7 +27719,7 @@
           "rank": 7,
           "creator": "HiDream",
           "model": "HiDream-O1-Image-1.5",
-          "score": 1246,
+          "score": 1245,
           "confidence_interval": "-8/8",
           "samples": 12397,
           "released": "Jun 2026",
@@ -27404,7 +27765,7 @@
           "model": "Nano Banana Pro (Gemini 3 Pro Image)",
           "score": 1223,
           "confidence_interval": "-7/7",
-          "samples": 11504,
+          "samples": 11507,
           "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27470,7 +27831,7 @@
           "model": "grok-imagine-image-quality",
           "score": 1203,
           "confidence_interval": "-7/7",
-          "samples": 15470,
+          "samples": 15471,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27514,7 +27875,7 @@
           "model": "Recraft V4.1 Utility Pro",
           "score": 1199,
           "confidence_interval": "-7/7",
-          "samples": 14890,
+          "samples": 14892,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27536,7 +27897,7 @@
           "model": "FLUX.2 [max]",
           "score": 1194,
           "confidence_interval": "-7/7",
-          "samples": 11257,
+          "samples": 11259,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27571,7 +27932,7 @@
           "model": "Gemini Omni Flash",
           "score": 1247,
           "confidence_interval": "-10/10",
-          "samples": 4594,
+          "samples": 4595,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27681,7 +28042,7 @@
           "model": "Kling 3.0 1080p (Pro)",
           "score": 1113,
           "confidence_interval": "-7/7",
-          "samples": 10934,
+          "samples": 10935,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27703,7 +28064,7 @@
           "model": "SkyReels V4",
           "score": 1112,
           "confidence_interval": "-9/9",
-          "samples": 4511,
+          "samples": 4512,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27725,7 +28086,7 @@
           "model": "Wan 2.7",
           "score": 1109,
           "confidence_interval": "-9/9",
-          "samples": 4021,
+          "samples": 4023,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27747,7 +28108,7 @@
           "model": "Kling 3.0 720p (Standard)",
           "score": 1102,
           "confidence_interval": "-7/7",
-          "samples": 10892,
+          "samples": 10893,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27813,7 +28174,7 @@
           "model": "Kling 3.0 Omni 720p (Standard)",
           "score": 1093,
           "confidence_interval": "-8/8",
-          "samples": 7573,
+          "samples": 7574,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27835,7 +28196,7 @@
           "model": "Veo 3.1 Fast",
           "score": 1092,
           "confidence_interval": "-7/7",
-          "samples": 10257,
+          "samples": 10259,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27857,7 +28218,7 @@
           "model": "Veo 3.1 Lite",
           "score": 1092,
           "confidence_interval": "-8/8",
-          "samples": 7286,
+          "samples": 7287,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -27958,7 +28319,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1039,
           "confidence_interval": "-5/5",
-          "samples": 15634,
+          "samples": 15635,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -28024,7 +28385,7 @@
           "model": "SkyReels V4",
           "score": 952,
           "confidence_interval": "-6/6",
-          "samples": 13749,
+          "samples": 13750,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",

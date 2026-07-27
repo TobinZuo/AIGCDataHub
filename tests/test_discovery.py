@@ -501,11 +501,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            99,
+            101,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            85,
+            86,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -524,7 +524,16 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
-        self.assertEqual(len(sources), 278)
+        self.assertEqual(len(sources), 281)
+        self.assertIn(
+            "https://huggingface.co/api/datasets/liuyueyi-8/ElasticTTT-video-editing-dataset?expand=lastModified&expand=sha",
+            urls,
+        )
+        self.assertIn("https://davischallenge.org/davis2017/code.html", urls)
+        self.assertIn(
+            "https://github.com/liuyueyi-del/ElasticTTT-for-video-editing/commits/main.atom",
+            urls,
+        )
         self.assertEqual(
             {source.ranking_id for source in sources if source.ranking_id},
             {

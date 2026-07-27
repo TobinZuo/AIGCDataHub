@@ -427,6 +427,31 @@ class ModelCatalogTests(unittest.TestCase):
         graphvid_ids = {item["catalog_id"] for item in cards["graphvid"]["data"]["datasets"]}
         self.assertEqual(graphvid_ids, {None, "graphvid-bench"})
 
+        elasticttt = cards["elasticttt"]
+        elasticttt_ids = {item["catalog_id"] for item in elasticttt["data"]["datasets"]}
+        self.assertEqual(elasticttt_ids, {None, "elasticttt-video-editing"})
+        runtime_input = next(
+            item for item in elasticttt["data"]["datasets"]
+            if item["availability"] == "runtime-input"
+        )
+        self.assertEqual(runtime_input["role"], "fine-tuning")
+        self.assertEqual(runtime_input["name"], "User-provided source video")
+        fine_tuning = next(
+            stage for stage in elasticttt["data"]["stages"]
+            if stage["name"] == "fine-tuning"
+        )
+        self.assertEqual(fine_tuning["source_types"], ["user-provided"])
+        self.assertTrue(
+            {
+                "target-distribution-regularization",
+                "contrastive-classifier-free-guidance",
+                "asynchronous-noise-scheduling",
+            }.issubset(fine_tuning["operations"])
+        )
+        self.assertEqual(elasticttt["access"]["status"], "research-preview")
+        self.assertIn("Wan2.1-1.3B", elasticttt["architecture"]["notes"])
+        self.assertIn("Wan2.2-TI2V-5B", elasticttt["architecture"]["notes"])
+
 
 if __name__ == "__main__":
     unittest.main()

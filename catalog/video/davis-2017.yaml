@@ -1,0 +1,64 @@
+id: davis-2017
+name: DAVIS 2017
+organization: ETH Zurich, University of Freiburg, and Disney Research Zurich
+released_at: "2017-04-03"
+release_date_source: https://arxiv.org/abs/1704.00675
+modality: video
+tasks:
+  - video-object-segmentation
+  - multi-object-segmentation
+  - video-editing-source
+stages:
+  - data-curation
+  - evaluation
+description: >-
+  A densely annotated video object segmentation benchmark with 150 sequences,
+  10,459 annotated frames, and 376 objects across train, validation, test-dev,
+  and test-challenge splits.
+access:
+  status: open
+  type: hosted
+  url: https://davischallenge.org/davis2017/code.html
+  requires_account: false
+  notes: The official DAVIS page provides direct 480p and full-resolution archives for videos and annotations without stating an account requirement.
+scale:
+  samples: 10459
+  source_items: 150
+  hours: null
+  approximate: false
+  notes: The official paper reports 10,459 annotated frames, 150 sequences, and 376 objects; the four sequence splits contain 60, 30, 30, and 30 videos.
+annotations:
+  types:
+    - per-frame-object-mask
+    - multi-object-instance-id
+    - sequence-split
+  source: human
+  languages:
+    - none
+license:
+  metadata: No explicit reuse license found on the official download page
+  media: No explicit media reuse license found on the official download page
+  commercial_use: unknown
+  redistribution: review-required
+  notes: Public download availability is not itself permission for commercial use or redistribution; users should obtain applicable rights before reuse.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - The benchmark is small compared with modern web-scale video corpora and focuses on short object-centric segmentation sequences.
+    - DAVIS 2017 re-annotates DAVIS 2016 sequences in its train and validation splits, so the editions are not independent corpora.
+    - The official download page does not state a dataset-wide commercial-use or redistribution license.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Preserve the official split definitions and object identifiers; use the 480p release for benchmark-compatible evaluation unless a method explicitly evaluates full resolution.
+evidence:
+  homepage: https://davischallenge.org/davis2017/code.html
+  paper: https://arxiv.org/abs/1704.00675
+  used_by:
+    - ElasticTTT
+status: partial
+last_verified: "2026-07-27"

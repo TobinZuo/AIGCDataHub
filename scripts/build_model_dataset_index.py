@@ -47,6 +47,7 @@ def render_index() -> str:
                 unresolved += 1
                 reason = {
                     "not-released": "publisher has not released it",
+                    "runtime-input": "per-run input, not a fixed published dataset",
                     "undisclosed": "exact source is not disclosed",
                 }.get(reference["availability"], "catalog card unavailable")
                 resolution = f"— {reason}"
@@ -60,7 +61,7 @@ def render_index() -> str:
     lines = [
         "# Model ↔ Dataset reference index",
         "",
-        "Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; unreleased or undisclosed data must state why no card exists.",
+        "Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; runtime inputs, unreleased data, and undisclosed data must state why no card exists.",
         "",
         f"- Models: {len(models)}",
         f"- References linked to catalog cards: {linked}",

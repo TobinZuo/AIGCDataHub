@@ -382,6 +382,7 @@ const SOURCE_TYPE_LABELS: Record<string, string> = {
   synthetic: "合成数据",
   "human-feedback": "人类反馈",
   "robot-demonstration": "机器人示范",
+  "user-provided": "用户运行时输入",
 };
 
 const ACCESS_LABELS: Record<string, string> = {
@@ -410,6 +411,7 @@ const DATA_AVAILABILITY_LABELS: Record<string, string> = {
   public: "公开数据",
   gated: "受限访问",
   "not-released": "尚未发布",
+  "runtime-input": "每次运行输入",
   undisclosed: "未披露",
 };
 
@@ -579,7 +581,9 @@ function ModelResult({ model, scenarioLabels, expanded, onToggle, onOpenDataset 
                       <small className="reference-resolution">
                         {item.availability === "not-released"
                           ? "没有数据卡：发布方尚未发布该语料。"
-                          : "没有数据卡：一手资料没有披露可识别的数据集。"}
+                          : item.availability === "runtime-input"
+                            ? "没有数据卡：这是每次运行的用户输入，不是固定发布语料。"
+                            : "没有数据卡：一手资料没有披露可识别的数据集。"}
                       </small>
                     )}
                   </div>
@@ -1290,7 +1294,9 @@ function StrategyResult({
                     <small className="reference-resolution">
                       {reference.availability === "not-released"
                         ? "发布方尚未公开该数据，暂无下载入口。"
-                        : "一手资料未披露可识别的数据集，无法提供下载入口。"}
+                        : reference.availability === "runtime-input"
+                          ? "这是每次运行的用户输入，不是可单独下载的固定数据集。"
+                          : "一手资料未披露可识别的数据集，无法提供下载入口。"}
                     </small>
                   )}
                 </article>

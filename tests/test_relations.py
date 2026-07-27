@@ -34,7 +34,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
                 self.assertIn(model_id, self.datasets[dataset_id]["linked_model_ids"])
 
     def test_dataset_lineage_index_and_backlinks_are_symmetric(self) -> None:
-        self.assertEqual(len(self.payload["dataset_relations"]), 26)
+        self.assertEqual(len(self.payload["dataset_relations"]), 27)
         relation_pairs = {
             (relation["source_dataset_id"], relation["derived_dataset_id"])
             for relation in self.payload["dataset_relations"]
@@ -61,6 +61,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn(("voxceleb2", "holidub-bench"), relation_pairs)
         self.assertIn(("celebv-dub", "holidub-bench"), relation_pairs)
         self.assertIn(("cinedub-cn", "cinedub-example"), relation_pairs)
+        self.assertIn(("davis-2017", "elasticttt-video-editing"), relation_pairs)
 
         for source_id, derived_id in relation_pairs:
             with self.subTest(source=source_id, derived=derived_id):
@@ -81,6 +82,14 @@ class ModelDatasetRelationTests(unittest.TestCase):
     def test_representative_scenario_relations_are_navigable(self) -> None:
         self.assertIn("graphvid-bench", self.models["graphvid"]["linked_dataset_ids"])
         self.assertIn("graphvid", self.datasets["graphvid-bench"]["linked_model_ids"])
+        self.assertEqual(
+            self.models["elasticttt"]["linked_dataset_ids"],
+            ["elasticttt-video-editing"],
+        )
+        self.assertIn(
+            "elasticttt",
+            self.datasets["elasticttt-video-editing"]["linked_model_ids"],
+        )
         self.assertIn("fit-vto-100k", self.models["fit-vto"]["linked_dataset_ids"])
         self.assertIn("fit-vto", self.datasets["fit-vto-100k"]["linked_model_ids"])
         self.assertIn("viton-hd-edit", self.models["ctrlvton"]["linked_dataset_ids"])
@@ -266,6 +275,11 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.datasets["gpic"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["openve-3m"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["graphvid-bench"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["davis-2017"]["monitoring"]["priority"], "critical")
+        self.assertEqual(
+            self.datasets["elasticttt-video-editing"]["monitoring"]["priority"],
+            "critical",
+        )
         self.assertEqual(self.datasets["vggsound"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["audioset"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["videoufo"]["monitoring"]["priority"], "critical")
@@ -357,6 +371,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.models["mova-720p"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["vera-14b"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["graphvid"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.models["elasticttt"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["consid-gen"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["voicecraft-dub"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["holidubber"]["monitoring"]["priority"], "critical")

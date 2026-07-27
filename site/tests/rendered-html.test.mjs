@@ -183,6 +183,9 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"million-song-dataset"/);
   assert.match(catalog, /"fma"/);
   assert.match(catalog, /"graphvid-bench"/);
+  assert.match(catalog, /"elasticttt"/);
+  assert.match(catalog, /"elasticttt-video-editing"/);
+  assert.match(catalog, /"davis-2017"/);
   assert.match(catalog, /"sana-video-2-0"/);
   assert.match(catalog, /"mage-flow"/);
   assert.match(catalog, /"koala-36m"/);
@@ -227,7 +230,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalog, /"relations"/);
   assert.match(catalog, /"dataset_relations"/);
   const parsedCatalog = JSON.parse(catalog);
-  assert.equal(parsedCatalog.format_version, 14);
+  assert.equal(parsedCatalog.format_version, 15);
   assert.equal(parsedCatalog.rankings.length, 11);
   assert.equal(parsedCatalog.source_platforms.length, 18);
   assert.equal(
@@ -246,7 +249,15 @@ test("uses generated catalog data and removes starter preview assets", async () 
     parsedCatalog.scenarios.map((scenario) => scenario.id),
     ["image-generation", "video-generation", "digital-human", "video-localization", "virtual-try-on"],
   );
-  assert.equal(parsedCatalog.datasets[0].id, "graphvid-bench");
+  const newestDatasetDate = parsedCatalog.datasets[0].released_at;
+  assert.deepEqual(
+    new Set(
+      parsedCatalog.datasets
+        .filter((dataset) => dataset.released_at === newestDatasetDate)
+        .map((dataset) => dataset.id),
+    ),
+    new Set(["elasticttt-video-editing", "graphvid-bench"]),
+  );
   const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
   assert.ok(parsedCatalog.models.every((model) => model.monitoring));
   assert.ok(parsedCatalog.datasets.every((dataset) => dataset.monitoring));
@@ -270,6 +281,11 @@ test("uses generated catalog data and removes starter preview assets", async () 
     [null, "audiovisual-translation-dub"],
   );
   assert.deepEqual(models.graphvid.linked_dataset_ids, ["graphvid-bench"]);
+  assert.deepEqual(models.elasticttt.linked_dataset_ids, ["elasticttt-video-editing"]);
+  assert.equal(
+    models.elasticttt.data.datasets.find((dataset) => dataset.availability === "runtime-input").catalog_id,
+    null,
+  );
   assert.deepEqual(models.ctrlvton.linked_dataset_ids, ["viton-hd-edit"]);
   assert.deepEqual(models.tripvvt.linked_dataset_ids, ["tripvvt-10k"]);
   assert.deepEqual(models["talkverse-5b"].linked_dataset_ids, ["talkverse"]);
@@ -298,6 +314,9 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.equal(models["fashn-vton-1-5"].monitoring.priority, "critical");
   assert.ok(parsedCatalog.relations.some(
     (relation) => relation.model_id === "graphvid" && relation.dataset_id === "graphvid-bench",
+  ));
+  assert.ok(parsedCatalog.relations.some(
+    (relation) => relation.model_id === "elasticttt" && relation.dataset_id === "elasticttt-video-editing",
   ));
   assert.ok(parsedCatalog.relations.some(
     (relation) => relation.model_id === "ctrlvton" && relation.dataset_id === "viton-hd-edit",
@@ -350,6 +369,9 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.ok(parsedCatalog.dataset_relations.some(
     (relation) => relation.source_dataset_id === "cinedub-cn" && relation.derived_dataset_id === "cinedub-example",
   ));
+  assert.ok(parsedCatalog.dataset_relations.some(
+    (relation) => relation.source_dataset_id === "davis-2017" && relation.derived_dataset_id === "elasticttt-video-editing",
+  ));
   const datasets = Object.fromEntries(parsedCatalog.datasets.map((dataset) => [dataset.id, dataset]));
   assert.equal(datasets["flickr-5b"].monitoring.mode, "availability");
   assert.equal(
@@ -371,6 +393,8 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.equal(datasets["openve-bench"].monitoring.priority, "critical");
   assert.equal(datasets.finevideo.monitoring.priority, "high");
   assert.equal(datasets["graphvid-bench"].monitoring.priority, "critical");
+  assert.equal(datasets["davis-2017"].monitoring.priority, "critical");
+  assert.equal(datasets["elasticttt-video-editing"].monitoring.priority, "critical");
   assert.equal(datasets.hdtf.monitoring.priority, "critical");
   assert.equal(datasets["celebv-hq"].monitoring.priority, "critical");
   assert.equal(datasets.talkvid.monitoring.priority, "critical");

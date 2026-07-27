@@ -1,0 +1,85 @@
+id: elasticttt
+name: ElasticTTT
+organization: Tsinghua University and Beijing Academy of Artificial Intelligence
+released_at: "2026-07-23"
+modalities:
+  - video
+tasks:
+  - video-editing
+  - video-to-video
+  - one-shot-video-editing
+  - instruction-guided-video-editing
+access:
+  status: research-preview
+  license: MIT applies to the preview repository; final implementation and standalone model weights are not yet published
+  release_url: https://liuyueyi-del.github.io/ElasticTTTprojectpage/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Per-video test-time LoRA adaptation of a Wan diffusion transformer
+  parameters: null
+  notes: The paper reports Wan2.1-1.3B experiments, while the public preview repository targets Wan2.2-TI2V-5B; no standalone ElasticTTT checkpoint is released.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Wan base-model training mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: ElasticTTT inherits the visual prior and data lineage of its Wan backbone, but the paper does not enumerate the underlying source corpus or mixture.
+    - name: User-provided source video
+      catalog_id: null
+      role: fine-tuning
+      availability: runtime-input
+      scale: one video per editing run
+      notes: Test-time tuning adapts a LoRA to each individual input video; this is per-run user input rather than a fixed publisher training dataset.
+    - name: ElasticTTT Video Editing Dataset
+      catalog_id: elasticttt-video-editing
+      role: evaluation
+      availability: public
+      scale: 25 source videos and 125 text-video pairs
+      notes: The public DAVIS-selected evaluation package contains 25 source videos and five target edit instructions per video.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-foundation-model
+      scale_disclosed: false
+      strategy: Reuse a pretrained Wan video diffusion model without restating its complete training corpus, mixture, filtering, or rights composition.
+    - name: fine-tuning
+      modalities:
+        - video
+        - text
+      source_types:
+        - user-provided
+      operations:
+        - per-video-lora
+        - source-video-reconstruction
+        - target-distribution-regularization
+        - semantic-mask-generation
+        - contrastive-classifier-free-guidance
+        - asynchronous-noise-scheduling
+      scale_disclosed: true
+      strategy: Optimize a LoRA for 100 steps on one source video, regularize the reconstruction target with zero-mean noise, and separate edit and preserve regions during inference with semantic masks and asynchronous noise schedules.
+  strategy_summary:
+    - Adapt to each input video at test time instead of collecting a separate large ElasticTTT training corpus.
+    - Preserve source-video identity through reconstruction while target-distribution regularization reduces overfitting to a single deterministic target.
+    - Use the source prompt as a negative constraint in contrastive classifier-free guidance and assign different noise trajectories to edit and preserve regions.
+  unknowns:
+    - Complete training-data lineage, mixture, rights composition, and filtering of the inherited Wan backbone.
+    - Whether the final code will reproduce the paper's Wan2.1-1.3B configuration or standardize on the Wan2.2-TI2V-5B preview path.
+    - Final checkpoint availability, full implementation parity, and production licensing beyond the MIT preview repository.
+    - How well per-video test-time tuning scales to long videos, multi-shot inputs, or masks with segmentation errors.
+evidence:
+  release: https://liuyueyi-del.github.io/ElasticTTTprojectpage/
+  technical_report: https://arxiv.org/abs/2607.21529
+  repository: https://github.com/liuyueyi-del/ElasticTTT-for-video-editing
+status: watch
+last_verified: "2026-07-27"

@@ -105,7 +105,7 @@
                 ]
               },
               "role": {"enum": ["pretraining", "fine-tuning", "preference", "evaluation", "distillation"]},
-              "availability": {"enum": ["public", "gated", "not-released", "undisclosed"]},
+              "availability": {"enum": ["public", "gated", "not-released", "runtime-input", "undisclosed"]},
               "scale": {"type": ["string", "null"]},
               "notes": {"type": "string", "minLength": 5}
             }
@@ -139,6 +139,7 @@
                     "synthetic",
                     "human-feedback",
                     "robot-demonstration",
+                    "user-provided",
                     "undisclosed"
                   ]
                 }

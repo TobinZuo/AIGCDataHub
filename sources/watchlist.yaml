@@ -584,6 +584,12 @@ tracks:
       - url: https://projects.csail.mit.edu/soundnet/
         catalog_id: soundnet
         priority: critical
+      - url: "https://huggingface.co/api/datasets/liuyueyi-8/ElasticTTT-video-editing-dataset?expand=lastModified&expand=sha"
+        catalog_id: elasticttt-video-editing
+        priority: critical
+      - url: https://davischallenge.org/davis2017/code.html
+        catalog_id: davis-2017
+        priority: critical
       - url: https://arxiv.org/abs/2607.21580
         catalog_id: graphvid-bench
         priority: critical
@@ -685,6 +691,9 @@ tracks:
         priority: critical
       - url: https://export.arxiv.org/api/query?id_list=2607.21580
         model_id: graphvid
+        priority: critical
+      - url: https://github.com/liuyueyi-del/ElasticTTT-for-video-editing/commits/main.atom
+        model_id: elasticttt
         priority: critical
       - url: https://bfl.ai/blog/flux-3
         model_id: flux-3
