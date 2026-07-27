@@ -27,6 +27,14 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /LRS3-TED/);
   assert.match(html, /CelebV-Dub/);
   assert.match(html, /HoliDub-Bench/);
+  assert.match(html, /DiFlowDubber/);
+  assert.match(html, /FunCineForge/);
+  assert.match(html, /UniSync/);
+  assert.match(html, /LibriTTS/);
+  assert.match(html, /GRID audiovisual sentence corpus/);
+  assert.match(html, /CineDub-CN/);
+  assert.match(html, /CineDub-Example/);
+  assert.match(html, /RealWorld-LipSync/);
   assert.match(html, /FIT-VTO-100K/);
   assert.match(html, /Fit-VTO/);
   assert.match(html, /FLUX VTO/);

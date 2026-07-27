@@ -209,6 +209,34 @@ class ModelCatalogTests(unittest.TestCase):
         )
         self.assertTrue(cards["talkverse-5b"]["data"]["stages"][1]["scale_disclosed"])
 
+        self.assertEqual(
+            {item["catalog_id"] for item in cards["diflowdubber"]["data"]["datasets"]},
+            {"libritts", "chem", "grid"},
+        )
+        self.assertEqual(
+            {item["catalog_id"] for item in cards["funcineforge"]["data"]["datasets"]},
+            {"cinedub-cn", "v2c-animation", "chem", "grid"},
+        )
+        self.assertEqual(
+            {item["catalog_id"] for item in cards["unisync"]["data"]["datasets"]},
+            {"unisync-5k", "hdtf", "realworld-lipsync"},
+        )
+        self.assertEqual(cards["funcineforge"]["access"]["status"], "open-weights")
+        self.assertEqual(cards["diflowdubber"]["access"]["status"], "announced")
+        self.assertEqual(cards["unisync"]["access"]["status"], "announced")
+        self.assertIn(
+            "facodec-tokenization",
+            cards["diflowdubber"]["data"]["stages"][0]["operations"],
+        )
+        self.assertIn(
+            "multimodal-cot-correction",
+            cards["funcineforge"]["data"]["stages"][0]["operations"],
+        )
+        self.assertIn(
+            "pose-anchored-fidelity-training",
+            cards["unisync"]["data"]["stages"][0]["operations"],
+        )
+
         hunyuan_ids = {item["catalog_id"] for item in cards["hunyuanvideo-avatar"]["data"]["datasets"]}
         musetalk_ids = {item["catalog_id"] for item in cards["musetalk-1-5"]["data"]["datasets"]}
         self.assertEqual(hunyuan_ids, {None, "hdtf", "celebv-hq"})

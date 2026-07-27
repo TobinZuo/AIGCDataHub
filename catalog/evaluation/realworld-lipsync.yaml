@@ -1,0 +1,68 @@
+id: realworld-lipsync
+name: RealWorld-LipSync
+organization: Mango TV
+released_at: "2026-03-04"
+release_date_source: https://arxiv.org/abs/2603.03882
+modality: evaluation
+tasks:
+  - lip-sync
+  - video-dubbing
+  - talking-head-evaluation
+stages:
+  - evaluation
+description: >-
+  A 495-video lip-synchronization benchmark designed around real production
+  failures, including dynamic camera scenes, harsh or dark lighting, diverse
+  angles, photorealistic humans, and anthropomorphic cartoon characters.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2603.03882
+  requires_account: false
+  notes: The paper promises a future public release, but as verified there is no official repository, archive, dataset card, or request workflow.
+scale:
+  samples: 495
+  source_items: 495
+  hours: null
+  approximate: false
+  notes: The paper reports 495 curated videos at 1080p or higher, each 2 to 15 seconds long, distributed across scene, lighting, camera, and character-diversity challenges.
+annotations:
+  types:
+    - synchronized-audio-video
+    - scene-condition
+    - lighting-condition
+    - camera-angle
+    - character-type
+    - generation-success-rate-target
+  source: mixed
+  languages:
+    - unknown
+license:
+  metadata: Not published
+  media: Source-video rights are undisclosed
+  commercial_use: unknown
+  redistribution: unknown
+  notes: A promised future release is not a license; usage and redistribution cannot be evaluated until official files and terms appear.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - temporal-consistency
+    - motion
+    - provenance
+  known_limitations:
+    - The benchmark remains unavailable for independent reproduction or contamination checks.
+    - Language, speaker demographics, source titles, consent, and rights composition are not disclosed.
+    - A 495-video curated benchmark may not cover all production styles, occlusions, identities, or localization languages.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Preserve the paper's 2-to-15-second and at-least-1080p criteria if an official package is later released, and do not substitute unverified mirrors.
+evidence:
+  homepage: https://arxiv.org/abs/2603.03882
+  paper: https://arxiv.org/abs/2603.03882
+  used_by:
+    - UniSync
+status: partial
+last_verified: "2026-07-27"

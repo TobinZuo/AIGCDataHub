@@ -1,0 +1,68 @@
+id: chem
+name: Chem
+organization: Tsinghua MARS Lab and ByteDance
+released_at: "2021-10-18"
+release_date_source: https://arxiv.org/abs/2110.08243
+modality: video
+tasks:
+  - video-dubbing
+  - lip-sync-training
+  - audiovisual-speech-synthesis
+stages:
+  - fine-tuning
+  - evaluation
+description: >-
+  A sentence-level single-speaker chemistry-lecture dubbing corpus built from
+  public YouTube recordings, used to train and evaluate script-conditioned
+  speech generation aligned to an instructor's lip motion.
+access:
+  status: metadata-only
+  type: metadata
+  url: https://tsinghua-mars-lab.github.io/NeuralDubber/
+  requires_account: false
+  notes: The official Neural Dubber project publishes the paper and downloadable result examples, but no complete Chem training archive, reconstruction manifest, or request form.
+scale:
+  samples: 6328
+  source_items: null
+  hours: 9
+  approximate: true
+  notes: DiFlowDubber reports 6,082 training, 50 validation, and 196 test samples, totaling 6,328 sentence clips and approximately nine hours.
+annotations:
+  types:
+    - speech-transcript
+    - sentence-boundary
+    - speaker-video
+    - synchronized-audio-video
+    - train-validation-test-split
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: Source YouTube videos and derived clips remain subject to uploader copyright and platform terms
+  commercial_use: unknown
+  redistribution: review-required
+  notes: The official project does not publish a dataset license or full corpus package; example-video access does not authorize redistribution of the training corpus.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Single-speaker classroom footage has limited speaker, emotion, scene, and camera diversity.
+    - The complete corpus is not distributed from the official project page.
+    - Copyright and persistence depend on the original YouTube lecture sources.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Use the paper-reported split only when the original corpus has been lawfully obtained; do not reconstruct from unverified mirrors.
+evidence:
+  homepage: https://tsinghua-mars-lab.github.io/NeuralDubber/
+  paper: https://arxiv.org/abs/2110.08243
+  used_by:
+    - DiFlowDubber
+    - FunCineForge
+status: partial
+last_verified: "2026-07-27"

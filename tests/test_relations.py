@@ -34,7 +34,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
                 self.assertIn(model_id, self.datasets[dataset_id]["linked_model_ids"])
 
     def test_dataset_lineage_index_and_backlinks_are_symmetric(self) -> None:
-        self.assertEqual(len(self.payload["dataset_relations"]), 25)
+        self.assertEqual(len(self.payload["dataset_relations"]), 26)
         relation_pairs = {
             (relation["source_dataset_id"], relation["derived_dataset_id"])
             for relation in self.payload["dataset_relations"]
@@ -60,6 +60,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn(("celebv-text", "celebv-dub"), relation_pairs)
         self.assertIn(("voxceleb2", "holidub-bench"), relation_pairs)
         self.assertIn(("celebv-dub", "holidub-bench"), relation_pairs)
+        self.assertIn(("cinedub-cn", "cinedub-example"), relation_pairs)
 
         for source_id, derived_id in relation_pairs:
             with self.subTest(source=source_id, derived=derived_id):
@@ -171,6 +172,22 @@ class ModelDatasetRelationTests(unittest.TestCase):
         )
         self.assertIn("consid-gen", self.datasets["considvid"]["linked_model_ids"])
         self.assertEqual(
+            set(self.models["diflowdubber"]["linked_dataset_ids"]),
+            {"libritts", "chem", "grid"},
+        )
+        self.assertEqual(
+            set(self.models["funcineforge"]["linked_dataset_ids"]),
+            {"cinedub-cn", "v2c-animation", "chem", "grid"},
+        )
+        self.assertEqual(
+            set(self.models["unisync"]["linked_dataset_ids"]),
+            {"unisync-5k", "hdtf", "realworld-lipsync"},
+        )
+        self.assertIn("diflowdubber", self.datasets["libritts"]["linked_model_ids"])
+        self.assertIn("funcineforge", self.datasets["cinedub-cn"]["linked_model_ids"])
+        self.assertIn("unisync", self.datasets["realworld-lipsync"]["linked_model_ids"])
+        self.assertEqual(self.datasets["cinedub-example"]["upstream_dataset_ids"], ["cinedub-cn"])
+        self.assertEqual(
             set(self.models["vera-14b"]["linked_dataset_ids"]),
             {"vera-layered-video", "videomatte240k"},
         )
@@ -273,6 +290,10 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.datasets["lrs3"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["celebv-dub"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.datasets["holidub-bench"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["libritts"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["grid"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["cinedub-example"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.datasets["realworld-lipsync"]["monitoring"]["priority"], "critical")
         self.assertEqual(
             self.datasets["humoset"]["monitoring"]["source_url"],
             "https://modelscope.cn/api/v1/datasets/leoniuschen/HuMoSet",
@@ -339,6 +360,9 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertEqual(self.models["consid-gen"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["voicecraft-dub"]["monitoring"]["priority"], "critical")
         self.assertEqual(self.models["holidubber"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.models["diflowdubber"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.models["funcineforge"]["monitoring"]["priority"], "critical")
+        self.assertEqual(self.models["unisync"]["monitoring"]["priority"], "critical")
         self.assertEqual(
             self.models["openve-edit"]["monitoring"]["source_url"],
             "https://github.com/OpenVE-Team/OpenVE-3M/commits/main.atom",

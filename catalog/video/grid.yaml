@@ -1,0 +1,68 @@
+id: grid
+name: GRID audiovisual sentence corpus
+organization: University of Sheffield
+released_at: "2006-11-01"
+release_date_source: https://doi.org/10.1121/1.2229005
+modality: video
+tasks:
+  - video-dubbing
+  - lip-sync-training
+  - audiovisual-speech-recognition
+stages:
+  - fine-tuning
+  - evaluation
+description: >-
+  A controlled multi-talker audiovisual speech corpus containing 1,000
+  fixed-grammar English sentences per speaker with synchronized audio, facial
+  video, word alignments, and multiple video-quality variants.
+access:
+  status: open
+  type: hosted
+  url: https://spandh.dcs.shef.ac.uk/gridcorpus/
+  requires_account: false
+  notes: The official Sheffield page provides per-speaker audio, normal- and high-quality video archives, and word-alignment files without sign-in.
+scale:
+  samples: 34000
+  source_items: 34
+  hours: null
+  approximate: false
+  notes: The official page describes 34 talkers with 1,000 utterances each; speaker 21 has audio and alignments but no released video, leaving 33 audiovisual speakers.
+annotations:
+  types:
+    - speech-transcript
+    - word-alignment
+    - speaker-id
+    - synchronized-audio-video
+    - fixed-grammar-sentence-code
+  source: human
+  languages:
+    - en
+license:
+  metadata: No explicit dataset license found on the official corpus page
+  media: Research corpus terms are not stated on the download page
+  commercial_use: unknown
+  redistribution: review-required
+  notes: Direct downloadability is not a reuse license; confirm permitted use with the corpus maintainers before commercial use or redistribution.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Fixed six-word grammar and controlled studio backgrounds are far narrower than real-world dubbing speech.
+    - Speaker 21 has no video, so audiovisual experiments normally use 33 speakers.
+    - The official download page does not state a dataset license or commercial-use grant.
+processing:
+  recipe: Download per-speaker archives, join utterances by GRID sentence code, verify audio-video duration, and preserve the released word alignments.
+  recommended_format: native
+  notes: Keep speaker 21's missing-video condition explicit and do not report 34 complete audiovisual speakers.
+evidence:
+  homepage: https://spandh.dcs.shef.ac.uk/gridcorpus/
+  paper: https://doi.org/10.1121/1.2229005
+  used_by:
+    - DiFlowDubber
+    - FunCineForge
+status: verified
+last_verified: "2026-07-27"

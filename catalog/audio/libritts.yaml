@@ -1,0 +1,66 @@
+id: libritts
+name: LibriTTS
+organization: Google Speech and Google Brain
+released_at: "2019-04-05"
+release_date_source: https://arxiv.org/abs/1904.02882
+modality: audio
+tasks:
+  - text-to-speech
+  - speech-generation-pretraining
+  - voice-cloning
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+description: >-
+  A sentence-segmented, 24 kHz, multi-speaker English speech corpus derived
+  from LibriSpeech source materials, with original and normalized transcripts
+  and approximately 585 hours of read speech.
+access:
+  status: open
+  type: hosted
+  url: https://www.openslr.org/60/
+  requires_account: false
+  notes: OpenSLR provides direct archives for all train, development, and test splits plus mirror links and MD5 checksums.
+scale:
+  samples: null
+  source_items: null
+  hours: 585
+  approximate: true
+  notes: The official OpenSLR card reports approximately 585 hours; DiFlowDubber uses a disclosed 470-hour subset for zero-shot TTS pretraining.
+annotations:
+  types:
+    - speech-transcript
+    - normalized-transcript
+    - speaker-id
+    - neighboring-sentence-context
+    - train-validation-test-split
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-4.0
+  media: CC-BY-4.0 as declared by OpenSLR, subject to attribution for the LibriVox and Project Gutenberg-derived source materials
+  commercial_use: allowed
+  redistribution: allowed
+  notes: The official OpenSLR resource declares CC BY 4.0; downstream releases should preserve attribution and the original source references.
+quality:
+  dimensions:
+    - audio-quality
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Read audiobook speech does not represent spontaneous conversation, cinematic dialogue, or broad acoustic environments.
+    - Automatic segmentation and text normalization can retain alignment or normalization errors.
+    - English audiobook speakers and genres limit multilingual and in-the-wild coverage.
+processing:
+  recipe: Download the required OpenSLR split archives, verify MD5 checksums, preserve speaker and chapter hierarchy, and keep both original and normalized transcripts.
+  recommended_format: native
+  notes: Record the exact split list and total retained hours because papers often train on subsets rather than the full 585-hour release.
+evidence:
+  homepage: https://www.openslr.org/60/
+  paper: https://arxiv.org/abs/1904.02882
+  used_by:
+    - DiFlowDubber
+status: verified
+last_verified: "2026-07-27"

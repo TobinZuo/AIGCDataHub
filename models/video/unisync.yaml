@@ -1,0 +1,76 @@
+id: unisync
+name: UniSync
+organization: Mango TV
+released_at: "2026-03-04"
+modalities:
+  - video
+  - audio
+tasks:
+  - lip-sync
+  - video-dubbing
+  - audio-driven-avatar
+  - video-to-video
+access:
+  status: announced
+  license: Paper only; code, weights, model license, and public repository are not released
+  release_url: https://arxiv.org/abs/2603.03882
+  weights_url: null
+  api_url: null
+architecture:
+  family: Audio-image-to-video diffusion model with pose-anchored training and latent-plus-pixel blending
+  parameters: null
+  notes: LoRA adaptation adds full-frame pose conditioning, while Temporal-Adaptive Latent Injection and Gaussian compositing constrain non-mouth regions during inference.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: UniSync 5K training set
+      catalog_id: unisync-5k
+      role: fine-tuning
+      availability: not-released
+      scale: 5,000 high-resolution videos
+      notes: The LoRA stage uses a compact mixture of 2D and 3D cartoons, movies, TV series, and TV shows, but no source manifest or files are released.
+    - name: HDTF
+      catalog_id: hdtf
+      role: evaluation
+      availability: public
+      scale: Paper-specific evaluation subset not disclosed
+      notes: UniSync reports standard talking-head metrics on HDTF; the public HDTF card provides source URLs and metadata rather than all reconstructed media.
+    - name: RealWorld-LipSync
+      catalog_id: realworld-lipsync
+      role: evaluation
+      availability: not-released
+      scale: 495 videos at 1080p or higher, each 2 to 15 seconds
+      notes: The new benchmark targets hard production cases and includes a Generation Success Rate metric, but the promised public package has not appeared.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+      source_types:
+        - proprietary
+      operations:
+        - lora-fine-tuning
+        - full-frame-conditioning
+        - pose-keypoint-extraction
+        - pose-anchored-fidelity-training
+        - audio-visual-conditioning
+        - mask-free-training
+      scale_disclosed: true
+      strategy: Adapt a pretrained audio-image-to-video generator with LoRA on 5,000 diverse high-resolution clips, conditioning on full frames and RTMPose keypoints so lip motion changes without sacrificing head structure.
+  strategy_summary:
+    - Use mask-free full-frame training to avoid mouth-boundary color seams while anchoring global head pose with explicit keypoints.
+    - During inference, inject noisy source latents outside the mouth early in denoising and apply Gaussian pixel compositing for local consistency.
+    - Spend data budget on domain diversity rather than scale, then evaluate on both HDTF and a new set of production-like lighting, camera, and stylized-character failures.
+  unknowns:
+    - Identity, parameter count, weights, and inherited data lineage of the pretrained audio-image-to-video base model.
+    - Source titles, licensing, language mix, duration, and filtering criteria for the 5,000-video training set.
+    - Public release URL, license, media provenance, and exact split for RealWorld-LipSync.
+    - Optimizer schedule, LoRA rank and target layers, held-out validation construction, and reproducible inference configuration.
+evidence:
+  release: https://arxiv.org/abs/2603.03882
+  technical_report: https://arxiv.org/abs/2603.03882
+  repository: null
+status: watch
+last_verified: "2026-07-27"

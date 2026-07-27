@@ -1,0 +1,78 @@
+id: cinedub-cn
+name: CineDub-CN
+organization: Tongyi Lab Speech Team, Alibaba Group
+released_at: "2026-01-21"
+release_date_source: https://arxiv.org/abs/2601.14777
+modality: video
+tasks:
+  - video-dubbing
+  - visual-voice-cloning
+  - voice-preserving-video-localization
+  - multi-speaker-dubbing
+stages:
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A large Chinese television dubbing corpus covering monologue, narration,
+  dialogue, and multi-speaker scenes, with aligned speech, transcripts, faces,
+  lips, speaker timestamps, character attributes, emotion clues, and scene
+  categories produced by the FunCineForge pipeline.
+access:
+  status: metadata-only
+  type: metadata
+  url: https://github.com/QwenAudio/FunCineForge
+  requires_account: false
+  notes: The full 7.2 TB training corpus is not published. The official repository releases the construction pipeline, model artifacts, demos, and a separate gated CineDub-Example subset.
+scale:
+  samples: 1559172
+  source_items: 200
+  hours: 4700
+  approximate: true
+  notes: The paper reports 1,559,172 samples, 7.2 TB, an average 11.02-second duration, and more than 4,700 effective speech hours from more than 200 Chinese TV series totaling over 6,000 raw hours.
+annotations:
+  types:
+    - speech-transcript
+    - vocal-track
+    - instrumental-track
+    - speaker-timestamp
+    - speaker-gender
+    - speaker-age
+    - speaker-timbre
+    - character-clue
+    - emotion-clue
+    - face-sequence
+    - lip-sequence
+    - scene-category
+  source: mixed
+  languages:
+    - zh
+license:
+  metadata: Full-dataset license not published
+  media: Chinese television source rights are not redistributed with the open-source pipeline
+  commercial_use: unknown
+  redistribution: review-required
+  notes: The repository is Apache-2.0 for code, but that license does not cover the full television corpus; released examples carry separate non-commercial terms.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - The complete training media and per-source provenance manifest are unavailable for independent audit.
+    - Television sources can contain copyrighted performances, identifiable people, stereotypes, and production-specific biases.
+    - MLLM correction reduces reported errors but can introduce undocumented hallucinations or systematic annotation bias.
+processing:
+  recipe: Use the released FunCineForge pipeline for segmentation, separation, overlap filtering, active-speaker diarization, face and lip extraction, multimodal correction, and bidirectional transcript-speaker verification.
+  recommended_format: native
+  notes: Preserve raw-source identity, model versions, prompts, correction outputs, and pre/post-filter counts when reproducing the pipeline on licensed media.
+evidence:
+  homepage: https://github.com/QwenAudio/FunCineForge
+  paper: https://arxiv.org/abs/2601.14777
+  used_by:
+    - FunCineForge
+status: partial
+last_verified: "2026-07-27"

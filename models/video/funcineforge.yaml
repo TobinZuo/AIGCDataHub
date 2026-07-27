@@ -1,0 +1,127 @@
+id: funcineforge
+name: FunCineForge
+organization: Tongyi Lab Speech Team, Alibaba Group
+released_at: "2026-01-21"
+modalities:
+  - video
+  - audio
+tasks:
+  - video-dubbing
+  - voice-preserving-video-localization
+  - visual-voice-cloning
+  - multi-speaker-dubbing
+  - video-to-speech
+access:
+  status: open-weights
+  license: Apache-2.0 code and model repository; CineDub data samples use separate CC-BY-NC-4.0 terms
+  release_url: https://github.com/QwenAudio/FunCineForge
+  weights_url: https://huggingface.co/FunAudioLLM/Fun-CineForge
+  api_url: null
+architecture:
+  family: CosyVoice3-initialized multimodal language model plus flow matching with speaker switching
+  parameters: 500000000
+  notes: A frame-index codebook, multimodal alignment supervision, lip contrastive loss, robust clue instructions, and speaker-switching flow matching support monologue through multi-speaker cinematic dubbing.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: CineDub-CN
+      catalog_id: cinedub-cn
+      role: fine-tuning
+      availability: not-released
+      scale: 1,559,172 samples; more than 4,700 effective speech hours; 7.2 TB
+      notes: The main model trains its MLLM and flow-matching modules separately for more than 20 epochs on the corrected CineDub-CN corpus; only a gated sample release is public.
+    - name: CineDub-CN
+      catalog_id: cinedub-cn
+      role: evaluation
+      availability: not-released
+      scale: Four held-out samples per source television series across monologue, narration, dialogue, and multi-speaker categories
+      notes: The paper evaluates intrinsic data quality and dubbing performance on held-out CineDub-CN scenes, but the complete test package is not published.
+    - name: V2C-Animation
+      catalog_id: v2c-animation
+      role: fine-tuning
+      availability: not-released
+      scale: 10,217 clips; 6.8 hours before split selection
+      notes: A controlled comparison model is trained on the combined V2C-Animation, Chem, and GRID corpora using only monologue scenes and empty clue/timestamp-speaker annotations.
+    - name: Chem
+      catalog_id: chem
+      role: fine-tuning
+      availability: not-released
+      scale: Approximately 9 hours before split selection
+      notes: Chem is one component of the combined small-dataset control used to compare data quality against corrected CineDub-CN.
+    - name: GRID audiovisual sentence corpus
+      catalog_id: grid
+      role: fine-tuning
+      availability: public
+      scale: 34,000 fixed-grammar utterances before experiment-specific split selection
+      notes: GRID supplies controlled multi-speaker audiovisual speech to the combined small-dataset model used in the paper's data-quality comparison.
+    - name: V2C-Animation
+      catalog_id: v2c-animation
+      role: evaluation
+      availability: not-released
+      scale: Official 30% test split
+      notes: FunCineForge and prior dubbing baselines are evaluated on the V2C-Animation test distribution in the controlled monologue comparison.
+    - name: Chem
+      catalog_id: chem
+      role: evaluation
+      availability: not-released
+      scale: 196 test samples reported by DiFlowDubber's split documentation
+      notes: The paper includes Chem test results for the combined small-dataset control and official baseline checkpoints.
+    - name: GRID audiovisual sentence corpus
+      catalog_id: grid
+      role: evaluation
+      availability: public
+      scale: Experiment-specific test split
+      notes: GRID test samples support the paper's English monologue comparison of speech quality, word error rate, and lip alignment.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - proprietary
+      operations:
+        - video-standardization
+        - voice-activity-detection
+        - source-separation
+        - overlap-filtering
+        - active-speaker-diarization
+        - face-and-lip-extraction
+        - multimodal-cot-correction
+        - bidirectional-script-speaker-verification
+        - frame-index-codebook-training
+        - lip-contrastive-learning
+        - speaker-switching-flow-matching
+      scale_disclosed: true
+      strategy: Convert more than 6,000 raw television hours into the corrected CineDub-CN corpus, then separately train the CosyVoice3-initialized MLLM and flow module for over 20 epochs on multimodal clues, timing, and speaker-switch supervision.
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - public-dataset
+      operations:
+        - controlled-dataset-comparison
+        - monologue-only-filtering
+        - empty-clue-ablation
+        - empty-speaker-timestamp-ablation
+      scale_disclosed: true
+      strategy: Train a controlled FunCineForge variant on combined V2C-Animation, Chem, and GRID monologues to isolate the effect of CineDub-CN scale and rich annotations.
+  strategy_summary:
+    - "Treat data production as part of the model: separate vocals, reject overlaps, resolve active speakers, and attach faces, lips, character clues, emotion, and exact speaking intervals."
+    - Use a general MLLM to correct specialized ASR and diarization outputs through bidirectional script-speaker verification, reducing reported CER and diarization error before training.
+    - Teach one 0.5B model where speech occurs, what is said, who speaks, and how speakers switch, then compare against the same architecture trained on three small public benchmarks.
+  unknowns:
+    - Full CineDub-CN archive, source-level provenance, licenses, consent records, and train-test manifest; the 7.2 TB corpus itself is not released.
+    - Composition and scale of the English data used by the later bilingual Fun-CineForge-zh-en-v1-0.5B checkpoint.
+    - Exact relationship between the January paper model and the March bilingual checkpoint beyond the published repository notes.
+    - Whether the Apache-2.0 model license can be cleanly combined with every inherited CosyVoice3 component and training-media restriction for commercial deployment.
+evidence:
+  release: https://github.com/QwenAudio/FunCineForge
+  technical_report: https://arxiv.org/abs/2601.14777
+  repository: https://github.com/QwenAudio/FunCineForge
+status: verified
+last_verified: "2026-07-27"

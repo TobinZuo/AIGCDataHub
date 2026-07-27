@@ -70,6 +70,14 @@ class CatalogTests(unittest.TestCase):
                 "celebv-text",
                 "celebv-dub",
                 "holidub-bench",
+                "libritts",
+                "grid",
+                "chem",
+                "v2c-animation",
+                "cinedub-cn",
+                "cinedub-example",
+                "unisync-5k",
+                "realworld-lipsync",
             }.issubset(cards)
         )
         self.assertIn("video-dubbing", cards["audiovisual-translation-dub"]["tasks"])
@@ -102,6 +110,14 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(cards["celebv-dub"]["access"]["type"], "hosted")
         self.assertEqual(cards["holidub-bench"]["access"]["status"], "unavailable")
         self.assertEqual(cards["emilia"]["access"]["status"], "gated")
+        self.assertEqual(cards["libritts"]["access"]["type"], "hosted")
+        self.assertEqual(cards["grid"]["scale"]["samples"], 34000)
+        self.assertEqual(cards["chem"]["access"]["status"], "metadata-only")
+        self.assertEqual(cards["v2c-animation"]["access"]["type"], "urls")
+        self.assertEqual(cards["cinedub-cn"]["access"]["status"], "metadata-only")
+        self.assertEqual(cards["cinedub-example"]["access"]["status"], "gated")
+        self.assertEqual(cards["unisync-5k"]["access"]["status"], "unavailable")
+        self.assertEqual(cards["realworld-lipsync"]["scale"]["samples"], 495)
 
     def test_reference_wiki_candidates_are_backed_by_public_sources(self) -> None:
         cards = {card["id"]: card for _, card in load_cards()}

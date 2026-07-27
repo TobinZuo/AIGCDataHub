@@ -1,0 +1,66 @@
+id: unisync-5k
+name: UniSync 5K training set
+organization: Mango TV
+released_at: "2026-03-04"
+release_date_source: https://arxiv.org/abs/2603.03882
+modality: video
+tasks:
+  - video-dubbing
+  - lip-sync-training
+  - audio-driven-avatar
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  The compact high-resolution corpus constructed to adapt UniSync across live-
+  action and stylized domains, including movies, television series and shows,
+  and 2D and 3D cartoons with varied lighting, appearance, and aesthetics.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2603.03882
+  requires_account: false
+  notes: The paper describes the 5,000-video training set but provides no repository, file release, request form, license, or source manifest.
+scale:
+  samples: 5000
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The paper reports exactly 5,000 high-resolution videos; clip durations, total hours, source counts, and train-validation splits are not disclosed.
+annotations:
+  types:
+    - synchronized-audio-video
+    - pose-keypoints
+    - face-region
+    - content-domain
+  source: mixed
+  languages:
+    - unknown
+license:
+  metadata: Not published
+  media: Movies, television, and cartoon source rights are undisclosed
+  commercial_use: unknown
+  redistribution: unknown
+  notes: No downloadable package or rights statement exists; the corpus must not be treated as public or reusable from the paper description alone.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Source titles, acquisition method, consent, geographic coverage, and language mixture are not disclosed.
+    - The compact set's duration distribution and balance across 2D, 3D, film, and television domains are unknown.
+    - No public files permit independent audit of quality, identity, or rights claims.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Record this as a named but unreleased training corpus and monitor the paper or future official repository for an actual acquisition path.
+evidence:
+  homepage: https://arxiv.org/abs/2603.03882
+  paper: https://arxiv.org/abs/2603.03882
+  used_by:
+    - UniSync
+status: partial
+last_verified: "2026-07-27"

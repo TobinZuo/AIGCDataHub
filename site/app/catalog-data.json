@@ -2688,6 +2688,302 @@
       ]
     },
     {
+      "id": "cinedub-example",
+      "name": "CineDub-Example",
+      "organization": "Tongyi Lab Speech Team, Alibaba Group",
+      "released_at": "2026-03-13",
+      "release_date_source": "https://huggingface.co/api/datasets/FunAudioLLM/CineDub-Example",
+      "modality": "video",
+      "tasks": [
+        "video-dubbing",
+        "visual-voice-cloning",
+        "multi-speaker-dubbing",
+        "dataset-pipeline-evaluation"
+      ],
+      "stages": [
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "The official gated CineDub sample release, currently packaged as Chinese and English television example archives for inspecting FunCineForge's multimodal dubbing data format and annotations without exposing the full training corpus.",
+      "derived_from": [
+        {
+          "catalog_id": "cinedub-cn",
+          "relationship": "filtered-subset",
+          "contribution": "Chinese television examples and their structured dubbing annotations",
+          "notes": "The Hongloumeng archive is a sample of the Chinese CineDub pipeline output; the same release also contains a separate English Downton Abbey example archive."
+        }
+      ],
+      "access": {
+        "status": "gated",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/FunAudioLLM/CineDub-Example",
+        "requires_account": true,
+        "notes": "Hugging Face automatic gating requires authentication and acceptance of the publisher terms before downloading the multipart archives."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": 2,
+        "hours": null,
+        "approximate": false,
+        "notes": "The repository contains multipart Hongloumeng and Downton Abbey archives totaling approximately 52.93 GB; the official gated card does not expose clip or hour counts anonymously."
+      },
+      "annotations": {
+        "types": [
+          "speech-transcript",
+          "vocal-track",
+          "speaker-timestamp",
+          "character-clue",
+          "emotion-clue",
+          "face-sequence",
+          "lip-sequence",
+          "scene-category"
+        ],
+        "source": "mixed",
+        "languages": [
+          "zh",
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0 as declared by the official Hugging Face dataset metadata",
+        "media": "CC-BY-NC-4.0 release label plus underlying television-source rights and accepted access terms",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The repository is gated and non-commercial; users must also review the television-source rights before copying or redistributing media."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Two source-series examples cannot represent the full CineDub-CN distribution or all cinematic scene types.",
+          "Anonymous inspection of file contents and exact clip counts is blocked by repository gating.",
+          "Example availability does not make the unreleased 7.2 TB training corpus reproducible."
+        ]
+      },
+      "processing": {
+        "recipe": "Download every multipart archive after access approval, verify the provided MD5 files, extract only after confirming disk requirements, and retain series-level provenance.",
+        "recommended_format": "native",
+        "notes": "Treat the Chinese and English archives as examples, not as a complete replacement for CineDub-CN or a disclosed CineDub-EN training set."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/FunAudioLLM/CineDub-Example",
+        "paper": "https://arxiv.org/abs/2601.14777",
+        "used_by": []
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/cinedub-example.yaml",
+      "scenario_ids": [
+        "video-localization"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/FunAudioLLM/CineDub-Example?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [
+        "cinedub-cn"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
+    },
+    {
+      "id": "unisync-5k",
+      "name": "UniSync 5K training set",
+      "organization": "Mango TV",
+      "released_at": "2026-03-04",
+      "release_date_source": "https://arxiv.org/abs/2603.03882",
+      "modality": "video",
+      "tasks": [
+        "video-dubbing",
+        "lip-sync-training",
+        "audio-driven-avatar"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "The compact high-resolution corpus constructed to adapt UniSync across live- action and stylized domains, including movies, television series and shows, and 2D and 3D cartoons with varied lighting, appearance, and aesthetics.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2603.03882",
+        "requires_account": false,
+        "notes": "The paper describes the 5,000-video training set but provides no repository, file release, request form, license, or source manifest."
+      },
+      "scale": {
+        "samples": 5000,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The paper reports exactly 5,000 high-resolution videos; clip durations, total hours, source counts, and train-validation splits are not disclosed."
+      },
+      "annotations": {
+        "types": [
+          "synchronized-audio-video",
+          "pose-keypoints",
+          "face-region",
+          "content-domain"
+        ],
+        "source": "mixed",
+        "languages": [
+          "unknown"
+        ]
+      },
+      "license": {
+        "metadata": "Not published",
+        "media": "Movies, television, and cartoon source rights are undisclosed",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "No downloadable package or rights statement exists; the corpus must not be treated as public or reusable from the paper description alone."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source titles, acquisition method, consent, geographic coverage, and language mixture are not disclosed.",
+          "The compact set's duration distribution and balance across 2D, 3D, film, and television domains are unknown.",
+          "No public files permit independent audit of quality, identity, or rights claims."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Record this as a named but unreleased training corpus and monitor the paper or future official repository for an actual acquisition path."
+      },
+      "evidence": {
+        "homepage": "https://arxiv.org/abs/2603.03882",
+        "paper": "https://arxiv.org/abs/2603.03882",
+        "used_by": [
+          "UniSync"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/unisync-5k.yaml",
+      "scenario_ids": [
+        "digital-human",
+        "video-localization"
+      ],
+      "scale_label": "5K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2603.03882"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "unisync"
+      ]
+    },
+    {
+      "id": "realworld-lipsync",
+      "name": "RealWorld-LipSync",
+      "organization": "Mango TV",
+      "released_at": "2026-03-04",
+      "release_date_source": "https://arxiv.org/abs/2603.03882",
+      "modality": "evaluation",
+      "tasks": [
+        "lip-sync",
+        "video-dubbing",
+        "talking-head-evaluation"
+      ],
+      "stages": [
+        "evaluation"
+      ],
+      "description": "A 495-video lip-synchronization benchmark designed around real production failures, including dynamic camera scenes, harsh or dark lighting, diverse angles, photorealistic humans, and anthropomorphic cartoon characters.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2603.03882",
+        "requires_account": false,
+        "notes": "The paper promises a future public release, but as verified there is no official repository, archive, dataset card, or request workflow."
+      },
+      "scale": {
+        "samples": 495,
+        "source_items": 495,
+        "hours": null,
+        "approximate": false,
+        "notes": "The paper reports 495 curated videos at 1080p or higher, each 2 to 15 seconds long, distributed across scene, lighting, camera, and character-diversity challenges."
+      },
+      "annotations": {
+        "types": [
+          "synchronized-audio-video",
+          "scene-condition",
+          "lighting-condition",
+          "camera-angle",
+          "character-type",
+          "generation-success-rate-target"
+        ],
+        "source": "mixed",
+        "languages": [
+          "unknown"
+        ]
+      },
+      "license": {
+        "metadata": "Not published",
+        "media": "Source-video rights are undisclosed",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "A promised future release is not a license; usage and redistribution cannot be evaluated until official files and terms appear."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "temporal-consistency",
+          "motion",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The benchmark remains unavailable for independent reproduction or contamination checks.",
+          "Language, speaker demographics, source titles, consent, and rights composition are not disclosed.",
+          "A 495-video curated benchmark may not cover all production styles, occlusions, identities, or localization languages."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Preserve the paper's 2-to-15-second and at-least-1080p criteria if an official package is later released, and do not substitute unverified mirrors."
+      },
+      "evidence": {
+        "homepage": "https://arxiv.org/abs/2603.03882",
+        "paper": "https://arxiv.org/abs/2603.03882",
+        "used_by": [
+          "UniSync"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/evaluation/realworld-lipsync.yaml",
+      "scenario_ids": [
+        "digital-human",
+        "video-localization"
+      ],
+      "scale_label": "495",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2603.03882"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "unisync"
+      ]
+    },
+    {
       "id": "fine-t2i",
       "name": "Fine-T2I",
       "organization": "Northeastern University",
@@ -2877,6 +3173,112 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "just-dub-it"
+      ]
+    },
+    {
+      "id": "cinedub-cn",
+      "name": "CineDub-CN",
+      "organization": "Tongyi Lab Speech Team, Alibaba Group",
+      "released_at": "2026-01-21",
+      "release_date_source": "https://arxiv.org/abs/2601.14777",
+      "modality": "video",
+      "tasks": [
+        "video-dubbing",
+        "visual-voice-cloning",
+        "voice-preserving-video-localization",
+        "multi-speaker-dubbing"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A large Chinese television dubbing corpus covering monologue, narration, dialogue, and multi-speaker scenes, with aligned speech, transcripts, faces, lips, speaker timestamps, character attributes, emotion clues, and scene categories produced by the FunCineForge pipeline.",
+      "access": {
+        "status": "metadata-only",
+        "type": "metadata",
+        "url": "https://github.com/QwenAudio/FunCineForge",
+        "requires_account": false,
+        "notes": "The full 7.2 TB training corpus is not published. The official repository releases the construction pipeline, model artifacts, demos, and a separate gated CineDub-Example subset."
+      },
+      "scale": {
+        "samples": 1559172,
+        "source_items": 200,
+        "hours": 4700,
+        "approximate": true,
+        "notes": "The paper reports 1,559,172 samples, 7.2 TB, an average 11.02-second duration, and more than 4,700 effective speech hours from more than 200 Chinese TV series totaling over 6,000 raw hours."
+      },
+      "annotations": {
+        "types": [
+          "speech-transcript",
+          "vocal-track",
+          "instrumental-track",
+          "speaker-timestamp",
+          "speaker-gender",
+          "speaker-age",
+          "speaker-timbre",
+          "character-clue",
+          "emotion-clue",
+          "face-sequence",
+          "lip-sequence",
+          "scene-category"
+        ],
+        "source": "mixed",
+        "languages": [
+          "zh"
+        ]
+      },
+      "license": {
+        "metadata": "Full-dataset license not published",
+        "media": "Chinese television source rights are not redistributed with the open-source pipeline",
+        "commercial_use": "unknown",
+        "redistribution": "review-required",
+        "notes": "The repository is Apache-2.0 for code, but that license does not cover the full television corpus; released examples carry separate non-commercial terms."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The complete training media and per-source provenance manifest are unavailable for independent audit.",
+          "Television sources can contain copyrighted performances, identifiable people, stereotypes, and production-specific biases.",
+          "MLLM correction reduces reported errors but can introduce undocumented hallucinations or systematic annotation bias."
+        ]
+      },
+      "processing": {
+        "recipe": "Use the released FunCineForge pipeline for segmentation, separation, overlap filtering, active-speaker diarization, face and lip extraction, multimodal correction, and bidirectional transcript-speaker verification.",
+        "recommended_format": "native",
+        "notes": "Preserve raw-source identity, model versions, prompts, correction outputs, and pre/post-filter counts when reproducing the pipeline on licensed media."
+      },
+      "evidence": {
+        "homepage": "https://github.com/QwenAudio/FunCineForge",
+        "paper": "https://arxiv.org/abs/2601.14777",
+        "used_by": [
+          "FunCineForge"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/cinedub-cn.yaml",
+      "scenario_ids": [
+        "video-localization"
+      ],
+      "scale_label": "~1.6M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/QwenAudio/FunCineForge/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "cinedub-example"
+      ],
+      "linked_model_ids": [
+        "funcineforge"
       ]
     },
     {
@@ -7768,6 +8170,199 @@
       ]
     },
     {
+      "id": "v2c-animation",
+      "name": "V2C-Animation",
+      "organization": "University of Adelaide, South China University of Technology, and Pazhou Lab",
+      "released_at": "2021-11-25",
+      "release_date_source": "https://arxiv.org/abs/2111.12890",
+      "modality": "video",
+      "tasks": [
+        "video-dubbing",
+        "visual-voice-cloning",
+        "emotion-conditioned-speech-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A visual voice-cloning dataset of animated-movie clips paired with center- channel speech, subtitles, characters, and eight-way emotion labels for generating speech conditioned on a reference voice and visual emotion.",
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://github.com/chenqi008/V2C",
+        "requires_account": false,
+        "notes": "The official repository publishes extraction code, annotations, timestamps, and links to the 26 source movies; it does not redistribute a ready-to-train archive of copyrighted movie media."
+      },
+      "scale": {
+        "samples": 10217,
+        "source_items": 26,
+        "hours": 6.8,
+        "approximate": false,
+        "notes": "The paper reports 10,217 clips from 26 animated movies and 153 characters, averaging 2.4 seconds, split 60% train, 10% validation, and 30% test."
+      },
+      "annotations": {
+        "types": [
+          "subtitle",
+          "timestamp",
+          "character-id",
+          "speaker-id",
+          "emotion-label",
+          "synchronized-audio-video"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "No explicit dataset license found in the official repository",
+        "media": "Copyrighted animated movies are not redistributed and retain their original rights",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The released tooling and metadata do not grant rights to the 26 source films; users must lawfully source and process the media themselves."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Animated films do not represent live-action facial motion or production audio conditions.",
+          "Center-channel extraction and manual filtering do not fully eliminate music, effects, or alignment errors.",
+          "Reconstructing the corpus requires lawful access to copyrighted source movies."
+        ]
+      },
+      "processing": {
+        "recipe": "Use the official subtitle timestamps and extraction toolkit on lawfully obtained source films, retain center-channel speech, and preserve the provided character and emotion labels.",
+        "recommended_format": "native",
+        "notes": "Record source-film edition and checksum because different releases can shift subtitle and media timing."
+      },
+      "evidence": {
+        "homepage": "https://github.com/chenqi008/V2C",
+        "paper": "https://openaccess.thecvf.com/content/CVPR2022/html/Chen_V2C_Visual_Voice_Cloning_CVPR_2022_paper.html",
+        "used_by": [
+          "FunCineForge"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/v2c-animation.yaml",
+      "scenario_ids": [
+        "video-localization"
+      ],
+      "scale_label": "10.2K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/chenqi008/V2C/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "funcineforge"
+      ]
+    },
+    {
+      "id": "chem",
+      "name": "Chem",
+      "organization": "Tsinghua MARS Lab and ByteDance",
+      "released_at": "2021-10-18",
+      "release_date_source": "https://arxiv.org/abs/2110.08243",
+      "modality": "video",
+      "tasks": [
+        "video-dubbing",
+        "lip-sync-training",
+        "audiovisual-speech-synthesis"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "A sentence-level single-speaker chemistry-lecture dubbing corpus built from public YouTube recordings, used to train and evaluate script-conditioned speech generation aligned to an instructor's lip motion.",
+      "access": {
+        "status": "metadata-only",
+        "type": "metadata",
+        "url": "https://tsinghua-mars-lab.github.io/NeuralDubber/",
+        "requires_account": false,
+        "notes": "The official Neural Dubber project publishes the paper and downloadable result examples, but no complete Chem training archive, reconstruction manifest, or request form."
+      },
+      "scale": {
+        "samples": 6328,
+        "source_items": null,
+        "hours": 9,
+        "approximate": true,
+        "notes": "DiFlowDubber reports 6,082 training, 50 validation, and 196 test samples, totaling 6,328 sentence clips and approximately nine hours."
+      },
+      "annotations": {
+        "types": [
+          "speech-transcript",
+          "sentence-boundary",
+          "speaker-video",
+          "synchronized-audio-video",
+          "train-validation-test-split"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Source YouTube videos and derived clips remain subject to uploader copyright and platform terms",
+        "commercial_use": "unknown",
+        "redistribution": "review-required",
+        "notes": "The official project does not publish a dataset license or full corpus package; example-video access does not authorize redistribution of the training corpus."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Single-speaker classroom footage has limited speaker, emotion, scene, and camera diversity.",
+          "The complete corpus is not distributed from the official project page.",
+          "Copyright and persistence depend on the original YouTube lecture sources."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Use the paper-reported split only when the original corpus has been lawfully obtained; do not reconstruct from unverified mirrors."
+      },
+      "evidence": {
+        "homepage": "https://tsinghua-mars-lab.github.io/NeuralDubber/",
+        "paper": "https://arxiv.org/abs/2110.08243",
+        "used_by": [
+          "DiFlowDubber",
+          "FunCineForge"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/chem.yaml",
+      "scenario_ids": [
+        "digital-human",
+        "video-localization"
+      ],
+      "scale_label": "~6.3K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/Tsinghua-MARS-Lab/NeuralDubber/commits/gh-pages.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "diflowdubber",
+        "funcineforge"
+      ]
+    },
+    {
       "id": "co3d",
       "name": "CO3D",
       "organization": "Meta AI",
@@ -8126,7 +8721,8 @@
         "paper": "https://openaccess.thecvf.com/content/CVPR2021/html/Zhang_Flow-Guided_One-Shot_Talking_Face_Generation_With_a_High-Resolution_Audio-Visual_Dataset_CVPR_2021_paper.html",
         "used_by": [
           "HunyuanVideo-Avatar",
-          "MuseTalk 1.5"
+          "MuseTalk 1.5",
+          "UniSync"
         ]
       },
       "status": "partial",
@@ -8143,6 +8739,7 @@
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
       "linked_model_ids": [
+        "unisync",
         "hunyuanvideo-avatar",
         "musetalk-1-5"
       ]
@@ -8612,6 +9209,97 @@
         "mova-720p",
         "omni2sound",
         "hunyuanvideo-foley"
+      ]
+    },
+    {
+      "id": "libritts",
+      "name": "LibriTTS",
+      "organization": "Google Speech and Google Brain",
+      "released_at": "2019-04-05",
+      "release_date_source": "https://arxiv.org/abs/1904.02882",
+      "modality": "audio",
+      "tasks": [
+        "text-to-speech",
+        "speech-generation-pretraining",
+        "voice-cloning"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "A sentence-segmented, 24 kHz, multi-speaker English speech corpus derived from LibriSpeech source materials, with original and normalized transcripts and approximately 585 hours of read speech.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://www.openslr.org/60/",
+        "requires_account": false,
+        "notes": "OpenSLR provides direct archives for all train, development, and test splits plus mirror links and MD5 checksums."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": 585,
+        "approximate": true,
+        "notes": "The official OpenSLR card reports approximately 585 hours; DiFlowDubber uses a disclosed 470-hour subset for zero-shot TTS pretraining."
+      },
+      "annotations": {
+        "types": [
+          "speech-transcript",
+          "normalized-transcript",
+          "speaker-id",
+          "neighboring-sentence-context",
+          "train-validation-test-split"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0",
+        "media": "CC-BY-4.0 as declared by OpenSLR, subject to attribution for the LibriVox and Project Gutenberg-derived source materials",
+        "commercial_use": "allowed",
+        "redistribution": "allowed",
+        "notes": "The official OpenSLR resource declares CC BY 4.0; downstream releases should preserve attribution and the original source references."
+      },
+      "quality": {
+        "dimensions": [
+          "audio-quality",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Read audiobook speech does not represent spontaneous conversation, cinematic dialogue, or broad acoustic environments.",
+          "Automatic segmentation and text normalization can retain alignment or normalization errors.",
+          "English audiobook speakers and genres limit multilingual and in-the-wild coverage."
+        ]
+      },
+      "processing": {
+        "recipe": "Download the required OpenSLR split archives, verify MD5 checksums, preserve speaker and chapter hierarchy, and keep both original and normalized transcripts.",
+        "recommended_format": "native",
+        "notes": "Record the exact split list and total retained hours because papers often train on subsets rather than the full 585-hour release."
+      },
+      "evidence": {
+        "homepage": "https://www.openslr.org/60/",
+        "paper": "https://arxiv.org/abs/1904.02882",
+        "used_by": [
+          "DiFlowDubber"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/audio/libritts.yaml",
+      "scenario_ids": [],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://www.openslr.org/60/"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "diflowdubber"
       ]
     },
     {
@@ -9552,6 +10240,103 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "emu3-5"
+      ]
+    },
+    {
+      "id": "grid",
+      "name": "GRID audiovisual sentence corpus",
+      "organization": "University of Sheffield",
+      "released_at": "2006-11-01",
+      "release_date_source": "https://doi.org/10.1121/1.2229005",
+      "modality": "video",
+      "tasks": [
+        "video-dubbing",
+        "lip-sync-training",
+        "audiovisual-speech-recognition"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "A controlled multi-talker audiovisual speech corpus containing 1,000 fixed-grammar English sentences per speaker with synchronized audio, facial video, word alignments, and multiple video-quality variants.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://spandh.dcs.shef.ac.uk/gridcorpus/",
+        "requires_account": false,
+        "notes": "The official Sheffield page provides per-speaker audio, normal- and high-quality video archives, and word-alignment files without sign-in."
+      },
+      "scale": {
+        "samples": 34000,
+        "source_items": 34,
+        "hours": null,
+        "approximate": false,
+        "notes": "The official page describes 34 talkers with 1,000 utterances each; speaker 21 has audio and alignments but no released video, leaving 33 audiovisual speakers."
+      },
+      "annotations": {
+        "types": [
+          "speech-transcript",
+          "word-alignment",
+          "speaker-id",
+          "synchronized-audio-video",
+          "fixed-grammar-sentence-code"
+        ],
+        "source": "human",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "No explicit dataset license found on the official corpus page",
+        "media": "Research corpus terms are not stated on the download page",
+        "commercial_use": "unknown",
+        "redistribution": "review-required",
+        "notes": "Direct downloadability is not a reuse license; confirm permitted use with the corpus maintainers before commercial use or redistribution."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Fixed six-word grammar and controlled studio backgrounds are far narrower than real-world dubbing speech.",
+          "Speaker 21 has no video, so audiovisual experiments normally use 33 speakers.",
+          "The official download page does not state a dataset license or commercial-use grant."
+        ]
+      },
+      "processing": {
+        "recipe": "Download per-speaker archives, join utterances by GRID sentence code, verify audio-video duration, and preserve the released word alignments.",
+        "recommended_format": "native",
+        "notes": "Keep speaker 21's missing-video condition explicit and do not report 34 complete audiovisual speakers."
+      },
+      "evidence": {
+        "homepage": "https://spandh.dcs.shef.ac.uk/gridcorpus/",
+        "paper": "https://doi.org/10.1121/1.2229005",
+        "used_by": [
+          "DiFlowDubber",
+          "FunCineForge"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/grid.yaml",
+      "scenario_ids": [
+        "digital-human",
+        "video-localization"
+      ],
+      "scale_label": "34K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://spandh.dcs.shef.ac.uk/gridcorpus/"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "diflowdubber",
+        "funcineforge"
       ]
     }
   ],
@@ -15540,6 +16325,320 @@
       "linked_dataset_ids": []
     },
     {
+      "id": "diflowdubber",
+      "name": "DiFlowDubber",
+      "organization": "FPT Software AI Center, KAIST, and University of Alabama at Birmingham",
+      "released_at": "2026-03-15",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "video-dubbing",
+        "voice-preserving-video-localization",
+        "video-to-speech",
+        "text-to-speech"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Apache-2.0 repository shell; implementation and model checkpoints are still marked coming soon",
+        "release_url": "https://nngocson2002.github.io/projects/diflowdubber",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Discrete flow-matching TTS backbone with content-consistent temporal adaptation and face-to-prosody conditioning",
+        "parameters": null,
+        "notes": "FACodec factorizes speech into prosody, content, and acoustic tokens; a dual-alignment Synchronizer and Face-to-Prosody mapper adapt the pretrained TTS system to visually aligned dubbing."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "LibriTTS",
+            "catalog_id": "libritts",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "470 hours",
+            "notes": "The zero-shot TTS stage trains for 300K steps on a disclosed 470-hour LibriTTS subset before any video-dubbing adaptation."
+          },
+          {
+            "name": "Chem",
+            "catalog_id": "chem",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "6,082 train, 50 validation, and 196 test samples; approximately 9 hours",
+            "notes": "A Chem-specific adaptation run trains for 150 epochs; the official Neural Dubber page provides result examples but not the complete corpus."
+          },
+          {
+            "name": "GRID audiovisual sentence corpus",
+            "catalog_id": "grid",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "32,670 training instances and 3,280 test instances reported by the paper",
+            "notes": "A separate GRID adaptation run trains for 200 epochs with the paper's declared split while the official corpus page exposes per-speaker archives."
+          },
+          {
+            "name": "Chem",
+            "catalog_id": "chem",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "196 test samples",
+            "notes": "Main dubbing results, prosody validation, and ablations use the Chem benchmark under two duration settings."
+          },
+          {
+            "name": "GRID audiovisual sentence corpus",
+            "catalog_id": "grid",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "3,280 test instances reported by the paper",
+            "notes": "The GRID benchmark evaluates the same two dubbing-duration settings as Chem across synchronization, intelligibility, speaker similarity, and naturalness metrics."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset"
+            ],
+            "operations": [
+              "facodec-tokenization",
+              "phoneme-duration-modeling",
+              "discrete-flow-matching",
+              "prosody-acoustic-factorization",
+              "zero-shot-speaker-conditioning"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train a zero-shot TTS system on 470 LibriTTS hours, using deterministic content prediction and discrete flow matching for factorized prosody and acoustic tokens."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset"
+            ],
+            "operations": [
+              "face-cropping",
+              "lip-cropping",
+              "face-to-prosody-mapping",
+              "video-text-alignment",
+              "speech-text-alignment",
+              "duration-regulation",
+              "content-consistent-temporal-adaptation"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Replace the TTS duration predictor with a dual-alignment Synchronizer, fuse facial prosody with temporally regulated content, and adapt separate Chem and GRID models while fine-tuning the inherited flow module."
+          }
+        ],
+        "strategy_summary": [
+          "Learn pronunciation, prosody, and acoustic realism from a substantially larger speech-only corpus before introducing scarce video-dubbing supervision.",
+          "Factorize speech with FACodec so deterministic linguistic content and generative prosody-acoustic variation can be optimized separately.",
+          "Transfer the TTS prior with explicit video-text and speech-text alignment, then condition prosody on facial dynamics for timing and expression."
+        ],
+        "unknowns": [
+          "Public implementation, checkpoints, model license, and exact release date; the official repository still says code will be released soon.",
+          "Complete training-data lineage and license of the inherited FACodec checkpoint.",
+          "Exact LibriTTS split names making up the reported 470-hour subset and whether any utterance-level filtering was applied.",
+          "Reproducible Chem acquisition path and rights terms for its YouTube-derived lecture media."
+        ]
+      },
+      "evidence": {
+        "release": "https://nngocson2002.github.io/projects/diflowdubber",
+        "technical_report": "https://arxiv.org/abs/2603.14267",
+        "repository": "https://github.com/Fsoft-AIC/DiFlowDubber"
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/diflowdubber.yaml",
+      "scenario_ids": [
+        "video-localization"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "public-dataset"
+        ],
+        "operations": [
+          "facodec-tokenization",
+          "phoneme-duration-modeling",
+          "discrete-flow-matching",
+          "prosody-acoustic-factorization",
+          "zero-shot-speaker-conditioning",
+          "face-cropping",
+          "lip-cropping",
+          "face-to-prosody-mapping",
+          "video-text-alignment",
+          "speech-text-alignment",
+          "duration-regulation",
+          "content-consistent-temporal-adaptation"
+        ],
+        "data_reference_count": 5,
+        "linked_dataset_count": 3,
+        "scale_disclosed_stage_count": 2,
+        "stage_count": 2,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/Fsoft-AIC/DiFlowDubber/commits/main.atom"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "libritts",
+        "chem",
+        "grid"
+      ]
+    },
+    {
+      "id": "unisync",
+      "name": "UniSync",
+      "organization": "Mango TV",
+      "released_at": "2026-03-04",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "lip-sync",
+        "video-dubbing",
+        "audio-driven-avatar",
+        "video-to-video"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Paper only; code, weights, model license, and public repository are not released",
+        "release_url": "https://arxiv.org/abs/2603.03882",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Audio-image-to-video diffusion model with pose-anchored training and latent-plus-pixel blending",
+        "parameters": null,
+        "notes": "LoRA adaptation adds full-frame pose conditioning, while Temporal-Adaptive Latent Injection and Gaussian compositing constrain non-mouth regions during inference."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "UniSync 5K training set",
+            "catalog_id": "unisync-5k",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "5,000 high-resolution videos",
+            "notes": "The LoRA stage uses a compact mixture of 2D and 3D cartoons, movies, TV series, and TV shows, but no source manifest or files are released."
+          },
+          {
+            "name": "HDTF",
+            "catalog_id": "hdtf",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "Paper-specific evaluation subset not disclosed",
+            "notes": "UniSync reports standard talking-head metrics on HDTF; the public HDTF card provides source URLs and metadata rather than all reconstructed media."
+          },
+          {
+            "name": "RealWorld-LipSync",
+            "catalog_id": "realworld-lipsync",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "495 videos at 1080p or higher, each 2 to 15 seconds",
+            "notes": "The new benchmark targets hard production cases and includes a Generation Success Rate metric, but the promised public package has not appeared."
+          }
+        ],
+        "stages": [
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "audio"
+            ],
+            "source_types": [
+              "proprietary"
+            ],
+            "operations": [
+              "lora-fine-tuning",
+              "full-frame-conditioning",
+              "pose-keypoint-extraction",
+              "pose-anchored-fidelity-training",
+              "audio-visual-conditioning",
+              "mask-free-training"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Adapt a pretrained audio-image-to-video generator with LoRA on 5,000 diverse high-resolution clips, conditioning on full frames and RTMPose keypoints so lip motion changes without sacrificing head structure."
+          }
+        ],
+        "strategy_summary": [
+          "Use mask-free full-frame training to avoid mouth-boundary color seams while anchoring global head pose with explicit keypoints.",
+          "During inference, inject noisy source latents outside the mouth early in denoising and apply Gaussian pixel compositing for local consistency.",
+          "Spend data budget on domain diversity rather than scale, then evaluate on both HDTF and a new set of production-like lighting, camera, and stylized-character failures."
+        ],
+        "unknowns": [
+          "Identity, parameter count, weights, and inherited data lineage of the pretrained audio-image-to-video base model.",
+          "Source titles, licensing, language mix, duration, and filtering criteria for the 5,000-video training set.",
+          "Public release URL, license, media provenance, and exact split for RealWorld-LipSync.",
+          "Optimizer schedule, LoRA rank and target layers, held-out validation construction, and reproducible inference configuration."
+        ]
+      },
+      "evidence": {
+        "release": "https://arxiv.org/abs/2603.03882",
+        "technical_report": "https://arxiv.org/abs/2603.03882",
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/unisync.yaml",
+      "scenario_ids": [
+        "video-generation",
+        "digital-human",
+        "video-localization"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "fine-tuning"
+        ],
+        "source_types": [
+          "proprietary"
+        ],
+        "operations": [
+          "lora-fine-tuning",
+          "full-frame-conditioning",
+          "pose-keypoint-extraction",
+          "pose-anchored-fidelity-training",
+          "audio-visual-conditioning",
+          "mask-free-training"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 3,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 1,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://export.arxiv.org/api/query?id_list=2603.03882"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "unisync-5k",
+        "hdtf",
+        "realworld-lipsync"
+      ]
+    },
+    {
       "id": "gemini-3-1-flash-image",
       "name": "Gemini 3.1 Flash Image (Nano Banana 2)",
       "organization": "Google DeepMind",
@@ -17813,6 +18912,218 @@
         }
       ],
       "linked_dataset_ids": []
+    },
+    {
+      "id": "funcineforge",
+      "name": "FunCineForge",
+      "organization": "Tongyi Lab Speech Team, Alibaba Group",
+      "released_at": "2026-01-21",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "video-dubbing",
+        "voice-preserving-video-localization",
+        "visual-voice-cloning",
+        "multi-speaker-dubbing",
+        "video-to-speech"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0 code and model repository; CineDub data samples use separate CC-BY-NC-4.0 terms",
+        "release_url": "https://github.com/QwenAudio/FunCineForge",
+        "weights_url": "https://huggingface.co/FunAudioLLM/Fun-CineForge",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "CosyVoice3-initialized multimodal language model plus flow matching with speaker switching",
+        "parameters": 500000000,
+        "notes": "A frame-index codebook, multimodal alignment supervision, lip contrastive loss, robust clue instructions, and speaker-switching flow matching support monologue through multi-speaker cinematic dubbing."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "CineDub-CN",
+            "catalog_id": "cinedub-cn",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "1,559,172 samples; more than 4,700 effective speech hours; 7.2 TB",
+            "notes": "The main model trains its MLLM and flow-matching modules separately for more than 20 epochs on the corrected CineDub-CN corpus; only a gated sample release is public."
+          },
+          {
+            "name": "CineDub-CN",
+            "catalog_id": "cinedub-cn",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "Four held-out samples per source television series across monologue, narration, dialogue, and multi-speaker categories",
+            "notes": "The paper evaluates intrinsic data quality and dubbing performance on held-out CineDub-CN scenes, but the complete test package is not published."
+          },
+          {
+            "name": "V2C-Animation",
+            "catalog_id": "v2c-animation",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "10,217 clips; 6.8 hours before split selection",
+            "notes": "A controlled comparison model is trained on the combined V2C-Animation, Chem, and GRID corpora using only monologue scenes and empty clue/timestamp-speaker annotations."
+          },
+          {
+            "name": "Chem",
+            "catalog_id": "chem",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "Approximately 9 hours before split selection",
+            "notes": "Chem is one component of the combined small-dataset control used to compare data quality against corrected CineDub-CN."
+          },
+          {
+            "name": "GRID audiovisual sentence corpus",
+            "catalog_id": "grid",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "34,000 fixed-grammar utterances before experiment-specific split selection",
+            "notes": "GRID supplies controlled multi-speaker audiovisual speech to the combined small-dataset model used in the paper's data-quality comparison."
+          },
+          {
+            "name": "V2C-Animation",
+            "catalog_id": "v2c-animation",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "Official 30% test split",
+            "notes": "FunCineForge and prior dubbing baselines are evaluated on the V2C-Animation test distribution in the controlled monologue comparison."
+          },
+          {
+            "name": "Chem",
+            "catalog_id": "chem",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "196 test samples reported by DiFlowDubber's split documentation",
+            "notes": "The paper includes Chem test results for the combined small-dataset control and official baseline checkpoints."
+          },
+          {
+            "name": "GRID audiovisual sentence corpus",
+            "catalog_id": "grid",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "Experiment-specific test split",
+            "notes": "GRID test samples support the paper's English monologue comparison of speech quality, word error rate, and lip alignment."
+          }
+        ],
+        "stages": [
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "proprietary"
+            ],
+            "operations": [
+              "video-standardization",
+              "voice-activity-detection",
+              "source-separation",
+              "overlap-filtering",
+              "active-speaker-diarization",
+              "face-and-lip-extraction",
+              "multimodal-cot-correction",
+              "bidirectional-script-speaker-verification",
+              "frame-index-codebook-training",
+              "lip-contrastive-learning",
+              "speaker-switching-flow-matching"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Convert more than 6,000 raw television hours into the corrected CineDub-CN corpus, then separately train the CosyVoice3-initialized MLLM and flow module for over 20 epochs on multimodal clues, timing, and speaker-switch supervision."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset"
+            ],
+            "operations": [
+              "controlled-dataset-comparison",
+              "monologue-only-filtering",
+              "empty-clue-ablation",
+              "empty-speaker-timestamp-ablation"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train a controlled FunCineForge variant on combined V2C-Animation, Chem, and GRID monologues to isolate the effect of CineDub-CN scale and rich annotations."
+          }
+        ],
+        "strategy_summary": [
+          "Treat data production as part of the model: separate vocals, reject overlaps, resolve active speakers, and attach faces, lips, character clues, emotion, and exact speaking intervals.",
+          "Use a general MLLM to correct specialized ASR and diarization outputs through bidirectional script-speaker verification, reducing reported CER and diarization error before training.",
+          "Teach one 0.5B model where speech occurs, what is said, who speaks, and how speakers switch, then compare against the same architecture trained on three small public benchmarks."
+        ],
+        "unknowns": [
+          "Full CineDub-CN archive, source-level provenance, licenses, consent records, and train-test manifest; the 7.2 TB corpus itself is not released.",
+          "Composition and scale of the English data used by the later bilingual Fun-CineForge-zh-en-v1-0.5B checkpoint.",
+          "Exact relationship between the January paper model and the March bilingual checkpoint beyond the published repository notes.",
+          "Whether the Apache-2.0 model license can be cleanly combined with every inherited CosyVoice3 component and training-media restriction for commercial deployment."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/QwenAudio/FunCineForge",
+        "technical_report": "https://arxiv.org/abs/2601.14777",
+        "repository": "https://github.com/QwenAudio/FunCineForge"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/funcineforge.yaml",
+      "scenario_ids": [
+        "video-localization"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "fine-tuning",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "proprietary",
+          "public-dataset"
+        ],
+        "operations": [
+          "video-standardization",
+          "voice-activity-detection",
+          "source-separation",
+          "overlap-filtering",
+          "active-speaker-diarization",
+          "face-and-lip-extraction",
+          "multimodal-cot-correction",
+          "bidirectional-script-speaker-verification",
+          "frame-index-codebook-training",
+          "lip-contrastive-learning",
+          "speaker-switching-flow-matching",
+          "controlled-dataset-comparison",
+          "monologue-only-filtering",
+          "empty-clue-ablation",
+          "empty-speaker-timestamp-ablation"
+        ],
+        "data_reference_count": 8,
+        "linked_dataset_count": 4,
+        "scale_disclosed_stage_count": 2,
+        "stage_count": 2,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/FunAudioLLM/Fun-CineForge?expand=lastModified&expand=sha"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "cinedub-cn",
+        "v2c-animation",
+        "chem",
+        "grid"
+      ]
     },
     {
       "id": "fashn-vton-1-5",
@@ -22283,6 +23594,46 @@
       "reference_name": "VITON-HD-edit"
     },
     {
+      "model_id": "diflowdubber",
+      "dataset_id": "chem",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "196 test samples",
+      "reference_name": "Chem"
+    },
+    {
+      "model_id": "diflowdubber",
+      "dataset_id": "chem",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "6,082 train, 50 validation, and 196 test samples; approximately 9 hours",
+      "reference_name": "Chem"
+    },
+    {
+      "model_id": "diflowdubber",
+      "dataset_id": "grid",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "3,280 test instances reported by the paper",
+      "reference_name": "GRID audiovisual sentence corpus"
+    },
+    {
+      "model_id": "diflowdubber",
+      "dataset_id": "grid",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "32,670 training instances and 3,280 test instances reported by the paper",
+      "reference_name": "GRID audiovisual sentence corpus"
+    },
+    {
+      "model_id": "diflowdubber",
+      "dataset_id": "libritts",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "470 hours",
+      "reference_name": "LibriTTS"
+    },
+    {
       "model_id": "emu3-5",
       "dataset_id": "avgen-bench",
       "role": "evaluation",
@@ -22393,6 +23744,70 @@
       "availability": "public",
       "scale": "100,000 training and 5,000 evaluation triplets",
       "reference_name": "FIT-VTO-100K"
+    },
+    {
+      "model_id": "funcineforge",
+      "dataset_id": "chem",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "196 test samples reported by DiFlowDubber's split documentation",
+      "reference_name": "Chem"
+    },
+    {
+      "model_id": "funcineforge",
+      "dataset_id": "chem",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "Approximately 9 hours before split selection",
+      "reference_name": "Chem"
+    },
+    {
+      "model_id": "funcineforge",
+      "dataset_id": "cinedub-cn",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "Four held-out samples per source television series across monologue, narration, dialogue, and multi-speaker categories",
+      "reference_name": "CineDub-CN"
+    },
+    {
+      "model_id": "funcineforge",
+      "dataset_id": "cinedub-cn",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "1,559,172 samples; more than 4,700 effective speech hours; 7.2 TB",
+      "reference_name": "CineDub-CN"
+    },
+    {
+      "model_id": "funcineforge",
+      "dataset_id": "grid",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "Experiment-specific test split",
+      "reference_name": "GRID audiovisual sentence corpus"
+    },
+    {
+      "model_id": "funcineforge",
+      "dataset_id": "grid",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "34,000 fixed-grammar utterances before experiment-specific split selection",
+      "reference_name": "GRID audiovisual sentence corpus"
+    },
+    {
+      "model_id": "funcineforge",
+      "dataset_id": "v2c-animation",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "Official 30% test split",
+      "reference_name": "V2C-Animation"
+    },
+    {
+      "model_id": "funcineforge",
+      "dataset_id": "v2c-animation",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "10,217 clips; 6.8 hours before split selection",
+      "reference_name": "V2C-Animation"
     },
     {
       "model_id": "gemini-3-1-flash-image",
@@ -22931,6 +24346,30 @@
       "reference_name": "TripVVT-10K"
     },
     {
+      "model_id": "unisync",
+      "dataset_id": "hdtf",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "Paper-specific evaluation subset not disclosed",
+      "reference_name": "HDTF"
+    },
+    {
+      "model_id": "unisync",
+      "dataset_id": "realworld-lipsync",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "495 videos at 1080p or higher, each 2 to 15 seconds",
+      "reference_name": "RealWorld-LipSync"
+    },
+    {
+      "model_id": "unisync",
+      "dataset_id": "unisync-5k",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "5,000 high-resolution videos",
+      "reference_name": "UniSync 5K training set"
+    },
+    {
       "model_id": "veo-3-1",
       "dataset_id": "avgen-bench",
       "role": "evaluation",
@@ -23068,6 +24507,13 @@
       "relationship": "filtered-subset",
       "contribution": "Expressive text-video source videos",
       "notes": "CelebV-Text contributes videos and source metadata that pass the same dubbing-specific curation pipeline."
+    },
+    {
+      "source_dataset_id": "cinedub-cn",
+      "derived_dataset_id": "cinedub-example",
+      "relationship": "filtered-subset",
+      "contribution": "Chinese television examples and their structured dubbing annotations",
+      "notes": "The Hongloumeng archive is a sample of the Chinese CineDub pipeline output; the same release also contains a separate English Downton Abbey example archive."
     },
     {
       "source_dataset_id": "co3d",

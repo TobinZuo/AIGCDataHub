@@ -645,6 +645,30 @@ tracks:
       - url: https://github.com/tbertinmahieux/MSongsDB/commits/master.atom
         catalog_id: million-song-dataset
         priority: high
+      - url: https://www.openslr.org/60/
+        catalog_id: libritts
+        priority: critical
+      - url: https://spandh.dcs.shef.ac.uk/gridcorpus/
+        catalog_id: grid
+        priority: critical
+      - url: https://github.com/Tsinghua-MARS-Lab/NeuralDubber/commits/gh-pages.atom
+        catalog_id: chem
+        priority: critical
+      - url: https://github.com/chenqi008/V2C/commits/main.atom
+        catalog_id: v2c-animation
+        priority: critical
+      - url: https://github.com/QwenAudio/FunCineForge/commits/main.atom
+        catalog_id: cinedub-cn
+        priority: critical
+      - url: "https://huggingface.co/api/datasets/FunAudioLLM/CineDub-Example?expand=lastModified&expand=sha"
+        catalog_id: cinedub-example
+        priority: critical
+      - url: https://arxiv.org/html/2603.03882
+        catalog_id: unisync-5k
+        priority: critical
+      - url: https://arxiv.org/abs/2603.03882
+        catalog_id: realworld-lipsync
+        priority: critical
 
   - id: important-model-updates
     topics:
@@ -898,6 +922,15 @@ tracks:
         priority: critical
       - url: https://ai.google.dev/gemini-api/docs/models/gemini-3-pro-image
         model_id: gemini-3-pro-image
+        priority: critical
+      - url: https://github.com/Fsoft-AIC/DiFlowDubber/commits/main.atom
+        model_id: diflowdubber
+        priority: critical
+      - url: "https://huggingface.co/api/models/FunAudioLLM/Fun-CineForge?expand=lastModified&expand=sha"
+        model_id: funcineforge
+        priority: critical
+      - url: https://export.arxiv.org/api/query?id_list=2603.03882
+        model_id: unisync
         priority: critical
 
 acceptance_rules:

@@ -1,0 +1,104 @@
+id: diflowdubber
+name: DiFlowDubber
+organization: FPT Software AI Center, KAIST, and University of Alabama at Birmingham
+released_at: "2026-03-15"
+modalities:
+  - video
+  - audio
+tasks:
+  - video-dubbing
+  - voice-preserving-video-localization
+  - video-to-speech
+  - text-to-speech
+access:
+  status: announced
+  license: Apache-2.0 repository shell; implementation and model checkpoints are still marked coming soon
+  release_url: https://nngocson2002.github.io/projects/diflowdubber
+  weights_url: null
+  api_url: null
+architecture:
+  family: Discrete flow-matching TTS backbone with content-consistent temporal adaptation and face-to-prosody conditioning
+  parameters: null
+  notes: FACodec factorizes speech into prosody, content, and acoustic tokens; a dual-alignment Synchronizer and Face-to-Prosody mapper adapt the pretrained TTS system to visually aligned dubbing.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: LibriTTS
+      catalog_id: libritts
+      role: pretraining
+      availability: public
+      scale: 470 hours
+      notes: The zero-shot TTS stage trains for 300K steps on a disclosed 470-hour LibriTTS subset before any video-dubbing adaptation.
+    - name: Chem
+      catalog_id: chem
+      role: fine-tuning
+      availability: not-released
+      scale: 6,082 train, 50 validation, and 196 test samples; approximately 9 hours
+      notes: A Chem-specific adaptation run trains for 150 epochs; the official Neural Dubber page provides result examples but not the complete corpus.
+    - name: GRID audiovisual sentence corpus
+      catalog_id: grid
+      role: fine-tuning
+      availability: public
+      scale: 32,670 training instances and 3,280 test instances reported by the paper
+      notes: A separate GRID adaptation run trains for 200 epochs with the paper's declared split while the official corpus page exposes per-speaker archives.
+    - name: Chem
+      catalog_id: chem
+      role: evaluation
+      availability: not-released
+      scale: 196 test samples
+      notes: Main dubbing results, prosody validation, and ablations use the Chem benchmark under two duration settings.
+    - name: GRID audiovisual sentence corpus
+      catalog_id: grid
+      role: evaluation
+      availability: public
+      scale: 3,280 test instances reported by the paper
+      notes: The GRID benchmark evaluates the same two dubbing-duration settings as Chem across synchronization, intelligibility, speaker similarity, and naturalness metrics.
+  stages:
+    - name: pretraining
+      modalities:
+        - audio
+        - text
+      source_types:
+        - public-dataset
+      operations:
+        - facodec-tokenization
+        - phoneme-duration-modeling
+        - discrete-flow-matching
+        - prosody-acoustic-factorization
+        - zero-shot-speaker-conditioning
+      scale_disclosed: true
+      strategy: Train a zero-shot TTS system on 470 LibriTTS hours, using deterministic content prediction and discrete flow matching for factorized prosody and acoustic tokens.
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - public-dataset
+      operations:
+        - face-cropping
+        - lip-cropping
+        - face-to-prosody-mapping
+        - video-text-alignment
+        - speech-text-alignment
+        - duration-regulation
+        - content-consistent-temporal-adaptation
+      scale_disclosed: true
+      strategy: Replace the TTS duration predictor with a dual-alignment Synchronizer, fuse facial prosody with temporally regulated content, and adapt separate Chem and GRID models while fine-tuning the inherited flow module.
+  strategy_summary:
+    - Learn pronunciation, prosody, and acoustic realism from a substantially larger speech-only corpus before introducing scarce video-dubbing supervision.
+    - Factorize speech with FACodec so deterministic linguistic content and generative prosody-acoustic variation can be optimized separately.
+    - Transfer the TTS prior with explicit video-text and speech-text alignment, then condition prosody on facial dynamics for timing and expression.
+  unknowns:
+    - Public implementation, checkpoints, model license, and exact release date; the official repository still says code will be released soon.
+    - Complete training-data lineage and license of the inherited FACodec checkpoint.
+    - Exact LibriTTS split names making up the reported 470-hour subset and whether any utterance-level filtering was applied.
+    - Reproducible Chem acquisition path and rights terms for its YouTube-derived lecture media.
+evidence:
+  release: https://nngocson2002.github.io/projects/diflowdubber
+  technical_report: https://arxiv.org/abs/2603.14267
+  repository: https://github.com/Fsoft-AIC/DiFlowDubber
+status: partial
+last_verified: "2026-07-27"

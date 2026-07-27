@@ -1,0 +1,77 @@
+id: cinedub-example
+name: CineDub-Example
+organization: Tongyi Lab Speech Team, Alibaba Group
+released_at: "2026-03-13"
+release_date_source: https://huggingface.co/api/datasets/FunAudioLLM/CineDub-Example
+modality: video
+tasks:
+  - video-dubbing
+  - visual-voice-cloning
+  - multi-speaker-dubbing
+  - dataset-pipeline-evaluation
+stages:
+  - evaluation
+  - data-curation
+description: >-
+  The official gated CineDub sample release, currently packaged as Chinese and
+  English television example archives for inspecting FunCineForge's multimodal
+  dubbing data format and annotations without exposing the full training corpus.
+derived_from:
+  - catalog_id: cinedub-cn
+    relationship: filtered-subset
+    contribution: Chinese television examples and their structured dubbing annotations
+    notes: The Hongloumeng archive is a sample of the Chinese CineDub pipeline output; the same release also contains a separate English Downton Abbey example archive.
+access:
+  status: gated
+  type: hosted
+  url: https://huggingface.co/datasets/FunAudioLLM/CineDub-Example
+  requires_account: true
+  notes: Hugging Face automatic gating requires authentication and acceptance of the publisher terms before downloading the multipart archives.
+scale:
+  samples: null
+  source_items: 2
+  hours: null
+  approximate: false
+  notes: The repository contains multipart Hongloumeng and Downton Abbey archives totaling approximately 52.93 GB; the official gated card does not expose clip or hour counts anonymously.
+annotations:
+  types:
+    - speech-transcript
+    - vocal-track
+    - speaker-timestamp
+    - character-clue
+    - emotion-clue
+    - face-sequence
+    - lip-sequence
+    - scene-category
+  source: mixed
+  languages:
+    - zh
+    - en
+license:
+  metadata: CC-BY-NC-4.0 as declared by the official Hugging Face dataset metadata
+  media: CC-BY-NC-4.0 release label plus underlying television-source rights and accepted access terms
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The repository is gated and non-commercial; users must also review the television-source rights before copying or redistributing media.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Two source-series examples cannot represent the full CineDub-CN distribution or all cinematic scene types.
+    - Anonymous inspection of file contents and exact clip counts is blocked by repository gating.
+    - Example availability does not make the unreleased 7.2 TB training corpus reproducible.
+processing:
+  recipe: Download every multipart archive after access approval, verify the provided MD5 files, extract only after confirming disk requirements, and retain series-level provenance.
+  recommended_format: native
+  notes: Treat the Chinese and English archives as examples, not as a complete replacement for CineDub-CN or a disclosed CineDub-EN training set.
+evidence:
+  homepage: https://huggingface.co/datasets/FunAudioLLM/CineDub-Example
+  paper: https://arxiv.org/abs/2601.14777
+  used_by: []
+status: partial
+last_verified: "2026-07-27"

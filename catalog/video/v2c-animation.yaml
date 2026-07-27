@@ -1,0 +1,69 @@
+id: v2c-animation
+name: V2C-Animation
+organization: University of Adelaide, South China University of Technology, and Pazhou Lab
+released_at: "2021-11-25"
+release_date_source: https://arxiv.org/abs/2111.12890
+modality: video
+tasks:
+  - video-dubbing
+  - visual-voice-cloning
+  - emotion-conditioned-speech-generation
+stages:
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A visual voice-cloning dataset of animated-movie clips paired with center-
+  channel speech, subtitles, characters, and eight-way emotion labels for
+  generating speech conditioned on a reference voice and visual emotion.
+access:
+  status: metadata-only
+  type: urls
+  url: https://github.com/chenqi008/V2C
+  requires_account: false
+  notes: The official repository publishes extraction code, annotations, timestamps, and links to the 26 source movies; it does not redistribute a ready-to-train archive of copyrighted movie media.
+scale:
+  samples: 10217
+  source_items: 26
+  hours: 6.8
+  approximate: false
+  notes: The paper reports 10,217 clips from 26 animated movies and 153 characters, averaging 2.4 seconds, split 60% train, 10% validation, and 30% test.
+annotations:
+  types:
+    - subtitle
+    - timestamp
+    - character-id
+    - speaker-id
+    - emotion-label
+    - synchronized-audio-video
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: No explicit dataset license found in the official repository
+  media: Copyrighted animated movies are not redistributed and retain their original rights
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The released tooling and metadata do not grant rights to the 26 source films; users must lawfully source and process the media themselves.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Animated films do not represent live-action facial motion or production audio conditions.
+    - Center-channel extraction and manual filtering do not fully eliminate music, effects, or alignment errors.
+    - Reconstructing the corpus requires lawful access to copyrighted source movies.
+processing:
+  recipe: Use the official subtitle timestamps and extraction toolkit on lawfully obtained source films, retain center-channel speech, and preserve the provided character and emotion labels.
+  recommended_format: native
+  notes: Record source-film edition and checksum because different releases can shift subtitle and media timing.
+evidence:
+  homepage: https://github.com/chenqi008/V2C
+  paper: https://openaccess.thecvf.com/content/CVPR2022/html/Chen_V2C_Visual_Voice_Cloning_CVPR_2022_paper.html
+  used_by:
+    - FunCineForge
+status: partial
+last_verified: "2026-07-27"

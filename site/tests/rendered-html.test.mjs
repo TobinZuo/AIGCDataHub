@@ -338,6 +338,18 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.ok(parsedCatalog.dataset_relations.some(
     (relation) => relation.source_dataset_id === "mvimgnet-2-0" && relation.derived_dataset_id === "considvid",
   ));
+  assert.ok(parsedCatalog.relations.some(
+    (relation) => relation.model_id === "diflowdubber" && relation.dataset_id === "libritts" && relation.role === "pretraining",
+  ));
+  assert.ok(parsedCatalog.relations.some(
+    (relation) => relation.model_id === "funcineforge" && relation.dataset_id === "cinedub-cn" && relation.role === "fine-tuning",
+  ));
+  assert.ok(parsedCatalog.relations.some(
+    (relation) => relation.model_id === "unisync" && relation.dataset_id === "realworld-lipsync" && relation.role === "evaluation",
+  ));
+  assert.ok(parsedCatalog.dataset_relations.some(
+    (relation) => relation.source_dataset_id === "cinedub-cn" && relation.derived_dataset_id === "cinedub-example",
+  ));
   const datasets = Object.fromEntries(parsedCatalog.datasets.map((dataset) => [dataset.id, dataset]));
   assert.equal(datasets["flickr-5b"].monitoring.mode, "availability");
   assert.equal(
