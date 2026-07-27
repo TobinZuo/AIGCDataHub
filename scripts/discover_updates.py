@@ -13,6 +13,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from html.parser import HTMLParser
@@ -462,6 +463,24 @@ def _strip_tags(fragment: str) -> str:
 def extract_source_revision(payload: str, source_url: str) -> tuple[str | None, str | None]:
     """Extract a stable revision from supported first-party repository APIs."""
     parsed_url = urllib.parse.urlsplit(source_url)
+    if parsed_url.hostname == "export.arxiv.org" and parsed_url.path == "/api/query":
+        try:
+            root = ET.fromstring(payload)
+        except ET.ParseError:
+            return None, None
+        namespace = {"atom": "http://www.w3.org/2005/Atom"}
+        entries: list[tuple[str, str]] = []
+        for entry in root.findall("atom:entry", namespace):
+            entry_id = normalize_text(entry.findtext("atom:id", default="", namespaces=namespace))
+            entry_updated = normalize_text(entry.findtext("atom:updated", default="", namespaces=namespace))
+            if entry_id and entry_updated:
+                entries.append((entry_id.replace("http://arxiv.org/", "https://arxiv.org/"), entry_updated))
+        if not entries:
+            return None, None
+        stable_entries = sorted(entries)
+        revision = "|".join(f"{entry_id}@{updated}" for entry_id, updated in stable_entries)
+        revision_url = stable_entries[0][0]
+        return revision, revision_url if len(stable_entries) == 1 else None
     try:
         metadata = json.loads(payload)
     except (json.JSONDecodeError, TypeError):
@@ -1697,7 +1716,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--timeout", type=float, default=20)
     parser.add_argument("--max-bytes", type=int, default=4_000_000)
-    parser.add_argument("--workers", type=int, default=8)
+    parser.add_argument("--workers", type=int, default=4)
     return parser.parse_args()
 
 

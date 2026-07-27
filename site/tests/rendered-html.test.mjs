@@ -256,7 +256,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
         .filter((dataset) => dataset.released_at === newestDatasetDate)
         .map((dataset) => dataset.id),
     ),
-    new Set(["elasticttt-video-editing", "graphvid-bench"]),
+    new Set(["elasticttt-video-editing", "graphvid-bench", "worldweaver-minecraft-126h"]),
   );
   const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
   assert.ok(parsedCatalog.models.every((model) => model.monitoring));
@@ -282,6 +282,11 @@ test("uses generated catalog data and removes starter preview assets", async () 
   );
   assert.deepEqual(models.graphvid.linked_dataset_ids, ["graphvid-bench"]);
   assert.deepEqual(models.elasticttt.linked_dataset_ids, ["elasticttt-video-editing"]);
+  assert.deepEqual(models.worldweaver.linked_dataset_ids, ["worldweaver-minecraft-126h", "solaris-eval-datasets"]);
+  assert.deepEqual(
+    models.solaris.linked_dataset_ids,
+    ["vpt-contractor-demonstrations", "solaris-training-dataset", "solaris-eval-datasets"],
+  );
   assert.equal(
     models.elasticttt.data.datasets.find((dataset) => dataset.availability === "runtime-input").catalog_id,
     null,
@@ -317,6 +322,12 @@ test("uses generated catalog data and removes starter preview assets", async () 
   ));
   assert.ok(parsedCatalog.relations.some(
     (relation) => relation.model_id === "elasticttt" && relation.dataset_id === "elasticttt-video-editing",
+  ));
+  assert.ok(parsedCatalog.relations.some(
+    (relation) => relation.model_id === "worldweaver" && relation.dataset_id === "worldweaver-minecraft-126h",
+  ));
+  assert.ok(parsedCatalog.relations.some(
+    (relation) => relation.model_id === "solaris" && relation.dataset_id === "solaris-training-dataset",
   ));
   assert.ok(parsedCatalog.relations.some(
     (relation) => relation.model_id === "ctrlvton" && relation.dataset_id === "viton-hd-edit",

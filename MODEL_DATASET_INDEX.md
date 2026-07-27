@@ -2,14 +2,17 @@
 
 Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; runtime inputs, unreleased data, and undisclosed data must state why no card exists.
 
-- Models: 86
-- References linked to catalog cards: 116
-- References without a card, with an explicit evidence boundary: 96
+- Models: 88
+- References linked to catalog cards: 121
+- References without a card, with an explicit evidence boundary: 98
 - Ordering: model release date, newest first
 
 | Model | Released | Dataset or corpus named by source | Availability | Catalog resolution | Role | Evidence boundary |
 |---|---:|---|---|---|---|---|
 | [Midjourney V8.2](models/image/midjourney-v8-2.yaml) | 2026-07-24 | V8.2 personalization ratings and image-selection pool | undisclosed | — exact source is not disclosed | preference | Midjourney reports stronger profiles for users with many ratings and a larger improved pool of images, without publishing the underlying data. |
+| [WorldWeaver](models/video/worldweaver.yaml) | 2026-07-23 | Inherited single-player video diffusion prior training mixture | undisclosed | — exact source is not disclosed | pretraining | The paper initializes from a pretrained single-player model but does not identify or restate the underlying training corpus, rights composition, or mixture. |
+| [WorldWeaver](models/video/worldweaver.yaml) | 2026-07-23 | WorldWeaver Minecraft 126h | not-released | [`worldweaver-minecraft-126h`](catalog/video/worldweaver-minecraft-126h.yaml) | fine-tuning | The paper fully describes the simulator streams and annotations, but neither dataset files nor dataset-specific terms have been published. |
+| [WorldWeaver](models/video/worldweaver.yaml) | 2026-07-23 | Solaris Eval Datasets | public | [`solaris-eval-datasets`](catalog/evaluation/solaris-eval-datasets.yaml) | evaluation | WorldWeaver evaluates on the original Solaris test split using Movement, Grounding, Memory, Building, and Consistency categories. |
 | [SANA-Video 2.0](models/video/sana-video-2-0.yaml) | 2026-07-23 | Curated in-house image and video training pool | not-released | — publisher has not released it | pretraining | The report names no source datasets, but describes separate broad pretraining, stricter continual-training, and trusted supervised-fine-tuning pools. |
 | [SANA-Video 2.0](models/video/sana-video-2-0.yaml) | 2026-07-23 | Gemini-ranked generated video preference pairs | not-released | — publisher has not released it | preference | Generated candidates are ranked for visual fidelity, prompt alignment, motion quality, and temporal coherence before unreliable comparisons are removed. |
 | [GraphVid](models/video/graphvid.yaml) | 2026-07-23 | LTX-Video base-model training mixture | undisclosed | — exact source is not disclosed | pretraining | GraphVid inherits a frozen LTX-Video generative prior whose original source corpus and mixture are not restated by this paper. |
@@ -94,6 +97,10 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [UniSync](models/video/unisync.yaml) | 2026-03-04 | HDTF | public | [`hdtf`](catalog/video/hdtf.yaml) | evaluation | UniSync reports standard talking-head metrics on HDTF; the public HDTF card provides source URLs and metadata rather than all reconstructed media. |
 | [UniSync](models/video/unisync.yaml) | 2026-03-04 | RealWorld-LipSync | not-released | [`realworld-lipsync`](catalog/evaluation/realworld-lipsync.yaml) | evaluation | The new benchmark targets hard production cases and includes a Generation Success Rate metric, but the promised public package has not appeared. |
 | [Gemini 3.1 Flash Image (Nano Banana 2)](models/image/gemini-3-1-flash-image.yaml) | 2026-02-26 | AVGen-Bench | public | [`avgen-bench`](catalog/evaluation/avgen-bench.yaml) | evaluation | The official leaderboard evaluates a Nano Banana 2 first-frame plus MOVA audio-video pipeline; this is not a standalone Nano Banana 2 score or a training source. |
+| [Solaris](models/video/solaris.yaml) | 2026-02-25 | Matrix Game 2.0 inherited pretraining mixture | undisclosed | — exact source is not disclosed | pretraining | Solaris initializes from public Matrix Game 2.0 weights, but the Solaris release does not restate the complete corpus and mixture that produced those inherited weights. |
+| [Solaris](models/video/solaris.yaml) | 2026-02-25 | VPT Contractor Demonstrations | public | [`vpt-contractor-demonstrations`](catalog/video/vpt-contractor-demonstrations.yaml) | pretraining | Stage 1 downloads OpenAI's public contractor episode indices and uses the single-player videos and action logs to extend the inherited action space. |
+| [Solaris](models/video/solaris.yaml) | 2026-02-25 | Solaris Training Dataset | public | [`solaris-training-dataset`](catalog/video/solaris-training-dataset.yaml) | fine-tuning | Stages 2 through 4 use the simulator-collected Duet data for bidirectional multiplayer training, causal conversion, and self-forcing. |
+| [Solaris](models/video/solaris.yaml) | 2026-02-25 | Solaris Eval Datasets | public | [`solaris-eval-datasets`](catalog/evaluation/solaris-eval-datasets.yaml) | evaluation | The public evaluation release measures movement, memory, grounding, building, and view consistency with actions for both players. |
 | [SkyReels V4](models/video/skyreels-v4.yaml) | 2026-02-25 | LAION (version not specified) | public | [`re-laion-5b`](catalog/image/re-laion-5b.yaml) | pretraining | The paper names LAION without a version; the linked card documents the maintained Re-LAION-5B lineage and does not assert the exact snapshot used. |
 | [SkyReels V4](models/video/skyreels-v4.yaml) | 2026-02-25 | Flickr | public | [`flickr-5b`](catalog/image/flickr-5b.yaml) | pretraining | The paper directly cites the bigdata-pw/Flickr metadata repository. |
 | [SkyReels V4](models/video/skyreels-v4.yaml) | 2026-02-25 | WebVid-10M | public | [`webvid-10m`](catalog/video/webvid-10m.yaml) | pretraining | Named as an example public video source; the original media distribution is no longer durable. |

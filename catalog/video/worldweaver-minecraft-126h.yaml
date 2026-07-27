@@ -1,0 +1,74 @@
+id: worldweaver-minecraft-126h
+name: WorldWeaver Minecraft 126h
+organization: UCLA and Adobe Research
+released_at: "2026-07-23"
+release_date_source: https://arxiv.org/abs/2607.21594
+modality: video
+tasks:
+  - image-to-video
+  - action-conditioned-video-generation
+  - multi-agent-world-modeling
+  - streaming-video-generation
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  A paper-described corpus of synchronized two-agent Minecraft interactions with
+  egocentric video, semantic controller inputs, physical agent state, a shared
+  overhead camera, and generated scene-text supervision for world-state learning.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2607.21594
+  requires_account: false
+  notes: The paper documents collection and annotation, but the authors have not published dataset files, a download process, or dataset-specific terms.
+scale:
+  samples: null
+  source_items: null
+  hours: 126
+  approximate: true
+  notes: The paper reports approximately 126 synchronized hours at 832x480 and 20 FPS; it does not publish episode or clip counts, so no derived sample count is asserted here.
+annotations:
+  types:
+    - alpha-egocentric-video
+    - bravo-egocentric-video
+    - shared-overhead-video
+    - controller-action
+    - position
+    - velocity
+    - orientation
+    - scene-text
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Not published
+  media: Not published; Minecraft and generated-annotation dependencies require review
+  commercial_use: unknown
+  redistribution: unknown
+  notes: CC-BY-4.0 applies to the paper, not automatically to unreleased data; no dataset license or Minecraft asset-rights grant is stated.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - text-media-alignment
+    - geometry-quality
+    - multi-view-consistency
+    - provenance
+  known_limitations:
+    - Files and collection code are unavailable, so episode distribution, duplicates, corruption, and reported duration cannot be independently audited.
+    - The corpus covers two-agent Minecraft sessions and may not transfer to real-world agents, photorealistic scenes, more players, or different action spaces.
+    - Scene text is generated offline by Qwen2.5-VL-72B-Instruct and can inherit hallucinations or miss state changes despite conditioning on synchronized views and actions.
+    - The paper does not publish safety filtering, participant or server diversity, or dataset-specific usage terms.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Preserve all three synchronized camera streams, 20-Hz state and controller logs, and the four-frame scene-text alignment if files are released; do not infer missing counts from duration alone.
+evidence:
+  homepage: https://vail-ucla.github.io/worldweaver/
+  paper: https://arxiv.org/abs/2607.21594
+  used_by:
+    - WorldWeaver
+status: partial
+last_verified: "2026-07-27"

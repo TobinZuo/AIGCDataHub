@@ -80,6 +80,10 @@ class CatalogTests(unittest.TestCase):
                 "realworld-lipsync",
                 "davis-2017",
                 "elasticttt-video-editing",
+                "worldweaver-minecraft-126h",
+                "solaris-training-dataset",
+                "solaris-eval-datasets",
+                "vpt-contractor-demonstrations",
             }.issubset(cards)
         )
         self.assertIn("video-dubbing", cards["audiovisual-translation-dub"]["tasks"])
@@ -116,6 +120,13 @@ class CatalogTests(unittest.TestCase):
             cards["elasticttt-video-editing"]["derived_from"][0]["catalog_id"],
             "davis-2017",
         )
+        self.assertEqual(cards["worldweaver-minecraft-126h"]["access"]["status"], "unavailable")
+        self.assertEqual(cards["worldweaver-minecraft-126h"]["scale"]["hours"], 126)
+        self.assertEqual(cards["solaris-training-dataset"]["access"]["status"], "open")
+        self.assertEqual(cards["solaris-training-dataset"]["scale"]["samples"], 12640000)
+        self.assertEqual(cards["solaris-training-dataset"]["scale"]["source_items"], 9240)
+        self.assertEqual(cards["solaris-eval-datasets"]["scale"]["samples"], 1280)
+        self.assertEqual(cards["vpt-contractor-demonstrations"]["access"]["type"], "urls")
         self.assertEqual(cards["voxceleb2"]["access"]["status"], "unavailable")
         self.assertEqual(cards["lrs3"]["access"]["status"], "unavailable")
         self.assertEqual(cards["celebv-text"]["access"]["type"], "urls")

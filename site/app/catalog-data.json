@@ -675,6 +675,107 @@
   ],
   "datasets": [
     {
+      "id": "worldweaver-minecraft-126h",
+      "name": "WorldWeaver Minecraft 126h",
+      "organization": "UCLA and Adobe Research",
+      "released_at": "2026-07-23",
+      "release_date_source": "https://arxiv.org/abs/2607.21594",
+      "modality": "video",
+      "tasks": [
+        "image-to-video",
+        "action-conditioned-video-generation",
+        "multi-agent-world-modeling",
+        "streaming-video-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A paper-described corpus of synchronized two-agent Minecraft interactions with egocentric video, semantic controller inputs, physical agent state, a shared overhead camera, and generated scene-text supervision for world-state learning.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2607.21594",
+        "requires_account": false,
+        "notes": "The paper documents collection and annotation, but the authors have not published dataset files, a download process, or dataset-specific terms."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": 126,
+        "approximate": true,
+        "notes": "The paper reports approximately 126 synchronized hours at 832x480 and 20 FPS; it does not publish episode or clip counts, so no derived sample count is asserted here."
+      },
+      "annotations": {
+        "types": [
+          "alpha-egocentric-video",
+          "bravo-egocentric-video",
+          "shared-overhead-video",
+          "controller-action",
+          "position",
+          "velocity",
+          "orientation",
+          "scene-text"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not published",
+        "media": "Not published; Minecraft and generated-annotation dependencies require review",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "CC-BY-4.0 applies to the paper, not automatically to unreleased data; no dataset license or Minecraft asset-rights grant is stated."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "motion",
+          "temporal-consistency",
+          "text-media-alignment",
+          "geometry-quality",
+          "multi-view-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Files and collection code are unavailable, so episode distribution, duplicates, corruption, and reported duration cannot be independently audited.",
+          "The corpus covers two-agent Minecraft sessions and may not transfer to real-world agents, photorealistic scenes, more players, or different action spaces.",
+          "Scene text is generated offline by Qwen2.5-VL-72B-Instruct and can inherit hallucinations or miss state changes despite conditioning on synchronized views and actions.",
+          "The paper does not publish safety filtering, participant or server diversity, or dataset-specific usage terms."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Preserve all three synchronized camera streams, 20-Hz state and controller logs, and the four-frame scene-text alignment if files are released; do not infer missing counts from duration alone."
+      },
+      "evidence": {
+        "homepage": "https://vail-ucla.github.io/worldweaver/",
+        "paper": "https://arxiv.org/abs/2607.21594",
+        "used_by": [
+          "WorldWeaver"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/worldweaver-minecraft-126h.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://vail-ucla.github.io/worldweaver/"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "worldweaver"
+      ]
+    },
+    {
       "id": "graphvid-bench",
       "name": "GraphVid-Bench",
       "organization": "University of Illinois Urbana-Champaign and Sony Research India",
@@ -3089,6 +3190,203 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "unisync"
+      ]
+    },
+    {
+      "id": "solaris-training-dataset",
+      "name": "Solaris Training Dataset",
+      "organization": "New York University VISIONx",
+      "released_at": "2026-02-21",
+      "release_date_source": "https://huggingface.co/datasets/nyu-visionx/solaris-training-dataset",
+      "modality": "video",
+      "tasks": [
+        "image-to-video",
+        "action-conditioned-video-generation",
+        "multi-agent-world-modeling",
+        "streaming-video-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A public synchronized two-player Minecraft world-model corpus collected with SolarisEngine, pairing 720p video at 20 FPS with semantic movement, camera, interaction, mining, placement, mount, and hotbar actions.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/nyu-visionx/solaris-training-dataset",
+        "requires_account": false,
+        "notes": "Download the 332 GB sharded release with the Hugging Face CLI, then use the official Solaris unshard_dataset.py script to reconstruct the Duet directory."
+      },
+      "scale": {
+        "samples": 12640000,
+        "source_items": 9240,
+        "hours": null,
+        "approximate": false,
+        "notes": "The paper reports 12.64M combined frames, 6.32M per player, over 9,240 synchronized episodes at 20 FPS; combined frame count must not be interpreted as unique wall-clock duration."
+      },
+      "annotations": {
+        "types": [
+          "two-player-video",
+          "semantic-action",
+          "camera-yaw-pitch",
+          "episode-category",
+          "episode-type",
+          "world-type"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "Apache-2.0",
+        "media": "Apache-2.0 dataset card plus Minecraft-dependent game imagery",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The official card declares Apache-2.0, but users should separately review Minecraft/Mojang game-content terms and any rights not conveyed by a repository license."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "motion",
+          "temporal-consistency",
+          "multi-view-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The corpus is generated by pre-programmed bots in Minecraft and does not reproduce the full diversity, intent, or error patterns of human multiplayer behavior.",
+          "Semantic actions exclude raw mouse events and inventory GUI opening or closing, limiting crafting and inventory-interaction coverage.",
+          "Episode types are sampled with length-dependent weights, so raw clip counts are not a uniform task distribution.",
+          "Underwater episodes are filtered with a learned HUD detector; selection errors and the removed examples are not distributed as a separate audit set."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Keep both players synchronized at the episode level, retain semantic actions and world metadata, and use the official unsharding script rather than treating shard files as independent examples."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/nyu-visionx/solaris-training-dataset",
+        "paper": "https://arxiv.org/abs/2602.22208",
+        "used_by": [
+          "Solaris"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/solaris-training-dataset.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "12.6M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/nyu-visionx/solaris-training-dataset?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "solaris"
+      ]
+    },
+    {
+      "id": "solaris-eval-datasets",
+      "name": "Solaris Eval Datasets",
+      "organization": "New York University VISIONx",
+      "released_at": "2026-02-20",
+      "release_date_source": "https://huggingface.co/datasets/nyu-visionx/solaris-eval-datasets",
+      "modality": "evaluation",
+      "tasks": [
+        "image-to-video",
+        "action-conditioned-video-generation",
+        "multi-agent-world-model-evaluation",
+        "video-generation-evaluation"
+      ],
+      "stages": [
+        "evaluation"
+      ],
+      "description": "A public two-player Minecraft evaluation collection with videos and actions for movement, memory, grounding, building, and cross-view consistency tests, suitable for multi-agent action-conditioned video models.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/nyu-visionx/solaris-eval-datasets",
+        "requires_account": false,
+        "notes": "The 5.84 GB release can be downloaded directly with the Hugging Face CLI; the official Solaris repository contains inference and evaluation commands."
+      },
+      "scale": {
+        "samples": 1280,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The Hugging Face dataset-server reports 1,280 test rows; the card names seven scenario folders but does not provide a canonical row-to-video duration summary."
+      },
+      "annotations": {
+        "types": [
+          "two-player-video",
+          "semantic-action",
+          "evaluation-scenario",
+          "movement",
+          "memory",
+          "grounding",
+          "building",
+          "view-consistency"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "Apache-2.0",
+        "media": "Apache-2.0 dataset card plus Minecraft-dependent game imagery",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The official card declares Apache-2.0, but users should separately review Minecraft/Mojang game-content terms and rights outside the repository license."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "motion",
+          "temporal-consistency",
+          "geometry-quality",
+          "multi-view-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Seven scripted Minecraft scenarios cannot exhaust multi-agent planning, communication, stochastic events, camera behavior, or more than two viewpoints.",
+          "The benchmark and Solaris training set share the same engine and action conventions, which may favor systems adapted to that environment.",
+          "VLM accuracy and FID measure complementary aspects but do not fully capture interactive controllability, causal fidelity, or long-horizon gameplay quality."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Report each named scenario separately before aggregates and preserve both players' first frames and full action sequences as model conditioning."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/nyu-visionx/solaris-eval-datasets",
+        "paper": "https://arxiv.org/abs/2602.22208",
+        "used_by": [
+          "Solaris",
+          "WorldWeaver"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/evaluation/solaris-eval-datasets.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "1.3K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/nyu-visionx/solaris-eval-datasets?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "worldweaver",
+        "solaris"
       ]
     },
     {
@@ -8101,6 +8399,104 @@
       ]
     },
     {
+      "id": "vpt-contractor-demonstrations",
+      "name": "VPT Contractor Demonstrations",
+      "organization": "OpenAI",
+      "released_at": "2022-06-23",
+      "release_date_source": "https://openai.com/index/vpt/",
+      "modality": "video",
+      "tasks": [
+        "image-to-video",
+        "action-conditioned-video-generation",
+        "behavior-cloning",
+        "inverse-dynamics",
+        "minecraft-agent-training"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "Public index files for human-contractor Minecraft demonstration episodes, pairing MP4 gameplay with JSONL keyboard, mouse, camera, GUI, and action logs across several recorder and task-prompt versions.",
+      "access": {
+        "status": "open",
+        "type": "urls",
+        "url": "https://github.com/openai/Video-Pre-Training#contractor-demonstrations",
+        "requires_account": false,
+        "notes": "Official JSON index files resolve each MP4 and JSONL action file from OpenAI public blob storage; the Solaris repository also provides a parallel downloader and train/test splitter."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "Solaris describes the VPT data it uses as more than 2,000 hours, but the public contractor index release does not provide one stable deduplicated episode or duration total; it is distinct from VPT's 70,000-hour internet-video corpus."
+      },
+      "annotations": {
+        "types": [
+          "gameplay-video",
+          "keyboard-action",
+          "mouse-action",
+          "camera-action",
+          "gui-action",
+          "contractor-prompt-version"
+        ],
+        "source": "human",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "No standalone dataset license stated; repository code is MIT",
+        "media": "No standalone contractor-video license stated; Minecraft-dependent imagery",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Open access to index files does not by itself grant commercial or redistribution rights to contractor recordings or Minecraft assets; review applicable OpenAI and game terms."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Recorder versions 6.x through 10.x change prompts, features, usernames, and task emphasis, so the release is not one homogeneous behavior distribution.",
+          "Some recordings or action files can be missing or fail to download, and downstream users such as Solaris define their own train, test, and exclusion manifests.",
+          "Contractor tasks emphasize survival, early game, house building, and related prompts rather than uniformly sampling all Minecraft actions or worlds.",
+          "The published contractor demonstrations are not the unlabeled 70,000-hour online-video corpus used elsewhere in the original VPT pipeline."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Preserve MP4 and JSONL pairs, recorder-version provenance, prompts, and downstream split manifests; audit failed URLs before reporting retained scale."
+      },
+      "evidence": {
+        "homepage": "https://github.com/openai/Video-Pre-Training#contractor-demonstrations",
+        "paper": "https://arxiv.org/abs/2206.11795",
+        "used_by": [
+          "Solaris"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-27",
+      "source_path": "catalog/video/vpt-contractor-demonstrations.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/openai/Video-Pre-Training/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "solaris"
+      ]
+    },
+    {
       "id": "webvid-10m",
       "name": "WebVid-10M",
       "organization": "University of Oxford VGG",
@@ -10652,6 +11048,201 @@
       },
       "ranking_positions": [],
       "linked_dataset_ids": []
+    },
+    {
+      "id": "worldweaver",
+      "name": "WorldWeaver",
+      "organization": "UCLA and Adobe Research",
+      "released_at": "2026-07-23",
+      "modalities": [
+        "video",
+        "action"
+      ],
+      "tasks": [
+        "image-to-video",
+        "action-conditioned-video-generation",
+        "multi-agent-world-modeling",
+        "streaming-video-generation"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Paper is CC-BY-4.0; code, checkpoints, and model license are not yet released",
+        "release_url": "https://vail-ucla.github.io/worldweaver/",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Streaming autoregressive video diffusion with world state registers and Mixture of Transformers",
+        "parameters": null,
+        "notes": "The model interleaves frame and persistent cross-agent register tokens, routes them through separate visual and state parameter branches, and updates both during causal rollout."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Inherited single-player video diffusion prior training mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "The paper initializes from a pretrained single-player model but does not identify or restate the underlying training corpus, rights composition, or mixture."
+          },
+          {
+            "name": "WorldWeaver Minecraft 126h",
+            "catalog_id": "worldweaver-minecraft-126h",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "approximately 126 hours of synchronized two-agent recordings at 832x480 and 20 FPS",
+            "notes": "The paper fully describes the simulator streams and annotations, but neither dataset files nor dataset-specific terms have been published."
+          },
+          {
+            "name": "Solaris Eval Datasets",
+            "catalog_id": "solaris-eval-datasets",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "1,280 evaluation records across seven named multi-agent scenarios",
+            "notes": "WorldWeaver evaluates on the original Solaris test split using Movement, Grounding, Memory, Building, and Consistency categories."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "action"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-foundation-model"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Initialize from a single-player latent video diffusion prior whose complete data lineage is not restated in the WorldWeaver paper."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "action",
+              "text"
+            ],
+            "source_types": [
+              "synthetic"
+            ],
+            "operations": [
+              "synchronized-two-agent-collection",
+              "bidirectional-cross-agent-training",
+              "conditional-flow-matching"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Adapt a bidirectional multi-player teacher on synchronized Alpha and Bravo video, actions, simulator states, shared overhead views, and generated scene descriptions."
+          },
+          {
+            "name": "midtraining",
+            "modalities": [
+              "video",
+              "action",
+              "text"
+            ],
+            "source_types": [
+              "synthetic"
+            ],
+            "operations": [
+              "causal-attention-training",
+              "world-state-register-supervision",
+              "agent-state-decoding",
+              "bird-eye-view-feature-decoding",
+              "scene-text-decoding"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Convert the teacher into a causal student and ground persistent registers with positions, velocities, orientations, DINOv2 overhead-view features, and scene text."
+          },
+          {
+            "name": "distillation",
+            "modalities": [
+              "video",
+              "action",
+              "text"
+            ],
+            "source_types": [
+              "synthetic"
+            ],
+            "operations": [
+              "self-forcing",
+              "student-rollout",
+              "distribution-matching-distillation",
+              "state-register-rollout"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Roll out the causal student on its own generated frames and committed registers while distilling the bidirectional teacher with distribution matching and state supervision."
+          }
+        ],
+        "strategy_summary": [
+          "Record two agents, their actions and physical state, a shared overhead view, and per-chunk scene descriptions as synchronized supervision rather than relying on pixels alone.",
+          "Train persistent world state registers to retain position, geometry, and semantics across agents and beyond the local frame context.",
+          "Separate state-token and visual-token parameters with a Mixture of Transformers while keeping joint attention over the shared sequence."
+        ],
+        "unknowns": [
+          "Identity, provenance, license, filtering, and mixture of the inherited single-player video prior.",
+          "Dataset release plan, file format, dataset license, collection episode count, and whether the 126-hour corpus will be downloadable.",
+          "Code, checkpoints, model-specific license, compute budget, optimizer details, and final parameter count."
+        ]
+      },
+      "evidence": {
+        "release": "https://vail-ucla.github.io/worldweaver/",
+        "technical_report": "https://arxiv.org/abs/2607.21594",
+        "repository": "https://github.com/VAIL-UCLA/WorldWeaver"
+      },
+      "status": "watch",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/worldweaver.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "midtraining",
+          "distillation"
+        ],
+        "source_types": [
+          "undisclosed",
+          "synthetic"
+        ],
+        "operations": [
+          "inherited-foundation-model",
+          "synchronized-two-agent-collection",
+          "bidirectional-cross-agent-training",
+          "conditional-flow-matching",
+          "causal-attention-training",
+          "world-state-register-supervision",
+          "agent-state-decoding",
+          "bird-eye-view-feature-decoding",
+          "scene-text-decoding",
+          "self-forcing",
+          "student-rollout",
+          "distribution-matching-distillation",
+          "state-register-rollout"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 2,
+        "scale_disclosed_stage_count": 3,
+        "stage_count": 4,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/VAIL-UCLA/WorldWeaver/commits/main.atom"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "worldweaver-minecraft-126h",
+        "solaris-eval-datasets"
+      ]
     },
     {
       "id": "sana-video-2-0",
@@ -17130,6 +17721,210 @@
       ],
       "linked_dataset_ids": [
         "avgen-bench"
+      ]
+    },
+    {
+      "id": "solaris",
+      "name": "Solaris",
+      "organization": "New York University VISIONx",
+      "released_at": "2026-02-25",
+      "modalities": [
+        "video",
+        "action"
+      ],
+      "tasks": [
+        "image-to-video",
+        "action-conditioned-video-generation",
+        "multi-agent-world-modeling",
+        "streaming-video-generation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0",
+        "release_url": "https://solaris-wm.github.io/",
+        "weights_url": "https://huggingface.co/nyu-visionx/solaris",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Multiplayer autoregressive video diffusion transformer initialized from Matrix Game 2.0",
+        "parameters": null,
+        "notes": "Solaris adds a player axis and cross-player attention to a single-player video DiT, then converts the bidirectional model to causal streaming generation with Diffusion Forcing and Checkpointed Self Forcing."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Matrix Game 2.0 inherited pretraining mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "Solaris initializes from public Matrix Game 2.0 weights, but the Solaris release does not restate the complete corpus and mixture that produced those inherited weights."
+          },
+          {
+            "name": "VPT Contractor Demonstrations",
+            "catalog_id": "vpt-contractor-demonstrations",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "more than 2,000 hours according to the Solaris paper",
+            "notes": "Stage 1 downloads OpenAI's public contractor episode indices and uses the single-player videos and action logs to extend the inherited action space."
+          },
+          {
+            "name": "Solaris Training Dataset",
+            "catalog_id": "solaris-training-dataset",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "12.64M two-player frames across 9,240 episodes",
+            "notes": "Stages 2 through 4 use the simulator-collected Duet data for bidirectional multiplayer training, causal conversion, and self-forcing."
+          },
+          {
+            "name": "Solaris Eval Datasets",
+            "catalog_id": "solaris-eval-datasets",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "1,280 evaluation records across seven named multi-agent scenarios",
+            "notes": "The public evaluation release measures movement, memory, grounding, building, and view consistency with actions for both players."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "action"
+            ],
+            "source_types": [
+              "public-dataset",
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-foundation-model",
+              "single-player-bidirectional-training",
+              "action-space-expansion"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Initialize from Matrix Game 2.0 and train for 120K steps on human Minecraft VPT demonstrations with bidirectional attention and a 33-frame context."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "action"
+            ],
+            "source_types": [
+              "synthetic",
+              "public-dataset"
+            ],
+            "operations": [
+              "synchronized-two-agent-collection",
+              "multiplayer-bidirectional-training",
+              "cross-player-attention"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train for 120K steps on the public Duet corpus, synchronizing two players' observations and semantic actions with bidirectional cross-player attention."
+          },
+          {
+            "name": "midtraining",
+            "modalities": [
+              "video",
+              "action"
+            ],
+            "source_types": [
+              "synthetic",
+              "public-dataset"
+            ],
+            "operations": [
+              "causal-mask-conversion",
+              "diffusion-forcing",
+              "sliding-window-training"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Continue for 60K steps on the same Duet data with per-frame noise levels and a causal sliding-window mask to obtain an autoregressive student."
+          },
+          {
+            "name": "distillation",
+            "modalities": [
+              "video",
+              "action"
+            ],
+            "source_types": [
+              "synthetic",
+              "public-dataset"
+            ],
+            "operations": [
+              "checkpointed-self-forcing",
+              "student-rollout",
+              "distribution-matching-distillation"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Fine-tune for 1.2K steps on student rollouts, using the bidirectional model as teacher and critic while recomputing long-context states to control memory use."
+          }
+        ],
+        "strategy_summary": [
+          "Bridge from human single-player demonstrations to synthetic synchronized multiplayer experience instead of learning multi-agent dynamics from scratch.",
+          "Use one public 12.64M-frame Duet corpus through bidirectional adaptation, causal conversion, and self-forcing, with every transition documented in runnable training commands.",
+          "Release the training set, evaluation set, engine, code, and weights while keeping the inherited Matrix Game 2.0 data mixture explicitly unresolved."
+        ],
+        "unknowns": [
+          "Complete source corpus, rights composition, filtering, and mixture behind the inherited Matrix Game 2.0 initialization.",
+          "Exact public VPT contractor episode count used after Solaris train/test/exclusion processing and any failed-download exclusions.",
+          "Total parameter count, end-to-end compute cost, and whether Apache-2.0 resolves all Minecraft media and game-asset rights."
+        ]
+      },
+      "evidence": {
+        "release": "https://solaris-wm.github.io/",
+        "technical_report": "https://arxiv.org/abs/2602.22208",
+        "repository": "https://github.com/solaris-wm/solaris"
+      },
+      "status": "verified",
+      "last_verified": "2026-07-27",
+      "source_path": "models/video/solaris.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "midtraining",
+          "distillation"
+        ],
+        "source_types": [
+          "public-dataset",
+          "undisclosed",
+          "synthetic"
+        ],
+        "operations": [
+          "inherited-foundation-model",
+          "single-player-bidirectional-training",
+          "action-space-expansion",
+          "synchronized-two-agent-collection",
+          "multiplayer-bidirectional-training",
+          "cross-player-attention",
+          "causal-mask-conversion",
+          "diffusion-forcing",
+          "sliding-window-training",
+          "checkpointed-self-forcing",
+          "student-rollout",
+          "distribution-matching-distillation"
+        ],
+        "data_reference_count": 4,
+        "linked_dataset_count": 3,
+        "scale_disclosed_stage_count": 4,
+        "stage_count": 4,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/solaris-wm/solaris/commits/main.atom"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "vpt-contractor-demonstrations",
+        "solaris-training-dataset",
+        "solaris-eval-datasets"
       ]
     },
     {
@@ -24676,6 +25471,30 @@
       "reference_name": "WebVid-10M"
     },
     {
+      "model_id": "solaris",
+      "dataset_id": "solaris-eval-datasets",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "1,280 evaluation records across seven named multi-agent scenarios",
+      "reference_name": "Solaris Eval Datasets"
+    },
+    {
+      "model_id": "solaris",
+      "dataset_id": "solaris-training-dataset",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "12.64M two-player frames across 9,240 episodes",
+      "reference_name": "Solaris Training Dataset"
+    },
+    {
+      "model_id": "solaris",
+      "dataset_id": "vpt-contractor-demonstrations",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "more than 2,000 hours according to the Solaris paper",
+      "reference_name": "VPT Contractor Demonstrations"
+    },
+    {
       "model_id": "sora-2",
       "dataset_id": "avgen-bench",
       "role": "evaluation",
@@ -24810,6 +25629,22 @@
       "availability": "public",
       "scale": "235 prompts and 3,009 generated examples",
       "reference_name": "AVGen-Bench"
+    },
+    {
+      "model_id": "worldweaver",
+      "dataset_id": "solaris-eval-datasets",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "1,280 evaluation records across seven named multi-agent scenarios",
+      "reference_name": "Solaris Eval Datasets"
+    },
+    {
+      "model_id": "worldweaver",
+      "dataset_id": "worldweaver-minecraft-126h",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "approximately 126 hours of synchronized two-agent recordings at 832x480 and 20 FPS",
+      "reference_name": "WorldWeaver Minecraft 126h"
     }
   ],
   "dataset_relations": [

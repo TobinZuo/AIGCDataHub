@@ -54,6 +54,7 @@ discovery:
     - https://huggingface.co/datasets/dorni/SpeakerVid-5M-Dataset
     - https://huggingface.co/datasets/mali6/autocap
     - https://huggingface.co/datasets/amaai-lab/JamendoMaxCaps
+    - https://arxiv.org/abs/2607.21594
 
 tracks:
   - id: image-generation
@@ -593,6 +594,18 @@ tracks:
       - url: https://arxiv.org/abs/2607.21580
         catalog_id: graphvid-bench
         priority: critical
+      - url: "https://huggingface.co/api/datasets/nyu-visionx/solaris-training-dataset?expand=lastModified&expand=sha"
+        catalog_id: solaris-training-dataset
+        priority: critical
+      - url: "https://huggingface.co/api/datasets/nyu-visionx/solaris-eval-datasets?expand=lastModified&expand=sha"
+        catalog_id: solaris-eval-datasets
+        priority: critical
+      - url: https://vail-ucla.github.io/worldweaver/
+        catalog_id: worldweaver-minecraft-126h
+        priority: critical
+      - url: https://github.com/openai/Video-Pre-Training/commits/main.atom
+        catalog_id: vpt-contractor-demonstrations
+        priority: critical
       - url: https://arxiv.org/html/2607.16283
         catalog_id: gensyn10
         priority: critical
@@ -694,6 +707,12 @@ tracks:
         priority: critical
       - url: https://github.com/liuyueyi-del/ElasticTTT-for-video-editing/commits/main.atom
         model_id: elasticttt
+        priority: critical
+      - url: https://github.com/VAIL-UCLA/WorldWeaver/commits/main.atom
+        model_id: worldweaver
+        priority: critical
+      - url: https://github.com/solaris-wm/solaris/commits/main.atom
+        model_id: solaris
         priority: critical
       - url: https://bfl.ai/blog/flux-3
         model_id: flux-3

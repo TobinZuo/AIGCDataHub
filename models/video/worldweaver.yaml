@@ -1,0 +1,112 @@
+id: worldweaver
+name: WorldWeaver
+organization: UCLA and Adobe Research
+released_at: "2026-07-23"
+modalities:
+  - video
+  - action
+tasks:
+  - image-to-video
+  - action-conditioned-video-generation
+  - multi-agent-world-modeling
+  - streaming-video-generation
+access:
+  status: announced
+  license: Paper is CC-BY-4.0; code, checkpoints, and model license are not yet released
+  release_url: https://vail-ucla.github.io/worldweaver/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Streaming autoregressive video diffusion with world state registers and Mixture of Transformers
+  parameters: null
+  notes: The model interleaves frame and persistent cross-agent register tokens, routes them through separate visual and state parameter branches, and updates both during causal rollout.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Inherited single-player video diffusion prior training mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: The paper initializes from a pretrained single-player model but does not identify or restate the underlying training corpus, rights composition, or mixture.
+    - name: WorldWeaver Minecraft 126h
+      catalog_id: worldweaver-minecraft-126h
+      role: fine-tuning
+      availability: not-released
+      scale: approximately 126 hours of synchronized two-agent recordings at 832x480 and 20 FPS
+      notes: The paper fully describes the simulator streams and annotations, but neither dataset files nor dataset-specific terms have been published.
+    - name: Solaris Eval Datasets
+      catalog_id: solaris-eval-datasets
+      role: evaluation
+      availability: public
+      scale: 1,280 evaluation records across seven named multi-agent scenarios
+      notes: WorldWeaver evaluates on the original Solaris test split using Movement, Grounding, Memory, Building, and Consistency categories.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - action
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-foundation-model
+      scale_disclosed: false
+      strategy: Initialize from a single-player latent video diffusion prior whose complete data lineage is not restated in the WorldWeaver paper.
+    - name: fine-tuning
+      modalities:
+        - video
+        - action
+        - text
+      source_types:
+        - synthetic
+      operations:
+        - synchronized-two-agent-collection
+        - bidirectional-cross-agent-training
+        - conditional-flow-matching
+      scale_disclosed: true
+      strategy: Adapt a bidirectional multi-player teacher on synchronized Alpha and Bravo video, actions, simulator states, shared overhead views, and generated scene descriptions.
+    - name: midtraining
+      modalities:
+        - video
+        - action
+        - text
+      source_types:
+        - synthetic
+      operations:
+        - causal-attention-training
+        - world-state-register-supervision
+        - agent-state-decoding
+        - bird-eye-view-feature-decoding
+        - scene-text-decoding
+      scale_disclosed: true
+      strategy: Convert the teacher into a causal student and ground persistent registers with positions, velocities, orientations, DINOv2 overhead-view features, and scene text.
+    - name: distillation
+      modalities:
+        - video
+        - action
+        - text
+      source_types:
+        - synthetic
+      operations:
+        - self-forcing
+        - student-rollout
+        - distribution-matching-distillation
+        - state-register-rollout
+      scale_disclosed: true
+      strategy: Roll out the causal student on its own generated frames and committed registers while distilling the bidirectional teacher with distribution matching and state supervision.
+  strategy_summary:
+    - Record two agents, their actions and physical state, a shared overhead view, and per-chunk scene descriptions as synchronized supervision rather than relying on pixels alone.
+    - Train persistent world state registers to retain position, geometry, and semantics across agents and beyond the local frame context.
+    - Separate state-token and visual-token parameters with a Mixture of Transformers while keeping joint attention over the shared sequence.
+  unknowns:
+    - Identity, provenance, license, filtering, and mixture of the inherited single-player video prior.
+    - Dataset release plan, file format, dataset license, collection episode count, and whether the 126-hour corpus will be downloadable.
+    - Code, checkpoints, model-specific license, compute budget, optimizer details, and final parameter count.
+evidence:
+  release: https://vail-ucla.github.io/worldweaver/
+  technical_report: https://arxiv.org/abs/2607.21594
+  repository: https://github.com/VAIL-UCLA/WorldWeaver
+status: watch
+last_verified: "2026-07-27"

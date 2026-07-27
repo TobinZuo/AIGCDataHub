@@ -1,0 +1,118 @@
+id: solaris
+name: Solaris
+organization: New York University VISIONx
+released_at: "2026-02-25"
+modalities:
+  - video
+  - action
+tasks:
+  - image-to-video
+  - action-conditioned-video-generation
+  - multi-agent-world-modeling
+  - streaming-video-generation
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://solaris-wm.github.io/
+  weights_url: https://huggingface.co/nyu-visionx/solaris
+  api_url: null
+architecture:
+  family: Multiplayer autoregressive video diffusion transformer initialized from Matrix Game 2.0
+  parameters: null
+  notes: Solaris adds a player axis and cross-player attention to a single-player video DiT, then converts the bidirectional model to causal streaming generation with Diffusion Forcing and Checkpointed Self Forcing.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Matrix Game 2.0 inherited pretraining mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: Solaris initializes from public Matrix Game 2.0 weights, but the Solaris release does not restate the complete corpus and mixture that produced those inherited weights.
+    - name: VPT Contractor Demonstrations
+      catalog_id: vpt-contractor-demonstrations
+      role: pretraining
+      availability: public
+      scale: more than 2,000 hours according to the Solaris paper
+      notes: Stage 1 downloads OpenAI's public contractor episode indices and uses the single-player videos and action logs to extend the inherited action space.
+    - name: Solaris Training Dataset
+      catalog_id: solaris-training-dataset
+      role: fine-tuning
+      availability: public
+      scale: 12.64M two-player frames across 9,240 episodes
+      notes: Stages 2 through 4 use the simulator-collected Duet data for bidirectional multiplayer training, causal conversion, and self-forcing.
+    - name: Solaris Eval Datasets
+      catalog_id: solaris-eval-datasets
+      role: evaluation
+      availability: public
+      scale: 1,280 evaluation records across seven named multi-agent scenarios
+      notes: The public evaluation release measures movement, memory, grounding, building, and view consistency with actions for both players.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - action
+      source_types:
+        - public-dataset
+        - undisclosed
+      operations:
+        - inherited-foundation-model
+        - single-player-bidirectional-training
+        - action-space-expansion
+      scale_disclosed: true
+      strategy: Initialize from Matrix Game 2.0 and train for 120K steps on human Minecraft VPT demonstrations with bidirectional attention and a 33-frame context.
+    - name: fine-tuning
+      modalities:
+        - video
+        - action
+      source_types:
+        - synthetic
+        - public-dataset
+      operations:
+        - synchronized-two-agent-collection
+        - multiplayer-bidirectional-training
+        - cross-player-attention
+      scale_disclosed: true
+      strategy: Train for 120K steps on the public Duet corpus, synchronizing two players' observations and semantic actions with bidirectional cross-player attention.
+    - name: midtraining
+      modalities:
+        - video
+        - action
+      source_types:
+        - synthetic
+        - public-dataset
+      operations:
+        - causal-mask-conversion
+        - diffusion-forcing
+        - sliding-window-training
+      scale_disclosed: true
+      strategy: Continue for 60K steps on the same Duet data with per-frame noise levels and a causal sliding-window mask to obtain an autoregressive student.
+    - name: distillation
+      modalities:
+        - video
+        - action
+      source_types:
+        - synthetic
+        - public-dataset
+      operations:
+        - checkpointed-self-forcing
+        - student-rollout
+        - distribution-matching-distillation
+      scale_disclosed: true
+      strategy: Fine-tune for 1.2K steps on student rollouts, using the bidirectional model as teacher and critic while recomputing long-context states to control memory use.
+  strategy_summary:
+    - Bridge from human single-player demonstrations to synthetic synchronized multiplayer experience instead of learning multi-agent dynamics from scratch.
+    - Use one public 12.64M-frame Duet corpus through bidirectional adaptation, causal conversion, and self-forcing, with every transition documented in runnable training commands.
+    - Release the training set, evaluation set, engine, code, and weights while keeping the inherited Matrix Game 2.0 data mixture explicitly unresolved.
+  unknowns:
+    - Complete source corpus, rights composition, filtering, and mixture behind the inherited Matrix Game 2.0 initialization.
+    - Exact public VPT contractor episode count used after Solaris train/test/exclusion processing and any failed-download exclusions.
+    - Total parameter count, end-to-end compute cost, and whether Apache-2.0 resolves all Minecraft media and game-asset rights.
+evidence:
+  release: https://solaris-wm.github.io/
+  technical_report: https://arxiv.org/abs/2602.22208
+  repository: https://github.com/solaris-wm/solaris
+status: verified
+last_verified: "2026-07-27"

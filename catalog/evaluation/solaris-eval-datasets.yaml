@@ -1,0 +1,72 @@
+id: solaris-eval-datasets
+name: Solaris Eval Datasets
+organization: New York University VISIONx
+released_at: "2026-02-20"
+release_date_source: https://huggingface.co/datasets/nyu-visionx/solaris-eval-datasets
+modality: evaluation
+tasks:
+  - image-to-video
+  - action-conditioned-video-generation
+  - multi-agent-world-model-evaluation
+  - video-generation-evaluation
+stages:
+  - evaluation
+description: >-
+  A public two-player Minecraft evaluation collection with videos and actions
+  for movement, memory, grounding, building, and cross-view consistency tests,
+  suitable for multi-agent action-conditioned video models.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/nyu-visionx/solaris-eval-datasets
+  requires_account: false
+  notes: The 5.84 GB release can be downloaded directly with the Hugging Face CLI; the official Solaris repository contains inference and evaluation commands.
+scale:
+  samples: 1280
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The Hugging Face dataset-server reports 1,280 test rows; the card names seven scenario folders but does not provide a canonical row-to-video duration summary.
+annotations:
+  types:
+    - two-player-video
+    - semantic-action
+    - evaluation-scenario
+    - movement
+    - memory
+    - grounding
+    - building
+    - view-consistency
+  source: model-generated
+  languages:
+    - none
+license:
+  metadata: Apache-2.0
+  media: Apache-2.0 dataset card plus Minecraft-dependent game imagery
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The official card declares Apache-2.0, but users should separately review Minecraft/Mojang game-content terms and rights outside the repository license.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - multi-view-consistency
+    - provenance
+  known_limitations:
+    - Seven scripted Minecraft scenarios cannot exhaust multi-agent planning, communication, stochastic events, camera behavior, or more than two viewpoints.
+    - The benchmark and Solaris training set share the same engine and action conventions, which may favor systems adapted to that environment.
+    - VLM accuracy and FID measure complementary aspects but do not fully capture interactive controllability, causal fidelity, or long-horizon gameplay quality.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Report each named scenario separately before aggregates and preserve both players' first frames and full action sequences as model conditioning.
+evidence:
+  homepage: https://huggingface.co/datasets/nyu-visionx/solaris-eval-datasets
+  paper: https://arxiv.org/abs/2602.22208
+  used_by:
+    - Solaris
+    - WorldWeaver
+status: verified
+last_verified: "2026-07-27"

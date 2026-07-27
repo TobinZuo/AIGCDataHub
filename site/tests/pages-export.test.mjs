@@ -60,6 +60,11 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(html, /ElasticTTT/);
   assert.match(html, /ElasticTTT Video Editing Dataset/);
   assert.match(html, /DAVIS 2017/);
+  assert.match(html, /WorldWeaver/);
+  assert.match(html, /WorldWeaver Minecraft 126h/);
+  assert.match(html, /Solaris Training Dataset/);
+  assert.match(html, /Solaris Eval Datasets/);
+  assert.match(html, /VPT Contractor Demonstrations/);
   assert.match(html, /Mage-Flow/);
   assert.match(html, /HunyuanVideo-Avatar/);
   assert.match(html, /MuseTalk 1\.5/);

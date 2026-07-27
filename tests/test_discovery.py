@@ -312,6 +312,36 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(revision, "2026-07-25T10:00:00Z@abc123")
         self.assertEqual(url, "https://huggingface.co/datasets/nkp37/OpenVid-1M")
 
+    def test_extracts_stable_arxiv_entry_revision_without_feed_query_time(self) -> None:
+        first = """<?xml version='1.0' encoding='UTF-8'?>
+        <feed xmlns='http://www.w3.org/2005/Atom'>
+          <updated>2026-07-27T01:23:25Z</updated>
+          <entry>
+            <id>http://arxiv.org/abs/2605.21431v2</id>
+            <updated>2026-06-17T15:23:12Z</updated>
+            <title>iTryOn</title>
+          </entry>
+        </feed>"""
+        second = first.replace("2026-07-27T01:23:25Z", "2026-07-27T02:45:00Z")
+        first_revision, first_url = extract_source_revision(
+            first,
+            "https://export.arxiv.org/api/query?id_list=2605.21431",
+        )
+        second_revision, second_url = extract_source_revision(
+            second,
+            "https://export.arxiv.org/api/query?id_list=2605.21431",
+        )
+        self.assertEqual(first_revision, second_revision)
+        self.assertEqual(first_url, "https://arxiv.org/abs/2605.21431v2")
+        self.assertEqual(second_url, first_url)
+        revised, _ = extract_source_revision(
+            second.replace("2605.21431v2", "2605.21431v3").replace(
+                "2026-06-17T15:23:12Z", "2026-07-28T12:00:00Z"
+            ),
+            "https://export.arxiv.org/api/query?id_list=2605.21431",
+        )
+        self.assertNotEqual(revised, first_revision)
+
     def test_extracts_modelscope_dataset_revision_without_download_noise(self) -> None:
         revision, url = extract_source_revision(
             '{"Code":200,"Data":{"Id":167084,"Namespace":"leoniuschen",'
@@ -501,11 +531,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            101,
+            105,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            86,
+            88,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -524,7 +554,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
-        self.assertEqual(len(sources), 281)
+        self.assertEqual(len(sources), 287)
         self.assertIn(
             "https://huggingface.co/api/datasets/liuyueyi-8/ElasticTTT-video-editing-dataset?expand=lastModified&expand=sha",
             urls,
@@ -534,6 +564,18 @@ class DiscoveryTests(unittest.TestCase):
             "https://github.com/liuyueyi-del/ElasticTTT-for-video-editing/commits/main.atom",
             urls,
         )
+        self.assertIn(
+            "https://huggingface.co/api/datasets/nyu-visionx/solaris-training-dataset?expand=lastModified&expand=sha",
+            urls,
+        )
+        self.assertIn(
+            "https://huggingface.co/api/datasets/nyu-visionx/solaris-eval-datasets?expand=lastModified&expand=sha",
+            urls,
+        )
+        self.assertIn("https://vail-ucla.github.io/worldweaver/", urls)
+        self.assertIn("https://github.com/openai/Video-Pre-Training/commits/main.atom", urls)
+        self.assertIn("https://github.com/VAIL-UCLA/WorldWeaver/commits/main.atom", urls)
+        self.assertIn("https://github.com/solaris-wm/solaris/commits/main.atom", urls)
         self.assertEqual(
             {source.ranking_id for source in sources if source.ranking_id},
             {

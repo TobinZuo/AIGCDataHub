@@ -1,0 +1,71 @@
+id: vpt-contractor-demonstrations
+name: VPT Contractor Demonstrations
+organization: OpenAI
+released_at: "2022-06-23"
+release_date_source: https://openai.com/index/vpt/
+modality: video
+tasks:
+  - image-to-video
+  - action-conditioned-video-generation
+  - behavior-cloning
+  - inverse-dynamics
+  - minecraft-agent-training
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  Public index files for human-contractor Minecraft demonstration episodes,
+  pairing MP4 gameplay with JSONL keyboard, mouse, camera, GUI, and action logs
+  across several recorder and task-prompt versions.
+access:
+  status: open
+  type: urls
+  url: https://github.com/openai/Video-Pre-Training#contractor-demonstrations
+  requires_account: false
+  notes: Official JSON index files resolve each MP4 and JSONL action file from OpenAI public blob storage; the Solaris repository also provides a parallel downloader and train/test splitter.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: true
+  notes: Solaris describes the VPT data it uses as more than 2,000 hours, but the public contractor index release does not provide one stable deduplicated episode or duration total; it is distinct from VPT's 70,000-hour internet-video corpus.
+annotations:
+  types:
+    - gameplay-video
+    - keyboard-action
+    - mouse-action
+    - camera-action
+    - gui-action
+    - contractor-prompt-version
+  source: human
+  languages:
+    - en
+license:
+  metadata: No standalone dataset license stated; repository code is MIT
+  media: No standalone contractor-video license stated; Minecraft-dependent imagery
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Open access to index files does not by itself grant commercial or redistribution rights to contractor recordings or Minecraft assets; review applicable OpenAI and game terms.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Recorder versions 6.x through 10.x change prompts, features, usernames, and task emphasis, so the release is not one homogeneous behavior distribution.
+    - Some recordings or action files can be missing or fail to download, and downstream users such as Solaris define their own train, test, and exclusion manifests.
+    - Contractor tasks emphasize survival, early game, house building, and related prompts rather than uniformly sampling all Minecraft actions or worlds.
+    - The published contractor demonstrations are not the unlabeled 70,000-hour online-video corpus used elsewhere in the original VPT pipeline.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Preserve MP4 and JSONL pairs, recorder-version provenance, prompts, and downstream split manifests; audit failed URLs before reporting retained scale.
+evidence:
+  homepage: https://github.com/openai/Video-Pre-Training#contractor-demonstrations
+  paper: https://arxiv.org/abs/2206.11795
+  used_by:
+    - Solaris
+status: partial
+last_verified: "2026-07-27"

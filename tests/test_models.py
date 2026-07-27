@@ -49,6 +49,22 @@ class ModelCatalogTests(unittest.TestCase):
         cards = [card for _, card in load_models()]
         self.assertTrue(any(card["access"]["status"] == "product-only" for card in cards))
 
+    def test_multi_agent_world_models_preserve_downloadable_and_unreleased_data_boundaries(self) -> None:
+        cards = {card["id"]: card for _, card in load_models()}
+        self.assertTrue({"worldweaver", "solaris"}.issubset(cards))
+        self.assertEqual(cards["worldweaver"]["access"]["status"], "announced")
+        self.assertEqual(cards["solaris"]["access"]["status"], "open-weights")
+        self.assertEqual(
+            {item["catalog_id"] for item in cards["worldweaver"]["data"]["datasets"]},
+            {None, "worldweaver-minecraft-126h", "solaris-eval-datasets"},
+        )
+        self.assertEqual(
+            {item["catalog_id"] for item in cards["solaris"]["data"]["datasets"]},
+            {None, "vpt-contractor-demonstrations", "solaris-training-dataset", "solaris-eval-datasets"},
+        )
+        self.assertFalse(cards["worldweaver"]["data"]["exact_datasets_disclosed"])
+        self.assertFalse(cards["solaris"]["data"]["exact_datasets_disclosed"])
+
     def test_top_ranked_open_and_closed_model_versions_are_cataloged(self) -> None:
         cards = {card["id"]: card for _, card in load_models()}
         self.assertTrue(

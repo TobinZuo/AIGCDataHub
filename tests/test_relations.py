@@ -90,6 +90,20 @@ class ModelDatasetRelationTests(unittest.TestCase):
             "elasticttt",
             self.datasets["elasticttt-video-editing"]["linked_model_ids"],
         )
+        self.assertEqual(
+            self.models["worldweaver"]["linked_dataset_ids"],
+            ["worldweaver-minecraft-126h", "solaris-eval-datasets"],
+        )
+        self.assertEqual(
+            self.models["solaris"]["linked_dataset_ids"],
+            ["vpt-contractor-demonstrations", "solaris-training-dataset", "solaris-eval-datasets"],
+        )
+        self.assertEqual(
+            set(self.datasets["solaris-eval-datasets"]["linked_model_ids"]),
+            {"solaris", "worldweaver"},
+        )
+        self.assertIn("solaris", self.datasets["solaris-training-dataset"]["linked_model_ids"])
+        self.assertIn("solaris", self.datasets["vpt-contractor-demonstrations"]["linked_model_ids"])
         self.assertIn("fit-vto-100k", self.models["fit-vto"]["linked_dataset_ids"])
         self.assertIn("fit-vto", self.datasets["fit-vto-100k"]["linked_model_ids"])
         self.assertIn("viton-hd-edit", self.models["ctrlvton"]["linked_dataset_ids"])
