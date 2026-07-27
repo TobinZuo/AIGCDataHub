@@ -427,6 +427,9 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalogExplorer, /model\.linked_dataset_ids/);
   assert.match(catalogExplorer, /strategy-datasets-\$\{model\.id\}/);
   assert.match(catalogExplorer, /onOpenDataset=\{\(id\) => openRelation\("datasets", id\)\}/);
+  assert.match(catalogExplorer, /parseCatalogHash/);
+  assert.match(catalogExplorer, /window\.addEventListener\("hashchange", restoreCatalogHash\)/);
+  assert.match(catalogExplorer, /window\.history\.pushState\(null, "", `#\$\{elementId\}`\)/);
   assert.match(catalogExplorer, /数据获取入口/);
   assert.match(catalogExplorer, /datasetAccessAction\(dataset\)/);
   assert.match(catalogExplorer, /目录内反向链接只由模型卡/);

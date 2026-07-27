@@ -1,8 +1,39 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type Mode = "models" | "datasets" | "sources" | "rankings" | "lineage" | "strategies";
+
+type CatalogHashTarget = {
+  mode: "models" | "datasets" | "strategies";
+  id: string;
+  elementId: string;
+};
+
+function parseCatalogHash(hash: string): CatalogHashTarget | null {
+  const value = decodeURIComponent(hash.replace(/^#/, ""));
+  const prefixes: Array<[string, CatalogHashTarget["mode"]]> = [
+    ["strategy-datasets-", "strategies"],
+    ["strategy-", "strategies"],
+    ["dataset-", "datasets"],
+    ["model-", "models"],
+  ];
+
+  for (const [prefix, mode] of prefixes) {
+    if (value.startsWith(prefix) && value.length > prefix.length) {
+      return { mode, id: value.slice(prefix.length), elementId: value };
+    }
+  }
+  return null;
+}
+
+function scrollToCatalogTarget(elementId: string) {
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      document.getElementById(elementId)?.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  });
+}
 
 type ScenarioDefinition = {
   id: string;
@@ -1297,6 +1328,35 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
     () => new Map(catalog.datasets.map((item) => [item.id, item])),
     [catalog.datasets],
   );
+
+  useEffect(() => {
+    function restoreCatalogHash() {
+      const target = parseCatalogHash(window.location.hash);
+      if (!target) return;
+
+      const targetExists = target.mode === "datasets"
+        ? datasetById.has(target.id)
+        : modelById.has(target.id);
+      if (!targetExists) return;
+
+      if (!document.getElementById(target.elementId)) {
+        setMode(target.mode);
+        setQuery("");
+        setModality("all");
+        setScenario("all");
+      }
+      setExpanded(target.mode === "strategies" ? null : target.id);
+      scrollToCatalogTarget(target.elementId);
+    }
+
+    restoreCatalogHash();
+    window.addEventListener("hashchange", restoreCatalogHash);
+    window.addEventListener("popstate", restoreCatalogHash);
+    return () => {
+      window.removeEventListener("hashchange", restoreCatalogHash);
+      window.removeEventListener("popstate", restoreCatalogHash);
+    };
+  }, [datasetById, modelById]);
   const lineageRecords = useMemo(
     () => catalog.relations.flatMap((relation): EnrichedRelation[] => {
       const model = modelById.get(relation.model_id);
@@ -1524,6 +1584,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
     setMode(nextMode);
     setModality("all");
     setExpanded(null);
+    window.history.replaceState(null, "", "#explorer");
   }
 
   function openRelation(targetMode: "models" | "datasets", id: string) {
@@ -1533,11 +1594,9 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
     setScenario("all");
     setExpanded(id);
     const prefix = targetMode === "models" ? "model" : "dataset";
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        document.getElementById(`${prefix}-${id}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
-      });
-    });
+    const elementId = `${prefix}-${id}`;
+    window.history.pushState(null, "", `#${elementId}`);
+    scrollToCatalogTarget(elementId);
   }
 
   return (
