@@ -765,7 +765,7 @@ tracks:
       - url: https://huggingface.co/api/models/xcll/omnitryon_model
         model_id: omnitryon
         priority: critical
-      - url: https://export.arxiv.org/api/query?id_list=2605.21431
+      - url: https://arxiv.org/abs/2605.21431
         model_id: itryon
         priority: critical
       - url: https://huggingface.co/api/models/baidu/ERNIE-Image
@@ -834,7 +834,7 @@ tracks:
       - url: https://github.com/kaist-ami/voicecraft-dub/commits/main.atom
         model_id: voicecraft-dub
         priority: critical
-      - url: https://export.arxiv.org/api/query?id_list=2606.09098
+      - url: https://arxiv.org/abs/2606.09098
         model_id: holidubber
         priority: critical
       - url: https://github.com/nxnai/CtrlVTON/commits/main.atom
@@ -939,7 +939,7 @@ tracks:
       - url: https://deepmind.google/models/model-cards/gemini-omni-flash/
         model_id: gemini-omni-flash
         priority: critical
-      - url: https://developers.openai.com/api/docs/models/gpt-image-2
+      - url: https://deploymentsafety.openai.com/chatgpt-images-2-0/chatgpt-images-2-0.pdf
         model_id: gpt-image-2
         priority: critical
       - url: https://help.aliyun.com/en/model-studio/happyhorse-text-to-video-api-reference
@@ -990,7 +990,7 @@ tracks:
       - url: "https://huggingface.co/api/models/FunAudioLLM/Fun-CineForge?expand=lastModified&expand=sha"
         model_id: funcineforge
         priority: critical
-      - url: https://export.arxiv.org/api/query?id_list=2603.03882
+      - url: https://arxiv.org/pdf/2603.03882
         model_id: unisync
         priority: critical
 
