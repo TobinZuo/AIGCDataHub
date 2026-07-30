@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the static site changelog payload from updates/*.md."""
+"""Generate a Chinese, reader-facing changelog from updates/*.md summaries."""
 
 from __future__ import annotations
 
@@ -14,109 +14,80 @@ ROOT = Path(__file__).resolve().parents[1]
 UPDATES_DIR = ROOT / "updates"
 OUTPUT_PATH = ROOT / "site" / "app" / "changelog-data.json"
 DATE_NAME = re.compile(r"^(\d{4}-\d{2}-\d{2})\.md$")
+SUMMARY_TITLE = "中文摘要"
+SUMMARY_DIMENSIONS = (
+    ("models", "模型"),
+    ("datasets", "数据集"),
+    ("relations", "数据关系"),
+    ("rankings", "排行榜"),
+    ("monitoring", "监控"),
+    ("unknowns", "未披露"),
+)
 
 
-def _flush_paragraph(blocks: list[dict[str, Any]], lines: list[str]) -> None:
-    if lines:
-        blocks.append({"type": "paragraph", "text": " ".join(lines)})
-        lines.clear()
+def extract_summary(lines: list[str], path: Path) -> list[dict[str, str]]:
+    expected_labels = [label for _, label in SUMMARY_DIMENSIONS]
+    values: dict[str, str] = {}
+    in_summary = False
+    current_label: str | None = None
+    current_lines: list[str] = []
 
+    def flush() -> None:
+        nonlocal current_label
+        if current_label is not None:
+            text = " ".join(line.strip() for line in current_lines if line.strip())
+            if not text:
+                raise ValueError(f"{path.name} summary dimension {current_label!r} is empty")
+            values[current_label] = text
+        current_label = None
+        current_lines.clear()
 
-def _flush_list(blocks: list[dict[str, Any]], items: list[str]) -> None:
-    if items:
-        blocks.append({"type": "list", "items": list(items)})
-        items.clear()
-
-
-def _flush_table(blocks: list[dict[str, Any]], rows: list[list[str]]) -> None:
-    if rows:
-        if len(rows) > 1 and all(re.fullmatch(r":?-{3,}:?", cell) for cell in rows[1]):
-            rows.pop(1)
-        blocks.append({"type": "table", "rows": [list(row) for row in rows]})
-        rows.clear()
-
-
-def _table_row(line: str) -> list[str]:
-    return [cell.strip() for cell in line.strip().strip("|").split("|")]
-
-
-def parse_blocks(lines: list[str]) -> list[dict[str, Any]]:
-    blocks: list[dict[str, Any]] = []
-    paragraph: list[str] = []
-    items: list[str] = []
-    table: list[list[str]] = []
-
-    def flush_all() -> None:
-        _flush_paragraph(blocks, paragraph)
-        _flush_list(blocks, items)
-        _flush_table(blocks, table)
-
-    for raw_line in lines:
-        line = raw_line.strip()
-        if not line:
-            flush_all()
+    for line in lines:
+        if line == f"## {SUMMARY_TITLE}":
+            in_summary = True
+            continue
+        if in_summary and line.startswith("## "):
+            flush()
+            break
+        if not in_summary:
             continue
         if line.startswith("### "):
-            flush_all()
-            blocks.append({"type": "subheading", "text": line[4:].strip()})
+            flush()
+            current_label = line[4:].strip()
+            if current_label not in expected_labels:
+                raise ValueError(
+                    f"{path.name} has unsupported summary dimension: {current_label!r}"
+                )
+            if current_label in values:
+                raise ValueError(f"{path.name} repeats summary dimension: {current_label!r}")
             continue
-        if line.startswith("| ") and line.endswith("|"):
-            _flush_paragraph(blocks, paragraph)
-            _flush_list(blocks, items)
-            table.append(_table_row(line))
-            continue
-        if line.startswith("- "):
-            _flush_paragraph(blocks, paragraph)
-            _flush_table(blocks, table)
-            items.append(line[2:].strip())
-            continue
-        if items:
-            items[-1] = f"{items[-1]} {line}"
-        elif table:
-            _flush_table(blocks, table)
-            paragraph.append(line)
-        else:
-            paragraph.append(line)
+        current_lines.append(line)
+    else:
+        if in_summary:
+            flush()
 
-    flush_all()
-    return blocks
+    if not in_summary:
+        raise ValueError(f"{path.name} must contain a {SUMMARY_TITLE!r} section")
+    missing = [label for label in expected_labels if label not in values]
+    if missing:
+        raise ValueError(f"{path.name} is missing summary dimensions: {missing}")
+
+    return [
+        {"id": dimension_id, "label": label, "text": values[label]}
+        for dimension_id, label in SUMMARY_DIMENSIONS
+    ]
 
 
 def parse_update(path: Path) -> dict[str, Any]:
-    lines = path.read_text(encoding="utf-8").splitlines()
-    title = path.stem
-    intro_lines: list[str] = []
-    sections: list[dict[str, Any]] = []
-    current_title: str | None = None
-    current_lines: list[str] = []
-
-    for line in lines:
-        if line.startswith("# ") and title == path.stem:
-            title = line[2:].strip()
-            continue
-        if line.startswith("## "):
-            if current_title is not None:
-                sections.append({"title": current_title, "blocks": parse_blocks(current_lines)})
-            elif current_lines:
-                intro_lines = current_lines
-            current_title = line[3:].strip()
-            current_lines = []
-            continue
-        current_lines.append(line)
-
-    if current_title is not None:
-        sections.append({"title": current_title, "blocks": parse_blocks(current_lines)})
-    elif current_lines:
-        intro_lines = current_lines
-
     match = DATE_NAME.fullmatch(path.name)
     if not match:
         raise ValueError(f"update filename must be YYYY-MM-DD.md: {path.name}")
+    date = match.group(1)
+    lines = path.read_text(encoding="utf-8").splitlines()
     return {
-        "date": match.group(1),
-        "title": title,
-        "intro": parse_blocks(intro_lines),
-        "sections": sections,
+        "date": date,
+        "title": f"{date} 更新",
+        "summary": extract_summary(lines, path),
         "source_path": path.relative_to(ROOT).as_posix(),
     }
 
@@ -129,8 +100,12 @@ def build_payload() -> dict[str, Any]:
     ]
     entries.sort(key=lambda entry: entry["date"], reverse=True)
     return {
-        "format_version": 1,
-        "generated_from": "updates/*.md",
+        "format_version": 2,
+        "generated_from": "updates/*.md 中的中文摘要",
+        "dimensions": [
+            {"id": dimension_id, "label": label}
+            for dimension_id, label in SUMMARY_DIMENSIONS
+        ],
         "entries": entries,
     }
 

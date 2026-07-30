@@ -23,20 +23,19 @@ class BuildChangelogDataTests(unittest.TestCase):
         ))
         latest = entries[0]
         self.assertEqual(latest["date"], "2026-07-30")
-        self.assertIn("排行榜变化", [section["title"] for section in latest["sections"]])
-        self.assertIn("https://arxiv.org/abs/2607.21694", str(latest))
+        self.assertEqual(payload["format_version"], 2)
+        self.assertEqual(
+            [dimension["label"] for dimension in latest["summary"]],
+            ["模型", "数据集", "数据关系", "排行榜", "监控", "未披露"],
+        )
+        self.assertIn("Oxygen-TryOn", latest["summary"][0]["text"])
 
-    def test_preserves_tables_and_subheadings(self):
+    def test_public_payload_contains_only_reader_summary_and_source_path(self):
         entries = MODULE.build_payload()["entries"]
-        blocks = [
-            block
-            for entry in entries
-            for section in entry["sections"]
-            for block in section["blocks"]
-        ]
 
-        self.assertTrue(any(block["type"] == "table" for block in blocks))
-        self.assertTrue(any(block["type"] == "subheading" for block in blocks))
+        self.assertTrue(all(set(entry) == {"date", "title", "summary", "source_path"} for entry in entries))
+        self.assertNotIn("Review window", str(entries))
+        self.assertNotIn("Accepted changes", str(entries))
 
 
 if __name__ == "__main__":

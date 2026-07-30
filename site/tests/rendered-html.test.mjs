@@ -25,19 +25,20 @@ async function render(pathname = "/") {
   );
 }
 
-test("server-renders the standalone change ledger", async () => {
+test("server-renders the standalone Chinese change summary", async () => {
   const response = await render("/changelog");
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
   assert.match(html, /<title>变更记录 \| AIGCDataHub<\/title>/i);
-  assert.match(html, /每一次变化/);
+  assert.match(html, /今天更新了/);
   assert.match(html, /2026\.07\.30/);
   assert.match(html, /Oxygen-TryOn/);
-  assert.match(html, /排行榜变化/);
-  assert.match(html, /证据不足/);
-  assert.match(html, /在 GitHub 查看原始记录/);
+  assert.match(html, /数据关系/);
+  assert.match(html, /未披露/);
+  assert.match(html, /查看完整核验记录/);
+  assert.doesNotMatch(html, /Review window|Accepted changes|CHANGE LEDGER|LATEST REVIEW|SOURCE ON GITHUB/);
 });
 
 test("server-renders the AIGCDataHub catalog", async () => {
@@ -152,8 +153,9 @@ test("uses generated catalog data and removes starter preview assets", async () 
   ]);
 
   assert.match(catalog, /"models"/);
-  assert.match(changelog, /"generated_from": "updates\/\*\.md"/);
+  assert.match(changelog, /"generated_from": "updates\/\*\.md 中的中文摘要"/);
   assert.match(changelog, /"date": "2026-07-30"/);
+  assert.doesNotMatch(changelog, /Review window|Accepted changes/);
   assert.match(catalog, /"datasets"/);
   assert.match(catalog, /"soundatlas"/);
   assert.match(catalog, /"objaverse-xl"/);

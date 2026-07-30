@@ -400,6 +400,58 @@ input:focus-visible {
   padding: 0 0 34px 32px;
 }
 
+.change-dimension-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+}
+
+.change-dimension {
+  min-width: 0;
+  min-height: 215px;
+  padding: 25px;
+  background: var(--white);
+}
+
+.change-dimension-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid var(--line);
+}
+
+.change-dimension-heading span {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  color: var(--signal);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+.change-dimension-heading h4 {
+  margin: 0;
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 27px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+.change-dimension p {
+  margin: 20px 0 0;
+  color: #42453f;
+  font-size: 14px;
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+
+.ledger-language {
+  font-family: "Songti SC", "SimSun", serif !important;
+  font-size: 25px !important;
+  white-space: nowrap;
+}
+
 .change-intro {
   max-width: 900px;
   padding: 23px 26px;
@@ -2945,6 +2997,15 @@ input:focus-visible {
 
   .change-entry-body {
     padding: 0 0 30px;
+  }
+
+  .change-dimension-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .change-dimension {
+    min-height: 0;
+    padding: 22px;
   }
 
   .change-section {

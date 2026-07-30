@@ -70,7 +70,12 @@ point, not as an exhaustive list.
    and `make check-links`.
 7. Add `updates/YYYY-MM-DD.md` with accepted candidates, already-covered or
    rejected candidates, scope decisions, changed disclosures, and direct
-   primary-source links.
+   primary-source links. Every meaningful update must begin with a
+   `## 中文摘要` section containing exactly six reader-facing dimensions in
+   this order: `### 模型`, `### 数据集`, `### 数据关系`, `### 排行榜`,
+   `### 监控`, and `### 未披露`. Write one concise Chinese conclusion for each
+   dimension; use “无变化” when appropriate. The public changelog is generated
+   from these summaries and does not expose the full technical log by default.
 8. Summarize new models, new datasets, changed disclosures, broken links, and
    stale cards for the reviewer.
 9. After every generated candidate is accepted or rejected, run

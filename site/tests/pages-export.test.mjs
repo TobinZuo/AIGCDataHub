@@ -114,9 +114,12 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   );
   assert.match(html, /https:\/\/tobinzuo\.github\.io\/AIGCDataHub\/og\.png/);
   assert.match(html, /href="\/AIGCDataHub\/changelog\/"/);
-  assert.match(changelogHtml, /每一次变化/);
+  assert.match(changelogHtml, /今天更新了/);
   assert.match(changelogHtml, /Oxygen-TryOn/);
-  assert.match(changelogHtml, /排行榜变化/);
+  assert.match(changelogHtml, /六个维度/);
+  assert.match(changelogHtml, /数据关系/);
+  assert.match(changelogHtml, /未披露/);
+  assert.doesNotMatch(changelogHtml, /Review window|Accepted changes|CHANGE LEDGER|LATEST REVIEW|SOURCE ON GITHUB/);
   assert.match(changelogHtml, /href="\/AIGCDataHub\/"/);
   assert.match(
     changelogHtml,

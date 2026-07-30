@@ -21,7 +21,7 @@ export function SiteHeader({ active, status }: SiteHeaderProps) {
           变更记录
         </Link>
         <a className="repo-link" href="https://github.com/TobinZuo/AIGCDataHub" target="_blank" rel="noreferrer">
-          SOURCE ON GITHUB <span aria-hidden="true">↗</span>
+          查看源码 <span aria-hidden="true">↗</span>
         </a>
       </nav>
     </header>
