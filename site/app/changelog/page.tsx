@@ -13,6 +13,7 @@ type SummaryDimension = {
   id: string;
   label: string;
   text: string;
+  links: Array<{ label: string; href: string }>;
 };
 
 type Entry = {
@@ -85,6 +86,11 @@ export default function ChangelogPage() {
                           <h4>{dimension.label}</h4>
                         </div>
                         <p>{dimension.text}</p>
+                        <div className="change-dimension-links" aria-label={`${dimension.label}页面定位`}>
+                          {dimension.links.map((link) => (
+                            <Link href={link.href} key={link.href}>{link.label} <span aria-hidden="true">↘</span></Link>
+                          ))}
+                        </div>
                       </section>
                     ))}
                   </div>

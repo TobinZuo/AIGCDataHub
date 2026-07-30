@@ -40,6 +40,9 @@ test("server-renders the standalone Chinese change summary", async () => {
   assert.match(html, /查看完整核验记录/);
   assert.match(html, /返回数据目录/);
   assert.match(html, /href="\/"/);
+  assert.match(html, /href="\/#model-oxygen-tryon"/);
+  assert.match(html, /href="\/#dataset-ave-compass"/);
+  assert.match(html, /href="\/#rankings"/);
   assert.doesNotMatch(html, /Review window|Accepted changes|CHANGE LEDGER|LATEST REVIEW|SOURCE ON GITHUB/);
 });
 
@@ -517,6 +520,8 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalogExplorer, /strategy-datasets-\$\{model\.id\}/);
   assert.match(catalogExplorer, /onOpenDataset=\{\(id\) => openRelation\("datasets", id\)\}/);
   assert.match(catalogExplorer, /parseCatalogHash/);
+  assert.match(catalogExplorer, /CATALOG_VIEW_HASHES/);
+  assert.match(catalogExplorer, /id === null/);
   assert.match(catalogExplorer, /window\.addEventListener\("hashchange", restoreCatalogHash\)/);
   assert.match(catalogExplorer, /window\.history\.pushState\(null, "", `#\$\{elementId\}`\)/);
   assert.match(catalogExplorer, /数据获取入口/);

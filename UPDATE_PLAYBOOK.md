@@ -76,6 +76,11 @@ point, not as an exhaustive list.
    `### 监控`, and `### 未披露`. Write one concise Chinese conclusion for each
    dimension; use “无变化” when appropriate. The public changelog is generated
    from these summaries and does not expose the full technical log by default.
+   Under every dimension, add exactly one `页面定位：` line with one or more
+   Markdown links to the affected Pages model card, dataset card, relationship
+   view, ranking view, source view, or strategy view. The changelog converts
+   these into direct in-site navigation; generic homepage-only links are not
+   sufficient when a specific card exists.
 8. Summarize new models, new datasets, changed disclosures, broken links, and
    stale cards for the reviewer.
 9. After every generated candidate is accepted or rejected, run

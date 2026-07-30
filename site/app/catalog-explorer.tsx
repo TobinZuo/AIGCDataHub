@@ -6,13 +6,25 @@ import { SiteHeader } from "./site-header";
 type Mode = "models" | "datasets" | "sources" | "rankings" | "lineage" | "strategies";
 
 type CatalogHashTarget = {
-  mode: "models" | "datasets" | "strategies";
-  id: string;
+  mode: Mode;
+  id: string | null;
   elementId: string;
+};
+
+const CATALOG_VIEW_HASHES: Record<string, Mode> = {
+  models: "models",
+  datasets: "datasets",
+  sources: "sources",
+  rankings: "rankings",
+  lineage: "lineage",
+  strategies: "strategies",
 };
 
 function parseCatalogHash(hash: string): CatalogHashTarget | null {
   const value = decodeURIComponent(hash.replace(/^#/, ""));
+  const viewMode = CATALOG_VIEW_HASHES[value];
+  if (viewMode) return { mode: viewMode, id: null, elementId: "explorer" };
+
   const prefixes: Array<[string, CatalogHashTarget["mode"]]> = [
     ["strategy-datasets-", "strategies"],
     ["strategy-", "strategies"],
@@ -1340,6 +1352,16 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
     function restoreCatalogHash() {
       const target = parseCatalogHash(window.location.hash);
       if (!target) return;
+
+      if (target.id === null) {
+        setMode(target.mode);
+        setQuery("");
+        setModality("all");
+        setScenario("all");
+        setExpanded(null);
+        scrollToCatalogTarget(target.elementId);
+        return;
+      }
 
       const targetExists = target.mode === "datasets"
         ? datasetById.has(target.id)

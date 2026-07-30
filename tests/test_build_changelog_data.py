@@ -29,6 +29,16 @@ class BuildChangelogDataTests(unittest.TestCase):
             ["模型", "数据集", "数据关系", "排行榜", "监控", "未披露"],
         )
         self.assertIn("Oxygen-TryOn", latest["summary"][0]["text"])
+        self.assertEqual(
+            latest["summary"][0]["links"][0],
+            {"label": "Oxygen-TryOn 模型卡", "href": "/#model-oxygen-tryon"},
+        )
+        self.assertTrue(all(dimension["links"] for dimension in latest["summary"]))
+        self.assertTrue(all(
+            link["href"].startswith("/#")
+            for dimension in latest["summary"]
+            for link in dimension["links"]
+        ))
 
     def test_public_payload_contains_only_reader_summary_and_source_path(self):
         entries = MODULE.build_payload()["entries"]

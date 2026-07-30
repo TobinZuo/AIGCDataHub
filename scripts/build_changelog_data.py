@@ -14,6 +14,9 @@ ROOT = Path(__file__).resolve().parents[1]
 UPDATES_DIR = ROOT / "updates"
 OUTPUT_PATH = ROOT / "site" / "app" / "changelog-data.json"
 DATE_NAME = re.compile(r"^(\d{4}-\d{2}-\d{2})\.md$")
+MARKDOWN_LINK = re.compile(r"\[([^\]]+)\]\((https://tobinzuo\.github\.io/AIGCDataHub/#[^)]+)\)")
+PUBLIC_ORIGIN = "https://tobinzuo.github.io/AIGCDataHub"
+TARGET_PREFIX = "页面定位："
 SUMMARY_TITLE = "中文摘要"
 SUMMARY_DIMENSIONS = (
     ("models", "模型"),
@@ -25,9 +28,9 @@ SUMMARY_DIMENSIONS = (
 )
 
 
-def extract_summary(lines: list[str], path: Path) -> list[dict[str, str]]:
+def extract_summary(lines: list[str], path: Path) -> list[dict[str, Any]]:
     expected_labels = [label for _, label in SUMMARY_DIMENSIONS]
-    values: dict[str, str] = {}
+    values: dict[str, dict[str, Any]] = {}
     in_summary = False
     current_label: str | None = None
     current_lines: list[str] = []
@@ -35,10 +38,31 @@ def extract_summary(lines: list[str], path: Path) -> list[dict[str, str]]:
     def flush() -> None:
         nonlocal current_label
         if current_label is not None:
-            text = " ".join(line.strip() for line in current_lines if line.strip())
+            target_lines = [
+                line.strip()
+                for line in current_lines
+                if line.strip().startswith(TARGET_PREFIX)
+            ]
+            if len(target_lines) != 1:
+                raise ValueError(
+                    f"{path.name} summary dimension {current_label!r} requires one 页面定位 line"
+                )
+            links = [
+                {"label": label, "href": href.removeprefix(PUBLIC_ORIGIN)}
+                for label, href in MARKDOWN_LINK.findall(target_lines[0])
+            ]
+            if not links:
+                raise ValueError(
+                    f"{path.name} summary dimension {current_label!r} has no valid page target"
+                )
+            text = " ".join(
+                line.strip()
+                for line in current_lines
+                if line.strip() and not line.strip().startswith(TARGET_PREFIX)
+            )
             if not text:
                 raise ValueError(f"{path.name} summary dimension {current_label!r} is empty")
-            values[current_label] = text
+            values[current_label] = {"text": text, "links": links}
         current_label = None
         current_lines.clear()
 
@@ -73,7 +97,7 @@ def extract_summary(lines: list[str], path: Path) -> list[dict[str, str]]:
         raise ValueError(f"{path.name} is missing summary dimensions: {missing}")
 
     return [
-        {"id": dimension_id, "label": label, "text": values[label]}
+        {"id": dimension_id, "label": label, **values[label]}
         for dimension_id, label in SUMMARY_DIMENSIONS
     ]
 

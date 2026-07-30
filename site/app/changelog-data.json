@@ -35,32 +35,84 @@
         {
           "id": "models",
           "label": "模型",
-          "text": "新增 Oxygen-TryOn 与 ID-V2V 两张模型卡，并把 Grok Imagine Video 1.5 的访问地址更新为官方稳定 API 页面。"
+          "text": "新增 Oxygen-TryOn 与 ID-V2V 两张模型卡，并把 Grok Imagine Video 1.5 的访问地址更新为官方稳定 API 页面。",
+          "links": [
+            {
+              "label": "Oxygen-TryOn 模型卡",
+              "href": "/#model-oxygen-tryon"
+            },
+            {
+              "label": "ID-V2V 模型卡",
+              "href": "/#model-id-v2v"
+            }
+          ]
         },
         {
           "id": "datasets",
           "label": "数据集",
-          "text": "新增九张数据卡：覆盖 Oxygen-TryOn 的训练、偏好和评测数据，ID-V2V 的训练、补光、上游组件和评测数据，以及公开的 AVE-Compass 音视频编辑评测集。"
+          "text": "新增九张数据卡：覆盖 Oxygen-TryOn 的训练、偏好和评测数据，ID-V2V 的训练、补光、上游组件和评测数据，以及公开的 AVE-Compass 音视频编辑评测集。",
+          "links": [
+            {
+              "label": "Oxygen-TryOn 训练语料",
+              "href": "/#dataset-oxygen-tryon-training-corpus"
+            },
+            {
+              "label": "ID-V2V 训练视频",
+              "href": "/#dataset-id-v2v-human-centric-videos"
+            },
+            {
+              "label": "AVE-Compass",
+              "href": "/#dataset-ave-compass"
+            }
+          ]
         },
         {
           "id": "relations",
           "label": "数据关系",
-          "text": "新增六条模型到数据集关系和两条数据集衍生关系；训练、奖励模型、强化学习、评测与上游组件保持独立，不把评测集写成训练数据。"
+          "text": "新增六条模型到数据集关系和两条数据集衍生关系；训练、奖励模型、强化学习、评测与上游组件保持独立，不把评测集写成训练数据。",
+          "links": [
+            {
+              "label": "查看关系图谱",
+              "href": "/#lineage"
+            }
+          ]
         },
         {
           "id": "rankings",
           "label": "排行榜",
-          "text": "五个图像与视频榜单出现名次或成员变化，Grok Video 1.5 以稳定名称进入图生视频第三；所有前列名称均已映射到模型卡。"
+          "text": "五个图像与视频榜单出现名次或成员变化，Grok Video 1.5 以稳定名称进入图生视频第三；所有前列名称均已映射到模型卡。",
+          "links": [
+            {
+              "label": "查看行业排行榜",
+              "href": "/#rankings"
+            }
+          ]
         },
         {
           "id": "monitoring",
           "label": "监控",
-          "text": "监控范围扩大到 311 个一手来源，并修复 VCG、Mage-Flow 和 GraphVid 的不稳定探针；最终复扫无候选、无失败、无排行榜变化。"
+          "text": "监控范围扩大到 311 个一手来源，并修复 VCG、Mage-Flow 和 GraphVid 的不稳定探针；最终复扫无候选、无失败、无排行榜变化。",
+          "links": [
+            {
+              "label": "查看来源监控",
+              "href": "/#sources"
+            }
+          ]
         },
         {
           "id": "unknowns",
           "label": "未披露",
-          "text": "Oxygen-TryOn 仍未公开原始来源、权利基础和配比；ID-V2V 的人脸视频来源、许可与同意机制未披露；Visko Orbis 与 Ripple 因证据链不完整暂不建卡。"
+          "text": "Oxygen-TryOn 仍未公开原始来源、权利基础和配比；ID-V2V 的人脸视频来源、许可与同意机制未披露；Visko Orbis 与 Ripple 因证据链不完整暂不建卡。",
+          "links": [
+            {
+              "label": "Oxygen-TryOn 未知项",
+              "href": "/#model-oxygen-tryon"
+            },
+            {
+              "label": "ID-V2V 未知项",
+              "href": "/#model-id-v2v"
+            }
+          ]
         }
       ],
       "source_path": "updates/2026-07-30.md"
@@ -72,32 +124,68 @@
         {
           "id": "models",
           "label": "模型",
-          "text": "本轮没有发现证据充分的新模型或需要修改事实卡的模型版本；已跟踪的主流图像、视频、数字人和试衣模型保持不变。"
+          "text": "本轮没有发现证据充分的新模型或需要修改事实卡的模型版本；已跟踪的主流图像、视频、数字人和试衣模型保持不变。",
+          "links": [
+            {
+              "label": "查看模型目录",
+              "href": "/#models"
+            }
+          ]
         },
         {
           "id": "datasets",
           "label": "数据集",
-          "text": "没有新增数据集；PosterCraft 等公开数据页面的规模和许可结论未发生实质变化。"
+          "text": "没有新增数据集；PosterCraft 等公开数据页面的规模和许可结论未发生实质变化。",
+          "links": [
+            {
+              "label": "查看数据集目录",
+              "href": "/#datasets"
+            }
+          ]
         },
         {
           "id": "relations",
           "label": "数据关系",
-          "text": "没有新增训练、微调、偏好或评测关系；九个机器候选均未形成可核验的新数据血缘。"
+          "text": "没有新增训练、微调、偏好或评测关系；九个机器候选均未形成可核验的新数据血缘。",
+          "links": [
+            {
+              "label": "查看关系图谱",
+              "href": "/#lineage"
+            }
+          ]
         },
         {
           "id": "rankings",
           "label": "排行榜",
-          "text": "图生视频榜单出现一次明确换位：Dreamina Seedance 2.0 720p 升至第一，Gemini Omni Flash 降至第二。"
+          "text": "图生视频榜单出现一次明确换位：Dreamina Seedance 2.0 720p 升至第一，Gemini Omni Flash 降至第二。",
+          "links": [
+            {
+              "label": "查看行业排行榜",
+              "href": "/#rankings"
+            }
+          ]
         },
         {
           "id": "monitoring",
           "label": "监控",
-          "text": "更新 Dailymotion API v2 资料并替换四个不稳定探针；298 个一手来源的最终复扫无失败、无恢复项、无排行榜映射缺口。"
+          "text": "更新 Dailymotion API v2 资料并替换四个不稳定探针；298 个一手来源的最终复扫无失败、无恢复项、无排行榜映射缺口。",
+          "links": [
+            {
+              "label": "查看来源监控",
+              "href": "/#sources"
+            }
+          ]
         },
         {
           "id": "unknowns",
           "label": "未披露",
-          "text": "多家模型页面虽有内容更新，但没有新增训练数据名称、规模、清洗方法、合成策略或许可信息，因此未推进核验日期。"
+          "text": "多家模型页面虽有内容更新，但没有新增训练数据名称、规模、清洗方法、合成策略或许可信息，因此未推进核验日期。",
+          "links": [
+            {
+              "label": "查看数据策略",
+              "href": "/#strategies"
+            }
+          ]
         }
       ],
       "source_path": "updates/2026-07-28.md"
@@ -109,32 +197,84 @@
         {
           "id": "models",
           "label": "模型",
-          "text": "集中补齐世界模型、视频编辑、影视配音、口型同步、视频试衣、3D 生成和统一图文生成模型，代表性新增或更新包括 WorldWeaver、Solaris、ElasticTTT、Mage-Flow、InnoText、AgentHOI 与 fMRI2Face。"
+          "text": "集中补齐世界模型、视频编辑、影视配音、口型同步、视频试衣、3D 生成和统一图文生成模型，代表性新增或更新包括 WorldWeaver、Solaris、ElasticTTT、Mage-Flow、InnoText、AgentHOI 与 fMRI2Face。",
+          "links": [
+            {
+              "label": "WorldWeaver",
+              "href": "/#model-worldweaver"
+            },
+            {
+              "label": "Solaris",
+              "href": "/#model-solaris"
+            },
+            {
+              "label": "ElasticTTT",
+              "href": "/#model-elasticttt"
+            }
+          ]
         },
         {
           "id": "datasets",
           "label": "数据集",
-          "text": "为新增模型补齐公开下载、受限申请和未发布三类数据卡，重点覆盖 Solaris、DAVIS、CineDub、CelebV-Dub、TryAny-Bench、ViViD、ConsIDVid 等数据资产。"
+          "text": "为新增模型补齐公开下载、受限申请和未发布三类数据卡，重点覆盖 Solaris、DAVIS、CineDub、CelebV-Dub、TryAny-Bench、ViViD、ConsIDVid 等数据资产。",
+          "links": [
+            {
+              "label": "Solaris 训练数据",
+              "href": "/#dataset-solaris-training-dataset"
+            },
+            {
+              "label": "ElasticTTT 评测数据",
+              "href": "/#dataset-elasticttt-video-editing"
+            }
+          ]
         },
         {
           "id": "relations",
           "label": "数据关系",
-          "text": "模型与数据集关系扩展到 129 条，数据集衍生关系达到 27 条；训练、评测、运行时输入和继承数据被分别标注，并修复了页面中的关系跳转。"
+          "text": "模型与数据集关系扩展到 129 条，数据集衍生关系达到 27 条；训练、评测、运行时输入和继承数据被分别标注，并修复了页面中的关系跳转。",
+          "links": [
+            {
+              "label": "查看关系图谱",
+              "href": "/#lineage"
+            }
+          ]
         },
         {
           "id": "rankings",
           "label": "排行榜",
-          "text": "扩展多家供应方的图像与视频排行榜覆盖，记录 Recraft V4.1 与 Grok Imagine Image Quality 的名次互换，并补齐前列模型映射。"
+          "text": "扩展多家供应方的图像与视频排行榜覆盖，记录 Recraft V4.1 与 Grok Imagine Image Quality 的名次互换，并补齐前列模型映射。",
+          "links": [
+            {
+              "label": "查看行业排行榜",
+              "href": "/#rankings"
+            }
+          ]
         },
         {
           "id": "monitoring",
           "label": "监控",
-          "text": "监控范围扩大到 298 个一手来源，新增世界模型、配音、试衣和 3D 数据的重点探针；最终扫描没有来源失败或排行榜映射缺口。"
+          "text": "监控范围扩大到 298 个一手来源，新增世界模型、配音、试衣和 3D 数据的重点探针；最终扫描没有来源失败或排行榜映射缺口。",
+          "links": [
+            {
+              "label": "查看来源监控",
+              "href": "/#sources"
+            }
+          ]
         },
         {
           "id": "unknowns",
           "label": "未披露",
-          "text": "多项论文只披露数据规模或处理流程，未发布语料文件、来源清单或完整许可；脑信号、人脸、影视素材和游戏数据继续保留隐私与权利边界。"
+          "text": "多项论文只披露数据规模或处理流程，未发布语料文件、来源清单或完整许可；脑信号、人脸、影视素材和游戏数据继续保留隐私与权利边界。",
+          "links": [
+            {
+              "label": "WorldWeaver 未知项",
+              "href": "/#model-worldweaver"
+            },
+            {
+              "label": "ElasticTTT 未知项",
+              "href": "/#model-elasticttt"
+            }
+          ]
         }
       ],
       "source_path": "updates/2026-07-27.md"
@@ -146,32 +286,84 @@
         {
           "id": "models",
           "label": "模型",
-          "text": "首轮集中补齐图像、视频、数字人、虚拟试衣、音频和 3D 模型，代表性新增包括 Midjourney V8.2、Muse Image / Video、Omni2Sound、SANA-Video 2.0、Mage-Flow、TalkVerse-5B 与 OpenVE-Edit。"
+          "text": "首轮集中补齐图像、视频、数字人、虚拟试衣、音频和 3D 模型，代表性新增包括 Midjourney V8.2、Muse Image / Video、Omni2Sound、SANA-Video 2.0、Mage-Flow、TalkVerse-5B 与 OpenVE-Edit。",
+          "links": [
+            {
+              "label": "Midjourney V8.2",
+              "href": "/#model-midjourney-v8-2"
+            },
+            {
+              "label": "Muse Image",
+              "href": "/#model-muse-image"
+            },
+            {
+              "label": "Omni2Sound",
+              "href": "/#model-omni2sound"
+            }
+          ]
         },
         {
           "id": "datasets",
           "label": "数据集",
-          "text": "新增 SoundAtlas、Cap3D、Objaverse-XL、完整 Omni2Sound 音频语料链，以及 Try-On、数字人、图像生成和视频编辑方向的一批公开或受限数据卡。"
+          "text": "新增 SoundAtlas、Cap3D、Objaverse-XL、完整 Omni2Sound 音频语料链，以及 Try-On、数字人、图像生成和视频编辑方向的一批公开或受限数据卡。",
+          "links": [
+            {
+              "label": "SoundAtlas",
+              "href": "/#dataset-soundatlas"
+            },
+            {
+              "label": "Cap3D",
+              "href": "/#dataset-cap3d"
+            }
+          ]
         },
         {
           "id": "relations",
           "label": "数据关系",
-          "text": "建立模型到训练、微调、偏好和评测数据的明确关系，并加入数据集之间的衍生链路；评测集、未发布语料和可下载训练集不再混写。"
+          "text": "建立模型到训练、微调、偏好和评测数据的明确关系，并加入数据集之间的衍生链路；评测集、未发布语料和可下载训练集不再混写。",
+          "links": [
+            {
+              "label": "查看关系图谱",
+              "href": "/#lineage"
+            }
+          ]
         },
         {
           "id": "rankings",
           "label": "排行榜",
-          "text": "开始维护五个主流图像与视频榜单的前列模型，首批记录 66 个席位；所有重点席位都要求能映射到具体模型卡。"
+          "text": "开始维护五个主流图像与视频榜单的前列模型，首批记录 66 个席位；所有重点席位都要求能映射到具体模型卡。",
+          "links": [
+            {
+              "label": "查看行业排行榜",
+              "href": "/#rankings"
+            }
+          ]
         },
         {
           "id": "monitoring",
           "label": "监控",
-          "text": "建立覆盖模型、数据集、官方仓库和新数据发布源的持续监控体系，并让关系变化能够反向定位受影响的模型和数据集。"
+          "text": "建立覆盖模型、数据集、官方仓库和新数据发布源的持续监控体系，并让关系变化能够反向定位受影响的模型和数据集。",
+          "links": [
+            {
+              "label": "查看来源监控",
+              "href": "/#sources"
+            }
+          ]
         },
         {
           "id": "unknowns",
           "label": "未披露",
-          "text": "多项闭源或 API 模型仍未公开训练语料名称、来源权利和配比；目录明确保留“未披露”，不根据生成能力猜测训练数据。"
+          "text": "多项闭源或 API 模型仍未公开训练语料名称、来源权利和配比；目录明确保留“未披露”，不根据生成能力猜测训练数据。",
+          "links": [
+            {
+              "label": "Midjourney V8.2 未知项",
+              "href": "/#model-midjourney-v8-2"
+            },
+            {
+              "label": "Muse Image 未知项",
+              "href": "/#model-muse-image"
+            }
+          ]
         }
       ],
       "source_path": "updates/2026-07-26.md"
