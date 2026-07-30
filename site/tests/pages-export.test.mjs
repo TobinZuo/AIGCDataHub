@@ -9,6 +9,9 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   const changelogHtml = await readFile(new URL("out/changelog/index.html", siteRoot), "utf8");
 
   assert.match(html, /AIGCDataHub/);
+  assert.match(html, /最近核验/);
+  assert.match(html, /ID-V2V/);
+  assert.doesNotMatch(html, /LATEST SIGNAL/);
   assert.match(html, /AudioSet/);
   assert.match(html, /Million Song Dataset/);
   assert.match(html, /Lens-RL-8K/);

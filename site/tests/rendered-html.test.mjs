@@ -61,6 +61,13 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /aria-label="切换呈现语言"/);
   assert.match(html, /aria-pressed="true">中/);
   assert.match(html, /aria-pressed="false">EN/);
+  assert.match(html, /最近核验/);
+  assert.match(html, /核验<!-- --> <!-- -->2026\/07\/30/);
+  assert.match(html, /ID-V2V/);
+  assert.match(html, /发布<!-- --> <!-- -->2026\/07\/24/);
+  assert.match(html, /部分披露/);
+  assert.match(html, /开放权重/);
+  assert.doesNotMatch(html, /LATEST SIGNAL/);
   assert.match(html, /Midjourney V8\.2/);
   assert.match(html, /Muse Image/);
   assert.match(html, /FLUX 3/);
@@ -527,6 +534,10 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalogExplorer, /strategy-datasets-\$\{model\.id\}/);
   assert.match(catalogExplorer, /onOpenDataset=\{\(id\) => openRelation\("datasets", id\)\}/);
   assert.match(catalogExplorer, /parseCatalogHash/);
+  assert.match(catalogExplorer, /mostRecentlyVerifiedModel/);
+  assert.match(catalogExplorer, /right\.last_verified\.localeCompare\(left\.last_verified\)/);
+  assert.match(catalogExplorer, /RECENTLY VERIFIED/);
+  assert.match(catalogExplorer, /View model card/);
   assert.match(catalogExplorer, /CATALOG_VIEW_HASHES/);
   assert.match(catalogExplorer, /id === null/);
   assert.match(catalogExplorer, /window\.addEventListener\("hashchange", restoreCatalogHash\)/);

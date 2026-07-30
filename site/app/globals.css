@@ -935,6 +935,9 @@ input:focus-visible {
 }
 
 .signal-strip p {
+  display: flex;
+  align-items: center;
+  gap: 9px;
   margin: 0;
   overflow: hidden;
   color: #484c31;
@@ -943,12 +946,30 @@ input:focus-visible {
   white-space: nowrap;
 }
 
+.signal-meta span + span::before {
+  margin-right: 9px;
+  color: #777c43;
+  content: "·";
+}
+
 .signal-strip button {
+  min-height: 44px;
   border: 0;
   border-bottom: 1px solid var(--ink);
   background: transparent;
   cursor: pointer;
   font-size: 11px;
+}
+
+.signal-strip button:hover,
+.signal-strip button:focus-visible {
+  background: var(--ink);
+  color: var(--acid);
+  outline: 0;
+}
+
+.signal-strip button:active {
+  transform: scale(0.97);
 }
 
 .explorer {

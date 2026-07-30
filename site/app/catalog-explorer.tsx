@@ -439,6 +439,14 @@ function normalize(value: string) {
   return value.toLocaleLowerCase().replaceAll("-", " ");
 }
 
+function mostRecentlyVerifiedModel(models: ModelCard[]) {
+  return [...models].sort((left, right) =>
+    right.last_verified.localeCompare(left.last_verified)
+    || right.released_at.localeCompare(left.released_at)
+    || left.name.localeCompare(right.name),
+  )[0];
+}
+
 function uiLabel(labels: Record<string, Localized>, value: string, locale: Locale) {
   return labels[value] ? localized(labels[value], locale) : value.replaceAll("-", " ");
 }
@@ -1336,6 +1344,10 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
     () => new Map(catalog.datasets.map((item) => [item.id, item])),
     [catalog.datasets],
   );
+  const recentModel = useMemo(
+    () => mostRecentlyVerifiedModel(catalog.models),
+    [catalog.models],
+  );
 
   useEffect(() => {
     function restoreCatalogHash() {
@@ -1650,13 +1662,17 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
         </aside>
       </section>
 
-      <section className="signal-strip" aria-label={locale === "zh" ? "最新追踪信号" : "Latest tracking signal"}>
-        <span className="signal-label">LATEST SIGNAL</span>
-        <span className="signal-date">{formatDate(catalog.models[0].released_at, locale)}</span>
-        <strong>{catalog.models[0].name}</strong>
-        <p>{catalog.models[0].data.strategy_summary[0]}</p>
-        <button onClick={() => openRelation("models", catalog.models[0].id)}>
-          {locale === "zh" ? "查看拆解" : "View analysis"} ↘
+      <section className="signal-strip" aria-label={locale === "zh" ? "最近核验的模型" : "Most recently verified model"}>
+        <span className="signal-label">{locale === "zh" ? "最近核验" : "RECENTLY VERIFIED"}</span>
+        <span className="signal-date">{locale === "zh" ? "核验" : "Verified"} {formatDate(recentModel.last_verified, locale)}</span>
+        <strong>{recentModel.name}</strong>
+        <p className="signal-meta">
+          <span>{locale === "zh" ? "发布" : "Released"} {formatDate(recentModel.released_at, locale)}</span>
+          <span>{uiLabel(DISCLOSURE_LABELS, recentModel.data.disclosure_level, locale)}</span>
+          <span>{uiLabel(ACCESS_LABELS, recentModel.access.status, locale)}</span>
+        </p>
+        <button onClick={() => openRelation("models", recentModel.id)}>
+          {locale === "zh" ? "查看模型卡" : "View model card"} ↘
         </button>
       </section>
 
