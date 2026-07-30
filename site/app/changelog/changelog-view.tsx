@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import type { Localized } from "../locale-context";
+import { useLocale } from "../locale-context";
 import { SiteHeader } from "../site-header";
 
-type Locale = "zh" | "en";
-type Localized = Record<Locale, string>;
 type SummaryDimension = {
   id: string;
   label: Localized;
@@ -46,8 +45,6 @@ const copy = {
     fullRecord: "查看完整核验记录",
     footer: "先读中文结论，需要时再追溯完整证据。",
     allRecords: "查看全部原始记录",
-    language: "切换呈现语言",
-    header: { home: "AIGCDataHub 首页", nav: "主导航", catalog: "数据目录", changelog: "变更记录", source: "查看源码" },
   },
   en: {
     status: "CHANGELOG",
@@ -70,8 +67,6 @@ const copy = {
     fullRecord: "View full verification record",
     footer: "Read the conclusions first, then follow the evidence when needed.",
     allRecords: "View all source records",
-    language: "Switch display language",
-    header: { home: "AIGCDataHub home", nav: "Primary navigation", catalog: "Catalog", changelog: "Changelog", source: "View source" },
   },
 } as const;
 
@@ -80,29 +75,18 @@ function formatDate(date: string) {
 }
 
 export function ChangelogView({ changelog }: { changelog: Changelog }) {
-  const [locale, setLocale] = useState<Locale>("zh");
+  const { locale } = useLocale();
   const entries = changelog.entries;
   const latest = entries[0];
   const text = copy[locale];
 
-  function selectLocale(nextLocale: Locale) {
-    setLocale(nextLocale);
-    document.documentElement.lang = nextLocale === "zh" ? "zh-CN" : "en";
-  }
-
   return (
     <main className="changelog-page" lang={locale === "zh" ? "zh-CN" : "en"}>
-      <SiteHeader active="changelog" status={`${text.status} · ${formatDate(latest.date)}`} labels={text.header} />
+      <SiteHeader active="changelog" status={{ zh: `更新记录 · ${formatDate(latest.date)}`, en: `CHANGELOG · ${formatDate(latest.date)}` }} />
 
       <section className="changelog-hero">
         <div className="changelog-hero-copy">
-          <div className="changelog-kicker-row">
-            <p className="kicker">{text.kicker}</p>
-            <div className="language-switch" role="group" aria-label={text.language}>
-              <button type="button" aria-pressed={locale === "zh"} onClick={() => selectLocale("zh")}>中文</button>
-              <button type="button" aria-pressed={locale === "en"} onClick={() => selectLocale("en")}>EN</button>
-            </div>
-          </div>
+          <p className="kicker">{text.kicker}</p>
           <h1>{text.headlineTop}<br /><span>{text.headlineAccent}</span></h1>
           <p className="changelog-description">{text.description}</p>
           <div className="changelog-actions">

@@ -82,8 +82,10 @@ point, not as an exhaustive list.
    one `Page links:` line. Both must contain the same Pages targets, translated
    labels, and direct links to affected cards or views. The public changelog is
    generated from these summaries, supports Chinese/English switching, and does
-   not expose the full technical log by default. Generic homepage-only links
-   are not sufficient when a specific card exists.
+   not expose the full technical log by default. Treat language as a shared
+   site preference: place the switch in the common header, apply it to both the
+   catalog and changelog, and preserve the selection during in-site navigation.
+   Generic homepage-only links are not sufficient when a specific card exists.
 8. Summarize new models, new datasets, changed disclosures, broken links, and
    stale cards for the reviewer.
 9. After every generated candidate is accepted or rejected, run

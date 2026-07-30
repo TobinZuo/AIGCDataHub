@@ -40,7 +40,7 @@ test("server-renders the standalone Chinese change summary", async () => {
   assert.match(html, /查看完整核验记录/);
   assert.match(html, /返回数据目录/);
   assert.match(html, /aria-label="切换呈现语言"/);
-  assert.match(html, /aria-pressed="true">中文/);
+  assert.match(html, /aria-pressed="true">中/);
   assert.match(html, /aria-pressed="false">EN/);
   assert.doesNotMatch(html, /<dt>呈现语言<\/dt>/);
   assert.match(html, /href="\/"/);
@@ -58,6 +58,9 @@ test("server-renders the AIGCDataHub catalog", async () => {
   const html = await response.text();
   assert.match(html, /<title>AIGCDataHub \| 模型背后的数据策略<\/title>/i);
   assert.match(html, /追踪模型/);
+  assert.match(html, /aria-label="切换呈现语言"/);
+  assert.match(html, /aria-pressed="true">中/);
+  assert.match(html, /aria-pressed="false">EN/);
   assert.match(html, /Midjourney V8\.2/);
   assert.match(html, /Muse Image/);
   assert.match(html, /FLUX 3/);
@@ -529,7 +532,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   assert.match(catalogExplorer, /window\.addEventListener\("hashchange", restoreCatalogHash\)/);
   assert.match(catalogExplorer, /window\.history\.pushState\(null, "", `#\$\{elementId\}`\)/);
   assert.match(catalogExplorer, /数据获取入口/);
-  assert.match(catalogExplorer, /datasetAccessAction\(dataset\)/);
+  assert.match(catalogExplorer, /datasetAccessAction\(dataset, locale\)/);
   assert.match(catalogExplorer, /目录内反向链接只由模型卡/);
   assert.match(catalogExplorer, /DATASET → DATASET/);
   assert.match(catalogExplorer, /上游数据如何形成衍生集/);

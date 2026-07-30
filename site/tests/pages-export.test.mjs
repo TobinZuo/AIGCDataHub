@@ -114,6 +114,7 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   );
   assert.match(html, /https:\/\/tobinzuo\.github\.io\/AIGCDataHub\/og\.png/);
   assert.match(html, /href="\/AIGCDataHub\/changelog\/"/);
+  assert.match(html, /aria-label="切换呈现语言"/);
   assert.match(changelogHtml, /今天更新了/);
   assert.match(changelogHtml, /Oxygen-TryOn/);
   assert.match(changelogHtml, /六个维度/);
