@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import changelog from "../changelog-data.json";
 import { SiteHeader } from "../site-header";
 
@@ -40,7 +41,10 @@ export default function ChangelogPage() {
         <div className="changelog-hero-copy">
           <p className="kicker">每日维护 · 中文摘要</p>
           <h1>今天更新了<br /><span>什么？</span></h1>
-          <p>先看模型、数据集和数据关系发生了什么，再看排行榜、监控状态与仍未披露的信息。</p>
+          <p className="changelog-description">先看模型、数据集和数据关系发生了什么，再看排行榜、监控状态与仍未披露的信息。</p>
+          <div className="changelog-actions">
+            <Link href="/">返回数据目录 <span aria-hidden="true">←</span></Link>
+          </div>
         </div>
         <aside className="ledger-summary" aria-label="变更记录概览">
           <div><span>最近更新</span><strong>{formatDate(latest.date)}</strong></div>
@@ -87,6 +91,9 @@ export default function ChangelogPage() {
                   <a className="change-source-link" href={`${githubRoot}${entry.source_path}`} target="_blank" rel="noreferrer">
                     查看完整核验记录 <span aria-hidden="true">↗</span>
                   </a>
+                  <Link className="change-catalog-link" href="/">
+                    返回数据目录 <span aria-hidden="true">←</span>
+                  </Link>
                 </div>
               </details>
             </article>

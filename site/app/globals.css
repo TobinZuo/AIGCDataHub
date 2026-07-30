@@ -211,12 +211,36 @@ input:focus-visible {
   background: var(--acid);
 }
 
-.changelog-hero-copy > p:last-child {
+.changelog-description {
   max-width: 690px;
   margin: 36px 0 0;
   color: #494c45;
   font-size: clamp(16px, 1.3vw, 21px);
   line-height: 1.75;
+}
+
+.changelog-actions {
+  display: flex;
+  margin-top: 30px;
+}
+
+.changelog-actions a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 13px;
+  padding: 12px 16px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.changelog-actions a:hover {
+  background: var(--acid);
+  color: var(--ink);
 }
 
 .ledger-summary {
@@ -592,6 +616,24 @@ input:focus-visible {
   font-size: 11px;
   font-weight: 700;
   text-decoration: none;
+}
+
+.change-catalog-link {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 0 8px;
+  padding: 11px 14px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.change-catalog-link:hover {
+  background: var(--acid);
 }
 
 .change-source-link:hover {
@@ -3008,6 +3050,10 @@ input:focus-visible {
     padding: 22px;
   }
 
+  .change-catalog-link {
+    margin-left: 0;
+  }
+
   .change-section {
     grid-template-columns: 1fr;
     gap: 18px;
@@ -3351,7 +3397,7 @@ input:focus-visible {
     font-size: 52px;
   }
 
-  .changelog-hero-copy > p:last-child {
+  .changelog-description {
     font-size: 15px;
   }
 

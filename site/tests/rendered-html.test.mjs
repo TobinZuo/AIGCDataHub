@@ -38,6 +38,8 @@ test("server-renders the standalone Chinese change summary", async () => {
   assert.match(html, /数据关系/);
   assert.match(html, /未披露/);
   assert.match(html, /查看完整核验记录/);
+  assert.match(html, /返回数据目录/);
+  assert.match(html, /href="\/"/);
   assert.doesNotMatch(html, /Review window|Accepted changes|CHANGE LEDGER|LATEST REVIEW|SOURCE ON GITHUB/);
 });
 

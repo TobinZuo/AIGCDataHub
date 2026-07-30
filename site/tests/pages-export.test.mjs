@@ -119,6 +119,8 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(changelogHtml, /六个维度/);
   assert.match(changelogHtml, /数据关系/);
   assert.match(changelogHtml, /未披露/);
+  assert.match(changelogHtml, /返回数据目录/);
+  assert.match(changelogHtml, /href="\/AIGCDataHub\/"/);
   assert.doesNotMatch(changelogHtml, /Review window|Accepted changes|CHANGE LEDGER|LATEST REVIEW|SOURCE ON GITHUB/);
   assert.match(changelogHtml, /href="\/AIGCDataHub\/"/);
   assert.match(

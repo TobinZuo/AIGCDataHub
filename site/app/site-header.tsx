@@ -17,6 +17,9 @@ export function SiteHeader({ active, status }: SiteHeaderProps) {
         {status}
       </div>
       <nav className="header-actions" aria-label="主导航">
+        <Link className={active === "catalog" ? "header-link is-active" : "header-link"} href="/">
+          数据目录
+        </Link>
         <Link className={active === "changelog" ? "header-link is-active" : "header-link"} href="/changelog">
           变更记录
         </Link>
