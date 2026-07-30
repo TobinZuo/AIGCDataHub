@@ -6,7 +6,18 @@ from pathlib import Path
 
 sys.path.insert(0, "scripts")
 
-from build_readme import END, MODEL_END, MODEL_START, START, generated_readme, render_dataset_table, render_model_table
+from build_readme import (
+    END,
+    METRICS_END,
+    METRICS_START,
+    MODEL_END,
+    MODEL_START,
+    START,
+    generated_readme,
+    render_dataset_table,
+    render_model_table,
+    render_project_metrics,
+)
 from build_dataset_access_index import render_index as render_access_index
 from build_site_data import build_payload
 from catalog import compact_number, load_cards
@@ -349,11 +360,14 @@ class CatalogTests(unittest.TestCase):
 
     def test_readme_generation_is_idempotent(self) -> None:
         source = (
-            f"before\n{MODEL_START}\nstale models\n{MODEL_END}\n"
+            f"before\n{METRICS_START}\nstale metrics\n{METRICS_END}\n"
+            f"{MODEL_START}\nstale models\n{MODEL_END}\n"
             f"middle\n{START}\nstale datasets\n{END}\nafter\n"
         )
         once = generated_readme(source)
         self.assertEqual(generated_readme(once), once)
+        self.assertIn("| Models | Datasets |", render_project_metrics())
+        self.assertIn("| 模型 | 数据集 |", render_project_metrics("zh"))
         self.assertIn("| Dataset | Organization | Modality | Released |", render_dataset_table())
         self.assertIn("[download / browse (open)](https://", render_dataset_table())
         self.assertIn("| Model | Organization |", render_model_table())

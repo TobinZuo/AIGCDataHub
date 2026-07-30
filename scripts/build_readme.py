@@ -12,10 +12,13 @@ from models import load_models
 
 
 README_PATH = ROOT / "README.md"
+ZH_README_PATH = ROOT / "README.zh-CN.md"
 START = "<!-- BEGIN DATASET CATALOG -->"
 END = "<!-- END DATASET CATALOG -->"
 MODEL_START = "<!-- BEGIN MODEL CATALOG -->"
 MODEL_END = "<!-- END MODEL CATALOG -->"
+METRICS_START = "<!-- BEGIN PROJECT METRICS -->"
+METRICS_END = "<!-- END PROJECT METRICS -->"
 STATUS = {"verified": "✅", "partial": "🟡", "archived": "🗄️"}
 MODEL_STATUS = {"verified": "✅", "partial": "🟡", "watch": "👀"}
 
@@ -94,6 +97,41 @@ def render_model_table() -> str:
     return "\n".join(rows)
 
 
+def render_project_metrics(locale: str = "en") -> str:
+    cards = [card for _, card in load_cards()]
+    models = [model for _, model in load_models()]
+    model_relations = sum(
+        1
+        for model in models
+        for dataset in model["data"]["datasets"]
+        if dataset["catalog_id"] is not None
+    )
+    dataset_relations = sum(len(card.get("derived_from", [])) for card in cards)
+    open_datasets = sum(card["access"]["status"] == "open" for card in cards)
+    update_dates = [path.stem for path in (ROOT / "updates").glob("*.md")]
+    latest_update = max(update_dates)
+
+    if locale == "zh":
+        headers = ["模型", "数据集", "模型与数据关系", "数据集衍生关系", "公开可访问", "最新核验"]
+    else:
+        headers = ["Models", "Datasets", "Model–dataset links", "Dataset lineage", "Open access", "Latest review"]
+    values = [
+        str(len(models)),
+        str(len(cards)),
+        str(model_relations),
+        str(dataset_relations),
+        str(open_datasets),
+        latest_update,
+    ]
+    return "\n".join(
+        [
+            "| " + " | ".join(headers) + " |",
+            "|" + "|".join(":---:" for _ in headers) + "|",
+            "| " + " | ".join(values) + " |",
+        ]
+    )
+
+
 def replace_block(current: str, start: str, end: str, rendered: str) -> str:
     if start not in current or end not in current:
         raise ValueError(f"README.md must contain {start!r} and {end!r}")
@@ -102,8 +140,16 @@ def replace_block(current: str, start: str, end: str, rendered: str) -> str:
     return f"{before}{start}\n{rendered}\n{end}{after}"
 
 
-def generated_readme(current: str) -> str:
-    with_datasets = replace_block(current, START, END, render_dataset_table())
+def generated_readme(current: str, locale: str = "en", catalogs: bool = True) -> str:
+    with_metrics = replace_block(
+        current,
+        METRICS_START,
+        METRICS_END,
+        render_project_metrics(locale),
+    )
+    if not catalogs:
+        return with_metrics
+    with_datasets = replace_block(with_metrics, START, END, render_dataset_table())
     return replace_block(with_datasets, MODEL_START, MODEL_END, render_model_table())
 
 
@@ -121,14 +167,17 @@ def main() -> int:
     args = parse_args()
     current = README_PATH.read_text(encoding="utf-8")
     expected = generated_readme(current)
+    current_zh = ZH_README_PATH.read_text(encoding="utf-8")
+    expected_zh = generated_readme(current_zh, locale="zh", catalogs=False)
     if args.check:
-        if current != expected:
-            print("README.md catalog is stale; run `make readme`.", file=sys.stderr)
+        if current != expected or current_zh != expected_zh:
+            print("README files are stale; run `make readme`.", file=sys.stderr)
             return 1
-        print("README.md catalog is up to date.")
+        print("README files are up to date.")
         return 0
 
     README_PATH.write_text(expected, encoding="utf-8")
+    ZH_README_PATH.write_text(expected_zh, encoding="utf-8")
     print(
         f"Updated README.md with {len(load_cards())} dataset card(s) "
         f"and {len(load_models())} model card(s)."

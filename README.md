@@ -1,12 +1,43 @@
 # AIGCDataHub
 
-> A reproducible data engineering hub for multimodal generative AI.
+[English](README.md) · [简体中文](README.zh-CN.md)
 
-AIGCDataHub is a living, structured catalog of AIGC datasets, models, training
-data strategies, processing recipes, governance notes, and engineering
-benchmarks. It is built for practitioners who need to answer not only “what is
-new?”, but also “what data did the model use, how was it processed, what remains
-undisclosed, and can the strategy be reproduced?”.
+![AIGCDataHub — models to data](site/public/og.png)
+
+**Trace generative AI models back to their data.** AIGCDataHub is an
+evidence-backed, continuously maintained catalog of multimodal models, datasets,
+training stages, processing strategies, access conditions, and data lineage.
+
+[![Catalog checks](https://img.shields.io/github/actions/workflow/status/TobinZuo/AIGCDataHub/validate.yml?branch=master&label=catalog%20checks)](https://github.com/TobinZuo/AIGCDataHub/actions/workflows/validate.yml)
+[![License](https://img.shields.io/github/license/TobinZuo/AIGCDataHub)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/TobinZuo/AIGCDataHub?style=flat&label=stars)](https://github.com/TobinZuo/AIGCDataHub/stargazers)
+
+**[Explore the live catalog](https://tobinzuo.github.io/AIGCDataHub/)** ·
+**[Read the latest changes](https://tobinzuo.github.io/AIGCDataHub/changelog/)** ·
+**[Find downloadable datasets](DATASET_ACCESS_INDEX.md)** ·
+**[Inspect model–dataset lineage](MODEL_DATASET_INDEX.md)**
+
+<!-- BEGIN PROJECT METRICS -->
+| Models | Datasets | Model–dataset links | Dataset lineage | Open access | Latest review |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 93 | 122 | 135 | 29 | 53 | 2026-07-30 |
+<!-- END PROJECT METRICS -->
+
+> [!NOTE]
+> This is not another “awesome” link list. Every card preserves release and
+> verification dates, distinguishes training from evaluation and runtime data,
+> resolves named public datasets to access links, and records material
+> undisclosed fields instead of inferring them from model behavior.
+
+## Why AIGCDataHub
+
+| Question | What this repository provides |
+|---|---|
+| What data did a model actually name? | Source-backed training, fine-tuning, preference, evaluation, and inherited-data references. |
+| Can I access it? | Direct download, browse, request, API, or explicit unavailable/not-released status. |
+| How was it processed? | Disclosed filtering, deduplication, recaptioning, synthesis, and preference-optimization operations. |
+| What remains unknown? | Missing sources, rights, mixture ratios, scale, and stage details are retained as findings. |
+| What changed recently? | Daily official-source monitoring, reviewed update records, and versioned Git history. |
 
 ## Start here on GitHub
 
@@ -23,9 +54,20 @@ and do not depend on a separate preview host:
   model, paper, repository, dataset, and ranking sources.
 
 The optional [interactive GitHub Pages view](https://tobinzuo.github.io/AIGCDataHub/)
-is built from the same `master` data. The retired
-`aigc-datahub-index.zuotongbin.chatgpt.site` preview is not an official or
-maintained entry point.
+is built from the same `master` data.
+
+## Use the data in 60 seconds
+
+The generated site payload is a version-controlled JSON snapshot. Query one
+model and its disclosed data references directly from the default branch:
+
+```bash
+curl -sL https://raw.githubusercontent.com/TobinZuo/AIGCDataHub/master/site/app/catalog-data.json \
+  | jq '.models[] | select(.id == "id-v2v") | {name, released_at, access, datasets: .data.datasets}'
+```
+
+For reproducible downstream use, pin a commit or a published release instead of
+tracking `master`.
 
 > [!IMPORTANT]
 > A dataset being publicly downloadable does not imply that every underlying
@@ -58,6 +100,9 @@ stages, named datasets, source types, curation operations, and material unknowns
 “Undisclosed” is a result: the catalog never invents a training dataset from a
 model's capabilities or outputs. The table is sorted by model release date,
 newest first.
+
+<details>
+<summary><strong>Browse the full model catalog</strong></summary>
 
 <!-- BEGIN MODEL CATALOG -->
 | Model | Organization | Modalities | Released | Access | Data disclosure | Named datasets | Status |
@@ -157,6 +202,8 @@ newest first.
 | [CommonCanvas-XL-C](models/image/commoncanvas-xl-c.yaml) | CommonCanvas collaborators | image | 2024-05-16 | open weights | partial | [CommonCatalog commercial subset](catalog/image/commoncatalog.yaml) | ✅ |
 <!-- END MODEL CATALOG -->
 
+</details>
+
 Legend: ✅ strategy checked against primary technical sources; 🟡 only part of
 the strategy can be verified; 👀 active release to watch for new technical or
 data disclosures.
@@ -197,6 +244,9 @@ generated table. The Access column now links directly to the publisher's data
 distribution, URL/downloader, metadata tooling, request form, or availability
 notice. For a download-first view of every card, use the
 [dataset access and download index](DATASET_ACCESS_INDEX.md).
+
+<details>
+<summary><strong>Browse the full dataset catalog</strong></summary>
 
 <!-- BEGIN DATASET CATALOG -->
 | Dataset | Organization | Modality | Released | Tasks | Scale | Access | Commercial use | Status |
@@ -325,13 +375,15 @@ notice. For a download-first view of every card, use the
 | [GRID audiovisual sentence corpus](catalog/video/grid.yaml) | University of Sheffield | video | 2006-11-01 | video dubbing, lip sync training, audiovisual speech recognition | 34K | [download / browse (open)](https://spandh.dcs.shef.ac.uk/gridcorpus/) | unknown | ✅ |
 <!-- END DATASET CATALOG -->
 
+</details>
+
 Legend: ✅ verified against primary sources; 🟡 partially verified or contains
 material unknowns; 🗄️ archived or unavailable from the original distributor.
 
 ## Candidate content-source platforms
 
-The [source-platform index](SOURCE_PLATFORM_INDEX.md) tracks 16 candidate
-content surfaces referenced for image/video data planning. Each entry separates
+The [source-platform index](SOURCE_PLATFORM_INDEX.md) tracks candidate content
+surfaces referenced for image/video data planning. Each entry separates
 the public content scope from the documented API, partner portal, or licensed
 delivery path, and records access requirements plus a monitored official
 interface. An interface is not a dataset download action and does not grant
@@ -413,24 +465,23 @@ Refreshing the reviewed baseline fails closed when any watched source is
 unreachable, so a transient outage cannot be accepted as the new normal. An
 explicit `--allow-failures` override exists only for reviewed, intentional
 exceptions.
-Fifty-four of the 55 cataloged datasets now have an independent revision probe. The
-only exception is Flickr 5B metadata: its current Hugging Face repository
-requires authentication, so the catalog preserves the access boundary instead
-of reporting an unauthenticated failure as a working monitor. Every other
-dataset referenced by a model has a dedicated official probe.
+Cataloged datasets referenced by models are joined to canonical official-source
+revision probes where a stable public interface exists. Authentication and
+access boundaries remain explicit instead of being reported as working public
+monitors.
 Ranking entries that do not yet resolve to a verified model card also keep the
 Issue open, so newly ranked closed or open models cannot disappear between
 daily scans. Arena snapshots use its official Hugging Face leaderboard dataset
 rather than a bot-protected web page.
-All 40 distinct model cards represented by the current 133 leaderboard seats
-have their own official revision probe, regardless of whether the model is open
-weight, API-only, product-only, or only announced. Revision-only model and
-dataset probes do not emit navigation links as discovery candidates; broader
-provider feeds remain responsible for finding new releases.
+Every canonical model represented by a required leaderboard seat has an
+official revision probe, regardless of whether it is open weight, API-only,
+product-only, or only announced. Revision-only model and dataset probes do not
+emit navigation links as discovery candidates; broader provider feeds remain
+responsible for finding new releases.
 
-The same workflow checks all 16 candidate source platforms through their
-official API documentation, partner portal, licensed-service terms, or a
-conservative availability probe when no public data interface is cataloged.
+The same workflow checks candidate source platforms through official API
+documentation, partner portals, licensed-service terms, or a conservative
+availability probe when no public data interface is cataloged.
 HTML content revisions hash normalized visible text rather than scripts,
 styles, hydration payloads, or build attributes, preventing dynamic page noise
 from opening false review items.
@@ -466,21 +517,22 @@ scanner also expose their monitoring tier and probe source. A dataset card's
 `evidence.used_by` remains an upstream claim and is never silently promoted to
 a canonical model relationship.
 
-The latest evidence review is recorded in
-[updates/2026-07-27.md](updates/2026-07-27.md), including accepted releases,
-scope decisions, and disclosures that remain unknown.
+The [public changelog](https://tobinzuo.github.io/AIGCDataHub/changelog/) and
+[review records](updates/) preserve accepted releases, scope decisions, and
+disclosures that remain unknown.
 
 Freshness dates are evidence, not bookkeeping: update `last_verified` only after
 checking the primary source.
 
 ## Roadmap
 
-- **v0.1:** structured dataset catalog, validation, generated README, core recipes;
-- **v0.2:** living model/data-strategy tracker, freshness monitoring, and executable manifest audits;
-- **v0.3:** searchable model, dataset, and data-strategy site generated from the same YAML cards;
-- **v0.4:** audio and 3D dataset coverage plus richer model-to-dataset lineage;
-- **v0.5:** digital-human, video-localization, and virtual-try-on coverage plus reproducible cross-model data-strategy comparisons;
-- **later:** organization-specific adapters and pipeline benchmarks on shared snapshots.
+- **v0.1 (current):** evidence-backed model and dataset cards, bidirectional
+  lineage, access indexes, daily monitoring, rankings, application scenarios,
+  and a bilingual searchable site;
+- **next:** smaller versioned JSONL/CSV/Parquet exports, stable query examples,
+  and contributor-led verification with dataset and model authors;
+- **later:** organization-specific adapters and pipeline benchmarks on shared,
+  reproducible snapshots.
 
 ## License
 

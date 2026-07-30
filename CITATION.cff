@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: If AIGCDataHub supports your research or engineering work, please cite this repository.
+type: dataset
+title: AIGCDataHub
+abstract: An evidence-backed catalog of generative AI models, datasets, training-data strategies, access conditions, and model-to-dataset lineage.
+authors:
+  - family-names: Zuo
+    given-names: Tobin
+    alias: TobinZuo
+version: 0.1.0
+date-released: 2026-07-30
+repository-code: https://github.com/TobinZuo/AIGCDataHub
+url: https://tobinzuo.github.io/AIGCDataHub/
+license: Apache-2.0
+keywords:
+  - AIGC
+  - generative AI
+  - multimodal AI
+  - training data
+  - datasets
+  - data lineage
+  - model cards
