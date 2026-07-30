@@ -23,6 +23,7 @@ from discover_updates import (
     extract_arena_ranking_entries,
     extract_avgen_ranking_entries,
     extract_huggingface_dataset_candidates,
+    extract_huggingface_model_candidates,
     extract_ranking_entries,
     extract_source_revision,
     ensure_acceptable_baseline,
@@ -403,6 +404,92 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(candidates[1].review_priority, "low")
         self.assertIn("archive-like-name", candidates[1].priority_signals)
 
+    def test_hugging_face_model_feed_prioritizes_standalone_releases(self) -> None:
+        payload = json.dumps([
+            {
+                "id": "lab/New-Video-Model",
+                "pipeline_tag": "text-to-video",
+                "createdAt": "2026-07-30T00:00:00Z",
+                "downloads": 500,
+                "likes": 4,
+                "gated": False,
+                "tags": ["text-to-video", "arxiv:2607.12345", "license:apache-2.0"],
+                "siblings": [{"rfilename": "model.safetensors"}],
+            },
+            {
+                "id": "user/new-video-model-lora-comfyui",
+                "pipeline_tag": "text-to-video",
+                "downloads": 0,
+                "likes": 0,
+                "tags": ["text-to-video", "lora", "comfyui", "base_model:adapter:lab/New-Video-Model"],
+                "siblings": [{"rfilename": "adapter.safetensors"}],
+            },
+        ])
+        candidates = extract_huggingface_model_candidates(payload)
+        self.assertEqual([item.title for item in candidates], [
+            "lab/New-Video-Model", "user/new-video-model-lora-comfyui",
+        ])
+        self.assertEqual(candidates[0].review_priority, "high")
+        self.assertIn("weight-artifact-present", candidates[0].priority_signals)
+        self.assertEqual(candidates[1].review_priority, "low")
+        self.assertIn("adapter-or-lora-derivative", candidates[1].priority_signals)
+        self.assertIn("wrapper-or-demo", candidates[1].priority_signals)
+
+    def test_hugging_face_model_feed_keeps_quantized_repositories_visible_but_low(self) -> None:
+        candidates = extract_huggingface_model_candidates(json.dumps([{
+            "id": "mirror/New-Image-Model-GGUF-int4",
+            "pipeline_tag": "text-to-image",
+            "tags": ["text-to-image", "gguf", "quantized"],
+            "siblings": [{"rfilename": "model.gguf"}],
+        }]))
+        self.assertEqual(len(candidates), 1)
+        self.assertEqual(candidates[0].review_priority, "low")
+        self.assertIn("quantized-derivative", candidates[0].priority_signals)
+
+    def test_compare_snapshots_deduplicates_candidates_across_release_feeds(self) -> None:
+        candidate = Candidate(
+            "org/New-Model",
+            "https://huggingface.co/org/New-Model",
+            review_priority="high",
+            priority_score=8,
+        )
+        current = (
+            SourceSnapshot(
+                "model-release-feeds", "https://example.com/feed-a", None, 200,
+                (candidate,), None,
+            ),
+            SourceSnapshot(
+                "model-release-feeds", "https://example.com/feed-b", None, 200,
+                (candidate,), None,
+            ),
+        )
+        diff = compare_snapshots({"sources": []}, current, set())
+        self.assertEqual(len(diff.new_candidates), 1)
+        self.assertEqual(diff.new_candidates[0]["url"], candidate.url)
+
+    def test_compare_snapshots_demotes_known_model_name_reuploads(self) -> None:
+        candidate = Candidate(
+            "mirror/LTX-2",
+            "https://huggingface.co/mirror/LTX-2",
+            review_priority="high",
+            priority_score=10,
+            priority_signals=("paper-linked",),
+        )
+        current = (
+            SourceSnapshot(
+                "model-release-feeds", "https://example.com/feed", None, 200,
+                (candidate,), None,
+            ),
+        )
+        diff = compare_snapshots(
+            {"sources": []}, current, set(), ranking_aliases={"ltx-2"}
+        )
+        self.assertEqual(diff.new_candidates[0]["review_priority"], "low")
+        self.assertEqual(diff.new_candidates[0]["priority_score"], 0)
+        self.assertIn(
+            "known-model-name-reupload", diff.new_candidates[0]["priority_signals"]
+        )
+
     def test_extracts_arena_official_dataset_ranking(self) -> None:
         payload = json.dumps({"rows": [
             {"row": {
@@ -535,7 +622,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            93,
+            94,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -548,14 +635,28 @@ class DiscoveryTests(unittest.TestCase):
                 "important-dataset-updates",
                 "important-model-updates",
                 "dataset-release-feeds",
+                "model-release-feeds",
                 "industry-model-rankings",
                 "source-platform-updates",
             }.issubset(track_ids)
         )
         self.assertNotIn("unified-and-physical-ai", track_ids)
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
+        self.assertEqual(sum(source.track_id == "model-release-feeds" for source in sources), 17)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
-        self.assertEqual(len(sources), 311)
+        self.assertEqual(len(sources), 328)
+        self.assertIn(
+            "https://huggingface.co/api/models?pipeline_tag=text-to-video&sort=createdAt&direction=-1&limit=50&full=true",
+            urls,
+        )
+        self.assertIn(
+            "https://huggingface.co/api/models?search=virtual-try-on&sort=createdAt&direction=-1&limit=50&full=true",
+            urls,
+        )
+        self.assertIn(
+            "https://huggingface.co/api/models/joyfox/JoyFox-LiveTalk-DH-1.3B",
+            urls,
+        )
         self.assertIn(
             "https://huggingface.co/api/datasets/liuyueyi-8/ElasticTTT-video-editing-dataset?expand=lastModified&expand=sha",
             urls,

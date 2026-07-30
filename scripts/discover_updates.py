@@ -740,6 +740,155 @@ def extract_huggingface_dataset_candidates(payload: str) -> tuple[Candidate, ...
     )
 
 
+def extract_huggingface_model_candidates(payload: str) -> tuple[Candidate, ...]:
+    """Turn a Hugging Face model search response into ranked review candidates.
+
+    Full model releases and research checkpoints are prioritized. LoRA/adapter,
+    quantized, wrapper, and demo repositories remain visible at low priority so
+    they cannot be mistaken for standalone releases or silently hide a useful
+    upstream model signal.
+    """
+    try:
+        records = json.loads(payload)
+    except (json.JSONDecodeError, TypeError):
+        return ()
+    if not isinstance(records, list):
+        return ()
+
+    core_pipeline_tags = {
+        "text-to-image",
+        "image-to-image",
+        "text-to-video",
+        "image-to-video",
+        "video-to-video",
+        "text-to-3d",
+        "image-to-3d",
+    }
+    scenario_terms = (
+        "image-editing", "image editing", "video-editing", "video editing",
+        "talking-head", "talking head", "lip-sync", "lip sync", "lipsync",
+        "video-dubbing", "video dubbing", "video-translation", "video translation",
+        "virtual-try-on", "virtual try on", "vton", "audio-driven-animation",
+        "audio driven animation", "video-to-audio", "video to audio",
+        "joint-audio-video", "joint audio video",
+    )
+    candidates: dict[str, Candidate] = {}
+    for record in records:
+        model_id = record.get("id") if isinstance(record, dict) else None
+        if not isinstance(model_id, str) or not model_id or "/" not in model_id:
+            continue
+        url = normalize_url(f"https://huggingface.co/{model_id}")
+        if not url:
+            continue
+
+        tags = record.get("tags") if isinstance(record.get("tags"), list) else []
+        string_tags = [tag for tag in tags if isinstance(tag, str)]
+        pipeline_tag = record.get("pipeline_tag")
+        library_name = record.get("library_name")
+        siblings = record.get("siblings") if isinstance(record.get("siblings"), list) else []
+        filenames = [
+            item.get("rfilename")
+            for item in siblings
+            if isinstance(item, dict) and isinstance(item.get("rfilename"), str)
+        ]
+        blob = " ".join(
+            [
+                model_id,
+                pipeline_tag if isinstance(pipeline_tag, str) else "",
+                library_name if isinstance(library_name, str) else "",
+                *string_tags,
+            ]
+        ).casefold()
+        lowered_tags = {tag.casefold() for tag in string_tags}
+        score = 0
+        signals: list[str] = []
+
+        if pipeline_tag in core_pipeline_tags:
+            score += 4
+            signals.append("generative-media-pipeline")
+        if any(term in blob for term in scenario_terms):
+            score += 4
+            signals.append("explicit-scenario-match")
+        if any(tag.startswith("arxiv:") for tag in lowered_tags):
+            score += 2
+            signals.append("paper-linked")
+        if any(tag.startswith("license:") for tag in lowered_tags):
+            score += 1
+            signals.append("license-declared")
+        if any(
+            filename.casefold().endswith((".safetensors", ".ckpt", ".pt", ".pth", ".bin"))
+            for filename in filenames
+        ):
+            score += 2
+            signals.append("weight-artifact-present")
+
+        downloads = record.get("downloads") if isinstance(record.get("downloads"), int) else None
+        likes = record.get("likes") if isinstance(record.get("likes"), int) else None
+        if (downloads or 0) >= 100 or (likes or 0) >= 2:
+            score += 1
+            signals.append("usage-signal")
+        if record.get("gated") not in {None, False}:
+            signals.append("gated-access")
+
+        derivative_terms = (
+            "lora", "adapter", "peft", "controlnet", "embedding", "textual-inversion",
+            "base_model:adapter:",
+        )
+        quantized_terms = (
+            "quantized", "gguf", "gptq", "awq", "bnb", "fp8", "int4", "int8",
+            "4bit", "4-bit", "8bit", "8-bit", "q4", "q8", "w4a4",
+        )
+        wrapper_terms = ("comfyui", "wrapper", "workflow", "demo-only", "demo only")
+        mirror_name_terms = (
+            "fork", "clone", "mirror", "-mlx", "coreml", "-diffusers", "-pruned",
+            "-safetensors", "endpoint",
+        )
+        if any(term in blob for term in derivative_terms):
+            score -= 8
+            signals.append("adapter-or-lora-derivative")
+        if any(term in blob for term in quantized_terms):
+            score -= 8
+            signals.append("quantized-derivative")
+        if any(term in blob for term in wrapper_terms):
+            score -= 6
+            signals.append("wrapper-or-demo")
+        if any(term in model_id.casefold() for term in mirror_name_terms):
+            score -= 6
+            signals.append("conversion-or-mirror")
+        if record.get("private") is True or record.get("disabled") is True:
+            score -= 8
+            signals.append("disabled-or-private")
+        if not string_tags and not filenames:
+            score -= 2
+            signals.append("thin-metadata")
+
+        priority = "high" if score >= 7 else "standard" if score >= 3 else "low"
+        created_at = record.get("createdAt")
+        candidates[url] = Candidate(
+            title=model_id[:240],
+            url=url,
+            review_priority=priority,
+            priority_score=score,
+            priority_signals=tuple(signals),
+            created_at=created_at if isinstance(created_at, str) else None,
+            downloads=downloads,
+            likes=likes,
+            gated=record.get("gated") if isinstance(record.get("gated"), (bool, str)) else None,
+        )
+
+    priority_order = {"high": 0, "standard": 1, "low": 2}
+    return tuple(
+        sorted(
+            candidates.values(),
+            key=lambda item: (
+                priority_order[item.review_priority],
+                -item.priority_score,
+                item.url.lower(),
+            ),
+        )
+    )
+
+
 def extract_ranking_entries(html: str, limit: int = 15) -> tuple[RankingEntry, ...]:
     """Parse Artificial Analysis leaderboard tables into a stable top-N snapshot."""
     parser = TableParser()
@@ -966,6 +1115,9 @@ def _fetch_source_once(source: WatchSource, timeout: float, max_bytes: int) -> S
             elif hostname == "huggingface.co" and urllib.parse.urlsplit(response.url).path == "/api/datasets":
                 rankings = ()
                 candidates = extract_huggingface_dataset_candidates(html)
+            elif hostname == "huggingface.co" and urllib.parse.urlsplit(response.url).path == "/api/models":
+                rankings = ()
+                candidates = extract_huggingface_model_candidates(html)
             else:
                 rankings = ()
                 candidates = extract_candidate_links(
@@ -1429,7 +1581,7 @@ def compare_snapshots(
     baseline_sources = {
         (item["track_id"], item["source_url"]): item for item in baseline.get("sources", [])
     }
-    new_candidates: list[dict[str, Any]] = []
+    new_candidates_by_url: dict[str, dict[str, Any]] = {}
     source_updates: list[dict[str, Any]] = []
     failures: list[dict[str, Any]] = []
     recoveries: list[dict[str, Any]] = []
@@ -1445,11 +1597,30 @@ def compare_snapshots(
         for candidate in source.candidates:
             if candidate.url in previous_urls or candidate.url in known_urls:
                 continue
-            new_candidates.append({
+            discovered = {
                 "track_id": source.track_id,
                 "source_url": source.source_url,
                 **asdict(candidate),
-            })
+            }
+            if source.track_id == "model-release-feeds" and ranking_aliases is not None:
+                repository_name = candidate.title.split("/", 1)[-1]
+                if normalize_ranking_name(repository_name) in ranking_aliases:
+                    discovered["review_priority"] = "low"
+                    discovered["priority_score"] = min(discovered["priority_score"], 0)
+                    discovered["priority_signals"] = tuple(
+                        [*discovered["priority_signals"], "known-model-name-reupload"]
+                    )
+            previous_candidate = new_candidates_by_url.get(candidate.url)
+            if previous_candidate is None or (
+                discovered.get("priority_score", 0),
+                discovered["track_id"],
+                discovered["source_url"],
+            ) > (
+                previous_candidate.get("priority_score", 0),
+                previous_candidate["track_id"],
+                previous_candidate["source_url"],
+            ):
+                new_candidates_by_url[candidate.url] = discovered
         previous_revision = previous.get("revision")
         if (
             not source.error
@@ -1533,7 +1704,7 @@ def compare_snapshots(
     priority_order = {"high": 0, "standard": 1, "low": 2}
     return DiscoveryDiff(
         new_candidates=tuple(sorted(
-            new_candidates,
+            new_candidates_by_url.values(),
             key=lambda item: (
                 priority_order.get(item.get("review_priority", "standard"), 1),
                 -item.get("priority_score", 0),

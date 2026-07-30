@@ -15,6 +15,7 @@ discovery:
     - virtual-try-on-and-commerce
     - datasets
     - dataset-release-feeds
+    - model-release-feeds
     - industry-model-rankings
     - important-dataset-updates
     - important-model-updates
@@ -73,7 +74,6 @@ tracks:
       - https://github.com/QwenLM
       - https://stability.ai/news
       - https://updates.midjourney.com/
-      - https://huggingface.co/models?pipeline_tag=text-to-image
       - https://ai.google.dev/gemini-api/docs/changelog
 
   - id: video-and-audio-generation
@@ -214,6 +214,37 @@ tracks:
       - "https://huggingface.co/api/datasets?search=talking-head&sort=createdAt&direction=-1&limit=50&full=true"
       - "https://huggingface.co/api/datasets?search=video-dubbing&sort=createdAt&direction=-1&limit=50&full=true"
       - "https://huggingface.co/api/datasets?search=virtual-try-on&sort=createdAt&direction=-1&limit=50&full=true"
+
+  - id: model-release-feeds
+    topics:
+      - newly-published-model
+      - image-generation-model
+      - image-editing-model
+      - video-generation-model
+      - video-editing-model
+      - digital-human-model
+      - video-localization-model
+      - virtual-try-on-model
+      - audio-video-model
+      - 3d-generation-model
+    official_sources:
+      - "https://huggingface.co/api/models?pipeline_tag=text-to-image&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?pipeline_tag=image-to-image&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?pipeline_tag=text-to-video&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?pipeline_tag=image-to-video&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?pipeline_tag=video-to-video&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?pipeline_tag=text-to-3d&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?pipeline_tag=image-to-3d&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?search=image-editing&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?search=video-editing&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?search=talking-head&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?search=lip-sync&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?search=video-dubbing&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?search=video-translation&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?search=virtual-try-on&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?search=audio-driven-animation&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?search=video-to-audio&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?search=joint-audio-video&sort=createdAt&direction=-1&limit=50&full=true"
 
   - id: source-platform-updates
     topics:
@@ -1015,6 +1046,9 @@ tracks:
         priority: critical
       - url: https://arxiv.org/pdf/2603.03882
         model_id: unisync
+        priority: critical
+      - url: https://huggingface.co/api/models/joyfox/JoyFox-LiveTalk-DH-1.3B
+        model_id: joyfox-livetalk-dh-1-3b
         priority: critical
 
 acceptance_rules:

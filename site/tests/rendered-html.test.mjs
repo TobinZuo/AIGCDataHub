@@ -64,7 +64,8 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /最近核验/);
   assert.match(html, /核验<!-- --> <!-- -->2026\/07\/30/);
   assert.match(html, /ID-V2V/);
-  assert.match(html, /发布<!-- --> <!-- -->2026\/07\/24/);
+  assert.match(html, /JoyFox LiveTalk-DH 1\.3B/);
+  assert.match(html, /发布<!-- --> <!-- -->2026\/07\/28/);
   assert.match(html, /部分披露/);
   assert.match(html, /开放权重/);
   assert.doesNotMatch(html, /LATEST SIGNAL/);

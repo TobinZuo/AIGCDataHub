@@ -20,7 +20,7 @@ training stages, processing strategies, access conditions, and data lineage.
 <!-- BEGIN PROJECT METRICS -->
 | Models | Datasets | Model–dataset links | Dataset lineage | Open access | Latest review |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| 93 | 122 | 135 | 29 | 53 | 2026-07-30 |
+| 94 | 122 | 135 | 29 | 53 | 2026-07-30 |
 <!-- END PROJECT METRICS -->
 
 > [!NOTE]
@@ -107,6 +107,7 @@ newest first.
 <!-- BEGIN MODEL CATALOG -->
 | Model | Organization | Modalities | Released | Access | Data disclosure | Named datasets | Status |
 |---|---|---|---|---|---|---|:---:|
+| [JoyFox LiveTalk-DH 1.3B](models/video/joyfox-livetalk-dh-1-3b.yaml) | JoyFox | video, audio, image | 2026-07-28 | open weights | high level | not disclosed | 🟡 |
 | [fMRI2Face](models/video/fmri2face.yaml) | Fudan University | video | 2026-07-24 | announced | partial | [fMRI-Face](catalog/video/fmri-face.yaml) | 👀 |
 | [Midjourney V8.2](models/image/midjourney-v8-2.yaml) | Midjourney | image | 2026-07-24 | product only | high level | V8.2 personalization ratings and image-selection pool | 👀 |
 | [InnoText](models/image/innotext.yaml) | InnoText research team | image | 2026-07-24 | announced | partial | [InnoText-30K](catalog/image/innotext-30k.yaml) | 👀 |
@@ -235,6 +236,14 @@ Hugging Face candidates are retained rather than filtered out, then ordered by
 a transparent review-priority score using generative-media relevance, modality,
 paper linkage, dataset-card metadata, declared license/scale, and adoption
 signals. A high priority is not a quality certification.
+
+New model discovery uses seventeen newest-first Hugging Face API feeds covering
+image and video generation/editing, talking heads and lip sync, video dubbing
+and translation, virtual try-on, directly related audio-video models, and 3D
+generation. Pipeline, paper, license, weight-file, and adoption metadata order
+the human-review queue. LoRA/adapters, quantized mirrors, wrappers, and demos
+remain visible at low priority and are never accepted as standalone model
+releases without first-party verification.
 
 ## Dataset catalog
 

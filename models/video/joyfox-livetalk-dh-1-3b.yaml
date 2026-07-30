@@ -1,0 +1,57 @@
+id: joyfox-livetalk-dh-1-3b
+name: JoyFox LiveTalk-DH 1.3B
+organization: JoyFox
+released_at: "2026-07-28"
+modalities:
+  - video
+  - audio
+  - image
+tasks:
+  - audio-driven-animation
+  - talking-head-generation
+  - lip-sync
+  - image-to-video
+access:
+  status: open-weights
+  license: Apache-2.0, subject also to the inherited SoulX-FlashHead base-model and training-data terms
+  release_url: https://huggingface.co/joyfox/JoyFox-LiveTalk-DH-1.3B
+  weights_url: https://huggingface.co/joyfox/JoyFox-LiveTalk-DH-1.3B
+  api_url: null
+architecture:
+  family: SoulX-FlashHead-derived audio-conditioned video diffusion transformer
+  parameters: 1300000000
+  notes: Retrains the SoulX-FlashHead 1.3B Lite base with an LTX Video VAE, spatial reference-image conditioning, multi-layer wav2vec2 audio features, and audio cross-attention.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: fine-tuning
+      modalities:
+        - image
+        - video
+        - audio
+      source_types:
+        - undisclosed
+      operations:
+        - multi-aspect-ratio-bucketing
+        - high-resolution-training
+        - long-sequence-training
+        - audio-video-alignment
+      scale_disclosed: false
+      strategy: Retrain SoulX-FlashHead 1.3B Lite with a 960-pixel baseline and 97-frame clips while preserving source aspect ratios and conditioning each video frame on a local window of wav2vec2 speech features.
+  strategy_summary:
+    - Initialize from the public SoulX-FlashHead 1.3B Lite checkpoint and retain the official LTX Video VAE.
+    - Train at a 960-pixel baseline with native-aspect buckets rather than stretching every sample to a square.
+    - Use 97-frame clips and local audio cross-attention to improve lip synchronization and long-sequence continuity.
+  unknowns:
+    - Names, provenance, licenses, consent basis, and collection dates of all portrait videos and driving audio used for retraining.
+    - Number of clips, subjects, identities, hours, languages, and the source mixture inherited from SoulX-FlashHead versus added by JoyFox.
+    - Filtering, face-identity deduplication, safety review, annotation, and train-validation split procedures.
+evidence:
+  release: https://huggingface.co/joyfox/JoyFox-LiveTalk-DH-1.3B
+  technical_report: null
+  repository: null
+status: partial
+last_verified: "2026-07-30"

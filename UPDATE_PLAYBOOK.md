@@ -29,6 +29,13 @@ point, not as an exhaustive list.
    Every candidate remains visible and receives a high, standard, or low review
    priority from explicit metadata signals. Treat that value as triage order,
    not dataset-quality evidence.
+   Seventeen Hugging Face model API feeds provide the parallel broad-discovery
+   queue for image/video generation and editing, digital humans/localization,
+   virtual try-on, directly related audio-video models, and 3D generation.
+   Standalone releases are prioritized from pipeline, paper, license, weight,
+   and adoption signals. LoRA/adapters, quantized mirrors, wrappers, and demos
+   remain visible but are explicitly demoted so they are not treated as new
+   foundation-model releases.
    GitHub API revision probes use the workflow token rather than the anonymous
    rate limit. A connection reset, TLS error, or other source-level network
    failure is recorded for review without aborting the remaining source scan.
@@ -126,6 +133,9 @@ still need first-party evidence. Dataset discovery feeds belong in
 `dataset-release-feeds`; their candidates are never accepted as catalog facts
 without primary-source review. Candidate priority may use API metadata but must
 never be presented as a quality or licensing conclusion.
+Model discovery feeds belong in `model-release-feeds` and follow the same
+review boundary. A Hugging Face repository is a discovery signal, not proof of
+the publisher, release date, architecture, license, or training-data strategy.
 
 ## Automation boundary
 

@@ -60,8 +60,8 @@
             "en": "Models"
           },
           "text": {
-            "zh": "新增 Oxygen-TryOn 与 ID-V2V 两张模型卡，并把 Grok Imagine Video 1.5 的访问地址更新为官方稳定 API 页面。",
-            "en": "Added model cards for Oxygen-TryOn and ID-V2V, and replaced the Grok Imagine Video 1.5 access URL with its stable official API page."
+            "zh": "新增 Oxygen-TryOn、ID-V2V 与 JoyFox LiveTalk-DH 1.3B 三张模型卡，并把 Grok Imagine Video 1.5 的访问地址更新为官方稳定 API 页面。",
+            "en": "Added model cards for Oxygen-TryOn, ID-V2V, and JoyFox LiveTalk-DH 1.3B, and replaced the Grok Imagine Video 1.5 access URL with its stable official API page."
           },
           "links": [
             {
@@ -77,6 +77,13 @@
                 "zh": "ID-V2V 模型卡",
                 "en": "ID-V2V model card"
               }
+            },
+            {
+              "href": "/#model-joyfox-livetalk-dh-1-3b",
+              "label": {
+                "zh": "JoyFox LiveTalk-DH 模型卡",
+                "en": "JoyFox LiveTalk-DH model card"
+              }
             }
           ]
         },
@@ -87,8 +94,8 @@
             "en": "Datasets"
           },
           "text": {
-            "zh": "新增九张数据卡：覆盖 Oxygen-TryOn 的训练、偏好和评测数据，ID-V2V 的训练、补光、上游组件和评测数据，以及公开的 AVE-Compass 音视频编辑评测集。",
-            "en": "Added nine dataset cards covering Oxygen-TryOn training, preference, and evaluation data; ID-V2V training, relighting, upstream components, and evaluation data; and the public AVE-Compass audiovisual editing benchmark."
+            "zh": "新增九张数据卡，并确认 MV-Fashion 的受控仓库已实际上传按主体拆分的视频和标注压缩包；其访问仍须人工审批及签署非商业研究协议。",
+            "en": "Added nine dataset cards and confirmed that the gated MV-Fashion repository now contains per-subject video and annotation archives; access still requires manual approval and the non-commercial research agreement."
           },
           "links": [
             {
@@ -110,6 +117,13 @@
               "label": {
                 "zh": "AVE-Compass",
                 "en": "AVE-Compass"
+              }
+            },
+            {
+              "href": "/#dataset-mv-fashion",
+              "label": {
+                "zh": "MV-Fashion",
+                "en": "MV-Fashion"
               }
             }
           ]
@@ -141,8 +155,8 @@
             "en": "Rankings"
           },
           "text": {
-            "zh": "五个图像与视频榜单出现名次或成员变化，Grok Video 1.5 以稳定名称进入图生视频第三；所有前列名称均已映射到模型卡。",
-            "en": "Five image and video leaderboards changed membership or order. Grok Video 1.5 entered image-to-video at rank three under its stable name, and every leading entry remains mapped to a model card."
+            "zh": "图像与视频榜单完成两轮更新；最新一轮文生图、文生视频和图生视频榜单出现顺序变化，所有前列名称仍已映射到模型卡。",
+            "en": "Image and video leaderboards were refreshed twice. The latest text-to-image, text-to-video, and image-to-video snapshots changed order, while every leading entry remains mapped to a model card."
           },
           "links": [
             {
@@ -161,8 +175,8 @@
             "en": "Monitoring"
           },
           "text": {
-            "zh": "监控范围扩大到 311 个一手来源，并修复 VCG、Mage-Flow 和 GraphVid 的不稳定探针；最终复扫无候选、无失败、无排行榜变化。",
-            "en": "Expanded monitoring to 311 primary sources and repaired unstable VCG, Mage-Flow, and GraphVid probes. The final rescan found no candidates, failures, or ranking changes."
+            "zh": "监控扩大到 328 个一手来源，新增 17 个 Hugging Face 模型发布 feed，覆盖图像/视频生成与编辑、数字人/本地化、试衣、音视频和 3D，并对 LoRA、量化、镜像与 Demo 自动降级。",
+            "en": "Expanded monitoring to 328 primary sources with seventeen Hugging Face model-release feeds covering image/video generation and editing, digital humans/localization, try-on, audio-video, and 3D; LoRA, quantized, mirror, and demo repositories are automatically demoted."
           },
           "links": [
             {
@@ -181,8 +195,8 @@
             "en": "Undisclosed"
           },
           "text": {
-            "zh": "Oxygen-TryOn 仍未公开原始来源、权利基础和配比；ID-V2V 的人脸视频来源、许可与同意机制未披露；Visko Orbis 与 Ripple 因证据链不完整暂不建卡。",
-            "en": "Oxygen-TryOn still does not disclose raw sources, rights basis, or source mixture. ID-V2V does not disclose the provenance, licensing, or consent process for its face videos. Visko Orbis and Ripple remain unlisted because their evidence chains are incomplete."
+            "zh": "Oxygen-TryOn、ID-V2V 与 JoyFox LiveTalk-DH 均未完整披露训练来源、权利基础和配比；Hugging Face 上的搬运仓与衍生权重不视为新模型发布。",
+            "en": "Oxygen-TryOn, ID-V2V, and JoyFox LiveTalk-DH still do not fully disclose training provenance, rights basis, or source mixture. Hugging Face reuploads and derivative weights are not treated as new model releases."
           },
           "links": [
             {
@@ -197,6 +211,13 @@
               "label": {
                 "zh": "ID-V2V 未知项",
                 "en": "ID-V2V unknowns"
+              }
+            },
+            {
+              "href": "/#model-joyfox-livetalk-dh-1-3b",
+              "label": {
+                "zh": "JoyFox LiveTalk-DH 未知项",
+                "en": "JoyFox LiveTalk-DH unknowns"
               }
             }
           ]
