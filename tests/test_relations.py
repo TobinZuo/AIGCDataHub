@@ -34,7 +34,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
                 self.assertIn(model_id, self.datasets[dataset_id]["linked_model_ids"])
 
     def test_dataset_lineage_index_and_backlinks_are_symmetric(self) -> None:
-        self.assertEqual(len(self.payload["dataset_relations"]), 27)
+        self.assertEqual(len(self.payload["dataset_relations"]), 29)
         relation_pairs = {
             (relation["source_dataset_id"], relation["derived_dataset_id"])
             for relation in self.payload["dataset_relations"]
@@ -53,6 +53,14 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn(("senorita-2m", "videocof-50k"), relation_pairs)
         self.assertIn(("videomatte240k", "vera-layered-video"), relation_pairs)
         self.assertIn(("co3d", "considvid"), relation_pairs)
+        self.assertIn(
+            ("id-v2v-luxpostfacto-olat-subset", "id-v2v-face-relighting-pairs"),
+            relation_pairs,
+        )
+        self.assertIn(
+            ("id-v2v-poly-haven-hdri-sample", "id-v2v-face-relighting-pairs"),
+            relation_pairs,
+        )
         self.assertIn(("omniobject3d", "considvid"), relation_pairs)
         self.assertIn(("objectron", "considvid"), relation_pairs)
         self.assertIn(("mvimgnet-2-0", "considvid"), relation_pairs)

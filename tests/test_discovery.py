@@ -531,11 +531,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            113,
+            122,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            91,
+            93,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -554,7 +554,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
-        self.assertEqual(len(sources), 298)
+        self.assertEqual(len(sources), 311)
         self.assertIn(
             "https://huggingface.co/api/datasets/liuyueyi-8/ElasticTTT-video-editing-dataset?expand=lastModified&expand=sha",
             urls,
@@ -579,7 +579,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertIn("https://arxiv.org/html/2607.21553", urls)
         self.assertIn("https://export.arxiv.org/api/query?id_list=2607.21553", urls)
         self.assertIn("https://arxiv.org/html/2607.19064", urls)
-        self.assertIn("https://export.arxiv.org/api/query?id_list=2607.19064", urls)
+        self.assertIn("https://arxiv.org/abs/2607.19064v1", urls)
         self.assertIn("https://raw.githubusercontent.com/microsoft/Mage/main/mage_flow/README.md", urls)
         self.assertIn("https://github.com/microsoft/Mage/commits/main.atom", urls)
         self.assertIn("https://arxiv.org/html/2607.22101", urls)
@@ -659,12 +659,12 @@ class DiscoveryTests(unittest.TestCase):
                 "https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/",
                 "https://blog.reve.com/posts/launching-reve-2.1/",
                 "https://help.aliyun.com/en/model-studio/newly-released-models",
-                "https://docs.x.ai/developers/models/grok-imagine-video-1.5-preview",
+                "https://docs.x.ai/developers/models/grok-imagine-video-1.5",
                 "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-mai",
                 "https://runwayml.com/news/introducing-aleph-2-and-edit-studio",
                 "https://updates.midjourney.com/version-8-2/",
                 "https://nvlabs.github.io/Sana/Video2/",
-                "https://export.arxiv.org/api/query?id_list=2607.21580",
+                "https://arxiv.org/abs/2607.21580v1",
                 "https://bfl.ai/blog/flux-3",
                 "https://github.com/microsoft/Mage/commits/main.atom",
                 "https://docs.bfl.ai/flux_tools/flux_vto",

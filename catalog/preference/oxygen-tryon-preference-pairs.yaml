@@ -1,0 +1,65 @@
+id: oxygen-tryon-preference-pairs
+name: Oxygen-TryOn Preference Pairs
+organization: Team Oxygen
+released_at: "2026-07-23"
+release_date_source: https://arxiv.org/abs/2607.21694
+modality: preference
+tasks:
+  - virtual-try-on
+  - text-to-image-preference
+  - rubric-based-reward-modeling
+stages:
+  - preference-tuning
+  - data-curation
+description: >-
+  The unreleased pairwise human-preference corpus used to fully fine-tune
+  Oxygen-TryOn's in-house 8B reward model for item consistency, facial identity
+  consistency, and overall visual quality.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.21694
+  requires_account: false
+  notes: The paper reports aggregate construction details only and provides no samples, manifest, request path, or download.
+scale:
+  samples: 100000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: About 100K comparisons, each pairing two model-generated try-on candidates under the same subject, reference item, and instruction.
+annotations:
+  types:
+    - pairwise-preference
+    - item-consistency-score
+    - identity-consistency-score
+    - visual-quality-score
+    - preferred-candidate
+    - uncertainty
+  source: human
+  languages:
+    - unknown
+license:
+  metadata: Not disclosed
+  media: Model-generated try-on outputs with undisclosed generator and output terms
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Annotator terms, generator versions, output rights, privacy controls, and dataset-level reuse terms are not published.
+quality:
+  dimensions:
+    - visual-quality
+    - human-preference
+    - provenance
+  known_limitations:
+    - Annotator demographics, instructions, quality-control process, agreement, compensation, and language are not disclosed.
+    - Candidate model identities, versions, sampling settings, source-image provenance, and score distribution are not published.
+processing:
+  recipe: null
+  recommended_format: parquet
+  notes: Preserve conditioning images and instructions, candidate outputs, generator provenance, per-dimension scores, preference ties, annotator-quality fields, and rights metadata.
+evidence:
+  homepage: https://oxygenvision.github.io/Oxygen-TryOn/
+  paper: https://arxiv.org/abs/2607.21694
+  used_by:
+    - Oxygen-TryOn
+status: partial
+last_verified: "2026-07-30"

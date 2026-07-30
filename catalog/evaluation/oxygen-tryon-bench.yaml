@@ -1,0 +1,67 @@
+id: oxygen-tryon-bench
+name: Oxygen-TryOn Bench
+organization: Team Oxygen
+released_at: "2026-07-23"
+release_date_source: https://arxiv.org/abs/2607.21694
+modality: evaluation
+tasks:
+  - virtual-try-on-evaluation
+  - multi-garment-try-on
+stages:
+  - evaluation
+  - data-curation
+description: >-
+  An unreleased 1,000-sample real-world virtual try-on benchmark split evenly
+  between clean product-display references and worn-on person references, with
+  single- and multi-item cases.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.21694
+  requires_account: false
+  notes: The paper reports benchmark composition and results but no images, prompts, metadata, request process, or license.
+scale:
+  samples: 1000
+  source_items: null
+  hours: null
+  approximate: false
+  notes: Exactly 500 Cloth-to-Model and 500 Model-to-Model test samples; this evaluation set is not used as training data.
+annotations:
+  types:
+    - subject-image
+    - reference-item-image
+    - wearing-instruction
+    - reference-style
+    - subject-consistency-score
+    - item-consistency-score
+    - aesthetic-score
+    - usability-rate
+  source: mixed
+  languages:
+    - unknown
+license:
+  metadata: Not disclosed
+  media: Real-world subject and item images with undisclosed sources and rights
+  commercial_use: unknown
+  redistribution: unknown
+  notes: No benchmark license, consent statement, source attribution, commercial-use permission, or redistribution grant is published.
+quality:
+  dimensions:
+    - visual-quality
+    - aesthetics
+    - human-preference
+    - provenance
+  known_limitations:
+    - The underlying images, instructions, collection sources, selection process, and demographic distributions are not available for independent audit.
+    - Paper results use GPT-5 as judge, so metric reproducibility depends on an external model and undisclosed judge settings.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Preserve split, subject and item references, instruction, item count, judge model and version, rubric, raw dimension scores, and rights metadata.
+evidence:
+  homepage: https://oxygenvision.github.io/Oxygen-TryOn/
+  paper: https://arxiv.org/abs/2607.21694
+  used_by:
+    - Oxygen-TryOn
+status: partial
+last_verified: "2026-07-30"

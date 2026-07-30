@@ -1,0 +1,62 @@
+id: id-v2v-luxpostfacto-olat-subset
+name: ID-V2V LuxPostFacto OLAT Subset
+organization: Netflix and Eyeline Labs
+released_at: "2026-07-24"
+release_date_source: https://arxiv.org/abs/2607.22830
+modality: image
+tasks:
+  - portrait-relighting
+  - identity-preserving-generation
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  The exact unreleased subset of LuxPostFacto One-Light-at-a-Time facial
+  captures from 67 participants used by ID-V2V to synthesize face-relighting
+  training pairs.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.22830
+  requires_account: false
+  notes: ID-V2V names the upstream LuxPostFacto captures but publishes neither the selected files nor an acquisition or request path.
+scale:
+  samples: null
+  source_items: 67
+  hours: null
+  approximate: false
+  notes: The source component covers 67 participants with varied pose, expression, and camera viewpoint; image count is not stated separately.
+annotations:
+  types:
+    - subject-id
+    - camera-view
+    - expression
+    - olat-illumination
+  source: human
+  languages:
+    - none
+license:
+  metadata: Not disclosed
+  media: LuxPostFacto OLAT participant captures with no dataset-level terms cited by ID-V2V
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Participant consent scope, biometric-data handling, access terms, and permission for redistribution are not documented in the ID-V2V release.
+quality:
+  dimensions:
+    - visual-quality
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - Exact participant selection, capture files, demographic distribution, consent scope, and rights are not published.
+    - Static OLAT facial captures do not represent full natural video motion or the diversity of in-the-wild illumination.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Preserve participant consent and identity controls, camera and light indices, HDR calibration, source-session provenance, and permitted downstream uses.
+evidence:
+  homepage: https://arxiv.org/abs/2503.14485
+  paper: https://arxiv.org/abs/2607.22830
+  used_by:
+    - ID-V2V
+status: partial
+last_verified: "2026-07-30"

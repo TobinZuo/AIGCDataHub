@@ -250,13 +250,13 @@ platforms:
       training_rights: not-granted-by-interface
     monitoring:
       url: https://www.vcg.com/help/website-terms
-      mode: content-revision
-      focus: Authorized acquisition channels, licensing, API access, and AI-service terms.
+      mode: availability
+      focus: Official terms-page availability; anonymous automated access currently returns 403, so review licensing and API details manually when access is restored.
       priority: high
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
-    last_reviewed: "2026-07-27"
+    last_reviewed: "2026-07-30"
   - id: shutterstock
     name: Shutterstock
     homepage: https://www.shutterstock.com/

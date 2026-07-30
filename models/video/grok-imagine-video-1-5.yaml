@@ -18,7 +18,7 @@ access:
   license: xAI Services Agreement
   release_url: https://x.ai/news/grok-imagine-video-1-5
   weights_url: null
-  api_url: https://docs.x.ai/developers/models/grok-imagine-video-1.5-preview
+  api_url: https://docs.x.ai/developers/models/grok-imagine-video-1.5
 architecture:
   family: Undisclosed native audiovisual generation model
   parameters: null
@@ -49,4 +49,4 @@ evidence:
   technical_report: null
   repository: null
 status: watch
-last_verified: "2026-07-26"
+last_verified: "2026-07-30"

@@ -1,0 +1,105 @@
+id: oxygen-tryon
+name: Oxygen-TryOn
+organization: Team Oxygen
+released_at: "2026-07-23"
+modalities:
+  - image
+tasks:
+  - virtual-try-on
+  - multi-garment-try-on
+  - garment-conditioned-generation
+  - image-editing
+access:
+  status: announced
+  license: Model weights and code are announced for future release; no artifact license is published
+  release_url: https://arxiv.org/abs/2607.21694
+  weights_url: null
+  api_url: null
+architecture:
+  family: JoyAI-Image-Edit-derived Qwen3-VL plus Wan VAE and MMDiT
+  parameters: 16000000000
+  notes: Uses Qwen3-VL-8B-Instruct for multimodal understanding, Wan-2.1-VAE for image latents, and a 16B dual-stream MMDiT for variable-count reference-item conditioning.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Oxygen-TryOn Training Corpus
+      catalog_id: oxygen-tryon-training-corpus
+      role: fine-tuning
+      availability: not-released
+      scale: More than 50M raw images before filtering; retained training count not disclosed
+      notes: Real e-commerce, open-domain fashion, and synthetic images are filtered, annotated, paired into try-on triplets, and used in CPT and SFT.
+    - name: Oxygen-TryOn Preference Pairs
+      catalog_id: oxygen-tryon-preference-pairs
+      role: preference
+      availability: not-released
+      scale: About 100K human-annotated comparison pairs
+      notes: Trains the in-house 8B try-on reward model that is combined with a rubric-guided Gemini 3.1 Pro judge for RL.
+    - name: Oxygen-TryOn Bench
+      catalog_id: oxygen-tryon-bench
+      role: evaluation
+      availability: not-released
+      scale: 1,000 test samples
+      notes: Internal real-world benchmark split evenly between Cloth-to-Model and Model-to-Model references; it is not training data.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - proprietary
+        - public-web
+        - synthetic
+      operations:
+        - md5-deduplication
+        - semantic-deduplication
+        - safety-filtering
+        - watermark-filtering
+        - quality-filtering
+        - bilingual-captioning
+        - constrained-pairing
+      scale_disclosed: false
+      strategy: Continue pretraining from JoyAI-Image-Edit on a 1:1 mixture of its undisclosed general-purpose corpus and the new try-on corpus.
+    - name: fine-tuning
+      modalities:
+        - image
+        - text
+      source_types:
+        - proprietary
+        - public-web
+        - synthetic
+      operations:
+        - multi-source-curation
+        - structured-annotation
+        - synthetic-data-generation
+        - dynamic-sequence-packing
+      scale_disclosed: false
+      strategy: Supervised fine-tuning for three epochs on curated product-to-person, person-to-person, multi-item, accessory, shoe, bag, and mask-free instruction-following triplets.
+    - name: preference
+      modalities:
+        - image
+        - text
+      source_types:
+        - human-feedback
+        - synthetic
+      operations:
+        - pairwise-preference-annotation
+        - reward-model-training
+        - rubric-based-reinforcement-learning
+      scale_disclosed: true
+      strategy: Optimize with a hybrid reward that combines an in-house reward model trained on about 100K human comparisons and a rubric-guided Gemini 3.1 Pro judge.
+  strategy_summary:
+    - Build try-on triplets from real e-commerce, open-domain fashion, and model-generated images, then apply resolution, safety, duplicate, overlay, validity, and aesthetic filters.
+    - Produce Chinese and English structured descriptions and use four real and synthetic pairing pipelines to broaden item, subject, pose, and scenario coverage.
+    - Preserve inherited general editing through balanced CPT, specialize through SFT, and improve item fidelity, identity preservation, and plausibility through hybrid-reward RL.
+  unknowns:
+    - Retained sample count, source identities, collection dates, rights and consent basis, source mixture, and synthetic generator versions.
+    - Exact general-purpose JoyAI-Image-Edit corpus inherited during CPT and its rights, scale, filtering, and provenance.
+    - Model checkpoint date, download location, artifact license, and whether the announced release will include data or only weights and code.
+evidence:
+  release: https://oxygenvision.github.io/Oxygen-TryOn/
+  technical_report: https://arxiv.org/abs/2607.21694
+  repository: null
+status: partial
+last_verified: "2026-07-30"

@@ -1,0 +1,74 @@
+id: id-v2v-face-relighting-pairs
+name: ID-V2V Face Relighting Pairs
+organization: Netflix and Eyeline Labs
+released_at: "2026-07-24"
+release_date_source: https://arxiv.org/abs/2607.22830
+modality: image
+tasks:
+  - portrait-relighting
+  - identity-preserving-generation
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  Approximately 330,000 unreleased paired facial images synthesized from
+  LuxPostFacto OLAT captures and Poly Haven HDRIs to train ID-V2V's dedicated
+  SVD-derived face-relighting model.
+derived_from:
+  - catalog_id: id-v2v-luxpostfacto-olat-subset
+    relationship: source-component
+    contribution: OLAT facial captures from 67 participants
+    notes: Supplies facial reflectance observations across poses, expressions, viewpoints, and individual lights.
+  - catalog_id: id-v2v-poly-haven-hdri-sample
+    relationship: source-component
+    contribution: HDR environment maps for arbitrary input illumination
+    notes: Randomly sampled HDRIs illuminate the OLAT captures before construction of top-lit targets.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.22830
+  requires_account: false
+  notes: The paper reports the synthesis procedure and scale but provides no paired images, manifest, generator code path, or request process.
+scale:
+  samples: 330000
+  source_items: 67
+  hours: null
+  approximate: true
+  notes: About 330K input-target image pairs are rendered from 67 participants; the number of distinct HDRIs and pairs per participant are not reported.
+annotations:
+  types:
+    - participant-id
+    - source-illumination
+    - target-top-lighting
+    - camera-view
+    - expression
+    - hdri-provenance
+  source: model-generated
+  languages:
+    - none
+license:
+  metadata: Not disclosed
+  media: Synthetic derivatives of restricted or undisclosed OLAT captures and CC0 Poly Haven HDRIs
+  commercial_use: unknown
+  redistribution: unknown
+  notes: CC0 HDRI terms do not resolve consent, biometric, or redistribution rights for the participant captures and resulting face pairs.
+quality:
+  dimensions:
+    - visual-quality
+    - geometry-quality
+    - deduplication
+    - provenance
+  known_limitations:
+    - Exact synthesis configurations, HDRI selection, pair distribution, participant demographics, and failure filtering are not published.
+    - Training supervision uses a fixed top-light target that may underrepresent other ordinary illumination conditions.
+processing:
+  recipe: null
+  recommended_format: webdataset
+  notes: Preserve upstream catalog IDs, participant and consent controls, OLAT and HDRI identifiers, render settings, target-light definition, pair ID, and rights metadata.
+evidence:
+  homepage: https://github.com/Eyeline-Labs/ID-V2V
+  paper: https://arxiv.org/abs/2607.22830
+  used_by:
+    - ID-V2V
+status: partial
+last_verified: "2026-07-30"

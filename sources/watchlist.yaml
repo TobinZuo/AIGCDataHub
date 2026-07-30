@@ -122,6 +122,7 @@ tracks:
       - https://github.com/snap-research/TalkVerse
       - https://freedomintelligence.github.io/talk-vid
       - https://github.com/FreedomIntelligence/TalkVid
+      - https://github.com/Eyeline-Labs/ID-V2V
 
   - id: virtual-try-on-and-commerce
     topics:
@@ -140,6 +141,7 @@ tracks:
       - https://fashn.ai/research/vton-1-5
       - https://github.com/fashn-AI/fashn-vton-1.5
       - https://hunorlaczko.github.io/MV-Fashion/
+      - https://oxygenvision.github.io/Oxygen-TryOn/
 
   - id: unified-and-physical-ai
     topics:
@@ -697,7 +699,7 @@ tracks:
       - url: https://arxiv.org/html/2607.19064
         catalog_id: mage-flow-curated-image-text
         priority: critical
-      - url: https://export.arxiv.org/api/query?id_list=2607.19064
+      - url: https://arxiv.org/abs/2607.19064v1
         catalog_id: mage-flow-edit-triples
         priority: critical
       - url: https://raw.githubusercontent.com/microsoft/Mage/main/mage_flow/README.md
@@ -711,6 +713,33 @@ tracks:
         priority: critical
       - url: https://arxiv.org/html/2607.22302
         catalog_id: fmri-face
+        priority: critical
+      - url: https://huggingface.co/api/datasets/NJU-LINK/AVE-Compass?expand=lastModified&expand=sha
+        catalog_id: ave-compass
+        priority: critical
+      - url: https://arxiv.org/html/2607.21694
+        catalog_id: oxygen-tryon-training-corpus
+        priority: critical
+      - url: https://arxiv.org/html/2607.21694v1
+        catalog_id: oxygen-tryon-preference-pairs
+        priority: critical
+      - url: https://arxiv.org/abs/2607.21694v1
+        catalog_id: oxygen-tryon-bench
+        priority: critical
+      - url: https://arxiv.org/html/2607.22830
+        catalog_id: id-v2v-human-centric-videos
+        priority: critical
+      - url: https://arxiv.org/html/2607.22830v1
+        catalog_id: id-v2v-luxpostfacto-olat-subset
+        priority: critical
+      - url: https://polyhaven.com/license
+        catalog_id: id-v2v-poly-haven-hdri-sample
+        priority: critical
+      - url: https://arxiv.org/abs/2607.22830v1
+        catalog_id: id-v2v-face-relighting-pairs
+        priority: critical
+      - url: https://arxiv.org/abs/2607.22830
+        catalog_id: id-v2v-evaluation-suite
         priority: critical
 
   - id: important-model-updates
@@ -726,7 +755,7 @@ tracks:
       - url: https://nvlabs.github.io/Sana/Video2/
         model_id: sana-video-2-0
         priority: critical
-      - url: https://export.arxiv.org/api/query?id_list=2607.21580
+      - url: https://arxiv.org/abs/2607.21580v1
         model_id: graphvid
         priority: critical
       - url: https://github.com/liuyueyi-del/ElasticTTT-for-video-editing/commits/main.atom
@@ -752,6 +781,12 @@ tracks:
         priority: critical
       - url: https://arxiv.org/abs/2607.22302
         model_id: fmri2face
+        priority: critical
+      - url: https://github.com/Eyeline-Labs/ID-V2V/commits/main.atom
+        model_id: id-v2v
+        priority: critical
+      - url: https://arxiv.org/abs/2607.21694
+        model_id: oxygen-tryon
         priority: critical
       - url: https://docs.bfl.ai/flux_tools/flux_vto
         model_id: flux-vto
@@ -963,7 +998,7 @@ tracks:
       - url: https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-image
         model_id: gemini-3-1-flash-image
         priority: critical
-      - url: https://docs.x.ai/developers/models/grok-imagine-video-1.5-preview
+      - url: https://docs.x.ai/developers/models/grok-imagine-video-1.5
         model_id: grok-imagine-video-1-5
         priority: critical
       - url: https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-mai

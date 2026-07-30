@@ -8,7 +8,7 @@
     "sources/watchlist.yaml",
     "sources/discovery-state.json"
   ],
-  "last_verified": "2026-07-27",
+  "last_verified": "2026-07-30",
   "scenarios": [
     {
       "id": "image-generation",
@@ -379,14 +379,14 @@
       },
       "monitoring": {
         "url": "https://www.vcg.com/help/website-terms",
-        "mode": "content-revision",
-        "focus": "Authorized acquisition channels, licensing, API access, and AI-service terms.",
+        "mode": "availability",
+        "focus": "Official terms-page availability; anonymous automated access currently returns 403, so review licensing and API details manually when access is restored.",
         "priority": "high"
       },
       "source_status": "candidate",
       "access_boundary": "source-platform-not-dataset",
       "rights_review": "required",
-      "last_reviewed": "2026-07-27"
+      "last_reviewed": "2026-07-30"
     },
     {
       "id": "disney",
@@ -766,6 +766,479 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "innotext"
+      ]
+    },
+    {
+      "id": "id-v2v-poly-haven-hdri-sample",
+      "name": "ID-V2V Poly Haven HDRI Sample",
+      "organization": "Netflix and Eyeline Labs",
+      "released_at": "2026-07-24",
+      "release_date_source": "https://arxiv.org/abs/2607.22830",
+      "modality": "image",
+      "tasks": [
+        "portrait-relighting",
+        "synthetic-data-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "The unreleased selection of Poly Haven HDR environment maps sampled by ID-V2V to render arbitrary environmental illumination for synthetic facial relighting pairs.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.22830",
+        "requires_account": false,
+        "notes": "Poly Haven assets are openly browsable, but the exact assets, revisions, sampling weights, and manifest used by ID-V2V are not published."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "Neither the number of distinct HDRIs nor the draw count and distribution are reported."
+      },
+      "annotations": {
+        "types": [
+          "hdri",
+          "environment-lighting",
+          "asset-id",
+          "synthetic-provenance"
+        ],
+        "source": "mixed",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "Exact selection manifest not published",
+        "media": "Poly Haven assets are CC0",
+        "commercial_use": "allowed",
+        "redistribution": "allowed",
+        "notes": "Underlying Poly Haven assets are CC0, while live API or website access remains subject to platform terms; pin asset IDs and downloaded revisions."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Exact asset identities, revision dates, resolution choices, exposure processing, and sampling distribution are not disclosed.",
+          "Environment-map coverage may not represent ordinary indoor lighting or all geographic and cultural settings."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Record Poly Haven asset ID, file revision, license snapshot, resolution, exposure and rotation, download method, and every synthetic render association."
+      },
+      "evidence": {
+        "homepage": "https://polyhaven.com/hdris",
+        "paper": "https://arxiv.org/abs/2607.22830",
+        "used_by": [
+          "ID-V2V"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-30",
+      "source_path": "catalog/image/id-v2v-poly-haven-hdri-sample.yaml",
+      "scenario_ids": [],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://polyhaven.com/license"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "id-v2v-face-relighting-pairs"
+      ],
+      "linked_model_ids": []
+    },
+    {
+      "id": "id-v2v-luxpostfacto-olat-subset",
+      "name": "ID-V2V LuxPostFacto OLAT Subset",
+      "organization": "Netflix and Eyeline Labs",
+      "released_at": "2026-07-24",
+      "release_date_source": "https://arxiv.org/abs/2607.22830",
+      "modality": "image",
+      "tasks": [
+        "portrait-relighting",
+        "identity-preserving-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "The exact unreleased subset of LuxPostFacto One-Light-at-a-Time facial captures from 67 participants used by ID-V2V to synthesize face-relighting training pairs.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.22830",
+        "requires_account": false,
+        "notes": "ID-V2V names the upstream LuxPostFacto captures but publishes neither the selected files nor an acquisition or request path."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": 67,
+        "hours": null,
+        "approximate": false,
+        "notes": "The source component covers 67 participants with varied pose, expression, and camera viewpoint; image count is not stated separately."
+      },
+      "annotations": {
+        "types": [
+          "subject-id",
+          "camera-view",
+          "expression",
+          "olat-illumination"
+        ],
+        "source": "human",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "LuxPostFacto OLAT participant captures with no dataset-level terms cited by ID-V2V",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Participant consent scope, biometric-data handling, access terms, and permission for redistribution are not documented in the ID-V2V release."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "geometry-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Exact participant selection, capture files, demographic distribution, consent scope, and rights are not published.",
+          "Static OLAT facial captures do not represent full natural video motion or the diversity of in-the-wild illumination."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Preserve participant consent and identity controls, camera and light indices, HDR calibration, source-session provenance, and permitted downstream uses."
+      },
+      "evidence": {
+        "homepage": "https://arxiv.org/abs/2503.14485",
+        "paper": "https://arxiv.org/abs/2607.22830",
+        "used_by": [
+          "ID-V2V"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-30",
+      "source_path": "catalog/image/id-v2v-luxpostfacto-olat-subset.yaml",
+      "scenario_ids": [],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2607.22830v1"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "id-v2v-face-relighting-pairs"
+      ],
+      "linked_model_ids": []
+    },
+    {
+      "id": "id-v2v-human-centric-videos",
+      "name": "ID-V2V Human-Centric Video Corpus",
+      "organization": "Netflix and Eyeline Labs",
+      "released_at": "2026-07-24",
+      "release_date_source": "https://arxiv.org/abs/2607.22830",
+      "modality": "video",
+      "tasks": [
+        "video-to-video",
+        "video-editing",
+        "cross-scene-avatar-generation",
+        "reference-video-avatar"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "The unreleased 40,000-video single- and multi-subject corpus used to train ID-V2V for identity-preserving video restylization with derived face, normal, depth, keyframe, and caption controls.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.22830",
+        "requires_account": false,
+        "notes": "The paper provides construction details but no source list, download, manifest, request path, or dataset license."
+      },
+      "scale": {
+        "samples": 40000,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "Videos are trained at 1280x720 with 81 frames; the original clip durations and total hours are not reported."
+      },
+      "annotations": {
+        "types": [
+          "video-caption",
+          "face-detection",
+          "relit-face-control",
+          "face-normal-control",
+          "depth-control",
+          "edited-keyframe"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "Unnamed human-centric videos with undisclosed source, consent, and license terms",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The Apache-2.0 code and checkpoint license does not establish rights to the unreleased people-centered training media."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source platforms, participant consent, identity privacy review, collection dates, geographic distribution, and media licenses are not disclosed.",
+          "Videos with no detected faces in more than 40% of frames are removed, which may bias toward large, frontal, and consistently visible faces.",
+          "At most five detected faces per frame are retained, so crowded multi-subject scenes receive incomplete identity controls."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/video_text",
+        "recommended_format": "webdataset",
+        "notes": "Preserve source and consent records, caption-model version, per-frame face boxes and filter decisions, relighting parameters, normals, depth, keyframes, and exact checkpoint provenance."
+      },
+      "evidence": {
+        "homepage": "https://github.com/Eyeline-Labs/ID-V2V",
+        "paper": "https://arxiv.org/abs/2607.22830",
+        "used_by": [
+          "ID-V2V"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-30",
+      "source_path": "catalog/video/id-v2v-human-centric-videos.yaml",
+      "scenario_ids": [
+        "video-generation",
+        "digital-human"
+      ],
+      "scale_label": "40K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2607.22830"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "id-v2v"
+      ]
+    },
+    {
+      "id": "id-v2v-face-relighting-pairs",
+      "name": "ID-V2V Face Relighting Pairs",
+      "organization": "Netflix and Eyeline Labs",
+      "released_at": "2026-07-24",
+      "release_date_source": "https://arxiv.org/abs/2607.22830",
+      "modality": "image",
+      "tasks": [
+        "portrait-relighting",
+        "identity-preserving-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "Approximately 330,000 unreleased paired facial images synthesized from LuxPostFacto OLAT captures and Poly Haven HDRIs to train ID-V2V's dedicated SVD-derived face-relighting model.",
+      "derived_from": [
+        {
+          "catalog_id": "id-v2v-luxpostfacto-olat-subset",
+          "relationship": "source-component",
+          "contribution": "OLAT facial captures from 67 participants",
+          "notes": "Supplies facial reflectance observations across poses, expressions, viewpoints, and individual lights."
+        },
+        {
+          "catalog_id": "id-v2v-poly-haven-hdri-sample",
+          "relationship": "source-component",
+          "contribution": "HDR environment maps for arbitrary input illumination",
+          "notes": "Randomly sampled HDRIs illuminate the OLAT captures before construction of top-lit targets."
+        }
+      ],
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.22830",
+        "requires_account": false,
+        "notes": "The paper reports the synthesis procedure and scale but provides no paired images, manifest, generator code path, or request process."
+      },
+      "scale": {
+        "samples": 330000,
+        "source_items": 67,
+        "hours": null,
+        "approximate": true,
+        "notes": "About 330K input-target image pairs are rendered from 67 participants; the number of distinct HDRIs and pairs per participant are not reported."
+      },
+      "annotations": {
+        "types": [
+          "participant-id",
+          "source-illumination",
+          "target-top-lighting",
+          "camera-view",
+          "expression",
+          "hdri-provenance"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "Synthetic derivatives of restricted or undisclosed OLAT captures and CC0 Poly Haven HDRIs",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "CC0 HDRI terms do not resolve consent, biometric, or redistribution rights for the participant captures and resulting face pairs."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "geometry-quality",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Exact synthesis configurations, HDRI selection, pair distribution, participant demographics, and failure filtering are not published.",
+          "Training supervision uses a fixed top-light target that may underrepresent other ordinary illumination conditions."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "webdataset",
+        "notes": "Preserve upstream catalog IDs, participant and consent controls, OLAT and HDRI identifiers, render settings, target-light definition, pair ID, and rights metadata."
+      },
+      "evidence": {
+        "homepage": "https://github.com/Eyeline-Labs/ID-V2V",
+        "paper": "https://arxiv.org/abs/2607.22830",
+        "used_by": [
+          "ID-V2V"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-30",
+      "source_path": "catalog/image/id-v2v-face-relighting-pairs.yaml",
+      "scenario_ids": [],
+      "scale_label": "~330K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2607.22830v1"
+      },
+      "upstream_dataset_ids": [
+        "id-v2v-luxpostfacto-olat-subset",
+        "id-v2v-poly-haven-hdri-sample"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "id-v2v"
+      ]
+    },
+    {
+      "id": "id-v2v-evaluation-suite",
+      "name": "ID-V2V Evaluation Suite",
+      "organization": "Netflix and Eyeline Labs",
+      "released_at": "2026-07-24",
+      "release_date_source": "https://arxiv.org/abs/2607.22830",
+      "modality": "evaluation",
+      "tasks": [
+        "video-editing",
+        "video-to-video",
+        "identity-preserving-generation"
+      ],
+      "stages": [
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "Two unreleased human-centric video-restylization evaluation sets comprising 100 single-subject and 60 two-subject source videos with edited first-frame targets.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.22830",
+        "requires_account": false,
+        "notes": "The paper reports construction and metrics but does not release the source videos, keyframes, prompts, metadata, or request path."
+      },
+      "scale": {
+        "samples": 160,
+        "source_items": 160,
+        "hours": null,
+        "approximate": false,
+        "notes": "Contains 100 single-subject and 60 two-subject videos; a separate user study samples 20 cases from each group."
+      },
+      "annotations": {
+        "types": [
+          "source-video",
+          "subject-count",
+          "target-style-proposal",
+          "edited-first-frame",
+          "depth-condition",
+          "canny-condition",
+          "manual-quality-filter"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "Unnamed human-centric source videos and generated keyframes with undisclosed rights",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Source licenses, participant consent, Gemini and Qwen output terms, and benchmark redistribution terms are not published."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source identities, selection method, demographic distribution, prompts, generated keyframes, and manual filtering criteria are unavailable.",
+          "Quantitative comparison caps subjects at two because baselines do not reliably support larger groups."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Preserve source rights and consent, subject-count split, Gemini proposal, Qwen-Image-Edit configuration, depth and edge conditions, manual filter decision, and metric versions."
+      },
+      "evidence": {
+        "homepage": "https://github.com/Eyeline-Labs/ID-V2V",
+        "paper": "https://arxiv.org/abs/2607.22830",
+        "used_by": [
+          "ID-V2V"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-30",
+      "source_path": "catalog/evaluation/id-v2v-evaluation-suite.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "160",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2607.22830"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "id-v2v"
       ]
     },
     {
@@ -1253,6 +1726,297 @@
       ]
     },
     {
+      "id": "oxygen-tryon-training-corpus",
+      "name": "Oxygen-TryOn Training Corpus",
+      "organization": "Team Oxygen",
+      "released_at": "2026-07-23",
+      "release_date_source": "https://arxiv.org/abs/2607.21694",
+      "modality": "image",
+      "tasks": [
+        "virtual-try-on",
+        "multi-garment-try-on",
+        "garment-conditioned-generation",
+        "image-editing"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "The unreleased image and try-on-triplet corpus used for Oxygen-TryOn continued pretraining and supervised fine-tuning, built from real e-commerce, open-domain fashion, and model-generated images.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.21694",
+        "requires_account": false,
+        "notes": "The paper describes the data engine but publishes no files, manifest, request path, or retained-sample count."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": 50000000,
+        "hours": null,
+        "approximate": true,
+        "notes": "More than 50M raw images enter filtering; retained image and triplet counts and the inherited general-purpose corpus size are not disclosed."
+      },
+      "annotations": {
+        "types": [
+          "item-image",
+          "subject-image",
+          "try-on-result",
+          "item-category",
+          "body-region",
+          "product-attribute",
+          "subject-attribute",
+          "bilingual-caption",
+          "synthetic-provenance"
+        ],
+        "source": "mixed",
+        "languages": [
+          "zh",
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "Real e-commerce, open-domain fashion, synthetic, and inherited general-purpose images with undisclosed source terms",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "No source list, rights statement, consent basis, dataset license, or redistribution terms are published."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "watermark",
+          "safety",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Retained counts, source identities, collection dates, geographic and demographic distributions, and source-specific rights are not reported.",
+          "Synthetic generator identities, versions, prompts, seeds, safety decisions, and synthetic-to-real proportions are not disclosed.",
+          "The CPT stage mixes this corpus 1:1 with an undisclosed inherited general-purpose corpus, so end-to-end provenance remains incomplete."
+        ]
+      },
+      "processing": {
+        "recipe": "recipes/image_text",
+        "recommended_format": "webdataset",
+        "notes": "Preserve source class and rights, real-versus-synthetic provenance, item and subject identity, triplet links, bilingual annotations, generator metadata, and every filter decision."
+      },
+      "evidence": {
+        "homepage": "https://oxygenvision.github.io/Oxygen-TryOn/",
+        "paper": "https://arxiv.org/abs/2607.21694",
+        "used_by": [
+          "Oxygen-TryOn"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-30",
+      "source_path": "catalog/image/oxygen-tryon-training-corpus.yaml",
+      "scenario_ids": [
+        "image-generation",
+        "virtual-try-on"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2607.21694"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "oxygen-tryon"
+      ]
+    },
+    {
+      "id": "oxygen-tryon-preference-pairs",
+      "name": "Oxygen-TryOn Preference Pairs",
+      "organization": "Team Oxygen",
+      "released_at": "2026-07-23",
+      "release_date_source": "https://arxiv.org/abs/2607.21694",
+      "modality": "preference",
+      "tasks": [
+        "virtual-try-on",
+        "text-to-image-preference",
+        "rubric-based-reward-modeling"
+      ],
+      "stages": [
+        "preference-tuning",
+        "data-curation"
+      ],
+      "description": "The unreleased pairwise human-preference corpus used to fully fine-tune Oxygen-TryOn's in-house 8B reward model for item consistency, facial identity consistency, and overall visual quality.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.21694",
+        "requires_account": false,
+        "notes": "The paper reports aggregate construction details only and provides no samples, manifest, request path, or download."
+      },
+      "scale": {
+        "samples": 100000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "About 100K comparisons, each pairing two model-generated try-on candidates under the same subject, reference item, and instruction."
+      },
+      "annotations": {
+        "types": [
+          "pairwise-preference",
+          "item-consistency-score",
+          "identity-consistency-score",
+          "visual-quality-score",
+          "preferred-candidate",
+          "uncertainty"
+        ],
+        "source": "human",
+        "languages": [
+          "unknown"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "Model-generated try-on outputs with undisclosed generator and output terms",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Annotator terms, generator versions, output rights, privacy controls, and dataset-level reuse terms are not published."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Annotator demographics, instructions, quality-control process, agreement, compensation, and language are not disclosed.",
+          "Candidate model identities, versions, sampling settings, source-image provenance, and score distribution are not published."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "parquet",
+        "notes": "Preserve conditioning images and instructions, candidate outputs, generator provenance, per-dimension scores, preference ties, annotator-quality fields, and rights metadata."
+      },
+      "evidence": {
+        "homepage": "https://oxygenvision.github.io/Oxygen-TryOn/",
+        "paper": "https://arxiv.org/abs/2607.21694",
+        "used_by": [
+          "Oxygen-TryOn"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-30",
+      "source_path": "catalog/preference/oxygen-tryon-preference-pairs.yaml",
+      "scenario_ids": [
+        "image-generation",
+        "virtual-try-on"
+      ],
+      "scale_label": "~100K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2607.21694v1"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "oxygen-tryon"
+      ]
+    },
+    {
+      "id": "oxygen-tryon-bench",
+      "name": "Oxygen-TryOn Bench",
+      "organization": "Team Oxygen",
+      "released_at": "2026-07-23",
+      "release_date_source": "https://arxiv.org/abs/2607.21694",
+      "modality": "evaluation",
+      "tasks": [
+        "virtual-try-on-evaluation",
+        "multi-garment-try-on"
+      ],
+      "stages": [
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "An unreleased 1,000-sample real-world virtual try-on benchmark split evenly between clean product-display references and worn-on person references, with single- and multi-item cases.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.21694",
+        "requires_account": false,
+        "notes": "The paper reports benchmark composition and results but no images, prompts, metadata, request process, or license."
+      },
+      "scale": {
+        "samples": 1000,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "Exactly 500 Cloth-to-Model and 500 Model-to-Model test samples; this evaluation set is not used as training data."
+      },
+      "annotations": {
+        "types": [
+          "subject-image",
+          "reference-item-image",
+          "wearing-instruction",
+          "reference-style",
+          "subject-consistency-score",
+          "item-consistency-score",
+          "aesthetic-score",
+          "usability-rate"
+        ],
+        "source": "mixed",
+        "languages": [
+          "unknown"
+        ]
+      },
+      "license": {
+        "metadata": "Not disclosed",
+        "media": "Real-world subject and item images with undisclosed sources and rights",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "No benchmark license, consent statement, source attribution, commercial-use permission, or redistribution grant is published."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "aesthetics",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The underlying images, instructions, collection sources, selection process, and demographic distributions are not available for independent audit.",
+          "Paper results use GPT-5 as judge, so metric reproducibility depends on an external model and undisclosed judge settings."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Preserve split, subject and item references, instruction, item count, judge model and version, rubric, raw dimension scores, and rights metadata."
+      },
+      "evidence": {
+        "homepage": "https://oxygenvision.github.io/Oxygen-TryOn/",
+        "paper": "https://arxiv.org/abs/2607.21694",
+        "used_by": [
+          "Oxygen-TryOn"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-30",
+      "source_path": "catalog/evaluation/oxygen-tryon-bench.yaml",
+      "scenario_ids": [
+        "virtual-try-on"
+      ],
+      "scale_label": "1K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2607.21694v1"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "oxygen-tryon"
+      ]
+    },
+    {
       "id": "graphvid-bench",
       "name": "GraphVid-Bench",
       "organization": "University of Illinois Urbana-Champaign and Sony Research India",
@@ -1546,7 +2310,7 @@
       "scale_label": "~45M",
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://export.arxiv.org/api/query?id_list=2607.19064"
+        "source_url": "https://arxiv.org/abs/2607.19064v1"
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
@@ -1747,6 +2511,100 @@
       "linked_model_ids": [
         "mage-flow"
       ]
+    },
+    {
+      "id": "ave-compass",
+      "name": "AVE-Compass",
+      "organization": "NJU-LINK Lab",
+      "released_at": "2026-07-17",
+      "release_date_source": "https://arxiv.org/abs/2607.24821",
+      "modality": "evaluation",
+      "tasks": [
+        "audio-video-editing",
+        "video-editing",
+        "joint-audio-video-evaluation"
+      ],
+      "stages": [
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A public benchmark for instruction-based audio-video editing with 145 source videos, 196 human-verified edit instructions, 2,688 diagnostic checklist items, and 28 operation types across joint, speech, video, and audio edits.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/NJU-LINK/AVE-Compass",
+        "requires_account": false,
+        "notes": "Source videos, metadata, instructions, and checklists are publicly downloadable from the official Hugging Face repository."
+      },
+      "scale": {
+        "samples": 196,
+        "source_items": 145,
+        "hours": null,
+        "approximate": false,
+        "notes": "Some source videos have multiple instructions; the package contains 196 viewer rows and 2,688 fine-grained checklist items."
+      },
+      "annotations": {
+        "types": [
+          "source-video",
+          "edit-instruction",
+          "operation-type",
+          "modality-branch",
+          "difficulty",
+          "diagnostic-checklist",
+          "realism-rubric"
+        ],
+        "source": "human",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0",
+        "media": "CC-BY-NC-4.0 repository declaration; upstream source-video rights may impose additional terms",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "Attribute the release, limit use to noncommercial scope, and review the provenance and rights of each source video before redistribution."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "A 145-video, English-instruction benchmark cannot cover all languages, cultures, speakers, edit types, or long-form audiovisual conditions.",
+          "Checklist-based MLLM judging and provider versions may change independently of the fixed benchmark files.",
+          "The dataset card names mixed public, in-the-wild, and generated sources but does not provide complete per-video rights evidence in the viewer."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Join videos, metadata, instruction JSON, and checklist JSON by filename and instruction index; preserve source provenance, branch, operation, difficulty, and metric-version metadata."
+      },
+      "evidence": {
+        "homepage": "https://github.com/NJU-LINK/AVE-Compass",
+        "paper": "https://arxiv.org/abs/2607.24821",
+        "used_by": []
+      },
+      "status": "partial",
+      "last_verified": "2026-07-30",
+      "source_path": "catalog/evaluation/ave-compass.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "196",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/NJU-LINK/AVE-Compass?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
     },
     {
       "id": "openhumanvid-talking",
@@ -11935,6 +12793,147 @@
       ]
     },
     {
+      "id": "id-v2v",
+      "name": "ID-V2V",
+      "organization": "Netflix and Eyeline Labs",
+      "released_at": "2026-07-24",
+      "modalities": [
+        "video",
+        "image"
+      ],
+      "tasks": [
+        "video-to-video",
+        "video-editing",
+        "cross-scene-avatar-generation",
+        "reference-video-avatar"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0 repository and Hugging Face model-card license; verify all upstream checkpoint terms separately",
+        "release_url": "https://github.com/Eyeline-Labs/ID-V2V",
+        "weights_url": "https://huggingface.co/Eyeline-Labs/ID-V2V",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Wan2.1 and VACE multi-ControlNet video diffusion",
+        "parameters": null,
+        "notes": "Extends VACE on Wan2.1 with shared control blocks for relit face pixels, face normals, depth sequences, and edited keyframes; public variants support one or three VACE controls at 720p."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "ID-V2V Human-Centric Video Corpus",
+            "catalog_id": "id-v2v-human-centric-videos",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "40K single- and multi-subject videos at 1280x720 and 81 frames",
+            "notes": "Qwen2.5-VL-32B captions the videos; face detection retains up to five faces per frame and removes videos with faces missing from more than 40% of frames."
+          },
+          {
+            "name": "ID-V2V Face Relighting Pairs",
+            "catalog_id": "id-v2v-face-relighting-pairs",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "Approximately 330K paired face images from 67 participants",
+            "notes": "Synthetic illumination pairs train the dedicated image relighting model used to construct identity-preserving control signals."
+          },
+          {
+            "name": "ID-V2V Evaluation Suite",
+            "catalog_id": "id-v2v-evaluation-suite",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "160 videos, split into 100 single-subject and 60 two-subject cases",
+            "notes": "Gemini 2.5 proposes edits, Qwen-Image-Edit makes keyframes, and humans filter them; this suite is evaluation-only."
+          }
+        ],
+        "stages": [
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "public-dataset",
+              "synthetic"
+            ],
+            "operations": [
+              "vlm-captioning",
+              "face-detection",
+              "face-coverage-filtering",
+              "depth-estimation",
+              "normal-estimation",
+              "face-relighting",
+              "multi-control-conditioning"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Fine-tune the Wan2.1/VACE video generator on 40K human-centric clips and train a separate SVD-derived relighting model for 200K steps on about 330K synthetic illumination pairs."
+          }
+        ],
+        "strategy_summary": [
+          "Decompose restylization into edit-driven video synthesis and source-grounded identity preservation so training pairs can be constructed from a single video.",
+          "Caption 40K videos, filter for face coverage, and derive relit face, normal, depth, and edited-keyframe controls for single- and multi-person training.",
+          "Train the relighting submodel from LuxPostFacto OLAT captures and Poly Haven HDRIs, keeping those upstream assets distinct from the private video corpus."
+        ],
+        "unknowns": [
+          "Source identities, collection method, participant consent, licenses, rights review, and deduplication for the 40K human-centric videos.",
+          "Exact Wan2.1/VACE checkpoint variants, total parameter count, step count and batch mixture for final video-model training.",
+          "Redistribution terms for the 67-participant OLAT captures and release plans for all training and evaluation datasets."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/Eyeline-Labs/ID-V2V",
+        "technical_report": "https://arxiv.org/abs/2607.22830",
+        "repository": "https://github.com/Eyeline-Labs/ID-V2V"
+      },
+      "status": "partial",
+      "last_verified": "2026-07-30",
+      "source_path": "models/video/id-v2v.yaml",
+      "scenario_ids": [
+        "video-generation",
+        "digital-human"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "fine-tuning"
+        ],
+        "source_types": [
+          "proprietary",
+          "public-dataset",
+          "synthetic"
+        ],
+        "operations": [
+          "vlm-captioning",
+          "face-detection",
+          "face-coverage-filtering",
+          "depth-estimation",
+          "normal-estimation",
+          "face-relighting",
+          "multi-control-conditioning"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 3,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 1,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/Eyeline-Labs/ID-V2V/commits/main.atom"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "id-v2v-human-centric-videos",
+        "id-v2v-face-relighting-pairs",
+        "id-v2v-evaluation-suite"
+      ]
+    },
+    {
       "id": "fmri2face",
       "name": "fMRI2Face",
       "organization": "Fudan University",
@@ -12560,6 +13559,193 @@
       ]
     },
     {
+      "id": "oxygen-tryon",
+      "name": "Oxygen-TryOn",
+      "organization": "Team Oxygen",
+      "released_at": "2026-07-23",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "virtual-try-on",
+        "multi-garment-try-on",
+        "garment-conditioned-generation",
+        "image-editing"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Model weights and code are announced for future release; no artifact license is published",
+        "release_url": "https://arxiv.org/abs/2607.21694",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "JoyAI-Image-Edit-derived Qwen3-VL plus Wan VAE and MMDiT",
+        "parameters": 16000000000,
+        "notes": "Uses Qwen3-VL-8B-Instruct for multimodal understanding, Wan-2.1-VAE for image latents, and a 16B dual-stream MMDiT for variable-count reference-item conditioning."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Oxygen-TryOn Training Corpus",
+            "catalog_id": "oxygen-tryon-training-corpus",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "More than 50M raw images before filtering; retained training count not disclosed",
+            "notes": "Real e-commerce, open-domain fashion, and synthetic images are filtered, annotated, paired into try-on triplets, and used in CPT and SFT."
+          },
+          {
+            "name": "Oxygen-TryOn Preference Pairs",
+            "catalog_id": "oxygen-tryon-preference-pairs",
+            "role": "preference",
+            "availability": "not-released",
+            "scale": "About 100K human-annotated comparison pairs",
+            "notes": "Trains the in-house 8B try-on reward model that is combined with a rubric-guided Gemini 3.1 Pro judge for RL."
+          },
+          {
+            "name": "Oxygen-TryOn Bench",
+            "catalog_id": "oxygen-tryon-bench",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "1,000 test samples",
+            "notes": "Internal real-world benchmark split evenly between Cloth-to-Model and Model-to-Model references; it is not training data."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "public-web",
+              "synthetic"
+            ],
+            "operations": [
+              "md5-deduplication",
+              "semantic-deduplication",
+              "safety-filtering",
+              "watermark-filtering",
+              "quality-filtering",
+              "bilingual-captioning",
+              "constrained-pairing"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Continue pretraining from JoyAI-Image-Edit on a 1:1 mixture of its undisclosed general-purpose corpus and the new try-on corpus."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "public-web",
+              "synthetic"
+            ],
+            "operations": [
+              "multi-source-curation",
+              "structured-annotation",
+              "synthetic-data-generation",
+              "dynamic-sequence-packing"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Supervised fine-tuning for three epochs on curated product-to-person, person-to-person, multi-item, accessory, shoe, bag, and mask-free instruction-following triplets."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "human-feedback",
+              "synthetic"
+            ],
+            "operations": [
+              "pairwise-preference-annotation",
+              "reward-model-training",
+              "rubric-based-reinforcement-learning"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Optimize with a hybrid reward that combines an in-house reward model trained on about 100K human comparisons and a rubric-guided Gemini 3.1 Pro judge."
+          }
+        ],
+        "strategy_summary": [
+          "Build try-on triplets from real e-commerce, open-domain fashion, and model-generated images, then apply resolution, safety, duplicate, overlay, validity, and aesthetic filters.",
+          "Produce Chinese and English structured descriptions and use four real and synthetic pairing pipelines to broaden item, subject, pose, and scenario coverage.",
+          "Preserve inherited general editing through balanced CPT, specialize through SFT, and improve item fidelity, identity preservation, and plausibility through hybrid-reward RL."
+        ],
+        "unknowns": [
+          "Retained sample count, source identities, collection dates, rights and consent basis, source mixture, and synthetic generator versions.",
+          "Exact general-purpose JoyAI-Image-Edit corpus inherited during CPT and its rights, scale, filtering, and provenance.",
+          "Model checkpoint date, download location, artifact license, and whether the announced release will include data or only weights and code."
+        ]
+      },
+      "evidence": {
+        "release": "https://oxygenvision.github.io/Oxygen-TryOn/",
+        "technical_report": "https://arxiv.org/abs/2607.21694",
+        "repository": null
+      },
+      "status": "partial",
+      "last_verified": "2026-07-30",
+      "source_path": "models/image/oxygen-tryon.yaml",
+      "scenario_ids": [
+        "image-generation",
+        "virtual-try-on"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "preference"
+        ],
+        "source_types": [
+          "proprietary",
+          "public-web",
+          "synthetic",
+          "human-feedback"
+        ],
+        "operations": [
+          "md5-deduplication",
+          "semantic-deduplication",
+          "safety-filtering",
+          "watermark-filtering",
+          "quality-filtering",
+          "bilingual-captioning",
+          "constrained-pairing",
+          "multi-source-curation",
+          "structured-annotation",
+          "synthetic-data-generation",
+          "dynamic-sequence-packing",
+          "pairwise-preference-annotation",
+          "reward-model-training",
+          "rubric-based-reinforcement-learning"
+        ],
+        "data_reference_count": 3,
+        "linked_dataset_count": 3,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 3,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2607.21694"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "oxygen-tryon-training-corpus",
+        "oxygen-tryon-preference-pairs",
+        "oxygen-tryon-bench"
+      ]
+    },
+    {
       "id": "graphvid",
       "name": "GraphVid",
       "organization": "University of Illinois Urbana-Champaign and Sony Research India",
@@ -12694,7 +13880,7 @@
       },
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://export.arxiv.org/api/query?id_list=2607.21580"
+        "source_url": "https://arxiv.org/abs/2607.21580v1"
       },
       "ranking_positions": [],
       "linked_dataset_ids": [
@@ -13302,8 +14488,8 @@
         {
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
-          "rank": 4,
-          "score": 1392.7,
+          "rank": 8,
+          "score": 1384.8,
           "score_label": "Arena",
           "entry_model": "seedream-5.0-pro",
           "component_count": 1
@@ -13321,7 +14507,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 6,
-          "score": 1238,
+          "score": 1237,
           "score_label": "Elo",
           "entry_model": "Seedream 5.0 Pro",
           "component_count": 1
@@ -13330,7 +14516,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 8,
-          "score": 1240,
+          "score": 1239,
           "score_label": "Elo",
           "entry_model": "Seedream 5.0 Pro",
           "component_count": 1
@@ -13647,8 +14833,8 @@
         {
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
-          "rank": 10,
-          "score": 1383.2,
+          "rank": 9,
+          "score": 1383.4,
           "score_label": "Arena",
           "entry_model": "reve-2.1",
           "component_count": 1
@@ -13666,7 +14852,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1302,
+          "score": 1299,
           "score_label": "Elo",
           "entry_model": "Reve 2.1",
           "component_count": 1
@@ -13898,7 +15084,7 @@
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
           "rank": 2,
-          "score": 1402.4,
+          "score": 1407.0,
           "score_label": "Arena",
           "entry_model": "muse-image",
           "component_count": 1
@@ -14062,7 +15248,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1198,
+          "score": 1192,
           "score_label": "Elo",
           "entry_model": "Gemini Omni Flash",
           "component_count": 1
@@ -14257,7 +15443,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 4,
-          "score": 1262,
+          "score": 1264,
           "score_label": "Elo",
           "entry_model": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
           "component_count": 1
@@ -14523,7 +15709,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 4,
-          "score": 1109,
+          "score": 1107,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.1",
           "component_count": 1
@@ -14532,7 +15718,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 4,
-          "score": 1152,
+          "score": 1151,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.1",
           "component_count": 1
@@ -14564,7 +15750,7 @@
         "license": "xAI Services Agreement",
         "release_url": "https://x.ai/news/grok-imagine-video-1-5",
         "weights_url": null,
-        "api_url": "https://docs.x.ai/developers/models/grok-imagine-video-1.5-preview"
+        "api_url": "https://docs.x.ai/developers/models/grok-imagine-video-1.5"
       },
       "architecture": {
         "family": "Undisclosed native audiovisual generation model",
@@ -14606,7 +15792,7 @@
         "repository": null
       },
       "status": "watch",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-30",
       "source_path": "models/video/grok-imagine-video-1-5.yaml",
       "scenario_ids": [
         "video-generation"
@@ -14627,7 +15813,7 @@
       },
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://docs.x.ai/developers/models/grok-imagine-video-1.5-preview"
+        "source_url": "https://docs.x.ai/developers/models/grok-imagine-video-1.5"
       },
       "ranking_positions": [
         {
@@ -14643,9 +15829,9 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 3,
-          "score": 1118,
+          "score": 1115,
           "score_label": "Elo",
-          "entry_model": "grok-imagine-video-1.5-preview",
+          "entry_model": "grok-imagine-video-1.5",
           "component_count": 1
         }
       ],
@@ -14795,7 +15981,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 7,
-          "score": 1246,
+          "score": 1245,
           "score_label": "Elo",
           "entry_model": "HiDream-O1-Image-1.5",
           "component_count": 1
@@ -15282,7 +16468,7 @@
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
           "rank": 13,
-          "score": 1357.9,
+          "score": 1361.0,
           "score_label": "Arena",
           "entry_model": "reve-2.0",
           "component_count": 1
@@ -15499,7 +16685,7 @@
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
           "rank": 3,
-          "score": 1401.4,
+          "score": 1400.1,
           "score_label": "Arena",
           "entry_model": "mai-image-2.5",
           "component_count": 1
@@ -15517,7 +16703,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 4,
-          "score": 1244,
+          "score": 1245,
           "score_label": "Elo",
           "entry_model": "MAI-Image-2.5",
           "component_count": 1
@@ -15525,7 +16711,7 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 7,
+          "rank": 8,
           "score": 1230,
           "score_label": "Elo",
           "entry_model": "MAI-Image-2.5-Flash",
@@ -15535,7 +16721,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 3,
-          "score": 1271,
+          "score": 1269,
           "score_label": "Elo",
           "entry_model": "MAI-Image-2.5",
           "component_count": 1
@@ -15990,7 +17176,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 4,
-          "score": 1013,
+          "score": 1010,
           "score_label": "Elo",
           "entry_model": "Aleph 2.0",
           "component_count": 1
@@ -16550,8 +17736,8 @@
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
-          "rank": 13,
-          "score": 1204,
+          "rank": 12,
+          "score": 1205,
           "score_label": "Elo",
           "entry_model": "Recraft V4.1 Utility",
           "component_count": 1
@@ -16560,7 +17746,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 14,
-          "score": 1200,
+          "score": 1201,
           "score_label": "Elo",
           "entry_model": "Recraft V4.1 Utility Pro",
           "component_count": 1
@@ -16712,8 +17898,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 15,
-          "score": 1203,
+          "rank": 13,
+          "score": 1204,
           "score_label": "Elo",
           "entry_model": "HiDream-O1-Image",
           "component_count": 1
@@ -16811,8 +17997,8 @@
         {
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
-          "rank": 6,
-          "score": 1389.2,
+          "rank": 4,
+          "score": 1389.8,
           "score_label": "Arena",
           "entry_model": "grok-imagine-image-quality (20260519)",
           "component_count": 1
@@ -16821,7 +18007,7 @@
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
           "rank": 12,
-          "score": 1359.0,
+          "score": 1362.7,
           "score_label": "Arena",
           "entry_model": "grok-imagine-image-quality",
           "component_count": 1
@@ -16838,8 +18024,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 8,
-          "score": 1230,
+          "rank": 7,
+          "score": 1231,
           "score_label": "Elo",
           "entry_model": "grok-imagine-image-quality",
           "component_count": 1
@@ -16847,7 +18033,7 @@
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
-          "rank": 12,
+          "rank": 13,
           "score": 1204,
           "score_label": "Elo",
           "entry_model": "grok-imagine-image-quality",
@@ -16965,7 +18151,7 @@
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
           "rank": 14,
-          "score": 1333.6,
+          "score": 1333.7,
           "score_label": "Arena",
           "entry_model": "uni-1.1-max",
           "component_count": 1
@@ -17319,8 +18505,8 @@
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
-          "rank": 6,
-          "score": 1093,
+          "rank": 5,
+          "score": 1092,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.0",
           "component_count": 1
@@ -17338,7 +18524,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 1,
-          "score": 1102,
+          "score": 1093,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.0",
           "component_count": 1
@@ -17437,7 +18623,7 @@
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
           "rank": 1,
-          "score": 1465.3,
+          "score": 1462.7,
           "score_label": "Arena",
           "entry_model": "gpt-image-2 (medium)",
           "component_count": 1
@@ -17455,7 +18641,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 1,
-          "score": 1258,
+          "score": 1259,
           "score_label": "Elo",
           "entry_model": "GPT Image 2 (high)",
           "component_count": 1
@@ -17464,7 +18650,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 1,
-          "score": 1339,
+          "score": 1340,
           "score_label": "Elo",
           "entry_model": "GPT Image 2 (high)",
           "component_count": 1
@@ -18150,8 +19336,8 @@
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
-          "rank": 5,
-          "score": 1099,
+          "rank": 6,
+          "score": 1091,
           "score_label": "Elo",
           "entry_model": "Wan 2.7",
           "component_count": 1
@@ -18160,7 +19346,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 3,
-          "score": 1165,
+          "score": 1162,
           "score_label": "Elo",
           "entry_model": "Wan2.7-260612",
           "component_count": 1
@@ -18178,7 +19364,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1089,
+          "score": 1078,
           "score_label": "Elo",
           "entry_model": "Wan 2.7",
           "component_count": 1
@@ -18273,10 +19459,19 @@
       },
       "ranking_positions": [
         {
+          "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
+          "rank": 14,
+          "score": 1066,
+          "score_label": "Elo",
+          "entry_model": "Veo 3.1 Lite",
+          "component_count": 1
+        },
+        {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 14,
-          "score": 1092,
+          "score": 1090,
           "score_label": "Elo",
           "entry_model": "Veo 3.1 Lite",
           "component_count": 1
@@ -18380,7 +19575,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 12,
-          "score": 1073,
+          "score": 1071,
           "score_label": "Elo",
           "entry_model": "PixVerse V6",
           "component_count": 1
@@ -18803,8 +19998,8 @@
         {
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
-          "rank": 9,
-          "score": 1384.8,
+          "rank": 10,
+          "score": 1383.2,
           "score_label": "Arena",
           "entry_model": "gemini-3.1-flash-image (nano-banana-2) [web-search]",
           "component_count": 1
@@ -18831,7 +20026,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 3,
-          "score": 1248,
+          "score": 1247,
           "score_label": "Elo",
           "entry_model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
           "component_count": 1
@@ -18839,7 +20034,7 @@
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
-          "rank": 5,
+          "rank": 6,
           "score": 1262,
           "score_label": "Elo",
           "entry_model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
@@ -19291,7 +20486,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 8,
-          "score": 1085,
+          "score": 1088,
           "score_label": "Elo",
           "entry_model": "SkyReels V4",
           "component_count": 1
@@ -19300,7 +20495,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 7,
-          "score": 1111,
+          "score": 1110,
           "score_label": "Elo",
           "entry_model": "SkyReels V4",
           "component_count": 1
@@ -19309,7 +20504,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 6,
-          "score": 952,
+          "score": 948,
           "score_label": "Elo",
           "entry_model": "SkyReels V4",
           "component_count": 1
@@ -19627,7 +20822,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 1,
-          "score": 1199,
+          "score": 1197,
           "score_label": "Elo",
           "entry_model": "Dreamina Seedance 2.0 720p",
           "component_count": 1
@@ -19636,7 +20831,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1228,
+          "score": 1225,
           "score_label": "Elo",
           "entry_model": "Dreamina Seedance 2.0 720p",
           "component_count": 1
@@ -19645,7 +20840,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 3,
-          "score": 1039,
+          "score": 1033,
           "score_label": "Elo",
           "entry_model": "Dreamina Seedance 2.0 720p",
           "component_count": 1
@@ -20245,8 +21440,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 13,
-          "score": 1203,
+          "rank": 14,
+          "score": 1204,
           "score_label": "Elo",
           "entry_model": "Kling Image 3.0",
           "component_count": 1
@@ -20255,7 +21450,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 11,
-          "score": 1075,
+          "score": 1074,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 1080p (Pro)",
           "component_count": 1
@@ -20264,18 +21459,9 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 13,
-          "score": 1070,
+          "score": 1068,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 720p (Standard)",
-          "component_count": 1
-        },
-        {
-          "ranking_id": "image-to-video",
-          "provider": "Artificial Analysis",
-          "rank": 15,
-          "score": 1063,
-          "score_label": "Elo",
-          "entry_model": "Kling 3.0 Omni 1080p (Pro)",
           "component_count": 1
         },
         {
@@ -20291,7 +21477,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 9,
-          "score": 1102,
+          "score": 1101,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 720p (Standard)",
           "component_count": 1
@@ -20299,8 +21485,8 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 10,
-          "score": 1098,
+          "rank": 11,
+          "score": 1096,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 Omni 1080p (Pro)",
           "component_count": 1
@@ -20308,8 +21494,8 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 12,
-          "score": 1093,
+          "rank": 13,
+          "score": 1091,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 Omni 720p (Standard)",
           "component_count": 1
@@ -20745,7 +21931,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 9,
-          "score": 1082,
+          "score": 1080,
           "score_label": "Elo",
           "entry_model": "grok-imagine-video",
           "component_count": 1
@@ -20843,7 +22029,7 @@
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
           "rank": 15,
-          "score": 1329.2,
+          "score": 1329.4,
           "score_label": "Arena",
           "entry_model": "grok-imagine-image",
           "component_count": 1
@@ -20965,8 +22151,8 @@
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
-          "rank": 14,
-          "score": 1066,
+          "rank": 15,
+          "score": 1065,
           "score_label": "Elo",
           "entry_model": "Vidu Q3 Pro",
           "component_count": 1
@@ -21795,7 +22981,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 7,
-          "score": 1088,
+          "score": 1089,
           "score_label": "Elo",
           "entry_model": "Veo 3.1",
           "component_count": 1
@@ -21812,8 +22998,8 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 11,
-          "score": 1095,
+          "rank": 10,
+          "score": 1099,
           "score_label": "Elo",
           "entry_model": "Veo 3.1",
           "component_count": 1
@@ -21821,7 +23007,7 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 13,
+          "rank": 12,
           "score": 1092,
           "score_label": "Elo",
           "entry_model": "Veo 3.1 Fast",
@@ -22780,8 +23966,8 @@
         {
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
-          "rank": 5,
-          "score": 1389.4,
+          "rank": 6,
+          "score": 1388.9,
           "score_label": "Arena",
           "entry_model": "chatgpt-image-latest-high-fidelity (20251216)",
           "component_count": 1
@@ -22790,7 +23976,7 @@
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
           "rank": 11,
-          "score": 1372.1,
+          "score": 1372.0,
           "score_label": "Arena",
           "entry_model": "gpt-image-1.5-high-fidelity",
           "component_count": 1
@@ -22808,7 +23994,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1254,
+          "score": 1255,
           "score_label": "Elo",
           "entry_model": "GPT Image 1.5 (high)",
           "component_count": 1
@@ -22816,8 +24002,8 @@
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
-          "rank": 6,
-          "score": 1261,
+          "rank": 5,
+          "score": 1263,
           "score_label": "Elo",
           "entry_model": "GPT Image 1.5 (high)",
           "component_count": 1
@@ -22914,10 +24100,19 @@
       },
       "ranking_positions": [
         {
+          "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
+          "rank": 15,
+          "score": 1203,
+          "score_label": "Elo",
+          "entry_model": "FLUX.2 [max]",
+          "component_count": 1
+        },
+        {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 15,
-          "score": 1196,
+          "score": 1197,
           "score_label": "Elo",
           "entry_model": "FLUX.2 [max]",
           "component_count": 1
@@ -23391,15 +24586,6 @@
           "score_label": "Arena",
           "entry_model": "kling-o1-pro",
           "component_count": 1
-        },
-        {
-          "ranking_id": "image-editing",
-          "provider": "Artificial Analysis",
-          "rank": 14,
-          "score": 1203,
-          "score_label": "Elo",
-          "entry_model": "Kling Image O1",
-          "component_count": 1
         }
       ],
       "linked_dataset_ids": []
@@ -23609,8 +24795,8 @@
         {
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
-          "rank": 7,
-          "score": 1387.8,
+          "rank": 5,
+          "score": 1389.3,
           "score_label": "Arena",
           "entry_model": "gemini-3-pro-image-2k (nano-banana-pro)",
           "component_count": 1
@@ -23618,8 +24804,8 @@
         {
           "ranking_id": "arena-image-edit",
           "provider": "Arena",
-          "rank": 8,
-          "score": 1385.0,
+          "rank": 7,
+          "score": 1385.1,
           "score_label": "Arena",
           "entry_model": "gemini-3-pro-image-preview (nano-banana-pro)",
           "component_count": 1
@@ -23646,7 +24832,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1240,
+          "score": 1239,
           "score_label": "Elo",
           "entry_model": "Nano Banana Pro (Gemini 3 Pro Image)",
           "component_count": 1
@@ -23655,7 +24841,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 9,
-          "score": 1224,
+          "score": 1226,
           "score_label": "Elo",
           "entry_model": "Nano Banana Pro (Gemini 3 Pro Image)",
           "component_count": 1
@@ -26222,6 +27408,30 @@
       "reference_name": "VGGSound"
     },
     {
+      "model_id": "id-v2v",
+      "dataset_id": "id-v2v-evaluation-suite",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "160 videos, split into 100 single-subject and 60 two-subject cases",
+      "reference_name": "ID-V2V Evaluation Suite"
+    },
+    {
+      "model_id": "id-v2v",
+      "dataset_id": "id-v2v-face-relighting-pairs",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "Approximately 330K paired face images from 67 participants",
+      "reference_name": "ID-V2V Face Relighting Pairs"
+    },
+    {
+      "model_id": "id-v2v",
+      "dataset_id": "id-v2v-human-centric-videos",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "40K single- and multi-subject videos at 1280x720 and 81 frames",
+      "reference_name": "ID-V2V Human-Centric Video Corpus"
+    },
+    {
       "model_id": "innotext",
       "dataset_id": "innotext-30k",
       "role": "fine-tuning",
@@ -26540,6 +27750,30 @@
       "availability": "public",
       "scale": "235 prompts and 3,009 generated examples",
       "reference_name": "AVGen-Bench"
+    },
+    {
+      "model_id": "oxygen-tryon",
+      "dataset_id": "oxygen-tryon-bench",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "1,000 test samples",
+      "reference_name": "Oxygen-TryOn Bench"
+    },
+    {
+      "model_id": "oxygen-tryon",
+      "dataset_id": "oxygen-tryon-preference-pairs",
+      "role": "preference",
+      "availability": "not-released",
+      "scale": "About 100K human-annotated comparison pairs",
+      "reference_name": "Oxygen-TryOn Preference Pairs"
+    },
+    {
+      "model_id": "oxygen-tryon",
+      "dataset_id": "oxygen-tryon-training-corpus",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "More than 50M raw images before filtering; retained training count not disclosed",
+      "reference_name": "Oxygen-TryOn Training Corpus"
     },
     {
       "model_id": "phantom-wan-14b",
@@ -26910,6 +28144,20 @@
       "notes": "The ElasticTTT paper states that its test set follows the DAVIS selection protocol; the public repository contains 25 source videos and their prompt table."
     },
     {
+      "source_dataset_id": "id-v2v-luxpostfacto-olat-subset",
+      "derived_dataset_id": "id-v2v-face-relighting-pairs",
+      "relationship": "source-component",
+      "contribution": "OLAT facial captures from 67 participants",
+      "notes": "Supplies facial reflectance observations across poses, expressions, viewpoints, and individual lights."
+    },
+    {
+      "source_dataset_id": "id-v2v-poly-haven-hdri-sample",
+      "derived_dataset_id": "id-v2v-face-relighting-pairs",
+      "relationship": "source-component",
+      "contribution": "HDR environment maps for arbitrary input illumination",
+      "notes": "Randomly sampled HDRIs illuminate the OLAT captures before construction of top-lit targets."
+    },
+    {
       "source_dataset_id": "koala-36m",
       "derived_dataset_id": "phantom-data",
       "relationship": "annotation-derivative",
@@ -27045,10 +28293,10 @@
           "rank": 1,
           "creator": "openai",
           "model": "gpt-image-2 (medium)",
-          "score": 1465.3,
-          "confidence_interval": "1461–1470",
-          "samples": 145970,
-          "released": "2026-07-10",
+          "score": 1462.7,
+          "confidence_interval": "1459–1467",
+          "samples": 165278,
+          "released": "2026-07-28",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -27067,10 +28315,10 @@
           "rank": 2,
           "creator": "meta",
           "model": "muse-image",
-          "score": 1402.4,
-          "confidence_interval": "1396–1409",
-          "samples": 16932,
-          "released": "2026-07-10",
+          "score": 1407.0,
+          "confidence_interval": "1401–1413",
+          "samples": 36590,
+          "released": "2026-07-28",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -27089,10 +28337,10 @@
           "rank": 3,
           "creator": "microsoft-ai",
           "model": "mai-image-2.5",
-          "score": 1401.4,
-          "confidence_interval": "1398–1405",
-          "samples": 100526,
-          "released": "2026-07-10",
+          "score": 1400.1,
+          "confidence_interval": "1396–1404",
+          "samples": 130630,
+          "released": "2026-07-28",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -27109,56 +28357,12 @@
         },
         {
           "rank": 4,
-          "creator": "bytedance",
-          "model": "seedream-5.0-pro",
-          "score": 1392.7,
-          "confidence_interval": "1383–1402",
-          "samples": 4299,
-          "released": "2026-07-10",
-          "open_weights": false,
-          "license": "Proprietary",
-          "component_models": [],
-          "components": [
-            {
-              "name": "seedream-5.0-pro",
-              "model_id": "seedream-5-0-pro"
-            }
-          ],
-          "model_ids": [
-            "seedream-5-0-pro"
-          ],
-          "model_id": "seedream-5-0-pro"
-        },
-        {
-          "rank": 5,
-          "creator": "openai",
-          "model": "chatgpt-image-latest-high-fidelity (20251216)",
-          "score": 1389.4,
-          "confidence_interval": "1386–1393",
-          "samples": 457021,
-          "released": "2026-07-10",
-          "open_weights": false,
-          "license": "Proprietary",
-          "component_models": [],
-          "components": [
-            {
-              "name": "chatgpt-image-latest-high-fidelity (20251216)",
-              "model_id": "gpt-image-1-5"
-            }
-          ],
-          "model_ids": [
-            "gpt-image-1-5"
-          ],
-          "model_id": "gpt-image-1-5"
-        },
-        {
-          "rank": 6,
           "creator": "xai",
           "model": "grok-imagine-image-quality (20260519)",
-          "score": 1389.2,
-          "confidence_interval": "1384–1394",
-          "samples": 34756,
-          "released": "2026-07-10",
+          "score": 1389.8,
+          "confidence_interval": "1384–1395",
+          "samples": 35509,
+          "released": "2026-07-28",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -27174,13 +28378,13 @@
           "model_id": "grok-imagine-image-quality"
         },
         {
-          "rank": 7,
+          "rank": 5,
           "creator": "google",
           "model": "gemini-3-pro-image-2k (nano-banana-pro)",
-          "score": 1387.8,
-          "confidence_interval": "1385–1391",
-          "samples": 459237,
-          "released": "2026-07-10",
+          "score": 1389.3,
+          "confidence_interval": "1386–1392",
+          "samples": 480545,
+          "released": "2026-07-28",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -27196,13 +28400,35 @@
           "model_id": "gemini-3-pro-image"
         },
         {
-          "rank": 8,
+          "rank": 6,
+          "creator": "openai",
+          "model": "chatgpt-image-latest-high-fidelity (20251216)",
+          "score": 1388.9,
+          "confidence_interval": "1386–1392",
+          "samples": 475725,
+          "released": "2026-07-28",
+          "open_weights": false,
+          "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "chatgpt-image-latest-high-fidelity (20251216)",
+              "model_id": "gpt-image-1-5"
+            }
+          ],
+          "model_ids": [
+            "gpt-image-1-5"
+          ],
+          "model_id": "gpt-image-1-5"
+        },
+        {
+          "rank": 7,
           "creator": "google",
           "model": "gemini-3-pro-image-preview (nano-banana-pro)",
-          "score": 1385.0,
+          "score": 1385.1,
           "confidence_interval": "1382–1388",
-          "samples": 518398,
-          "released": "2026-07-10",
+          "samples": 518346,
+          "released": "2026-07-28",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -27218,35 +28444,35 @@
           "model_id": "gemini-3-pro-image"
         },
         {
-          "rank": 9,
-          "creator": "google",
-          "model": "gemini-3.1-flash-image (nano-banana-2) [web-search]",
+          "rank": 8,
+          "creator": "bytedance",
+          "model": "seedream-5.0-pro",
           "score": 1384.8,
-          "confidence_interval": "1380–1389",
-          "samples": 60941,
-          "released": "2026-07-10",
+          "confidence_interval": "1380–1390",
+          "samples": 32022,
+          "released": "2026-07-28",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
           "components": [
             {
-              "name": "gemini-3.1-flash-image (nano-banana-2) [web-search]",
-              "model_id": "gemini-3-1-flash-image"
+              "name": "seedream-5.0-pro",
+              "model_id": "seedream-5-0-pro"
             }
           ],
           "model_ids": [
-            "gemini-3-1-flash-image"
+            "seedream-5-0-pro"
           ],
-          "model_id": "gemini-3-1-flash-image"
+          "model_id": "seedream-5-0-pro"
         },
         {
-          "rank": 10,
+          "rank": 9,
           "creator": "reve",
           "model": "reve-2.1",
-          "score": 1383.2,
-          "confidence_interval": "1374–1392",
-          "samples": 5165,
-          "released": "2026-07-10",
+          "score": 1383.4,
+          "confidence_interval": "1375–1391",
+          "samples": 6779,
+          "released": "2026-07-28",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -27262,13 +28488,35 @@
           "model_id": "reve-2-1"
         },
         {
+          "rank": 10,
+          "creator": "google",
+          "model": "gemini-3.1-flash-image (nano-banana-2) [web-search]",
+          "score": 1383.2,
+          "confidence_interval": "1379–1387",
+          "samples": 82128,
+          "released": "2026-07-28",
+          "open_weights": false,
+          "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "gemini-3.1-flash-image (nano-banana-2) [web-search]",
+              "model_id": "gemini-3-1-flash-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-1-flash-image"
+          ],
+          "model_id": "gemini-3-1-flash-image"
+        },
+        {
           "rank": 11,
           "creator": "openai",
           "model": "gpt-image-1.5-high-fidelity",
-          "score": 1372.1,
+          "score": 1372.0,
           "confidence_interval": "1369–1375",
-          "samples": 478581,
-          "released": "2026-07-10",
+          "samples": 497488,
+          "released": "2026-07-28",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -27287,10 +28535,10 @@
           "rank": 12,
           "creator": "xai",
           "model": "grok-imagine-image-quality",
-          "score": 1359.0,
-          "confidence_interval": "1355–1363",
-          "samples": 111066,
-          "released": "2026-07-10",
+          "score": 1362.7,
+          "confidence_interval": "1359–1366",
+          "samples": 133525,
+          "released": "2026-07-28",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -27309,10 +28557,10 @@
           "rank": 13,
           "creator": "reve",
           "model": "reve-2.0",
-          "score": 1357.9,
-          "confidence_interval": "1351–1364",
-          "samples": 14513,
-          "released": "2026-07-10",
+          "score": 1361.0,
+          "confidence_interval": "1355–1368",
+          "samples": 16274,
+          "released": "2026-07-28",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -27331,10 +28579,10 @@
           "rank": 14,
           "creator": "luma-ai",
           "model": "uni-1.1-max",
-          "score": 1333.6,
+          "score": 1333.7,
           "confidence_interval": "1329–1339",
-          "samples": 40859,
-          "released": "2026-07-10",
+          "samples": 40854,
+          "released": "2026-07-28",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -27353,10 +28601,10 @@
           "rank": 15,
           "creator": "xai",
           "model": "grok-imagine-image",
-          "score": 1329.2,
+          "score": 1329.4,
           "confidence_interval": "1326–1332",
-          "samples": 478004,
-          "released": "2026-07-10",
+          "samples": 508516,
+          "released": "2026-07-28",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -28927,9 +30175,9 @@
           "rank": 1,
           "creator": "OpenAI",
           "model": "GPT Image 2 (high)",
-          "score": 1258,
+          "score": 1259,
           "confidence_interval": "-7/7",
-          "samples": 16418,
+          "samples": 16411,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -28949,9 +30197,9 @@
           "rank": 2,
           "creator": "OpenAI",
           "model": "GPT Image 1.5 (high)",
-          "score": 1254,
+          "score": 1255,
           "confidence_interval": "-8/8",
-          "samples": 9818,
+          "samples": 9865,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -28971,9 +30219,9 @@
           "rank": 3,
           "creator": "Google",
           "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-          "score": 1248,
+          "score": 1247,
           "confidence_interval": "-8/8",
-          "samples": 10821,
+          "samples": 10872,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -28993,9 +30241,9 @@
           "rank": 4,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5",
-          "score": 1244,
+          "score": 1245,
           "confidence_interval": "-9/9",
-          "samples": 6623,
+          "samples": 6688,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29015,9 +30263,9 @@
           "rank": 5,
           "creator": "Google",
           "model": "Nano Banana Pro (Gemini 3 Pro Image)",
-          "score": 1240,
-          "confidence_interval": "-8/8",
-          "samples": 9108,
+          "score": 1239,
+          "confidence_interval": "-7/7",
+          "samples": 9168,
           "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29037,9 +30285,9 @@
           "rank": 6,
           "creator": "Bytedance",
           "model": "Seedream 5.0 Pro",
-          "score": 1238,
+          "score": 1237,
           "confidence_interval": "-11/11",
-          "samples": 2787,
+          "samples": 2833,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29057,33 +30305,11 @@
         },
         {
           "rank": 7,
-          "creator": "Microsoft AI",
-          "model": "MAI-Image-2.5-Flash",
-          "score": 1230,
-          "confidence_interval": "-9/9",
-          "samples": 4406,
-          "released": "Jun 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "MAI-Image-2.5-Flash",
-              "model_id": "mai-image-2-5"
-            }
-          ],
-          "model_ids": [
-            "mai-image-2-5"
-          ],
-          "model_id": "mai-image-2-5"
-        },
-        {
-          "rank": 8,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image-quality",
-          "score": 1230,
+          "score": 1231,
           "confidence_interval": "-8/8",
-          "samples": 8393,
+          "samples": 8435,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29100,12 +30326,34 @@
           "model_id": "grok-imagine-image-quality"
         },
         {
+          "rank": 8,
+          "creator": "Microsoft AI",
+          "model": "MAI-Image-2.5-Flash",
+          "score": 1230,
+          "confidence_interval": "-9/9",
+          "samples": 4420,
+          "released": "Jun 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "MAI-Image-2.5-Flash",
+              "model_id": "mai-image-2-5"
+            }
+          ],
+          "model_ids": [
+            "mai-image-2-5"
+          ],
+          "model_id": "mai-image-2-5"
+        },
+        {
           "rank": 9,
           "creator": "Tencent",
           "model": "HunyuanImage 3.0 Instruct (Fal)",
           "score": 1224,
           "confidence_interval": "-8/8",
-          "samples": 8640,
+          "samples": 8643,
           "released": "Jan 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -29127,7 +30375,7 @@
           "model": "Luma UNI 1 Max",
           "score": 1221,
           "confidence_interval": "-9/9",
-          "samples": 5703,
+          "samples": 5691,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29149,7 +30397,7 @@
           "model": "Kling Image 3.0 Omni",
           "score": 1215,
           "confidence_interval": "-7/7",
-          "samples": 8486,
+          "samples": 8487,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29171,7 +30419,7 @@
           "model": "grok-imagine-image",
           "score": 1213,
           "confidence_interval": "-8/8",
-          "samples": 8878,
+          "samples": 8876,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29189,11 +30437,33 @@
         },
         {
           "rank": 13,
+          "creator": "HiDream",
+          "model": "HiDream-O1-Image",
+          "score": 1204,
+          "confidence_interval": "-8/8",
+          "samples": 5966,
+          "released": "May 2026",
+          "open_weights": true,
+          "license": "Open weights",
+          "component_models": [],
+          "components": [
+            {
+              "name": "HiDream-O1-Image",
+              "model_id": "hidream-o1-image"
+            }
+          ],
+          "model_ids": [
+            "hidream-o1-image"
+          ],
+          "model_id": "hidream-o1-image"
+        },
+        {
+          "rank": 14,
           "creator": "KlingAI",
           "model": "Kling Image 3.0",
-          "score": 1203,
+          "score": 1204,
           "confidence_interval": "-8/8",
-          "samples": 8161,
+          "samples": 8156,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29210,48 +30480,26 @@
           "model_id": "kling-3"
         },
         {
-          "rank": 14,
-          "creator": "KlingAI",
-          "model": "Kling Image O1",
+          "rank": 15,
+          "creator": "Black Forest Labs",
+          "model": "FLUX.2 [max]",
           "score": 1203,
           "confidence_interval": "-8/8",
-          "samples": 7466,
+          "samples": 8321,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": [],
           "components": [
             {
-              "name": "Kling Image O1",
-              "model_id": "kling-o1"
+              "name": "FLUX.2 [max]",
+              "model_id": "flux-2-max"
             }
           ],
           "model_ids": [
-            "kling-o1"
+            "flux-2-max"
           ],
-          "model_id": "kling-o1"
-        },
-        {
-          "rank": 15,
-          "creator": "HiDream",
-          "model": "HiDream-O1-Image",
-          "score": 1203,
-          "confidence_interval": "-8/8",
-          "samples": 5974,
-          "released": "May 2026",
-          "open_weights": true,
-          "license": "Open weights",
-          "component_models": [],
-          "components": [
-            {
-              "name": "HiDream-O1-Image",
-              "model_id": "hidream-o1-image"
-            }
-          ],
-          "model_ids": [
-            "hidream-o1-image"
-          ],
-          "model_id": "hidream-o1-image"
+          "model_id": "flux-2-max"
         }
       ]
     },
@@ -29270,9 +30518,9 @@
           "rank": 1,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
-          "score": 1199,
+          "score": 1197,
           "confidence_interval": "-8/8",
-          "samples": 9121,
+          "samples": 9662,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29292,9 +30540,9 @@
           "rank": 2,
           "creator": "Google",
           "model": "Gemini Omni Flash",
-          "score": 1198,
-          "confidence_interval": "-11/11",
-          "samples": 3115,
+          "score": 1192,
+          "confidence_interval": "-10/10",
+          "samples": 4047,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29313,17 +30561,17 @@
         {
           "rank": 3,
           "creator": "SpaceXAI",
-          "model": "grok-imagine-video-1.5-preview",
-          "score": 1118,
-          "confidence_interval": "-10/10",
-          "samples": 3900,
+          "model": "grok-imagine-video-1.5",
+          "score": 1115,
+          "confidence_interval": "-9/9",
+          "samples": 4140,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": [],
           "components": [
             {
-              "name": "grok-imagine-video-1.5-preview",
+              "name": "grok-imagine-video-1.5",
               "model_id": "grok-imagine-video-1-5"
             }
           ],
@@ -29336,9 +30584,9 @@
           "rank": 4,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.1",
-          "score": 1109,
-          "confidence_interval": "-10/10",
-          "samples": 3394,
+          "score": 1107,
+          "confidence_interval": "-9/9",
+          "samples": 4425,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29356,33 +30604,11 @@
         },
         {
           "rank": 5,
-          "creator": "Alibaba",
-          "model": "Wan 2.7",
-          "score": 1099,
-          "confidence_interval": "-10/10",
-          "samples": 3328,
-          "released": "Apr 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "Wan 2.7",
-              "model_id": "wan-2-7"
-            }
-          ],
-          "model_ids": [
-            "wan-2-7"
-          ],
-          "model_id": "wan-2-7"
-        },
-        {
-          "rank": 6,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.0",
-          "score": 1093,
-          "confidence_interval": "-9/9",
-          "samples": 6668,
+          "score": 1092,
+          "confidence_interval": "-8/8",
+          "samples": 6855,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29399,12 +30625,34 @@
           "model_id": "happyhorse-1-0"
         },
         {
+          "rank": 6,
+          "creator": "Alibaba",
+          "model": "Wan 2.7",
+          "score": 1091,
+          "confidence_interval": "-10/10",
+          "samples": 3501,
+          "released": "Apr 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Wan 2.7",
+              "model_id": "wan-2-7"
+            }
+          ],
+          "model_ids": [
+            "wan-2-7"
+          ],
+          "model_id": "wan-2-7"
+        },
+        {
           "rank": 7,
           "creator": "Google",
           "model": "Veo 3.1",
-          "score": 1088,
+          "score": 1089,
           "confidence_interval": "-8/8",
-          "samples": 7036,
+          "samples": 7210,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29424,9 +30672,9 @@
           "rank": 8,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "score": 1085,
-          "confidence_interval": "-10/10",
-          "samples": 3625,
+          "score": 1088,
+          "confidence_interval": "-9/9",
+          "samples": 3817,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29446,9 +30694,9 @@
           "rank": 9,
           "creator": "SpaceXAI",
           "model": "grok-imagine-video",
-          "score": 1082,
+          "score": 1080,
           "confidence_interval": "-8/8",
-          "samples": 8530,
+          "samples": 9374,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29470,7 +30718,7 @@
           "model": "Veo 3.1 Fast",
           "score": 1078,
           "confidence_interval": "-8/8",
-          "samples": 7626,
+          "samples": 8510,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29490,9 +30738,9 @@
           "rank": 11,
           "creator": "KlingAI",
           "model": "Kling 3.0 1080p (Pro)",
-          "score": 1075,
+          "score": 1074,
           "confidence_interval": "-8/8",
-          "samples": 8117,
+          "samples": 9038,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29512,9 +30760,9 @@
           "rank": 12,
           "creator": "PixVerse",
           "model": "PixVerse V6",
-          "score": 1073,
+          "score": 1071,
           "confidence_interval": "-8/8",
-          "samples": 8374,
+          "samples": 8510,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29534,9 +30782,9 @@
           "rank": 13,
           "creator": "KlingAI",
           "model": "Kling 3.0 720p (Standard)",
-          "score": 1070,
+          "score": 1068,
           "confidence_interval": "-8/8",
-          "samples": 8166,
+          "samples": 9017,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29554,11 +30802,33 @@
         },
         {
           "rank": 14,
-          "creator": "Vidu",
-          "model": "Vidu Q3 Pro",
+          "creator": "Google",
+          "model": "Veo 3.1 Lite",
           "score": 1066,
           "confidence_interval": "-8/8",
-          "samples": 8727,
+          "samples": 6519,
+          "released": "Mar 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Veo 3.1 Lite",
+              "model_id": "veo-3-1-lite"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1-lite"
+          ],
+          "model_id": "veo-3-1-lite"
+        },
+        {
+          "rank": 15,
+          "creator": "Vidu",
+          "model": "Vidu Q3 Pro",
+          "score": 1065,
+          "confidence_interval": "-8/8",
+          "samples": 9540,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29573,28 +30843,6 @@
             "vidu-q3-pro"
           ],
           "model_id": "vidu-q3-pro"
-        },
-        {
-          "rank": 15,
-          "creator": "KlingAI",
-          "model": "Kling 3.0 Omni 1080p (Pro)",
-          "score": 1063,
-          "confidence_interval": "-8/8",
-          "samples": 6304,
-          "released": "Feb 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "Kling 3.0 Omni 1080p (Pro)",
-              "model_id": "kling-3"
-            }
-          ],
-          "model_ids": [
-            "kling-3"
-          ],
-          "model_id": "kling-3"
         }
       ]
     },
@@ -29613,9 +30861,9 @@
           "rank": 1,
           "creator": "OpenAI",
           "model": "GPT Image 2 (high)",
-          "score": 1339,
+          "score": 1340,
           "confidence_interval": "-7/7",
-          "samples": 21165,
+          "samples": 21260,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29635,9 +30883,9 @@
           "rank": 2,
           "creator": "Reve",
           "model": "Reve 2.1",
-          "score": 1302,
+          "score": 1299,
           "confidence_interval": "-11/11",
-          "samples": 9455,
+          "samples": 9789,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29657,9 +30905,9 @@
           "rank": 3,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5",
-          "score": 1271,
+          "score": 1269,
           "confidence_interval": "-9/9",
-          "samples": 9455,
+          "samples": 9851,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29679,9 +30927,9 @@
           "rank": 4,
           "creator": "Google",
           "model": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
-          "score": 1262,
-          "confidence_interval": "-10/10",
-          "samples": 9410,
+          "score": 1264,
+          "confidence_interval": "-9/9",
+          "samples": 9876,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29699,33 +30947,11 @@
         },
         {
           "rank": 5,
-          "creator": "Google",
-          "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-          "score": 1262,
-          "confidence_interval": "-7/7",
-          "samples": 19500,
-          "released": "Feb 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-              "model_id": "gemini-3-1-flash-image"
-            }
-          ],
-          "model_ids": [
-            "gemini-3-1-flash-image"
-          ],
-          "model_id": "gemini-3-1-flash-image"
-        },
-        {
-          "rank": 6,
           "creator": "OpenAI",
           "model": "GPT Image 1.5 (high)",
-          "score": 1261,
+          "score": 1263,
           "confidence_interval": "-7/7",
-          "samples": 12330,
+          "samples": 12761,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29742,12 +30968,34 @@
           "model_id": "gpt-image-1-5"
         },
         {
+          "rank": 6,
+          "creator": "Google",
+          "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
+          "score": 1262,
+          "confidence_interval": "-7/7",
+          "samples": 19653,
+          "released": "Feb 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
+              "model_id": "gemini-3-1-flash-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-1-flash-image"
+          ],
+          "model_id": "gemini-3-1-flash-image"
+        },
+        {
           "rank": 7,
           "creator": "HiDream",
           "model": "HiDream-O1-Image-1.5",
-          "score": 1246,
+          "score": 1245,
           "confidence_interval": "-8/8",
-          "samples": 12433,
+          "samples": 12459,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29767,9 +31015,9 @@
           "rank": 8,
           "creator": "Bytedance",
           "model": "Seedream 5.0 Pro",
-          "score": 1240,
+          "score": 1239,
           "confidence_interval": "-9/9",
-          "samples": 8187,
+          "samples": 8316,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29789,9 +31037,9 @@
           "rank": 9,
           "creator": "Google",
           "model": "Nano Banana Pro (Gemini 3 Pro Image)",
-          "score": 1224,
+          "score": 1226,
           "confidence_interval": "-7/7",
-          "samples": 11642,
+          "samples": 12060,
           "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29813,7 +31061,7 @@
           "model": "Cosmos3-Super-Text2Image (agentic)",
           "score": 1218,
           "confidence_interval": "-8/8",
-          "samples": 9842,
+          "samples": 10316,
           "released": "May 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -29835,7 +31083,7 @@
           "model": "MAI-Image-2.5-Flash",
           "score": 1207,
           "confidence_interval": "-9/9",
-          "samples": 4920,
+          "samples": 5022,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29853,33 +31101,11 @@
         },
         {
           "rank": 12,
-          "creator": "SpaceXAI",
-          "model": "grok-imagine-image-quality",
-          "score": 1204,
-          "confidence_interval": "-7/7",
-          "samples": 15622,
-          "released": "Apr 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "grok-imagine-image-quality",
-              "model_id": "grok-imagine-image-quality"
-            }
-          ],
-          "model_ids": [
-            "grok-imagine-image-quality"
-          ],
-          "model_id": "grok-imagine-image-quality"
-        },
-        {
-          "rank": 13,
           "creator": "Recraft",
           "model": "Recraft V4.1 Utility",
-          "score": 1204,
+          "score": 1205,
           "confidence_interval": "-8/8",
-          "samples": 5456,
+          "samples": 5534,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29896,12 +31122,34 @@
           "model_id": "recraft-v4-1"
         },
         {
+          "rank": 13,
+          "creator": "SpaceXAI",
+          "model": "grok-imagine-image-quality",
+          "score": 1204,
+          "confidence_interval": "-7/7",
+          "samples": 16011,
+          "released": "Apr 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-image-quality",
+              "model_id": "grok-imagine-image-quality"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-image-quality"
+          ],
+          "model_id": "grok-imagine-image-quality"
+        },
+        {
           "rank": 14,
           "creator": "Recraft",
           "model": "Recraft V4.1 Utility Pro",
-          "score": 1200,
+          "score": 1201,
           "confidence_interval": "-7/7",
-          "samples": 15039,
+          "samples": 15485,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29921,9 +31169,9 @@
           "rank": 15,
           "creator": "Black Forest Labs",
           "model": "FLUX.2 [max]",
-          "score": 1196,
+          "score": 1197,
           "confidence_interval": "-7/7",
-          "samples": 11400,
+          "samples": 11834,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29957,8 +31205,8 @@
           "creator": "Google",
           "model": "Gemini Omni Flash",
           "score": 1246,
-          "confidence_interval": "-10/10",
-          "samples": 4627,
+          "confidence_interval": "-9/9",
+          "samples": 5834,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -29978,9 +31226,9 @@
           "rank": 2,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
-          "score": 1228,
-          "confidence_interval": "-8/8",
-          "samples": 11593,
+          "score": 1225,
+          "confidence_interval": "-7/7",
+          "samples": 12594,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30000,9 +31248,9 @@
           "rank": 3,
           "creator": "Alibaba",
           "model": "Wan2.7-260612",
-          "score": 1165,
+          "score": 1162,
           "confidence_interval": "-9/9",
-          "samples": 4882,
+          "samples": 6111,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30022,9 +31270,9 @@
           "rank": 4,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.1",
-          "score": 1152,
-          "confidence_interval": "-9/9",
-          "samples": 5345,
+          "score": 1151,
+          "confidence_interval": "-8/8",
+          "samples": 6595,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30046,7 +31294,7 @@
           "model": "HappyHorse-1.0",
           "score": 1132,
           "confidence_interval": "-8/8",
-          "samples": 7373,
+          "samples": 7568,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30068,7 +31316,7 @@
           "model": "Kling 3.0 1080p (Pro)",
           "score": 1113,
           "confidence_interval": "-7/7",
-          "samples": 10972,
+          "samples": 11904,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30088,9 +31336,9 @@
           "rank": 7,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "score": 1111,
-          "confidence_interval": "-9/9",
-          "samples": 4539,
+          "score": 1110,
+          "confidence_interval": "-8/8",
+          "samples": 4680,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30112,7 +31360,7 @@
           "model": "Wan 2.7",
           "score": 1110,
           "confidence_interval": "-9/9",
-          "samples": 4048,
+          "samples": 4159,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30132,9 +31380,9 @@
           "rank": 9,
           "creator": "KlingAI",
           "model": "Kling 3.0 720p (Standard)",
-          "score": 1102,
+          "score": 1101,
           "confidence_interval": "-7/7",
-          "samples": 10925,
+          "samples": 11717,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30152,33 +31400,11 @@
         },
         {
           "rank": 10,
-          "creator": "KlingAI",
-          "model": "Kling 3.0 Omni 1080p (Pro)",
-          "score": 1098,
-          "confidence_interval": "-8/8",
-          "samples": 7699,
-          "released": "Feb 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "Kling 3.0 Omni 1080p (Pro)",
-              "model_id": "kling-3"
-            }
-          ],
-          "model_ids": [
-            "kling-3"
-          ],
-          "model_id": "kling-3"
-        },
-        {
-          "rank": 11,
           "creator": "Google",
           "model": "Veo 3.1",
-          "score": 1095,
-          "confidence_interval": "-8/8",
-          "samples": 7895,
+          "score": 1099,
+          "confidence_interval": "-7/7",
+          "samples": 7988,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30195,19 +31421,19 @@
           "model_id": "veo-3-1"
         },
         {
-          "rank": 12,
+          "rank": 11,
           "creator": "KlingAI",
-          "model": "Kling 3.0 Omni 720p (Standard)",
-          "score": 1093,
-          "confidence_interval": "-8/8",
-          "samples": 7578,
+          "model": "Kling 3.0 Omni 1080p (Pro)",
+          "score": 1096,
+          "confidence_interval": "-7/7",
+          "samples": 7784,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": [],
           "components": [
             {
-              "name": "Kling 3.0 Omni 720p (Standard)",
+              "name": "Kling 3.0 Omni 1080p (Pro)",
               "model_id": "kling-3"
             }
           ],
@@ -30217,12 +31443,12 @@
           "model_id": "kling-3"
         },
         {
-          "rank": 13,
+          "rank": 12,
           "creator": "Google",
           "model": "Veo 3.1 Fast",
           "score": 1092,
           "confidence_interval": "-7/7",
-          "samples": 10284,
+          "samples": 11032,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30239,12 +31465,34 @@
           "model_id": "veo-3-1"
         },
         {
+          "rank": 13,
+          "creator": "KlingAI",
+          "model": "Kling 3.0 Omni 720p (Standard)",
+          "score": 1091,
+          "confidence_interval": "-7/7",
+          "samples": 7631,
+          "released": "Feb 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Kling 3.0 Omni 720p (Standard)",
+              "model_id": "kling-3"
+            }
+          ],
+          "model_ids": [
+            "kling-3"
+          ],
+          "model_id": "kling-3"
+        },
+        {
           "rank": 14,
           "creator": "Google",
           "model": "Veo 3.1 Lite",
-          "score": 1092,
+          "score": 1090,
           "confidence_interval": "-8/8",
-          "samples": 7317,
+          "samples": 7415,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30266,7 +31514,7 @@
           "model": "Vidu Q3 Pro",
           "score": 1083,
           "confidence_interval": "-7/7",
-          "samples": 11039,
+          "samples": 11793,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30299,9 +31547,9 @@
           "rank": 1,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.0",
-          "score": 1102,
+          "score": 1093,
           "confidence_interval": "-5/5",
-          "samples": 15869,
+          "samples": 17093,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30321,9 +31569,9 @@
           "rank": 2,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "score": 1089,
+          "score": 1078,
           "confidence_interval": "-6/6",
-          "samples": 11785,
+          "samples": 12902,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30343,9 +31591,9 @@
           "rank": 3,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
-          "score": 1039,
+          "score": 1033,
           "confidence_interval": "-5/5",
-          "samples": 15670,
+          "samples": 16836,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30365,9 +31613,9 @@
           "rank": 4,
           "creator": "Runway",
           "model": "Aleph 2.0",
-          "score": 1013,
+          "score": 1010,
           "confidence_interval": "-5/5",
-          "samples": 15643,
+          "samples": 16681,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30389,7 +31637,7 @@
           "model": "Kling 3.0 Omni 1080p (Pro)",
           "score": 1000,
           "confidence_interval": "0/0",
-          "samples": 14916,
+          "samples": 15674,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30409,9 +31657,9 @@
           "rank": 6,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "score": 952,
+          "score": 948,
           "confidence_interval": "-6/6",
-          "samples": 13783,
+          "samples": 14086,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",

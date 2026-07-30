@@ -1,0 +1,79 @@
+id: id-v2v
+name: ID-V2V
+organization: Netflix and Eyeline Labs
+released_at: "2026-07-24"
+modalities:
+  - video
+  - image
+tasks:
+  - video-to-video
+  - video-editing
+  - cross-scene-avatar-generation
+  - reference-video-avatar
+access:
+  status: open-weights
+  license: Apache-2.0 repository and Hugging Face model-card license; verify all upstream checkpoint terms separately
+  release_url: https://github.com/Eyeline-Labs/ID-V2V
+  weights_url: https://huggingface.co/Eyeline-Labs/ID-V2V
+  api_url: null
+architecture:
+  family: Wan2.1 and VACE multi-ControlNet video diffusion
+  parameters: null
+  notes: Extends VACE on Wan2.1 with shared control blocks for relit face pixels, face normals, depth sequences, and edited keyframes; public variants support one or three VACE controls at 720p.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: ID-V2V Human-Centric Video Corpus
+      catalog_id: id-v2v-human-centric-videos
+      role: fine-tuning
+      availability: not-released
+      scale: 40K single- and multi-subject videos at 1280x720 and 81 frames
+      notes: Qwen2.5-VL-32B captions the videos; face detection retains up to five faces per frame and removes videos with faces missing from more than 40% of frames.
+    - name: ID-V2V Face Relighting Pairs
+      catalog_id: id-v2v-face-relighting-pairs
+      role: fine-tuning
+      availability: not-released
+      scale: Approximately 330K paired face images from 67 participants
+      notes: Synthetic illumination pairs train the dedicated image relighting model used to construct identity-preserving control signals.
+    - name: ID-V2V Evaluation Suite
+      catalog_id: id-v2v-evaluation-suite
+      role: evaluation
+      availability: not-released
+      scale: 160 videos, split into 100 single-subject and 60 two-subject cases
+      notes: Gemini 2.5 proposes edits, Qwen-Image-Edit makes keyframes, and humans filter them; this suite is evaluation-only.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - video
+        - image
+        - text
+      source_types:
+        - proprietary
+        - public-dataset
+        - synthetic
+      operations:
+        - vlm-captioning
+        - face-detection
+        - face-coverage-filtering
+        - depth-estimation
+        - normal-estimation
+        - face-relighting
+        - multi-control-conditioning
+      scale_disclosed: true
+      strategy: Fine-tune the Wan2.1/VACE video generator on 40K human-centric clips and train a separate SVD-derived relighting model for 200K steps on about 330K synthetic illumination pairs.
+  strategy_summary:
+    - Decompose restylization into edit-driven video synthesis and source-grounded identity preservation so training pairs can be constructed from a single video.
+    - Caption 40K videos, filter for face coverage, and derive relit face, normal, depth, and edited-keyframe controls for single- and multi-person training.
+    - Train the relighting submodel from LuxPostFacto OLAT captures and Poly Haven HDRIs, keeping those upstream assets distinct from the private video corpus.
+  unknowns:
+    - Source identities, collection method, participant consent, licenses, rights review, and deduplication for the 40K human-centric videos.
+    - Exact Wan2.1/VACE checkpoint variants, total parameter count, step count and batch mixture for final video-model training.
+    - Redistribution terms for the 67-participant OLAT captures and release plans for all training and evaluation datasets.
+evidence:
+  release: https://github.com/Eyeline-Labs/ID-V2V
+  technical_report: https://arxiv.org/abs/2607.22830
+  repository: https://github.com/Eyeline-Labs/ID-V2V
+status: partial
+last_verified: "2026-07-30"

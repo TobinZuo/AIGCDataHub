@@ -267,7 +267,16 @@ test("uses generated catalog data and removes starter preview assets", async () 
         .filter((dataset) => dataset.released_at === newestDatasetDate)
         .map((dataset) => dataset.id),
     ),
-    new Set(["innotext-30k", "agenthoi-mixed-source-corpus", "fmri-face"]),
+    new Set([
+      "innotext-30k",
+      "agenthoi-mixed-source-corpus",
+      "fmri-face",
+      "id-v2v-human-centric-videos",
+      "id-v2v-luxpostfacto-olat-subset",
+      "id-v2v-poly-haven-hdri-sample",
+      "id-v2v-face-relighting-pairs",
+      "id-v2v-evaluation-suite",
+    ]),
   );
   const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
   assert.ok(parsedCatalog.models.every((model) => model.monitoring));

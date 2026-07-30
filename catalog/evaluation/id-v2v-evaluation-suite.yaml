@@ -1,0 +1,69 @@
+id: id-v2v-evaluation-suite
+name: ID-V2V Evaluation Suite
+organization: Netflix and Eyeline Labs
+released_at: "2026-07-24"
+release_date_source: https://arxiv.org/abs/2607.22830
+modality: evaluation
+tasks:
+  - video-editing
+  - video-to-video
+  - identity-preserving-generation
+stages:
+  - evaluation
+  - data-curation
+description: >-
+  Two unreleased human-centric video-restylization evaluation sets comprising
+  100 single-subject and 60 two-subject source videos with edited first-frame
+  targets.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.22830
+  requires_account: false
+  notes: The paper reports construction and metrics but does not release the source videos, keyframes, prompts, metadata, or request path.
+scale:
+  samples: 160
+  source_items: 160
+  hours: null
+  approximate: false
+  notes: Contains 100 single-subject and 60 two-subject videos; a separate user study samples 20 cases from each group.
+annotations:
+  types:
+    - source-video
+    - subject-count
+    - target-style-proposal
+    - edited-first-frame
+    - depth-condition
+    - canny-condition
+    - manual-quality-filter
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Not disclosed
+  media: Unnamed human-centric source videos and generated keyframes with undisclosed rights
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Source licenses, participant consent, Gemini and Qwen output terms, and benchmark redistribution terms are not published.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - human-preference
+    - provenance
+  known_limitations:
+    - Source identities, selection method, demographic distribution, prompts, generated keyframes, and manual filtering criteria are unavailable.
+    - Quantitative comparison caps subjects at two because baselines do not reliably support larger groups.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Preserve source rights and consent, subject-count split, Gemini proposal, Qwen-Image-Edit configuration, depth and edge conditions, manual filter decision, and metric versions.
+evidence:
+  homepage: https://github.com/Eyeline-Labs/ID-V2V
+  paper: https://arxiv.org/abs/2607.22830
+  used_by:
+    - ID-V2V
+status: partial
+last_verified: "2026-07-30"

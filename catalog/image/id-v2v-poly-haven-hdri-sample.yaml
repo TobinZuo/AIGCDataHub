@@ -1,0 +1,61 @@
+id: id-v2v-poly-haven-hdri-sample
+name: ID-V2V Poly Haven HDRI Sample
+organization: Netflix and Eyeline Labs
+released_at: "2026-07-24"
+release_date_source: https://arxiv.org/abs/2607.22830
+modality: image
+tasks:
+  - portrait-relighting
+  - synthetic-data-generation
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  The unreleased selection of Poly Haven HDR environment maps sampled by
+  ID-V2V to render arbitrary environmental illumination for synthetic facial
+  relighting pairs.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.22830
+  requires_account: false
+  notes: Poly Haven assets are openly browsable, but the exact assets, revisions, sampling weights, and manifest used by ID-V2V are not published.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: false
+  notes: Neither the number of distinct HDRIs nor the draw count and distribution are reported.
+annotations:
+  types:
+    - hdri
+    - environment-lighting
+    - asset-id
+    - synthetic-provenance
+  source: mixed
+  languages:
+    - none
+license:
+  metadata: Exact selection manifest not published
+  media: Poly Haven assets are CC0
+  commercial_use: allowed
+  redistribution: allowed
+  notes: Underlying Poly Haven assets are CC0, while live API or website access remains subject to platform terms; pin asset IDs and downloaded revisions.
+quality:
+  dimensions:
+    - visual-quality
+    - provenance
+  known_limitations:
+    - Exact asset identities, revision dates, resolution choices, exposure processing, and sampling distribution are not disclosed.
+    - Environment-map coverage may not represent ordinary indoor lighting or all geographic and cultural settings.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Record Poly Haven asset ID, file revision, license snapshot, resolution, exposure and rotation, download method, and every synthetic render association.
+evidence:
+  homepage: https://polyhaven.com/hdris
+  paper: https://arxiv.org/abs/2607.22830
+  used_by:
+    - ID-V2V
+status: partial
+last_verified: "2026-07-30"

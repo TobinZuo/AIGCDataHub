@@ -1,0 +1,76 @@
+id: oxygen-tryon-training-corpus
+name: Oxygen-TryOn Training Corpus
+organization: Team Oxygen
+released_at: "2026-07-23"
+release_date_source: https://arxiv.org/abs/2607.21694
+modality: image
+tasks:
+  - virtual-try-on
+  - multi-garment-try-on
+  - garment-conditioned-generation
+  - image-editing
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  The unreleased image and try-on-triplet corpus used for Oxygen-TryOn continued
+  pretraining and supervised fine-tuning, built from real e-commerce,
+  open-domain fashion, and model-generated images.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.21694
+  requires_account: false
+  notes: The paper describes the data engine but publishes no files, manifest, request path, or retained-sample count.
+scale:
+  samples: null
+  source_items: 50000000
+  hours: null
+  approximate: true
+  notes: More than 50M raw images enter filtering; retained image and triplet counts and the inherited general-purpose corpus size are not disclosed.
+annotations:
+  types:
+    - item-image
+    - subject-image
+    - try-on-result
+    - item-category
+    - body-region
+    - product-attribute
+    - subject-attribute
+    - bilingual-caption
+    - synthetic-provenance
+  source: mixed
+  languages:
+    - zh
+    - en
+license:
+  metadata: Not disclosed
+  media: Real e-commerce, open-domain fashion, synthetic, and inherited general-purpose images with undisclosed source terms
+  commercial_use: unknown
+  redistribution: unknown
+  notes: No source list, rights statement, consent basis, dataset license, or redistribution terms are published.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - aesthetics
+    - watermark
+    - safety
+    - deduplication
+    - provenance
+  known_limitations:
+    - Retained counts, source identities, collection dates, geographic and demographic distributions, and source-specific rights are not reported.
+    - Synthetic generator identities, versions, prompts, seeds, safety decisions, and synthetic-to-real proportions are not disclosed.
+    - The CPT stage mixes this corpus 1:1 with an undisclosed inherited general-purpose corpus, so end-to-end provenance remains incomplete.
+processing:
+  recipe: recipes/image_text
+  recommended_format: webdataset
+  notes: Preserve source class and rights, real-versus-synthetic provenance, item and subject identity, triplet links, bilingual annotations, generator metadata, and every filter decision.
+evidence:
+  homepage: https://oxygenvision.github.io/Oxygen-TryOn/
+  paper: https://arxiv.org/abs/2607.21694
+  used_by:
+    - Oxygen-TryOn
+status: partial
+last_verified: "2026-07-30"

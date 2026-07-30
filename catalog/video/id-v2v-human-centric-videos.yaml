@@ -1,0 +1,69 @@
+id: id-v2v-human-centric-videos
+name: ID-V2V Human-Centric Video Corpus
+organization: Netflix and Eyeline Labs
+released_at: "2026-07-24"
+release_date_source: https://arxiv.org/abs/2607.22830
+modality: video
+tasks:
+  - video-to-video
+  - video-editing
+  - cross-scene-avatar-generation
+  - reference-video-avatar
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  The unreleased 40,000-video single- and multi-subject corpus used to train
+  ID-V2V for identity-preserving video restylization with derived face,
+  normal, depth, keyframe, and caption controls.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.22830
+  requires_account: false
+  notes: The paper provides construction details but no source list, download, manifest, request path, or dataset license.
+scale:
+  samples: 40000
+  source_items: null
+  hours: null
+  approximate: false
+  notes: Videos are trained at 1280x720 with 81 frames; the original clip durations and total hours are not reported.
+annotations:
+  types:
+    - video-caption
+    - face-detection
+    - relit-face-control
+    - face-normal-control
+    - depth-control
+    - edited-keyframe
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Not disclosed
+  media: Unnamed human-centric videos with undisclosed source, consent, and license terms
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The Apache-2.0 code and checkpoint license does not establish rights to the unreleased people-centered training media.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Source platforms, participant consent, identity privacy review, collection dates, geographic distribution, and media licenses are not disclosed.
+    - Videos with no detected faces in more than 40% of frames are removed, which may bias toward large, frontal, and consistently visible faces.
+    - At most five detected faces per frame are retained, so crowded multi-subject scenes receive incomplete identity controls.
+processing:
+  recipe: recipes/video_text
+  recommended_format: webdataset
+  notes: Preserve source and consent records, caption-model version, per-frame face boxes and filter decisions, relighting parameters, normals, depth, keyframes, and exact checkpoint provenance.
+evidence:
+  homepage: https://github.com/Eyeline-Labs/ID-V2V
+  paper: https://arxiv.org/abs/2607.22830
+  used_by:
+    - ID-V2V
+status: partial
+last_verified: "2026-07-30"

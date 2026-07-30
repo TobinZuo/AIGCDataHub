@@ -1,0 +1,70 @@
+id: ave-compass
+name: AVE-Compass
+organization: NJU-LINK Lab
+released_at: "2026-07-17"
+release_date_source: https://arxiv.org/abs/2607.24821
+modality: evaluation
+tasks:
+  - audio-video-editing
+  - video-editing
+  - joint-audio-video-evaluation
+stages:
+  - evaluation
+  - data-curation
+description: >-
+  A public benchmark for instruction-based audio-video editing with 145 source
+  videos, 196 human-verified edit instructions, 2,688 diagnostic checklist
+  items, and 28 operation types across joint, speech, video, and audio edits.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/NJU-LINK/AVE-Compass
+  requires_account: false
+  notes: Source videos, metadata, instructions, and checklists are publicly downloadable from the official Hugging Face repository.
+scale:
+  samples: 196
+  source_items: 145
+  hours: null
+  approximate: false
+  notes: Some source videos have multiple instructions; the package contains 196 viewer rows and 2,688 fine-grained checklist items.
+annotations:
+  types:
+    - source-video
+    - edit-instruction
+    - operation-type
+    - modality-branch
+    - difficulty
+    - diagnostic-checklist
+    - realism-rubric
+  source: human
+  languages:
+    - en
+license:
+  metadata: CC-BY-NC-4.0
+  media: CC-BY-NC-4.0 repository declaration; upstream source-video rights may impose additional terms
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: Attribute the release, limit use to noncommercial scope, and review the provenance and rights of each source video before redistribution.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - A 145-video, English-instruction benchmark cannot cover all languages, cultures, speakers, edit types, or long-form audiovisual conditions.
+    - Checklist-based MLLM judging and provider versions may change independently of the fixed benchmark files.
+    - The dataset card names mixed public, in-the-wild, and generated sources but does not provide complete per-video rights evidence in the viewer.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Join videos, metadata, instruction JSON, and checklist JSON by filename and instruction index; preserve source provenance, branch, operation, difficulty, and metric-version metadata.
+evidence:
+  homepage: https://github.com/NJU-LINK/AVE-Compass
+  paper: https://arxiv.org/abs/2607.24821
+  used_by: []
+status: partial
+last_verified: "2026-07-30"
