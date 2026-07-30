@@ -23,19 +23,27 @@ class BuildChangelogDataTests(unittest.TestCase):
         ))
         latest = entries[0]
         self.assertEqual(latest["date"], "2026-07-30")
-        self.assertEqual(payload["format_version"], 2)
+        self.assertEqual(payload["format_version"], 3)
         self.assertEqual(
-            [dimension["label"] for dimension in latest["summary"]],
+            [dimension["label"]["zh"] for dimension in latest["summary"]],
             ["模型", "数据集", "数据关系", "排行榜", "监控", "未披露"],
         )
-        self.assertIn("Oxygen-TryOn", latest["summary"][0]["text"])
+        self.assertEqual(
+            [dimension["label"]["en"] for dimension in latest["summary"]],
+            ["Models", "Datasets", "Data relations", "Rankings", "Monitoring", "Undisclosed"],
+        )
+        self.assertIn("Oxygen-TryOn", latest["summary"][0]["text"]["zh"])
+        self.assertIn("Oxygen-TryOn", latest["summary"][0]["text"]["en"])
         self.assertEqual(
             latest["summary"][0]["links"][0],
-            {"label": "Oxygen-TryOn 模型卡", "href": "/#model-oxygen-tryon"},
+            {
+                "href": "/#model-oxygen-tryon",
+                "label": {"zh": "Oxygen-TryOn 模型卡", "en": "Oxygen-TryOn model card"},
+            },
         )
         self.assertTrue(all(dimension["links"] for dimension in latest["summary"]))
         self.assertTrue(all(
-            link["href"].startswith("/#")
+            link["href"].startswith("/#") and set(link["label"]) == {"zh", "en"}
             for dimension in latest["summary"]
             for link in dimension["links"]
         ))

@@ -120,6 +120,8 @@ test("exports a self-contained GitHub Pages site under the repository base path"
   assert.match(changelogHtml, /数据关系/);
   assert.match(changelogHtml, /未披露/);
   assert.match(changelogHtml, /返回数据目录/);
+  assert.match(changelogHtml, /aria-label="切换呈现语言"/);
+  assert.doesNotMatch(changelogHtml, /<dt>呈现语言<\/dt>/);
   assert.match(changelogHtml, /href="\/AIGCDataHub\/"/);
   assert.match(changelogHtml, /href="\/AIGCDataHub\/#model-oxygen-tryon"/);
   assert.match(changelogHtml, /href="\/AIGCDataHub\/#dataset-ave-compass"/);

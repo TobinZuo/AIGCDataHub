@@ -71,16 +71,19 @@ point, not as an exhaustive list.
 7. Add `updates/YYYY-MM-DD.md` with accepted candidates, already-covered or
    rejected candidates, scope decisions, changed disclosures, and direct
    primary-source links. Every meaningful update must begin with a
-   `## 中文摘要` section containing exactly six reader-facing dimensions in
+   paired `## 中文摘要` and `## English Summary` sections, each containing
+   exactly six reader-facing dimensions in
    this order: `### 模型`, `### 数据集`, `### 数据关系`, `### 排行榜`,
-   `### 监控`, and `### 未披露`. Write one concise Chinese conclusion for each
-   dimension; use “无变化” when appropriate. The public changelog is generated
-   from these summaries and does not expose the full technical log by default.
-   Under every dimension, add exactly one `页面定位：` line with one or more
-   Markdown links to the affected Pages model card, dataset card, relationship
-   view, ranking view, source view, or strategy view. The changelog converts
-   these into direct in-site navigation; generic homepage-only links are not
-   sufficient when a specific card exists.
+   `### 监控`, and `### 未披露`, mirrored by `### Models`, `### Datasets`,
+   `### Data relations`, `### Rankings`, `### Monitoring`, and
+   `### Undisclosed`. Write one concise conclusion per locale and dimension;
+   use “无变化” / “No change” when appropriate. Under every Chinese dimension,
+   add exactly one `页面定位：` line; under its English counterpart add exactly
+   one `Page links:` line. Both must contain the same Pages targets, translated
+   labels, and direct links to affected cards or views. The public changelog is
+   generated from these summaries, supports Chinese/English switching, and does
+   not expose the full technical log by default. Generic homepage-only links
+   are not sufficient when a specific card exists.
 8. Summarize new models, new datasets, changed disclosures, broken links, and
    stale cards for the reviewer.
 9. After every generated candidate is accepted or rejected, run

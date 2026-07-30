@@ -185,6 +185,52 @@ input:focus-visible {
   padding: 72px 6vw 72px 28px;
 }
 
+.changelog-kicker-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.changelog-kicker-row .kicker {
+  margin: 0;
+}
+
+.language-switch {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(52px, 1fr));
+  border: 1px solid var(--ink);
+}
+
+.language-switch button {
+  min-width: 52px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  border-right: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+.language-switch button:last-child {
+  border-right: 0;
+}
+
+.language-switch button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--acid);
+}
+
+.language-switch button:hover:not([aria-pressed="true"]) {
+  background: var(--acid);
+}
+
 .changelog-hero h1 {
   margin: 0;
   font-family: Georgia, "Songti SC", "SimSun", serif;
@@ -278,7 +324,7 @@ input:focus-visible {
 
 .ledger-summary dl {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px;
   margin: auto 0 0;
   border: 1px solid #484a44;
@@ -496,12 +542,6 @@ input:focus-visible {
 .change-dimension-links a:hover {
   border-color: var(--ink);
   background: var(--acid);
-}
-
-.ledger-language {
-  font-family: "Songti SC", "SimSun", serif !important;
-  font-size: 25px !important;
-  white-space: nowrap;
 }
 
 .change-intro {

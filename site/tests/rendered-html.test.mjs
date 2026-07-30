@@ -39,6 +39,10 @@ test("server-renders the standalone Chinese change summary", async () => {
   assert.match(html, /未披露/);
   assert.match(html, /查看完整核验记录/);
   assert.match(html, /返回数据目录/);
+  assert.match(html, /aria-label="切换呈现语言"/);
+  assert.match(html, /aria-pressed="true">中文/);
+  assert.match(html, /aria-pressed="false">EN/);
+  assert.doesNotMatch(html, /<dt>呈现语言<\/dt>/);
   assert.match(html, /href="\/"/);
   assert.match(html, /href="\/#model-oxygen-tryon"/);
   assert.match(html, /href="\/#dataset-ave-compass"/);
@@ -158,7 +162,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   ]);
 
   assert.match(catalog, /"models"/);
-  assert.match(changelog, /"generated_from": "updates\/\*\.md 中的中文摘要"/);
+  assert.match(changelog, /"generated_from": "updates\/\*\.md 中的中英文摘要"/);
   assert.match(changelog, /"date": "2026-07-30"/);
   assert.doesNotMatch(changelog, /Review window|Accepted changes/);
   assert.match(catalog, /"datasets"/);
