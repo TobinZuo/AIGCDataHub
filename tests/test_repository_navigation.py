@@ -26,11 +26,14 @@ class RepositoryNavigationTests(unittest.TestCase):
 
     def test_readme_does_not_embed_stale_inventory_counts(self) -> None:
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        chinese = (ROOT / "README.zh-CN.md").read_text(encoding="utf-8")
 
         self.assertNotIn("Fifty-four of the 55", readme)
         self.assertNotIn("All 40 distinct model cards", readme)
         self.assertNotIn("all 16 candidate source platforms", readme)
         self.assertNotIn("updates/2026-07-27.md", readme)
+        self.assertNotIn("physical-AI models", readme)
+        self.assertNotIn("Physical AI", chinese)
 
     def test_repository_exposes_community_health_and_citation_files(self) -> None:
         for name in ("CODE_OF_CONDUCT.md", "CONTRIBUTING.md", "SECURITY.md", "SUPPORT.md"):

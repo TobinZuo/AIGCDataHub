@@ -552,6 +552,7 @@ class DiscoveryTests(unittest.TestCase):
                 "source-platform-updates",
             }.issubset(track_ids)
         )
+        self.assertNotIn("unified-and-physical-ai", track_ids)
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
         self.assertEqual(len(sources), 311)

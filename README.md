@@ -79,7 +79,7 @@ tracking `master`.
 
 The current scope covers:
 
-- current image, video, audio-video, unified multimodal, and physical-AI models;
+- current image, video, audio-video, and unified multimodal models;
 - the public, gated, internal, synthetic, and undisclosed data behind each model;
 - image, video, audio, 3D, and preference datasets;
 - candidate video, stock-media, studio, and e-commerce source platforms, kept

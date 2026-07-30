@@ -67,7 +67,7 @@ curl -sL https://raw.githubusercontent.com/TobinZuo/AIGCDataHub/master/site/app/
 - 生图、生视频、图像/视频编辑；
 - 数字人、口型同步、视频翻译与配音；
 - 虚拟试衣、电商条件生成；
-- 音视频联合生成、3D、统一多模态和 Physical AI；
+- 音视频联合生成、3D 和统一多模态；
 - 数据获取、过滤、去重、重标注、合成、偏好优化、许可、隐私和来源治理。
 
 纯文本大语言模型语料不在当前范围内。

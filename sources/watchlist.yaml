@@ -143,18 +143,6 @@ tracks:
       - https://hunorlaczko.github.io/MV-Fashion/
       - https://oxygenvision.github.io/Oxygen-TryOn/
 
-  - id: unified-and-physical-ai
-    topics:
-      - unified-multimodal-generation
-      - video-action-model
-      - embodied-generation
-      - synthetic-simulation-data
-    official_sources:
-      - https://bfl.ai/blog
-      - https://github.com/bytedance
-      - https://research.nvidia.com/
-      - https://www.microsoft.com/en-us/research/publications/
-
   - id: datasets
     topics:
       - image-text-dataset
