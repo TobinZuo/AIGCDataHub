@@ -4,13 +4,13 @@ import test from "node:test";
 
 const templateRoot = new URL("../", import.meta.url);
 
-async function render() {
+async function render(pathname = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
 
   return worker.fetch(
-    new Request("http://localhost/", {
+    new Request(`http://localhost${pathname}`, {
       headers: { accept: "text/html" },
     }),
     {
@@ -24,6 +24,21 @@ async function render() {
     },
   );
 }
+
+test("server-renders the standalone change ledger", async () => {
+  const response = await render("/changelog");
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
+
+  const html = await response.text();
+  assert.match(html, /<title>变更记录 \| AIGCDataHub<\/title>/i);
+  assert.match(html, /每一次变化/);
+  assert.match(html, /2026\.07\.30/);
+  assert.match(html, /Oxygen-TryOn/);
+  assert.match(html, /排行榜变化/);
+  assert.match(html, /证据不足/);
+  assert.match(html, /在 GitHub 查看原始记录/);
+});
 
 test("server-renders the AIGCDataHub catalog", async () => {
   const response = await render();
@@ -127,8 +142,9 @@ test("server-renders the AIGCDataHub catalog", async () => {
 });
 
 test("uses generated catalog data and removes starter preview assets", async () => {
-  const [catalog, page, catalogExplorer, layout, packageJson] = await Promise.all([
+  const [catalog, changelog, page, catalogExplorer, layout, packageJson] = await Promise.all([
     readFile(new URL("../app/catalog-data.json", import.meta.url), "utf8"),
+    readFile(new URL("../app/changelog-data.json", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/catalog-explorer.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
@@ -136,6 +152,8 @@ test("uses generated catalog data and removes starter preview assets", async () 
   ]);
 
   assert.match(catalog, /"models"/);
+  assert.match(changelog, /"generated_from": "updates\/\*\.md"/);
+  assert.match(changelog, /"date": "2026-07-30"/);
   assert.match(catalog, /"datasets"/);
   assert.match(catalog, /"soundatlas"/);
   assert.match(catalog, /"objaverse-xl"/);

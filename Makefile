@@ -42,9 +42,11 @@ model-data-index-check:
 
 site-data:
 	$(PYTHON) scripts/build_site_data.py
+	$(PYTHON) scripts/build_changelog_data.py
 
 site-data-check:
 	$(PYTHON) scripts/build_site_data.py --check
+	$(PYTHON) scripts/build_changelog_data.py --check
 
 test:
 	$(PYTHON) -m unittest discover -s tests -v

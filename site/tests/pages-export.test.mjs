@@ -6,6 +6,7 @@ const siteRoot = new URL("../", import.meta.url);
 
 test("exports a self-contained GitHub Pages site under the repository base path", async () => {
   const html = await readFile(new URL("out/index.html", siteRoot), "utf8");
+  const changelogHtml = await readFile(new URL("out/changelog/index.html", siteRoot), "utf8");
 
   assert.match(html, /AIGCDataHub/);
   assert.match(html, /AudioSet/);
@@ -112,6 +113,15 @@ test("exports a self-contained GitHub Pages site under the repository base path"
     /<link rel="canonical" href="https:\/\/tobinzuo\.github\.io\/AIGCDataHub\/"\/>/,
   );
   assert.match(html, /https:\/\/tobinzuo\.github\.io\/AIGCDataHub\/og\.png/);
+  assert.match(html, /href="\/AIGCDataHub\/changelog\/"/);
+  assert.match(changelogHtml, /每一次变化/);
+  assert.match(changelogHtml, /Oxygen-TryOn/);
+  assert.match(changelogHtml, /排行榜变化/);
+  assert.match(changelogHtml, /href="\/AIGCDataHub\/"/);
+  assert.match(
+    changelogHtml,
+    /<link rel="canonical" href="https:\/\/tobinzuo\.github\.io\/AIGCDataHub\/changelog\/"\/?>/,
+  );
 
   await access(new URL("out/og.png", siteRoot));
   await access(new URL("out/favicon.svg", siteRoot));

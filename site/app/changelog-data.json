@@ -1,0 +1,1718 @@
+{
+  "format_version": 1,
+  "generated_from": "updates/*.md",
+  "entries": [
+    {
+      "date": "2026-07-30",
+      "title": "2026-07-30 日常更新",
+      "intro": [],
+      "sections": [
+        {
+          "title": "扫描范围与基线",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "以 `origin/master` 的 `e925b2d87dbe3b9e0801c591e7ca17d03cee39b5` 为本次唯一基线，在隔离 worktree 中运行 `make discovery`。",
+                "机器扫描完成 298 个监控源：18 条候选链接、22 条重要目录修订、5 个排行榜变化、1 个新失败；排行榜映射缺口为 0。",
+                "人工补充检索 2026-07-23 至 2026-07-30 的组织官网、论文、官方 GitHub 和 Hugging Face，覆盖生图、生视频、图像/视频编辑、数字人、音视频编辑、视频翻译/配音、虚拟试衣、3D、统一多模态和 Physical AI。"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "接受：新增模型与数据关系",
+          "blocks": [
+            {
+              "type": "subheading",
+              "text": "Oxygen-TryOn"
+            },
+            {
+              "type": "list",
+              "items": [
+                "新增 `oxygen-tryon` 模型卡，发布日期按论文首发日记录为 2026-07-23；当前项目页仍为 Coming Soon，权重、代码、API 和制品许可均未发布，因此访问状态为 `announced`，没有伪造下载链接。",
+                "架构按技术报告记录为 JoyAI-Image-Edit 初始化、Qwen3-VL-8B-Instruct 理解模块、Wan-2.1-VAE 和 16B MMDiT；没有把能力表现反推为数据事实。",
+                "新增 `oxygen-tryon-training-corpus`：原始池超过 5,000 万张图，来源类型为真实电商、开放域时尚和合成数据；记录 1024p、MD5/语义去重、安全、文字/水印、质量与美学过滤，以及中英双语结构化标注和四条配对合成管线。保留量、来源名称、权利基础、各源配比和合成器版本均为未披露。",
+                "新增 `oxygen-tryon-preference-pairs`：约 10 万个人工比较对，只作为奖励模型/偏好阶段数据；记录 item consistency、face identity consistency 和 overall visual quality 三维标注，未披露标注者与候选生成器细节。",
+                "新增 `oxygen-tryon-bench`：1,000 条内部评测样本，Cloth-to-Model 与 Model-to-Model 各 500；明确它是评测集，不写成训练集。",
+                "模型关系新增 3 条：训练语料（CPT/SFT）、偏好对（reward model/RL）和独立评测集；CPT 的 1:1 通用语料来自继承的 JoyAI-Image-Edit 训练资产，具体身份和规模未披露。",
+                "一手来源：[技术报告](https://arxiv.org/abs/2607.21694)、[论文 HTML](https://arxiv.org/html/2607.21694)、[项目页](https://oxygenvision.github.io/Oxygen-TryOn/)。"
+              ]
+            },
+            {
+              "type": "subheading",
+              "text": "ID-V2V"
+            },
+            {
+              "type": "list",
+              "items": [
+                "新增 `id-v2v` 模型卡，发布日期为 2026-07-24；官方仓库与两套 720p 权重已公开，仓库和 Hugging Face 声明 Apache-2.0，但 SAM3、Wan2.1、VACE 等上游制品仍需分别审阅。",
+                "新增 `id-v2v-human-centric-videos`：40,000 条未发布的单人/多人视频，训练分辨率 1280×720、每条 81 帧；Qwen2.5-VL-32B 生成描述，SCRFD 最多保留每帧 5 张脸，超过 40% 帧无脸的视频被丢弃。来源、许可、同意和隐私审查未披露。",
+                "新增 `id-v2v-luxpostfacto-olat-subset` 和 `id-v2v-poly-haven-hdri-sample`，分别解析论文点名的 67 位参与者 OLAT 源与 Poly Haven HDR 环境图选择。前者未提供获取路径及参与者权利条款；后者底层资产为 CC0，但本次实际抽样清单、版本和采样权重未发布。",
+                "新增 `id-v2v-face-relighting-pairs`：约 330,000 对合成补光图，以以上两项为可解析 lineage；SVD 派生补光模型训练 200K 步。CC0 HDRI 不覆盖人脸 OLAT 的生物特征、同意和再分发权利，因此整体访问仍记为 unavailable。",
+                "新增 `id-v2v-evaluation-suite`：100 条单人和 60 条双人视频，Gemini 2.5 提议编辑，Qwen-Image-Edit 生成关键帧并人工过滤；明确为 evaluation-only。",
+                "模型关系新增 3 条，数据 lineage 新增 2 条；没有把评测视频、运行时用户输入或上游基础模型制品混入主训练集。",
+                "一手来源：[论文](https://arxiv.org/abs/2607.22830)、[论文 HTML](https://arxiv.org/html/2607.22830)、[官方 GitHub](https://github.com/Eyeline-Labs/ID-V2V)、[官方权重](https://huggingface.co/Eyeline-Labs/ID-V2V)、[Poly Haven 许可](https://polyhaven.com/license)。"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "接受：公共评测集与既有模型更新",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "新增 `ave-compass`：官方公开 145 条源视频、196 条人工核验的音视频编辑指令、2,688 条细粒度 checklist 和 28 类操作，覆盖联合音画、语音、纯视频和纯音频编辑。Hugging Face 可直接浏览/下载，声明 CC-BY-NC-4.0；上游源视频仍需逐项权利复核。该集合仅进入 evaluation 关系，不作为任何模型的训练数据。[论文](https://arxiv.org/abs/2607.24821)；[数据集](https://huggingface.co/datasets/NJU-LINK/AVE-Compass)；[官方仓库](https://github.com/NJU-LINK/AVE-Compass)。",
+                "更新 `grok-imagine-video-1-5` 的 API 地址，从 preview 页面切换到官方稳定 `grok-imagine-video-1.5` 页面；官方仍保留 preview 与日期别名，数据策略仍完全未披露。[稳定模型页](https://docs.x.ai/developers/models/grok-imagine-video-1.5)。",
+                "新增 2 个模型探针和 9 个数据集探针：ID-V2V、Oxygen-TryOn 及其每张训练/偏好/评测/上游组件卡均能按 canonical ID 关联监控，AVE-Compass 使用 Hugging Face revision；并把两项加入数字人和虚拟试衣官方源轨道。"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "排行榜变化",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Arena 图像编辑：`grok-imagine-image-quality` 6→4，Gemini 3 Pro Image 7→5，Seedream 5.0 Pro 4→8；另有 ChatGPT Image、Gemini preview/web-search 与 Reve 2.1 的名次变化。[榜单](https://arena.ai/leaderboard/image-edit)。",
+                "Artificial Analysis 图像编辑：FLUX.2 Max 新进第 15，HiDream-O1 15→13，Kling Image 3.0 13→14，Kling O1 跌出前 15，MAI-Image-2.5-Flash 7→8，Grok Image Quality 8→7。[榜单](https://artificialanalysis.ai/image/leaderboard/editing/)。",
+                "图生视频：Grok Video 1.5 稳定名从榜外进入第 3，同时 preview 名退出，判定为同一模型的稳定别名切换；Veo 3.1 Lite 新进第 14，Kling 3 Omni 1080p Pro 跌出，HappyHorse、Wan 2.7、Vidu Q3 Pro 小幅换位。[榜单](https://artificialanalysis.ai/video/leaderboard/image-to-video)。",
+                "文生图：GPT Image 1.5 high 6→5、Nano Banana 2 5→6、Recraft 4.1 13→12、Grok Image Quality 12→13。[榜单](https://artificialanalysis.ai/image/leaderboard/text-to-image/)。",
+                "文生视频：Kling 3 Omni 两档各下降一位，Veo 3.1 11→10、Veo 3.1 Fast 13→12。[榜单](https://artificialanalysis.ai/video/leaderboard/text-to-video)。",
+                "所有前列名称均已有可解析模型映射，未新增 coverage gap。"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "已核验但不改事实卡",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Google 的 Gemini 3 Pro Image、Gemini 3.1 Flash Image、Veo 3.1 Lite、Gemini 3.1 Flash Lite Image 与 Gemini Omni 页面存在页面哈希变化，但访问形态、模型标识和训练数据披露均无可入库变化。",
+                "xAI 的 Grok Imagine Image、Image Quality、Video 页面只有文档模板/价格区域变更；除 Video 1.5 稳定地址外，没有新增训练数据、技术报告或许可事实。",
+                "AgentHOI 仓库继续公开推理、训练代码与权重，训练数据仍明确不包含；现有卡已覆盖。Microsoft Mage 仓库加入 Mage-VL 内容，但没有改变 `mage-flow` 的训练关系。PosterCraft 组织页、HappyHorse、Wan 2.7、PixVerse V6、Recraft 4.1 的变更未提供新的数据策略。",
+                "Shutterstock、Dailymotion、Pexels 和 Mixkit 页面内容哈希变化未改变已记录的接口边界、下载形态或训练权利；未因此改 `last_verified`。"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "候选处置",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "**接受**：机器候选中的 AVE-Compass；独立检索中的 Oxygen-TryOn 与 ID-V2V。",
+                "**训练无关/无需入库**：CachedSearch、AnchorSteer、TPD、Dual Inversion 和 FreqForcing 均为训练免改或推理期方法，没有新增可核验训练语料；WhereEdit 同类处理。",
+                "**超出当前生成数据范围**：CAVSR 是儿童 AIGC 风险评测，空间音视频检索、NEXT 推荐、See2Think 中间视觉推理、SeasonStereo 遥感立体匹配与 FreeShadow 阴影去除不构成当前核心生成训练数据关系。",
+                "**证据或关系未闭环**：Visko Orbis 1.0 只披露高层来源类型和过滤流程，未披露原始规模、源名称、权利或公开制品；Ripple 虽点名多个公开集及约 300 万条混合语料，但专有中文/英文 talking-head 源、各源配比、权利和制品许可仍需逐项闭环；两者保留高优先级后续核验，不创建半完整关系。",
+                "**发布者证据不足**：`bench-labs/PixelModel-v4`、`PixelModel-v5` 与 `wikeeyang/Flux2-Klein-9B-True-V2` 缺少可确认的原组织发布或技术报告，不据 Hugging Face 名称推断血缘。",
+                "**发布者证据不足（刷新后新增）**：`ponpoke/flux2-klein-4b-uncensored-text-encoder` 只有个人 Hugging Face 仓库，缺少原模型组织发布、训练报告和可核验数据来源，不纳入模型或数据关系。",
+                "**独立虚拟试衣候选**：Layering Virtual Try-On 论文披露两阶段数据构造，但代码、权重、数据清单与视频源权利未发布；WearWow 首发早于本次 7 天窗口，均记录为后续核验而不抢先建卡。",
+                "最近 7 天未发现同时满足一手来源、发布日期和可解析数据关系要求的新 3D 或 Physical AI 生成模型；统一多模态方向的近期页面修订也没有新的训练数据披露。"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "来源监控异常处理",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "VCG 官方条款页本次对匿名自动抓取返回 HTTP 403。平台仍可访问且条款页 URL 未失效，因此把监控从正文哈希改为 `availability`，保留高优先级与人工权利复核要求；这不会把“页面存在”解释成训练许可，也不会把 VCG 误建为数据集。",
+                "`export.arxiv.org` 对 Mage-Flow 与 GraphVid 探针一度返回 HTTP 429，因此切换到等价的 arXiv abs/v1 一手页面；GraphVid 无 HTML 版本，未使用会稳定 404 的 URL。",
+                "完成事实核验和候选处置后才刷新 discovery 基线；最终 311 个监控源复扫与 `discovery-accept` 均为 0 候选、0 重要修订、0 失败、0 排行榜变化，且无排行榜映射缺口。"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "生成物与测试",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "已运行 `make readme`、`make dataset-access-index`、`make source-platform-index`、`make model-data-index`、`make site-data`，生成物一致。",
+                "`make check` 通过：122 张数据卡、93 张模型卡、18 个候选来源平台均通过校验，108 项 Python 单元测试全部通过。",
+                "`make check-links` 通过：检查 893 条链接声明，0 个确认失效；33 条为既有访问控制、超时、证书或瞬态告警。",
+                "站点 `npm run lint`、`npm test`（2 项渲染测试）、`GITHUB_PAGES=true npm run pages:build` 和 `node --test tests/pages-export.test.mjs`（1 项导出测试）全部通过。"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "站点变更记录页面",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "新增独立 `/changelog/` 页面，把 `updates/*.md` 按日期整理为可展开的维护账本；最新批次默认展开，并保留分区、表格、代码标识和一手证据链接。",
+                "新增自动生成的 `site/app/changelog-data.json`，由 `make site-data` 与其他站点数据一起刷新和校验，避免另行手写一份会失真的变更摘要。",
+                "主页头部新增“变更记录”入口；页面沿用现有纸张、墨色和荧光强调色，并针对窄屏压缩标题、导航和统计区。",
+                "新增 2 项生成器单元测试、1 项服务端渲染测试和 GitHub Pages 独立路由导出断言；本次站点测试总数更新为 3 项渲染测试，Python 单元测试总数更新为 110 项。"
+              ]
+            }
+          ]
+        }
+      ],
+      "source_path": "updates/2026-07-30.md"
+    },
+    {
+      "date": "2026-07-28",
+      "title": "Update review — 2026-07-28",
+      "intro": [
+        {
+          "type": "paragraph",
+          "text": "Review window: 2026-07-22 through 2026-07-28. The review covered the focused image/video discovery feeds and direct checks of official image generation, video generation/editing, digital-human, dubbing/localization, virtual try-on, audio/video, 3D, unified-generation, and Physical-AI sources."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Accepted changes",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "**Artificial Analysis image-to-video ranking:** Dreamina Seedance 2.0 720p moved from rank 2 to rank 1, while Gemini Omni Flash moved from rank 1 to rank 2. All current Top-15 entries still resolve to verified model cards; the provider snapshot is used only as evidence for this observed ranking. [Official leaderboard](https://artificialanalysis.ai/video/leaderboard/image-to-video)",
+                "**Dailymotion source platform:** the official developer portal now identifies API v2 as the current recommended interface and documents authenticated upload and content management, delivery, players, advertising, analytics, and reporting. The platform profile now names API v2 and retains the existing boundary that API access does not grant model-training rights. [Official API v2 documentation](https://developers.dailymotion.com/docs/welcome)",
+                "**Monitor reliability:** the GPT Image 2 probe now follows OpenAI's stable first-party system-card PDF after the API model page returned an empty normalized body and the release page rejected the scanner. UniSync, iTryOn, and HoliDubber now use their official arXiv paper or abstract pages instead of rate-limited export API queries. These changes improve revision monitoring without changing any model or dataset fact. [GPT Image 2 system card](https://deploymentsafety.openai.com/chatgpt-images-2-0/chatgpt-images-2-0.pdf) · [UniSync](https://arxiv.org/pdf/2603.03882) · [iTryOn](https://arxiv.org/abs/2605.21431) · [HoliDubber](https://arxiv.org/abs/2606.09098)"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Reviewed discovery candidates",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "All nine machine candidates were opened at their primary source. None supports a new catalog card or model–dataset relationship in this review."
+            },
+            {
+              "type": "list",
+              "items": [
+                "Excluded as medical generation survey/evaluation rather than maintained generative-media training data: [medical inpainting survey](https://arxiv.org/abs/2607.21904) and [Medical-Checklist](https://arxiv.org/abs/2607.21998).",
+                "Excluded as multimodal understanding, fake-image detection, visual relocalization, or watermarking rather than media-generation data strategy: [small-VLM confidence under degradation](https://arxiv.org/abs/2607.22034), [FAIR](https://arxiv.org/abs/2607.22087), [sparse-view relocalization](https://arxiv.org/abs/2607.22147), and [latent angular watermarking](https://arxiv.org/abs/2607.22386).",
+                "Not promoted because the work is an inference-time guidance method or an interactive art tool and does not release a new training corpus: [Spectral Alignment](https://arxiv.org/abs/2607.22091) and [interactive model bending](https://arxiv.org/abs/2607.22428).",
+                "Excluded because the Hugging Face entry is an unofficial third-party modified FLUX text encoder, not an organization release or first-party data disclosure: [ponpoke/flux2-klein-4b-uncensored-text-encoder](https://huggingface.co/ponpoke/flux2-klein-4b-uncensored-text-encoder)."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Important revision review",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The PosterCraft organization still exposes the same two public repositories, Text-Render-2M and Poster100K, with the same approximate row counts and no new component license or access conclusion. Google model pages for Gemini 3 Pro Image, Gemini 3.1 Flash Image, and Veo 3.1 Lite changed content hashes but did not add training-corpus or model-specific data-pipeline disclosures. Meta's blog change was caused by newer perception/robotics posts and did not change Muse Video access or training information."
+            },
+            {
+              "type": "paragraph",
+              "text": "The current OpenAI, Alibaba Cloud, and PixVerse pages likewise add no named training datasets, mixture sizes, provenance, license inventory, filtering, deduplication, relabeling, synthetic-data, or preference-optimization facts for GPT Image 1.5/2, HappyHorse 1.0/1.1, Wan 2.6/2.7, Qwen-Image 2.0, or PixVerse V6. Pexels continues to require explicit permission for API-backed dataset construction or ML/AI use, so its existing rights-review boundary is unchanged."
+            },
+            {
+              "type": "paragraph",
+              "text": "Physical-AI checks found two new Meta deployment stories about SAM/DINO use in scientific imaging and assistive robotics. They describe perception-model deployment and downstream auto-labeling/fine-tuning, not a newly released action model, generative world model, simulation corpus, or downloadable robot dataset, so they remain outside the catalog's generative/action-data boundary: [Genesis Mission](https://ai.meta.com/blog/genesis-mission-lawrence-berkeley-national-laboratory-segment-anything-dino/) · [assistive robotics](https://ai.meta.com/blog/assistive-robotics-university-of-pittsburgh-sam-dino/)."
+            }
+          ]
+        },
+        {
+          "title": "Remaining undisclosed",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "No reviewed revision supplies a new model-development dataset name, download, weight release, technical report, mixture ratio, rights composition, scale, cleaning or deduplication recipe, relabeling process, synthetic-data recipe, or preference-training corpus. Existing unknowns therefore remain explicit on the affected model cards, and no `last_verified` field is advanced solely because a page hash changed."
+            },
+            {
+              "type": "paragraph",
+              "text": "The final live review pass checked all 298 watched first-party sources with zero source failures, zero recoveries, and zero ranked-model coverage gaps. It retained the nine reviewed candidates and one image-to-video ranking change until the reviewed discovery baseline was accepted."
+            }
+          ]
+        }
+      ],
+      "source_path": "updates/2026-07-28.md"
+    },
+    {
+      "date": "2026-07-27",
+      "title": "Update review — 2026-07-27",
+      "intro": [],
+      "sections": [
+        {
+          "title": "Dataset-detail repair and same-day model/data intake",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The OpenVE-Edit screenshot reported in review came from the retired preview deployment: its footer knew that two catalog relations existed, but that older JavaScript bundle did not render the relation rows. The maintained GitHub Pages build now shows **OpenVE-3M** and **OpenVE-Bench** by name, with separate “view data card” and direct Hugging Face access actions. A durable `#strategy-datasets-openve-edit` hash restores the correct strategy view; each dataset also has its own `#dataset-*` deep link. The old `aigc-datahub-index.zuotongbin.chatgpt.site` address remains outside the GitHub deployment pipeline and should not be used for verification."
+            },
+            {
+              "type": "paragraph",
+              "text": "This review also resolves five more model references that previously appeared only as prose:"
+            },
+            {
+              "type": "list",
+              "items": [
+                "**SANA-Video 2.0** now links to an unavailable progressive-training card and an unavailable preference-pair card. The first records the paper's approximately 30M pretraining, 10M continual-training, and 10K SFT clip stages without incorrectly summing potentially overlapping pools. The second records Gemini-ranked generated comparisons while leaving the undisclosed pair count unknown.",
+                "**Mage-Flow** is corrected from “announced” to an MIT open-weight family after Microsoft released code and six generation/editing checkpoints. Its 1.3B curated image-text corpus, 45M retained editing triples, and approximately 50K generation/editing RL prompts now have separate cards. All three remain unavailable as data even though the model artifacts are public."
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The live discovery pass then found eleven new arXiv candidates and one ranking change. Eight candidates were excluded as medical understanding, fake-image detection, watermarking, view localization, surveys, or interactive art tools outside the core generation-data scope. Three were promoted from primary papers:"
+            },
+            {
+              "type": "list",
+              "items": [
+                "**InnoText ↔ InnoText-30K:** a paper-only unified visual-text generation and editing model plus its unreleased 20K-Chinese / 10K-English corpus, assembled from Lex-10K, a Seedream-generated Chinese counterpart, and an AnyWord-3M subset.",
+                "**AgentHOI ↔ AgentHOI Mixed-Source Training Corpus:** public checkpoints and code with no declared repository license, linked to an unreleased 108K-clip corpus containing 71K real clips mined from 10M online videos and 37K synthetic clips.",
+                "**fMRI2Face ↔ fMRI-Face:** a paper-only neural video decoder linked to 62,856 fMRI–digital-human video pairs from three consenting subjects. The card explicitly treats brain signals as sensitive personal data and does not imply access from publication alone."
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The monitor also captured Recraft V4.1 Utility moving from rank 13 to 12 and Grok Imagine Image Quality moving from 12 to 13 on the watched text-to-image board. The catalog now contains 113 datasets, 91 models, 129 explicit model-to-dataset role relations, 27 dataset-lineage relations, and 298 watched first-party sources."
+            },
+            {
+              "type": "paragraph",
+              "text": "Primary evidence: [OpenVE project](https://lewandofskee.github.io/projects/OpenVE/) · [OpenVE-3M](https://huggingface.co/datasets/Lewandofski/OpenVE-3M) · [OpenVE-Bench](https://huggingface.co/datasets/Lewandofski/OpenVE-Bench) · [SANA-Video 2.0](https://arxiv.org/abs/2607.21553) · [Mage-Flow paper](https://arxiv.org/abs/2607.19064) · [Mage repository](https://github.com/microsoft/Mage) · [InnoText](https://arxiv.org/abs/2607.22101) · [AgentHOI](https://arxiv.org/abs/2607.22241) · [AgentHOI repository](https://github.com/bone-11/agenthoi) · [fMRI2Face](https://arxiv.org/abs/2607.22302)."
+            }
+          ]
+        },
+        {
+          "title": "WorldWeaver and Solaris multi-agent world-model lineage",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The catalog now follows a complete public-to-unreleased data chain instead of recording WorldWeaver as an isolated new paper:"
+            },
+            {
+              "type": "list",
+              "items": [
+                "**WorldWeaver** is linked to a dedicated card for its approximately 126-hour synchronized two-agent Minecraft corpus. The paper documents 832x480 video at 20 FPS, per-agent state and controller logs, a shared overhead camera, and Qwen2.5-VL-72B-Instruct scene text for every four-frame chunk. The card is deliberately marked unavailable because no files, download path, dataset license, code, or checkpoints have been published.",
+                "**Solaris** is added as the open-weight upstream multiplayer world model. Its runnable four-stage pipeline links the public VPT contractor demonstrations, the public 12.64M-frame / 9,240-episode Solaris Training Dataset, and the public 1,280-row Solaris Eval Datasets. The inherited Matrix Game 2.0 corpus remains an unresolved reference rather than being guessed from the base checkpoint name.",
+                "**Solaris Training Dataset** and **Solaris Eval Datasets** have direct Hugging Face download actions. Their official Apache-2.0 declarations are recorded, while Minecraft/Mojang media-rights review remains separate from repository licensing. **VPT Contractor Demonstrations** points to OpenAI's official MP4 and JSONL indices and explicitly distinguishes that public release from the 70,000-hour online-video corpus in the original VPT pipeline.",
+                "WorldWeaver's evaluation edge resolves to the Solaris test release used by the paper, while its inherited single-player video prior remains unknown. Thus the detail view shows both navigable cards and unresolved evidence boundaries instead of turning every named input into a fake download."
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Six new critical probes watch both model repositories and all four dataset surfaces. The monitor now parses arXiv Atom feeds from stable entry version and entry-update fields rather than hashing the dynamic query timestamp, eliminating false paper-revision alerts. Default scan concurrency is reduced to improve Hugging Face reliability; baseline acceptance still fails closed on any source failure."
+            },
+            {
+              "type": "paragraph",
+              "text": "The catalog now contains 105 datasets, 88 models, 121 explicit model-to-dataset role relations, 27 dataset-lineage relations, and 287 watched first-party sources. The accepted 287-source live scan completed with zero new candidates, important revisions, source failures, recoveries, ranking changes, or ranking coverage gaps."
+            },
+            {
+              "type": "paragraph",
+              "text": "Primary evidence: [WorldWeaver paper](https://arxiv.org/abs/2607.21594) · [project](https://vail-ucla.github.io/worldweaver/) · [repository](https://github.com/VAIL-UCLA/WorldWeaver) · [Solaris paper](https://arxiv.org/abs/2602.22208) · [code](https://github.com/solaris-wm/solaris) · [training data](https://huggingface.co/datasets/nyu-visionx/solaris-training-dataset) · [evaluation data](https://huggingface.co/datasets/nyu-visionx/solaris-eval-datasets) · [VPT contractor demonstrations](https://github.com/openai/Video-Pre-Training#contractor-demonstrations)."
+            }
+          ]
+        },
+        {
+          "title": "ElasticTTT runtime data and evaluation lineage",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "ElasticTTT is now represented as three separate evidence layers so the strategy view no longer makes a per-run input look like a missing downloadable corpus:"
+            },
+            {
+              "type": "list",
+              "items": [
+                "**Inherited pretraining data:** the method reuses a Wan video diffusion backbone, but the ElasticTTT paper does not enumerate that base model's full source corpus or mixture. This remains an unresolved pretraining reference.",
+                "**Runtime adaptation data:** each edit run optimizes a LoRA for 100 steps on one user-provided source video. This is now labeled `runtime-input`, not as an unpublished publisher dataset, and intentionally has no dataset card.",
+                "**Public evaluation data:** the official Hugging Face release contains 25 source MP4 files and five target edit instructions per video, yielding the paper's 125 text-video pairs. It is linked as an evaluation dataset rather than training supervision and has a direct access action in the site."
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The evaluation card traces its 25 selected source videos to **DAVIS 2017**. DAVIS now has a separate source card recording the official totals of 150 sequences, 10,459 annotated frames, and 376 objects, plus the direct official 480p/full-resolution download page. Both public cards retain a rights warning: neither the ElasticTTT repository nor the DAVIS download page states a clear commercial-use and redistribution license, so public access is not treated as permission."
+            },
+            {
+              "type": "paragraph",
+              "text": "The model card also preserves an implementation boundary that would otherwise be easy to miss: the paper reports a Wan2.1-1.3B setup, while the current research-preview repository targets Wan2.2-TI2V-5B and says the final version is still forthcoming. No standalone ElasticTTT weights are claimed."
+            },
+            {
+              "type": "paragraph",
+              "text": "The catalog now contains 101 datasets, 86 models, 116 explicit model-to-dataset role relations, 27 dataset-lineage relations, and 281 watched first-party sources. The accepted 281-source live scan completed with zero new candidates, important revisions, source failures, recoveries, ranking changes, or ranking coverage gaps."
+            },
+            {
+              "type": "paragraph",
+              "text": "Primary evidence: [ElasticTTT paper](https://arxiv.org/abs/2607.21529) · [project](https://liuyueyi-del.github.io/ElasticTTTprojectpage/) · [preview repository](https://github.com/liuyueyi-del/ElasticTTT-for-video-editing) · [evaluation dataset](https://huggingface.co/datasets/liuyueyi-8/ElasticTTT-video-editing-dataset) · [DAVIS 2017 downloads](https://davischallenge.org/davis2017/code.html) · [DAVIS 2017 paper](https://arxiv.org/abs/1704.00675)."
+            }
+          ]
+        },
+        {
+          "title": "Dataset relation navigation repair",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Strategy-comparison links now preserve a resolvable catalog target in the URL. Refreshing, sharing, or returning to a `strategy`, `model`, or `dataset` hash restores the correct tab, clears incompatible filters, expands model/dataset cards when needed, and scrolls back to the requested relation."
+            },
+            {
+              "type": "paragraph",
+              "text": "This closes a visible gap for OpenVE-Edit: its two disclosed references are shown as the OpenVE-3M fine-tuning corpus and OpenVE-Bench evaluation set, with direct data-card and Hugging Face access actions. A browser tab opened before the prior Pages deployment can still retain the old JavaScript until it is reloaded; after reload, the new hash is durable across navigation."
+            },
+            {
+              "type": "paragraph",
+              "text": "The retired `aigc-datahub-index.zuotongbin.chatgpt.site` preview is not part of the repository deployment pipeline and remains stale. The canonical maintained site is [GitHub Pages](https://tobinzuo.github.io/AIGCDataHub/), built from `master`; the repository README links only to that address."
+            }
+          ]
+        },
+        {
+          "title": "Cinematic dubbing and production lip-sync lineage",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Three recent systems now expose their data strategy as navigable model ↔ dataset relations instead of leaving dataset names inside paper prose:"
+            },
+            {
+              "type": "list",
+              "items": [
+                "**DiFlowDubber** pretrains a zero-shot TTS prior on a disclosed 470-hour LibriTTS subset, then adapts separate models on Chem and GRID. LibriTTS and GRID have official download surfaces; Chem does not. The official repository remains a paper/project shell and still marks implementation and checkpoints as coming soon.",
+                "**FunCineForge** trains its main 0.5B cinematic-dubbing system on CineDub-CN, a 7.2 TB internal corpus distilled from more than 6,000 raw Chinese television hours into 1,559,172 samples and more than 4,700 effective speech hours. The code and bilingual checkpoint are public, but the full corpus is not. The separately released CineDub-Example repository is gated, non-commercial, and contains roughly 52.93 GB of Chinese and English examples; it is not presented as the complete training set. A controlled comparison links the model to V2C-Animation, Chem, and GRID for both training and evaluation roles.",
+                "**UniSync** fine-tunes an undisclosed audio-image-to-video base model on a named but unreleased 5,000-video high-resolution corpus. It evaluates on HDTF and the new 495-video RealWorld-LipSync benchmark. The paper promises the new benchmark for future public release, but no files, repository, weights, or license are currently available."
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The acquisition layer keeps four states separate: direct official downloads (LibriTTS and GRID), reconstruction metadata without redistributable media (V2C-Animation), gated examples (CineDub-Example), project/metadata-only corpora (Chem and CineDub-CN), and paper-only unavailable corpora (UniSync 5K and RealWorld-LipSync). Eleven new critical probes watch every added model and dataset surface for repository, checkpoint, file, access, or license changes."
+            },
+            {
+              "type": "paragraph",
+              "text": "The resulting catalog contains 99 datasets, 85 models, 115 explicit model-to-dataset role relations, 26 dataset-lineage relations, and 278 watched first-party sources. The accepted 278-source live scan completed with zero new candidates, important revisions, source failures, recoveries, ranking changes, or ranking-coverage gaps."
+            },
+            {
+              "type": "paragraph",
+              "text": "Primary evidence: [DiFlowDubber paper](https://arxiv.org/abs/2603.14267) · [repository](https://github.com/Fsoft-AIC/DiFlowDubber) · [LibriTTS](https://www.openslr.org/60/) · [GRID](https://spandh.dcs.shef.ac.uk/gridcorpus/) · [Chem project](https://tsinghua-mars-lab.github.io/NeuralDubber/) · [FunCineForge paper](https://arxiv.org/abs/2601.14777) · [repository](https://github.com/QwenAudio/FunCineForge) · [weights](https://huggingface.co/FunAudioLLM/Fun-CineForge) · [CineDub examples](https://huggingface.co/datasets/FunAudioLLM/CineDub-Example) · [V2C-Animation](https://github.com/chenqi008/V2C) · [UniSync paper](https://arxiv.org/abs/2603.03882)."
+            }
+          ]
+        },
+        {
+          "title": "Video-dubbing dataset visibility and lineage",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The video-localization track now exposes the dataset names that were previously visible only as strategy prose or a linked-card count. Two model cards and five dataset cards close the main first-party evidence chain:"
+            },
+            {
+              "type": "list",
+              "items": [
+                "**VoiceCraft-Dub** links its LRS3 and CelebV-Dub training/evaluation roles, its 200-sample VoxCeleb2 generalization evaluation, the public model weights, and the official CelebV-Dub archive. The model card records the sequential LRS3 → CelebV-Dub adaptation rather than treating the two corpora as an undocumented mixture.",
+                "**HoliDubber** links 80,000 Emilia hours, VoxCeleb2, CelebV-Dub, and HoliDub-Bench. Its separate 30,000-hour Audio-VAE mixture and 50,000 hours of other text-guided-audio sources remain explicit unresolved references because the paper discloses their category ratios but not source identities.",
+                "**CelebV-Dub** now traces back to CelebV-HQ and CelebV-Text. **HoliDub-Bench** traces back to 641 VoxCeleb2 clips and 359 CelebV-Dub clips. These are dataset-to-dataset lineage edges, distinct from the model training roles."
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Acquisition status is deliberately current rather than historical. The VoiceCraft-Dub repository still provides the CelebV-Dub Google Drive archive, but VoxCeleb2 and LRS3 now state on their official pages that their downloads are no longer available. HoliDub-Bench is described in the paper but has no published files, and Emilia currently requires accepting gated access terms. The website therefore shows a real download/request action only where one exists and an availability notice everywhere else."
+            },
+            {
+              "type": "paragraph",
+              "text": "Seven critical or high-priority probes now watch the model repositories/paper, the two retired official dataset pages, the CelebV-Text source repository, the CelebV-Dub release instructions, and the HoliDub-Bench project page. A future code, checkpoint, dataset, or access-link publication will enter the review queue without converting a paper URL into a fictional download. The resulting catalog contains 91 datasets, 82 models, 99 explicit model-to-dataset role relations, and 25 dataset-lineage relations. The accepted 267-source live scan completed with zero new candidates, important revisions, source failures, recoveries, ranking changes, or ranking coverage gaps."
+            },
+            {
+              "type": "paragraph",
+              "text": "Primary evidence: [VoiceCraft-Dub paper](https://arxiv.org/abs/2504.02386) · [repository](https://github.com/kaist-ami/voicecraft-dub) · [CelebV-Dub archive](https://drive.google.com/file/d/1pL4C4sRiQimbsFHXQKYx6NNyjOhPvR3l/view?usp=sharing) · [HoliDubber paper](https://arxiv.org/abs/2606.09098) · [project](https://holidubber.github.io/) · [VoxCeleb2](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/vox2.html) · [LRS3](https://mmai.io/datasets/lip_reading/) · [CelebV-Text](https://github.com/CelebV-Text/CelebV-Text)."
+            }
+          ]
+        },
+        {
+          "title": "Video Try-On data-strategy expansion",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The Try-On track now includes two complementary 2026 systems and three data cards that make the difference between a named corpus and a downloadable release explicit."
+            },
+            {
+              "type": "list",
+              "items": [
+                "**OmniTryOn** starts from Video-As-Prompt / Wan2.1-I2V-14B and fine-tunes exclusively on TryAny-Bench. The public benchmark contains 1,460 paired reference/target videos (1,243 train and 217 test) retained from more than 1,500 e-commerce videos. Its two Hugging Face archives are directly hosted, but the repository declares no license or dataset card, so access is not represented as permission.",
+                "**iTryOn** uses a two-stage recipe: 10K steps on the public ViViD corpus, followed by 10K steps on VVT-Interact. VVT-Interact contains 5,292 video-garment pairs across six interaction categories, with global captions and time-stamped action captions. The paper provides no files, request form, or release date, so its data card is deliberately marked unavailable rather than linking the paper as a download.",
+                "**ViViD** now has its own acquisition card. The official repository hosts a roughly 32.1 GB archive covering 9,700 garment-video pairs and 1,213,694 frames plus agnostic, mask, and DensePose conditions. The repository declares Apache-2.0, while the underlying Net-A-Porter media still requires a separate upstream-rights review."
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Both model cards expose their stage-by-stage operations, inherited foundation data unknowns, public/unreleased references, and canonical model ↔ dataset links. Five new critical revision probes watch both model surfaces and all three datasets."
+            },
+            {
+              "type": "paragraph",
+              "text": "Primary evidence: [OmniTryOn paper](https://arxiv.org/abs/2606.08514) · [code](https://github.com/xcltql666/OminTryOn) · [weights](https://huggingface.co/xcll/omnitryon_model) · [TryAny-Bench](https://huggingface.co/datasets/xcll/Try-Any-Bench) · [iTryOn paper](https://arxiv.org/abs/2605.21431) · [ViViD project](https://becauseimbatman0.github.io/ViViD) · [ViViD data](https://huggingface.co/datasets/alibaba-yuanjing-aigclab/ViViD)."
+            },
+            {
+              "type": "paragraph",
+              "text": "Review scope: close the current Top-15 coverage gaps in the maintained image and video rankings, connect newly disclosed training datasets to model cards, and make every cataloged dataset's acquisition path directly visible."
+            }
+          ]
+        },
+        {
+          "title": "Strategy-to-dataset navigation fix",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The strategy comparison already resolved OpenVE-Edit to OpenVE-3M and OpenVE-Bench, but the model detail's first screen emphasized only the `2/2` relationship count. Every model with canonical data links now renders an immediate **已关联数据集** strip below its strategy summary. Dataset names open the corresponding full data card, while a separate link jumps to complete reference notes and acquisition actions. The existing detailed relation section remains the source of role, availability, scale, evidence boundary, and download or application entry points."
+            }
+          ]
+        },
+        {
+          "title": "ConsID-Gen data lineage and public download",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The current primary-source scan identified ConsID-Gen and its newly populated public ConsIDVid repository as an important identity-preserving I2V addition. The model, release package, and upstream lineage are now cataloged together:"
+            },
+            {
+              "type": "list",
+              "items": [
+                "ConsID-Gen links to CO3D, OmniObject3D, Objectron, MVImgNet 2.0, and the downloadable ConsIDVid public release.",
+                "ConsIDVid links back to the model and to all four upstream source datasets; the site can therefore navigate both model → dataset and dataset → model, while also showing source → derived-dataset lineage.",
+                "The current public path records 8,298 MP4 files and 32,816 caption files. The repository reports approximately 148 GB of total storage and provides an official Hugging Face acquisition page. Undocumented `datasets/first-frames` paths are called out separately and are not counted as the documented release.",
+                "The evidence boundary stays explicit: the paper's more than 80 hours of e-commerce UGC, exact source mixture, and 241-video proprietary benchmark subset are not released. The public ConsIDVid card also does not declare a dataset license, so public access is not represented as unrestricted reuse."
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The four upstream cards preserve their different acquisition and licensing conditions: CO3D and Objectron have official download tooling, OmniObject3D and MVImgNet 2.0 require the publishers' access flow, and each source keeps its own terms. Six new critical monitors now watch the five dataset surfaces and the ConsID-Gen checkpoint. The generated catalog contains 83 datasets, 78 models, 82 explicit model-to-dataset relations, and 21 dataset-lineage relations. The refreshed 255-source discovery baseline completed with no source failures, new candidates, important revisions, or ranking changes."
+            },
+            {
+              "type": "paragraph",
+              "text": "Primary evidence: [paper](https://arxiv.org/abs/2602.10113) · [project](https://myangwu.github.io/ConsID-Gen/) · [model](https://huggingface.co/mingyang-wu/ConsID-Gen) · [public dataset](https://huggingface.co/datasets/mingyang-wu/ConsIDVid)."
+            }
+          ]
+        },
+        {
+          "title": "Ranking coverage",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "All entries in the current Top 15 of the five maintained Artificial Analysis boards now resolve to a catalog model card. The video-editing board currently publishes six entries, all six of which resolve. The ranking snapshot remains a source observation rather than an AIGCDataHub quality score."
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Model",
+                  "Catalog decision",
+                  "Release-date basis",
+                  "Primary evidence"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "|---|---|---|---|"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Seedream 5.0 Pro",
+                  "Added API-only image model card",
+                  "2026-07-17 official API documentation date",
+                  "[Product](https://dreamina.capcut.com/seedream/seedream-5-0-pro) · [API documentation](https://docs.byteplus.com/en/docs/ModelArk/2582775)"
+                ],
+                [
+                  "Grok Imagine Image Quality",
+                  "Added API-only image model card",
+                  "2026-05-06 official quality-mode announcement",
+                  "[Release](https://x.ai/news/grok-imagine-quality-mode) · [API documentation](https://docs.x.ai/developers/models/grok-imagine-image-quality)"
+                ],
+                [
+                  "HunyuanImage 3.0 Instruct",
+                  "Added open-weight image model card",
+                  "2026-01-26 official repository/model release",
+                  "[Repository](https://github.com/Tencent-Hunyuan/HunyuanImage-3.0) · [model](https://huggingface.co/tencent/HunyuanImage-3.0-Instruct) · [paper](https://arxiv.org/abs/2509.23951)"
+                ],
+                [
+                  "Luma UNI 1 Max",
+                  "Added API-only image model card",
+                  "2026-05-05 public Uni 1.1 API release",
+                  "[Release](https://lumalabs.ai/news/uni-1-1-api) · [technical specifications](https://lumalabs.ai/uni-1/tech-specs)"
+                ],
+                [
+                  "HiDream-O1-Image-1.5",
+                  "Added partial image model card",
+                  "2026-06-09 earliest public leaderboard/company signal; exact first-party day remains unconfirmed",
+                  "[Project](https://hidream.ai/) · [paper](https://arxiv.org/abs/2605.11061) · [repository](https://github.com/HiDream-ai/HiDream-O1-Image)"
+                ],
+                [
+                  "Cosmos3-Super-Text2Image",
+                  "Added open-weight image model card",
+                  "2026-05-31 official release log/model publication",
+                  "[Release log](https://github.com/NVIDIA/cosmos/blob/main/RELEASE.md) · [model](https://huggingface.co/nvidia/Cosmos3-Super-Text2Image) · [report](https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf)"
+                ],
+                [
+                  "Veo 3.1",
+                  "Added API-only video model card",
+                  "2026-01-13 official Gemini API release",
+                  "[Release](https://blog.google/innovation-and-ai/technology/developers-tools/veo-3-1-gemini-api/) · [model card](https://storage.googleapis.com/deepmind-media/Model-Cards/Veo-3-Model-Card.pdf)"
+                ],
+                [
+                  "Grok Imagine Video",
+                  "Added API-only video model card",
+                  "2026-01-28 official API release",
+                  "[Release](https://x.ai/news/grok-imagine-api) · [API documentation](https://docs.x.ai/developers/models/grok-imagine-video)"
+                ],
+                [
+                  "SkyReels V4",
+                  "Added partial video model card with named-data lineage",
+                  "2026-02-25 first paper release",
+                  "[Paper](https://arxiv.org/abs/2602.21818) · [paper HTML](https://arxiv.org/html/2602.21818v3) · [API](https://www.skyreels.ai/api-platform)"
+                ],
+                [
+                  "Grok Imagine Image",
+                  "Added API-only image model card",
+                  "2026-01-28 official API release",
+                  "[Release](https://x.ai/news/grok-imagine-api) · [API documentation](https://docs.x.ai/developers/models/grok-imagine-image)"
+                ],
+                [
+                  "Kling O1",
+                  "Added product-only unified image/video model card",
+                  "2025-12-01 official launch",
+                  "[Release](https://ir.kuaishou.com/news-releases/news-release-details/kling-o1-launches-worlds-first-unified-multimodal-video-model-0/)"
+                ],
+                [
+                  "HiDream-O1-Image",
+                  "Added open-weight image model card",
+                  "2026-05-08 official model publication",
+                  "[Model](https://huggingface.co/HiDream-ai/HiDream-O1-Image) · [report](https://arxiv.org/abs/2605.11061) · [repository](https://github.com/HiDream-ai/HiDream-O1-Image)"
+                ],
+                [
+                  "Recraft V4.1",
+                  "Added API-only image family card for Utility and Utility Pro",
+                  "2026-05-14 official launch",
+                  "[Release](https://www.recraft.ai/blog/recraft-v4-1-more-beautiful-by-nature) · [API documentation](https://www.recraft.ai/docs/api-reference/getting-started)"
+                ],
+                [
+                  "FLUX.2 [max]",
+                  "Added API-only image model card",
+                  "2025-12-16 official release notes",
+                  "[Release notes](https://docs.bfl.ai/release-notes) · [model overview](https://docs.bfl.ai/flux_2/flux2_overview)"
+                ],
+                [
+                  "PixVerse V6",
+                  "Added API-only video/audio model card",
+                  "2026-03-30 official launch",
+                  "[Release](https://pixverse.ai/en/blog/pixverse-launches-v6-advancing-ai-video-generation) · [API documentation](https://docs.platform.pixverse.ai/v6-released-2056814m0)"
+                ],
+                [
+                  "Vidu Q3 Pro",
+                  "Added API-only native audio/video model card",
+                  "2026-01-27 official API update",
+                  "[Release log](https://platform.vidu.com/docs/update) · [model map](https://platform.vidu.com/docs/model-map)"
+                ],
+                [
+                  "Veo 3.1 Lite",
+                  "Added API-only video model card",
+                  "2026-03-31 official launch",
+                  "[Release](https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/) · [API documentation](https://ai.google.dev/gemini-api/docs/video)"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The two exact leaderboard aliases `Kling 3.0 1080p (Pro)` and `Kling 3.0 720p (Standard)`, plus `Kling Image 3.0 Omni`, `Kling Image 3.0`, and `Kling 3.0 Omni 720p (Standard)`, now resolve to the existing Kling AI 3.0 card. The base Grok image model remains separate from the later Quality mode; the open HiDream checkpoint remains separate from the later closed 1.5 service; and FLUX.2 [max] remains separate from the open-weight Dev/Klein variants."
+            }
+          ]
+        },
+        {
+          "title": "SkyReels V4 named-data lineage",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "SkyReels V4 now resolves nine public named references to catalog cards: Re-LAION-5B, Flickr, WebVid-10M, Koala-36M, OpenHumanVid, Emilia, AudioSet, VGGSound, and SoundNet. The paper says `LAION` without a version, so the Re-LAION-5B link is explicitly marked as a family-level reference rather than an exact snapshot claim. Licensed film/web-video data and synthetic multilingual/editing data remain explicit unreleased corpora."
+            },
+            {
+              "type": "paragraph",
+              "text": "Three missing source cards were added:"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Dataset",
+                  "Catalog result",
+                  "Acquisition boundary",
+                  "Primary evidence"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "|---|---|---|---|"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Flickr",
+                  "Added partial image metadata card",
+                  "Hugging Face access currently requires authentication; this is not represented as an anonymous downloadable release.",
+                  "[Dataset repository](https://huggingface.co/datasets/bigdata-pw/Flickr)"
+                ],
+                [
+                  "Emilia",
+                  "Added partial speech/audio dataset card",
+                  "Public files and repository metadata are linked; upstream media and use terms still require source-level review.",
+                  "[Dataset](https://huggingface.co/datasets/amphion/Emilia-Dataset) · [paper](https://arxiv.org/abs/2407.05361)"
+                ],
+                [
+                  "SoundNet",
+                  "Added partial audiovisual dataset card",
+                  "The project supplies URL/tooling metadata rather than a permanently hosted raw-media mirror.",
+                  "[Project](https://projects.csail.mit.edu/soundnet/) · [paper](https://arxiv.org/abs/1610.09001)"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The catalog now contains 51 dataset cards, 64 model cards, 35 explicit model-to-dataset relations, and 12 dataset-to-dataset lineage relations."
+            }
+          ]
+        },
+        {
+          "title": "Dataset acquisition links",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Every dataset card now has a visible acquisition action in the generated README, the website's expanded dataset view, and the new [`DATASET_ACCESS_INDEX.md`](../DATASET_ACCESS_INDEX.md). The action distinguishes:"
+            },
+            {
+              "type": "list",
+              "items": [
+                "directly hosted files or a browsable repository;",
+                "an official downloader or URL manifest;",
+                "a gated application/request page;",
+                "metadata/tooling only; and",
+                "an official availability notice when no files are published."
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "This avoids labeling an account gate, URL-only corpus, or unavailable benchmark as a direct download. OpenHumanVid now links straight to the [official access form](https://forms.gle/moqec5Qod7mz9pfD6), while its project page remains evidence rather than the primary acquisition action."
+            }
+          ]
+        },
+        {
+          "title": "Candidate website sources",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A separate source-platform layer now records 16 planning candidates across video platforms, streaming/studio sites, stock-media providers, and e-commerce sites. These entries appear in [`SOURCE_PLATFORM_INDEX.md`](../SOURCE_PLATFORM_INDEX.md) and the website's **来源平台** view. They are not dataset cards and therefore do not receive a misleading download action. Every entry remains `rights_review: required`; platform terms, rightsholder permission, privacy, regional access, and the intended training use must be reviewed before collection."
+            },
+            {
+              "type": "paragraph",
+              "text": "Only the public platform identity, modality, scenario relevance, and content scope are retained. Operational comments from the supplied non-public planning sheet are intentionally excluded from the public GitHub repository."
+            },
+            {
+              "type": "paragraph",
+              "text": "The platform layer now also records the verified official data-access surface, accessible scope, onboarding requirements, and weekly monitor. This includes documented APIs for YouTube, Vimeo, Bilibili, Dailymotion, and Shutterstock; partner APIs for TikTok Shop, Amazon Creators API, Shopee, Temu, and SHEIN; licensed services for VCG and Tuchong; and Netflix's partner portal. Disney, Warner Bros., and Paramount remain explicitly `not-cataloged` rather than being assigned an inferred API. Every interface states `training_rights: not-granted-by-interface`."
+            }
+          ]
+        },
+        {
+          "title": "Monitoring changes",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The scheduled discovery baseline now covers:"
+            },
+            {
+              "type": "list",
+              "items": [
+                "192 watched sources, including all 16 source-platform access surfaces;",
+                "50 important datasets;",
+                "53 important models;",
+                "ten ranking boards; and",
+                "eight dataset-release feeds."
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Important official HTML and PDF sources that do not expose a GitHub commit or Hugging Face revision now receive a SHA-256 content revision. HTML fingerprints use normalized visible text and metadata, excluding scripts, styles, hydration payloads, and markup-only build changes. A changed hash creates a review signal; it never edits factual cards automatically. Sources that require authentication, such as the current Flickr repository, stay linked in their cards but are not misreported as successful anonymous probes."
+            },
+            {
+              "type": "paragraph",
+              "text": "The stale Reve blog path and Kuaishou investor-news path were replaced with their current official locations. GitHub API probes now use the workflow token, and a connection reset is isolated as one source failure instead of aborting the whole run. After accepting the reviewed 151-source baseline, two consecutive live authenticated scans both ended with zero new candidates, zero important revisions, zero source errors, and zero ranking changes. This specifically proves that the six dynamic HTML false positives seen before canonicalization no longer reproduce. The later Arena coverage pass adds seven model-specific official probes; its refreshed 163-source baseline is verified separately below."
+            }
+          ]
+        },
+        {
+          "title": "Verification",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Dataset and model schemas validate for all 51 datasets and 64 models.",
+                "The candidate source-platform schema validates all 16 website entries.",
+                "Generated README, access index, model–dataset index, website payload, and audit example are reproducible and current.",
+                "All 85 Python tests pass.",
+                "ESLint, the application production build, server-render tests, and the GitHub Pages static export pass.",
+                "The link checker inspected 478 declarations with no hard 404/410 failure; 21 declarations returned only access-control, method, DNS, or transient timeout warnings.",
+                "Freshness checks use the `Asia/Shanghai` editorial date, preventing a UTC GitHub Actions runner from treating a just-reviewed card as one day in the future after local midnight."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Multi-provider rankings and dataset triage",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The ranking monitor now includes a second independent provider. Arena publishes its complete current and historical leaderboard snapshots as the public [`lmarena-ai/leaderboard-dataset`](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset), including separate latest splits for text-to-image, image editing, text-to-video, image-to-video, and video editing. AIGCDataHub reads those official dataset splits through the Hugging Face Dataset Viewer API rather than attempting to bypass the Arena website's browser protection."
+            },
+            {
+              "type": "paragraph",
+              "text": "The site now distinguishes provider, task, modality, score label, and snapshot date. Across both providers there are 10 boards and 133 currently published Top-15 seats (Arena video editing and Artificial Analysis video editing publish fewer than 15 entries). All 133 seats now map to canonical model cards, and all ten boards use required coverage. Any future unmatched ranked name remains a persistent review item and fails the coverage test instead of disappearing."
+            },
+            {
+              "type": "paragraph",
+              "text": "The nine formerly unmatched seats were resolved with first-party evidence. Six new cards cover Reve 2.0, Ideogram 4.0, Qwen-Image 2.0, Sora 2, Wan 2.6, and Runway Aleph. `kling-o3-pro` is an alias of the already cataloged Kling AI 3.0 family; `sora-2` and `sora-2-pro` likewise share one family card. Runway Aleph remains separate from Aleph 2.0, and Qwen's dated Pro snapshot remains attached to the Qwen-Image 2.0 family. Every card records its official release date and is ordered by that date in the site."
+            },
+            {
+              "type": "paragraph",
+              "text": "Only Sora 2 and Ideogram 4.0 disclose a useful public data-strategy boundary. Sora 2 names broad source classes and filtering but no datasets; Ideogram 4.0 describes structured JSON captions, bounding-box conditioning, and safety filtering but no corpus identities. The other four new cards and Kling 3.0 publish no named training datasets. Their empty relationship sections are thus explicit non-disclosure records, not missing catalog links."
+            },
+            {
+              "type": "paragraph",
+              "text": "After accepting the reviewed 163-source snapshot, an authenticated low-concurrency live rescan ended with zero new candidates, zero important source revisions, zero source errors or recoveries, zero ranking changes, and zero ranking coverage gaps."
+            }
+          ]
+        },
+        {
+          "title": "Dataset monitor coverage expansion",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Nineteen additional official probes close the revision-monitoring gap for recent benchmarks, named model-training corpora, preference data, historical video sources, audio datasets, and 3D assets. This includes GraphVid-Bench, GenSyn10, ERIA-1K, Lens-800M, Lens-RL-8K, SoundAtlas, AudioCaps 2.0, Re-LAION-5B, Pick-a-Pic v2, Objaverse-XL, JourneyDB, WebVid-10M, Clotho 2.1, FSD50K, VGGSound, FMA, AudioSet, YFCC100M, and Million Song Dataset."
+            },
+            {
+              "type": "paragraph",
+              "text": "The catalog now independently monitors 50 of 51 dataset cards. Flickr 5B is the sole explicit exception because the current Hugging Face metadata endpoint requires authentication; retaining that exception is more accurate than recording a permanently failing anonymous probe. All other datasets directly linked from a model card now have a monitor. GitHub repositories use their verified default branches, Hugging Face repositories use metadata revisions, Zenodo records use the official API, and official publication/project pages use normalized content hashes. Scheduled scan concurrency is reduced from eight to four workers, and transient transport plus retryable HTTP failures receive bounded backoff retries. This lowers connection-reset noise without narrowing the source set or hiding persistent failures. Zenodo probes use their stable record modification time and revision number instead of hashing unordered API arrays. Baseline acceptance now fails closed if any source is unavailable, unless a reviewer deliberately supplies the explicit failure override."
+            },
+            {
+              "type": "paragraph",
+              "text": "Hugging Face dataset-release candidates now carry a transparent review score and high/standard/low priority. Signals include an explicit generative-media match, image/video modality tags, linked paper, dataset-card metadata, declared license/size, adoption, gating, and thin or archive-like metadata. The scanner retains low-priority candidates so a genuinely new release is not hidden merely because it has few downloads. The accepted baseline currently contains 142 release-feed candidates: 55 high, 48 standard, and 39 low."
+            },
+            {
+              "type": "paragraph",
+              "text": "The supplied website-planning sheet was re-read in full. Its 16 effective rows match the 16 public source-platform profiles already present in the repository; no site was missing. As before, internal operational assessments are not copied into the public repository."
+            },
+            {
+              "type": "paragraph",
+              "text": "After accepting the authenticated 182-source snapshot, a second independent authenticated scan reported zero new candidates, zero important revisions, zero failures or recoveries, zero ranking changes, and zero ranking coverage gaps. The stored baseline itself contains 182 sources and no source error."
+            }
+          ]
+        },
+        {
+          "title": "Strategy dataset visibility",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The scenario strategy matrix now shows up to two dataset names directly beside each model's linked/reference ratio. Linked names open the full dataset card; the ratio still jumps to the complete per-model reference list, which includes roles, availability, scale, notes, and direct download or application links. For OpenVE-Edit this exposes OpenVE-3M and OpenVE-Bench in the comparison row without requiring the user to infer their names from the `2/2` summary."
+            }
+          ]
+        },
+        {
+          "title": "Ranked-model monitor closure",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The ten ranking boards currently contain 133 published seats that resolve to 40 distinct canonical model cards. An audit found that 16 of those cards still lacked an independent official revision probe even though every ranking name already resolved. The missing set included Gemini Omni Flash, GPT Image 2, HappyHorse 1.0, Seedance 2.0, GPT Image 1.5, Muse Image, Reve 2.1, Wan 2.7, Gemini 3.1 Flash Image, Grok Imagine Video 1.5, MAI-Image-2.5, Muse Video, Gemini 3.1 Flash-Lite Image, HappyHorse 1.1, Runway Aleph 2.0, and Gemini 3 Pro Image."
+            },
+            {
+              "type": "paragraph",
+              "text": "All 16 now use first-party model cards, API model pages, product documentation, release logs, or provider release indexes at critical priority. This raises important-model coverage from 37 to 53 and makes ranked-model coverage 40/40, covering open-weight, API-only, product-only, and announced models uniformly. The invariant is enforced in both relationship and rendered-site tests."
+            },
+            {
+              "type": "paragraph",
+              "text": "Revision-only model, dataset, and source-platform probes no longer extract their navigation links into the discovery queue. Broad provider feeds still find new releases, while model-specific pages now only produce stable revision signals. Two redundant Hugging Face HTML pages were removed because their model-metadata API equivalents already provide stronger commit-level probes. The accepted 192-source baseline contains zero errors; an independent authenticated rescan returned zero candidates, revisions, failures, recoveries, ranking changes, or ranking coverage gaps."
+            }
+          ]
+        }
+      ],
+      "source_path": "updates/2026-07-27.md"
+    },
+    {
+      "date": "2026-07-26",
+      "title": "Update review — 2026-07-26",
+      "intro": [
+        {
+          "type": "paragraph",
+          "text": "Review window: 2026-07-12 through 2026-07-26, plus targeted backlog closure for earlier releases that fill a material model–dataset lineage gap in a maintained application scenario."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Accepted",
+          "blocks": [
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Release",
+                  "Date",
+                  "Decision",
+                  "Data-strategy result",
+                  "Primary evidence"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "|---|---|---|---|---|"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Midjourney V8.2",
+                  "2026-07-24",
+                  "Added model card",
+                  "User ratings and a larger image pool are disclosed for personalization; base-model data remains undisclosed.",
+                  "[Official release](https://updates.midjourney.com/version-8-2/)"
+                ],
+                [
+                  "Muse Image",
+                  "2026-07-07",
+                  "Added model card",
+                  "Meta discloses a shared pretraining base plus reinforcement learning for tool use and self-refinement, but no corpus identities.",
+                  "[Official technical release](https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/)"
+                ],
+                [
+                  "Muse Video",
+                  "2026-07-07",
+                  "Added watch card",
+                  "Meta discloses reuse of the Muse pretraining base; all source data, mixtures, and post-training details remain unknown.",
+                  "[Official preview](https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/)"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Already covered",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "FLUX 3, released 2026-07-23, was already tracked with its joint media and action-data strategy."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Scope decisions",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "GPT-5.6 Sol was not added: the current catalog excludes text-only or general reasoning releases unless an official source discloses a material media- generation or physical-AI data strategy.",
+                "Product capability statements were not converted into training-data claims. In particular, Muse Video's native audio capability is not treated as proof of any named audio corpus."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Schema change",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Added `product-only` model access for releases available in a consumer product but not as weights or an API.",
+                "Added `unknown` as a training-stage modality so cards do not need to infer source modalities from model outputs."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Coverage expansion: audio and 3D",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "This review also closes two catalog-level modality gaps with primary-source cards and a directly linked model strategy."
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Item",
+                  "Decision",
+                  "Data-strategy result",
+                  "Primary evidence"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "|---|---|---|---|"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "SoundAtlas",
+                  "Added verified audio dataset card",
+                  "About 470K AudioSet/VGGSound-derived pairs built with audiovisual routing, agentic captioning, and multimodal consistency filtering.",
+                  "[Project](https://omni2sound.github.io/) · [paper](https://arxiv.org/abs/2601.02731)"
+                ],
+                [
+                  "Omni2Sound",
+                  "Added verified model card",
+                  "Names eight pretraining corpora, then SoundAtlas multitask fine-tuning and an off-screen/text-dropout robustness stage; exact mixture ratios remain unknown.",
+                  "[Model](https://huggingface.co/Dalision/Omni2Sound) · [repository](https://github.com/omni2sound/Omni2Sound)"
+                ],
+                [
+                  "Cap3D",
+                  "Added verified 3D dataset card",
+                  "Current release contains 1,604,291 captions plus derived 3D representations for large subsets; object-level licenses remain binding.",
+                  "[Dataset](https://huggingface.co/datasets/tiange/Cap3D) · [repository](https://github.com/crockwell/Cap3D)"
+                ],
+                [
+                  "Objaverse-XL",
+                  "Added partial 3D dataset card",
+                  "More than 10M deduplicated objects and official acquisition tooling are public, but source availability and per-object rights vary.",
+                  "[Repository](https://github.com/allenai/objaverse-xl) · [paper](https://arxiv.org/abs/2307.05663)"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The dataset schema now represents `audio` and `3d` modalities plus audio quality, audiovisual alignment, geometry quality, and multi-view consistency."
+            }
+          ]
+        },
+        {
+          "title": "Release-date normalization",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "All dataset cards now record a maintaining organization, an exact-version `released_at` date, and a primary `release_date_source`. Generated README and site catalogs sort datasets newest-first instead of grouping them alphabetically by modality."
+            },
+            {
+              "type": "paragraph",
+              "text": "Version-specific corrections include Re-LAION-5B's 2024-08-30 official release, Pick-a-Pic v2's 2023-09-25 repository introduction, FineVideo's 2024-09-23 official launch, and WebVid-10M's 2022-05-13 scale-up release. `last_verified` continues to mean evidence review time and is not used as a substitute for the dataset's publication date."
+            }
+          ]
+        },
+        {
+          "title": "Audio lineage expansion",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The Omni2Sound model card now resolves four of its ten named data references to catalog cards instead of leaving every pretraining or evaluation name as plain text."
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Dataset",
+                  "Role",
+                  "Decision",
+                  "Material boundary"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "|---|---|---|---|"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "AudioCaps 2.0",
+                  "Named pretraining family",
+                  "Added partial card for the 2025 release with 98,606 caption rows",
+                  "The Omni2Sound report says only `AudioCaps`; it does not identify whether v1 or v2.0 was used."
+                ],
+                [
+                  "WavCaps",
+                  "Named pretraining dataset",
+                  "Added partial card for 403,050 audio-caption pairs",
+                  "Hugging Face labels metadata CC-BY-4.0 while the official usage text restricts the audio to academic research."
+                ],
+                [
+                  "VGGSound-Omni",
+                  "Evaluation benchmark",
+                  "Added verified card for 14,000+ primary videos and a 1,613-item off-screen track",
+                  "Underlying VGGSound, YouTube, and MusicCaps media terms remain source-dependent."
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The searchable model cards now display linked catalog coverage as a ratio, so users can distinguish a named-but-unresolved source from a fully documented dataset card."
+            }
+          ]
+        },
+        {
+          "title": "Complete Omni2Sound pretraining lineage",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "All ten datasets named by the Omni2Sound report now resolve to catalog cards. This closes the remaining six plain-text references without pretending that a current public release is necessarily the exact training snapshot."
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Dataset",
+                  "Catalog result",
+                  "Material boundary"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "|---|---|---|"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Clotho 2.1",
+                  "Added partial card for 6,974 clips and 34,870 human captions",
+                  "The model report says only `Clotho`; captions are non-commercial and media licenses are per Freesound item."
+                ],
+                [
+                  "AudioSet",
+                  "Added partial card for 2,084,320 labelled segments",
+                  "Google distributes URL annotations and features, not raw YouTube audio."
+                ],
+                [
+                  "VGGSound",
+                  "Added partial card for 210K+ audiovisual clips",
+                  "Availability depends on a later YouTube fetch and original owners retain media copyright."
+                ],
+                [
+                  "FSD50K",
+                  "Added verified card for 51,197 clips and 108.3 hours",
+                  "Dataset curation is CC BY, but 7,818 clips use CC-BY-NC or CC Sampling+ terms."
+                ],
+                [
+                  "Million Song Dataset",
+                  "Added partial feature/metadata card for one million tracks",
+                  "The official dataset contains no raw audio, so Omni2Sound's actual ingestion path remains unknown."
+                ],
+                [
+                  "FMA",
+                  "Added verified card for 106,574 tracks and 343 days",
+                  "Per-track Creative Commons terms determine attribution and commercial eligibility."
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The model's directory coverage is now 10/10. Mixture weights, per-dataset sample counts, media snapshots, and the exact use of feature-only MSD data remain explicit unknowns rather than inferred facts."
+            }
+          ]
+        },
+        {
+          "title": "Image post-training and evaluation lineage",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Two named resources from the latest image-generation reports now resolve to catalog cards, with publication claims kept separate from observed access."
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Dataset",
+                  "Role",
+                  "Catalog result",
+                  "Material boundary"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "|---|---|---|---|"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Lens-RL-8K",
+                  "Lens RL post-training",
+                  "Added partial card for the taxonomy-driven 8K prompt set, including GPT-4.1-generated prompt-specific rubrics and a global structural-integrity rubric",
+                  "Microsoft describes the construction and examples but does not provide dataset files or dataset-specific terms."
+                ],
+                [
+                  "ERIA-1K",
+                  "ERNIE-Image-Aes evaluation",
+                  "Added partial card for 1,000 images across six categories with Swiss-tournament-derived aesthetic tiers from 1 to 10",
+                  "Baidu's report says the benchmark is open-source, but the official GitHub and Hugging Face resources do not currently expose downloadable files or dataset terms."
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Lens now resolves 2/2 named datasets. ERNIE-Image resolves ERIA-1K while leaving its undisclosed internal pretraining pool intentionally unlinked, for 1/2 catalog coverage. Lens RL source labeling was also corrected from human feedback to synthetic/model-generated supervision because the report uses GPT-4.1 for prompts and rubrics and GPT-4.1-mini for rewards."
+            },
+            {
+              "type": "paragraph",
+              "text": "The website canonical and social-preview metadata now point only to the public GitHub Pages deployment; the previous private hosting URL is no longer emitted."
+            }
+          ]
+        },
+        {
+          "title": "Generative image and video focus",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "This update narrows new model tracking to image and video generation. General text-only LLM releases remain out of scope unless they publish a material generative-media data strategy."
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Item",
+                  "Decision",
+                  "Data-strategy result",
+                  "Primary evidence"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "|---|---|---|---|"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Gemini Omni Flash",
+                  "Added verified video model card",
+                  "Google discloses joint image, video, audio, and text training; multilevel audio/video captions; compliance, safety, and quality filtering; and semantic video deduplication. Source datasets and post-training remain undisclosed.",
+                  "[Official model card](https://deepmind.google/models/model-cards/gemini-omni-flash/) · [API release](https://ai.google.dev/gemini-api/docs/changelog)"
+                ],
+                [
+                  "Gemini 3.1 Flash-Lite Image",
+                  "Added verified image model card",
+                  "The model inherits Gemini 3's public-web, public-dataset, licensed, proprietary, and synthetic source categories, then adds dataset filtering, conditional pretraining, supervised fine-tuning, and RL from human and critic feedback. Exact model-specific data remains undisclosed.",
+                  "[Image model card](https://deepmind.google/models/model-cards/gemini-3-1-flash-lite-image/) · [Gemini 3 Pro model card](https://deepmind.google/models/model-cards/gemini-3-pro/)"
+                ],
+                [
+                  "GenSyn10",
+                  "Added partial evaluation dataset card",
+                  "The paper specifies 60,000 balanced synthetic images from FLUX.2-dev, HunyuanImage-3.0, and Qwen-Image-2512, including generator splits and the 512-to-32-pixel recipe. No official files or dataset license are currently linked.",
+                  "[Paper](https://arxiv.org/abs/2607.16283)"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The two Google entries are API-only model records, not claims of open weights. GenSyn10 is searchable as a recent dataset lead but intentionally remains `unavailable` until an official download and dataset-specific terms appear."
+            }
+          ]
+        },
+        {
+          "title": "Scenario expansion and scheduled discovery",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The living catalog now treats digital humans, video translation/dubbing, lip-sync, virtual try-on, and commerce generation as first-class image/video application tracks."
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Item",
+                  "Scenario",
+                  "Catalog result",
+                  "Data-strategy result",
+                  "Primary evidence"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "|---|---|---|---|---|"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Avatar V",
+                  "Digital human",
+                  "Added verified model card",
+                  "HeyGen discloses a living data engine that turns 50M raw internet videos into 100M+ general clips and 10M+ avatar clips, followed by personality SFT, distillation, DPO, and GRPO. Source identities and rights composition remain unknown.",
+                  "[Model](https://www.heygen.com/research/avatar-v-model) · [data engine](https://www.heygen.com/research/avatar-v-data)"
+                ],
+                [
+                  "JUST-DUB-IT",
+                  "Video translation and visual dubbing",
+                  "Added verified model card with direct dataset lineage",
+                  "A gated LTX-2 LoRA jointly regenerates translated audio and facial motion from synthetic same-speaker multilingual pairs built with language switching and counterfactual inpainting.",
+                  "[Project](https://justdubit.github.io/) · [model](https://huggingface.co/justdubit/justdubit)"
+                ],
+                [
+                  "Audiovisual Translation Dubbing Dataset",
+                  "Video translation and lip-sync",
+                  "Added verified video dataset card",
+                  "The public CC-BY-NC-4.0 release contains 288 reference-target pairs with structured multilingual captions and optional facial masks.",
+                  "[Dataset](https://huggingface.co/datasets/justdubit/audiovisual_translation_dub)"
+                ],
+                [
+                  "FIT-VTO-100K",
+                  "Virtual try-on",
+                  "Added verified image dataset card",
+                  "The downloadable CC-BY-NC-ND-4.0 preview contains 100K training and 5K evaluation triplets with body and garment measurements; it is distinct from the full 1M+ FIT collection described by the paper.",
+                  "[Dataset](https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k) · [project](https://johannakarras.github.io/FIT/)"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "A scheduled workflow now compares 97 focused watch sources with a committed review baseline. It maintains one GitHub Issue for new candidate links, source failures, and recoveries, while leaving card creation, licensing conclusions, `last_verified`, merging, and deployment behind the reviewed-PR boundary."
+            }
+          ]
+        },
+        {
+          "title": "Scenario-first catalog iteration",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Application coverage is now a maintained taxonomy rather than a search-text side effect. Five stable scenario IDs map exact card tasks to image generation, video generation, digital humans, video localization, and virtual try-on. The generated site carries those IDs into every model and dataset, exposes one shared scenario filter across all three views, and shows scenario tags on cards."
+            },
+            {
+              "type": "paragraph",
+              "text": "Two complementary Try-On model cards close the previous model-side gap:"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Model",
+                  "Access",
+                  "Data disclosure",
+                  "Catalog conclusion",
+                  "Primary evidence"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "|---|---|---|---|---|"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Fit-VTO",
+                  "Research preview",
+                  "Partial",
+                  "The paper discloses a FLUX.1-dev LoRA trained on the full 1,064,824-triplet FIT collection with separate person, garment, and measurement conditioning. The public 105K preview is linked directly, while the complete collection and checkpoint remain unavailable.",
+                  "[Project](https://johannakarras.github.io/FIT/) · [paper](https://arxiv.org/abs/2604.08526) · [repository](https://github.com/HarryWang355/FIT-VTO)"
+                ],
+                [
+                  "FLUX VTO",
+                  "Public API",
+                  "Undisclosed",
+                  "BFL documents identity and garment fidelity, multi-garment input, latency, moderation, and inference preparation. It does not identify a base architecture, training dataset, curation process, scale, or rights composition, so no dataset is inferred.",
+                  "[Release](https://bfl.ai/blog/flux-vto-virtual-try-on-at-catalog-scale) · [API documentation](https://docs.bfl.ai/flux_tools/flux_vto)"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Source-bound strategy comparison",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The generated site payload now carries a deterministic `strategy_profile` for every model. It preserves stage order and first-seen source-type and operation order, then counts declared data references, catalog-linked datasets, scale-disclosed stages, total stages, and explicit unknowns. These fields are computed from the reviewed YAML cards; they do not add claims to the cards."
+            },
+            {
+              "type": "paragraph",
+              "text": "The data-strategy view uses that profile for a same-scenario comparison matrix. Users first choose image generation, video generation, digital humans, video localization, or Try-On, then compare disclosure level, training stages, source types, dataset lineage, scale disclosure, and unknown counts. The matrix does not rank models or turn missing disclosure into a synthetic quality score."
+            }
+          ]
+        },
+        {
+          "title": "Latest image/video models and explicit lineage",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The repaired arXiv listing parser surfaced current generative-media papers that were previously hidden by whitespace around the listing's `href` attributes. Three releases were accepted because their reports disclose material data strategy rather than only an architecture or inference method."
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Item",
+                  "Decision",
+                  "Data-strategy result",
+                  "Primary evidence"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "|---|---|---|---|"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "SANA-Video 2.0",
+                  "Added watch model card",
+                  "NVIDIA describes shot segmentation, independent visual/motion/alignment filters, progressively stricter pools, structured recaptioning, 480p-to-720p training, Gemini-ranked Diffusion-DPO, and online reward ensembling. Exact source data, scale, mixture, and rights remain undisclosed.",
+                  "[Project](https://nvlabs.github.io/Sana/Video2/) · [paper](https://arxiv.org/abs/2607.21553)"
+                ],
+                [
+                  "GraphVid",
+                  "Added watch model card",
+                  "The LTX-Video backbone is frozen while a graph pathway and LoRA learn from semantically filtered, fixed-window object-interaction clips with machine-built directed scene graphs.",
+                  "[Paper](https://arxiv.org/abs/2607.21580)"
+                ],
+                [
+                  "GraphVid-Bench",
+                  "Added partial dataset card and linked it to GraphVid",
+                  "The paper reports about 27.5K clips derived from WISA-80K, Something-Something v2, and MagicData; files, annotations, license, source split, and the declared project page are not currently available.",
+                  "[Paper](https://arxiv.org/abs/2607.21580)"
+                ],
+                [
+                  "Mage-Flow",
+                  "Added watch model card",
+                  "Microsoft reports a roughly 10B-pair raw pool reduced to 1.3B, progressive 1.2B/600M/300M stages, 150M SFT, 90M raw editing triples, capability-routed Diffusion-NFT pools, and four-step distillation. Source dataset identities and release artifacts remain unavailable.",
+                  "[Paper](https://arxiv.org/abs/2607.19064)"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Targeted Try-On lineage expansion",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The scenario audit also closed two high-value Try-On lineage gaps outside the weekly review window. Both additions have a first-party model report, a released dataset artifact, a canonical model-side `catalog_id`, and a critical revision probe. This is a targeted backlog correction, not a claim that the models were released during the current two-week window."
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Model ↔ dataset",
+                  "Date",
+                  "Catalog result",
+                  "Data-strategy result",
+                  "Primary evidence"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "|---|---|---|---|---|"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "CtrlVTON ↔ VITON-HD-edit",
+                  "2026-07-10",
+                  "Added image model and public evaluation-derivative cards",
+                  "CtrlVTON discloses a 32% public, 62% licensed-commercial, and 6% in-house source-class mix; four or five synthesized candidates per pair; VLM and contour filtering; three-annotator review; full-parameter FLUX.2 Klein adaptation; and a separate mask-conditioned LoRA. The 2,032-case VITON-HD-edit release is evaluation data, not the private training corpus.",
+                  "[Paper](https://arxiv.org/abs/2607.09362) · [repository](https://github.com/nxnai/CtrlVTON) · [dataset](https://huggingface.co/datasets/NXN-Labs/VITON-HD-edit)"
+                ],
+                [
+                  "TripVVT ↔ TripVVT-10K",
+                  "2026-04-30",
+                  "Added video model and manually gated training/evaluation dataset cards",
+                  "TripVVT converts roughly 20K web videos into 10,031 retained triplets, keeps real videos as supervised targets, synthesizes garment-swapped inputs, adds masks, pose, line maps, and captions, then trains in 25K, 25K, and 5.5K-step stages. Source URLs and upstream rights remain unknown.",
+                  "[Paper](https://arxiv.org/abs/2604.27958) · [project](https://shaodingbao.github.io/TripVVT/) · [dataset](https://huggingface.co/datasets/TripVVT/TripVVT-10K)"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The new tasks `controllable-virtual-try-on`, `garment-instance-segmentation`, and `video-virtual-try-on` map into the stable Try-On scenario, so image editing, mask-level control, and video try-on remain discoverable through one filter."
+            }
+          ]
+        },
+        {
+          "title": "Digital-human data lineage expansion",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The digital-human track now has a second canonical model–dataset pair and two important upstream data cards. This addition separates a model's declared training relationship from useful but unlinked derivative data, so the graph does not imply that a model trained on a dataset merely because their tasks overlap."
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Item",
+                  "Catalog result",
+                  "Data-strategy result",
+                  "Primary evidence"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "|---|---|---|---|"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "TalkVerse-5B ↔ TalkVerse",
+                  "Added verified open-weight model and partial metadata-dataset cards with a canonical fine-tuning relationship",
+                  "The report curates OpenHumanVid and Panda-70M with visual, person, subtitle, motion, and strict audio-video synchronization gates, then adds visual/audio captions, ASR, poses, ROI loss weighting, and LoRA tuning. The paper reports 2.3M clips and 6.3K hours, while the public gated repository exposes approximately 2.14M metadata rows rather than source video.",
+                  "[Project](https://zhenzhiwang.github.io/talkverse/) · [paper](https://arxiv.org/abs/2512.14938) · [repository](https://github.com/snap-research/TalkVerse) · [dataset](https://huggingface.co/datasets/zhenzhiwang/TalkVerse)"
+                ],
+                [
+                  "OpenHumanVid",
+                  "Added partial gated upstream dataset card",
+                  "The current downloadable project release advertises 13.2M samples and 16.7K hours with captions, skeletons, speech, and quality metadata. This is kept distinct from the larger 52.3M-sample corpus described in the paper.",
+                  "[Project](https://fudan-generative-vision.github.io/OpenHumanVid/) · [paper](https://arxiv.org/abs/2412.00115) · [repository](https://github.com/fudan-generative-vision/OpenHumanVid)"
+                ],
+                [
+                  "OpenHumanVid-Talking",
+                  "Added verified open derivative dataset card and critical revision probe",
+                  "The 2026-07-15 release contains 32,176 clips and about 86 hours selected with motion, VAD, face, active-speaker, SLAM, and camera-motion stages, plus camera trajectories, face/lip boxes, captions, and embedded video. It is not linked to TalkVerse because no primary source says TalkVerse used this later derivative.",
+                  "[Dataset](https://huggingface.co/datasets/Haosonnn/OpenHumanVid-Talking)"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "TalkVerse spans video generation, digital humans, and zero-shot video dubbing. Its public checkpoint is explicitly recorded as a non-commercial LoRA adapter, not a merged full 5.8B checkpoint. OpenHumanVid-Talking remains discoverable in the same scenario views without creating an unsupported training edge."
+            }
+          ]
+        },
+        {
+          "title": "Reviewed discovery candidates",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Every other new scanner result was opened at its primary arXiv record before the reviewed baseline was refreshed."
+            },
+            {
+              "type": "list",
+              "items": [
+                "Excluded as outside the generative-media data scope: [multi-hop image semantic communication](https://arxiv.org/abs/2607.15297), [extreme-bitrate video compression](https://arxiv.org/abs/2607.19437), and the [T-STAR satellite scene-graph understanding benchmark](https://arxiv.org/abs/2607.21228).",
+                "Recorded but not promoted to model/data cards because they are training-free or inference-time methods: [keyframe-anchored identity preservation](https://arxiv.org/abs/2607.17985), [ElasticTTT](https://arxiv.org/abs/2607.21529), and [Progressive Seed Pruning](https://arxiv.org/abs/2607.21591).",
+                "Deferred until a released artifact or reproducible data claim appears: [cultural-alignment reward modeling](https://arxiv.org/abs/2607.15740), [text-to-video jailbreak evaluation](https://arxiv.org/abs/2607.17279), [Adaptive Identity Anchoring for face swapping](https://arxiv.org/abs/2607.21434), [Texture++](https://arxiv.org/abs/2607.21504), and [WorldWeaver](https://arxiv.org/abs/2607.21594). Their reviewed arXiv URLs remain in the discovery baseline and update log."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Important model and dataset revision monitoring",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The weekly scanner now watches 97 official sources. Twenty-nine are first-party dataset revision endpoints for high-value image-text, video, dubbing, Try-On, audio, 3D, and evaluation corpora, and thirteen track stable revisions of cataloged open or research models. Hugging Face probes use the pair of `lastModified` and repository commit SHA; official GitHub probes use commit date and SHA. After the first reviewed baseline, any change opens the same triage Issue as a new model candidate."
+            },
+            {
+              "type": "paragraph",
+              "text": "Pick-a-Pic v2 remains a catalog card, but its gated API returned HTTP 401 in an unauthenticated GitHub Actions context, so it is not used as a revision probe. DataComp-1B replaces it in this automated set with a publicly readable official dataset API. Access and license review for Pick-a-Pic v2 still follows the 90-day freshness policy."
+            }
+          ]
+        },
+        {
+          "title": "Public-source expansion from maintainer references",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Two maintainer-provided internal inventories were used as discovery leads, not as public evidence. Internal storage paths, download status, private corpora, and unverified scale estimates were intentionally excluded. Every accepted card below was rebuilt from a public paper, project page, repository, or official Hugging Face release."
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Lead",
+                  "Catalog result",
+                  "Relationship or strategy result",
+                  "Public evidence"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "|---|---|---|---|"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Koala-36M",
+                  "Added partial 36M video-metadata card with long captions, clip boundaries, quality dimensions, and VTSS",
+                  "Added a critical Hugging Face revision probe; no Panda-70M lineage edge was asserted because the paper says the projects share raw sources rather than one being a direct derivative of the other",
+                  "[paper](https://arxiv.org/abs/2410.08260) · [dataset](https://huggingface.co/datasets/Koala-36M/Koala-36M-v1)"
+                ],
+                [
+                  "FreeMan",
+                  "Added partial gated 11.3M-frame multi-view human card",
+                  "Records the signed research-only access path, consent-sensitive human data, and conflicting CC-BY-NC versus CC-BY-NC-SA wording instead of collapsing it into one permissive claim",
+                  "[project](https://wangjiongw.github.io/freeman/) · [paper](https://arxiv.org/abs/2309.05073)"
+                ],
+                [
+                  "MVHumanNet and MVHumanNet++",
+                  "Added two partial gated 3D-human cards",
+                  "Added canonical MVHumanNet → MVHumanNet++ annotation lineage for enhanced masks, SMPL-X, normal maps, and depth maps",
+                  "[MVHumanNet](https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet) · [MVHumanNet++](https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus)"
+                ],
+                [
+                  "YFCC100M and CommonCanvas",
+                  "Added historical YFCC100M and verified CommonCatalog cards plus the open CommonCanvas-XL-C model",
+                  "Added YFCC100M → CommonCatalog → CommonCanvas-XL-C lineage, preserving license partitions, item attribution, BLIP-2 captions, and commercial versus non-commercial boundaries",
+                  "[YFCC100M](https://multimediacommons.wordpress.com/yfcc100m-core-dataset/) · [CommonCanvas paper](https://arxiv.org/abs/2310.16825) · [model](https://huggingface.co/common-canvas/CommonCanvas-XL-C)"
+                ],
+                [
+                  "Fine-T2I",
+                  "Added partial 6,314,117-pair image fine-tuning card",
+                  "Records the synthetic and professional-photo mix, more than 95% candidate rejection, Apache-2.0 metadata label, and underlying source/generator term review",
+                  "[paper](https://arxiv.org/abs/2602.09439) · [dataset](https://huggingface.co/datasets/ma-xu/fine-t2i)"
+                ],
+                [
+                  "GPIC",
+                  "Added verified 101.2M-example permissive image card and partial reference-model card",
+                  "Added GPIC ↔ GPIC Baseline Models, including the gated access condition, per-item license/attribution fields, and pixel-space flow-matching strategy",
+                  "[project](https://gpic.stanford.edu/) · [dataset](https://huggingface.co/datasets/stanford-vision-lab/gpic) · [models](https://huggingface.co/stanford-vision-lab/gpic-baselines)"
+                ],
+                [
+                  "OpenVE",
+                  "Added verified OpenVE-3M and OpenVE-Bench cards plus the announced 5B OpenVE-Edit model",
+                  "Added OpenVE-3M → OpenVE-Bench and OpenVE-3M / OpenVE-Bench ↔ OpenVE-Edit relations; weights, code, and final model license remain under review",
+                  "[project](https://lewandofskee.github.io/projects/OpenVE/) · [dataset](https://huggingface.co/datasets/Lewandofski/OpenVE-3M) · [benchmark](https://huggingface.co/datasets/Lewandofski/OpenVE-Bench)"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "OpenVid-1M was already present and remains monitored. ST-Align was reviewed but not added in this pass because its public release is primarily a staged video-language instruction and grounding mixture rather than a core generative media training corpus. CI-VID and the private/internal inventory rows were not accepted because a stable public primary source and usable rights contract were not available."
+            }
+          ]
+        },
+        {
+          "title": "Canonical model-dataset and dataset-lineage indexes",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Model cards remain the only editable source of a model-to-dataset relationship: each named reference links to a reviewed dataset card through `catalog_id`. Site generation now emits a normalized relation index and symmetric model and dataset backlinks. The current 29 model and 48 dataset cards produce 26 navigable relationships, including GraphVid ↔ GraphVid-Bench, Fit-VTO ↔ FIT-VTO-100K, CtrlVTON ↔ VITON-HD-edit, TripVVT ↔ TripVVT-10K, and JUST-DUB-IT ↔ Audiovisual Translation Dubbing Dataset, plus TalkVerse-5B ↔ TalkVerse, CommonCanvas-XL-C ↔ CommonCatalog, GPIC Baseline Models ↔ GPIC, and OpenVE-Edit ↔ OpenVE-3M / OpenVE-Bench."
+            },
+            {
+              "type": "paragraph",
+              "text": "Dataset cards can now declare a reviewed `derived_from` edge with an upstream catalog ID, relationship type, contribution, and notes. Validation rejects unknown parents, duplicate edges, self-links, and cycles. Site generation emits twelve dataset-to-dataset relationships plus symmetric upstream and downstream backlinks. Initial coverage includes OpenHumanVid and Panda-70M → TalkVerse, OpenHumanVid → OpenHumanVid-Talking, AudioSet and VGGSound → SoundAtlas, VGGSound → VGGSound-Omni, AudioSet → WavCaps and AudioCaps 2.0, and Objaverse-XL → Cap3D. The reference expansion adds YFCC100M → CommonCatalog, MVHumanNet → MVHumanNet++, and OpenVE-3M → OpenVE-Bench."
+            },
+            {
+              "type": "paragraph",
+              "text": "Dataset `evidence.used_by` is deliberately separate: it records what an upstream source says, while only a model card's `catalog_id` creates a canonical relation."
+            }
+          ]
+        },
+        {
+          "title": "Impact-aware monitoring and relationship view",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The site now has a dedicated **关系图谱** view rather than exposing lineage only inside expanded cards. Model-to-dataset rows preserve role, availability, and scale; dataset-to-dataset rows preserve transformation type and upstream contribution. Every endpoint opens its corresponding card, and search, modality, and scenario filters apply to both relationship types."
+            },
+            {
+              "type": "paragraph",
+              "text": "The twenty-nine important dataset revision probes now carry a canonical dataset ID and an explicit priority. Twenty-three application-critical datasets include VGGSound-Omni, Audiovisual Translation Dubbing Dataset, FIT-VTO-100K, WavCaps, VITON-HD-edit, TripVVT-10K, TalkVerse, OpenHumanVid-Talking, OpenHumanVid, Panda-70M, Koala-36M, FreeMan, MVHumanNet, MVHumanNet++, CommonCatalog, Fine-T2I, GPIC, OpenVE-3M, OpenVE-Bench, HDTF, CelebV-HQ, TalkVid, and MV-Fashion. The remaining six broad image/video/3D corpora are marked `high`. Thirteen model probes use the same contract: seven critical application models and six high-priority open foundation or research releases. When a dataset changes, the discovery Issue includes its dataset ID, every downstream dataset reached through `derived_from`, and every affected model reached through either a direct model reference or that downstream lineage. When a model changes, it includes the model ID and directly linked datasets. The generated site displays monitoring tiers and exact probe links on both model and dataset cards, while unmonitored entries remain explicitly unmarked."
+            }
+          ]
+        },
+        {
+          "title": "Digital-human and Try-On primary-source expansion",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "This iteration adds three released models and four public or gated datasets, while keeping evaluation-only links and unreleased private corpora distinct from training relationships."
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Item",
+                  "Catalog result",
+                  "Data-strategy or release boundary",
+                  "Primary evidence"
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "|---|---|---|---|"
+            },
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "HunyuanVideo-Avatar ↔ HDTF / CelebV-HQ",
+                  "Added verified open-weight avatar model with two evaluation links",
+                  "Tencent reports 500K character-audio samples and about 1,250 hours, LatentSync and Koala-based filtering, and staged audio/image training. The private training corpus is not equated with either public benchmark.",
+                  "[repository](https://github.com/Tencent-Hunyuan/HunyuanVideo-Avatar) · [paper](https://arxiv.org/abs/2505.20156) · [model](https://huggingface.co/tencent/HunyuanVideo-Avatar)"
+                ],
+                [
+                  "MuseTalk 1.5 ↔ HDTF",
+                  "Added verified open-weight lip-sync model with a canonical fine-tuning relationship",
+                  "The released checkpoint explicitly uses HDTF plus an unnamed private set, followed by facial-abstract pretraining and adversarial sync fine-tuning. The repository and Hugging Face license labels remain visibly inconsistent.",
+                  "[repository](https://github.com/TMElyralab/MuseTalk) · [paper](https://arxiv.org/abs/2410.10122) · [model](https://huggingface.co/TMElyralab/MuseTalk)"
+                ],
+                [
+                  "FASHN VTON v1.5",
+                  "Added verified Apache-2.0 Try-On model card",
+                  "A 972M pixel-space MMDiT is trained from scratch on 18M masked pairs, then on a 50/50 mix with a 4M synthetic triplet pool. Source-dataset identities and rights composition are not disclosed, so no catalog dataset is inferred.",
+                  "[project](https://fashn.ai/research/vton-1-5) · [repository](https://github.com/fashn-AI/fashn-vton-1.5) · [model](https://huggingface.co/fashn-ai/fashn-vton-1.5)"
+                ],
+                [
+                  "TalkVid",
+                  "Added partial talking-video dataset card",
+                  "The project describes 1,244.33 hours and a 160-hour annotated core, but the current public repository exposes only a 500-row test artifact. The card uses the observable release scale rather than presenting the headline corpus as downloadable.",
+                  "[project](https://freedomintelligence.github.io/talk-vid) · [paper](https://arxiv.org/abs/2508.13618) · [dataset](https://huggingface.co/datasets/FreedomIntelligence/TalkVid)"
+                ],
+                [
+                  "MV-Fashion",
+                  "Added partial gated multi-view fashion card",
+                  "The current release has 52,020,529 frames and 2,357 sequences after privacy and quality removals, not the paper headline of 72.5M frames. Access is manually gated for non-commercial research.",
+                  "[project](https://hunorlaczko.github.io/MV-Fashion/) · [paper](https://arxiv.org/abs/2603.08147) · [dataset](https://huggingface.co/datasets/MV-Fashion/MV-Fashion)"
+                ],
+                [
+                  "HDTF / CelebV-HQ",
+                  "Added partial URL-reconstruction cards",
+                  "Both distribute metadata and reconstruction tools rather than an unrestricted hosted copy of source YouTube media; upstream rights and disappearing URLs remain explicit limitations.",
+                  "[HDTF](https://github.com/MRzzm/HDTF) · [CelebV-HQ](https://github.com/CelebV-HQ/CelebV-HQ)"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Industry ranking and new-dataset release monitoring",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "This iteration adds a second discovery channel for head-model coverage. Five Artificial Analysis leaderboards are snapshotted weekly: text-to-image, image editing, text-to-video, image-to-video, and video editing. The scanner keeps up to fifteen positions per board, including both open-weight and closed/API models, and alerts only on membership or ordering changes rather than ordinary Elo movement. The reviewed baseline currently contains 66 ranking positions; every current Top 5 entry maps to a canonical model card."
+            },
+            {
+              "type": "paragraph",
+              "text": "Twelve model versions were added from first-party release, API, or investor sources: GPT Image 2, GPT Image 1.5, Reve 2.1, MAI-Image-2.5, Gemini 3.1 Flash Image, Gemini 3 Pro Image, Wan 2.7, HappyHorse 1.0, HappyHorse 1.1, Grok Imagine Video 1.5, Runway Aleph 2.0, and Kling AI 3.0. Their release dates are recorded at the exact version level and the generated model index is explicitly sorted newest-first. None of these sources publishes identifiable training-dataset names, so their cards retain an `undisclosed` corpus instead of inventing lineage."
+            },
+            {
+              "type": "paragraph",
+              "text": "Eight Hugging Face dataset API feeds sorted by creation time now cover text-to-image, image generation, text-to-video, video generation, image-to-video, talking heads, video dubbing, and virtual try-on. The first reviewed snapshot contains 142 release candidates. Together with arXiv recent feeds and vendor/research sources, the full scanner now watches 116 sources with zero baseline failures."
+            },
+            {
+              "type": "paragraph",
+              "text": "`MODEL_DATASET_INDEX.md` is now generated and checked in CI. It lists all 41 models and every data reference: 26 resolve to catalog cards, while 51 rows explain that the source is unreleased or undisclosed. Validation rejects any future `public` or `gated` named reference without a canonical catalog card. The site adds a ranking view, ranking badges on mapped model cards, visible resolution reasons on unlinked data references, and an explicit “release date: new to old” ordering label."
+            },
+            {
+              "type": "paragraph",
+              "text": "The link audit also replaced two stale 404 release-date declarations for HDTF and CelebV-HQ with live first-party evidence. Confirmed 404/410 responses remain hard failures; rate limits, anti-bot responses, and transient connection errors are reported separately as warnings."
+            }
+          ]
+        }
+      ],
+      "source_path": "updates/2026-07-26.md"
+    }
+  ]
+}

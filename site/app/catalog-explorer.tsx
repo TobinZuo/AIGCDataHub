@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { SiteHeader } from "./site-header";
 
 type Mode = "models" | "datasets" | "sources" | "rankings" | "lineage" | "strategies";
 
@@ -1607,19 +1608,7 @@ export function CatalogExplorer({ catalog }: { catalog: Catalog }) {
 
   return (
     <main>
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="AIGCDataHub 首页">
-          <span className="brand-mark" aria-hidden="true">A</span>
-          <span>AIGC<span>/</span>DATAHUB</span>
-        </a>
-        <div className="header-status">
-          <span className="live-dot" aria-hidden="true" />
-          LIVING INDEX · {formatDate(catalog.last_verified)}
-        </div>
-        <a className="repo-link" href="https://github.com/TobinZuo/AIGCDataHub" target="_blank" rel="noreferrer">
-          SOURCE ON GITHUB <span aria-hidden="true">↗</span>
-        </a>
-      </header>
+      <SiteHeader active="catalog" status={`LIVING INDEX · ${formatDate(catalog.last_verified)}`} />
 
       <section className="hero" id="top">
         <div className="hero-copy">
