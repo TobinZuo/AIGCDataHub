@@ -618,11 +618,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            122,
+            135,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            94,
+            99,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -638,13 +638,14 @@ class DiscoveryTests(unittest.TestCase):
                 "model-release-feeds",
                 "industry-model-rankings",
                 "source-platform-updates",
+                "unified-multimodal-and-physical-ai",
             }.issubset(track_ids)
         )
         self.assertNotIn("unified-and-physical-ai", track_ids)
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
-        self.assertEqual(sum(source.track_id == "model-release-feeds" for source in sources), 17)
+        self.assertEqual(sum(source.track_id == "model-release-feeds" for source in sources), 20)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
-        self.assertEqual(len(sources), 328)
+        self.assertEqual(len(sources), 354)
         self.assertIn(
             "https://huggingface.co/api/models?pipeline_tag=text-to-video&sort=createdAt&direction=-1&limit=50&full=true",
             urls,
@@ -679,7 +680,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertIn("https://github.com/VAIL-UCLA/WorldWeaver/commits/main.atom", urls)
         self.assertIn("https://github.com/solaris-wm/solaris/commits/main.atom", urls)
         self.assertIn("https://arxiv.org/html/2607.21553", urls)
-        self.assertIn("https://export.arxiv.org/api/query?id_list=2607.21553", urls)
+        self.assertIn("https://arxiv.org/abs/2607.21553v1", urls)
         self.assertIn("https://arxiv.org/html/2607.19064", urls)
         self.assertIn("https://arxiv.org/abs/2607.19064v1", urls)
         self.assertIn("https://raw.githubusercontent.com/microsoft/Mage/main/mage_flow/README.md", urls)

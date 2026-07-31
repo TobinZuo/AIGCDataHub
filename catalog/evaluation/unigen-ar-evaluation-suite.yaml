@@ -1,0 +1,68 @@
+id: unigen-ar-evaluation-suite
+name: UniGen-AR Evaluation Suite
+organization: UniGen-AR authors and upstream benchmark maintainers
+released_at: "2026-07-27"
+release_date_source: https://arxiv.org/abs/2607.24157
+modality: evaluation
+tasks:
+  - text-to-image-evaluation
+  - image-editing-evaluation
+  - depth-estimation-evaluation
+  - image-restoration-evaluation
+stages:
+  - evaluation
+description: >-
+  A relationship card for the six public benchmarks used by UniGen-AR:
+  GenEval for text-to-image, Emu-Edit for image editing, NYUv2 for depth and
+  normals, LOL for low light, GoPro for deblurring, and Rain-13K for deraining.
+access:
+  status: metadata-only
+  type: urls
+  url: https://arxiv.org/abs/2607.24157
+  requires_account: false
+  notes: There is no combined download. Use the upstream GenEval, Emu-Edit, NYUv2, LOL, GoPro, and Rain-13K project releases named by the paper and preserve their separate terms and splits.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The paper evaluates on each upstream benchmark's standard split and does not publish a merged record count.
+annotations:
+  types:
+    - text-to-image-prompt
+    - edit-instruction
+    - depth-map
+    - surface-normal
+    - low-light-pair
+    - blur-pair
+    - rain-pair
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Heterogeneous upstream licenses
+  media: Heterogeneous upstream benchmark terms
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The UniGen-AR paper's CC-BY-4.0 license does not relicense benchmark media; obtain and review every component independently.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - The six tasks have different metrics, licenses, split protocols, and data-generating processes, so aggregate claims require per-benchmark context.
+    - Several restoration benchmarks are small or domain-specific and do not establish robustness on open-world degradations.
+    - This card records a reported evaluation relationship, not a redistributable merged dataset.
+processing:
+  recipe: Evaluate text-to-image on GenEval, editing on Emu-Edit, depth and normals on NYUv2, low-light enhancement on LOL, deblurring on GoPro, and deraining on Rain-13K using their standard protocols.
+  recommended_format: native
+  notes: Upstream entry points are https://github.com/djghosh13/geneval, https://github.com/facebookresearch/emu, https://cs.nyu.edu/~fergus/datasets/nyu_depth_v2.html, https://daooshee.github.io/BMVC2018website/, https://seungjunnah.github.io/Datasets/gopro, and https://github.com/csdwren/PReNet.
+evidence:
+  homepage: https://arxiv.org/abs/2607.24157
+  paper: https://arxiv.org/abs/2607.24157
+  used_by:
+    - UniGen-AR
+status: partial
+last_verified: "2026-07-31"

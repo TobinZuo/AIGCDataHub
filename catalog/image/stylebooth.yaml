@@ -1,0 +1,66 @@
+id: stylebooth
+name: StyleBooth Dataset
+organization: Alibaba DAMO Academy and Scepter Studio
+released_at: "2024-05-27"
+release_date_source: https://huggingface.co/scepter-studio/stylebooth/tree/main/datasets
+modality: image
+tasks:
+  - style-transfer
+  - image-editing
+  - multimodal-instruction-editing
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  A public style-editing corpus of source and target image pairs with text- and
+  exemplar-based multimodal instructions, used by UniGen-AR for 11K
+  de-stylize-and-restyle training examples.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/scepter-studio/stylebooth/tree/main/datasets
+  requires_account: false
+  notes: The official Scepter Studio repository hosts stylebooth_dataset.zip at about 3.27 GB under revision c993df593ed451c137118b5426a1dcab29e38d5c.
+scale:
+  samples: 11000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: UniGen-AR reports 11K style-transfer examples; the public archive should be inspected for exact row and source-image counts before deriving new totals.
+annotations:
+  types:
+    - source-image
+    - target-image
+    - text-instruction
+    - style-reference
+    - style-label
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Apache-2.0
+  media: Apache-2.0 repository label with upstream and generated-image rights requiring review
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The Hugging Face repository declares Apache-2.0; users should verify whether the archive contains additional image-source or generator-specific conditions.
+quality:
+  dimensions:
+    - visual-quality
+    - aesthetics
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Style categories and synthetic transformation recipes may favor the generators and templates used during construction.
+    - The public file listing does not expose a per-item rights and provenance ledger.
+    - Source-target pairs and alternate instruction forms can be correlated and require source-aware splitting.
+processing:
+  recipe: Construct paired de-stylization and restylization examples with text and exemplar instructions for multimodal style editing.
+  recommended_format: native
+  notes: Pin the release archive, split by underlying source content, and preserve instruction modality and transformation provenance.
+evidence:
+  homepage: https://ali-vilab.github.io/stylebooth-page/
+  paper: https://arxiv.org/abs/2404.12154
+  used_by:
+    - UniGen-AR
+status: partial
+last_verified: "2026-07-31"

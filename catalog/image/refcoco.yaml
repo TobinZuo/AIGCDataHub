@@ -1,0 +1,65 @@
+id: refcoco
+name: RefCOCO
+organization: University of North Carolina at Chapel Hill
+released_at: "2016-08-01"
+release_date_source: https://github.com/lichengunc/refer
+modality: image
+tasks:
+  - referring-expression-segmentation
+  - referring-expression-comprehension
+  - image-to-image
+stages:
+  - fine-tuning
+  - evaluation
+description: >-
+  A human-authored referring-expression collection over MS COCO images,
+  linking natural-language descriptions to target objects with canonical UNC
+  and Google splits for grounding and segmentation.
+access:
+  status: open
+  type: urls
+  url: https://github.com/lichengunc/refer
+  requires_account: false
+  notes: The official API repository documents the RefCOCO download and requires separately obtaining the corresponding MS COCO images; its original webserver is intermittently unavailable.
+scale:
+  samples: 142209
+  source_items: 19994
+  hours: null
+  approximate: false
+  notes: 142,209 referring expressions for 50,000 target objects in 19,994 COCO images; UniGen-AR reports 320K paired rows for its transformed segmentation view.
+annotations:
+  types:
+    - referring-expression
+    - object-reference
+    - bounding-box
+    - segmentation-mask
+    - split-membership
+  source: human
+  languages:
+    - en
+license:
+  metadata: Dataset terms not clearly stated by the API repository
+  media: MS COCO image terms remain applicable
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Apache-2.0 in the GitHub repository applies to the API code; it should not be treated as the license for RefCOCO annotations or MS COCO images.
+quality:
+  dimensions:
+    - text-media-alignment
+    - deduplication
+    - provenance
+  known_limitations:
+    - Expressions are short English descriptions collected in a game setting and may not represent conversational or multilingual reference patterns.
+    - Google splits can place different objects from the same image across train and validation, while UNC splits partition images; protocols are not interchangeable.
+    - Media and annotation access depend on separate sources with different terms and availability.
+processing:
+  recipe: Join cleaned referring-expression annotations to MS COCO images and object masks through the official REFER API while retaining the selected split protocol.
+  recommended_format: native
+  notes: Record whether the UNC or Google partition is used and keep all rows from one source image together when constructing new generative splits.
+evidence:
+  homepage: https://github.com/lichengunc/refer
+  paper: https://aclanthology.org/D14-1086/
+  used_by:
+    - UniGen-AR
+status: partial
+last_verified: "2026-07-31"

@@ -1,0 +1,69 @@
+id: remind-pexels-dynamic-clips
+name: ReMind Pexels Dynamic Clips
+organization: Applied Intuition Research
+released_at: "2026-05-25"
+release_date_source: https://arxiv.org/abs/2605.25333
+modality: video
+tasks:
+  - image-to-video
+  - world-modeling
+  - temporal-dynamics-generation
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  An unreleased subset of Pexels videos retrieved with ReMind's 100+ dynamic
+  event taxonomy and filtered by Qwen3-VL for event identity, shot continuity,
+  dynamic-region occupancy, and sustained temporal change.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2605.25333
+  requires_account: false
+  notes: The paper describes retrieval and filtering but publishes no retained URL manifest, row count, download archive, source snapshot, or dataset-specific license.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: false
+  notes: Neither the retrieved pool nor retained clip count, hours, source-contributor distribution, or sampling weight is disclosed.
+annotations:
+  types:
+    - dynamic-event
+    - scene-cut
+    - spatial-occupancy
+    - temporal-occupancy
+    - caption
+    - estimated-depth
+    - estimated-camera-trajectory
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Not published
+  media: Pexels contributor and platform terms; no training-rights grant established by API access
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Pexels API and download availability do not themselves grant dataset construction, model-training, commercial, or redistribution rights; no ReMind-specific source agreement is published.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Missing source URLs and retained-item manifests prevent rights, duplicate, takedown, contributor, and train-evaluation overlap audits.
+    - Qwen3-VL event captions and occupancy estimates can hallucinate or systematically reject difficult dynamics.
+    - Stock-video composition and contributor incentives may not represent natural, embodied, or safety-critical state evolution.
+processing:
+  recipe: Query Pexels with taxonomy-derived dynamic-event keywords and negative filters, then use Qwen3-VL to caption events, detect cuts, and retain high-occupancy, temporally sustained dynamics.
+  recommended_format: native
+  notes: If a manifest is released, preserve contributor attribution, source URL, retrieval time, event label, filtering scores, license snapshot, and takedown state.
+evidence:
+  homepage: https://arxiv.org/abs/2605.25333
+  paper: https://arxiv.org/abs/2605.25333
+  used_by:
+    - ReMind 5B
+status: partial
+last_verified: "2026-07-31"

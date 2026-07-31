@@ -40,12 +40,14 @@ scenarios:
     short_label: 数字人
     description: 参考人物保持、音频驱动头像、Talking Head、口型同步和跨场景身份保持。
     tasks:
+      - 3d-avatar-generation
       - audio-driven-avatar
       - cross-scene-avatar-generation
       - lip-sync
       - lip-sync-training
       - multilingual-avatar-video
       - reference-video-avatar
+      - single-image-3d-reconstruction
       - talking-head-generation
 
   - id: video-localization
@@ -71,3 +73,17 @@ scenarios:
       - video-virtual-try-on
       - virtual-try-on
       - virtual-try-on-evaluation
+
+  - id: physical-ai
+    label: Physical AI 与世界模型
+    short_label: Physical AI
+    description: 具身交互、动作条件视频、可控世界模型，以及支撑这些能力的机器人与模拟器视频数据。
+    tasks:
+      - action-conditioned-video-generation
+      - embodied-learning
+      - embodied-world-modeling
+      - multi-agent-world-modeling
+      - physical-ai-generation
+      - robot-manipulation
+      - streaming-video-generation
+      - world-modeling

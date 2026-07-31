@@ -1,0 +1,72 @@
+id: laion-coco-aesthetic
+name: LAION-COCO-Aesthetic
+organization: Guangyi Li and LAION-derived dataset contributors
+released_at: "2023-11-15"
+release_date_source: https://huggingface.co/datasets/guangyil/laion-coco-aesthetic
+modality: image
+tasks:
+  - text-to-image
+  - image-text-pretraining
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A 4.68M-row LAION-COCO subset pairing web-image URLs with multiple synthetic
+  captions, CLIP similarities, aesthetic and watermark scores, dimensions, and
+  content hashes for text-to-image training.
+derived_from:
+  - catalog_id: laion-5b
+    relationship: filtered-subset
+    contribution: Original web-image URLs and metadata lineage
+    notes: LAION-COCO recaptioning and aesthetic filtering add derived annotations but do not replace upstream media rights.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/guangyil/laion-coco-aesthetic
+  requires_account: false
+  notes: Hugging Face hosts 4.68M parquet rows and image features; users should pin revision e4e44b67a4690d6de2dd4e92f8e00c4483d3176e.
+scale:
+  samples: 4680000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The current viewer reports approximately 4.68M rows; UniGen-AR samples 4.1M of them.
+annotations:
+  types:
+    - synthetic-caption
+    - clip-similarity
+    - aesthetic-score
+    - watermark-score
+    - source-url
+    - sha256
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Apache-2.0
+  media: Original web-item licenses and rights
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Apache-2.0 covers the dataset release metadata and code, not every URL-linked image; downstream users must resolve copyright, privacy, publicity, and takedown obligations per item.
+quality:
+  dimensions:
+    - text-media-alignment
+    - visual-quality
+    - deduplication
+    - provenance
+  known_limitations:
+    - URLs and hosted representations can disappear or change after the pinned metadata revision.
+    - Synthetic captions, CLIP similarity, aesthetic scores, and watermark estimates inherit model biases and errors.
+    - Aesthetic filtering does not establish safety, consent, copyright, or demographic balance.
+processing:
+  recipe: Filter LAION-COCO-derived rows by aesthetic and related metadata, retain multiple generated captions and similarity scores, and package records as parquet.
+  recommended_format: parquet
+  notes: Preserve URL, hash, scores, and all caption variants; propagate upstream removals and never treat Apache metadata licensing as a blanket media grant.
+evidence:
+  homepage: https://huggingface.co/datasets/guangyil/laion-coco-aesthetic
+  paper: https://laion.ai/blog/laion-coco/
+  used_by:
+    - UniGen-AR
+status: partial
+last_verified: "2026-07-31"

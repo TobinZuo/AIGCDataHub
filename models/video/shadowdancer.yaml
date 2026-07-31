@@ -1,0 +1,75 @@
+id: shadowdancer
+name: ShadowDancer
+organization: Alaya Lab and Shanghai Innovation Institute
+released_at: "2026-07-30"
+modalities:
+  - video
+  - action
+tasks:
+  - image-to-video
+  - action-conditioned-video-generation
+  - embodied-world-modeling
+  - streaming-video-generation
+access:
+  status: announced
+  license: Paper is CC-BY-4.0; code, checkpoints, and model license are not released
+  release_url: https://shadowdancer-1.github.io/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Cross-shadow latent-action encoder with a block-causal video diffusion world model
+  parameters: null
+  notes: The paper initializes the generator from SkyReels-V2-1.3B-I2V, learns 32-dimensional action latents by cross-shadow prediction, and converts the backbone to block-causal rollout.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Shadow Library
+      catalog_id: shadow-library
+      role: fine-tuning
+      availability: not-released
+      scale: approximately 20.5M frames across synthetic shadow pairs and real-video self-pairs
+      notes: The paper names simulator, rendered, game, DL3DV, MiraData, and Open X-Embodiment sources, but does not release the paired corpus or complete per-source rights.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - image
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-skyreels-video-prior
+      scale_disclosed: false
+      strategy: Initialize the video generator from SkyReels-V2-1.3B-I2V without restating that model's complete data lineage.
+    - name: fine-tuning
+      modalities:
+        - video
+        - action
+      source_types:
+        - synthetic
+        - public-dataset
+        - public-web
+      operations:
+        - shadow-pair-rendering
+        - appearance-resampling
+        - self-pairing
+        - cross-shadow-prediction
+        - flow-matching
+        - block-causal-training
+      scale_disclosed: true
+      strategy: Train on paired clips that preserve frame-level dynamics while resampling appearance, plus real-video self-pairs used to retain visual realism; fine-tune the long-rollout model for 10K steps at 544x960 on eight H200 GPUs.
+  strategy_summary:
+    - Encode a demonstrated clip once as a reusable, variable-length action asset instead of relying on task-specific command labels.
+    - Learn invariance by predicting one synchronized shadow from another that shares dynamics but resamples character, scene, lighting, or camera factors.
+    - Stream chained action assets through a block-causal world model for human, robot, first-person, and third-person dynamics.
+  unknowns:
+    - Full source-level rights, licenses, exact mixture weights for all Shadow Library components, consent and privacy handling, and deduplication across public-video sources.
+    - Code, checkpoint, model license, final parameter count, optimizer details beyond the reported long-model stage, and release schedule.
+    - Complete training lineage of the inherited SkyReels-V2-1.3B-I2V checkpoint.
+evidence:
+  release: https://shadowdancer-1.github.io/
+  technical_report: https://arxiv.org/abs/2607.28362
+  repository: null
+status: watch
+last_verified: "2026-07-31"

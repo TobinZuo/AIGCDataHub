@@ -1,0 +1,59 @@
+id: minimax-h3
+name: MiniMax H3
+organization: MiniMax
+released_at: "2026-07-31"
+ranking_names:
+  - MiniMax-H3
+modalities:
+  - video
+  - image
+  - audio
+  - multimodal
+tasks:
+  - text-to-video
+  - image-to-video
+  - reference-to-video
+  - video-editing
+  - audio-video-generation
+access:
+  status: api-only
+  license: Proprietary API terms; no model-weight license published
+  release_url: https://platform.minimax.io/docs/release-notes/models
+  weights_url: null
+  api_url: https://platform.minimax.io/docs/guides/video-generation?ready=6
+architecture:
+  family: Unified multimodal video generation model
+  parameters: null
+  notes: MiniMax describes one model accepting text, image, video, and audio references; architecture, parameter count, tokenizer, and training compute are not disclosed.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - image
+        - audio
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - multimodal-video-generation
+      scale_disclosed: false
+      strategy: MiniMax has not published the source corpus, data scale, filtering, deduplication, captioning, synthetic-data, or post-training recipe.
+  strategy_summary:
+    - Unify text-to-video, first/last-frame image-to-video, reference-conditioned generation, and video editing behind one API model.
+    - Accept up to nine images, three videos, and three audio clips as reference inputs, subject to documented input combinations.
+    - Generate 5-to-15-second video at up to 2K and 24 FPS through the v2 video-generation endpoint.
+  unknowns:
+    - Training-source identities, provenance, rights, scale, mixture, cleaning, deduplication, relabeling, synthetic-data contribution, and preference optimization.
+    - Architecture, parameter count, training stages, compute, technical report, safety-data composition, and evaluation protocol.
+    - Weight-release plan and model-specific license; the word open on the product page is not treated as evidence of open weights.
+evidence:
+  release: https://platform.minimax.io/docs/release-notes/models
+  technical_report: null
+  repository: null
+status: partial
+last_verified: "2026-07-31"

@@ -1,0 +1,70 @@
+id: dl3dv-10k
+name: DL3DV-10K
+organization: DL3DV Dataset Team
+released_at: "2023-12-26"
+release_date_source: https://arxiv.org/abs/2312.16256
+modality: video
+tasks:
+  - novel-view-synthesis
+  - 3d-reconstruction
+  - world-modeling
+  - camera-controlled-video-generation
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A real-world scene collection of 10,510 high-resolution videos and 51.2M
+  frames across 65 point-of-interest categories, with camera poses and scene
+  attributes for novel-view, 3D, and video-generation research.
+access:
+  status: gated
+  type: hosted
+  url: https://huggingface.co/DL3DV
+  requires_account: true
+  notes: Full 480p, 960p, 2K, and 4K variants require accepting the DL3DV terms on Hugging Face; the official repository provides a subset-aware download script and eleven free samples.
+scale:
+  samples: 10510
+  source_items: 51200000
+  hours: null
+  approximate: false
+  notes: 10,510 scene videos and 51.2M frames; the benchmark subset contains 140 separate scenes and must not be conflated with the training collection.
+annotations:
+  types:
+    - camera-pose
+    - indoor-outdoor
+    - reflection-level
+    - transparency-level
+    - lighting-level
+    - scene-category
+  source: mixed
+  languages:
+    - none
+license:
+  metadata: DL3DV-10K Terms of Use
+  media: Custom dataset terms with privacy and ethical-use obligations
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Access acceptance is mandatory; the project warns that sensitive details can remain despite anonymization and handles reported scenes through manual redaction.
+quality:
+  dimensions:
+    - visual-quality
+    - multi-view-consistency
+    - geometry-quality
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Volunteer capture requirements favor slowly changing scenes, wide camera sweeps, limited motion, and mobile or drone recording conventions.
+    - Sensitive details may remain in real-world imagery despite project anonymization and takedown handling.
+    - The benchmark scenes are explicitly outside the 10K training release and should remain isolated during evaluation.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Use the official download.py script, pin the chosen resolution and scene-hash list, preserve camera files, and keep the separate evaluation release out of training.
+evidence:
+  homepage: https://github.com/DL3DV-10K/Dataset
+  paper: https://arxiv.org/abs/2312.16256
+  used_by:
+    - ShadowDancer Shadow Library
+status: verified
+last_verified: "2026-07-31"

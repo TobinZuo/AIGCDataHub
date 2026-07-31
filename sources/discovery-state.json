@@ -1,6 +1,6 @@
 {
   "schema_version": 10,
-  "generated_at": "2026-07-30T10:21:07Z",
+  "generated_at": "2026-07-31T02:52:55Z",
   "sources": [
     {
       "track_id": "dataset-release-feeds",
@@ -2466,8 +2466,8 @@
       "status": 200,
       "candidates": [
         {
-          "title": "Anchoring and Steering Diffusion: Enhancing the Faithfulness of Text-to-Image Generation at Inference Time",
-          "url": "https://arxiv.org/abs/2607.26647",
+          "title": "S-Avatar: Diffusion-Guided Gaussian Head Avatars from a Single Image",
+          "url": "https://arxiv.org/abs/2607.28164",
           "review_priority": "standard",
           "priority_score": 0,
           "priority_signals": [],
@@ -2477,8 +2477,8 @@
           "gated": null
         },
         {
-          "title": "Visko Orbis 1.0: A Live Model for Real-Time Interactive Long Video Generation",
-          "url": "https://arxiv.org/abs/2607.26694",
+          "title": "Space2Ground 2.0: A Multi-Source Dataset and Framework for Agricultural Monitoring through Fusion of Street-Level and Satellite Imagery",
+          "url": "https://arxiv.org/abs/2607.28247",
           "review_priority": "standard",
           "priority_score": 0,
           "priority_signals": [],
@@ -2488,8 +2488,8 @@
           "gated": null
         },
         {
-          "title": "TPD: Temporal Prior Decoupling for Text-to-Video Diffusion Models",
-          "url": "https://arxiv.org/abs/2607.26706",
+          "title": "ShadowDancer: Teaching Video World Models Any Action by Learning Unified Dynamics Representations from a Video and Its Shadow",
+          "url": "https://arxiv.org/abs/2607.28362",
           "review_priority": "standard",
           "priority_score": 0,
           "priority_signals": [],
@@ -2499,8 +2499,8 @@
           "gated": null
         },
         {
-          "title": "FreeShadow: Training-Free Shadow Removal via Illumination Transfer and Selective Content Preservation in Diffusion Models",
-          "url": "https://arxiv.org/abs/2607.26715",
+          "title": "Can Vision-Language Models Reason about AI Edits in Images?",
+          "url": "https://arxiv.org/abs/2607.28464",
           "review_priority": "standard",
           "priority_score": 0,
           "priority_signals": [],
@@ -2510,8 +2510,8 @@
           "gated": null
         },
         {
-          "title": "Dual Inversion for Text-to-Image Diffusion Models: From Both Prompt and Noise Perspectives",
-          "url": "https://arxiv.org/abs/2607.26735",
+          "title": "Beyond Frame Selection: Generative Latent Evidence Aggregation for Long-Video Understanding",
+          "url": "https://arxiv.org/abs/2607.28516",
           "review_priority": "standard",
           "priority_score": 0,
           "priority_signals": [],
@@ -2521,41 +2521,8 @@
           "gated": null
         },
         {
-          "title": "See2Think: Do Multimodal Models Really Use Intermediate Visual States?",
-          "url": "https://arxiv.org/abs/2607.26769",
-          "review_priority": "standard",
-          "priority_score": 0,
-          "priority_signals": [],
-          "created_at": null,
-          "downloads": null,
-          "likes": null,
-          "gated": null
-        },
-        {
-          "title": "Ripple: Real-Time Streaming Audio-Video Generation With Cross-Modal Recurrent Memory",
-          "url": "https://arxiv.org/abs/2607.26818",
-          "review_priority": "standard",
-          "priority_score": 0,
-          "priority_signals": [],
-          "created_at": null,
-          "downloads": null,
-          "likes": null,
-          "gated": null
-        },
-        {
-          "title": "FreqForcing: Autoregressive Long Video Generation via Spectral Self-Anchoring",
-          "url": "https://arxiv.org/abs/2607.27110",
-          "review_priority": "standard",
-          "priority_score": 0,
-          "priority_signals": [],
-          "created_at": null,
-          "downloads": null,
-          "likes": null,
-          "gated": null
-        },
-        {
-          "title": "SeasonStereo: Robust Dense Stereo Matching for Multi-Date Satellite Imagery via Generative AI",
-          "url": "https://arxiv.org/abs/2607.27139",
+          "title": "ReToken: One Token to Improve Vision-Language Models for Visual Retrieval",
+          "url": "https://arxiv.org/abs/2607.28627",
           "review_priority": "standard",
           "priority_score": 0,
           "priority_signals": [],
@@ -4613,6 +4580,31 @@
     },
     {
       "track_id": "important-dataset-updates",
+      "source_url": "https://arxiv.org/abs/2607.21553v1",
+      "resolved_url": "https://arxiv.org/abs/2607.21553v1",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:f7d3a0e3d9f7a45f317650383ad5996b2610f9c94b923e3a952f036562c1d586",
+      "revision_url": "https://arxiv.org/abs/2607.21553v1",
+      "catalog_id": "sana-video-2-preference-pairs",
+      "priority": "critical",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
       "source_url": "https://arxiv.org/abs/2607.21580",
       "resolved_url": "https://arxiv.org/abs/2607.21580",
       "status": 200,
@@ -4668,7 +4660,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:b9200c634d9e828ac36fb7536bee709f4177d637f14d12ffff6981d6cf22e018",
+      "revision": "sha256:d23f5c7dabcf5502d5066e6cd80354497b7abef744adaab64f2f952a8f5e7375",
       "revision_url": "https://arxiv.org/abs/2607.22830",
       "catalog_id": "id-v2v-evaluation-suite",
       "priority": "critical",
@@ -4697,6 +4689,31 @@
       "revision_url": "https://arxiv.org/abs/2607.22830v1",
       "catalog_id": "id-v2v-face-relighting-pairs",
       "priority": "critical",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://arxiv.org/abs/2607.24157v1",
+      "resolved_url": "https://arxiv.org/abs/2607.24157v1",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:eb5d75bd477bea0bc1b97a139707c4da152384a7bcfe8ca2f28d6bf1dccc3c23",
+      "revision_url": "https://arxiv.org/abs/2607.24157v1",
+      "catalog_id": "unigen-ar-evaluation-suite",
+      "priority": "high",
       "model_id": null,
       "ranking_id": null,
       "rankings": [],
@@ -4746,6 +4763,31 @@
       "revision": "sha256:674e5ffd83d0abdc650159a7bc4334062695f6ce2d7cf294645dd8c51271ea74",
       "revision_url": "https://arxiv.org/html/2605.21431",
       "catalog_id": "vvt-interact",
+      "priority": "critical",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://arxiv.org/html/2605.25333v1",
+      "resolved_url": "https://arxiv.org/html/2605.25333v1",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:5d1917fa09b14b7eab5d2b5ebb030b80dc7880e480cbbfc357f6182925d9bc16",
+      "revision_url": "https://arxiv.org/html/2605.25333v1",
+      "catalog_id": "remind-pexels-dynamic-clips",
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
@@ -4918,7 +4960,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:87449411c4c7690d3066a3db2edb72587fcc1967067da220f9ab2f308d6aa14a",
+      "revision": "sha256:8954b2da96d1121683f5d75bc10ed49710da6613bc750b589ab290cc8a6abb17",
       "revision_url": "https://arxiv.org/html/2607.22241",
       "catalog_id": "agenthoi-mixed-source-corpus",
       "priority": "critical",
@@ -5013,14 +5055,14 @@
     },
     {
       "track_id": "important-dataset-updates",
-      "source_url": "https://davischallenge.org/davis2017/code.html",
-      "resolved_url": "https://davischallenge.org/davis2017/code.html",
+      "source_url": "https://arxiv.org/html/2607.28362",
+      "resolved_url": "https://arxiv.org/html/2607.28362",
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:5193c514ef33ee97c1d80ded779589333fc01d35929fb8743f1562a33a6c4209",
-      "revision_url": "https://davischallenge.org/davis2017/code.html",
-      "catalog_id": "davis-2017",
+      "revision": "sha256:4d8ee9b2252dfda29a1943b6b0b023d63b5d4f45713cae6e4d9e590f209deb62",
+      "revision_url": "https://arxiv.org/html/2607.28362",
+      "catalog_id": "shadow-library",
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
@@ -5038,14 +5080,14 @@
     },
     {
       "track_id": "important-dataset-updates",
-      "source_url": "https://export.arxiv.org/api/query?id_list=2607.21553",
-      "resolved_url": "https://export.arxiv.org/api/query?id_list=2607.21553",
+      "source_url": "https://davischallenge.org/davis2017/code.html",
+      "resolved_url": "https://davischallenge.org/davis2017/code.html",
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "https://arxiv.org/abs/2607.21553v1@2026-07-23T17:36:05Z",
-      "revision_url": "https://arxiv.org/abs/2607.21553v1",
-      "catalog_id": "sana-video-2-preference-pairs",
+      "revision": "sha256:5193c514ef33ee97c1d80ded779589333fc01d35929fb8743f1562a33a6c4209",
+      "revision_url": "https://davischallenge.org/davis2017/code.html",
+      "catalog_id": "davis-2017",
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
@@ -5096,6 +5138,31 @@
       "revision": "sha256:4eb9af1cc0f4d4191e0c625443e8ba1175955511e68ab0389e68da712a04bae5",
       "revision_url": "https://github.com/CelebV-Text/CelebV-Text/commits/main.atom",
       "catalog_id": "celebv-text",
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://github.com/DL3DV-10K/Dataset/commits/main.atom",
+      "resolved_url": "https://github.com/DL3DV-10K/Dataset/commits/main.atom",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:111677dc5fc1d0e05c161a7f5f4c1a862ee4b14caf9b71333b60feb777a186bd",
+      "revision_url": "https://github.com/DL3DV-10K/Dataset/commits/main.atom",
+      "catalog_id": "dl3dv-10k",
       "priority": "high",
       "model_id": null,
       "ranking_id": null,
@@ -5413,6 +5480,31 @@
     },
     {
       "track_id": "important-dataset-updates",
+      "source_url": "https://github.com/google-deepmind/open_x_embodiment/commits/main.atom",
+      "resolved_url": "https://github.com/google-deepmind/open_x_embodiment/commits/main.atom",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:fe41d746f4e99d51e5384b62c486cbf92bac0a69f995ee024d6c23e7ae803701",
+      "revision_url": "https://github.com/google-deepmind/open_x_embodiment/commits/main.atom",
+      "catalog_id": "open-x-embodiment",
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
       "source_url": "https://github.com/google-research-datasets/Objectron/commits/master.atom",
       "resolved_url": "https://github.com/google-research-datasets/Objectron/commits/master.atom",
       "status": 200,
@@ -5447,6 +5539,31 @@
       "revision_url": "https://github.com/hche11/VGGSound/commits/master.atom",
       "catalog_id": "vggsound",
       "priority": "critical",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://github.com/lichengunc/refer/commits/master.atom",
+      "resolved_url": "https://github.com/lichengunc/refer/commits/master.atom",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:425da8d9755211b244c382721c8de4bf4c48e304d3a8138ef8cd83d0c96d73d8",
+      "revision_url": "https://github.com/lichengunc/refer/commits/master.atom",
+      "catalog_id": "refcoco",
+      "priority": "high",
       "model_id": null,
       "ranking_id": null,
       "rankings": [],
@@ -5668,7 +5785,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:7f64a5b88d7f2a2a4b354416dcc21af764bc965aafe33ac24db0af5687ff0a2c",
+      "revision": "sha256:58c559be70b1bb97b7aa2aa860a7c13a047b90061c75bf99c9abf105ecf1e186",
       "revision_url": "https://huggingface.co/PosterCraft/datasets",
       "catalog_id": "postercraft-public-corpora",
       "priority": "high",
@@ -5696,6 +5813,31 @@
       "revision": "2026-05-29T01:05:22.000Z@8612340d22299bbce6b0b3c49874e9204ead4153",
       "revision_url": "https://huggingface.co/datasets/AIM-SCU/MAVEN_Multicultura_Text-to-Video_Generation",
       "catalog_id": "maven-multicultural-video",
+      "priority": "critical",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/AppliedIntuitionResearch/ReMind1M?expand=lastModified&expand=sha",
+      "resolved_url": "https://huggingface.co/api/datasets/AppliedIntuitionResearch/ReMind1M?expand=lastModified&expand=sha",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-07-30T22:52:38.000Z@0619eaa6455b5bdf5b6f270929fd8ab75028dd3d",
+      "revision_url": "https://huggingface.co/datasets/AppliedIntuitionResearch/ReMind1M",
+      "catalog_id": "remind1m",
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
@@ -6213,6 +6355,56 @@
     },
     {
       "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/TIGER-Lab/OmniEdit-Filtered-1.2M?expand=lastModified&expand=sha",
+      "resolved_url": "https://huggingface.co/api/datasets/TIGER-Lab/OmniEdit-Filtered-1.2M?expand=lastModified&expand=sha",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2024-12-06T02:57:59.000Z@82455c6cd66db7f0e5bfce8d7a236441af59d6df",
+      "revision_url": "https://huggingface.co/datasets/TIGER-Lab/OmniEdit-Filtered-1.2M",
+      "catalog_id": "omniedit-filtered-1-2m",
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/TencentARC/MiraData?expand=lastModified&expand=sha",
+      "resolved_url": "https://huggingface.co/api/datasets/TencentARC/MiraData?expand=lastModified&expand=sha",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2024-07-19T03:04:42.000Z@c7c6c759cd8d3401abfb21f38803ad737e2023b8",
+      "revision_url": "https://huggingface.co/datasets/TencentARC/MiraData",
+      "catalog_id": "miradata",
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
       "source_url": "https://huggingface.co/api/datasets/TripVVT/TripVVT-10K",
       "resolved_url": "https://huggingface.co/api/datasets/TripVVT/TripVVT-10K",
       "status": 200,
@@ -6222,6 +6414,31 @@
       "revision_url": "https://huggingface.co/datasets/TripVVT/TripVVT-10K",
       "catalog_id": "tripvvt-10k",
       "priority": "critical",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/VisualCloze/Graph200K?expand=lastModified&expand=sha",
+      "resolved_url": "https://huggingface.co/api/datasets/VisualCloze/Graph200K?expand=lastModified&expand=sha",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-01-07T01:08:50.000Z@b2d4e7930f878b3307a9dc8b0d28d60010146287",
+      "revision_url": "https://huggingface.co/datasets/VisualCloze/Graph200K",
+      "catalog_id": "graph200k",
+      "priority": "high",
       "model_id": null,
       "ranking_id": null,
       "rankings": [],
@@ -6546,6 +6763,31 @@
       "revision": "2024-06-17T10:51:29.000Z@0bb028f274446e0b102c1253d087a98eeb4519a3",
       "revision_url": "https://huggingface.co/datasets/google-research-datasets/conceptual_captions",
       "catalog_id": "conceptual-captions-3m",
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/guangyil/laion-coco-aesthetic?expand=lastModified&expand=sha",
+      "resolved_url": "https://huggingface.co/api/datasets/guangyil/laion-coco-aesthetic?expand=lastModified&expand=sha",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2023-11-15T10:34:11.000Z@e4e44b67a4690d6de2dd4e92f8e00c4483d3176e",
+      "revision_url": "https://huggingface.co/datasets/guangyil/laion-coco-aesthetic",
+      "catalog_id": "laion-coco-aesthetic",
       "priority": "high",
       "model_id": null,
       "ranking_id": null,
@@ -6893,7 +7135,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "2026-06-04T19:45:37.000Z@ab5a293b37a2d2e3d8228518c61b6ffbe4458c55",
+      "revision": "2026-07-31T02:01:12.000Z@0634c6f3d596ac40abf8364764f1047f5486ef76",
       "revision_url": "https://huggingface.co/datasets/stanford-vision-lab/gpic",
       "catalog_id": "gpic",
       "priority": "critical",
@@ -7022,6 +7264,31 @@
       "revision_url": "https://huggingface.co/baidu/ERNIE-Image-Aes",
       "catalog_id": "eria-1k",
       "priority": "critical",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/models/scepter-studio/stylebooth?expand=lastModified&expand=sha",
+      "resolved_url": "https://huggingface.co/api/models/scepter-studio/stylebooth?expand=lastModified&expand=sha",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2024-05-27T11:05:30.000Z@c993df593ed451c137118b5426a1dcab29e38d5c",
+      "revision_url": "https://huggingface.co/scepter-studio/stylebooth",
+      "catalog_id": "stylebooth",
+      "priority": "high",
       "model_id": null,
       "ranking_id": null,
       "rankings": [],
@@ -7363,6 +7630,31 @@
     },
     {
       "track_id": "important-dataset-updates",
+      "source_url": "https://tobias-kirschstein.github.io/nersemble/",
+      "resolved_url": "https://tobias-kirschstein.github.io/nersemble",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:633464d4acc8a43a816753cadf7fa2fa1969ea58803dd08e45dc5ff7705cafef",
+      "revision_url": "https://tobias-kirschstein.github.io/nersemble",
+      "catalog_id": "nersemble",
+      "priority": "critical",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
       "source_url": "https://vail-ucla.github.io/worldweaver/",
       "resolved_url": "https://vail.cs.ucla.edu/worldweaver",
       "status": 200,
@@ -7568,7 +7860,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:f93718405557aaef770dfd1ab2f0a1e17217d1e7cf11326209fe57c5c4853a53",
+      "revision": "sha256:8c49d08c867c26420c0d24604f649ddda10afc72e5aa7e75969674bd5f313de2",
       "revision_url": "https://ai.google.dev/gemini-api/docs/models/gemini-3-pro-image",
       "catalog_id": null,
       "priority": "critical",
@@ -7593,7 +7885,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:57e94d233bb7682aaa346c53182369d996e3edfd02c6e9b0352038f2d88f0ad9",
+      "revision": "sha256:00017890e7dcbc02d0cde26de68e2c74127cc454b9f64e658a80e5637aa156aa",
       "revision_url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-image",
       "catalog_id": null,
       "priority": "critical",
@@ -7618,7 +7910,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:143843ac2934042a0534b84b66d82dda05bd2cdecd425e4ad911aa11523e67de",
+      "revision": "sha256:e133b5de879dd2174afd71c4f45e6998011c710f824b05ae5dab49581bc0670a",
       "revision_url": "https://ai.google.dev/gemini-api/docs/models/veo-3.1-lite-generate-preview",
       "catalog_id": null,
       "priority": "critical",
@@ -7863,6 +8155,31 @@
     },
     {
       "track_id": "important-model-updates",
+      "source_url": "https://arxiv.org/abs/2607.28164",
+      "resolved_url": "https://arxiv.org/abs/2607.28164",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:ac145d840cbe4525f1cbc05bac08bb53ccf5203b1df498df77f2479b83133cf5",
+      "revision_url": "https://arxiv.org/abs/2607.28164",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "s-avatar",
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-model-updates",
       "source_url": "https://arxiv.org/html/2605.21573",
       "resolved_url": "https://arxiv.org/html/2605.21573",
       "status": 200,
@@ -7873,6 +8190,31 @@
       "catalog_id": null,
       "priority": "critical",
       "model_id": "lens",
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://arxiv.org/html/2607.24157",
+      "resolved_url": "https://arxiv.org/html/2607.24157",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:7dd92e28f7b28a9018c249874fb769a8ad1716fb2ec1687d6d11c6759db57013",
+      "revision_url": "https://arxiv.org/html/2607.24157",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "unigen-ar",
       "ranking_id": null,
       "rankings": [],
       "ranking_provider": null,
@@ -7993,7 +8335,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:b42f5dd1a76c0fa3b035db3d625107574ae3acb79585a074a349bc171f75b2f6",
+      "revision": "sha256:652b01810d86081fbef52e3ac276f03b6a1f76433e57a08045db3b495cba578a",
       "revision_url": "https://deepmind.google/models/model-cards/gemini-3-1-flash-lite-image",
       "catalog_id": null,
       "priority": "critical",
@@ -8018,7 +8360,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:c1c8e82969d6dedc5403c532e3d9a765002eecbf93162458bb67aa0485ee2074",
+      "revision": "sha256:71cc2bdf093b95af958a4c909b1c2ae1224e1819865e3ea720ba02e7871b5679",
       "revision_url": "https://deepmind.google/models/model-cards/gemini-omni-flash",
       "catalog_id": null,
       "priority": "critical",
@@ -8093,7 +8435,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:4bb461f4b0dc91cde45693d4ed8254adc66689e88f758f3b5235e61015418b78",
+      "revision": "sha256:6f350cf03ae9885e030097000642537ae9b80666513cab5f76c64957aebe07a1",
       "revision_url": "https://developers.openai.com/api/docs/models/gpt-image-1.5",
       "catalog_id": null,
       "priority": "critical",
@@ -8268,7 +8610,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:649aa3b5a8c0df10797b77eaa73b46228138f9f42fb0171dac28fbae8e61ab2a",
+      "revision": "sha256:c12413eaa071300cc17de286d57c5d606a6717c483ce8c5fff53680e2a0ba639",
       "revision_url": "https://docs.x.ai/developers/models/grok-imagine-video-1.5",
       "catalog_id": null,
       "priority": "critical",
@@ -8718,7 +9060,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:cf965b2685f8345fd4b4b24ac7fd07d6ce645e238d53745f5f9a6ce52feba99c",
+      "revision": "sha256:a1ad4ea762f82b9340382dae21b068300fd0b1bfbf25164755a8af954940b5b1",
       "revision_url": "https://help.aliyun.com/en/model-studio/newly-released-models",
       "catalog_id": null,
       "priority": "critical",
@@ -8748,6 +9090,31 @@
       "catalog_id": null,
       "priority": "critical",
       "model_id": "qwen-image-2",
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://huggingface.co/api/models/AppliedIntuitionResearch/ReMind?expand=lastModified&expand=sha",
+      "resolved_url": "https://huggingface.co/api/models/AppliedIntuitionResearch/ReMind?expand=lastModified&expand=sha",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2026-07-31T02:43:33.000Z@325b5ddb2ed1e375de8575244d7efa92be3c7db8",
+      "revision_url": "https://huggingface.co/AppliedIntuitionResearch/ReMind",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "remind",
       "ranking_id": null,
       "rankings": [],
       "ranking_provider": null,
@@ -9613,6 +9980,31 @@
     },
     {
       "track_id": "important-model-updates",
+      "source_url": "https://platform.minimax.io/docs/release-notes/models",
+      "resolved_url": "https://platform.minimax.io/docs/release-notes/models",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:6ce715597fa0d89b9dc0fc2be08ddddd4443b04c3c9921d6f1ad58d08d6be8d0",
+      "revision_url": "https://platform.minimax.io/docs/release-notes/models",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "minimax-h3",
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-model-updates",
       "source_url": "https://platform.vidu.com/docs/update",
       "resolved_url": "https://platform.vidu.com/docs/update",
       "status": 200,
@@ -9643,7 +10035,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:9b71cb943ad894e7d8eec5da874bc04b8a64a3c2a25685d99f57af5e4a77ccb0",
+      "revision": "sha256:27a587dd01f46c207cc6544d861d81bc54334714f391823aa94caaea66f95172",
       "revision_url": "https://runway.com/news/introducing-aleph-2-and-edit-studio",
       "catalog_id": null,
       "priority": "critical",
@@ -9668,7 +10060,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:6d1c6a49fea27de374b3819f5a49958ebf3a9011c4dcfe7a825e0e2907ee9d31",
+      "revision": "sha256:dcd93fb8dd745ec88341c40888e080237f2973285e4ccb1ff603374bbdab6a53",
       "revision_url": "https://runway.com/research/introducing-runway-aleph",
       "catalog_id": null,
       "priority": "critical",
@@ -9748,6 +10140,31 @@
       "catalog_id": null,
       "priority": "critical",
       "model_id": "seedance-2-0",
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://shadowdancer-1.github.io/",
+      "resolved_url": "https://shadowdancer-1.github.io/",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:9b4e626017489e8bb11aa6507841c37b1a096333b4e30ea8795ba72433dadc85",
+      "revision_url": "https://shadowdancer-1.github.io/",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "shadowdancer",
       "ranking_id": null,
       "rankings": [],
       "ranking_provider": null,
@@ -9931,7 +10348,7 @@
           "model": "GPT Image 2 (high)",
           "score": 1259,
           "confidence_interval": "-7/7",
-          "samples": 16425,
+          "samples": 16140,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -9941,9 +10358,9 @@
           "rank": 2,
           "creator": "OpenAI",
           "model": "GPT Image 1.5 (high)",
-          "score": 1255,
+          "score": 1254,
           "confidence_interval": "-8/8",
-          "samples": 9872,
+          "samples": 9578,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -9955,7 +10372,7 @@
           "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
           "score": 1247,
           "confidence_interval": "-8/8",
-          "samples": 10883,
+          "samples": 10589,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -9965,9 +10382,9 @@
           "rank": 4,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5",
-          "score": 1245,
+          "score": 1244,
           "confidence_interval": "-9/9",
-          "samples": 6703,
+          "samples": 6461,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -9975,24 +10392,24 @@
         },
         {
           "rank": 5,
-          "creator": "Google",
-          "model": "Nano Banana Pro (Gemini 3 Pro Image)",
-          "score": 1239,
-          "confidence_interval": "-7/7",
-          "samples": 9178,
-          "released": "Nov 2025",
+          "creator": "Bytedance",
+          "model": "Seedream 5.0 Pro",
+          "score": 1240,
+          "confidence_interval": "-12/12",
+          "samples": 2569,
+          "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 6,
-          "creator": "Bytedance",
-          "model": "Seedream 5.0 Pro",
-          "score": 1238,
-          "confidence_interval": "-11/11",
-          "samples": 2841,
-          "released": "Jul 2026",
+          "creator": "Google",
+          "model": "Nano Banana Pro (Gemini 3 Pro Image)",
+          "score": 1239,
+          "confidence_interval": "-8/8",
+          "samples": 8921,
+          "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
@@ -10001,9 +10418,9 @@
           "rank": 7,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image-quality",
-          "score": 1231,
+          "score": 1232,
           "confidence_interval": "-8/8",
-          "samples": 8443,
+          "samples": 8120,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10014,8 +10431,8 @@
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5-Flash",
           "score": 1230,
-          "confidence_interval": "-9/9",
-          "samples": 4426,
+          "confidence_interval": "-10/10",
+          "samples": 4171,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10027,7 +10444,7 @@
           "model": "HunyuanImage 3.0 Instruct (Fal)",
           "score": 1224,
           "confidence_interval": "-8/8",
-          "samples": 8646,
+          "samples": 8375,
           "released": "Jan 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -10039,7 +10456,7 @@
           "model": "Luma UNI 1 Max",
           "score": 1221,
           "confidence_interval": "-9/9",
-          "samples": 5697,
+          "samples": 5409,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10049,9 +10466,9 @@
           "rank": 11,
           "creator": "KlingAI",
           "model": "Kling Image 3.0 Omni",
-          "score": 1215,
-          "confidence_interval": "-7/7",
-          "samples": 8495,
+          "score": 1216,
+          "confidence_interval": "-8/8",
+          "samples": 8206,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10063,7 +10480,7 @@
           "model": "grok-imagine-image",
           "score": 1213,
           "confidence_interval": "-8/8",
-          "samples": 8881,
+          "samples": 8590,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10073,9 +10490,9 @@
           "rank": 13,
           "creator": "HiDream",
           "model": "HiDream-O1-Image",
-          "score": 1204,
-          "confidence_interval": "-8/8",
-          "samples": 5977,
+          "score": 1206,
+          "confidence_interval": "-9/9",
+          "samples": 5710,
           "released": "May 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -10085,9 +10502,9 @@
           "rank": 14,
           "creator": "KlingAI",
           "model": "Kling Image 3.0",
-          "score": 1204,
+          "score": 1205,
           "confidence_interval": "-8/8",
-          "samples": 8157,
+          "samples": 7875,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10097,9 +10514,9 @@
           "rank": 15,
           "creator": "Black Forest Labs",
           "model": "FLUX.2 [max]",
-          "score": 1202,
+          "score": 1204,
           "confidence_interval": "-8/8",
-          "samples": 8335,
+          "samples": 8098,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10137,7 +10554,7 @@
           "model": "GPT Image 2 (high)",
           "score": 1340,
           "confidence_interval": "-7/7",
-          "samples": 21397,
+          "samples": 21403,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10147,9 +10564,9 @@
           "rank": 2,
           "creator": "Reve",
           "model": "Reve 2.1",
-          "score": 1299,
+          "score": 1300,
           "confidence_interval": "-10/10",
-          "samples": 9991,
+          "samples": 10013,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10161,7 +10578,7 @@
           "model": "MAI-Image-2.5",
           "score": 1270,
           "confidence_interval": "-9/9",
-          "samples": 10053,
+          "samples": 10082,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10173,7 +10590,7 @@
           "model": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
           "score": 1264,
           "confidence_interval": "-9/9",
-          "samples": 10105,
+          "samples": 10134,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10185,7 +10602,7 @@
           "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
           "score": 1264,
           "confidence_interval": "-7/7",
-          "samples": 19884,
+          "samples": 19907,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10195,9 +10612,9 @@
           "rank": 6,
           "creator": "OpenAI",
           "model": "GPT Image 1.5 (high)",
-          "score": 1263,
+          "score": 1264,
           "confidence_interval": "-7/7",
-          "samples": 12995,
+          "samples": 13019,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10209,7 +10626,7 @@
           "model": "HiDream-O1-Image-1.5",
           "score": 1246,
           "confidence_interval": "-8/8",
-          "samples": 12507,
+          "samples": 12523,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10221,7 +10638,7 @@
           "model": "Seedream 5.0 Pro",
           "score": 1241,
           "confidence_interval": "-9/9",
-          "samples": 8370,
+          "samples": 8382,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10233,7 +10650,7 @@
           "model": "Nano Banana Pro (Gemini 3 Pro Image)",
           "score": 1227,
           "confidence_interval": "-7/7",
-          "samples": 12271,
+          "samples": 12287,
           "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10245,7 +10662,7 @@
           "model": "Cosmos3-Super-Text2Image (agentic)",
           "score": 1219,
           "confidence_interval": "-8/8",
-          "samples": 10492,
+          "samples": 10510,
           "released": "May 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -10257,7 +10674,7 @@
           "model": "MAI-Image-2.5-Flash",
           "score": 1208,
           "confidence_interval": "-9/9",
-          "samples": 5053,
+          "samples": 5068,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10269,7 +10686,7 @@
           "model": "Recraft V4.1 Utility",
           "score": 1206,
           "confidence_interval": "-8/8",
-          "samples": 5555,
+          "samples": 5579,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10279,9 +10696,9 @@
           "rank": 13,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image-quality",
-          "score": 1204,
+          "score": 1205,
           "confidence_interval": "-7/7",
-          "samples": 16180,
+          "samples": 16227,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10291,9 +10708,9 @@
           "rank": 14,
           "creator": "Recraft",
           "model": "Recraft V4.1 Utility Pro",
-          "score": 1202,
+          "score": 1201,
           "confidence_interval": "-7/7",
-          "samples": 15661,
+          "samples": 15694,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10305,7 +10722,7 @@
           "model": "FLUX.2 [max]",
           "score": 1197,
           "confidence_interval": "-7/7",
-          "samples": 11990,
+          "samples": 12027,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10343,7 +10760,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1196,
           "confidence_interval": "-8/8",
-          "samples": 10039,
+          "samples": 10149,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10353,9 +10770,9 @@
           "rank": 2,
           "creator": "Google",
           "model": "Gemini Omni Flash",
-          "score": 1194,
+          "score": 1195,
           "confidence_interval": "-10/10",
-          "samples": 4405,
+          "samples": 4517,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10363,47 +10780,47 @@
         },
         {
           "rank": 3,
-          "creator": "SpaceXAI",
-          "model": "grok-imagine-video-1.5",
-          "score": 1114,
-          "confidence_interval": "-9/9",
-          "samples": 4210,
-          "released": "May 2026",
+          "creator": "MiniMax",
+          "model": "MiniMax H3",
+          "score": 1185,
+          "confidence_interval": "-11/11",
+          "samples": 5008,
+          "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 4,
-          "creator": "Alibaba-ATH",
-          "model": "HappyHorse-1.1",
-          "score": 1108,
+          "creator": "SpaceXAI",
+          "model": "grok-imagine-video-1.5",
+          "score": 1114,
           "confidence_interval": "-9/9",
-          "samples": 4761,
-          "released": "Jun 2026",
+          "samples": 4238,
+          "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 5,
-          "creator": "Alibaba",
-          "model": "Wan 2.7",
-          "score": 1093,
+          "creator": "Alibaba-ATH",
+          "model": "HappyHorse-1.1",
+          "score": 1109,
           "confidence_interval": "-9/9",
-          "samples": 3541,
-          "released": "Apr 2026",
+          "samples": 4911,
+          "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 6,
-          "creator": "Alibaba-ATH",
-          "model": "HappyHorse-1.0",
-          "score": 1091,
-          "confidence_interval": "-8/8",
-          "samples": 6890,
+          "creator": "Alibaba",
+          "model": "Wan 2.7",
+          "score": 1092,
+          "confidence_interval": "-9/9",
+          "samples": 3559,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10411,35 +10828,35 @@
         },
         {
           "rank": 7,
-          "creator": "Skywork AI",
-          "model": "SkyReels V4",
-          "score": 1088,
-          "confidence_interval": "-9/9",
-          "samples": 3862,
-          "released": "Mar 2026",
+          "creator": "Alibaba-ATH",
+          "model": "HappyHorse-1.0",
+          "score": 1091,
+          "confidence_interval": "-8/8",
+          "samples": 6924,
+          "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 8,
-          "creator": "Google",
-          "model": "Veo 3.1",
-          "score": 1087,
-          "confidence_interval": "-8/8",
-          "samples": 7245,
-          "released": "Jan 2026",
+          "creator": "Skywork AI",
+          "model": "SkyReels V4",
+          "score": 1088,
+          "confidence_interval": "-9/9",
+          "samples": 3891,
+          "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 9,
-          "creator": "SpaceXAI",
-          "model": "grok-imagine-video",
-          "score": 1079,
+          "creator": "Google",
+          "model": "Veo 3.1",
+          "score": 1087,
           "confidence_interval": "-8/8",
-          "samples": 9630,
+          "samples": 7262,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10447,11 +10864,11 @@
         },
         {
           "rank": 10,
-          "creator": "Google",
-          "model": "Veo 3.1 Fast",
-          "score": 1077,
-          "confidence_interval": "-8/8",
-          "samples": 8788,
+          "creator": "SpaceXAI",
+          "model": "grok-imagine-video",
+          "score": 1079,
+          "confidence_interval": "-7/7",
+          "samples": 9714,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10459,60 +10876,60 @@
         },
         {
           "rank": 11,
-          "creator": "KlingAI",
-          "model": "Kling 3.0 1080p (Pro)",
-          "score": 1074,
+          "creator": "Google",
+          "model": "Veo 3.1 Fast",
+          "score": 1076,
           "confidence_interval": "-8/8",
-          "samples": 9317,
-          "released": "Feb 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": []
-        },
-        {
-          "rank": 12,
-          "creator": "PixVerse",
-          "model": "PixVerse V6",
-          "score": 1071,
-          "confidence_interval": "-8/8",
-          "samples": 8532,
-          "released": "Mar 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": []
-        },
-        {
-          "rank": 13,
-          "creator": "KlingAI",
-          "model": "Kling 3.0 720p (Standard)",
-          "score": 1068,
-          "confidence_interval": "-8/8",
-          "samples": 9279,
-          "released": "Feb 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": []
-        },
-        {
-          "rank": 14,
-          "creator": "Vidu",
-          "model": "Vidu Q3 Pro",
-          "score": 1066,
-          "confidence_interval": "-7/7",
-          "samples": 9790,
+          "samples": 8890,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
-          "rank": 15,
-          "creator": "Google",
-          "model": "Veo 3.1 Lite",
-          "score": 1065,
+          "rank": 12,
+          "creator": "KlingAI",
+          "model": "Kling 3.0 1080p (Pro)",
+          "score": 1074,
           "confidence_interval": "-8/8",
-          "samples": 6548,
+          "samples": 9407,
+          "released": "Feb 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": []
+        },
+        {
+          "rank": 13,
+          "creator": "PixVerse",
+          "model": "PixVerse V6",
+          "score": 1070,
+          "confidence_interval": "-8/8",
+          "samples": 8547,
           "released": "Mar 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": []
+        },
+        {
+          "rank": 14,
+          "creator": "KlingAI",
+          "model": "Kling 3.0 720p (Standard)",
+          "score": 1068,
+          "confidence_interval": "-8/8",
+          "samples": 9392,
+          "released": "Feb 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": []
+        },
+        {
+          "rank": 15,
+          "creator": "Vidu",
+          "model": "Vidu Q3 Pro",
+          "score": 1066,
+          "confidence_interval": "-7/7",
+          "samples": 9904,
+          "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
@@ -10549,7 +10966,7 @@
           "model": "Gemini Omni Flash",
           "score": 1245,
           "confidence_interval": "-9/9",
-          "samples": 6269,
+          "samples": 6580,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10557,35 +10974,35 @@
         },
         {
           "rank": 2,
-          "creator": "ByteDance Seed",
-          "model": "Dreamina Seedance 2.0 720p",
-          "score": 1225,
-          "confidence_interval": "-7/7",
-          "samples": 13011,
-          "released": "Mar 2026",
+          "creator": "MiniMax",
+          "model": "MiniMax H3",
+          "score": 1242,
+          "confidence_interval": "-11/11",
+          "samples": 5070,
+          "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 3,
-          "creator": "Alibaba",
-          "model": "Wan2.7-260612",
-          "score": 1163,
-          "confidence_interval": "-8/8",
-          "samples": 6567,
-          "released": "Jun 2026",
+          "creator": "ByteDance Seed",
+          "model": "Dreamina Seedance 2.0 720p",
+          "score": 1225,
+          "confidence_interval": "-7/7",
+          "samples": 13334,
+          "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 4,
-          "creator": "Alibaba-ATH",
-          "model": "HappyHorse-1.1",
-          "score": 1151,
+          "creator": "Alibaba",
+          "model": "Wan2.7-260612",
+          "score": 1163,
           "confidence_interval": "-8/8",
-          "samples": 7041,
+          "samples": 6958,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10594,83 +11011,83 @@
         {
           "rank": 5,
           "creator": "Alibaba-ATH",
-          "model": "HappyHorse-1.0",
-          "score": 1131,
+          "model": "HappyHorse-1.1",
+          "score": 1150,
           "confidence_interval": "-8/8",
-          "samples": 7609,
-          "released": "Apr 2026",
+          "samples": 7461,
+          "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 6,
-          "creator": "KlingAI",
-          "model": "Kling 3.0 1080p (Pro)",
-          "score": 1112,
-          "confidence_interval": "-7/7",
-          "samples": 12234,
-          "released": "Feb 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": []
-        },
-        {
-          "rank": 7,
-          "creator": "Skywork AI",
-          "model": "SkyReels V4",
-          "score": 1109,
+          "creator": "Alibaba-ATH",
+          "model": "HappyHorse-1.0",
+          "score": 1131,
           "confidence_interval": "-8/8",
-          "samples": 4706,
-          "released": "Mar 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": []
-        },
-        {
-          "rank": 8,
-          "creator": "Alibaba",
-          "model": "Wan 2.7",
-          "score": 1108,
-          "confidence_interval": "-9/9",
-          "samples": 4193,
+          "samples": 7714,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
-          "rank": 9,
+          "rank": 7,
           "creator": "KlingAI",
-          "model": "Kling 3.0 720p (Standard)",
-          "score": 1101,
+          "model": "Kling 3.0 1080p (Pro)",
+          "score": 1114,
           "confidence_interval": "-7/7",
-          "samples": 12015,
+          "samples": 12603,
           "released": "Feb 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": []
+        },
+        {
+          "rank": 8,
+          "creator": "Skywork AI",
+          "model": "SkyReels V4",
+          "score": 1109,
+          "confidence_interval": "-8/8",
+          "samples": 4811,
+          "released": "Mar 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": []
+        },
+        {
+          "rank": 9,
+          "creator": "Alibaba",
+          "model": "Wan 2.7",
+          "score": 1109,
+          "confidence_interval": "-9/9",
+          "samples": 4295,
+          "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 10,
-          "creator": "Google",
-          "model": "Veo 3.1",
-          "score": 1098,
+          "creator": "KlingAI",
+          "model": "Kling 3.0 720p (Standard)",
+          "score": 1102,
           "confidence_interval": "-7/7",
-          "samples": 8006,
-          "released": "Jan 2026",
+          "samples": 12376,
+          "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 11,
-          "creator": "KlingAI",
-          "model": "Kling 3.0 Omni 1080p (Pro)",
-          "score": 1096,
+          "creator": "Google",
+          "model": "Veo 3.1",
+          "score": 1098,
           "confidence_interval": "-7/7",
-          "samples": 7802,
-          "released": "Feb 2026",
+          "samples": 8086,
+          "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
@@ -10678,10 +11095,10 @@
         {
           "rank": 12,
           "creator": "KlingAI",
-          "model": "Kling 3.0 Omni 720p (Standard)",
-          "score": 1092,
+          "model": "Kling 3.0 Omni 1080p (Pro)",
+          "score": 1096,
           "confidence_interval": "-7/7",
-          "samples": 7650,
+          "samples": 7872,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10689,12 +11106,12 @@
         },
         {
           "rank": 13,
-          "creator": "Google",
-          "model": "Veo 3.1 Fast",
-          "score": 1091,
+          "creator": "KlingAI",
+          "model": "Kling 3.0 Omni 720p (Standard)",
+          "score": 1093,
           "confidence_interval": "-7/7",
-          "samples": 11272,
-          "released": "Jan 2026",
+          "samples": 7717,
+          "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
@@ -10702,23 +11119,23 @@
         {
           "rank": 14,
           "creator": "Google",
-          "model": "Veo 3.1 Lite",
-          "score": 1090,
+          "model": "Veo 3.1 Fast",
+          "score": 1092,
           "confidence_interval": "-7/7",
-          "samples": 7436,
-          "released": "Mar 2026",
+          "samples": 11607,
+          "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 15,
-          "creator": "Vidu",
-          "model": "Vidu Q3 Pro",
-          "score": 1082,
+          "creator": "Google",
+          "model": "Veo 3.1 Lite",
+          "score": 1090,
           "confidence_interval": "-7/7",
-          "samples": 12016,
-          "released": "Jan 2026",
+          "samples": 7512,
+          "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
@@ -10751,71 +11168,95 @@
       "rankings": [
         {
           "rank": 1,
-          "creator": "Alibaba-ATH",
-          "model": "HappyHorse-1.0",
-          "score": 1096,
-          "confidence_interval": "-5/5",
-          "samples": 17472,
-          "released": "Apr 2026",
+          "creator": "MiniMax",
+          "model": "MiniMax H3",
+          "score": 1130,
+          "confidence_interval": "-7/7",
+          "samples": 5035,
+          "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 2,
-          "creator": "Alibaba",
-          "model": "Wan 2.7",
-          "score": 1080,
-          "confidence_interval": "-5/5",
-          "samples": 13269,
-          "released": "Apr 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": []
-        },
-        {
-          "rank": 3,
-          "creator": "ByteDance Seed",
-          "model": "Dreamina Seedance 2.0 720p",
-          "score": 1035,
-          "confidence_interval": "-5/5",
-          "samples": 17214,
-          "released": "Mar 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": []
-        },
-        {
-          "rank": 4,
-          "creator": "Runway",
-          "model": "Aleph 2.0",
-          "score": 1013,
-          "confidence_interval": "-5/5",
-          "samples": 16955,
+          "creator": "Google",
+          "model": "Gemini Omni Flash",
+          "score": 1121,
+          "confidence_interval": "-6/6",
+          "samples": 10175,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
+          "rank": 3,
+          "creator": "Alibaba-ATH",
+          "model": "HappyHorse-1.0",
+          "score": 1096,
+          "confidence_interval": "-5/5",
+          "samples": 17748,
+          "released": "Apr 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": []
+        },
+        {
+          "rank": 4,
+          "creator": "Alibaba",
+          "model": "Wan 2.7",
+          "score": 1080,
+          "confidence_interval": "-5/5",
+          "samples": 13540,
+          "released": "Apr 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": []
+        },
+        {
           "rank": 5,
-          "creator": "KlingAI",
-          "model": "Kling 3.0 Omni 1080p (Pro)",
-          "score": 1000,
-          "confidence_interval": "0/0",
-          "samples": 15901,
-          "released": "Feb 2026",
+          "creator": "ByteDance Seed",
+          "model": "Dreamina Seedance 2.0 720p",
+          "score": 1034,
+          "confidence_interval": "-5/5",
+          "samples": 17512,
+          "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 6,
+          "creator": "Runway",
+          "model": "Aleph 2.0",
+          "score": 1011,
+          "confidence_interval": "-5/5",
+          "samples": 17189,
+          "released": "May 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": []
+        },
+        {
+          "rank": 7,
+          "creator": "KlingAI",
+          "model": "Kling 3.0 Omni 1080p (Pro)",
+          "score": 1000,
+          "confidence_interval": "0/0",
+          "samples": 16097,
+          "released": "Feb 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": []
+        },
+        {
+          "rank": 8,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "score": 950,
+          "score": 951,
           "confidence_interval": "-6/6",
-          "samples": 14147,
+          "samples": 14205,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11998,7 +12439,7 @@
           ],
           "created_at": "2026-07-20T05:39:14.000Z",
           "downloads": 0,
-          "likes": 10,
+          "likes": 11,
           "gated": false
         },
         {
@@ -12745,7 +13186,7 @@
           ],
           "created_at": "2026-07-16T11:59:24.000Z",
           "downloads": 899,
-          "likes": 2,
+          "likes": 3,
           "gated": false
         },
         {
@@ -12807,57 +13248,6 @@
       "resolved_url": "https://huggingface.co/api/models?direction=-1&full=true&limit=50&pipeline_tag=image-to-image&sort=createdAt",
       "status": 200,
       "candidates": [
-        {
-          "title": "Mage-Fans/Mage-Flow-Edit",
-          "url": "https://huggingface.co/Mage-Fans/Mage-Flow-Edit",
-          "review_priority": "high",
-          "priority_score": 13,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "explicit-scenario-match",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-26T12:22:11.000Z",
-          "downloads": 14,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "Mage-Fans/Mage-Flow-Edit-Base",
-          "url": "https://huggingface.co/Mage-Fans/Mage-Flow-Edit-Base",
-          "review_priority": "high",
-          "priority_score": 13,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "explicit-scenario-match",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-26T12:22:00.000Z",
-          "downloads": 14,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "Mage-Fans/Mage-Flow-Edit-Turbo",
-          "url": "https://huggingface.co/Mage-Fans/Mage-Flow-Edit-Turbo",
-          "review_priority": "high",
-          "priority_score": 13,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "explicit-scenario-match",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-26T12:22:20.000Z",
-          "downloads": 15,
-          "likes": 0,
-          "gated": false
-        },
         {
           "title": "modelarchive/mage-edit",
           "url": "https://huggingface.co/modelarchive/mage-edit",
@@ -12962,6 +13352,70 @@
           "gated": false
         },
         {
+          "title": "SwinliQ-AIs/FLUX.2-small-decoder",
+          "url": "https://huggingface.co/SwinliQ-AIs/FLUX.2-small-decoder",
+          "review_priority": "high",
+          "priority_score": 11,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "explicit-scenario-match",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-30T12:09:41.000Z",
+          "downloads": 0,
+          "likes": 1,
+          "gated": false
+        },
+        {
+          "title": "CrypticReaper/Qwen-Image-Edit-2509",
+          "url": "https://huggingface.co/CrypticReaper/Qwen-Image-Edit-2509",
+          "review_priority": "high",
+          "priority_score": 9,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-30T21:58:35.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "GuaiSax/Qwen-Image-Edit-2511",
+          "url": "https://huggingface.co/GuaiSax/Qwen-Image-Edit-2511",
+          "review_priority": "high",
+          "priority_score": 9,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-30T14:22:35.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "Highmti/Image_to_image_ai_editing_model",
+          "url": "https://huggingface.co/Highmti/Image_to_image_ai_editing_model",
+          "review_priority": "high",
+          "priority_score": 9,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-31T02:00:43.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
           "title": "lucillesamacc/Qwen-Image-Edit-2509",
           "url": "https://huggingface.co/lucillesamacc/Qwen-Image-Edit-2509",
           "review_priority": "high",
@@ -12990,22 +13444,6 @@
           ],
           "created_at": "2026-07-29T04:36:29.000Z",
           "downloads": 13,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "prashantrajbista/adjscc-cifar10",
-          "url": "https://huggingface.co/prashantrajbista/adjscc-cifar10",
-          "review_priority": "high",
-          "priority_score": 9,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-26T15:19:52.000Z",
-          "downloads": 0,
           "likes": 0,
           "gated": false
         },
@@ -13054,7 +13492,7 @@
           ],
           "created_at": "2026-07-29T12:54:47.000Z",
           "downloads": 0,
-          "likes": 18,
+          "likes": 28,
           "gated": false
         },
         {
@@ -13298,8 +13736,24 @@
           "gated": false
         },
         {
-          "title": "naksyu/lunasr-general-mc65-ww35-x2",
-          "url": "https://huggingface.co/naksyu/lunasr-general-mc65-ww35-x2",
+          "title": "onkarsus13/unidflow-base-7B",
+          "url": "https://huggingface.co/onkarsus13/unidflow-base-7B",
+          "review_priority": "high",
+          "priority_score": 7,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "gated-access"
+          ],
+          "created_at": "2026-07-30T22:15:18.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": "manual"
+        },
+        {
+          "title": "perpetual3x/Qwen-Image-Edit-Rapid-AIO-V23",
+          "url": "https://huggingface.co/perpetual3x/Qwen-Image-Edit-Rapid-AIO-V23",
           "review_priority": "high",
           "priority_score": 7,
           "priority_signals": [
@@ -13307,7 +13761,7 @@
             "license-declared",
             "weight-artifact-present"
           ],
-          "created_at": "2026-07-26T01:59:04.000Z",
+          "created_at": "2026-07-30T14:41:40.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
@@ -13355,25 +13809,8 @@
           "gated": false
         },
         {
-          "title": "Baragi-AI/LPC-FourDirection-Walk-Flux-Klein-9B",
-          "url": "https://huggingface.co/Baragi-AI/LPC-FourDirection-Walk-Flux-Klein-9B",
-          "review_priority": "standard",
-          "priority_score": 3,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "explicit-scenario-match",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-26T06:41:26.000Z",
-          "downloads": 92,
-          "likes": 1,
-          "gated": false
-        },
-        {
-          "title": "frankjoshua/FLUX.2-klein-4b-fp8",
-          "url": "https://huggingface.co/frankjoshua/FLUX.2-klein-4b-fp8",
+          "title": "ajh-code/Mage-Flow-Edit-Turbo-XPO3-NVFP4",
+          "url": "https://huggingface.co/ajh-code/Mage-Flow-Edit-Turbo-XPO3-NVFP4",
           "review_priority": "standard",
           "priority_score": 3,
           "priority_signals": [
@@ -13383,8 +13820,25 @@
             "weight-artifact-present",
             "quantized-derivative"
           ],
-          "created_at": "2026-07-25T15:40:45.000Z",
-          "downloads": 7,
+          "created_at": "2026-07-30T11:55:55.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ajh-code/Mage-Flow-Edit-XPO3-NVFP4",
+          "url": "https://huggingface.co/ajh-code/Mage-Flow-Edit-XPO3-NVFP4",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "explicit-scenario-match",
+            "license-declared",
+            "weight-artifact-present",
+            "quantized-derivative"
+          ],
+          "created_at": "2026-07-30T16:30:50.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
@@ -13497,22 +13951,6 @@
           ],
           "created_at": "2026-07-30T04:49:46.000Z",
           "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "ViktorLin/Qwen-Image-ControlNet-Inpainting",
-          "url": "https://huggingface.co/ViktorLin/Qwen-Image-ControlNet-Inpainting",
-          "review_priority": "low",
-          "priority_score": -1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-26T11:37:27.000Z",
-          "downloads": 9,
           "likes": 0,
           "gated": false
         },
@@ -13859,7 +14297,7 @@
           ],
           "created_at": "2026-07-21T10:50:34.000Z",
           "downloads": 184,
-          "likes": 10,
+          "likes": 11,
           "gated": false
         },
         {
@@ -13891,7 +14329,7 @@
           ],
           "created_at": "2026-07-30T07:22:59.000Z",
           "downloads": 0,
-          "likes": 2,
+          "likes": 4,
           "gated": false
         },
         {
@@ -13908,6 +14346,22 @@
           "created_at": "2026-07-22T19:16:59.000Z",
           "downloads": 13,
           "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SwinliQ-AIs/SCAIL-2",
+          "url": "https://huggingface.co/SwinliQ-AIs/SCAIL-2",
+          "review_priority": "high",
+          "priority_score": 9,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-30T12:04:59.000Z",
+          "downloads": 0,
+          "likes": 1,
           "gated": false
         },
         {
@@ -13940,22 +14394,6 @@
           "created_at": "2026-07-18T17:17:10.000Z",
           "downloads": 0,
           "likes": 2,
-          "gated": false
-        },
-        {
-          "title": "RiemannDynamics/Matrix-Game-3.5-Base",
-          "url": "https://huggingface.co/RiemannDynamics/Matrix-Game-3.5-Base",
-          "review_priority": "high",
-          "priority_score": 8,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "usage-signal"
-          ],
-          "created_at": "2026-07-18T08:53:04.000Z",
-          "downloads": 0,
-          "likes": 6,
           "gated": false
         },
         {
@@ -14133,6 +14571,23 @@
           "gated": false
         },
         {
+          "title": "AppliedIntuitionResearch/ReMind",
+          "url": "https://huggingface.co/AppliedIntuitionResearch/ReMind",
+          "review_priority": "low",
+          "priority_score": 1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-30T16:08:05.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
           "title": "JonneyWang/AnyID",
           "url": "https://huggingface.co/JonneyWang/AnyID",
           "review_priority": "low",
@@ -14147,22 +14602,6 @@
           "created_at": "2026-07-30T07:42:43.000Z",
           "downloads": 0,
           "likes": 1,
-          "gated": false
-        },
-        {
-          "title": "Maxinsomnia/wan2.1-flf2v-14b-720p-safetensors",
-          "url": "https://huggingface.co/Maxinsomnia/wan2.1-flf2v-14b-720p-safetensors",
-          "review_priority": "low",
-          "priority_score": 1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "conversion-or-mirror"
-          ],
-          "created_at": "2026-07-18T13:21:59.000Z",
-          "downloads": 0,
-          "likes": 0,
           "gated": false
         },
         {
@@ -14402,7 +14841,7 @@
           ],
           "created_at": "2026-07-23T23:11:31.000Z",
           "downloads": 163,
-          "likes": 3,
+          "likes": 4,
           "gated": false
         },
         {
@@ -14836,7 +15275,7 @@
           ],
           "created_at": "2026-07-26T12:21:46.000Z",
           "downloads": 89,
-          "likes": 9,
+          "likes": 10,
           "gated": false
         },
         {
@@ -15279,59 +15718,6 @@
       "status": 200,
       "candidates": [
         {
-          "title": "modelarchive/mage-official",
-          "url": "https://huggingface.co/modelarchive/mage-official",
-          "review_priority": "high",
-          "priority_score": 13,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "explicit-scenario-match",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present",
-            "gated-access"
-          ],
-          "created_at": "2026-07-29T14:15:01.000Z",
-          "downloads": 2,
-          "likes": 0,
-          "gated": "manual"
-        },
-        {
-          "title": "modelarchive/mage-official-base",
-          "url": "https://huggingface.co/modelarchive/mage-official-base",
-          "review_priority": "high",
-          "priority_score": 13,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "explicit-scenario-match",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present",
-            "gated-access"
-          ],
-          "created_at": "2026-07-29T14:15:13.000Z",
-          "downloads": 10,
-          "likes": 0,
-          "gated": "manual"
-        },
-        {
-          "title": "numen-tech/Mage-Flow-Turbo",
-          "url": "https://huggingface.co/numen-tech/Mage-Flow-Turbo",
-          "review_priority": "high",
-          "priority_score": 13,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "explicit-scenario-match",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-29T18:28:43.000Z",
-          "downloads": 27,
-          "likes": 0,
-          "gated": false
-        },
-        {
           "title": "rootlocalghost/Mage-Flow",
           "url": "https://huggingface.co/rootlocalghost/Mage-Flow",
           "review_priority": "high",
@@ -15399,8 +15785,8 @@
           "gated": false
         },
         {
-          "title": "Jinstudio/stable-diffusion-inpainting",
-          "url": "https://huggingface.co/Jinstudio/stable-diffusion-inpainting",
+          "title": "jilao/stable-diffusion-xl-base-1.0",
+          "url": "https://huggingface.co/jilao/stable-diffusion-xl-base-1.0",
           "review_priority": "high",
           "priority_score": 9,
           "priority_signals": [
@@ -15409,62 +15795,14 @@
             "license-declared",
             "weight-artifact-present"
           ],
-          "created_at": "2026-07-29T15:18:24.000Z",
-          "downloads": 72,
+          "created_at": "2026-07-31T02:53:21.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "Jinstudio/stable-diffusion-v1-5",
-          "url": "https://huggingface.co/Jinstudio/stable-diffusion-v1-5",
-          "review_priority": "high",
-          "priority_score": 9,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-29T15:18:20.000Z",
-          "downloads": 90,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "SwinliQ-AIs/Qwen-Image",
-          "url": "https://huggingface.co/SwinliQ-AIs/Qwen-Image",
-          "review_priority": "high",
-          "priority_score": 9,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-29T11:16:18.000Z",
-          "downloads": 15,
-          "likes": 1,
-          "gated": false
-        },
-        {
-          "title": "SwinliQ-AIs/stable-diffusion-xl-base-1.0",
-          "url": "https://huggingface.co/SwinliQ-AIs/stable-diffusion-xl-base-1.0",
-          "review_priority": "high",
-          "priority_score": 9,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-29T11:12:47.000Z",
-          "downloads": 19,
-          "likes": 1,
-          "gated": false
-        },
-        {
-          "title": "caribou0608/ccorgi-dog",
-          "url": "https://huggingface.co/caribou0608/ccorgi-dog",
+          "title": "caribou0608/ccorgi-dog2",
+          "url": "https://huggingface.co/caribou0608/ccorgi-dog2",
           "review_priority": "high",
           "priority_score": 7,
           "priority_signals": [
@@ -15472,28 +15810,59 @@
             "license-declared",
             "weight-artifact-present"
           ],
-          "created_at": "2026-07-29T13:16:45.000Z",
-          "downloads": 25,
+          "created_at": "2026-07-30T12:04:42.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "kisserpun/lmaodif",
-          "url": "https://huggingface.co/kisserpun/lmaodif",
-          "review_priority": "standard",
-          "priority_score": 6,
+          "title": "kisserpun/alpine",
+          "url": "https://huggingface.co/kisserpun/alpine",
+          "review_priority": "high",
+          "priority_score": 7,
           "priority_signals": [
             "generative-media-pipeline",
+            "license-declared",
             "weight-artifact-present"
           ],
-          "created_at": "2026-07-30T02:08:18.000Z",
-          "downloads": 13,
+          "created_at": "2026-07-30T12:20:15.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "TensorVizion/StableDiffusion-1.4-Pruned",
-          "url": "https://huggingface.co/TensorVizion/StableDiffusion-1.4-Pruned",
+          "title": "Mspanz88/NSFW-Uncensored",
+          "url": "https://huggingface.co/Mspanz88/NSFW-Uncensored",
+          "review_priority": "high",
+          "priority_score": 7,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-31T01:41:17.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "syddharta/dreamshaper-8",
+          "url": "https://huggingface.co/syddharta/dreamshaper-8",
+          "review_priority": "high",
+          "priority_score": 7,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-30T12:16:06.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "neonforestmist/Clover-Image-Tiny-CoreML",
+          "url": "https://huggingface.co/neonforestmist/Clover-Image-Tiny-CoreML",
           "review_priority": "low",
           "priority_score": 1,
           "priority_signals": [
@@ -15502,31 +15871,30 @@
             "weight-artifact-present",
             "conversion-or-mirror"
           ],
-          "created_at": "2026-07-29T07:44:59.000Z",
-          "downloads": 15,
+          "created_at": "2026-07-30T22:31:47.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "Yanlis/Boogu-Image-0.1-Base-fp8",
-          "url": "https://huggingface.co/Yanlis/Boogu-Image-0.1-Base-fp8",
+          "title": "perpetual3x/Qwen-Image-Edit-Rapid-AIO",
+          "url": "https://huggingface.co/perpetual3x/Qwen-Image-Edit-Rapid-AIO",
           "review_priority": "low",
           "priority_score": 1,
           "priority_signals": [
             "generative-media-pipeline",
-            "paper-linked",
             "license-declared",
             "weight-artifact-present",
-            "quantized-derivative"
+            "wrapper-or-demo"
           ],
-          "created_at": "2026-07-29T08:33:52.000Z",
-          "downloads": 10,
+          "created_at": "2026-07-30T15:00:17.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "ARTHAS247/CUM_ON_BODY",
-          "url": "https://huggingface.co/ARTHAS247/CUM_ON_BODY",
+          "title": "aimalias/t355a-retry",
+          "url": "https://huggingface.co/aimalias/t355a-retry",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -15535,14 +15903,14 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-29T19:30:03.000Z",
-          "downloads": 18,
+          "created_at": "2026-07-30T15:02:39.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "DiSS0245/uvubabe",
-          "url": "https://huggingface.co/DiSS0245/uvubabe",
+          "title": "chipwdips/jlovyn1",
+          "url": "https://huggingface.co/chipwdips/jlovyn1",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -15551,14 +15919,14 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-29T21:30:20.000Z",
-          "downloads": 12,
+          "created_at": "2026-07-30T16:54:37.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "ginofrio/tiffany",
-          "url": "https://huggingface.co/ginofrio/tiffany",
+          "title": "Forost/grim-all-v3-zimage-lora",
+          "url": "https://huggingface.co/Forost/grim-all-v3-zimage-lora",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -15567,56 +15935,8 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-29T14:12:48.000Z",
-          "downloads": 13,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "ginofrio/tommy",
-          "url": "https://huggingface.co/ginofrio/tommy",
-          "review_priority": "low",
-          "priority_score": -1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-29T14:57:05.000Z",
-          "downloads": 6,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "guillekenzo/aros-08d67463-WanderingOracle",
-          "url": "https://huggingface.co/guillekenzo/aros-08d67463-WanderingOracle",
-          "review_priority": "low",
-          "priority_score": -1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-29T08:54:23.000Z",
-          "downloads": 10,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "IronBloodhound/frost-ember-gothic-style",
-          "url": "https://huggingface.co/IronBloodhound/frost-ember-gothic-style",
-          "review_priority": "low",
-          "priority_score": -1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-29T12:57:46.000Z",
-          "downloads": 15,
+          "created_at": "2026-07-30T16:20:49.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
@@ -15653,6 +15973,70 @@
           "gated": false
         },
         {
+          "title": "jakohist/yonyuu-krea2",
+          "url": "https://huggingface.co/jakohist/yonyuu-krea2",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-31T02:21:22.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "Jaytsh/FLUX-DetailSlider",
+          "url": "https://huggingface.co/Jaytsh/FLUX-DetailSlider",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-30T20:49:21.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "kevinc21ox/becky123",
+          "url": "https://huggingface.co/kevinc21ox/becky123",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-30T16:07:24.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "klibaner/fluent-emoji-style-sdxl",
+          "url": "https://huggingface.co/klibaner/fluent-emoji-style-sdxl",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-30T11:55:14.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
           "title": "lxxxy6/genVideo_modify_mouth_lora.safetensors",
           "url": "https://huggingface.co/lxxxy6/genVideo_modify_mouth_lora.safetensors",
           "review_priority": "low",
@@ -15669,8 +16053,8 @@
           "gated": false
         },
         {
-          "title": "martialmedia/rb-homeowner",
-          "url": "https://huggingface.co/martialmedia/rb-homeowner",
+          "title": "neonforestmist/clover-image-tiny-monet-lora",
+          "url": "https://huggingface.co/neonforestmist/clover-image-tiny-monet-lora",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -15679,14 +16063,14 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-29T20:59:13.000Z",
-          "downloads": 3,
+          "created_at": "2026-07-30T22:45:19.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "pedrooberlaender/hotloracumonface",
-          "url": "https://huggingface.co/pedrooberlaender/hotloracumonface",
+          "title": "neonforestmist/clover-image-tiny-pointillism-lora",
+          "url": "https://huggingface.co/neonforestmist/clover-image-tiny-pointillism-lora",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -15695,14 +16079,14 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-29T19:37:42.000Z",
-          "downloads": 12,
+          "created_at": "2026-07-30T22:45:12.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "pedrooberlaender/hotlorawavespeed",
-          "url": "https://huggingface.co/pedrooberlaender/hotlorawavespeed",
+          "title": "neonforestmist/clover-image-tiny-watercolor-anime-lora",
+          "url": "https://huggingface.co/neonforestmist/clover-image-tiny-watercolor-anime-lora",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -15711,14 +16095,14 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-29T18:59:24.000Z",
-          "downloads": 12,
+          "created_at": "2026-07-30T23:52:31.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "phamducminh538/flux1byducminh",
-          "url": "https://huggingface.co/phamducminh538/flux1byducminh",
+          "title": "neonforestmist/sd15-monet-lora",
+          "url": "https://huggingface.co/neonforestmist/sd15-monet-lora",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -15727,14 +16111,30 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-29T15:38:00.000Z",
-          "downloads": 8,
+          "created_at": "2026-07-30T22:24:24.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "sololo-xyz/EmmaMyers_SoloLoRA_Kr2v1",
-          "url": "https://huggingface.co/sololo-xyz/EmmaMyers_SoloLoRA_Kr2v1",
+          "title": "novelaide/FLUX.2-klein-4B-1step-RDM-GGUF",
+          "url": "https://huggingface.co/novelaide/FLUX.2-klein-4B-1step-RDM-GGUF",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "quantized-derivative"
+          ],
+          "created_at": "2026-07-30T14:43:13.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "pedrooberlaender/hotcowgirl",
+          "url": "https://huggingface.co/pedrooberlaender/hotcowgirl",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -15743,14 +16143,30 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-29T16:23:00.000Z",
-          "downloads": 22,
+          "created_at": "2026-07-31T00:59:24.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "TanmayJi12/pytorch-pickel-deser-poc",
-          "url": "https://huggingface.co/TanmayJi12/pytorch-pickel-deser-poc",
+          "title": "Silvicultor/Krea2GrainyDigitalArtworkStyle",
+          "url": "https://huggingface.co/Silvicultor/Krea2GrainyDigitalArtworkStyle",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "weight-artifact-present",
+            "usage-signal",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-30T08:56:09.000Z",
+          "downloads": 0,
+          "likes": 2,
+          "gated": false
+        },
+        {
+          "title": "tyristin/civitai_celeb-lora-archive",
+          "url": "https://huggingface.co/tyristin/civitai_celeb-lora-archive",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -15759,24 +16175,23 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-29T18:04:35.000Z",
-          "downloads": 49,
+          "created_at": "2026-07-30T17:22:07.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "FardoX/sasori-flux2-klein-9b-tq3p",
-          "url": "https://huggingface.co/FardoX/sasori-flux2-klein-9b-tq3p",
+          "title": "B0rghese/Rixie_Quickfang",
+          "url": "https://huggingface.co/B0rghese/Rixie_Quickfang",
           "review_priority": "low",
           "priority_score": -2,
           "priority_signals": [
             "generative-media-pipeline",
-            "license-declared",
-            "usage-signal",
-            "quantized-derivative"
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-29T22:20:37.000Z",
-          "downloads": 310,
+          "created_at": "2026-07-30T22:50:38.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
@@ -15796,8 +16211,8 @@
           "gated": false
         },
         {
-          "title": "kaddzie/My-Stars-Amelia",
-          "url": "https://huggingface.co/kaddzie/My-Stars-Amelia",
+          "title": "kaddzie/My-Stars-Ella",
+          "url": "https://huggingface.co/kaddzie/My-Stars-Ella",
           "review_priority": "low",
           "priority_score": -2,
           "priority_signals": [
@@ -15805,29 +16220,14 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-29T06:37:42.000Z",
-          "downloads": 20,
-          "likes": 1,
-          "gated": false
-        },
-        {
-          "title": "Kolrasp/Pau",
-          "url": "https://huggingface.co/Kolrasp/Pau",
-          "review_priority": "low",
-          "priority_score": -2,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-29T23:02:58.000Z",
-          "downloads": 9,
+          "created_at": "2026-07-30T14:06:12.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "pedrooberlaender/hotblowjob",
-          "url": "https://huggingface.co/pedrooberlaender/hotblowjob",
+          "title": "oxrynajtae/ranalv3",
+          "url": "https://huggingface.co/oxrynajtae/ranalv3",
           "review_priority": "low",
           "priority_score": -2,
           "priority_signals": [
@@ -15835,8 +16235,8 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-29T20:20:02.000Z",
-          "downloads": 20,
+          "created_at": "2026-07-30T15:18:35.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
@@ -15871,6 +16271,66 @@
           "gated": false
         },
         {
+          "title": "PromptWaffle/ButternutCrunch_Storybook_Krea2_V1",
+          "url": "https://huggingface.co/PromptWaffle/ButternutCrunch_Storybook_Krea2_V1",
+          "review_priority": "low",
+          "priority_score": -2,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-31T01:29:18.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "PromptWaffle/FruityKicks",
+          "url": "https://huggingface.co/PromptWaffle/FruityKicks",
+          "review_priority": "low",
+          "priority_score": -2,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-31T01:16:39.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "PromptWaffle/RustedHorizons",
+          "url": "https://huggingface.co/PromptWaffle/RustedHorizons",
+          "review_priority": "low",
+          "priority_score": -2,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-31T01:20:34.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "PromptWaffle/SaintFrame",
+          "url": "https://huggingface.co/PromptWaffle/SaintFrame",
+          "review_priority": "low",
+          "priority_score": -2,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-31T01:24:04.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
           "title": "Silvicultor/Krea2BoldLinocutStyle",
           "url": "https://huggingface.co/Silvicultor/Krea2BoldLinocutStyle",
           "review_priority": "low",
@@ -15882,12 +16342,12 @@
           ],
           "created_at": "2026-07-30T07:55:58.000Z",
           "downloads": 0,
-          "likes": 0,
+          "likes": 1,
           "gated": false
         },
         {
-          "title": "Silvicultor/Krea2GrainyDigitalArtworkStyle",
-          "url": "https://huggingface.co/Silvicultor/Krea2GrainyDigitalArtworkStyle",
+          "title": "singelette/advancedqwennsfw",
+          "url": "https://huggingface.co/singelette/advancedqwennsfw",
           "review_priority": "low",
           "priority_score": -2,
           "priority_signals": [
@@ -15895,7 +16355,37 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-30T08:56:09.000Z",
+          "created_at": "2026-07-30T20:14:48.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "turzyn40/High",
+          "url": "https://huggingface.co/turzyn40/High",
+          "review_priority": "low",
+          "priority_score": -2,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-30T22:41:02.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "turzyn40/InstaMixLow",
+          "url": "https://huggingface.co/turzyn40/InstaMixLow",
+          "review_priority": "low",
+          "priority_score": -2,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-30T22:18:18.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
@@ -15916,106 +16406,16 @@
           "gated": false
         },
         {
-          "title": "Mojo24x7/PixArt-Sigma-512-AX650",
-          "url": "https://huggingface.co/Mojo24x7/PixArt-Sigma-512-AX650",
+          "title": "jakohist/yonyu-krea2",
+          "url": "https://huggingface.co/jakohist/yonyu-krea2",
           "review_priority": "low",
           "priority_score": -3,
           "priority_signals": [
             "generative-media-pipeline",
             "license-declared",
-            "quantized-derivative"
+            "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-29T12:58:51.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "Mouserat/Anything-V5-mnn",
-          "url": "https://huggingface.co/Mouserat/Anything-V5-mnn",
-          "review_priority": "low",
-          "priority_score": -3,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "quantized-derivative"
-          ],
-          "created_at": "2026-07-29T22:38:48.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "Mouserat/CuteYukiMix-mnn",
-          "url": "https://huggingface.co/Mouserat/CuteYukiMix-mnn",
-          "review_priority": "low",
-          "priority_score": -3,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "quantized-derivative"
-          ],
-          "created_at": "2026-07-29T08:42:25.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "Mouserat/CyberRealistic-mnn",
-          "url": "https://huggingface.co/Mouserat/CyberRealistic-mnn",
-          "review_priority": "low",
-          "priority_score": -3,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "quantized-derivative"
-          ],
-          "created_at": "2026-07-29T14:38:35.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "Mouserat/dreamshaper-8-mnn",
-          "url": "https://huggingface.co/Mouserat/dreamshaper-8-mnn",
-          "review_priority": "low",
-          "priority_score": -3,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "quantized-derivative"
-          ],
-          "created_at": "2026-07-29T12:15:26.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "Mouserat/Realistic_Vision_V6.0_B1-mnn",
-          "url": "https://huggingface.co/Mouserat/Realistic_Vision_V6.0_B1-mnn",
-          "review_priority": "low",
-          "priority_score": -3,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "quantized-derivative"
-          ],
-          "created_at": "2026-07-29T10:10:11.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "Mouserat/ReV_Animated-mnn",
-          "url": "https://huggingface.co/Mouserat/ReV_Animated-mnn",
-          "review_priority": "low",
-          "priority_score": -3,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "quantized-derivative"
-          ],
-          "created_at": "2026-07-29T12:34:00.000Z",
+          "created_at": "2026-07-31T02:15:35.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
@@ -16035,8 +16435,59 @@
           "gated": false
         },
         {
-          "title": "jivenchy/sd-turbo-coreml-384-6bit",
-          "url": "https://huggingface.co/jivenchy/sd-turbo-coreml-384-6bit",
+          "title": "neonforestmist/clover-image-tiny-monet-lora-coreml",
+          "url": "https://huggingface.co/neonforestmist/clover-image-tiny-monet-lora-coreml",
+          "review_priority": "low",
+          "priority_score": -7,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative",
+            "conversion-or-mirror"
+          ],
+          "created_at": "2026-07-30T23:26:46.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "neonforestmist/clover-image-tiny-pointillism-lora-coreml",
+          "url": "https://huggingface.co/neonforestmist/clover-image-tiny-pointillism-lora-coreml",
+          "review_priority": "low",
+          "priority_score": -7,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative",
+            "conversion-or-mirror"
+          ],
+          "created_at": "2026-07-30T23:32:43.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "neonforestmist/clover-image-tiny-watercolor-anime-lora-coreml",
+          "url": "https://huggingface.co/neonforestmist/clover-image-tiny-watercolor-anime-lora-coreml",
+          "review_priority": "low",
+          "priority_score": -7,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative",
+            "conversion-or-mirror"
+          ],
+          "created_at": "2026-07-31T00:12:15.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "realrebelai/Kreamagine_v1.0",
+          "url": "https://huggingface.co/realrebelai/Kreamagine_v1.0",
           "review_priority": "low",
           "priority_score": -7,
           "priority_signals": [
@@ -16044,27 +16495,11 @@
             "license-declared",
             "weight-artifact-present",
             "quantized-derivative",
-            "conversion-or-mirror"
+            "wrapper-or-demo"
           ],
-          "created_at": "2026-07-29T15:36:15.000Z",
+          "created_at": "2026-07-30T17:34:11.000Z",
           "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "Mouserat/Illustrious-XL-v2.0-diffusers-mnn",
-          "url": "https://huggingface.co/Mouserat/Illustrious-XL-v2.0-diffusers-mnn",
-          "review_priority": "low",
-          "priority_score": -9,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "quantized-derivative",
-            "conversion-or-mirror"
-          ],
-          "created_at": "2026-07-29T06:47:59.000Z",
-          "downloads": 0,
-          "likes": 0,
+          "likes": 1,
           "gated": false
         }
       ],
@@ -16108,6 +16543,22 @@
           "created_at": "2026-07-22T12:03:28.000Z",
           "downloads": 101,
           "likes": 6,
+          "gated": false
+        },
+        {
+          "title": "Arsh9210/Cosmos-1.0-Diffusion-7B-Text2World",
+          "url": "https://huggingface.co/Arsh9210/Cosmos-1.0-Diffusion-7B-Text2World",
+          "review_priority": "high",
+          "priority_score": 9,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-30T11:23:52.000Z",
+          "downloads": 0,
+          "likes": 0,
           "gated": false
         },
         {
@@ -16155,37 +16606,7 @@
           ],
           "created_at": "2026-07-21T12:16:48.000Z",
           "downloads": 0,
-          "likes": 40,
-          "gated": false
-        },
-        {
-          "title": "AlayaLab/AlayaRenderer",
-          "url": "https://huggingface.co/AlayaLab/AlayaRenderer",
-          "review_priority": "high",
-          "priority_score": 7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-20T05:46:48.000Z",
-          "downloads": 5,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "D123-123/Wan2.1-T2V-14B",
-          "url": "https://huggingface.co/D123-123/Wan2.1-T2V-14B",
-          "review_priority": "high",
-          "priority_score": 7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-20T07:04:43.000Z",
-          "downloads": 13,
-          "likes": 0,
+          "likes": 50,
           "gated": false
         },
         {
@@ -16264,21 +16685,6 @@
           "gated": false
         },
         {
-          "title": "ttthhz1/T2V",
-          "url": "https://huggingface.co/ttthhz1/T2V",
-          "review_priority": "high",
-          "priority_score": 7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-21T01:47:29.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
           "title": "YizzafoShizza/Cosmos3-Nano-Abliterated",
           "url": "https://huggingface.co/YizzafoShizza/Cosmos3-Nano-Abliterated",
           "review_priority": "high",
@@ -16326,6 +16732,74 @@
           "gated": false
         },
         {
+          "title": "Arsh9210/AnyFlow-FAR-Wan2.1-1.3B-Diffusers",
+          "url": "https://huggingface.co/Arsh9210/AnyFlow-FAR-Wan2.1-1.3B-Diffusers",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present",
+            "conversion-or-mirror"
+          ],
+          "created_at": "2026-07-30T11:10:50.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "Arsh9210/AnyFlow-FAR-Wan2.1-14B-Diffusers",
+          "url": "https://huggingface.co/Arsh9210/AnyFlow-FAR-Wan2.1-14B-Diffusers",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present",
+            "conversion-or-mirror"
+          ],
+          "created_at": "2026-07-30T11:39:19.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "Arsh9210/AnyFlow-Wan2.1-T2V-1.3B-Diffusers",
+          "url": "https://huggingface.co/Arsh9210/AnyFlow-Wan2.1-T2V-1.3B-Diffusers",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present",
+            "conversion-or-mirror"
+          ],
+          "created_at": "2026-07-30T11:58:20.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "Arsh9210/AnyFlow-Wan2.1-T2V-14B-Diffusers",
+          "url": "https://huggingface.co/Arsh9210/AnyFlow-Wan2.1-T2V-14B-Diffusers",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present",
+            "conversion-or-mirror"
+          ],
+          "created_at": "2026-07-30T11:20:50.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
           "title": "joeygambino/ltx23-multishot-lite",
           "url": "https://huggingface.co/joeygambino/ltx23-multishot-lite",
           "review_priority": "standard",
@@ -16342,20 +16816,20 @@
           "gated": false
         },
         {
-          "title": "joeygambino/joyai-echo-ltx23-echoVid-ltxAud-surgical",
-          "url": "https://huggingface.co/joeygambino/joyai-echo-ltx23-echoVid-ltxAud-surgical",
-          "review_priority": "low",
-          "priority_score": 2,
+          "title": "keleshu/Wan2.2-T2V-A14B-Diffusers",
+          "url": "https://huggingface.co/keleshu/Wan2.2-T2V-A14B-Diffusers",
+          "review_priority": "standard",
+          "priority_score": 3,
           "priority_signals": [
             "generative-media-pipeline",
+            "paper-linked",
             "license-declared",
             "weight-artifact-present",
-            "usage-signal",
-            "wrapper-or-demo"
+            "conversion-or-mirror"
           ],
-          "created_at": "2026-07-20T13:02:35.000Z",
-          "downloads": 3684,
-          "likes": 30,
+          "created_at": "2026-07-30T22:40:47.000Z",
+          "downloads": 0,
+          "likes": 0,
           "gated": false
         },
         {
@@ -16388,7 +16862,7 @@
           ],
           "created_at": "2026-07-28T18:45:37.000Z",
           "downloads": 43,
-          "likes": 0,
+          "likes": 1,
           "gated": false
         },
         {
@@ -16439,6 +16913,23 @@
           "gated": false
         },
         {
+          "title": "joeygambino/ltx23-accent-american-audio-lora",
+          "url": "https://huggingface.co/joeygambino/ltx23-accent-american-audio-lora",
+          "review_priority": "low",
+          "priority_score": 0,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "usage-signal",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-30T08:59:23.000Z",
+          "downloads": 0,
+          "likes": 2,
+          "gated": false
+        },
+        {
           "title": "lightx2v/LightLingBot-Video",
           "url": "https://huggingface.co/lightx2v/LightLingBot-Video",
           "review_priority": "low",
@@ -16452,7 +16943,7 @@
           ],
           "created_at": "2026-07-28T07:30:17.000Z",
           "downloads": 0,
-          "likes": 3,
+          "likes": 5,
           "gated": false
         },
         {
@@ -16489,22 +16980,6 @@
           "gated": false
         },
         {
-          "title": "joeygambino/ltx23-accent-american-audio-lora",
-          "url": "https://huggingface.co/joeygambino/ltx23-accent-american-audio-lora",
-          "review_priority": "low",
-          "priority_score": -1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-30T08:59:23.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
           "title": "joeygambino/ltx23-surfaces-realism-lora",
           "url": "https://huggingface.co/joeygambino/ltx23-surfaces-realism-lora",
           "review_priority": "low",
@@ -16517,7 +16992,7 @@
           ],
           "created_at": "2026-07-30T08:59:32.000Z",
           "downloads": 0,
-          "likes": 0,
+          "likes": 1,
           "gated": false
         },
         {
@@ -16665,8 +17140,8 @@
           "gated": false
         },
         {
-          "title": "SimpleTuner/ltxvideo-2.3-convrot-int8",
-          "url": "https://huggingface.co/SimpleTuner/ltxvideo-2.3-convrot-int8",
+          "title": "SimpleTuner/ltxvideo-2.3-distilled-convrot-int8",
+          "url": "https://huggingface.co/SimpleTuner/ltxvideo-2.3-distilled-convrot-int8",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -16800,23 +17275,6 @@
           "gated": false
         },
         {
-          "title": "KamCastle/wan2.1-int8-diffusers",
-          "url": "https://huggingface.co/KamCastle/wan2.1-int8-diffusers",
-          "review_priority": "low",
-          "priority_score": -7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "quantized-derivative",
-            "conversion-or-mirror"
-          ],
-          "created_at": "2026-07-21T06:22:56.000Z",
-          "downloads": 16,
-          "likes": 0,
-          "gated": false
-        },
-        {
           "title": "PocketAiHub/PocketAI-Video-MLX-HunyuanVideo-1.5",
           "url": "https://huggingface.co/PocketAiHub/PocketAI-Video-MLX-HunyuanVideo-1.5",
           "review_priority": "low",
@@ -16865,23 +17323,6 @@
           ],
           "created_at": "2026-07-23T04:07:10.000Z",
           "downloads": 14,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "joeygambino/joyai-echo-dit-q8-rm-gguf",
-          "url": "https://huggingface.co/joeygambino/joyai-echo-dit-q8-rm-gguf",
-          "review_priority": "low",
-          "priority_score": -8,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "usage-signal",
-            "quantized-derivative",
-            "wrapper-or-demo"
-          ],
-          "created_at": "2026-07-20T13:38:24.000Z",
-          "downloads": 568,
           "likes": 0,
           "gated": false
         },
@@ -17490,7 +17931,7 @@
           ],
           "created_at": "2026-07-27T03:54:33.000Z",
           "downloads": 10,
-          "likes": 6,
+          "likes": 21,
           "gated": false
         },
         {
@@ -17524,7 +17965,7 @@
           ],
           "created_at": "2026-07-27T19:39:44.000Z",
           "downloads": 0,
-          "likes": 7,
+          "likes": 11,
           "gated": false
         },
         {
@@ -17542,7 +17983,7 @@
           ],
           "created_at": "2026-07-19T12:55:10.000Z",
           "downloads": 1605,
-          "likes": 86,
+          "likes": 87,
           "gated": "auto"
         },
         {
@@ -17704,7 +18145,7 @@
           ],
           "created_at": "2026-07-27T13:57:44.000Z",
           "downloads": 217,
-          "likes": 17,
+          "likes": 18,
           "gated": "auto"
         },
         {
@@ -17822,6 +18263,22 @@
           "created_at": "2025-06-01T18:23:09.000Z",
           "downloads": 0,
           "likes": 2,
+          "gated": false
+        },
+        {
+          "title": "Highmti/Image_to_image_ai_editing_model",
+          "url": "https://huggingface.co/Highmti/Image_to_image_ai_editing_model",
+          "review_priority": "high",
+          "priority_score": 9,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-31T02:00:43.000Z",
+          "downloads": 0,
+          "likes": 0,
           "gated": false
         },
         {
@@ -18129,20 +18586,6 @@
           ],
           "created_at": "2025-07-29T17:43:40.000Z",
           "downloads": 4,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "Image-editing/Emu3-Base-SFT-without_cot-May06_mixed_lr1e-4-checkpoint-19200",
-          "url": "https://huggingface.co/Image-editing/Emu3-Base-SFT-without_cot-May06_mixed_lr1e-4-checkpoint-19200",
-          "review_priority": "standard",
-          "priority_score": 6,
-          "priority_signals": [
-            "explicit-scenario-match",
-            "weight-artifact-present"
-          ],
-          "created_at": "2025-05-10T12:43:06.000Z",
-          "downloads": 1,
           "likes": 0,
           "gated": false
         },
@@ -19090,6 +19533,862 @@
     },
     {
       "track_id": "model-release-feeds",
+      "source_url": "https://huggingface.co/api/models?search=physical-ai&sort=createdAt&direction=-1&limit=50&full=true",
+      "resolved_url": "https://huggingface.co/api/models?direction=-1&full=true&limit=50&search=physical-ai&sort=createdAt",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "physicalairi/act_pick_orange_sim",
+          "url": "https://huggingface.co/physicalairi/act_pick_orange_sim",
+          "review_priority": "standard",
+          "priority_score": 5,
+          "priority_signals": [
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-05-20T10:16:15.000Z",
+          "downloads": 5,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalairi/act_pick_orange_sim_v2",
+          "url": "https://huggingface.co/physicalairi/act_pick_orange_sim_v2",
+          "review_priority": "standard",
+          "priority_score": 5,
+          "priority_signals": [
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-05-25T03:14:40.000Z",
+          "downloads": 3,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalairi/act_ur3_realroom_stack_camera_sim_v1",
+          "url": "https://huggingface.co/physicalairi/act_ur3_realroom_stack_camera_sim_v1",
+          "review_priority": "standard",
+          "priority_score": 5,
+          "priority_signals": [
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-06-14T04:16:01.000Z",
+          "downloads": 3,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalairi/act_ur3_stack_cube_camera_sim",
+          "url": "https://huggingface.co/physicalairi/act_ur3_stack_cube_camera_sim",
+          "review_priority": "standard",
+          "priority_score": 5,
+          "priority_signals": [
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-06-10T15:24:43.000Z",
+          "downloads": 2,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalairi/act_ur3_stack_cube_camera_sim_v2",
+          "url": "https://huggingface.co/physicalairi/act_ur3_stack_cube_camera_sim_v2",
+          "review_priority": "standard",
+          "priority_score": 5,
+          "priority_signals": [
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-06-11T16:01:53.000Z",
+          "downloads": 4,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalairi/act_ur3_stack_cube_camera_sim_v3",
+          "url": "https://huggingface.co/physicalairi/act_ur3_stack_cube_camera_sim_v3",
+          "review_priority": "standard",
+          "priority_score": 5,
+          "priority_signals": [
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-06-13T23:57:18.000Z",
+          "downloads": 4,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/efa-1",
+          "url": "https://huggingface.co/physicalai-bmi/efa-1",
+          "review_priority": "standard",
+          "priority_score": 4,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present",
+            "usage-signal"
+          ],
+          "created_at": "2026-07-23T05:56:42.000Z",
+          "downloads": 122,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/efa-2-acrobot",
+          "url": "https://huggingface.co/physicalai-bmi/efa-2-acrobot",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-23T12:14:01.000Z",
+          "downloads": 17,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/efa-2-pendulum",
+          "url": "https://huggingface.co/physicalai-bmi/efa-2-pendulum",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-23T08:54:02.000Z",
+          "downloads": 22,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/forge-arm-reach-bc",
+          "url": "https://huggingface.co/physicalai-bmi/forge-arm-reach-bc",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-11T07:06:06.000Z",
+          "downloads": 21,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/nano-vla-arm",
+          "url": "https://huggingface.co/physicalai-bmi/nano-vla-arm",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T13:39:59.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/nano-vla-arm-3d",
+          "url": "https://huggingface.co/physicalai-bmi/nano-vla-arm-3d",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T14:13:03.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/nano-vla-pixels",
+          "url": "https://huggingface.co/physicalai-bmi/nano-vla-pixels",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T15:51:27.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/nano-vla-pixels-dart",
+          "url": "https://huggingface.co/physicalai-bmi/nano-vla-pixels-dart",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-15T11:55:25.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/nano-vla-reach",
+          "url": "https://huggingface.co/physicalai-bmi/nano-vla-reach",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-11T13:38:27.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/nano-vla-stack",
+          "url": "https://huggingface.co/physicalai-bmi/nano-vla-stack",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T14:49:03.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/nano-world-model",
+          "url": "https://huggingface.co/physicalai-bmi/nano-world-model",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-13T09:27:36.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/nano-world-model-multi",
+          "url": "https://huggingface.co/physicalai-bmi/nano-world-model-multi",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-15T09:58:34.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalairi/molmoact2_ur3e_pick_red_drop_blue",
+          "url": "https://huggingface.co/physicalairi/molmoact2_ur3e_pick_red_drop_blue",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-06-11T18:47:33.000Z",
+          "downloads": 2,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalairi/pi05_pick_orange_sim_v2",
+          "url": "https://huggingface.co/physicalairi/pi05_pick_orange_sim_v2",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-05-24T18:01:50.000Z",
+          "downloads": 5,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalairi/pi05_ur3_stack_cube_camera_sim_expert",
+          "url": "https://huggingface.co/physicalairi/pi05_ur3_stack_cube_camera_sim_expert",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-06-11T02:56:18.000Z",
+          "downloads": 4,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalairi/pi05_ur3_stack_cube_camera_sim_full",
+          "url": "https://huggingface.co/physicalairi/pi05_ur3_stack_cube_camera_sim_full",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-06-11T10:39:33.000Z",
+          "downloads": 3,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalairi/pi05_ur3_stack_cube_camera_sim_v2_expert",
+          "url": "https://huggingface.co/physicalairi/pi05_ur3_stack_cube_camera_sim_v2_expert",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-06-12T01:28:53.000Z",
+          "downloads": 3,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalairi/pi05_ur3e_pick_place_fresh",
+          "url": "https://huggingface.co/physicalairi/pi05_ur3e_pick_place_fresh",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-06-09T15:53:33.000Z",
+          "downloads": 2,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalairi/pi05_ur3e_pick_red_drop_blue",
+          "url": "https://huggingface.co/physicalairi/pi05_ur3e_pick_red_drop_blue",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-06-11T00:33:32.000Z",
+          "downloads": 3,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalairi/pi05_ur3e_pick_red_drop_blue_full",
+          "url": "https://huggingface.co/physicalairi/pi05_ur3e_pick_red_drop_blue_full",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-06-11T22:55:46.000Z",
+          "downloads": 4,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalairi/vla_jepa_ur3e_pick_red_drop_blue",
+          "url": "https://huggingface.co/physicalairi/vla_jepa_ur3e_pick_red_drop_blue",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-06-11T19:49:43.000Z",
+          "downloads": 3,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "arendjan/physical-ai-studio-environment",
+          "url": "https://huggingface.co/arendjan/physical-ai-studio-environment",
+          "review_priority": "low",
+          "priority_score": 2,
+          "priority_signals": [
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-27T12:06:51.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "Daankrol/physical-ai",
+          "url": "https://huggingface.co/Daankrol/physical-ai",
+          "review_priority": "low",
+          "priority_score": 2,
+          "priority_signals": [
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-05-07T11:43:19.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "eugene123tw/physical-ai-studio-push-t",
+          "url": "https://huggingface.co/eugene123tw/physical-ai-studio-push-t",
+          "review_priority": "low",
+          "priority_score": 2,
+          "priority_signals": [
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-05-18T09:55:50.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "mjf-su/PhysicalAI-reason-VLA-MetaAction-1e",
+          "url": "https://huggingface.co/mjf-su/PhysicalAI-reason-VLA-MetaAction-1e",
+          "review_priority": "low",
+          "priority_score": 2,
+          "priority_signals": [
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-04-17T00:12:42.000Z",
+          "downloads": 47,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/efa-flow-arm3",
+          "url": "https://huggingface.co/physicalai-bmi/efa-flow-arm3",
+          "review_priority": "low",
+          "priority_score": 2,
+          "priority_signals": [
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-22T21:43:52.000Z",
+          "downloads": 32,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/efa-hybrid-arm2",
+          "url": "https://huggingface.co/physicalai-bmi/efa-hybrid-arm2",
+          "review_priority": "low",
+          "priority_score": 2,
+          "priority_signals": [
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-22T21:43:50.000Z",
+          "downloads": 34,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "sojeong647/physical_AI",
+          "url": "https://huggingface.co/sojeong647/physical_AI",
+          "review_priority": "low",
+          "priority_score": 2,
+          "priority_signals": [
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-22T05:02:24.000Z",
+          "downloads": 13,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/forge-quadruped-gait",
+          "url": "https://huggingface.co/physicalai-bmi/forge-quadruped-gait",
+          "review_priority": "low",
+          "priority_score": 1,
+          "priority_signals": [
+            "license-declared"
+          ],
+          "created_at": "2026-07-14T06:54:58.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/orbital-capture-bc",
+          "url": "https://huggingface.co/physicalai-bmi/orbital-capture-bc",
+          "review_priority": "low",
+          "priority_score": 1,
+          "priority_signals": [
+            "license-declared"
+          ],
+          "created_at": "2026-07-13T04:30:14.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/orbital-formation-bc",
+          "url": "https://huggingface.co/physicalai-bmi/orbital-formation-bc",
+          "review_priority": "low",
+          "priority_score": 1,
+          "priority_signals": [
+            "license-declared"
+          ],
+          "created_at": "2026-07-14T21:50:46.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/orbital-landing-tgo",
+          "url": "https://huggingface.co/physicalai-bmi/orbital-landing-tgo",
+          "review_priority": "low",
+          "priority_score": 1,
+          "priority_signals": [
+            "license-declared"
+          ],
+          "created_at": "2026-07-15T10:17:30.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ubr-physical-ai/UBR-Nav-E4B",
+          "url": "https://huggingface.co/ubr-physical-ai/UBR-Nav-E4B",
+          "review_priority": "low",
+          "priority_score": 1,
+          "priority_signals": [
+            "license-declared"
+          ],
+          "created_at": "2026-07-13T22:40:37.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "arendjan/physical-ai-studio-environment-tar",
+          "url": "https://huggingface.co/arendjan/physical-ai-studio-environment-tar",
+          "review_priority": "low",
+          "priority_score": 0,
+          "priority_signals": [],
+          "created_at": "2026-07-27T13:00:59.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "turturtur250/AILAB-physical",
+          "url": "https://huggingface.co/turturtur250/AILAB-physical",
+          "review_priority": "low",
+          "priority_score": 0,
+          "priority_signals": [],
+          "created_at": "2026-07-05T05:49:39.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "BrinqAI/functiongemma-270m-physical-ai",
+          "url": "https://huggingface.co/BrinqAI/functiongemma-270m-physical-ai",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "paper-linked",
+            "license-declared",
+            "usage-signal",
+            "quantized-derivative"
+          ],
+          "created_at": "2026-04-30T14:33:26.000Z",
+          "downloads": 155,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalairi/molmoact2-line-transfer-lora-vlm",
+          "url": "https://huggingface.co/physicalairi/molmoact2-line-transfer-lora-vlm",
+          "review_priority": "low",
+          "priority_score": -5,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-24T07:59:27.000Z",
+          "downloads": 24,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "uom-physical-ai/calvin-deepthinkvla-lora-epoch1",
+          "url": "https://huggingface.co/uom-physical-ai/calvin-deepthinkvla-lora-epoch1",
+          "review_priority": "low",
+          "priority_score": -5,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-04-26T05:18:30.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "uom-physical-ai/calvin-openvla-oft-lora-epoch0",
+          "url": "https://huggingface.co/uom-physical-ai/calvin-openvla-oft-lora-epoch0",
+          "review_priority": "low",
+          "priority_score": -5,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-04-26T05:19:11.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "uom-physical-ai/calvin-rdvla-lora-epoch0",
+          "url": "https://huggingface.co/uom-physical-ai/calvin-rdvla-lora-epoch0",
+          "review_priority": "low",
+          "priority_score": -5,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-04-26T05:19:41.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "mradermacher/PhysicalAI-base-VLA-GGUF",
+          "url": "https://huggingface.co/mradermacher/PhysicalAI-base-VLA-GGUF",
+          "review_priority": "low",
+          "priority_score": -6,
+          "priority_signals": [
+            "license-declared",
+            "usage-signal",
+            "quantized-derivative"
+          ],
+          "created_at": "2026-04-03T00:36:35.000Z",
+          "downloads": 131,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/smolvla-base-onnx-fp16",
+          "url": "https://huggingface.co/physicalai-bmi/smolvla-base-onnx-fp16",
+          "review_priority": "low",
+          "priority_score": -7,
+          "priority_signals": [
+            "license-declared",
+            "quantized-derivative"
+          ],
+          "created_at": "2026-07-12T13:40:30.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "mradermacher/PhysicalAI-reason-VLA-GGUF",
+          "url": "https://huggingface.co/mradermacher/PhysicalAI-reason-VLA-GGUF",
+          "review_priority": "low",
+          "priority_score": -8,
+          "priority_signals": [
+            "quantized-derivative"
+          ],
+          "created_at": "2026-04-03T12:53:31.000Z",
+          "downloads": 20,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "mradermacher/PhysicalAI-reason-VLA-MetaAction-GGUF",
+          "url": "https://huggingface.co/mradermacher/PhysicalAI-reason-VLA-MetaAction-GGUF",
+          "review_priority": "low",
+          "priority_score": -8,
+          "priority_signals": [
+            "quantized-derivative"
+          ],
+          "created_at": "2026-04-17T10:27:08.000Z",
+          "downloads": 70,
+          "likes": 1,
+          "gated": false
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "model-release-feeds",
+      "source_url": "https://huggingface.co/api/models?search=robot-video&sort=createdAt&direction=-1&limit=50&full=true",
+      "resolved_url": "https://huggingface.co/api/models?direction=-1&full=true&limit=50&search=robot-video&sort=createdAt",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "RoboTraxxInc/RoboTraxx-music-style-RG10_8_Bit_Video_Game",
+          "url": "https://huggingface.co/RoboTraxxInc/RoboTraxx-music-style-RG10_8_Bit_Video_Game",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-01-06T01:51:49.000Z",
+          "downloads": 2,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "robot-learning/iter_610_video",
+          "url": "https://huggingface.co/robot-learning/iter_610_video",
+          "review_priority": "low",
+          "priority_score": 2,
+          "priority_signals": [
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-05-18T19:43:44.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "robot-learning/video_v5_iter_650",
+          "url": "https://huggingface.co/robot-learning/video_v5_iter_650",
+          "review_priority": "low",
+          "priority_score": 2,
+          "priority_signals": [
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-05-20T18:32:17.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "RoMALab/video2vla-robotwin15-ground-truth-latent-slice-idm",
+          "url": "https://huggingface.co/RoMALab/video2vla-robotwin15-ground-truth-latent-slice-idm",
+          "review_priority": "low",
+          "priority_score": 2,
+          "priority_signals": [
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-30T04:44:30.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SJTU-DENG-Lab/wla_robotwin_cross_emb_videos_cotrain_image_action",
+          "url": "https://huggingface.co/SJTU-DENG-Lab/wla_robotwin_cross_emb_videos_cotrain_image_action",
+          "review_priority": "low",
+          "priority_score": 2,
+          "priority_signals": [
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-06-12T06:51:48.000Z",
+          "downloads": 8,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SJTU-DENG-Lab/wla_robotwin_same_emb_videos_cotrain_image_action",
+          "url": "https://huggingface.co/SJTU-DENG-Lab/wla_robotwin_same_emb_videos_cotrain_image_action",
+          "review_priority": "low",
+          "priority_score": 2,
+          "priority_signals": [
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-06-12T06:11:03.000Z",
+          "downloads": 5,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "D-Robotics/SmolVLM2-256M-Video-Instruct-GGUF-BPU",
+          "url": "https://huggingface.co/D-Robotics/SmolVLM2-256M-Video-Instruct-GGUF-BPU",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present",
+            "usage-signal",
+            "quantized-derivative"
+          ],
+          "created_at": "2025-07-10T08:36:45.000Z",
+          "downloads": 122,
+          "likes": 1,
+          "gated": false
+        },
+        {
+          "title": "D-Robotics/SmolVLM2-500M-Video-Instruct-GGUF-BPU",
+          "url": "https://huggingface.co/D-Robotics/SmolVLM2-500M-Video-Instruct-GGUF-BPU",
+          "review_priority": "low",
+          "priority_score": -5,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present",
+            "quantized-derivative"
+          ],
+          "created_at": "2025-07-10T08:31:18.000Z",
+          "downloads": 70,
+          "likes": 0,
+          "gated": false
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "model-release-feeds",
       "source_url": "https://huggingface.co/api/models?search=talking-head&sort=createdAt&direction=-1&limit=50&full=true",
       "resolved_url": "https://huggingface.co/api/models?direction=-1&full=true&limit=50&search=talking-head&sort=createdAt",
       "status": 200,
@@ -19170,7 +20469,7 @@
           ],
           "created_at": "2026-03-24T13:42:52.000Z",
           "downloads": 3943,
-          "likes": 70,
+          "likes": 71,
           "gated": false
         },
         {
@@ -19936,6 +21235,739 @@
       "revision_mode": null
     },
     {
+      "track_id": "model-release-feeds",
+      "source_url": "https://huggingface.co/api/models?search=world-model&sort=createdAt&direction=-1&limit=50&full=true",
+      "resolved_url": "https://huggingface.co/api/models?direction=-1&full=true&limit=50&search=world-model&sort=createdAt",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch1",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch1",
+          "review_priority": "standard",
+          "priority_score": 4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-16T07:03:47.000Z",
+          "downloads": 78,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch2",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch2",
+          "review_priority": "standard",
+          "priority_score": 4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-16T07:00:46.000Z",
+          "downloads": 71,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch3",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch3",
+          "review_priority": "standard",
+          "priority_score": 4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-16T07:02:16.000Z",
+          "downloads": 67,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch3-stage2-full-epoch1",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch3-stage2-full-epoch1",
+          "review_priority": "standard",
+          "priority_score": 4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-16T16:55:19.000Z",
+          "downloads": 54,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch3-stage2-full-epoch2",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch3-stage2-full-epoch2",
+          "review_priority": "standard",
+          "priority_score": 4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-16T16:56:46.000Z",
+          "downloads": 45,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch3-stage2-full-epoch3",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch3-stage2-full-epoch3",
+          "review_priority": "standard",
+          "priority_score": 4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-16T16:58:12.000Z",
+          "downloads": 43,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "MAURYASAURABH/coinrun-world-model",
+          "url": "https://huggingface.co/MAURYASAURABH/coinrun-world-model",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T18:10:52.000Z",
+          "downloads": 0,
+          "likes": 1,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/nano-world-model",
+          "url": "https://huggingface.co/physicalai-bmi/nano-world-model",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-13T09:27:36.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "physicalai-bmi/nano-world-model-multi",
+          "url": "https://huggingface.co/physicalai-bmi/nano-world-model-multi",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-15T09:58:34.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/maze2d_easy_native256_cot_chunk_k10_world_model_20260707_perseg",
+          "url": "https://huggingface.co/ultrastar112/maze2d_easy_native256_cot_chunk_k10_world_model_20260707_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T18:38:31.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/maze2d_easy_native256_cot_chunk_k1_world_model_20260707_perseg",
+          "url": "https://huggingface.co/ultrastar112/maze2d_easy_native256_cot_chunk_k1_world_model_20260707_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T06:34:24.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/maze2d_easy_native256_cot_chunk_k3_world_model_20260707_perseg",
+          "url": "https://huggingface.co/ultrastar112/maze2d_easy_native256_cot_chunk_k3_world_model_20260707_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T06:41:39.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/maze2d_easy_native256_cot_chunk_k5_world_model_20260707_perseg",
+          "url": "https://huggingface.co/ultrastar112/maze2d_easy_native256_cot_chunk_k5_world_model_20260707_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T18:33:49.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/maze2d_easy_native256_cot_chunk_kinf_world_model_20260707_perseg",
+          "url": "https://huggingface.co/ultrastar112/maze2d_easy_native256_cot_chunk_kinf_world_model_20260707_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T18:43:12.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/maze2d_easy_native256_noncot_chunk_k10_world_model_20260707_perseg",
+          "url": "https://huggingface.co/ultrastar112/maze2d_easy_native256_noncot_chunk_k10_world_model_20260707_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T19:01:39.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/maze2d_easy_native256_noncot_chunk_k1_world_model_20260707_perseg",
+          "url": "https://huggingface.co/ultrastar112/maze2d_easy_native256_noncot_chunk_k1_world_model_20260707_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T18:47:54.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/maze2d_easy_native256_noncot_chunk_k3_world_model_20260707_perseg",
+          "url": "https://huggingface.co/ultrastar112/maze2d_easy_native256_noncot_chunk_k3_world_model_20260707_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T18:52:26.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/maze2d_easy_native256_noncot_chunk_k5_world_model_20260707_perseg",
+          "url": "https://huggingface.co/ultrastar112/maze2d_easy_native256_noncot_chunk_k5_world_model_20260707_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T18:56:58.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/maze2d_easy_native256_noncot_chunk_kinf_world_model_20260707_perseg",
+          "url": "https://huggingface.co/ultrastar112/maze2d_easy_native256_noncot_chunk_kinf_world_model_20260707_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T19:06:21.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/pusht_96_norm4_cot_chunk_k10_world_model_20260622_perseg",
+          "url": "https://huggingface.co/ultrastar112/pusht_96_norm4_cot_chunk_k10_world_model_20260622_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T05:39:44.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/pusht_96_norm4_cot_chunk_k1_world_model_20260622_perseg",
+          "url": "https://huggingface.co/ultrastar112/pusht_96_norm4_cot_chunk_k1_world_model_20260622_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T05:17:27.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/pusht_96_norm4_cot_chunk_k3_world_model_20260622_perseg",
+          "url": "https://huggingface.co/ultrastar112/pusht_96_norm4_cot_chunk_k3_world_model_20260622_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T05:24:37.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/pusht_96_norm4_cot_chunk_k5_world_model_20260622_perseg",
+          "url": "https://huggingface.co/ultrastar112/pusht_96_norm4_cot_chunk_k5_world_model_20260622_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T05:31:55.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/pusht_96_norm4_cot_chunk_kinf_world_model_20260707_perseg",
+          "url": "https://huggingface.co/ultrastar112/pusht_96_norm4_cot_chunk_kinf_world_model_20260707_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T06:19:23.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/pusht_96_norm4_noncot_chunk_k10_world_model_20260622_perseg",
+          "url": "https://huggingface.co/ultrastar112/pusht_96_norm4_noncot_chunk_k10_world_model_20260622_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T06:10:00.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/pusht_96_norm4_noncot_chunk_k1_world_model_20260622_perseg",
+          "url": "https://huggingface.co/ultrastar112/pusht_96_norm4_noncot_chunk_k1_world_model_20260622_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T05:47:13.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/pusht_96_norm4_noncot_chunk_k3_world_model_20260622_perseg",
+          "url": "https://huggingface.co/ultrastar112/pusht_96_norm4_noncot_chunk_k3_world_model_20260622_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T05:54:58.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/pusht_96_norm4_noncot_chunk_k5_world_model_20260622_perseg",
+          "url": "https://huggingface.co/ultrastar112/pusht_96_norm4_noncot_chunk_k5_world_model_20260622_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-12T06:02:45.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/sokoban_easy_cot_chunk_kinf_world_model_20260707_perseg",
+          "url": "https://huggingface.co/ultrastar112/sokoban_easy_cot_chunk_kinf_world_model_20260707_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-11T05:44:05.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/sokoban_easy_noncot_chunk_k10_world_model_20260622_perseg",
+          "url": "https://huggingface.co/ultrastar112/sokoban_easy_noncot_chunk_k10_world_model_20260622_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-11T05:44:08.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/sokoban_easy_noncot_chunk_k1_world_model_20260622_perseg",
+          "url": "https://huggingface.co/ultrastar112/sokoban_easy_noncot_chunk_k1_world_model_20260622_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-11T05:44:06.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/sokoban_easy_noncot_chunk_k3_world_model_20260622_perseg",
+          "url": "https://huggingface.co/ultrastar112/sokoban_easy_noncot_chunk_k3_world_model_20260622_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-11T05:44:07.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ultrastar112/sokoban_easy_noncot_chunk_k5_world_model_20260622_perseg",
+          "url": "https://huggingface.co/ultrastar112/sokoban_easy_noncot_chunk_k5_world_model_20260622_perseg",
+          "review_priority": "standard",
+          "priority_score": 3,
+          "priority_signals": [
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-11T05:44:07.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "Lislaam/coinrun-trained-world-model",
+          "url": "https://huggingface.co/Lislaam/coinrun-trained-world-model",
+          "review_priority": "low",
+          "priority_score": 2,
+          "priority_signals": [
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-07-17T17:05:45.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "ishantborsek2702/brain-tumor-mri-detection-model-trained-on-4500-real-world-mri-scans",
+          "url": "https://huggingface.co/ishantborsek2702/brain-tumor-mri-detection-model-trained-on-4500-real-world-mri-scans",
+          "review_priority": "low",
+          "priority_score": 0,
+          "priority_signals": [],
+          "created_at": "2026-07-30T05:23:25.000Z",
+          "downloads": 0,
+          "likes": 1,
+          "gated": false
+        },
+        {
+          "title": "yuanxiang102e/worldmodel-dino-tworoom-prop-ep5",
+          "url": "https://huggingface.co/yuanxiang102e/worldmodel-dino-tworoom-prop-ep5",
+          "review_priority": "low",
+          "priority_score": 0,
+          "priority_signals": [],
+          "created_at": "2026-07-27T03:49:34.000Z",
+          "downloads": 8,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch3-stage2-lora-epoch1",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch3-stage2-lora-epoch1",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-19T15:34:55.000Z",
+          "downloads": 45,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch3-stage2-lora-epoch2",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch3-stage2-lora-epoch2",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-19T15:47:04.000Z",
+          "downloads": 38,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch3-stage2-lora-epoch3",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp05-world-model-stage1-full-epoch3-stage2-lora-epoch3",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-19T16:28:38.000Z",
+          "downloads": 44,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp06-world-model-stage1-full-epoch3-stage2-lora-epoch1",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp06-world-model-stage1-full-epoch3-stage2-lora-epoch1",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-21T06:10:17.000Z",
+          "downloads": 34,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp06-world-model-stage1-full-epoch3-stage2-lora-epoch2",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp06-world-model-stage1-full-epoch3-stage2-lora-epoch2",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-21T06:19:28.000Z",
+          "downloads": 34,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp06-world-model-stage1-full-epoch3-stage2-lora-epoch3",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp06-world-model-stage1-full-epoch3-stage2-lora-epoch3",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-21T06:28:35.000Z",
+          "downloads": 31,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch0.25-v1",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch0.25-v1",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-27T14:27:40.000Z",
+          "downloads": 46,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch0.25-v2",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch0.25-v2",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-29T21:32:20.000Z",
+          "downloads": 43,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch0.5-v1",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch0.5-v1",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-27T14:34:19.000Z",
+          "downloads": 47,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch0.5-v2",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch0.5-v2",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-29T21:41:55.000Z",
+          "downloads": 32,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch0.75-v1",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch0.75-v1",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-27T14:40:51.000Z",
+          "downloads": 41,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch0.76-v2",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch0.76-v2",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-29T21:51:10.000Z",
+          "downloads": 32,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch1-v1",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch1-v1",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-27T14:47:20.000Z",
+          "downloads": 38,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch1-v2",
+          "url": "https://huggingface.co/SaFD-00/qwen2.5-vl-3b-ac-exp07-world-model-stage1-lora-epoch1-v2",
+          "review_priority": "low",
+          "priority_score": -4,
+          "priority_signals": [
+            "paper-linked",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-29T22:00:24.000Z",
+          "downloads": 36,
+          "likes": 0,
+          "gated": false
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
       "track_id": "source-platform-updates",
       "source_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction",
       "resolved_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction",
@@ -20017,7 +22049,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:70b127e046fdcb3115898721e6308d739bd94b3cc4cf23e93e324916b0ffffa5",
+      "revision": "sha256:fd1068fcc8d0cd055495c92aeb3ed7e41953fb563b0ee7b03a3c35d8b77ad2c7",
       "revision_url": "https://developers.dailymotion.com/docs/welcome",
       "catalog_id": null,
       "priority": "high",
@@ -20067,7 +22099,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:dbaf9e277ee4500d9bab8821183e3d76b2e3265c93e16ad19ca462769e787221",
+      "revision": "sha256:dcef3fe957ed798cba47c7acae3d671f83e6adbc1fdda7d61ac852972688a631",
       "revision_url": "https://help.pexels.com/api/v2/help_center/en-us/categories/900001326143/articles.json",
       "catalog_id": null,
       "priority": "high",
@@ -20384,6 +22416,151 @@
       "ranking_page_url": null,
       "platform_id": "warner-bros",
       "revision_mode": "availability"
+    },
+    {
+      "track_id": "unified-multimodal-and-physical-ai",
+      "source_url": "https://deepmind.google/research/",
+      "resolved_url": "https://deepmind.google/research",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "Nano Banana Create and edit detailed images",
+          "url": "https://deepmind.google/models/gemini-image",
+          "review_priority": "standard",
+          "priority_score": 0,
+          "priority_signals": [],
+          "created_at": null,
+          "downloads": null,
+          "likes": null,
+          "gated": null
+        },
+        {
+          "title": "Gemini Omni Create anything from anything",
+          "url": "https://deepmind.google/models/gemini-omni",
+          "review_priority": "standard",
+          "priority_score": 0,
+          "priority_signals": [],
+          "created_at": null,
+          "downloads": null,
+          "likes": null,
+          "gated": null
+        },
+        {
+          "title": "Imagen Generate high-quality images from text",
+          "url": "https://deepmind.google/models/imagen",
+          "review_priority": "standard",
+          "priority_score": 0,
+          "priority_signals": [],
+          "created_at": null,
+          "downloads": null,
+          "likes": null,
+          "gated": null
+        },
+        {
+          "title": "Veo Generate cinematic video with audio",
+          "url": "https://deepmind.google/models/veo",
+          "review_priority": "standard",
+          "priority_score": 0,
+          "priority_signals": [],
+          "created_at": null,
+          "downloads": null,
+          "likes": null,
+          "gated": null
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "unified-multimodal-and-physical-ai",
+      "source_url": "https://github.com/Physical-Intelligence",
+      "resolved_url": "https://github.com/Physical-Intelligence",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "unified-multimodal-and-physical-ai",
+      "source_url": "https://research.nvidia.com/labs/dir/",
+      "resolved_url": "https://research.nvidia.com/labs/dir",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "unified-multimodal-and-physical-ai",
+      "source_url": "https://www.microsoft.com/en-us/research/collaboration/physical-ai-research/",
+      "resolved_url": "https://www.microsoft.com/en-us/research/collaboration/physical-ai-research",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
     },
     {
       "track_id": "video-and-audio-generation",
@@ -21045,6 +23222,43 @@
         {
           "title": "Seedance 2.0",
           "url": "https://seed.bytedance.com/en/seedance2_0",
+          "review_priority": "standard",
+          "priority_score": 0,
+          "priority_signals": [],
+          "created_at": null,
+          "downloads": null,
+          "likes": null,
+          "gated": null
+        }
+      ],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "video-and-audio-generation",
+      "source_url": "https://www.minimax.io/news",
+      "resolved_url": "https://www.minimax.io/news",
+      "status": 200,
+      "candidates": [
+        {
+          "title": "MiniMax H3 NEW",
+          "url": "https://platform.minimax.io/docs/guides/video-generation?ready=6",
           "review_priority": "standard",
           "priority_score": 0,
           "priority_signals": [],

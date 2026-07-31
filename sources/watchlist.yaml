@@ -13,6 +13,7 @@ discovery:
     - video-and-audio-generation
     - digital-human-and-localization
     - virtual-try-on-and-commerce
+    - unified-multimodal-and-physical-ai
     - datasets
     - dataset-release-feeds
     - model-release-feeds
@@ -100,6 +101,7 @@ tracks:
       - https://x.ai/news
       - https://runwayml.com/news
       - https://ir.kuaishou.com/news-events/company-news/
+      - https://www.minimax.io/news
 
   - id: digital-human-and-localization
     topics:
@@ -142,6 +144,20 @@ tracks:
       - https://github.com/fashn-AI/fashn-vton-1.5
       - https://hunorlaczko.github.io/MV-Fashion/
       - https://oxygenvision.github.io/Oxygen-TryOn/
+
+  - id: unified-multimodal-and-physical-ai
+    topics:
+      - unified-multimodal-generation
+      - world-model
+      - action-conditioned-video
+      - embodied-ai
+      - robot-video
+      - simulator-data
+    official_sources:
+      - https://research.nvidia.com/labs/dir/
+      - https://www.microsoft.com/en-us/research/collaboration/physical-ai-research/
+      - https://github.com/Physical-Intelligence
+      - https://deepmind.google/research/
 
   - id: datasets
     topics:
@@ -243,6 +259,9 @@ tracks:
       - "https://huggingface.co/api/models?search=video-translation&sort=createdAt&direction=-1&limit=50&full=true"
       - "https://huggingface.co/api/models?search=virtual-try-on&sort=createdAt&direction=-1&limit=50&full=true"
       - "https://huggingface.co/api/models?search=audio-driven-animation&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?search=world-model&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?search=physical-ai&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://huggingface.co/api/models?search=robot-video&sort=createdAt&direction=-1&limit=50&full=true"
       - "https://huggingface.co/api/models?search=video-to-audio&sort=createdAt&direction=-1&limit=50&full=true"
       - "https://huggingface.co/api/models?search=joint-audio-video&sort=createdAt&direction=-1&limit=50&full=true"
 
@@ -712,7 +731,7 @@ tracks:
       - url: https://arxiv.org/html/2607.21553
         catalog_id: sana-video-2-progressive-training-pools
         priority: critical
-      - url: https://export.arxiv.org/api/query?id_list=2607.21553
+      - url: https://arxiv.org/abs/2607.21553v1
         catalog_id: sana-video-2-preference-pairs
         priority: critical
       - url: https://arxiv.org/html/2607.19064
@@ -759,6 +778,45 @@ tracks:
         priority: critical
       - url: https://arxiv.org/abs/2607.22830
         catalog_id: id-v2v-evaluation-suite
+        priority: critical
+      - url: https://tobias-kirschstein.github.io/nersemble/
+        catalog_id: nersemble
+        priority: critical
+      - url: https://github.com/DL3DV-10K/Dataset/commits/main.atom
+        catalog_id: dl3dv-10k
+        priority: high
+      - url: "https://huggingface.co/api/datasets/TencentARC/MiraData?expand=lastModified&expand=sha"
+        catalog_id: miradata
+        priority: high
+      - url: https://github.com/google-deepmind/open_x_embodiment/commits/main.atom
+        catalog_id: open-x-embodiment
+        priority: high
+      - url: https://arxiv.org/html/2607.28362
+        catalog_id: shadow-library
+        priority: critical
+      - url: "https://huggingface.co/api/datasets/guangyil/laion-coco-aesthetic?expand=lastModified&expand=sha"
+        catalog_id: laion-coco-aesthetic
+        priority: high
+      - url: "https://huggingface.co/api/datasets/VisualCloze/Graph200K?expand=lastModified&expand=sha"
+        catalog_id: graph200k
+        priority: high
+      - url: https://github.com/lichengunc/refer/commits/master.atom
+        catalog_id: refcoco
+        priority: high
+      - url: "https://huggingface.co/api/datasets/TIGER-Lab/OmniEdit-Filtered-1.2M?expand=lastModified&expand=sha"
+        catalog_id: omniedit-filtered-1-2m
+        priority: high
+      - url: "https://huggingface.co/api/models/scepter-studio/stylebooth?expand=lastModified&expand=sha"
+        catalog_id: stylebooth
+        priority: high
+      - url: https://arxiv.org/abs/2607.24157v1
+        catalog_id: unigen-ar-evaluation-suite
+        priority: high
+      - url: "https://huggingface.co/api/datasets/AppliedIntuitionResearch/ReMind1M?expand=lastModified&expand=sha"
+        catalog_id: remind1m
+        priority: critical
+      - url: https://arxiv.org/html/2605.25333v1
+        catalog_id: remind-pexels-dynamic-clips
         priority: critical
 
   - id: important-model-updates
@@ -1049,6 +1107,21 @@ tracks:
         priority: critical
       - url: https://huggingface.co/api/models/joyfox/JoyFox-LiveTalk-DH-1.3B
         model_id: joyfox-livetalk-dh-1-3b
+        priority: critical
+      - url: https://platform.minimax.io/docs/release-notes/models
+        model_id: minimax-h3
+        priority: critical
+      - url: https://shadowdancer-1.github.io/
+        model_id: shadowdancer
+        priority: critical
+      - url: https://arxiv.org/abs/2607.28164
+        model_id: s-avatar
+        priority: critical
+      - url: https://arxiv.org/html/2607.24157
+        model_id: unigen-ar
+        priority: critical
+      - url: "https://huggingface.co/api/models/AppliedIntuitionResearch/ReMind?expand=lastModified&expand=sha"
+        model_id: remind
         priority: critical
 
 acceptance_rules:

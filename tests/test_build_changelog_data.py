@@ -22,7 +22,7 @@ class BuildChangelogDataTests(unittest.TestCase):
             (entry["date"] for entry in entries), reverse=True
         ))
         latest = entries[0]
-        self.assertEqual(latest["date"], "2026-07-30")
+        self.assertEqual(latest["date"], "2026-07-31")
         self.assertEqual(payload["format_version"], 3)
         self.assertEqual(
             [dimension["label"]["zh"] for dimension in latest["summary"]],
@@ -32,13 +32,13 @@ class BuildChangelogDataTests(unittest.TestCase):
             [dimension["label"]["en"] for dimension in latest["summary"]],
             ["Models", "Datasets", "Data relations", "Rankings", "Monitoring", "Undisclosed"],
         )
-        self.assertIn("Oxygen-TryOn", latest["summary"][0]["text"]["zh"])
-        self.assertIn("Oxygen-TryOn", latest["summary"][0]["text"]["en"])
+        self.assertIn("MiniMax H3", latest["summary"][0]["text"]["zh"])
+        self.assertIn("MiniMax H3", latest["summary"][0]["text"]["en"])
         self.assertEqual(
             latest["summary"][0]["links"][0],
             {
-                "href": "/#model-oxygen-tryon",
-                "label": {"zh": "Oxygen-TryOn 模型卡", "en": "Oxygen-TryOn model card"},
+                "href": "/#model-minimax-h3",
+                "label": {"zh": "MiniMax H3", "en": "MiniMax H3"},
             },
         )
         self.assertTrue(all(dimension["links"] for dimension in latest["summary"]))

@@ -1,0 +1,70 @@
+id: miradata
+name: MiraData
+organization: Tencent ARC Lab
+released_at: "2024-07-09"
+release_date_source: https://arxiv.org/abs/2407.06358
+modality: video
+tasks:
+  - text-to-video
+  - long-video-generation
+  - video-text-pretraining
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  A long-video metadata collection with 330K, 93K, 42K, and 9K filtered
+  variants, retaining source URLs, clip timing, dimensions, motion and style
+  descriptors, and structured English captions.
+access:
+  status: metadata-only
+  type: urls
+  url: https://huggingface.co/datasets/TencentARC/MiraData
+  requires_account: false
+  notes: The official repository distributes metadata and download scripts that retrieve source videos; it does not host a rights-cleared media archive.
+scale:
+  samples: 330000
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The largest released metadata variant has 330K clips, with successively filtered 93K, 42K, and 9K subsets.
+annotations:
+  types:
+    - source-url
+    - clip-timestamp
+    - short-caption
+    - dense-caption
+    - background-caption
+    - object-caption
+    - style-caption
+    - camera-caption
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: GPL-3.0
+  media: Upstream source-video terms and copyright
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The Hugging Face license tag covers the release repository and metadata; downloading a URL does not grant training, commercial, or redistribution rights to the underlying video.
+quality:
+  dimensions:
+    - temporal-consistency
+    - motion
+    - text-media-alignment
+    - visual-quality
+    - provenance
+  known_limitations:
+    - URLs can disappear or change, so the published metadata does not guarantee reproducible media availability.
+    - Structured captions are model-generated and may hallucinate objects, camera motion, background, or style.
+    - Rights, consent, safety, duplicate handling, and geographic or demographic coverage remain source-dependent.
+processing:
+  recipe: Run the official download_data.py over pinned metadata rows, cut source videos by timestamp, and retain source identifiers and takedown status.
+  recommended_format: native
+  notes: Treat every retrieved video as separately rights-gated and propagate removals requested through the project contact.
+evidence:
+  homepage: https://huggingface.co/datasets/TencentARC/MiraData
+  paper: https://arxiv.org/abs/2407.06358
+  used_by:
+    - ShadowDancer Shadow Library
+status: verified
+last_verified: "2026-07-31"

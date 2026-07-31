@@ -19,7 +19,7 @@ class FreshnessTests(unittest.TestCase):
             catalog_today(datetime(2026, 7, 27, 0, 36))
 
     def test_current_catalog_is_fresh_on_reference_date(self) -> None:
-        self.assertEqual(freshness_issues(date(2026, 7, 30)), [])
+        self.assertEqual(freshness_issues(date(2026, 7, 31)), [])
 
     def test_watch_cards_expire_quickly(self) -> None:
         issues = freshness_issues(date(2026, 8, 11))

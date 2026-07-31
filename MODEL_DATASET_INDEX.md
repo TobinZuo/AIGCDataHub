@@ -2,14 +2,27 @@
 
 Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; runtime inputs, unreleased data, and undisclosed data must state why no card exists.
 
-- Models: 94
-- References linked to catalog cards: 135
-- References without a card, with an explicit evidence boundary: 94
+- Models: 99
+- References linked to catalog cards: 147
+- References without a card, with an explicit evidence boundary: 95
 - Ordering: model release date, newest first
 
 | Model | Released | Dataset or corpus named by source | Availability | Catalog resolution | Role | Evidence boundary |
 |---|---:|---|---|---|---|---|
+| [MiniMax H3](models/multimodal/minimax-h3.yaml) | 2026-07-31 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
+| [ShadowDancer](models/video/shadowdancer.yaml) | 2026-07-30 | Shadow Library | not-released | [`shadow-library`](catalog/video/shadow-library.yaml) | fine-tuning | The paper names simulator, rendered, game, DL3DV, MiraData, and Open X-Embodiment sources, but does not release the paired corpus or complete per-source rights. |
+| [S-Avatar](models/image/s-avatar.yaml) | 2026-07-30 | NeRSemble | gated | [`nersemble`](catalog/3d/nersemble.yaml) | evaluation | NeRSemble is used only for novel-view and expression evaluation; the paper does not report training S-Avatar on it. |
+| [ReMind 5B](models/video/remind.yaml) | 2026-07-30 | ReMind1M | public | [`remind1m`](catalog/video/remind1m.yaml) | fine-tuning | Public subset covering Helios physics-filtered clips, pair-fixed InSpatio camera augmentation, and Kubric camera renders. |
+| [ReMind 5B](models/video/remind.yaml) | 2026-07-30 | OpenVid-1M | public | [`openvid-1m`](catalog/video/openvid-1m.yaml) | fine-tuning | Named as a general real-video source; the exact retained count and sampling weight are not disclosed. |
+| [ReMind 5B](models/video/remind.yaml) | 2026-07-30 | DL3DV-10K | gated | [`dl3dv-10k`](catalog/video/dl3dv-10k.yaml) | fine-tuning | Named as a general scene-video source; the exact retained subset and sampling weight are not disclosed. |
+| [ReMind 5B](models/video/remind.yaml) | 2026-07-30 | ReMind Pexels dynamic clips | not-released | [`remind-pexels-dynamic-clips`](catalog/video/remind-pexels-dynamic-clips.yaml) | fine-tuning | Retrieved with a 100+ event taxonomy and filtered with Qwen3-VL; no source manifest or retained count is public. |
 | [JoyFox LiveTalk-DH 1.3B](models/video/joyfox-livetalk-dh-1-3b.yaml) | 2026-07-28 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
+| [UniGen-AR](models/multimodal/unigen-ar.yaml) | 2026-07-27 | LAION-COCO-Aesthetic | public | [`laion-coco-aesthetic`](catalog/image/laion-coco-aesthetic.yaml) | fine-tuning | UniGen-AR uses CLIP captions and sets the text-to-image batch probability to 0.25 in the joint stage. |
+| [UniGen-AR](models/multimodal/unigen-ar.yaml) | 2026-07-27 | Graph200K | public | [`graph200k`](catalog/image/graph200k.yaml) | fine-tuning | Several targets are synthetic or model-labeled; repeated task rows are not treated as distinct source images. |
+| [UniGen-AR](models/multimodal/unigen-ar.yaml) | 2026-07-27 | RefCOCO | public | [`refcoco`](catalog/image/refcoco.yaml) | fine-tuning | Human referring expressions and COCO images supervise referring segmentation. |
+| [UniGen-AR](models/multimodal/unigen-ar.yaml) | 2026-07-27 | OmniEdit-Filtered-1.2M | public | [`omniedit-filtered-1-2m`](catalog/image/omniedit-filtered-1-2m.yaml) | fine-tuning | The underlying source contains about 1.2M image pairs; overlapping annotation views must not be summed as independent source images. |
+| [UniGen-AR](models/multimodal/unigen-ar.yaml) | 2026-07-27 | StyleBooth Dataset | public | [`stylebooth`](catalog/image/stylebooth.yaml) | fine-tuning | Used for de-stylize-and-restyle supervision. |
+| [UniGen-AR](models/multimodal/unigen-ar.yaml) | 2026-07-27 | UniGen-AR evaluation suite | public | [`unigen-ar-evaluation-suite`](catalog/evaluation/unigen-ar-evaluation-suite.yaml) | evaluation | These datasets are evaluation-only in the reported experiments and are not folded into the 8M training-pair total. |
 | [Midjourney V8.2](models/image/midjourney-v8-2.yaml) | 2026-07-24 | V8.2 personalization ratings and image-selection pool | undisclosed | — exact source is not disclosed | preference | Midjourney reports stronger profiles for users with many ratings and a larger improved pool of images, without publishing the underlying data. |
 | [InnoText](models/image/innotext.yaml) | 2026-07-24 | InnoText-30K | not-released | [`innotext-30k`](catalog/image/innotext-30k.yaml) | fine-tuning | The corpus joins Lex-10K, a 10K Seedream-generated Chinese counterpart, and a curated 10K AnyWord-3M subset; the same taxonomy supports generation and editing. |
 | [ID-V2V](models/video/id-v2v.yaml) | 2026-07-24 | ID-V2V Human-Centric Video Corpus | not-released | [`id-v2v-human-centric-videos`](catalog/video/id-v2v-human-centric-videos.yaml) | fine-tuning | Qwen2.5-VL-32B captions the videos; face detection retains up to five faces per frame and removes videos with faces missing from more than 40% of frames. |

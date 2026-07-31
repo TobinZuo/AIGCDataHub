@@ -1,0 +1,68 @@
+id: open-x-embodiment
+name: Open X-Embodiment
+organization: Open X-Embodiment Collaboration and Google DeepMind
+released_at: "2023-10-03"
+release_date_source: https://robotics-transformer-x.github.io/
+modality: video
+tasks:
+  - robot-manipulation
+  - embodied-learning
+  - action-conditioned-video-generation
+  - world-modeling
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A unified RLDS collection of public robot-manipulation datasets spanning
+  multiple institutions and embodiments, with RGB observations, language task
+  instructions, actions, and episode structure.
+access:
+  status: open
+  type: hosted
+  url: https://github.com/google-deepmind/open_x_embodiment
+  requires_account: false
+  notes: Dataset builders and episodes are available through TensorFlow Datasets or the documented public Google Cloud bucket; consumers must also review each contributing dataset's terms.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The paper reports more than one million real-robot episodes across 22 embodiments; the release is a federation of datasets rather than one homogeneous capture protocol.
+annotations:
+  types:
+    - rlds-episode
+    - rgb-observation
+    - language-instruction
+    - robot-action
+    - embodiment-metadata
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-4.0 materials; Apache-2.0 software
+  media: Contributing-dataset terms remain applicable
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The umbrella repository assigns Apache-2.0 to software and CC-BY-4.0 to other materials, while explicitly requiring citation and review of individual contributed datasets.
+quality:
+  dimensions:
+    - motion
+    - temporal-consistency
+    - provenance
+    - text-media-alignment
+  known_limitations:
+    - Embodiments, action spaces, sensors, collection policies, episode success criteria, and licenses are heterogeneous.
+    - Aggregate episode counts do not imply balanced sampling across robots, skills, institutions, or environments.
+    - Some source builders require manual cloud download and may not be registered in a local TensorFlow Datasets installation.
+processing:
+  recipe: Use the official per-dataset RLDS builders, preserve embodiment and source-dataset identity, and normalize actions only with source-specific semantics intact.
+  recommended_format: native
+  notes: Do not collapse the selected ShadowDancer subsets into one license assumption; preserve BridgeData, FurnitureBench, Berkeley UR5, Jaco Play, Stanford HYDRA, and RoboTurk provenance separately.
+evidence:
+  homepage: https://github.com/google-deepmind/open_x_embodiment
+  paper: https://arxiv.org/abs/2310.08864
+  used_by:
+    - ShadowDancer Shadow Library
+status: verified
+last_verified: "2026-07-31"

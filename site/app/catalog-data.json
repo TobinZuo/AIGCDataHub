@@ -8,7 +8,7 @@
     "sources/watchlist.yaml",
     "sources/discovery-state.json"
   ],
-  "last_verified": "2026-07-30",
+  "last_verified": "2026-07-31",
   "scenarios": [
     {
       "id": "image-generation",
@@ -39,6 +39,12 @@
       "label": "试穿与服装生成",
       "short_label": "Try-On",
       "description": "人物与服装条件生成、尺寸感知试穿、多服装组合和服装迁移。"
+    },
+    {
+      "id": "physical-ai",
+      "label": "Physical AI 与世界模型",
+      "short_label": "Physical AI",
+      "description": "具身交互、动作条件视频、可控世界模型，以及支撑这些能力的机器人与模拟器视频数据。"
     }
   ],
   "source_platforms": [
@@ -674,6 +680,320 @@
     }
   ],
   "datasets": [
+    {
+      "id": "shadow-library",
+      "name": "Shadow Library",
+      "organization": "Alaya Lab and Shanghai Innovation Institute",
+      "released_at": "2026-07-30",
+      "release_date_source": "https://arxiv.org/abs/2607.28362",
+      "modality": "video",
+      "tasks": [
+        "action-conditioned-video-generation",
+        "embodied-world-modeling",
+        "streaming-video-generation",
+        "human-animation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "The unreleased ShadowDancer training corpus of synchronized shadow pairs that preserve dynamics while resampling appearance, plus real-video self-pairs for visual realism across human, robot, game, and static-scene domains.",
+      "derived_from": [
+        {
+          "catalog_id": "dl3dv-10k",
+          "relationship": "source-component",
+          "contribution": "Roughly 0.3M static-scene self-pair frames",
+          "notes": "The paper names DL3DV as the static-scene source; no released row-level mapping is available."
+        },
+        {
+          "catalog_id": "miradata",
+          "relationship": "source-component",
+          "contribution": "Roughly 6.5M Internet-video self-pair frames",
+          "notes": "The paper names MiraData for visual-realism self-pairs; source URL rights remain upstream-dependent."
+        },
+        {
+          "catalog_id": "open-x-embodiment",
+          "relationship": "source-component",
+          "contribution": "Roughly 3.6M frames from six selected robot datasets",
+          "notes": "BridgeData, FurnitureBench, Berkeley UR5, Jaco Play, Stanford HYDRA, and RoboTurk are named; their individual provenance and terms remain layered."
+        }
+      ],
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2607.28362",
+        "requires_account": false,
+        "notes": "The paper documents source families, approximate sequence and frame counts, and some mixture percentages, but publishes no files, manifest, download link, or dataset license."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": 20500000,
+        "hours": null,
+        "approximate": true,
+        "notes": "Summing the rounded table entries yields about 20.5M frames; sequence counts, percentages, and frames are approximate and several game/render rows do not disclose final mixture percentages."
+      },
+      "annotations": {
+        "types": [
+          "synchronized-shadow-pair",
+          "dynamics-preservation",
+          "appearance-resampling",
+          "camera-control-mask",
+          "self-pair",
+          "robot-action"
+        ],
+        "source": "mixed",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "Not published",
+        "media": "Heterogeneous simulator, rendered, game, public-dataset, and web-video rights",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "CC-BY-4.0 applies to the paper, not automatically to the unreleased corpus; simulator and game assets plus public-source licenses require component-level review."
+      },
+      "quality": {
+        "dimensions": [
+          "motion",
+          "temporal-consistency",
+          "multi-view-consistency",
+          "visual-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Files, manifests, duplicate reports, filters, and per-sample provenance are unavailable for independent audit.",
+          "Self-pairs preserve appearance as well as motion and therefore teach visual realism differently from synthetic cross-shadow pairs.",
+          "Approximate table counts and incomplete mixture percentages do not establish the final optimization sampling distribution.",
+          "Game and simulator coverage may overrepresent controllable, repeatable dynamics relative to noisy real-world interaction."
+        ]
+      },
+      "processing": {
+        "recipe": "Replay identical dynamics under independently resampled character, scene, lighting, and camera conditions where engines permit; pair public real videos with themselves; then sample source families for cross-shadow prediction and block-causal rollout training.",
+        "recommended_format": "native",
+        "notes": "If released, retain paired-frame alignment, source family, exact upstream item ID, resampled factors, control mask, license, and takedown state."
+      },
+      "evidence": {
+        "homepage": "https://shadowdancer-1.github.io/",
+        "paper": "https://arxiv.org/abs/2607.28362",
+        "used_by": [
+          "ShadowDancer"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-31",
+      "source_path": "catalog/video/shadow-library.yaml",
+      "scenario_ids": [
+        "physical-ai"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2607.28362"
+      },
+      "upstream_dataset_ids": [
+        "dl3dv-10k",
+        "miradata",
+        "open-x-embodiment"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "shadowdancer"
+      ]
+    },
+    {
+      "id": "remind1m",
+      "name": "ReMind1M",
+      "organization": "Applied Intuition Research",
+      "released_at": "2026-07-30",
+      "release_date_source": "https://huggingface.co/datasets/AppliedIntuitionResearch/ReMind1M",
+      "modality": "video",
+      "tasks": [
+        "image-to-video",
+        "world-modeling",
+        "camera-controlled-video-generation",
+        "temporal-dynamics-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A public 1,419,331-row dynamic-memory video release containing physics-filtered Helios generations, pair-fixed InSpatio camera augmentations, and Kubric camera renders with production motion-focused captions.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/AppliedIntuitionResearch/ReMind1M",
+        "requires_account": false,
+        "notes": "Hugging Face hosts 557 GB of WebDataset tar shards plus three authoritative compressed JSONL manifests; pin revision 0619eaa6455b5bdf5b6f270929fd8ab75028dd3d."
+      },
+      "scale": {
+        "samples": 1419331,
+        "source_items": 1419331,
+        "hours": null,
+        "approximate": false,
+        "notes": "1,027,329 Helios rows, 265,945 pair-fixed InSpatio rows, and 126,057 Kubric rows; use the manifests rather than inferring counts from shard numbers."
+      },
+      "annotations": {
+        "types": [
+          "caption-v2",
+          "temporal-dynamics",
+          "physics-plausibility",
+          "moving-object-count",
+          "camera-trajectory",
+          "source-family",
+          "caption-audit"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0",
+        "media": "Underlying generated and simulated videos retain source and component terms",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "ReMind-authored captions, audit metadata, and manifest arrangement are CC-BY-NC-4.0; the license explicitly does not relicense underlying videos or third-party metadata."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "motion",
+          "temporal-consistency",
+          "text-media-alignment",
+          "geometry-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Generated physics and model-written captions can contain implausible motion, hallucinations, or systematic generator bias despite automated filtering.",
+          "The InSpatio release excludes depth videos and raw pipeline metadata, limiting independent geometry audits.",
+          "Only the corrected pair-fixed manifest should be used; older manifests contain an 8-by-32 shard-export transpose that can mismatch identity, caption, and trajectory.",
+          "This released subset does not include the full real-video mixture used by ReMind."
+        ]
+      },
+      "processing": {
+        "recipe": "Filter Helios clips for physics plausibility and sustained dynamics, pair InSpatio RGB video with corrected DA3 trajectories, remove static Kubric samples except camera tours, and scrub camera instructions from captions because control lives in pose metadata.",
+        "recommended_format": "webdataset",
+        "notes": "Preserve unknown manifest fields, use only train_manifest_inspatio_pairfix.jsonl.gz for InSpatio, and keep camera NPZ members paired with their MP4 identity."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/AppliedIntuitionResearch/ReMind1M",
+        "paper": "https://arxiv.org/abs/2605.25333",
+        "used_by": [
+          "ReMind 5B"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-31",
+      "source_path": "catalog/video/remind1m.yaml",
+      "scenario_ids": [
+        "video-generation",
+        "physical-ai"
+      ],
+      "scale_label": "1.4M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/AppliedIntuitionResearch/ReMind1M?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "remind"
+      ]
+    },
+    {
+      "id": "unigen-ar-evaluation-suite",
+      "name": "UniGen-AR Evaluation Suite",
+      "organization": "UniGen-AR authors and upstream benchmark maintainers",
+      "released_at": "2026-07-27",
+      "release_date_source": "https://arxiv.org/abs/2607.24157",
+      "modality": "evaluation",
+      "tasks": [
+        "text-to-image-evaluation",
+        "image-editing-evaluation",
+        "depth-estimation-evaluation",
+        "image-restoration-evaluation"
+      ],
+      "stages": [
+        "evaluation"
+      ],
+      "description": "A relationship card for the six public benchmarks used by UniGen-AR: GenEval for text-to-image, Emu-Edit for image editing, NYUv2 for depth and normals, LOL for low light, GoPro for deblurring, and Rain-13K for deraining.",
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://arxiv.org/abs/2607.24157",
+        "requires_account": false,
+        "notes": "There is no combined download. Use the upstream GenEval, Emu-Edit, NYUv2, LOL, GoPro, and Rain-13K project releases named by the paper and preserve their separate terms and splits."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The paper evaluates on each upstream benchmark's standard split and does not publish a merged record count."
+      },
+      "annotations": {
+        "types": [
+          "text-to-image-prompt",
+          "edit-instruction",
+          "depth-map",
+          "surface-normal",
+          "low-light-pair",
+          "blur-pair",
+          "rain-pair"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Heterogeneous upstream licenses",
+        "media": "Heterogeneous upstream benchmark terms",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The UniGen-AR paper's CC-BY-4.0 license does not relicense benchmark media; obtain and review every component independently."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "geometry-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The six tasks have different metrics, licenses, split protocols, and data-generating processes, so aggregate claims require per-benchmark context.",
+          "Several restoration benchmarks are small or domain-specific and do not establish robustness on open-world degradations.",
+          "This card records a reported evaluation relationship, not a redistributable merged dataset."
+        ]
+      },
+      "processing": {
+        "recipe": "Evaluate text-to-image on GenEval, editing on Emu-Edit, depth and normals on NYUv2, low-light enhancement on LOL, deblurring on GoPro, and deraining on Rain-13K using their standard protocols.",
+        "recommended_format": "native",
+        "notes": "Upstream entry points are https://github.com/djghosh13/geneval, https://github.com/facebookresearch/emu, https://cs.nyu.edu/~fergus/datasets/nyu_depth_v2.html, https://daooshee.github.io/BMVC2018website/, https://seungjunnah.github.io/Datasets/gopro, and https://github.com/csdwren/PReNet."
+      },
+      "evidence": {
+        "homepage": "https://arxiv.org/abs/2607.24157",
+        "paper": "https://arxiv.org/abs/2607.24157",
+        "used_by": [
+          "UniGen-AR"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-31",
+      "source_path": "catalog/evaluation/unigen-ar-evaluation-suite.yaml",
+      "scenario_ids": [],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://arxiv.org/abs/2607.24157v1"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "unigen-ar"
+      ]
+    },
     {
       "id": "innotext-30k",
       "name": "InnoText-30K",
@@ -1520,7 +1840,8 @@
       "last_verified": "2026-07-27",
       "source_path": "catalog/video/worldweaver-minecraft-126h.yaml",
       "scenario_ids": [
-        "video-generation"
+        "video-generation",
+        "physical-ai"
       ],
       "scale_label": "unknown",
       "monitoring": {
@@ -1717,7 +2038,7 @@
       "scale_label": "unknown",
       "monitoring": {
         "priority": "critical",
-        "source_url": "https://export.arxiv.org/api/query?id_list=2607.21553"
+        "source_url": "https://arxiv.org/abs/2607.21553v1"
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
@@ -3648,6 +3969,103 @@
       ]
     },
     {
+      "id": "remind-pexels-dynamic-clips",
+      "name": "ReMind Pexels Dynamic Clips",
+      "organization": "Applied Intuition Research",
+      "released_at": "2026-05-25",
+      "release_date_source": "https://arxiv.org/abs/2605.25333",
+      "modality": "video",
+      "tasks": [
+        "image-to-video",
+        "world-modeling",
+        "temporal-dynamics-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "An unreleased subset of Pexels videos retrieved with ReMind's 100+ dynamic event taxonomy and filtered by Qwen3-VL for event identity, shot continuity, dynamic-region occupancy, and sustained temporal change.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2605.25333",
+        "requires_account": false,
+        "notes": "The paper describes retrieval and filtering but publishes no retained URL manifest, row count, download archive, source snapshot, or dataset-specific license."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "Neither the retrieved pool nor retained clip count, hours, source-contributor distribution, or sampling weight is disclosed."
+      },
+      "annotations": {
+        "types": [
+          "dynamic-event",
+          "scene-cut",
+          "spatial-occupancy",
+          "temporal-occupancy",
+          "caption",
+          "estimated-depth",
+          "estimated-camera-trajectory"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not published",
+        "media": "Pexels contributor and platform terms; no training-rights grant established by API access",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Pexels API and download availability do not themselves grant dataset construction, model-training, commercial, or redistribution rights; no ReMind-specific source agreement is published."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "motion",
+          "temporal-consistency",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Missing source URLs and retained-item manifests prevent rights, duplicate, takedown, contributor, and train-evaluation overlap audits.",
+          "Qwen3-VL event captions and occupancy estimates can hallucinate or systematically reject difficult dynamics.",
+          "Stock-video composition and contributor incentives may not represent natural, embodied, or safety-critical state evolution."
+        ]
+      },
+      "processing": {
+        "recipe": "Query Pexels with taxonomy-derived dynamic-event keywords and negative filters, then use Qwen3-VL to caption events, detect cuts, and retain high-occupancy, temporally sustained dynamics.",
+        "recommended_format": "native",
+        "notes": "If a manifest is released, preserve contributor attribution, source URL, retrieval time, event label, filtering scores, license snapshot, and takedown state."
+      },
+      "evidence": {
+        "homepage": "https://arxiv.org/abs/2605.25333",
+        "paper": "https://arxiv.org/abs/2605.25333",
+        "used_by": [
+          "ReMind 5B"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-31",
+      "source_path": "catalog/video/remind-pexels-dynamic-clips.yaml",
+      "scenario_ids": [
+        "video-generation",
+        "physical-ai"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2605.25333v1"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "remind"
+      ]
+    },
+    {
       "id": "eria-1k",
       "name": "ERIA-1K",
       "organization": "Baidu",
@@ -3817,7 +4235,8 @@
       "last_verified": "2026-07-27",
       "source_path": "catalog/video/rovid-x.yaml",
       "scenario_ids": [
-        "video-generation"
+        "video-generation",
+        "physical-ai"
       ],
       "scale_label": "~4M",
       "monitoring": {
@@ -4902,7 +5321,8 @@
       "last_verified": "2026-07-27",
       "source_path": "catalog/video/solaris-training-dataset.yaml",
       "scenario_ids": [
-        "video-generation"
+        "video-generation",
+        "physical-ai"
       ],
       "scale_label": "12.6M",
       "monitoring": {
@@ -5001,7 +5421,8 @@
       "last_verified": "2026-07-27",
       "source_path": "catalog/evaluation/solaris-eval-datasets.yaml",
       "scenario_ids": [
-        "video-generation"
+        "video-generation",
+        "physical-ai"
       ],
       "scale_label": "1.3K",
       "monitoring": {
@@ -6260,7 +6681,9 @@
       "status": "partial",
       "last_verified": "2026-07-27",
       "source_path": "catalog/video/spatialvid.yaml",
-      "scenario_ids": [],
+      "scenario_ids": [
+        "physical-ai"
+      ],
       "scale_label": "~2.7M",
       "monitoring": {
         "priority": "critical",
@@ -6852,7 +7275,9 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/3d/mvhumannet-plus-plus.yaml",
-      "scenario_ids": [],
+      "scenario_ids": [
+        "digital-human"
+      ],
       "scale_label": "~645M",
       "monitoring": {
         "priority": "critical",
@@ -6982,6 +7407,102 @@
       "linked_model_ids": [
         "holidubber",
         "voicecraft-dub"
+      ]
+    },
+    {
+      "id": "graph200k",
+      "name": "Graph200K",
+      "organization": "VisualCloze authors",
+      "released_at": "2025-03-29",
+      "release_date_source": "https://huggingface.co/datasets/VisualCloze/Graph200K",
+      "modality": "image",
+      "tasks": [
+        "image-to-image",
+        "image-editing",
+        "image-restoration",
+        "conditional-image-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A graph-structured image dataset of roughly 205K source examples annotated across conditional generation, restoration, editing, identity preservation, and style transfer so multiple image-output tasks can share supervision.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/VisualCloze/Graph200K",
+        "requires_account": false,
+        "notes": "The official Hugging Face organization hosts Arrow data and examples under revision b2d4e7930f878b3307a9dc8b0d28d60010146287."
+      },
+      "scale": {
+        "samples": 205000,
+        "source_items": 205000,
+        "hours": null,
+        "approximate": true,
+        "notes": "UniGen-AR reports 205K examples for each Graph200K-derived task view; those repeated views share source examples and must not be summed as independent images."
+      },
+      "annotations": {
+        "types": [
+          "depth-map",
+          "human-pose",
+          "surface-normal",
+          "edge-map",
+          "grayscale-image",
+          "synthetic-degradation",
+          "image-mask"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Apache-2.0",
+        "media": "Apache-2.0 release label with upstream image provenance requiring review",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The public card declares Apache-2.0; users should still verify upstream image and annotation-model terms before redistributing media or generated task views."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "geometry-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Depth Anything, OpenPose, DSINE, Canny, and synthetic degradations are automated targets rather than human ground truth.",
+          "Multiple task views of one image are correlated and can leak across splits if source identity is ignored.",
+          "The official card does not provide a complete per-item rights or consent ledger."
+        ]
+      },
+      "processing": {
+        "recipe": "Build multiple graph-connected input-output transformations from each source image using perception models, deterministic conversions, masks, and synthetic restoration degradations.",
+        "recommended_format": "native",
+        "notes": "Split by source image before expanding task views and preserve the generating model or algorithm for each annotation edge."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/VisualCloze/Graph200K",
+        "paper": "https://arxiv.org/abs/2504.07960",
+        "used_by": [
+          "UniGen-AR"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-31",
+      "source_path": "catalog/image/graph200k.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~205K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/VisualCloze/Graph200K?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "unigen-ar"
       ]
     },
     {
@@ -7666,6 +8187,99 @@
       ]
     },
     {
+      "id": "omniedit-filtered-1-2m",
+      "name": "OmniEdit-Filtered-1.2M",
+      "organization": "TIGER-Lab",
+      "released_at": "2024-11-11",
+      "release_date_source": "https://huggingface.co/datasets/TIGER-Lab/OmniEdit-Filtered-1.2M",
+      "modality": "image",
+      "tasks": [
+        "image-editing",
+        "instruction-guided-image-editing",
+        "style-transfer"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A public 1.2M-pair instruction-guided image-editing dataset synthesized with specialist models and filtered through multimodal-model quality scoring, spanning addition, removal, replacement, attributes, environment, and style.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/TIGER-Lab/OmniEdit-Filtered-1.2M",
+        "requires_account": false,
+        "notes": "The official 2.98 TB Hugging Face repository exposes task-partitioned parquet files and supports partial download."
+      },
+      "scale": {
+        "samples": 1200000,
+        "source_items": 1200000,
+        "hours": null,
+        "approximate": true,
+        "notes": "About 1.2M source-target pairs; UniGen-AR creates overlapping short, long, and unique instruction views rather than 1.89M independent image pairs."
+      },
+      "annotations": {
+        "types": [
+          "source-image",
+          "target-image",
+          "edit-instruction",
+          "edit-category",
+          "quality-score"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "MIT",
+        "media": "MIT dataset release label layered on source and specialist-model terms",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The public card declares MIT, but generated pairs can retain upstream image rights and specialist-model usage conditions that require separate review."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Specialist generation models and multimodal quality judges can create correlated artifacts and systematic selection bias.",
+          "Overlapping instruction variants can cause duplicate source-target pairs across task views.",
+          "The release does not establish that every source image or generated derivative is cleared for unrestricted downstream commercial training."
+        ]
+      },
+      "processing": {
+        "recipe": "Generate task-diverse edits with seven specialist models, score candidates using large multimodal models and importance sampling, and package filtered source-target-instruction pairs by edit type.",
+        "recommended_format": "parquet",
+        "notes": "Deduplicate by source-target identity across instruction variants, preserve edit category and generator metadata, and pin repository revision 82455c6cd66db7f0e5bfce8d7a236441af59d6df."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/TIGER-Lab/OmniEdit-Filtered-1.2M",
+        "paper": "https://arxiv.org/abs/2411.07199",
+        "used_by": [
+          "UniGen-AR"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-31",
+      "source_path": "catalog/image/omniedit-filtered-1-2m.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~1.2M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/TIGER-Lab/OmniEdit-Filtered-1.2M?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "unigen-ar"
+      ]
+    },
+    {
       "id": "koala-36m",
       "name": "Koala-36M",
       "organization": "Kling AI Research",
@@ -8130,6 +8744,103 @@
       ]
     },
     {
+      "id": "miradata",
+      "name": "MiraData",
+      "organization": "Tencent ARC Lab",
+      "released_at": "2024-07-09",
+      "release_date_source": "https://arxiv.org/abs/2407.06358",
+      "modality": "video",
+      "tasks": [
+        "text-to-video",
+        "long-video-generation",
+        "video-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A long-video metadata collection with 330K, 93K, 42K, and 9K filtered variants, retaining source URLs, clip timing, dimensions, motion and style descriptors, and structured English captions.",
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://huggingface.co/datasets/TencentARC/MiraData",
+        "requires_account": false,
+        "notes": "The official repository distributes metadata and download scripts that retrieve source videos; it does not host a rights-cleared media archive."
+      },
+      "scale": {
+        "samples": 330000,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The largest released metadata variant has 330K clips, with successively filtered 93K, 42K, and 9K subsets."
+      },
+      "annotations": {
+        "types": [
+          "source-url",
+          "clip-timestamp",
+          "short-caption",
+          "dense-caption",
+          "background-caption",
+          "object-caption",
+          "style-caption",
+          "camera-caption"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "GPL-3.0",
+        "media": "Upstream source-video terms and copyright",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The Hugging Face license tag covers the release repository and metadata; downloading a URL does not grant training, commercial, or redistribution rights to the underlying video."
+      },
+      "quality": {
+        "dimensions": [
+          "temporal-consistency",
+          "motion",
+          "text-media-alignment",
+          "visual-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "URLs can disappear or change, so the published metadata does not guarantee reproducible media availability.",
+          "Structured captions are model-generated and may hallucinate objects, camera motion, background, or style.",
+          "Rights, consent, safety, duplicate handling, and geographic or demographic coverage remain source-dependent."
+        ]
+      },
+      "processing": {
+        "recipe": "Run the official download_data.py over pinned metadata rows, cut source videos by timestamp, and retain source identifiers and takedown status.",
+        "recommended_format": "native",
+        "notes": "Treat every retrieved video as separately rights-gated and propagate removals requested through the project contact."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/TencentARC/MiraData",
+        "paper": "https://arxiv.org/abs/2407.06358",
+        "used_by": [
+          "ShadowDancer Shadow Library"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-31",
+      "source_path": "catalog/video/miradata.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "330K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/TencentARC/MiraData?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "shadow-library"
+      ],
+      "linked_model_ids": []
+    },
+    {
       "id": "openvid-1m",
       "name": "OpenVid-1M",
       "organization": "Nanjing University PCALab",
@@ -8219,6 +8930,7 @@
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
       "linked_model_ids": [
+        "remind",
         "mova-720p"
       ]
     },
@@ -8605,6 +9317,99 @@
       ]
     },
     {
+      "id": "stylebooth",
+      "name": "StyleBooth Dataset",
+      "organization": "Alibaba DAMO Academy and Scepter Studio",
+      "released_at": "2024-05-27",
+      "release_date_source": "https://huggingface.co/scepter-studio/stylebooth/tree/main/datasets",
+      "modality": "image",
+      "tasks": [
+        "style-transfer",
+        "image-editing",
+        "multimodal-instruction-editing"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A public style-editing corpus of source and target image pairs with text- and exemplar-based multimodal instructions, used by UniGen-AR for 11K de-stylize-and-restyle training examples.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/scepter-studio/stylebooth/tree/main/datasets",
+        "requires_account": false,
+        "notes": "The official Scepter Studio repository hosts stylebooth_dataset.zip at about 3.27 GB under revision c993df593ed451c137118b5426a1dcab29e38d5c."
+      },
+      "scale": {
+        "samples": 11000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "UniGen-AR reports 11K style-transfer examples; the public archive should be inspected for exact row and source-image counts before deriving new totals."
+      },
+      "annotations": {
+        "types": [
+          "source-image",
+          "target-image",
+          "text-instruction",
+          "style-reference",
+          "style-label"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Apache-2.0",
+        "media": "Apache-2.0 repository label with upstream and generated-image rights requiring review",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The Hugging Face repository declares Apache-2.0; users should verify whether the archive contains additional image-source or generator-specific conditions."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "aesthetics",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Style categories and synthetic transformation recipes may favor the generators and templates used during construction.",
+          "The public file listing does not expose a per-item rights and provenance ledger.",
+          "Source-target pairs and alternate instruction forms can be correlated and require source-aware splitting."
+        ]
+      },
+      "processing": {
+        "recipe": "Construct paired de-stylization and restylization examples with text and exemplar instructions for multimodal style editing.",
+        "recommended_format": "native",
+        "notes": "Pin the release archive, split by underlying source content, and preserve instruction modality and transformation provenance."
+      },
+      "evidence": {
+        "homepage": "https://ali-vilab.github.io/stylebooth-page/",
+        "paper": "https://arxiv.org/abs/2404.12154",
+        "used_by": [
+          "UniGen-AR"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-31",
+      "source_path": "catalog/image/stylebooth.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~11K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/models/scepter-studio/stylebooth?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "unigen-ar"
+      ]
+    },
+    {
       "id": "mvhumannet",
       "name": "MVHumanNet",
       "organization": "GAP-Lab, CUHK-Shenzhen",
@@ -8687,7 +9492,9 @@
       "status": "partial",
       "last_verified": "2026-07-26",
       "source_path": "catalog/3d/mvhumannet.yaml",
-      "scenario_ids": [],
+      "scenario_ids": [
+        "digital-human"
+      ],
       "scale_label": "~645M",
       "monitoring": {
         "priority": "critical",
@@ -8794,6 +9601,209 @@
       ]
     },
     {
+      "id": "dl3dv-10k",
+      "name": "DL3DV-10K",
+      "organization": "DL3DV Dataset Team",
+      "released_at": "2023-12-26",
+      "release_date_source": "https://arxiv.org/abs/2312.16256",
+      "modality": "video",
+      "tasks": [
+        "novel-view-synthesis",
+        "3d-reconstruction",
+        "world-modeling",
+        "camera-controlled-video-generation"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A real-world scene collection of 10,510 high-resolution videos and 51.2M frames across 65 point-of-interest categories, with camera poses and scene attributes for novel-view, 3D, and video-generation research.",
+      "access": {
+        "status": "gated",
+        "type": "hosted",
+        "url": "https://huggingface.co/DL3DV",
+        "requires_account": true,
+        "notes": "Full 480p, 960p, 2K, and 4K variants require accepting the DL3DV terms on Hugging Face; the official repository provides a subset-aware download script and eleven free samples."
+      },
+      "scale": {
+        "samples": 10510,
+        "source_items": 51200000,
+        "hours": null,
+        "approximate": false,
+        "notes": "10,510 scene videos and 51.2M frames; the benchmark subset contains 140 separate scenes and must not be conflated with the training collection."
+      },
+      "annotations": {
+        "types": [
+          "camera-pose",
+          "indoor-outdoor",
+          "reflection-level",
+          "transparency-level",
+          "lighting-level",
+          "scene-category"
+        ],
+        "source": "mixed",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "DL3DV-10K Terms of Use",
+        "media": "Custom dataset terms with privacy and ethical-use obligations",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Access acceptance is mandatory; the project warns that sensitive details can remain despite anonymization and handles reported scenes through manual redaction."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "multi-view-consistency",
+          "geometry-quality",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Volunteer capture requirements favor slowly changing scenes, wide camera sweeps, limited motion, and mobile or drone recording conventions.",
+          "Sensitive details may remain in real-world imagery despite project anonymization and takedown handling.",
+          "The benchmark scenes are explicitly outside the 10K training release and should remain isolated during evaluation."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Use the official download.py script, pin the chosen resolution and scene-hash list, preserve camera files, and keep the separate evaluation release out of training."
+      },
+      "evidence": {
+        "homepage": "https://github.com/DL3DV-10K/Dataset",
+        "paper": "https://arxiv.org/abs/2312.16256",
+        "used_by": [
+          "ShadowDancer Shadow Library"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-31",
+      "source_path": "catalog/video/dl3dv-10k.yaml",
+      "scenario_ids": [
+        "physical-ai"
+      ],
+      "scale_label": "10.5K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://github.com/DL3DV-10K/Dataset/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "shadow-library"
+      ],
+      "linked_model_ids": [
+        "remind"
+      ]
+    },
+    {
+      "id": "laion-coco-aesthetic",
+      "name": "LAION-COCO-Aesthetic",
+      "organization": "Guangyi Li and LAION-derived dataset contributors",
+      "released_at": "2023-11-15",
+      "release_date_source": "https://huggingface.co/datasets/guangyil/laion-coco-aesthetic",
+      "modality": "image",
+      "tasks": [
+        "text-to-image",
+        "image-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A 4.68M-row LAION-COCO subset pairing web-image URLs with multiple synthetic captions, CLIP similarities, aesthetic and watermark scores, dimensions, and content hashes for text-to-image training.",
+      "derived_from": [
+        {
+          "catalog_id": "laion-5b",
+          "relationship": "filtered-subset",
+          "contribution": "Original web-image URLs and metadata lineage",
+          "notes": "LAION-COCO recaptioning and aesthetic filtering add derived annotations but do not replace upstream media rights."
+        }
+      ],
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/guangyil/laion-coco-aesthetic",
+        "requires_account": false,
+        "notes": "Hugging Face hosts 4.68M parquet rows and image features; users should pin revision e4e44b67a4690d6de2dd4e92f8e00c4483d3176e."
+      },
+      "scale": {
+        "samples": 4680000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The current viewer reports approximately 4.68M rows; UniGen-AR samples 4.1M of them."
+      },
+      "annotations": {
+        "types": [
+          "synthetic-caption",
+          "clip-similarity",
+          "aesthetic-score",
+          "watermark-score",
+          "source-url",
+          "sha256"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Apache-2.0",
+        "media": "Original web-item licenses and rights",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Apache-2.0 covers the dataset release metadata and code, not every URL-linked image; downstream users must resolve copyright, privacy, publicity, and takedown obligations per item."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "visual-quality",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "URLs and hosted representations can disappear or change after the pinned metadata revision.",
+          "Synthetic captions, CLIP similarity, aesthetic scores, and watermark estimates inherit model biases and errors.",
+          "Aesthetic filtering does not establish safety, consent, copyright, or demographic balance."
+        ]
+      },
+      "processing": {
+        "recipe": "Filter LAION-COCO-derived rows by aesthetic and related metadata, retain multiple generated captions and similarity scores, and package records as parquet.",
+        "recommended_format": "parquet",
+        "notes": "Preserve URL, hash, scores, and all caption variants; propagate upstream removals and never treat Apache metadata licensing as a blanket media grant."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/guangyil/laion-coco-aesthetic",
+        "paper": "https://laion.ai/blog/laion-coco/",
+        "used_by": [
+          "UniGen-AR"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-31",
+      "source_path": "catalog/image/laion-coco-aesthetic.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~4.7M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/guangyil/laion-coco-aesthetic?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [
+        "laion-5b"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "unigen-ar"
+      ]
+    },
+    {
       "id": "commoncatalog",
       "name": "CommonCatalog",
       "organization": "CommonCanvas collaborators",
@@ -8896,6 +9906,101 @@
       "linked_model_ids": [
         "commoncanvas-xl-c"
       ]
+    },
+    {
+      "id": "open-x-embodiment",
+      "name": "Open X-Embodiment",
+      "organization": "Open X-Embodiment Collaboration and Google DeepMind",
+      "released_at": "2023-10-03",
+      "release_date_source": "https://robotics-transformer-x.github.io/",
+      "modality": "video",
+      "tasks": [
+        "robot-manipulation",
+        "embodied-learning",
+        "action-conditioned-video-generation",
+        "world-modeling"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A unified RLDS collection of public robot-manipulation datasets spanning multiple institutions and embodiments, with RGB observations, language task instructions, actions, and episode structure.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://github.com/google-deepmind/open_x_embodiment",
+        "requires_account": false,
+        "notes": "Dataset builders and episodes are available through TensorFlow Datasets or the documented public Google Cloud bucket; consumers must also review each contributing dataset's terms."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The paper reports more than one million real-robot episodes across 22 embodiments; the release is a federation of datasets rather than one homogeneous capture protocol."
+      },
+      "annotations": {
+        "types": [
+          "rlds-episode",
+          "rgb-observation",
+          "language-instruction",
+          "robot-action",
+          "embodiment-metadata"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0 materials; Apache-2.0 software",
+        "media": "Contributing-dataset terms remain applicable",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The umbrella repository assigns Apache-2.0 to software and CC-BY-4.0 to other materials, while explicitly requiring citation and review of individual contributed datasets."
+      },
+      "quality": {
+        "dimensions": [
+          "motion",
+          "temporal-consistency",
+          "provenance",
+          "text-media-alignment"
+        ],
+        "known_limitations": [
+          "Embodiments, action spaces, sensors, collection policies, episode success criteria, and licenses are heterogeneous.",
+          "Aggregate episode counts do not imply balanced sampling across robots, skills, institutions, or environments.",
+          "Some source builders require manual cloud download and may not be registered in a local TensorFlow Datasets installation."
+        ]
+      },
+      "processing": {
+        "recipe": "Use the official per-dataset RLDS builders, preserve embodiment and source-dataset identity, and normalize actions only with source-specific semantics intact.",
+        "recommended_format": "native",
+        "notes": "Do not collapse the selected ShadowDancer subsets into one license assumption; preserve BridgeData, FurnitureBench, Berkeley UR5, Jaco Play, Stanford HYDRA, and RoboTurk provenance separately."
+      },
+      "evidence": {
+        "homepage": "https://github.com/google-deepmind/open_x_embodiment",
+        "paper": "https://arxiv.org/abs/2310.08864",
+        "used_by": [
+          "ShadowDancer Shadow Library"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-31",
+      "source_path": "catalog/video/open-x-embodiment.yaml",
+      "scenario_ids": [
+        "physical-ai"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://github.com/google-deepmind/open_x_embodiment/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "shadow-library"
+      ],
+      "linked_model_ids": []
     },
     {
       "id": "pick-a-pic-v2",
@@ -9640,6 +10745,98 @@
       ]
     },
     {
+      "id": "nersemble",
+      "name": "NeRSemble",
+      "organization": "Technical University of Munich",
+      "released_at": "2023-03-28",
+      "release_date_source": "https://arxiv.org/abs/2303.14123",
+      "modality": "3d",
+      "tasks": [
+        "3d-avatar-reconstruction",
+        "novel-view-synthesis",
+        "dynamic-head-reconstruction"
+      ],
+      "stages": [
+        "evaluation",
+        "pretraining"
+      ],
+      "description": "A synchronized 16-camera human-head capture dataset with more than 4,700 high-resolution, high-frame-rate sequences from more than 220 participants, covering head motion, expressions, emotions, and spoken language.",
+      "access": {
+        "status": "gated",
+        "type": "request",
+        "url": "https://tobias-kirschstein.github.io/nersemble/",
+        "requires_account": true,
+        "notes": "The official page provides a dataset-access request form and a separate authenticated download client; access is not anonymous."
+      },
+      "scale": {
+        "samples": 4700,
+        "source_items": 220,
+        "hours": null,
+        "approximate": true,
+        "notes": "More than 4,700 sequences and more than 220 heads, captured by 16 synchronized 7.1 MP cameras at 73 FPS; sequence duration and total frames are not summarized on the landing page."
+      },
+      "annotations": {
+        "types": [
+          "synchronized-multi-view-rgb",
+          "calibrated-camera",
+          "facial-expression",
+          "head-motion",
+          "spoken-language"
+        ],
+        "source": "human",
+        "languages": [
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "Custom dataset-access agreement",
+        "media": "Human-subject recordings under project-specific access terms",
+        "commercial_use": "unknown",
+        "redistribution": "prohibited",
+        "notes": "Repository code licensing does not grant rights to participant media; applicants must review and retain the signed dataset agreement."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "temporal-consistency",
+          "multi-view-consistency",
+          "geometry-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Human-subject identity, biometric, consent, privacy, and purpose limitations require review beyond ordinary image-dataset handling.",
+          "The controlled 16-camera capture setup and head-focused framing do not represent in-the-wild lighting, occlusion, devices, or full-body motion.",
+          "The public landing page does not provide demographic, language, sequence-duration, or train-test distribution details sufficient for broader fairness claims."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Use the official download tooling after approval, preserve subject- and sequence-level splits, and never mix evaluation subjects into training without an independently authorized protocol."
+      },
+      "evidence": {
+        "homepage": "https://tobias-kirschstein.github.io/nersemble/",
+        "paper": "https://arxiv.org/abs/2303.14123",
+        "used_by": [
+          "S-Avatar"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-07-31",
+      "source_path": "catalog/3d/nersemble.yaml",
+      "scenario_ids": [],
+      "scale_label": "~4.7K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://tobias-kirschstein.github.io/nersemble/"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "s-avatar"
+      ]
+    },
+    {
       "id": "celebv-text",
       "name": "CelebV-Text",
       "organization": "University of Sydney, CUHK MMLab, and SenseTime Research",
@@ -10109,7 +11306,8 @@
       "last_verified": "2026-07-27",
       "source_path": "catalog/video/vpt-contractor-demonstrations.yaml",
       "scenario_ids": [
-        "video-generation"
+        "video-generation",
+        "physical-ai"
       ],
       "scale_label": "unknown",
       "monitoring": {
@@ -10294,7 +11492,9 @@
         "source_url": "https://projects.laion.ai/laion-datasets/"
       },
       "upstream_dataset_ids": [],
-      "downstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "laion-coco-aesthetic"
+      ],
       "linked_model_ids": [
         "emu3-5"
       ]
@@ -12184,6 +13384,96 @@
       ]
     },
     {
+      "id": "refcoco",
+      "name": "RefCOCO",
+      "organization": "University of North Carolina at Chapel Hill",
+      "released_at": "2016-08-01",
+      "release_date_source": "https://github.com/lichengunc/refer",
+      "modality": "image",
+      "tasks": [
+        "referring-expression-segmentation",
+        "referring-expression-comprehension",
+        "image-to-image"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "A human-authored referring-expression collection over MS COCO images, linking natural-language descriptions to target objects with canonical UNC and Google splits for grounding and segmentation.",
+      "access": {
+        "status": "open",
+        "type": "urls",
+        "url": "https://github.com/lichengunc/refer",
+        "requires_account": false,
+        "notes": "The official API repository documents the RefCOCO download and requires separately obtaining the corresponding MS COCO images; its original webserver is intermittently unavailable."
+      },
+      "scale": {
+        "samples": 142209,
+        "source_items": 19994,
+        "hours": null,
+        "approximate": false,
+        "notes": "142,209 referring expressions for 50,000 target objects in 19,994 COCO images; UniGen-AR reports 320K paired rows for its transformed segmentation view."
+      },
+      "annotations": {
+        "types": [
+          "referring-expression",
+          "object-reference",
+          "bounding-box",
+          "segmentation-mask",
+          "split-membership"
+        ],
+        "source": "human",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Dataset terms not clearly stated by the API repository",
+        "media": "MS COCO image terms remain applicable",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Apache-2.0 in the GitHub repository applies to the API code; it should not be treated as the license for RefCOCO annotations or MS COCO images."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Expressions are short English descriptions collected in a game setting and may not represent conversational or multilingual reference patterns.",
+          "Google splits can place different objects from the same image across train and validation, while UNC splits partition images; protocols are not interchangeable.",
+          "Media and annotation access depend on separate sources with different terms and availability."
+        ]
+      },
+      "processing": {
+        "recipe": "Join cleaned referring-expression annotations to MS COCO images and object masks through the official REFER API while retaining the selected split protocol.",
+        "recommended_format": "native",
+        "notes": "Record whether the UNC or Google partition is used and keep all rows from one source image together when constructing new generative splits."
+      },
+      "evidence": {
+        "homepage": "https://github.com/lichengunc/refer",
+        "paper": "https://aclanthology.org/D14-1086/",
+        "used_by": [
+          "UniGen-AR"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-07-31",
+      "source_path": "catalog/image/refcoco.yaml",
+      "scenario_ids": [],
+      "scale_label": "142.2K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://github.com/lichengunc/refer/commits/master.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "unigen-ar"
+      ]
+    },
+    {
       "id": "yfcc100m",
       "name": "YFCC100M",
       "organization": "Yahoo Labs and collaborators",
@@ -12561,6 +13851,575 @@
   ],
   "models": [
     {
+      "id": "minimax-h3",
+      "name": "MiniMax H3",
+      "organization": "MiniMax",
+      "released_at": "2026-07-31",
+      "ranking_names": [
+        "MiniMax-H3"
+      ],
+      "modalities": [
+        "video",
+        "image",
+        "audio",
+        "multimodal"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "reference-to-video",
+        "video-editing",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "Proprietary API terms; no model-weight license published",
+        "release_url": "https://platform.minimax.io/docs/release-notes/models",
+        "weights_url": null,
+        "api_url": "https://platform.minimax.io/docs/guides/video-generation?ready=6"
+      },
+      "architecture": {
+        "family": "Unified multimodal video generation model",
+        "parameters": null,
+        "notes": "MiniMax describes one model accepting text, image, video, and audio references; architecture, parameter count, tokenizer, and training compute are not disclosed."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "image",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "multimodal-video-generation"
+            ],
+            "scale_disclosed": false,
+            "strategy": "MiniMax has not published the source corpus, data scale, filtering, deduplication, captioning, synthetic-data, or post-training recipe."
+          }
+        ],
+        "strategy_summary": [
+          "Unify text-to-video, first/last-frame image-to-video, reference-conditioned generation, and video editing behind one API model.",
+          "Accept up to nine images, three videos, and three audio clips as reference inputs, subject to documented input combinations.",
+          "Generate 5-to-15-second video at up to 2K and 24 FPS through the v2 video-generation endpoint."
+        ],
+        "unknowns": [
+          "Training-source identities, provenance, rights, scale, mixture, cleaning, deduplication, relabeling, synthetic-data contribution, and preference optimization.",
+          "Architecture, parameter count, training stages, compute, technical report, safety-data composition, and evaluation protocol.",
+          "Weight-release plan and model-specific license; the word open on the product page is not treated as evidence of open weights."
+        ]
+      },
+      "evidence": {
+        "release": "https://platform.minimax.io/docs/release-notes/models",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "partial",
+      "last_verified": "2026-07-31",
+      "source_path": "models/multimodal/minimax-h3.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [
+          "multimodal-video-generation"
+        ],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://platform.minimax.io/docs/release-notes/models"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
+          "rank": 3,
+          "score": 1185,
+          "score_label": "Elo",
+          "entry_model": "MiniMax H3",
+          "component_count": 1
+        },
+        {
+          "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
+          "rank": 2,
+          "score": 1242,
+          "score_label": "Elo",
+          "entry_model": "MiniMax H3",
+          "component_count": 1
+        },
+        {
+          "ranking_id": "video-editing",
+          "provider": "Artificial Analysis",
+          "rank": 1,
+          "score": 1130,
+          "score_label": "Elo",
+          "entry_model": "MiniMax H3",
+          "component_count": 1
+        }
+      ],
+      "linked_dataset_ids": []
+    },
+    {
+      "id": "shadowdancer",
+      "name": "ShadowDancer",
+      "organization": "Alaya Lab and Shanghai Innovation Institute",
+      "released_at": "2026-07-30",
+      "modalities": [
+        "video",
+        "action"
+      ],
+      "tasks": [
+        "image-to-video",
+        "action-conditioned-video-generation",
+        "embodied-world-modeling",
+        "streaming-video-generation"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Paper is CC-BY-4.0; code, checkpoints, and model license are not released",
+        "release_url": "https://shadowdancer-1.github.io/",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Cross-shadow latent-action encoder with a block-causal video diffusion world model",
+        "parameters": null,
+        "notes": "The paper initializes the generator from SkyReels-V2-1.3B-I2V, learns 32-dimensional action latents by cross-shadow prediction, and converts the backbone to block-causal rollout."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Shadow Library",
+            "catalog_id": "shadow-library",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "approximately 20.5M frames across synthetic shadow pairs and real-video self-pairs",
+            "notes": "The paper names simulator, rendered, game, DL3DV, MiraData, and Open X-Embodiment sources, but does not release the paired corpus or complete per-source rights."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "image"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-skyreels-video-prior"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Initialize the video generator from SkyReels-V2-1.3B-I2V without restating that model's complete data lineage."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "action"
+            ],
+            "source_types": [
+              "synthetic",
+              "public-dataset",
+              "public-web"
+            ],
+            "operations": [
+              "shadow-pair-rendering",
+              "appearance-resampling",
+              "self-pairing",
+              "cross-shadow-prediction",
+              "flow-matching",
+              "block-causal-training"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train on paired clips that preserve frame-level dynamics while resampling appearance, plus real-video self-pairs used to retain visual realism; fine-tune the long-rollout model for 10K steps at 544x960 on eight H200 GPUs."
+          }
+        ],
+        "strategy_summary": [
+          "Encode a demonstrated clip once as a reusable, variable-length action asset instead of relying on task-specific command labels.",
+          "Learn invariance by predicting one synchronized shadow from another that shares dynamics but resamples character, scene, lighting, or camera factors.",
+          "Stream chained action assets through a block-causal world model for human, robot, first-person, and third-person dynamics."
+        ],
+        "unknowns": [
+          "Full source-level rights, licenses, exact mixture weights for all Shadow Library components, consent and privacy handling, and deduplication across public-video sources.",
+          "Code, checkpoint, model license, final parameter count, optimizer details beyond the reported long-model stage, and release schedule.",
+          "Complete training lineage of the inherited SkyReels-V2-1.3B-I2V checkpoint."
+        ]
+      },
+      "evidence": {
+        "release": "https://shadowdancer-1.github.io/",
+        "technical_report": "https://arxiv.org/abs/2607.28362",
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-31",
+      "source_path": "models/video/shadowdancer.yaml",
+      "scenario_ids": [
+        "video-generation",
+        "physical-ai"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed",
+          "synthetic",
+          "public-dataset",
+          "public-web"
+        ],
+        "operations": [
+          "inherited-skyreels-video-prior",
+          "shadow-pair-rendering",
+          "appearance-resampling",
+          "self-pairing",
+          "cross-shadow-prediction",
+          "flow-matching",
+          "block-causal-training"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://shadowdancer-1.github.io/"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "shadow-library"
+      ]
+    },
+    {
+      "id": "s-avatar",
+      "name": "S-Avatar",
+      "organization": "Korea Advanced Institute of Science and Technology",
+      "released_at": "2026-07-30",
+      "modalities": [
+        "image",
+        "3d"
+      ],
+      "tasks": [
+        "3d-avatar-generation",
+        "single-image-3d-reconstruction",
+        "novel-view-synthesis"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Paper is CC-BY-NC-SA-4.0; project repository, code, checkpoints, and model license are unavailable",
+        "release_url": "https://arxiv.org/abs/2607.28164",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Diffusion-guided Gaussian head avatar generation with FLAME binding",
+        "parameters": null,
+        "notes": "The three-stage pipeline uses ImageDream to synthesize multi-view cues, an LGM-style Gaussian generator, FLAME fitting, and a binding template for real-time deformation."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "NeRSemble",
+            "catalog_id": "nersemble",
+            "role": "evaluation",
+            "availability": "gated",
+            "scale": "45 held-out subjects selected for evaluation from the public multi-view head dataset",
+            "notes": "NeRSemble is used only for novel-view and expression evaluation; the paper does not report training S-Avatar on it."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "3d"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-imagedream-prior",
+              "inherited-lgm-prior"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Reuse pretrained ImageDream and LGM components; their original training mixtures are not restated by S-Avatar."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "3d"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "flame-parameter-fitting",
+              "gaussian-to-mesh-binding"
+            ],
+            "scale_disclosed": false,
+            "strategy": "The paper describes per-input optimization and template binding but does not disclose a new task-specific training corpus or learned fine-tuning stage."
+          }
+        ],
+        "strategy_summary": [
+          "Synthesize a canonical high-resolution 3D Gaussian head from one portrait using diffusion-generated multi-view guidance.",
+          "Fit a FLAME parametric head and encode local Gaussian-to-mesh relationships in a reusable binding template.",
+          "Animate the bound Gaussian avatar through FLAME expression and pose variations in real time."
+        ],
+        "unknowns": [
+          "Training data and rights of the inherited ImageDream and LGM checkpoints beyond their original publications.",
+          "Whether any undisclosed task-specific training, synthetic identities, relabeling, filtering, deduplication, or preference optimization was used.",
+          "Code, checkpoints, parameter counts, model license, compute, and a working project release; the linked GitHub repository returned unavailable during verification."
+        ]
+      },
+      "evidence": {
+        "release": "https://arxiv.org/abs/2607.28164",
+        "technical_report": "https://arxiv.org/abs/2607.28164",
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-31",
+      "source_path": "models/image/s-avatar.yaml",
+      "scenario_ids": [
+        "digital-human"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [
+          "inherited-imagedream-prior",
+          "inherited-lgm-prior",
+          "flame-parameter-fitting",
+          "gaussian-to-mesh-binding"
+        ],
+        "data_reference_count": 1,
+        "linked_dataset_count": 1,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 2,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2607.28164"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "nersemble"
+      ]
+    },
+    {
+      "id": "remind",
+      "name": "ReMind 5B",
+      "organization": "Applied Intuition Research",
+      "released_at": "2026-07-30",
+      "modalities": [
+        "video",
+        "action"
+      ],
+      "tasks": [
+        "image-to-video",
+        "video-to-video",
+        "camera-controlled-video-generation",
+        "world-modeling",
+        "streaming-video-generation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "CC-BY-NC-4.0 weights; upstream Wan terms remain applicable",
+        "release_url": "https://huggingface.co/AppliedIntuitionResearch/ReMind",
+        "weights_url": "https://huggingface.co/AppliedIntuitionResearch/ReMind",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Wan2.2-TI2V-5B causal video generator with PM-RoPE dynamic-memory training and SF-DMD distillation",
+        "parameters": 5000000000,
+        "notes": "The release contains a complete 5B generator and a separate rank-128 SF-DMD EMA adapter; ReMind 1.3B remains announced but unreleased."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "ReMind1M",
+            "catalog_id": "remind1m",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "1,419,331 released generated and simulated video rows",
+            "notes": "Public subset covering Helios physics-filtered clips, pair-fixed InSpatio camera augmentation, and Kubric camera renders."
+          },
+          {
+            "name": "OpenVid-1M",
+            "catalog_id": "openvid-1m",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "roughly 1M public video-text records upstream",
+            "notes": "Named as a general real-video source; the exact retained count and sampling weight are not disclosed."
+          },
+          {
+            "name": "DL3DV-10K",
+            "catalog_id": "dl3dv-10k",
+            "role": "fine-tuning",
+            "availability": "gated",
+            "scale": "10,510 scene videos upstream",
+            "notes": "Named as a general scene-video source; the exact retained subset and sampling weight are not disclosed."
+          },
+          {
+            "name": "ReMind Pexels dynamic clips",
+            "catalog_id": "remind-pexels-dynamic-clips",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": null,
+            "notes": "Retrieved with a 100+ event taxonomy and filtered with Qwen3-VL; no source manifest or retained count is public."
+          }
+        ],
+        "stages": [
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "image",
+              "text",
+              "action"
+            ],
+            "source_types": [
+              "public-dataset",
+              "public-web",
+              "synthetic"
+            ],
+            "operations": [
+              "vlm-filtering",
+              "event-taxonomy-curation",
+              "camera-trajectory-estimation",
+              "interruption-augmentation",
+              "frame-graph-construction",
+              "node-drop",
+              "noisy-memory",
+              "frontier-continuation",
+              "reference-cache-training"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Normalize clips to 81 frames at 16 FPS and 480x832, annotate dynamic events and camera geometry, then train frame-graph curricula with protected anchors, degraded intervals, and explicit temporal gaps."
+          },
+          {
+            "name": "distillation",
+            "modalities": [
+              "video",
+              "image"
+            ],
+            "source_types": [
+              "synthetic"
+            ],
+            "operations": [
+              "self-forcing",
+              "distribution-matching-distillation"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Distill the full generator into a rank-128 four-step SF-DMD EMA adapter; the public adapter is checkpoint 2500 and is not standalone."
+          }
+        ],
+        "strategy_summary": [
+          "Organize training around more than 100 dynamic event types and retain high-occupancy, temporally sustained state changes.",
+          "Convert every clip to a frame graph so older reliable observations can supervise recovery after occlusion, camera motion, or illumination change.",
+          "Add PM-RoPE camera phase and cache-compatible training while preserving the inherited Wan generation prior."
+        ],
+        "unknowns": [
+          "Final sampling weights and exact retained counts for OpenVid, DL3DV, Pexels, generated, and rendered sources in the full optimization mixture.",
+          "Complete source-item rights, consent, privacy, deduplication, safety filtering, and train-evaluation overlap audits.",
+          "Training code, optimizer state, ReMind 1.3B weights, and the complete inherited Wan2.2 pretraining-data lineage.",
+          "STEVO-Bench and VBench are evaluation-only; their prompts and media are not treated as ReMind training data."
+        ]
+      },
+      "evidence": {
+        "release": "https://huggingface.co/AppliedIntuitionResearch/ReMind",
+        "technical_report": "https://arxiv.org/abs/2605.25333",
+        "repository": "https://github.com/Applied-Intuition-Open-Source/ReMind"
+      },
+      "status": "partial",
+      "last_verified": "2026-07-31",
+      "source_path": "models/video/remind.yaml",
+      "scenario_ids": [
+        "video-generation",
+        "physical-ai"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "fine-tuning",
+          "distillation"
+        ],
+        "source_types": [
+          "public-dataset",
+          "public-web",
+          "synthetic"
+        ],
+        "operations": [
+          "vlm-filtering",
+          "event-taxonomy-curation",
+          "camera-trajectory-estimation",
+          "interruption-augmentation",
+          "frame-graph-construction",
+          "node-drop",
+          "noisy-memory",
+          "frontier-continuation",
+          "reference-cache-training",
+          "self-forcing",
+          "distribution-matching-distillation"
+        ],
+        "data_reference_count": 4,
+        "linked_dataset_count": 4,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/AppliedIntuitionResearch/ReMind?expand=lastModified&expand=sha"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "remind1m",
+        "openvid-1m",
+        "dl3dv-10k",
+        "remind-pexels-dynamic-clips"
+      ]
+    },
+    {
       "id": "joyfox-livetalk-dh-1-3b",
       "name": "JoyFox LiveTalk-DH 1.3B",
       "organization": "JoyFox",
@@ -12662,6 +14521,167 @@
       },
       "ranking_positions": [],
       "linked_dataset_ids": []
+    },
+    {
+      "id": "unigen-ar",
+      "name": "UniGen-AR",
+      "organization": "Carnegie Mellon University and University of Illinois Urbana-Champaign",
+      "released_at": "2026-07-27",
+      "modalities": [
+        "image",
+        "multimodal"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "image-restoration",
+        "image-to-image",
+        "unified-visual-generation"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Paper is CC-BY-4.0; code, checkpoints, and model license are not released",
+        "release_url": "https://arxiv.org/abs/2607.24157",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Qwen2.5-VL-conditioned Infinity-style next-scale visual autoregressive model",
+        "parameters": null,
+        "notes": "A Qwen2.5-VL encoder conditions an Infinity bitwise VQ-VAE and autoregressive decoder through text cross-attention and finest-scale reference tokens; one weight set handles more than 15 tasks."
+      },
+      "data": {
+        "disclosure_level": "full",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": true,
+        "datasets": [
+          {
+            "name": "LAION-COCO-Aesthetic",
+            "catalog_id": "laion-coco-aesthetic",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "4.1M text-image pairs sampled for text-to-image training",
+            "notes": "UniGen-AR uses CLIP captions and sets the text-to-image batch probability to 0.25 in the joint stage."
+          },
+          {
+            "name": "Graph200K",
+            "catalog_id": "graph200k",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "205K source examples reused across depth, pose, normal, edge, colorization, denoising, inpainting, deraining, and low-light transformations",
+            "notes": "Several targets are synthetic or model-labeled; repeated task rows are not treated as distinct source images."
+          },
+          {
+            "name": "RefCOCO",
+            "catalog_id": "refcoco",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "320K referring-segmentation pairs reported in the UniGen-AR mix",
+            "notes": "Human referring expressions and COCO images supervise referring segmentation."
+          },
+          {
+            "name": "OmniEdit-Filtered-1.2M",
+            "catalog_id": "omniedit-filtered-1-2m",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "740K short-instruction, 740K long-instruction, and 410K unique-instruction rows in overlapping task views",
+            "notes": "The underlying source contains about 1.2M image pairs; overlapping annotation views must not be summed as independent source images."
+          },
+          {
+            "name": "StyleBooth Dataset",
+            "catalog_id": "stylebooth",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "11K style-transfer examples",
+            "notes": "Used for de-stylize-and-restyle supervision."
+          },
+          {
+            "name": "UniGen-AR evaluation suite",
+            "catalog_id": "unigen-ar-evaluation-suite",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "GenEval, Emu-Edit, NYUv2, LOL, GoPro, and Rain-13K benchmark splits",
+            "notes": "These datasets are evaluation-only in the reported experiments and are not folded into the 8M training-pair total."
+          }
+        ],
+        "stages": [
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "synthetic",
+              "human-feedback"
+            ],
+            "operations": [
+              "mllm-alignment",
+              "synthetic-degradation",
+              "multi-task-sampling",
+              "next-scale-autoregressive-training"
+            ],
+            "scale_disclosed": true,
+            "strategy": "First train text projectors for two epochs, then jointly train the Infinity backbone for 100K steps on an 8M-pair mix at 512x512, sampling pure text-to-image batches with probability 0.25."
+          }
+        ],
+        "strategy_summary": [
+          "Convert depth, pose, normals, edges, restoration, inpainting, segmentation, editing, style transfer, and generation into one image-output interface.",
+          "Generate restoration targets through disclosed synthetic degradation recipes and combine them with model- and human-annotated public datasets.",
+          "Condition one next-scale autoregressive decoder with Qwen2.5-VL text and reference-image context instead of adding task-specific heads."
+        ],
+        "unknowns": [
+          "Exact deduplication across overlapping task views, split assignment, per-dataset sampling within non-text-to-image batches, and safety or privacy filtering.",
+          "Which Qwen2.5-VL and Infinity checkpoint variants initialize the final release and the complete inherited pretraining-data lineage of both components.",
+          "Code, weights, model license, final parameter count, and artifact release date."
+        ]
+      },
+      "evidence": {
+        "release": "https://arxiv.org/abs/2607.24157",
+        "technical_report": "https://arxiv.org/abs/2607.24157",
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-07-31",
+      "source_path": "models/multimodal/unigen-ar.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "fine-tuning"
+        ],
+        "source_types": [
+          "public-dataset",
+          "synthetic",
+          "human-feedback"
+        ],
+        "operations": [
+          "mllm-alignment",
+          "synthetic-degradation",
+          "multi-task-sampling",
+          "next-scale-autoregressive-training"
+        ],
+        "data_reference_count": 6,
+        "linked_dataset_count": 6,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 1,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2607.24157"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "laion-coco-aesthetic",
+        "graph200k",
+        "refcoco",
+        "omniedit-filtered-1-2m",
+        "stylebooth",
+        "unigen-ar-evaluation-suite"
+      ]
     },
     {
       "id": "midjourney-v8-2",
@@ -13422,7 +15442,8 @@
       "last_verified": "2026-07-27",
       "source_path": "models/video/worldweaver.yaml",
       "scenario_ids": [
-        "video-generation"
+        "video-generation",
+        "physical-ai"
       ],
       "strategy_profile": {
         "stage_names": [
@@ -14609,8 +16630,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 6,
-          "score": 1238,
+          "rank": 5,
+          "score": 1240,
           "score_label": "Elo",
           "entry_model": "Seedream 5.0 Pro",
           "component_count": 1
@@ -14955,7 +16976,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1299,
+          "score": 1300,
           "score_label": "Elo",
           "entry_model": "Reve 2.1",
           "component_count": 1
@@ -15351,7 +17372,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1194,
+          "score": 1195,
           "score_label": "Elo",
           "entry_model": "Gemini Omni Flash",
           "component_count": 1
@@ -15361,6 +17382,15 @@
           "provider": "Artificial Analysis",
           "rank": 1,
           "score": 1245,
+          "score_label": "Elo",
+          "entry_model": "Gemini Omni Flash",
+          "component_count": 1
+        },
+        {
+          "ranking_id": "video-editing",
+          "provider": "Artificial Analysis",
+          "rank": 2,
+          "score": 1121,
           "score_label": "Elo",
           "entry_model": "Gemini Omni Flash",
           "component_count": 1
@@ -15811,8 +17841,8 @@
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
-          "rank": 4,
-          "score": 1108,
+          "rank": 5,
+          "score": 1109,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.1",
           "component_count": 1
@@ -15820,8 +17850,8 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 4,
-          "score": 1151,
+          "rank": 5,
+          "score": 1150,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.1",
           "component_count": 1
@@ -15931,7 +17961,7 @@
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
-          "rank": 3,
+          "rank": 4,
           "score": 1114,
           "score_label": "Elo",
           "entry_model": "grok-imagine-video-1.5",
@@ -16806,7 +18836,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 4,
-          "score": 1245,
+          "score": 1244,
           "score_label": "Elo",
           "entry_model": "MAI-Image-2.5",
           "component_count": 1
@@ -16940,7 +18970,8 @@
       "last_verified": "2026-07-27",
       "source_path": "models/image/cosmos3-super-text2image.yaml",
       "scenario_ids": [
-        "image-generation"
+        "image-generation",
+        "physical-ai"
       ],
       "strategy_profile": {
         "stage_names": [
@@ -17278,8 +19309,8 @@
         {
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
-          "rank": 4,
-          "score": 1013,
+          "rank": 6,
+          "score": 1011,
           "score_label": "Elo",
           "entry_model": "Aleph 2.0",
           "component_count": 1
@@ -17849,7 +19880,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 14,
-          "score": 1202,
+          "score": 1201,
           "score_label": "Elo",
           "entry_model": "Recraft V4.1 Utility Pro",
           "component_count": 1
@@ -18002,7 +20033,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 13,
-          "score": 1204,
+          "score": 1206,
           "score_label": "Elo",
           "entry_model": "HiDream-O1-Image",
           "component_count": 1
@@ -18128,7 +20159,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 7,
-          "score": 1231,
+          "score": 1232,
           "score_label": "Elo",
           "entry_model": "grok-imagine-image-quality",
           "component_count": 1
@@ -18137,7 +20168,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 13,
-          "score": 1204,
+          "score": 1205,
           "score_label": "Elo",
           "entry_model": "grok-imagine-image-quality",
           "component_count": 1
@@ -18608,7 +20639,7 @@
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
-          "rank": 6,
+          "rank": 7,
           "score": 1091,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.0",
@@ -18617,7 +20648,7 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 5,
+          "rank": 6,
           "score": 1131,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.0",
@@ -18626,7 +20657,7 @@
         {
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
-          "rank": 1,
+          "rank": 3,
           "score": 1096,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.0",
@@ -19439,8 +21470,8 @@
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
-          "rank": 5,
-          "score": 1093,
+          "rank": 6,
+          "score": 1092,
           "score_label": "Elo",
           "entry_model": "Wan 2.7",
           "component_count": 1
@@ -19448,7 +21479,7 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 3,
+          "rank": 4,
           "score": 1163,
           "score_label": "Elo",
           "entry_model": "Wan2.7-260612",
@@ -19457,8 +21488,8 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 8,
-          "score": 1108,
+          "rank": 9,
+          "score": 1109,
           "score_label": "Elo",
           "entry_model": "Wan 2.7",
           "component_count": 1
@@ -19466,7 +21497,7 @@
         {
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
-          "rank": 2,
+          "rank": 4,
           "score": 1080,
           "score_label": "Elo",
           "entry_model": "Wan 2.7",
@@ -19562,18 +21593,9 @@
       },
       "ranking_positions": [
         {
-          "ranking_id": "image-to-video",
-          "provider": "Artificial Analysis",
-          "rank": 15,
-          "score": 1065,
-          "score_label": "Elo",
-          "entry_model": "Veo 3.1 Lite",
-          "component_count": 1
-        },
-        {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 14,
+          "rank": 15,
           "score": 1090,
           "score_label": "Elo",
           "entry_model": "Veo 3.1 Lite",
@@ -19677,8 +21699,8 @@
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
-          "rank": 12,
-          "score": 1071,
+          "rank": 13,
+          "score": 1070,
           "score_label": "Elo",
           "entry_model": "PixVerse V6",
           "component_count": 1
@@ -20307,7 +22329,8 @@
       "last_verified": "2026-07-27",
       "source_path": "models/video/solaris.yaml",
       "scenario_ids": [
-        "video-generation"
+        "video-generation",
+        "physical-ai"
       ],
       "strategy_profile": {
         "stage_names": [
@@ -20588,7 +22611,7 @@
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
-          "rank": 7,
+          "rank": 8,
           "score": 1088,
           "score_label": "Elo",
           "entry_model": "SkyReels V4",
@@ -20597,7 +22620,7 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 7,
+          "rank": 8,
           "score": 1109,
           "score_label": "Elo",
           "entry_model": "SkyReels V4",
@@ -20606,8 +22629,8 @@
         {
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
-          "rank": 6,
-          "score": 950,
+          "rank": 8,
+          "score": 951,
           "score_label": "Elo",
           "entry_model": "SkyReels V4",
           "component_count": 1
@@ -20933,7 +22956,7 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 2,
+          "rank": 3,
           "score": 1225,
           "score_label": "Elo",
           "entry_model": "Dreamina Seedance 2.0 720p",
@@ -20942,8 +22965,8 @@
         {
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
-          "rank": 3,
-          "score": 1035,
+          "rank": 5,
+          "score": 1034,
           "score_label": "Elo",
           "entry_model": "Dreamina Seedance 2.0 720p",
           "component_count": 1
@@ -21535,7 +23558,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 11,
-          "score": 1215,
+          "score": 1216,
           "score_label": "Elo",
           "entry_model": "Kling Image 3.0 Omni",
           "component_count": 1
@@ -21544,7 +23567,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 14,
-          "score": 1204,
+          "score": 1205,
           "score_label": "Elo",
           "entry_model": "Kling Image 3.0",
           "component_count": 1
@@ -21552,7 +23575,7 @@
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
-          "rank": 11,
+          "rank": 12,
           "score": 1074,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 1080p (Pro)",
@@ -21561,7 +23584,7 @@
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
-          "rank": 13,
+          "rank": 14,
           "score": 1068,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 720p (Standard)",
@@ -21570,8 +23593,8 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 6,
-          "score": 1112,
+          "rank": 7,
+          "score": 1114,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 1080p (Pro)",
           "component_count": 1
@@ -21579,8 +23602,8 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 9,
-          "score": 1101,
+          "rank": 10,
+          "score": 1102,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 720p (Standard)",
           "component_count": 1
@@ -21588,7 +23611,7 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 11,
+          "rank": 12,
           "score": 1096,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 Omni 1080p (Pro)",
@@ -21597,8 +23620,8 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 12,
-          "score": 1092,
+          "rank": 13,
+          "score": 1093,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 Omni 720p (Standard)",
           "component_count": 1
@@ -21606,7 +23629,7 @@
         {
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
-          "rank": 5,
+          "rank": 7,
           "score": 1000,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 Omni 1080p (Pro)",
@@ -22033,7 +24056,7 @@
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
-          "rank": 9,
+          "rank": 10,
           "score": 1079,
           "score_label": "Elo",
           "entry_model": "grok-imagine-video",
@@ -22254,17 +24277,8 @@
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
-          "rank": 14,
-          "score": 1066,
-          "score_label": "Elo",
-          "entry_model": "Vidu Q3 Pro",
-          "component_count": 1
-        },
-        {
-          "ranking_id": "text-to-video",
-          "provider": "Artificial Analysis",
           "rank": 15,
-          "score": 1082,
+          "score": 1066,
           "score_label": "Elo",
           "entry_model": "Vidu Q3 Pro",
           "component_count": 1
@@ -23083,7 +25097,7 @@
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
-          "rank": 8,
+          "rank": 9,
           "score": 1087,
           "score_label": "Elo",
           "entry_model": "Veo 3.1",
@@ -23092,8 +25106,8 @@
         {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
-          "rank": 10,
-          "score": 1077,
+          "rank": 11,
+          "score": 1076,
           "score_label": "Elo",
           "entry_model": "Veo 3.1 Fast",
           "component_count": 1
@@ -23101,7 +25115,7 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 10,
+          "rank": 11,
           "score": 1098,
           "score_label": "Elo",
           "entry_model": "Veo 3.1",
@@ -23110,8 +25124,8 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 13,
-          "score": 1091,
+          "rank": 14,
+          "score": 1092,
           "score_label": "Elo",
           "entry_model": "Veo 3.1 Fast",
           "component_count": 1
@@ -24097,7 +26111,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1255,
+          "score": 1254,
           "score_label": "Elo",
           "entry_model": "GPT Image 1.5 (high)",
           "component_count": 1
@@ -24106,7 +26120,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 6,
-          "score": 1263,
+          "score": 1264,
           "score_label": "Elo",
           "entry_model": "GPT Image 1.5 (high)",
           "component_count": 1
@@ -24206,7 +26220,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 15,
-          "score": 1202,
+          "score": 1204,
           "score_label": "Elo",
           "entry_model": "FLUX.2 [max]",
           "component_count": 1
@@ -24934,7 +26948,7 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 5,
+          "rank": 6,
           "score": 1239,
           "score_label": "Elo",
           "entry_model": "Nano Banana Pro (Gemini 3 Pro Image)",
@@ -25181,7 +27195,8 @@
       "last_verified": "2026-07-27",
       "source_path": "models/multimodal/emu3-5.yaml",
       "scenario_ids": [
-        "image-generation"
+        "image-generation",
+        "physical-ai"
       ],
       "strategy_profile": {
         "stage_names": [
@@ -27887,6 +29902,46 @@
       "reference_name": "Panda-70M"
     },
     {
+      "model_id": "remind",
+      "dataset_id": "dl3dv-10k",
+      "role": "fine-tuning",
+      "availability": "gated",
+      "scale": "10,510 scene videos upstream",
+      "reference_name": "DL3DV-10K"
+    },
+    {
+      "model_id": "remind",
+      "dataset_id": "openvid-1m",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "roughly 1M public video-text records upstream",
+      "reference_name": "OpenVid-1M"
+    },
+    {
+      "model_id": "remind",
+      "dataset_id": "remind-pexels-dynamic-clips",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": null,
+      "reference_name": "ReMind Pexels dynamic clips"
+    },
+    {
+      "model_id": "remind",
+      "dataset_id": "remind1m",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "1,419,331 released generated and simulated video rows",
+      "reference_name": "ReMind1M"
+    },
+    {
+      "model_id": "s-avatar",
+      "dataset_id": "nersemble",
+      "role": "evaluation",
+      "availability": "gated",
+      "scale": "45 held-out subjects selected for evaluation from the public multi-view head dataset",
+      "reference_name": "NeRSemble"
+    },
+    {
       "model_id": "sana-video-2-0",
       "dataset_id": "sana-video-2-preference-pairs",
       "role": "preference",
@@ -27925,6 +29980,14 @@
       "availability": "public",
       "scale": "235 prompts and 3,009 generated examples",
       "reference_name": "AVGen-Bench"
+    },
+    {
+      "model_id": "shadowdancer",
+      "dataset_id": "shadow-library",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "approximately 20.5M frames across synthetic shadow pairs and real-video self-pairs",
+      "reference_name": "Shadow Library"
     },
     {
       "model_id": "skyreels-v4",
@@ -28045,6 +30108,54 @@
       "availability": "gated",
       "scale": "9,931 training triplets and 100 held-out benchmark triplets",
       "reference_name": "TripVVT-10K"
+    },
+    {
+      "model_id": "unigen-ar",
+      "dataset_id": "graph200k",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "205K source examples reused across depth, pose, normal, edge, colorization, denoising, inpainting, deraining, and low-light transformations",
+      "reference_name": "Graph200K"
+    },
+    {
+      "model_id": "unigen-ar",
+      "dataset_id": "laion-coco-aesthetic",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "4.1M text-image pairs sampled for text-to-image training",
+      "reference_name": "LAION-COCO-Aesthetic"
+    },
+    {
+      "model_id": "unigen-ar",
+      "dataset_id": "omniedit-filtered-1-2m",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "740K short-instruction, 740K long-instruction, and 410K unique-instruction rows in overlapping task views",
+      "reference_name": "OmniEdit-Filtered-1.2M"
+    },
+    {
+      "model_id": "unigen-ar",
+      "dataset_id": "refcoco",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "320K referring-segmentation pairs reported in the UniGen-AR mix",
+      "reference_name": "RefCOCO"
+    },
+    {
+      "model_id": "unigen-ar",
+      "dataset_id": "stylebooth",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "11K style-transfer examples",
+      "reference_name": "StyleBooth Dataset"
+    },
+    {
+      "model_id": "unigen-ar",
+      "dataset_id": "unigen-ar-evaluation-suite",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "GenEval, Emu-Edit, NYUv2, LOL, GoPro, and Rain-13K benchmark splits",
+      "reference_name": "UniGen-AR evaluation suite"
     },
     {
       "model_id": "unisync",
@@ -28247,6 +30358,13 @@
       "notes": "The ElasticTTT paper states that its test set follows the DAVIS selection protocol; the public repository contains 25 source videos and their prompt table."
     },
     {
+      "source_dataset_id": "dl3dv-10k",
+      "derived_dataset_id": "shadow-library",
+      "relationship": "source-component",
+      "contribution": "Roughly 0.3M static-scene self-pair frames",
+      "notes": "The paper names DL3DV as the static-scene source; no released row-level mapping is available."
+    },
+    {
       "source_dataset_id": "id-v2v-luxpostfacto-olat-subset",
       "derived_dataset_id": "id-v2v-face-relighting-pairs",
       "relationship": "source-component",
@@ -28266,6 +30384,20 @@
       "relationship": "annotation-derivative",
       "contribution": "Source clip URLs, timestamps, captions, and clip-quality metadata",
       "notes": "Phantom-Data adds cross-context subject detections, bounding boxes, reference-frame matches, and identity-verification results to Koala-36M clip metadata."
+    },
+    {
+      "source_dataset_id": "laion-5b",
+      "derived_dataset_id": "laion-coco-aesthetic",
+      "relationship": "filtered-subset",
+      "contribution": "Original web-image URLs and metadata lineage",
+      "notes": "LAION-COCO recaptioning and aesthetic filtering add derived annotations but do not replace upstream media rights."
+    },
+    {
+      "source_dataset_id": "miradata",
+      "derived_dataset_id": "shadow-library",
+      "relationship": "source-component",
+      "contribution": "Roughly 6.5M Internet-video self-pair frames",
+      "notes": "The paper names MiraData for visual-realism self-pairs; source URL rights remain upstream-dependent."
     },
     {
       "source_dataset_id": "mvhumannet",
@@ -28301,6 +30433,13 @@
       "relationship": "source-component",
       "contribution": "Real-scanned objects with multi-view videos and geometry",
       "notes": "OmniObject3D supplies public object-centric video and multi-view geometry before ConsIDVid selection and captioning."
+    },
+    {
+      "source_dataset_id": "open-x-embodiment",
+      "derived_dataset_id": "shadow-library",
+      "relationship": "source-component",
+      "contribution": "Roughly 3.6M frames from six selected robot datasets",
+      "notes": "BridgeData, FurnitureBench, Berkeley UR5, Jaco Play, Stanford HYDRA, and RoboTurk are named; their individual provenance and terms remain layered."
     },
     {
       "source_dataset_id": "openhumanvid",
@@ -30280,7 +32419,7 @@
           "model": "GPT Image 2 (high)",
           "score": 1259,
           "confidence_interval": "-7/7",
-          "samples": 16425,
+          "samples": 16140,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30300,9 +32439,9 @@
           "rank": 2,
           "creator": "OpenAI",
           "model": "GPT Image 1.5 (high)",
-          "score": 1255,
+          "score": 1254,
           "confidence_interval": "-8/8",
-          "samples": 9872,
+          "samples": 9578,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30324,7 +32463,7 @@
           "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
           "score": 1247,
           "confidence_interval": "-8/8",
-          "samples": 10883,
+          "samples": 10589,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30344,9 +32483,9 @@
           "rank": 4,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5",
-          "score": 1245,
+          "score": 1244,
           "confidence_interval": "-9/9",
-          "samples": 6703,
+          "samples": 6461,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30364,33 +32503,11 @@
         },
         {
           "rank": 5,
-          "creator": "Google",
-          "model": "Nano Banana Pro (Gemini 3 Pro Image)",
-          "score": 1239,
-          "confidence_interval": "-7/7",
-          "samples": 9178,
-          "released": "Nov 2025",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "Nano Banana Pro (Gemini 3 Pro Image)",
-              "model_id": "gemini-3-pro-image"
-            }
-          ],
-          "model_ids": [
-            "gemini-3-pro-image"
-          ],
-          "model_id": "gemini-3-pro-image"
-        },
-        {
-          "rank": 6,
           "creator": "Bytedance",
           "model": "Seedream 5.0 Pro",
-          "score": 1238,
-          "confidence_interval": "-11/11",
-          "samples": 2841,
+          "score": 1240,
+          "confidence_interval": "-12/12",
+          "samples": 2569,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30407,12 +32524,34 @@
           "model_id": "seedream-5-0-pro"
         },
         {
+          "rank": 6,
+          "creator": "Google",
+          "model": "Nano Banana Pro (Gemini 3 Pro Image)",
+          "score": 1239,
+          "confidence_interval": "-8/8",
+          "samples": 8921,
+          "released": "Nov 2025",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Nano Banana Pro (Gemini 3 Pro Image)",
+              "model_id": "gemini-3-pro-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-pro-image"
+          ],
+          "model_id": "gemini-3-pro-image"
+        },
+        {
           "rank": 7,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image-quality",
-          "score": 1231,
+          "score": 1232,
           "confidence_interval": "-8/8",
-          "samples": 8443,
+          "samples": 8120,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30433,8 +32572,8 @@
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5-Flash",
           "score": 1230,
-          "confidence_interval": "-9/9",
-          "samples": 4426,
+          "confidence_interval": "-10/10",
+          "samples": 4171,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30456,7 +32595,7 @@
           "model": "HunyuanImage 3.0 Instruct (Fal)",
           "score": 1224,
           "confidence_interval": "-8/8",
-          "samples": 8646,
+          "samples": 8375,
           "released": "Jan 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -30478,7 +32617,7 @@
           "model": "Luma UNI 1 Max",
           "score": 1221,
           "confidence_interval": "-9/9",
-          "samples": 5697,
+          "samples": 5409,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30498,9 +32637,9 @@
           "rank": 11,
           "creator": "KlingAI",
           "model": "Kling Image 3.0 Omni",
-          "score": 1215,
-          "confidence_interval": "-7/7",
-          "samples": 8495,
+          "score": 1216,
+          "confidence_interval": "-8/8",
+          "samples": 8206,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30522,7 +32661,7 @@
           "model": "grok-imagine-image",
           "score": 1213,
           "confidence_interval": "-8/8",
-          "samples": 8881,
+          "samples": 8590,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30542,9 +32681,9 @@
           "rank": 13,
           "creator": "HiDream",
           "model": "HiDream-O1-Image",
-          "score": 1204,
-          "confidence_interval": "-8/8",
-          "samples": 5977,
+          "score": 1206,
+          "confidence_interval": "-9/9",
+          "samples": 5710,
           "released": "May 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -30564,9 +32703,9 @@
           "rank": 14,
           "creator": "KlingAI",
           "model": "Kling Image 3.0",
-          "score": 1204,
+          "score": 1205,
           "confidence_interval": "-8/8",
-          "samples": 8157,
+          "samples": 7875,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30586,9 +32725,9 @@
           "rank": 15,
           "creator": "Black Forest Labs",
           "model": "FLUX.2 [max]",
-          "score": 1202,
+          "score": 1204,
           "confidence_interval": "-8/8",
-          "samples": 8335,
+          "samples": 8098,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30623,7 +32762,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1196,
           "confidence_interval": "-8/8",
-          "samples": 10039,
+          "samples": 10149,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30643,9 +32782,9 @@
           "rank": 2,
           "creator": "Google",
           "model": "Gemini Omni Flash",
-          "score": 1194,
+          "score": 1195,
           "confidence_interval": "-10/10",
-          "samples": 4405,
+          "samples": 4517,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30663,11 +32802,33 @@
         },
         {
           "rank": 3,
+          "creator": "MiniMax",
+          "model": "MiniMax H3",
+          "score": 1185,
+          "confidence_interval": "-11/11",
+          "samples": 5008,
+          "released": "Jul 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "MiniMax H3",
+              "model_id": "minimax-h3"
+            }
+          ],
+          "model_ids": [
+            "minimax-h3"
+          ],
+          "model_id": "minimax-h3"
+        },
+        {
+          "rank": 4,
           "creator": "SpaceXAI",
           "model": "grok-imagine-video-1.5",
           "score": 1114,
           "confidence_interval": "-9/9",
-          "samples": 4210,
+          "samples": 4238,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30684,12 +32845,12 @@
           "model_id": "grok-imagine-video-1-5"
         },
         {
-          "rank": 4,
+          "rank": 5,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.1",
-          "score": 1108,
+          "score": 1109,
           "confidence_interval": "-9/9",
-          "samples": 4761,
+          "samples": 4911,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30706,12 +32867,12 @@
           "model_id": "happyhorse-1-1"
         },
         {
-          "rank": 5,
+          "rank": 6,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "score": 1093,
+          "score": 1092,
           "confidence_interval": "-9/9",
-          "samples": 3541,
+          "samples": 3559,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30728,12 +32889,12 @@
           "model_id": "wan-2-7"
         },
         {
-          "rank": 6,
+          "rank": 7,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.0",
           "score": 1091,
           "confidence_interval": "-8/8",
-          "samples": 6890,
+          "samples": 6924,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30750,12 +32911,12 @@
           "model_id": "happyhorse-1-0"
         },
         {
-          "rank": 7,
+          "rank": 8,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
           "score": 1088,
           "confidence_interval": "-9/9",
-          "samples": 3862,
+          "samples": 3891,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30772,12 +32933,12 @@
           "model_id": "skyreels-v4"
         },
         {
-          "rank": 8,
+          "rank": 9,
           "creator": "Google",
           "model": "Veo 3.1",
           "score": 1087,
           "confidence_interval": "-8/8",
-          "samples": 7245,
+          "samples": 7262,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30794,12 +32955,12 @@
           "model_id": "veo-3-1"
         },
         {
-          "rank": 9,
+          "rank": 10,
           "creator": "SpaceXAI",
           "model": "grok-imagine-video",
           "score": 1079,
-          "confidence_interval": "-8/8",
-          "samples": 9630,
+          "confidence_interval": "-7/7",
+          "samples": 9714,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30816,12 +32977,12 @@
           "model_id": "grok-imagine-video"
         },
         {
-          "rank": 10,
+          "rank": 11,
           "creator": "Google",
           "model": "Veo 3.1 Fast",
-          "score": 1077,
+          "score": 1076,
           "confidence_interval": "-8/8",
-          "samples": 8788,
+          "samples": 8890,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30838,12 +32999,12 @@
           "model_id": "veo-3-1"
         },
         {
-          "rank": 11,
+          "rank": 12,
           "creator": "KlingAI",
           "model": "Kling 3.0 1080p (Pro)",
           "score": 1074,
           "confidence_interval": "-8/8",
-          "samples": 9317,
+          "samples": 9407,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30860,12 +33021,12 @@
           "model_id": "kling-3"
         },
         {
-          "rank": 12,
+          "rank": 13,
           "creator": "PixVerse",
           "model": "PixVerse V6",
-          "score": 1071,
+          "score": 1070,
           "confidence_interval": "-8/8",
-          "samples": 8532,
+          "samples": 8547,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30882,12 +33043,12 @@
           "model_id": "pixverse-v6"
         },
         {
-          "rank": 13,
+          "rank": 14,
           "creator": "KlingAI",
           "model": "Kling 3.0 720p (Standard)",
           "score": 1068,
           "confidence_interval": "-8/8",
-          "samples": 9279,
+          "samples": 9392,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30904,12 +33065,12 @@
           "model_id": "kling-3"
         },
         {
-          "rank": 14,
+          "rank": 15,
           "creator": "Vidu",
           "model": "Vidu Q3 Pro",
           "score": 1066,
           "confidence_interval": "-7/7",
-          "samples": 9790,
+          "samples": 9904,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30924,28 +33085,6 @@
             "vidu-q3-pro"
           ],
           "model_id": "vidu-q3-pro"
-        },
-        {
-          "rank": 15,
-          "creator": "Google",
-          "model": "Veo 3.1 Lite",
-          "score": 1065,
-          "confidence_interval": "-8/8",
-          "samples": 6548,
-          "released": "Mar 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "Veo 3.1 Lite",
-              "model_id": "veo-3-1-lite"
-            }
-          ],
-          "model_ids": [
-            "veo-3-1-lite"
-          ],
-          "model_id": "veo-3-1-lite"
         }
       ]
     },
@@ -30966,7 +33105,7 @@
           "model": "GPT Image 2 (high)",
           "score": 1340,
           "confidence_interval": "-7/7",
-          "samples": 21397,
+          "samples": 21403,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -30986,9 +33125,9 @@
           "rank": 2,
           "creator": "Reve",
           "model": "Reve 2.1",
-          "score": 1299,
+          "score": 1300,
           "confidence_interval": "-10/10",
-          "samples": 9991,
+          "samples": 10013,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31010,7 +33149,7 @@
           "model": "MAI-Image-2.5",
           "score": 1270,
           "confidence_interval": "-9/9",
-          "samples": 10053,
+          "samples": 10082,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31032,7 +33171,7 @@
           "model": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
           "score": 1264,
           "confidence_interval": "-9/9",
-          "samples": 10105,
+          "samples": 10134,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31054,7 +33193,7 @@
           "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
           "score": 1264,
           "confidence_interval": "-7/7",
-          "samples": 19884,
+          "samples": 19907,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31074,9 +33213,9 @@
           "rank": 6,
           "creator": "OpenAI",
           "model": "GPT Image 1.5 (high)",
-          "score": 1263,
+          "score": 1264,
           "confidence_interval": "-7/7",
-          "samples": 12995,
+          "samples": 13019,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31098,7 +33237,7 @@
           "model": "HiDream-O1-Image-1.5",
           "score": 1246,
           "confidence_interval": "-8/8",
-          "samples": 12507,
+          "samples": 12523,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31120,7 +33259,7 @@
           "model": "Seedream 5.0 Pro",
           "score": 1241,
           "confidence_interval": "-9/9",
-          "samples": 8370,
+          "samples": 8382,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31142,7 +33281,7 @@
           "model": "Nano Banana Pro (Gemini 3 Pro Image)",
           "score": 1227,
           "confidence_interval": "-7/7",
-          "samples": 12271,
+          "samples": 12287,
           "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31164,7 +33303,7 @@
           "model": "Cosmos3-Super-Text2Image (agentic)",
           "score": 1219,
           "confidence_interval": "-8/8",
-          "samples": 10492,
+          "samples": 10510,
           "released": "May 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -31186,7 +33325,7 @@
           "model": "MAI-Image-2.5-Flash",
           "score": 1208,
           "confidence_interval": "-9/9",
-          "samples": 5053,
+          "samples": 5068,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31208,7 +33347,7 @@
           "model": "Recraft V4.1 Utility",
           "score": 1206,
           "confidence_interval": "-8/8",
-          "samples": 5555,
+          "samples": 5579,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31228,9 +33367,9 @@
           "rank": 13,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image-quality",
-          "score": 1204,
+          "score": 1205,
           "confidence_interval": "-7/7",
-          "samples": 16180,
+          "samples": 16227,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31250,9 +33389,9 @@
           "rank": 14,
           "creator": "Recraft",
           "model": "Recraft V4.1 Utility Pro",
-          "score": 1202,
+          "score": 1201,
           "confidence_interval": "-7/7",
-          "samples": 15661,
+          "samples": 15694,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31274,7 +33413,7 @@
           "model": "FLUX.2 [max]",
           "score": 1197,
           "confidence_interval": "-7/7",
-          "samples": 11990,
+          "samples": 12027,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31309,7 +33448,7 @@
           "model": "Gemini Omni Flash",
           "score": 1245,
           "confidence_interval": "-9/9",
-          "samples": 6269,
+          "samples": 6580,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31327,11 +33466,33 @@
         },
         {
           "rank": 2,
+          "creator": "MiniMax",
+          "model": "MiniMax H3",
+          "score": 1242,
+          "confidence_interval": "-11/11",
+          "samples": 5070,
+          "released": "Jul 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "MiniMax H3",
+              "model_id": "minimax-h3"
+            }
+          ],
+          "model_ids": [
+            "minimax-h3"
+          ],
+          "model_id": "minimax-h3"
+        },
+        {
+          "rank": 3,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1225,
           "confidence_interval": "-7/7",
-          "samples": 13011,
+          "samples": 13334,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31348,12 +33509,12 @@
           "model_id": "seedance-2-0"
         },
         {
-          "rank": 3,
+          "rank": 4,
           "creator": "Alibaba",
           "model": "Wan2.7-260612",
           "score": 1163,
           "confidence_interval": "-8/8",
-          "samples": 6567,
+          "samples": 6958,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31370,12 +33531,12 @@
           "model_id": "wan-2-7"
         },
         {
-          "rank": 4,
+          "rank": 5,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.1",
-          "score": 1151,
+          "score": 1150,
           "confidence_interval": "-8/8",
-          "samples": 7041,
+          "samples": 7461,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31392,12 +33553,12 @@
           "model_id": "happyhorse-1-1"
         },
         {
-          "rank": 5,
+          "rank": 6,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.0",
           "score": 1131,
           "confidence_interval": "-8/8",
-          "samples": 7609,
+          "samples": 7714,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31414,12 +33575,12 @@
           "model_id": "happyhorse-1-0"
         },
         {
-          "rank": 6,
+          "rank": 7,
           "creator": "KlingAI",
           "model": "Kling 3.0 1080p (Pro)",
-          "score": 1112,
+          "score": 1114,
           "confidence_interval": "-7/7",
-          "samples": 12234,
+          "samples": 12603,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31436,12 +33597,12 @@
           "model_id": "kling-3"
         },
         {
-          "rank": 7,
+          "rank": 8,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
           "score": 1109,
           "confidence_interval": "-8/8",
-          "samples": 4706,
+          "samples": 4811,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31458,12 +33619,12 @@
           "model_id": "skyreels-v4"
         },
         {
-          "rank": 8,
+          "rank": 9,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "score": 1108,
+          "score": 1109,
           "confidence_interval": "-9/9",
-          "samples": 4193,
+          "samples": 4295,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31480,12 +33641,12 @@
           "model_id": "wan-2-7"
         },
         {
-          "rank": 9,
+          "rank": 10,
           "creator": "KlingAI",
           "model": "Kling 3.0 720p (Standard)",
-          "score": 1101,
+          "score": 1102,
           "confidence_interval": "-7/7",
-          "samples": 12015,
+          "samples": 12376,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31502,12 +33663,12 @@
           "model_id": "kling-3"
         },
         {
-          "rank": 10,
+          "rank": 11,
           "creator": "Google",
           "model": "Veo 3.1",
           "score": 1098,
           "confidence_interval": "-7/7",
-          "samples": 8006,
+          "samples": 8086,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31524,12 +33685,12 @@
           "model_id": "veo-3-1"
         },
         {
-          "rank": 11,
+          "rank": 12,
           "creator": "KlingAI",
           "model": "Kling 3.0 Omni 1080p (Pro)",
           "score": 1096,
           "confidence_interval": "-7/7",
-          "samples": 7802,
+          "samples": 7872,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31546,12 +33707,12 @@
           "model_id": "kling-3"
         },
         {
-          "rank": 12,
+          "rank": 13,
           "creator": "KlingAI",
           "model": "Kling 3.0 Omni 720p (Standard)",
-          "score": 1092,
+          "score": 1093,
           "confidence_interval": "-7/7",
-          "samples": 7650,
+          "samples": 7717,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31568,12 +33729,12 @@
           "model_id": "kling-3"
         },
         {
-          "rank": 13,
+          "rank": 14,
           "creator": "Google",
           "model": "Veo 3.1 Fast",
-          "score": 1091,
+          "score": 1092,
           "confidence_interval": "-7/7",
-          "samples": 11272,
+          "samples": 11607,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31590,12 +33751,12 @@
           "model_id": "veo-3-1"
         },
         {
-          "rank": 14,
+          "rank": 15,
           "creator": "Google",
           "model": "Veo 3.1 Lite",
           "score": 1090,
           "confidence_interval": "-7/7",
-          "samples": 7436,
+          "samples": 7512,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31610,28 +33771,6 @@
             "veo-3-1-lite"
           ],
           "model_id": "veo-3-1-lite"
-        },
-        {
-          "rank": 15,
-          "creator": "Vidu",
-          "model": "Vidu Q3 Pro",
-          "score": 1082,
-          "confidence_interval": "-7/7",
-          "samples": 12016,
-          "released": "Jan 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "Vidu Q3 Pro",
-              "model_id": "vidu-q3-pro"
-            }
-          ],
-          "model_ids": [
-            "vidu-q3-pro"
-          ],
-          "model_id": "vidu-q3-pro"
         }
       ]
     },
@@ -31648,11 +33787,55 @@
       "entries": [
         {
           "rank": 1,
+          "creator": "MiniMax",
+          "model": "MiniMax H3",
+          "score": 1130,
+          "confidence_interval": "-7/7",
+          "samples": 5035,
+          "released": "Jul 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "MiniMax H3",
+              "model_id": "minimax-h3"
+            }
+          ],
+          "model_ids": [
+            "minimax-h3"
+          ],
+          "model_id": "minimax-h3"
+        },
+        {
+          "rank": 2,
+          "creator": "Google",
+          "model": "Gemini Omni Flash",
+          "score": 1121,
+          "confidence_interval": "-6/6",
+          "samples": 10175,
+          "released": "May 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Gemini Omni Flash",
+              "model_id": "gemini-omni-flash"
+            }
+          ],
+          "model_ids": [
+            "gemini-omni-flash"
+          ],
+          "model_id": "gemini-omni-flash"
+        },
+        {
+          "rank": 3,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.0",
           "score": 1096,
           "confidence_interval": "-5/5",
-          "samples": 17472,
+          "samples": 17748,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31669,12 +33852,12 @@
           "model_id": "happyhorse-1-0"
         },
         {
-          "rank": 2,
+          "rank": 4,
           "creator": "Alibaba",
           "model": "Wan 2.7",
           "score": 1080,
           "confidence_interval": "-5/5",
-          "samples": 13269,
+          "samples": 13540,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31691,12 +33874,12 @@
           "model_id": "wan-2-7"
         },
         {
-          "rank": 3,
+          "rank": 5,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
-          "score": 1035,
+          "score": 1034,
           "confidence_interval": "-5/5",
-          "samples": 17214,
+          "samples": 17512,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31713,12 +33896,12 @@
           "model_id": "seedance-2-0"
         },
         {
-          "rank": 4,
+          "rank": 6,
           "creator": "Runway",
           "model": "Aleph 2.0",
-          "score": 1013,
+          "score": 1011,
           "confidence_interval": "-5/5",
-          "samples": 16955,
+          "samples": 17189,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31735,12 +33918,12 @@
           "model_id": "runway-aleph-2"
         },
         {
-          "rank": 5,
+          "rank": 7,
           "creator": "KlingAI",
           "model": "Kling 3.0 Omni 1080p (Pro)",
           "score": 1000,
           "confidence_interval": "0/0",
-          "samples": 15901,
+          "samples": 16097,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -31757,12 +33940,12 @@
           "model_id": "kling-3"
         },
         {
-          "rank": 6,
+          "rank": 8,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "score": 950,
+          "score": 951,
           "confidence_interval": "-6/6",
-          "samples": 14147,
+          "samples": 14205,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",

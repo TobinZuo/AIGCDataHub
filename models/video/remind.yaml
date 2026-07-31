@@ -1,0 +1,101 @@
+id: remind
+name: ReMind 5B
+organization: Applied Intuition Research
+released_at: "2026-07-30"
+modalities:
+  - video
+  - action
+tasks:
+  - image-to-video
+  - video-to-video
+  - camera-controlled-video-generation
+  - world-modeling
+  - streaming-video-generation
+access:
+  status: open-weights
+  license: CC-BY-NC-4.0 weights; upstream Wan terms remain applicable
+  release_url: https://huggingface.co/AppliedIntuitionResearch/ReMind
+  weights_url: https://huggingface.co/AppliedIntuitionResearch/ReMind
+  api_url: null
+architecture:
+  family: Wan2.2-TI2V-5B causal video generator with PM-RoPE dynamic-memory training and SF-DMD distillation
+  parameters: 5000000000
+  notes: The release contains a complete 5B generator and a separate rank-128 SF-DMD EMA adapter; ReMind 1.3B remains announced but unreleased.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: ReMind1M
+      catalog_id: remind1m
+      role: fine-tuning
+      availability: public
+      scale: 1,419,331 released generated and simulated video rows
+      notes: Public subset covering Helios physics-filtered clips, pair-fixed InSpatio camera augmentation, and Kubric camera renders.
+    - name: OpenVid-1M
+      catalog_id: openvid-1m
+      role: fine-tuning
+      availability: public
+      scale: roughly 1M public video-text records upstream
+      notes: Named as a general real-video source; the exact retained count and sampling weight are not disclosed.
+    - name: DL3DV-10K
+      catalog_id: dl3dv-10k
+      role: fine-tuning
+      availability: gated
+      scale: 10,510 scene videos upstream
+      notes: Named as a general scene-video source; the exact retained subset and sampling weight are not disclosed.
+    - name: ReMind Pexels dynamic clips
+      catalog_id: remind-pexels-dynamic-clips
+      role: fine-tuning
+      availability: not-released
+      scale: null
+      notes: Retrieved with a 100+ event taxonomy and filtered with Qwen3-VL; no source manifest or retained count is public.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - video
+        - image
+        - text
+        - action
+      source_types:
+        - public-dataset
+        - public-web
+        - synthetic
+      operations:
+        - vlm-filtering
+        - event-taxonomy-curation
+        - camera-trajectory-estimation
+        - interruption-augmentation
+        - frame-graph-construction
+        - node-drop
+        - noisy-memory
+        - frontier-continuation
+        - reference-cache-training
+      scale_disclosed: true
+      strategy: Normalize clips to 81 frames at 16 FPS and 480x832, annotate dynamic events and camera geometry, then train frame-graph curricula with protected anchors, degraded intervals, and explicit temporal gaps.
+    - name: distillation
+      modalities:
+        - video
+        - image
+      source_types:
+        - synthetic
+      operations:
+        - self-forcing
+        - distribution-matching-distillation
+      scale_disclosed: false
+      strategy: Distill the full generator into a rank-128 four-step SF-DMD EMA adapter; the public adapter is checkpoint 2500 and is not standalone.
+  strategy_summary:
+    - Organize training around more than 100 dynamic event types and retain high-occupancy, temporally sustained state changes.
+    - Convert every clip to a frame graph so older reliable observations can supervise recovery after occlusion, camera motion, or illumination change.
+    - Add PM-RoPE camera phase and cache-compatible training while preserving the inherited Wan generation prior.
+  unknowns:
+    - Final sampling weights and exact retained counts for OpenVid, DL3DV, Pexels, generated, and rendered sources in the full optimization mixture.
+    - Complete source-item rights, consent, privacy, deduplication, safety filtering, and train-evaluation overlap audits.
+    - Training code, optimizer state, ReMind 1.3B weights, and the complete inherited Wan2.2 pretraining-data lineage.
+    - STEVO-Bench and VBench are evaluation-only; their prompts and media are not treated as ReMind training data.
+evidence:
+  release: https://huggingface.co/AppliedIntuitionResearch/ReMind
+  technical_report: https://arxiv.org/abs/2605.25333
+  repository: https://github.com/Applied-Intuition-Open-Source/ReMind
+status: partial
+last_verified: "2026-07-31"

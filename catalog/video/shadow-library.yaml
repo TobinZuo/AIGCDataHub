@@ -1,0 +1,83 @@
+id: shadow-library
+name: Shadow Library
+organization: Alaya Lab and Shanghai Innovation Institute
+released_at: "2026-07-30"
+release_date_source: https://arxiv.org/abs/2607.28362
+modality: video
+tasks:
+  - action-conditioned-video-generation
+  - embodied-world-modeling
+  - streaming-video-generation
+  - human-animation
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  The unreleased ShadowDancer training corpus of synchronized shadow pairs that
+  preserve dynamics while resampling appearance, plus real-video self-pairs for
+  visual realism across human, robot, game, and static-scene domains.
+derived_from:
+  - catalog_id: dl3dv-10k
+    relationship: source-component
+    contribution: Roughly 0.3M static-scene self-pair frames
+    notes: The paper names DL3DV as the static-scene source; no released row-level mapping is available.
+  - catalog_id: miradata
+    relationship: source-component
+    contribution: Roughly 6.5M Internet-video self-pair frames
+    notes: The paper names MiraData for visual-realism self-pairs; source URL rights remain upstream-dependent.
+  - catalog_id: open-x-embodiment
+    relationship: source-component
+    contribution: Roughly 3.6M frames from six selected robot datasets
+    notes: BridgeData, FurnitureBench, Berkeley UR5, Jaco Play, Stanford HYDRA, and RoboTurk are named; their individual provenance and terms remain layered.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2607.28362
+  requires_account: false
+  notes: The paper documents source families, approximate sequence and frame counts, and some mixture percentages, but publishes no files, manifest, download link, or dataset license.
+scale:
+  samples: null
+  source_items: 20500000
+  hours: null
+  approximate: true
+  notes: Summing the rounded table entries yields about 20.5M frames; sequence counts, percentages, and frames are approximate and several game/render rows do not disclose final mixture percentages.
+annotations:
+  types:
+    - synchronized-shadow-pair
+    - dynamics-preservation
+    - appearance-resampling
+    - camera-control-mask
+    - self-pair
+    - robot-action
+  source: mixed
+  languages:
+    - none
+license:
+  metadata: Not published
+  media: Heterogeneous simulator, rendered, game, public-dataset, and web-video rights
+  commercial_use: unknown
+  redistribution: unknown
+  notes: CC-BY-4.0 applies to the paper, not automatically to the unreleased corpus; simulator and game assets plus public-source licenses require component-level review.
+quality:
+  dimensions:
+    - motion
+    - temporal-consistency
+    - multi-view-consistency
+    - visual-quality
+    - provenance
+  known_limitations:
+    - Files, manifests, duplicate reports, filters, and per-sample provenance are unavailable for independent audit.
+    - Self-pairs preserve appearance as well as motion and therefore teach visual realism differently from synthetic cross-shadow pairs.
+    - Approximate table counts and incomplete mixture percentages do not establish the final optimization sampling distribution.
+    - Game and simulator coverage may overrepresent controllable, repeatable dynamics relative to noisy real-world interaction.
+processing:
+  recipe: Replay identical dynamics under independently resampled character, scene, lighting, and camera conditions where engines permit; pair public real videos with themselves; then sample source families for cross-shadow prediction and block-causal rollout training.
+  recommended_format: native
+  notes: If released, retain paired-frame alignment, source family, exact upstream item ID, resampled factors, control mask, license, and takedown state.
+evidence:
+  homepage: https://shadowdancer-1.github.io/
+  paper: https://arxiv.org/abs/2607.28362
+  used_by:
+    - ShadowDancer
+status: partial
+last_verified: "2026-07-31"

@@ -1,0 +1,94 @@
+id: unigen-ar
+name: UniGen-AR
+organization: Carnegie Mellon University and University of Illinois Urbana-Champaign
+released_at: "2026-07-27"
+modalities:
+  - image
+  - multimodal
+tasks:
+  - text-to-image
+  - image-editing
+  - image-restoration
+  - image-to-image
+  - unified-visual-generation
+access:
+  status: announced
+  license: Paper is CC-BY-4.0; code, checkpoints, and model license are not released
+  release_url: https://arxiv.org/abs/2607.24157
+  weights_url: null
+  api_url: null
+architecture:
+  family: Qwen2.5-VL-conditioned Infinity-style next-scale visual autoregressive model
+  parameters: null
+  notes: A Qwen2.5-VL encoder conditions an Infinity bitwise VQ-VAE and autoregressive decoder through text cross-attention and finest-scale reference tokens; one weight set handles more than 15 tasks.
+data:
+  disclosure_level: full
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: true
+  datasets:
+    - name: LAION-COCO-Aesthetic
+      catalog_id: laion-coco-aesthetic
+      role: fine-tuning
+      availability: public
+      scale: 4.1M text-image pairs sampled for text-to-image training
+      notes: UniGen-AR uses CLIP captions and sets the text-to-image batch probability to 0.25 in the joint stage.
+    - name: Graph200K
+      catalog_id: graph200k
+      role: fine-tuning
+      availability: public
+      scale: 205K source examples reused across depth, pose, normal, edge, colorization, denoising, inpainting, deraining, and low-light transformations
+      notes: Several targets are synthetic or model-labeled; repeated task rows are not treated as distinct source images.
+    - name: RefCOCO
+      catalog_id: refcoco
+      role: fine-tuning
+      availability: public
+      scale: 320K referring-segmentation pairs reported in the UniGen-AR mix
+      notes: Human referring expressions and COCO images supervise referring segmentation.
+    - name: OmniEdit-Filtered-1.2M
+      catalog_id: omniedit-filtered-1-2m
+      role: fine-tuning
+      availability: public
+      scale: 740K short-instruction, 740K long-instruction, and 410K unique-instruction rows in overlapping task views
+      notes: The underlying source contains about 1.2M image pairs; overlapping annotation views must not be summed as independent source images.
+    - name: StyleBooth Dataset
+      catalog_id: stylebooth
+      role: fine-tuning
+      availability: public
+      scale: 11K style-transfer examples
+      notes: Used for de-stylize-and-restyle supervision.
+    - name: UniGen-AR evaluation suite
+      catalog_id: unigen-ar-evaluation-suite
+      role: evaluation
+      availability: public
+      scale: GenEval, Emu-Edit, NYUv2, LOL, GoPro, and Rain-13K benchmark splits
+      notes: These datasets are evaluation-only in the reported experiments and are not folded into the 8M training-pair total.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - image
+        - text
+      source_types:
+        - public-dataset
+        - synthetic
+        - human-feedback
+      operations:
+        - mllm-alignment
+        - synthetic-degradation
+        - multi-task-sampling
+        - next-scale-autoregressive-training
+      scale_disclosed: true
+      strategy: First train text projectors for two epochs, then jointly train the Infinity backbone for 100K steps on an 8M-pair mix at 512x512, sampling pure text-to-image batches with probability 0.25.
+  strategy_summary:
+    - Convert depth, pose, normals, edges, restoration, inpainting, segmentation, editing, style transfer, and generation into one image-output interface.
+    - Generate restoration targets through disclosed synthetic degradation recipes and combine them with model- and human-annotated public datasets.
+    - Condition one next-scale autoregressive decoder with Qwen2.5-VL text and reference-image context instead of adding task-specific heads.
+  unknowns:
+    - Exact deduplication across overlapping task views, split assignment, per-dataset sampling within non-text-to-image batches, and safety or privacy filtering.
+    - Which Qwen2.5-VL and Infinity checkpoint variants initialize the final release and the complete inherited pretraining-data lineage of both components.
+    - Code, weights, model license, final parameter count, and artifact release date.
+evidence:
+  release: https://arxiv.org/abs/2607.24157
+  technical_report: https://arxiv.org/abs/2607.24157
+  repository: null
+status: watch
+last_verified: "2026-07-31"

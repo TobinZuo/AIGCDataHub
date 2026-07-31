@@ -1,0 +1,66 @@
+id: omniedit-filtered-1-2m
+name: OmniEdit-Filtered-1.2M
+organization: TIGER-Lab
+released_at: "2024-11-11"
+release_date_source: https://huggingface.co/datasets/TIGER-Lab/OmniEdit-Filtered-1.2M
+modality: image
+tasks:
+  - image-editing
+  - instruction-guided-image-editing
+  - style-transfer
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  A public 1.2M-pair instruction-guided image-editing dataset synthesized with
+  specialist models and filtered through multimodal-model quality scoring,
+  spanning addition, removal, replacement, attributes, environment, and style.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/TIGER-Lab/OmniEdit-Filtered-1.2M
+  requires_account: false
+  notes: The official 2.98 TB Hugging Face repository exposes task-partitioned parquet files and supports partial download.
+scale:
+  samples: 1200000
+  source_items: 1200000
+  hours: null
+  approximate: true
+  notes: About 1.2M source-target pairs; UniGen-AR creates overlapping short, long, and unique instruction views rather than 1.89M independent image pairs.
+annotations:
+  types:
+    - source-image
+    - target-image
+    - edit-instruction
+    - edit-category
+    - quality-score
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: MIT
+  media: MIT dataset release label layered on source and specialist-model terms
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The public card declares MIT, but generated pairs can retain upstream image rights and specialist-model usage conditions that require separate review.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - aesthetics
+    - provenance
+  known_limitations:
+    - Specialist generation models and multimodal quality judges can create correlated artifacts and systematic selection bias.
+    - Overlapping instruction variants can cause duplicate source-target pairs across task views.
+    - The release does not establish that every source image or generated derivative is cleared for unrestricted downstream commercial training.
+processing:
+  recipe: Generate task-diverse edits with seven specialist models, score candidates using large multimodal models and importance sampling, and package filtered source-target-instruction pairs by edit type.
+  recommended_format: parquet
+  notes: Deduplicate by source-target identity across instruction variants, preserve edit category and generator metadata, and pin repository revision 82455c6cd66db7f0e5bfce8d7a236441af59d6df.
+evidence:
+  homepage: https://huggingface.co/datasets/TIGER-Lab/OmniEdit-Filtered-1.2M
+  paper: https://arxiv.org/abs/2411.07199
+  used_by:
+    - UniGen-AR
+status: partial
+last_verified: "2026-07-31"

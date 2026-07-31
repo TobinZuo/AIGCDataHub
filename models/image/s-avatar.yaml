@@ -1,0 +1,69 @@
+id: s-avatar
+name: S-Avatar
+organization: Korea Advanced Institute of Science and Technology
+released_at: "2026-07-30"
+modalities:
+  - image
+  - 3d
+tasks:
+  - 3d-avatar-generation
+  - single-image-3d-reconstruction
+  - novel-view-synthesis
+access:
+  status: announced
+  license: Paper is CC-BY-NC-SA-4.0; project repository, code, checkpoints, and model license are unavailable
+  release_url: https://arxiv.org/abs/2607.28164
+  weights_url: null
+  api_url: null
+architecture:
+  family: Diffusion-guided Gaussian head avatar generation with FLAME binding
+  parameters: null
+  notes: The three-stage pipeline uses ImageDream to synthesize multi-view cues, an LGM-style Gaussian generator, FLAME fitting, and a binding template for real-time deformation.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: NeRSemble
+      catalog_id: nersemble
+      role: evaluation
+      availability: gated
+      scale: 45 held-out subjects selected for evaluation from the public multi-view head dataset
+      notes: NeRSemble is used only for novel-view and expression evaluation; the paper does not report training S-Avatar on it.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - 3d
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-imagedream-prior
+        - inherited-lgm-prior
+      scale_disclosed: false
+      strategy: Reuse pretrained ImageDream and LGM components; their original training mixtures are not restated by S-Avatar.
+    - name: fine-tuning
+      modalities:
+        - image
+        - 3d
+      source_types:
+        - undisclosed
+      operations:
+        - flame-parameter-fitting
+        - gaussian-to-mesh-binding
+      scale_disclosed: false
+      strategy: The paper describes per-input optimization and template binding but does not disclose a new task-specific training corpus or learned fine-tuning stage.
+  strategy_summary:
+    - Synthesize a canonical high-resolution 3D Gaussian head from one portrait using diffusion-generated multi-view guidance.
+    - Fit a FLAME parametric head and encode local Gaussian-to-mesh relationships in a reusable binding template.
+    - Animate the bound Gaussian avatar through FLAME expression and pose variations in real time.
+  unknowns:
+    - Training data and rights of the inherited ImageDream and LGM checkpoints beyond their original publications.
+    - Whether any undisclosed task-specific training, synthetic identities, relabeling, filtering, deduplication, or preference optimization was used.
+    - Code, checkpoints, parameter counts, model license, compute, and a working project release; the linked GitHub repository returned unavailable during verification.
+evidence:
+  release: https://arxiv.org/abs/2607.28164
+  technical_report: https://arxiv.org/abs/2607.28164
+  repository: null
+status: watch
+last_verified: "2026-07-31"

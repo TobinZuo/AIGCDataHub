@@ -1,0 +1,69 @@
+id: graph200k
+name: Graph200K
+organization: VisualCloze authors
+released_at: "2025-03-29"
+release_date_source: https://huggingface.co/datasets/VisualCloze/Graph200K
+modality: image
+tasks:
+  - image-to-image
+  - image-editing
+  - image-restoration
+  - conditional-image-generation
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  A graph-structured image dataset of roughly 205K source examples annotated
+  across conditional generation, restoration, editing, identity preservation,
+  and style transfer so multiple image-output tasks can share supervision.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/VisualCloze/Graph200K
+  requires_account: false
+  notes: The official Hugging Face organization hosts Arrow data and examples under revision b2d4e7930f878b3307a9dc8b0d28d60010146287.
+scale:
+  samples: 205000
+  source_items: 205000
+  hours: null
+  approximate: true
+  notes: UniGen-AR reports 205K examples for each Graph200K-derived task view; those repeated views share source examples and must not be summed as independent images.
+annotations:
+  types:
+    - depth-map
+    - human-pose
+    - surface-normal
+    - edge-map
+    - grayscale-image
+    - synthetic-degradation
+    - image-mask
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Apache-2.0
+  media: Apache-2.0 release label with upstream image provenance requiring review
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The public card declares Apache-2.0; users should still verify upstream image and annotation-model terms before redistributing media or generated task views.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - Depth Anything, OpenPose, DSINE, Canny, and synthetic degradations are automated targets rather than human ground truth.
+    - Multiple task views of one image are correlated and can leak across splits if source identity is ignored.
+    - The official card does not provide a complete per-item rights or consent ledger.
+processing:
+  recipe: Build multiple graph-connected input-output transformations from each source image using perception models, deterministic conversions, masks, and synthetic restoration degradations.
+  recommended_format: native
+  notes: Split by source image before expanding task views and preserve the generating model or algorithm for each annotation edge.
+evidence:
+  homepage: https://huggingface.co/datasets/VisualCloze/Graph200K
+  paper: https://arxiv.org/abs/2504.07960
+  used_by:
+    - UniGen-AR
+status: verified
+last_verified: "2026-07-31"

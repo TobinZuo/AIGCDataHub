@@ -62,12 +62,13 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /aria-pressed="true">中/);
   assert.match(html, /aria-pressed="false">EN/);
   assert.match(html, /最近核验/);
-  assert.match(html, /核验<!-- --> <!-- -->2026\/07\/30/);
+  assert.match(html, /核验<!-- --> <!-- -->2026\/07\/31/);
   assert.match(html, /ID-V2V/);
   assert.match(html, /JoyFox LiveTalk-DH 1\.3B/);
-  assert.match(html, /发布<!-- --> <!-- -->2026\/07\/28/);
+  assert.match(html, /发布<!-- --> <!-- -->2026\/07\/31/);
   assert.match(html, /部分披露/);
-  assert.match(html, /开放权重/);
+  assert.match(html, /ReMind 5B/);
+  assert.ok(html.includes('open_weights\\\":true'));
   assert.doesNotMatch(html, /LATEST SIGNAL/);
   assert.match(html, /Midjourney V8\.2/);
   assert.match(html, /Muse Image/);
@@ -298,7 +299,14 @@ test("uses generated catalog data and removes starter preview assets", async () 
   );
   assert.deepEqual(
     parsedCatalog.scenarios.map((scenario) => scenario.id),
-    ["image-generation", "video-generation", "digital-human", "video-localization", "virtual-try-on"],
+    [
+      "image-generation",
+      "video-generation",
+      "digital-human",
+      "video-localization",
+      "virtual-try-on",
+      "physical-ai",
+    ],
   );
   const newestDatasetDate = parsedCatalog.datasets[0].released_at;
   assert.deepEqual(
@@ -307,16 +315,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
         .filter((dataset) => dataset.released_at === newestDatasetDate)
         .map((dataset) => dataset.id),
     ),
-    new Set([
-      "innotext-30k",
-      "agenthoi-mixed-source-corpus",
-      "fmri-face",
-      "id-v2v-human-centric-videos",
-      "id-v2v-luxpostfacto-olat-subset",
-      "id-v2v-poly-haven-hdri-sample",
-      "id-v2v-face-relighting-pairs",
-      "id-v2v-evaluation-suite",
-    ]),
+    new Set(["shadow-library", "remind1m"]),
   );
   const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
   assert.ok(parsedCatalog.models.every((model) => model.monitoring));
@@ -324,7 +323,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   const rankedModelIds = new Set(
     parsedCatalog.rankings.flatMap((board) => board.entries.flatMap((entry) => entry.model_ids)),
   );
-  assert.equal(rankedModelIds.size, 49);
+  assert.equal(rankedModelIds.size, 50);
   assert.ok([...rankedModelIds].every((modelId) => models[modelId].monitoring));
   assert.equal(models["gpt-image-2"].monitoring.priority, "critical");
   assert.equal(models["gemini-omni-flash"].monitoring.priority, "critical");

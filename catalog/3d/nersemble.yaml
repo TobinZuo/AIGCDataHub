@@ -1,0 +1,67 @@
+id: nersemble
+name: NeRSemble
+organization: Technical University of Munich
+released_at: "2023-03-28"
+release_date_source: https://arxiv.org/abs/2303.14123
+modality: 3d
+tasks:
+  - 3d-avatar-reconstruction
+  - novel-view-synthesis
+  - dynamic-head-reconstruction
+stages:
+  - evaluation
+  - pretraining
+description: >-
+  A synchronized 16-camera human-head capture dataset with more than 4,700
+  high-resolution, high-frame-rate sequences from more than 220 participants,
+  covering head motion, expressions, emotions, and spoken language.
+access:
+  status: gated
+  type: request
+  url: https://tobias-kirschstein.github.io/nersemble/
+  requires_account: true
+  notes: The official page provides a dataset-access request form and a separate authenticated download client; access is not anonymous.
+scale:
+  samples: 4700
+  source_items: 220
+  hours: null
+  approximate: true
+  notes: More than 4,700 sequences and more than 220 heads, captured by 16 synchronized 7.1 MP cameras at 73 FPS; sequence duration and total frames are not summarized on the landing page.
+annotations:
+  types:
+    - synchronized-multi-view-rgb
+    - calibrated-camera
+    - facial-expression
+    - head-motion
+    - spoken-language
+  source: human
+  languages:
+    - multilingual
+license:
+  metadata: Custom dataset-access agreement
+  media: Human-subject recordings under project-specific access terms
+  commercial_use: unknown
+  redistribution: prohibited
+  notes: Repository code licensing does not grant rights to participant media; applicants must review and retain the signed dataset agreement.
+quality:
+  dimensions:
+    - visual-quality
+    - temporal-consistency
+    - multi-view-consistency
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - Human-subject identity, biometric, consent, privacy, and purpose limitations require review beyond ordinary image-dataset handling.
+    - The controlled 16-camera capture setup and head-focused framing do not represent in-the-wild lighting, occlusion, devices, or full-body motion.
+    - The public landing page does not provide demographic, language, sequence-duration, or train-test distribution details sufficient for broader fairness claims.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Use the official download tooling after approval, preserve subject- and sequence-level splits, and never mix evaluation subjects into training without an independently authorized protocol.
+evidence:
+  homepage: https://tobias-kirschstein.github.io/nersemble/
+  paper: https://arxiv.org/abs/2303.14123
+  used_by:
+    - S-Avatar
+status: verified
+last_verified: "2026-07-31"

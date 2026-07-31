@@ -47,6 +47,220 @@
   ],
   "entries": [
     {
+      "date": "2026-07-31",
+      "title": {
+        "zh": "2026-07-31 更新",
+        "en": "2026-07-31 Update"
+      },
+      "summary": [
+        {
+          "id": "models",
+          "label": {
+            "zh": "模型",
+            "en": "Models"
+          },
+          "text": {
+            "zh": "新增 MiniMax H3、ShadowDancer、S-Avatar、UniGen-AR 与 ReMind 5B 五张模型卡：覆盖统一多模态视频、动作条件世界模型、单图 3D 头部数字人、统一视觉生成和动态记忆视频生成。",
+            "en": "Added MiniMax H3, ShadowDancer, S-Avatar, UniGen-AR, and ReMind 5B, covering unified multimodal video, action-conditioned world modeling, single-image 3D head avatars, unified visual generation, and dynamic-memory video generation."
+          },
+          "links": [
+            {
+              "href": "/#model-minimax-h3",
+              "label": {
+                "zh": "MiniMax H3",
+                "en": "MiniMax H3"
+              }
+            },
+            {
+              "href": "/#model-shadowdancer",
+              "label": {
+                "zh": "ShadowDancer",
+                "en": "ShadowDancer"
+              }
+            },
+            {
+              "href": "/#model-s-avatar",
+              "label": {
+                "zh": "S-Avatar",
+                "en": "S-Avatar"
+              }
+            },
+            {
+              "href": "/#model-unigen-ar",
+              "label": {
+                "zh": "UniGen-AR",
+                "en": "UniGen-AR"
+              }
+            },
+            {
+              "href": "/#model-remind",
+              "label": {
+                "zh": "ReMind 5B",
+                "en": "ReMind 5B"
+              }
+            }
+          ]
+        },
+        {
+          "id": "datasets",
+          "label": {
+            "zh": "数据集",
+            "en": "Datasets"
+          },
+          "text": {
+            "zh": "新增十三张数据卡，包含 Shadow Library、NeRSemble、DL3DV-10K、MiraData、Open X-Embodiment、ReMind1M、未发布的 ReMind Pexels 动态片段，以及 UniGen-AR 的五项公开训练来源和独立评测套件；每张卡均记录访问边界、下载入口与权利限制。",
+            "en": "Added thirteen dataset cards: Shadow Library, NeRSemble, DL3DV-10K, MiraData, Open X-Embodiment, ReMind1M, an unreleased ReMind Pexels corpus, five public UniGen-AR training sources, and its separate evaluation suite."
+          },
+          "links": [
+            {
+              "href": "/#dataset-shadow-library",
+              "label": {
+                "zh": "Shadow Library",
+                "en": "Shadow Library"
+              }
+            },
+            {
+              "href": "/#dataset-nersemble",
+              "label": {
+                "zh": "NeRSemble",
+                "en": "NeRSemble"
+              }
+            },
+            {
+              "href": "/#dataset-dl3dv-10k",
+              "label": {
+                "zh": "DL3DV-10K",
+                "en": "DL3DV-10K"
+              }
+            },
+            {
+              "href": "/#dataset-remind1m",
+              "label": {
+                "zh": "ReMind1M",
+                "en": "ReMind1M"
+              }
+            },
+            {
+              "href": "/#dataset-unigen-ar-evaluation-suite",
+              "label": {
+                "zh": "UniGen-AR Evaluation Suite",
+                "en": "UniGen-AR Evaluation Suite"
+              }
+            }
+          ]
+        },
+        {
+          "id": "relations",
+          "label": {
+            "zh": "数据关系",
+            "en": "Data relations"
+          },
+          "text": {
+            "zh": "新增十二条模型到数据集关系和四条数据集 lineage；S-Avatar 的 NeRSemble 与 UniGen-AR 的六项 benchmark 明确保持 evaluation-only，ShadowDancer 只把未发布的 Shadow Library 写成微调语料，ReMind 的公开和未发布来源分别关联。",
+            "en": "Added twelve model-to-dataset relations and four dataset-lineage edges. NeRSemble and all six UniGen-AR benchmarks remain evaluation-only; ReMind's public and unreleased sources are separated."
+          },
+          "links": [
+            {
+              "href": "/#lineage",
+              "label": {
+                "zh": "查看关系图谱",
+                "en": "View data lineage"
+              }
+            }
+          ]
+        },
+        {
+          "id": "rankings",
+          "label": {
+            "zh": "排行榜",
+            "en": "Rankings"
+          },
+          "text": {
+            "zh": "Artificial Analysis 的 MiniMax-H3 新进图生视频第 3、文生视频第 2、视频编辑第 1，并触发相邻名次顺移；图像编辑中 Seedream 5.0 Pro 升至第 5、Gemini 3 Pro Image 降至第 6。",
+            "en": "MiniMax-H3 entered Artificial Analysis at #3 for image-to-video, #2 for text-to-video, and #1 for video editing, shifting adjacent entries; Seedream 5.0 Pro rose to #5 in image editing while Gemini 3 Pro Image fell to #6."
+          },
+          "links": [
+            {
+              "href": "/#rankings",
+              "label": {
+                "zh": "查看行业排行榜",
+                "en": "View rankings"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monitoring",
+          "label": {
+            "zh": "监控",
+            "en": "Monitoring"
+          },
+          "text": {
+            "zh": "恢复统一多模态与 Physical AI 主动监控，补充三类 Hugging Face 世界模型/Physical AI/机器人视频 feed，并为五个新模型和十三张新数据卡建立一手探针；Sana Video 2 的限流探针改用稳定 arXiv 页面。",
+            "en": "Restored active unified-multimodal and Physical AI monitoring, added three Hugging Face feeds for world models, Physical AI, and robot video, and created primary-source probes for all five models and thirteen datasets. The rate-limited Sana Video 2 probe now uses a stable arXiv page."
+          },
+          "links": [
+            {
+              "href": "/#sources",
+              "label": {
+                "zh": "查看来源监控",
+                "en": "View monitored sources"
+              }
+            }
+          ]
+        },
+        {
+          "id": "unknowns",
+          "label": {
+            "zh": "未披露",
+            "en": "Undisclosed"
+          },
+          "text": {
+            "zh": "MiniMax H3 未披露任何训练语料或技术报告；Shadow Library 未发布文件、完整配比和统一许可；S-Avatar 继承组件的数据 lineage 未重述；UniGen-AR 虽披露 800 万训练对，但未发布权重、代码、最终参数量和完整去重方案；ReMind 未披露完整来源配比和 Pexels 留存清单。",
+            "en": "MiniMax H3 discloses no training corpus or technical report; Shadow Library has no files, complete mixture, or unified license; S-Avatar does not restate inherited-component lineage; UniGen-AR discloses its 8M-pair mix but not artifacts or complete deduplication; ReMind omits full mixture weights and its retained Pexels manifest."
+          },
+          "links": [
+            {
+              "href": "/#model-minimax-h3",
+              "label": {
+                "zh": "MiniMax H3 未知项",
+                "en": "MiniMax H3 unknowns"
+              }
+            },
+            {
+              "href": "/#model-shadowdancer",
+              "label": {
+                "zh": "ShadowDancer 未知项",
+                "en": "ShadowDancer unknowns"
+              }
+            },
+            {
+              "href": "/#model-s-avatar",
+              "label": {
+                "zh": "S-Avatar 未知项",
+                "en": "S-Avatar unknowns"
+              }
+            },
+            {
+              "href": "/#model-unigen-ar",
+              "label": {
+                "zh": "UniGen-AR 未知项",
+                "en": "UniGen-AR unknowns"
+              }
+            },
+            {
+              "href": "/#model-remind",
+              "label": {
+                "zh": "ReMind 未知项",
+                "en": "ReMind unknowns"
+              }
+            }
+          ]
+        }
+      ],
+      "source_path": "updates/2026-07-31.md"
+    },
+    {
       "date": "2026-07-30",
       "title": {
         "zh": "2026-07-30 更新",

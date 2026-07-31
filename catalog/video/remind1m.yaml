@@ -1,0 +1,72 @@
+id: remind1m
+name: ReMind1M
+organization: Applied Intuition Research
+released_at: "2026-07-30"
+release_date_source: https://huggingface.co/datasets/AppliedIntuitionResearch/ReMind1M
+modality: video
+tasks:
+  - image-to-video
+  - world-modeling
+  - camera-controlled-video-generation
+  - temporal-dynamics-generation
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  A public 1,419,331-row dynamic-memory video release containing
+  physics-filtered Helios generations, pair-fixed InSpatio camera augmentations,
+  and Kubric camera renders with production motion-focused captions.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/AppliedIntuitionResearch/ReMind1M
+  requires_account: false
+  notes: Hugging Face hosts 557 GB of WebDataset tar shards plus three authoritative compressed JSONL manifests; pin revision 0619eaa6455b5bdf5b6f270929fd8ab75028dd3d.
+scale:
+  samples: 1419331
+  source_items: 1419331
+  hours: null
+  approximate: false
+  notes: 1,027,329 Helios rows, 265,945 pair-fixed InSpatio rows, and 126,057 Kubric rows; use the manifests rather than inferring counts from shard numbers.
+annotations:
+  types:
+    - caption-v2
+    - temporal-dynamics
+    - physics-plausibility
+    - moving-object-count
+    - camera-trajectory
+    - source-family
+    - caption-audit
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: CC-BY-NC-4.0
+  media: Underlying generated and simulated videos retain source and component terms
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: ReMind-authored captions, audit metadata, and manifest arrangement are CC-BY-NC-4.0; the license explicitly does not relicense underlying videos or third-party metadata.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - text-media-alignment
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - Generated physics and model-written captions can contain implausible motion, hallucinations, or systematic generator bias despite automated filtering.
+    - The InSpatio release excludes depth videos and raw pipeline metadata, limiting independent geometry audits.
+    - Only the corrected pair-fixed manifest should be used; older manifests contain an 8-by-32 shard-export transpose that can mismatch identity, caption, and trajectory.
+    - This released subset does not include the full real-video mixture used by ReMind.
+processing:
+  recipe: Filter Helios clips for physics plausibility and sustained dynamics, pair InSpatio RGB video with corrected DA3 trajectories, remove static Kubric samples except camera tours, and scrub camera instructions from captions because control lives in pose metadata.
+  recommended_format: webdataset
+  notes: Preserve unknown manifest fields, use only train_manifest_inspatio_pairfix.jsonl.gz for InSpatio, and keep camera NPZ members paired with their MP4 identity.
+evidence:
+  homepage: https://huggingface.co/datasets/AppliedIntuitionResearch/ReMind1M
+  paper: https://arxiv.org/abs/2605.25333
+  used_by:
+    - ReMind 5B
+status: verified
+last_verified: "2026-07-31"
