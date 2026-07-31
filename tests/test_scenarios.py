@@ -17,7 +17,6 @@ class ScenarioTaxonomyTests(unittest.TestCase):
             "digital-human",
             "video-localization",
             "virtual-try-on",
-            "physical-ai",
         }
         self.assertEqual({item["id"] for item in payload["scenarios"]}, expected)
 

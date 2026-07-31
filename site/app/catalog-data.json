@@ -39,12 +39,6 @@
       "label": "试穿与服装生成",
       "short_label": "Try-On",
       "description": "人物与服装条件生成、尺寸感知试穿、多服装组合和服装迁移。"
-    },
-    {
-      "id": "physical-ai",
-      "label": "Physical AI 与世界模型",
-      "short_label": "Physical AI",
-      "description": "具身交互、动作条件视频、可控世界模型，以及支撑这些能力的机器人与模拟器视频数据。"
     }
   ],
   "source_platforms": [
@@ -783,9 +777,7 @@
       "status": "partial",
       "last_verified": "2026-07-31",
       "source_path": "catalog/video/shadow-library.yaml",
-      "scenario_ids": [
-        "physical-ai"
-      ],
+      "scenario_ids": [],
       "scale_label": "unknown",
       "monitoring": {
         "priority": "critical",
@@ -887,8 +879,7 @@
       "last_verified": "2026-07-31",
       "source_path": "catalog/video/remind1m.yaml",
       "scenario_ids": [
-        "video-generation",
-        "physical-ai"
+        "video-generation"
       ],
       "scale_label": "1.4M",
       "monitoring": {
@@ -1840,8 +1831,7 @@
       "last_verified": "2026-07-27",
       "source_path": "catalog/video/worldweaver-minecraft-126h.yaml",
       "scenario_ids": [
-        "video-generation",
-        "physical-ai"
+        "video-generation"
       ],
       "scale_label": "unknown",
       "monitoring": {
@@ -4051,8 +4041,7 @@
       "last_verified": "2026-07-31",
       "source_path": "catalog/video/remind-pexels-dynamic-clips.yaml",
       "scenario_ids": [
-        "video-generation",
-        "physical-ai"
+        "video-generation"
       ],
       "scale_label": "unknown",
       "monitoring": {
@@ -4235,8 +4224,7 @@
       "last_verified": "2026-07-27",
       "source_path": "catalog/video/rovid-x.yaml",
       "scenario_ids": [
-        "video-generation",
-        "physical-ai"
+        "video-generation"
       ],
       "scale_label": "~4M",
       "monitoring": {
@@ -5321,8 +5309,7 @@
       "last_verified": "2026-07-27",
       "source_path": "catalog/video/solaris-training-dataset.yaml",
       "scenario_ids": [
-        "video-generation",
-        "physical-ai"
+        "video-generation"
       ],
       "scale_label": "12.6M",
       "monitoring": {
@@ -5421,8 +5408,7 @@
       "last_verified": "2026-07-27",
       "source_path": "catalog/evaluation/solaris-eval-datasets.yaml",
       "scenario_ids": [
-        "video-generation",
-        "physical-ai"
+        "video-generation"
       ],
       "scale_label": "1.3K",
       "monitoring": {
@@ -6681,9 +6667,7 @@
       "status": "partial",
       "last_verified": "2026-07-27",
       "source_path": "catalog/video/spatialvid.yaml",
-      "scenario_ids": [
-        "physical-ai"
-      ],
+      "scenario_ids": [],
       "scale_label": "~2.7M",
       "monitoring": {
         "priority": "critical",
@@ -9683,9 +9667,7 @@
       "status": "verified",
       "last_verified": "2026-07-31",
       "source_path": "catalog/video/dl3dv-10k.yaml",
-      "scenario_ids": [
-        "physical-ai"
-      ],
+      "scenario_ids": [],
       "scale_label": "10.5K",
       "monitoring": {
         "priority": "high",
@@ -9988,9 +9970,7 @@
       "status": "verified",
       "last_verified": "2026-07-31",
       "source_path": "catalog/video/open-x-embodiment.yaml",
-      "scenario_ids": [
-        "physical-ai"
-      ],
+      "scenario_ids": [],
       "scale_label": "unknown",
       "monitoring": {
         "priority": "high",
@@ -11306,8 +11286,7 @@
       "last_verified": "2026-07-27",
       "source_path": "catalog/video/vpt-contractor-demonstrations.yaml",
       "scenario_ids": [
-        "video-generation",
-        "physical-ai"
+        "video-generation"
       ],
       "scale_label": "unknown",
       "monitoring": {
@@ -14080,8 +14059,7 @@
       "last_verified": "2026-07-31",
       "source_path": "models/video/shadowdancer.yaml",
       "scenario_ids": [
-        "video-generation",
-        "physical-ai"
+        "video-generation"
       ],
       "strategy_profile": {
         "stage_names": [
@@ -14375,8 +14353,7 @@
       "last_verified": "2026-07-31",
       "source_path": "models/video/remind.yaml",
       "scenario_ids": [
-        "video-generation",
-        "physical-ai"
+        "video-generation"
       ],
       "strategy_profile": {
         "stage_names": [
@@ -15442,8 +15419,7 @@
       "last_verified": "2026-07-27",
       "source_path": "models/video/worldweaver.yaml",
       "scenario_ids": [
-        "video-generation",
-        "physical-ai"
+        "video-generation"
       ],
       "strategy_profile": {
         "stage_names": [
@@ -18970,8 +18946,7 @@
       "last_verified": "2026-07-27",
       "source_path": "models/image/cosmos3-super-text2image.yaml",
       "scenario_ids": [
-        "image-generation",
-        "physical-ai"
+        "image-generation"
       ],
       "strategy_profile": {
         "stage_names": [
@@ -22329,8 +22304,7 @@
       "last_verified": "2026-07-27",
       "source_path": "models/video/solaris.yaml",
       "scenario_ids": [
-        "video-generation",
-        "physical-ai"
+        "video-generation"
       ],
       "strategy_profile": {
         "stage_names": [
@@ -27195,8 +27169,7 @@
       "last_verified": "2026-07-27",
       "source_path": "models/multimodal/emu3-5.yaml",
       "scenario_ids": [
-        "image-generation",
-        "physical-ai"
+        "image-generation"
       ],
       "strategy_profile": {
         "stage_names": [

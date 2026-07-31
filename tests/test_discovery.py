@@ -638,14 +638,14 @@ class DiscoveryTests(unittest.TestCase):
                 "model-release-feeds",
                 "industry-model-rankings",
                 "source-platform-updates",
-                "unified-multimodal-and-physical-ai",
             }.issubset(track_ids)
         )
+        self.assertNotIn("unified-multimodal-and-physical-ai", track_ids)
         self.assertNotIn("unified-and-physical-ai", track_ids)
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
-        self.assertEqual(sum(source.track_id == "model-release-feeds" for source in sources), 20)
+        self.assertEqual(sum(source.track_id == "model-release-feeds" for source in sources), 17)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
-        self.assertEqual(len(sources), 354)
+        self.assertEqual(len(sources), 347)
         self.assertIn(
             "https://huggingface.co/api/models?pipeline_tag=text-to-video&sort=createdAt&direction=-1&limit=50&full=true",
             urls,

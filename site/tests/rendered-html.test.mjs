@@ -305,7 +305,6 @@ test("uses generated catalog data and removes starter preview assets", async () 
       "digital-human",
       "video-localization",
       "virtual-try-on",
-      "physical-ai",
     ],
   );
   const newestDatasetDate = parsedCatalog.datasets[0].released_at;

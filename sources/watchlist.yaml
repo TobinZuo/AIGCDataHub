@@ -13,7 +13,6 @@ discovery:
     - video-and-audio-generation
     - digital-human-and-localization
     - virtual-try-on-and-commerce
-    - unified-multimodal-and-physical-ai
     - datasets
     - dataset-release-feeds
     - model-release-feeds
@@ -145,20 +144,6 @@ tracks:
       - https://hunorlaczko.github.io/MV-Fashion/
       - https://oxygenvision.github.io/Oxygen-TryOn/
 
-  - id: unified-multimodal-and-physical-ai
-    topics:
-      - unified-multimodal-generation
-      - world-model
-      - action-conditioned-video
-      - embodied-ai
-      - robot-video
-      - simulator-data
-    official_sources:
-      - https://research.nvidia.com/labs/dir/
-      - https://www.microsoft.com/en-us/research/collaboration/physical-ai-research/
-      - https://github.com/Physical-Intelligence
-      - https://deepmind.google/research/
-
   - id: datasets
     topics:
       - image-text-dataset
@@ -259,9 +244,6 @@ tracks:
       - "https://huggingface.co/api/models?search=video-translation&sort=createdAt&direction=-1&limit=50&full=true"
       - "https://huggingface.co/api/models?search=virtual-try-on&sort=createdAt&direction=-1&limit=50&full=true"
       - "https://huggingface.co/api/models?search=audio-driven-animation&sort=createdAt&direction=-1&limit=50&full=true"
-      - "https://huggingface.co/api/models?search=world-model&sort=createdAt&direction=-1&limit=50&full=true"
-      - "https://huggingface.co/api/models?search=physical-ai&sort=createdAt&direction=-1&limit=50&full=true"
-      - "https://huggingface.co/api/models?search=robot-video&sort=createdAt&direction=-1&limit=50&full=true"
       - "https://huggingface.co/api/models?search=video-to-audio&sort=createdAt&direction=-1&limit=50&full=true"
       - "https://huggingface.co/api/models?search=joint-audio-video&sort=createdAt&direction=-1&limit=50&full=true"
 

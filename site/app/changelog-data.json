@@ -196,8 +196,8 @@
             "en": "Monitoring"
           },
           "text": {
-            "zh": "恢复统一多模态与 Physical AI 主动监控，补充三类 Hugging Face 世界模型/Physical AI/机器人视频 feed，并为五个新模型和十三张新数据卡建立一手探针；Sana Video 2 的限流探针改用稳定 arXiv 页面。",
-            "en": "Restored active unified-multimodal and Physical AI monitoring, added three Hugging Face feeds for world models, Physical AI, and robot video, and created primary-source probes for all five models and thirteen datasets. The rate-limited Sana Video 2 probe now uses a stable arXiv page."
+            "zh": "为五个新模型和十三张新数据卡建立一手探针，Sana Video 2 的限流探针改用稳定 arXiv 页面；按当前范围移除 Physical AI 场景分类及世界模型/机器人视频主动发现入口，目录继续聚焦生成式媒体应用。",
+            "en": "Created primary-source probes for all five models and thirteen datasets, and replaced Sana Video 2's rate-limited probe with a stable arXiv page. The Physical AI category and the world-model/robot-video discovery feeds were removed so the catalog remains focused on generative-media applications."
           },
           "links": [
             {
