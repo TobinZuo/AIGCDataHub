@@ -67,5 +67,7 @@ evidence:
     - Omni2Sound
     - MOVA-720p
     - HunyuanVideo-Foley
+    - InsAVE-80K
+    - AvED-Bench
 status: partial
 last_verified: "2026-07-26"

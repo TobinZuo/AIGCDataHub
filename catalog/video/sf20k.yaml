@@ -1,0 +1,67 @@
+id: sf20k
+name: Short-Films-20K
+organization: University of Central Florida and University of Maryland
+released_at: "2024-06-17"
+release_date_source: https://huggingface.co/datasets/rghermi/sf20k
+modality: video
+tasks:
+  - long-video-understanding
+  - video-question-answering
+  - video-text-pretraining
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A metadata release covering 20,143 amateur short films from YouTube and
+  Vimeo, totaling 3,582 hours, with 189,965 natural-language question-answer
+  rows tied to source-film URLs.
+access:
+  status: metadata-only
+  type: urls
+  url: https://huggingface.co/datasets/rghermi/sf20k
+  requires_account: false
+  notes: Hugging Face hosts CSV metadata and source URLs rather than a durable archive of the YouTube and Vimeo media; retrieval and availability must be checked per item.
+scale:
+  samples: 20143
+  source_items: 20143
+  hours: 3582
+  approximate: false
+  notes: The official project reports 20,143 films and 3,582 hours; the Hugging Face table contains 189,965 question-answer rows, which are annotations rather than extra films.
+annotations:
+  types:
+    - question-answer
+    - source-url
+    - film-metadata
+    - temporal-reasoning
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-NC-SA-4.0
+  media: Copyright remains with original YouTube and Vimeo owners
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The dataset card's noncommercial share-alike license covers the released metadata; source-video rights remain layered and must be reviewed independently.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Source URLs can disappear, change, or become geographically restricted after the metadata snapshot.
+    - Amateur-film and platform selection biases affect genre, production quality, language, and demographic coverage.
+    - Question-answer generation and filtering can retain factual or temporal errors.
+processing:
+  recipe: Collect amateur short-film URLs, retain long-form narrative videos, and create question-answer annotations for temporal and narrative understanding.
+  recommended_format: csv
+  notes: Preserve the original URL, platform ID, retrieval timestamp, availability result, annotation row ID, and split; do not treat metadata licensing as a media redistribution grant.
+evidence:
+  homepage: https://shortfilmdataset.github.io/
+  paper: https://arxiv.org/abs/2406.10221
+  used_by:
+    - InsAVE-80K
+status: partial
+last_verified: "2026-08-01"

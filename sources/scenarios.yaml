@@ -27,11 +27,13 @@ scenarios:
     description: 文生视频、图生视频、参考视频生成、联合音视频生成及视频编辑。
     tasks:
       - audio-to-video
+      - audio-video-editing
       - audio-video-generation
       - image-to-video
       - reference-to-video
       - text-to-video
       - video-editing
+      - video-extension
       - video-text-pretraining
       - video-to-video
 

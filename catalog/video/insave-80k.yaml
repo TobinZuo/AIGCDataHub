@@ -1,0 +1,90 @@
+id: insave-80k
+name: InsAVE-80K
+organization: Nanyang Technological University and MMLab, The Chinese University of Hong Kong
+released_at: "2026-07-26"
+release_date_source: https://huggingface.co/datasets/suimu/InsAVE-80K
+modality: video
+tasks:
+  - audio-video-editing
+  - video-editing
+  - audio-editing
+stages:
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A paired audiovisual editing corpus with 87,074 released training pairs and
+  1,000 evaluation pairs spanning object insertion and removal, identity and
+  voice cloning, and general joint audio-video edits.
+derived_from:
+  - catalog_id: moviebench
+    relationship: source-component
+    contribution: source movie clips
+    notes: The paper names MovieBench among the public datasets used to source original audiovisual clips; retained counts are not disclosed.
+  - catalog_id: condensed-movies
+    relationship: source-component
+    contribution: source movie clips
+    notes: The paper names Condensed Movies among the public datasets used to source original audiovisual clips; retained counts are not disclosed.
+  - catalog_id: sf20k
+    relationship: source-component
+    contribution: source short-film clips
+    notes: The paper names Short-Films-20K among the public datasets used to source original audiovisual clips; retained counts are not disclosed.
+  - catalog_id: vggsound
+    relationship: source-component
+    contribution: source sound-event videos
+    notes: The paper names VGGSound among the public datasets used to source original audiovisual clips; retained counts are not disclosed.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/suimu/InsAVE-80K
+  requires_account: false
+  notes: Hugging Face hosts eleven WebDataset tar shards totaling about 139 GB; pin revision 8ba8cca1917186fe21f610954af6146def52b259 and preserve the released train and eval directories.
+scale:
+  samples: 88074
+  source_items: 176148
+  hours: null
+  approximate: false
+  notes: Current card counts are 87,074 train plus 1,000 eval pairs and 176,148 video files; the paper's original 79K-train figure predates this larger release.
+annotations:
+  types:
+    - source-video
+    - target-video
+    - forward-instruction
+    - reverse-instruction
+    - edit-category
+    - audiovisual-quality-score
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: MIT
+  media: Layered upstream and original-media rights are not relicensed by the dataset card
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The Hugging Face card declares MIT but explicitly makes users responsible for permissions, licenses, and copyrights attached to underlying media.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - safety
+    - provenance
+  known_limitations:
+    - Synthetic video and audio targets can retain artifacts, identity errors, hallucinated content, or imperfect audiovisual synchronization after automated filtering.
+    - Public-web and upstream-dataset media have layered rights and incomplete retained-item provenance.
+    - The current release has 8,074 more training pairs than the paper's 79K figure without a published version-by-version reconciliation.
+    - Automatic quality judges and human verification of only the evaluation split do not eliminate model-specific selection bias.
+processing:
+  recipe: Segment source media, filter motion and audiovisual quality, categorize content, localize speakers and objects, generate masks and reversible instructions, synthesize or separate audio, produce edited targets, and retain pairs passing five multimodal quality criteria.
+  recommended_format: webdataset
+  notes: Preserve pair direction, category, original source identity, synthesis lineage, quality judgments, release split, shard hash, and upstream rights metadata.
+evidence:
+  homepage: https://huggingface.co/datasets/suimu/InsAVE-80K
+  paper: https://arxiv.org/abs/2605.18467
+  used_by:
+    - InstructAV2AV
+status: partial
+last_verified: "2026-08-01"

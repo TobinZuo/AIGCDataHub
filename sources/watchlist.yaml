@@ -97,6 +97,8 @@ tracks:
       - https://openai.com/sitemap.xml/research/
       - https://openai.com/sitemap.xml/release/
       - https://github.com/omni2sound/Omni2Sound
+      - https://hjzheng.net/projects/InstructAV2AV/
+      - https://seed.bytedance.com/en/seedance2_5
       - https://x.ai/news
       - https://runwayml.com/news
       - https://ir.kuaishou.com/news-events/company-news/
@@ -800,6 +802,21 @@ tracks:
       - url: https://arxiv.org/html/2605.25333v1
         catalog_id: remind-pexels-dynamic-clips
         priority: critical
+      - url: "https://huggingface.co/api/datasets/suimu/InsAVE-80K?expand=lastModified&expand=sha"
+        catalog_id: insave-80k
+        priority: critical
+      - url: "https://huggingface.co/api/datasets/weijiawu/MovieBench?expand=lastModified&expand=sha"
+        catalog_id: moviebench
+        priority: high
+      - url: https://github.com/m-bain/CondensedMovies/commits/master.atom
+        catalog_id: condensed-movies
+        priority: high
+      - url: "https://huggingface.co/api/datasets/rghermi/sf20k?expand=lastModified&expand=sha"
+        catalog_id: sf20k
+        priority: high
+      - url: https://genjib.github.io/project_page/AVED/assets/avedit_dataset_v3.csv
+        catalog_id: aved-bench
+        priority: critical
 
   - id: important-model-updates
     topics:
@@ -1104,6 +1121,12 @@ tracks:
         priority: critical
       - url: "https://huggingface.co/api/models/AppliedIntuitionResearch/ReMind?expand=lastModified&expand=sha"
         model_id: remind
+        priority: critical
+      - url: "https://huggingface.co/api/models/suimu/InstructAV2AV?expand=lastModified&expand=sha"
+        model_id: instructav2av
+        priority: critical
+      - url: https://seed.bytedance.com/en/seedance2_5
+        model_id: seedance-2-5
         priority: critical
 
 acceptance_rules:

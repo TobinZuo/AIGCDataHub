@@ -1,0 +1,70 @@
+id: condensed-movies
+name: Condensed Movies Dataset
+organization: Visual Geometry Group, University of Oxford
+released_at: "2020-05-08"
+release_date_source: https://arxiv.org/abs/2005.04208
+modality: video
+tasks:
+  - movie-captioning
+  - character-identification
+  - audio-visual-learning
+  - video-text-pretraining
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A movie-derived audiovisual corpus with more than 30,000 captioned clips from
+  more than 3,000 films, over 1,000 hours of video, 400,000 face tracks, and
+  8,000 recurring character identities.
+access:
+  status: metadata-only
+  type: urls
+  url: https://www.robots.ox.ac.uk/~vgg/data/condensed-movies/
+  requires_account: false
+  notes: The official page and repository provide annotations and download tooling, but the original video links are no longer distributed and surviving third-party availability varies.
+scale:
+  samples: 30000
+  source_items: 3000
+  hours: 1000
+  approximate: true
+  notes: Official headline figures are 30K+ captioned clips from 3K+ movies, 1K+ hours, 400K face tracks, and 8K characters.
+annotations:
+  types:
+    - clip-caption
+    - character-identity
+    - face-track
+    - subtitle
+    - movie-id
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-4.0
+  media: Copyright remains with original movie and video owners
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The official site applies CC BY 4.0 to the dataset release while retaining original-owner copyright for the underlying video material.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Source-video links decay and the official site no longer supplies the original media URLs.
+    - Subtitle-derived captions can omit visual information or misalign with clip boundaries.
+    - Commercial feature-film content has layered copyright that is not resolved by the annotation license.
+processing:
+  recipe: Align movie clips with textual descriptions and subtitles, track faces, cluster recurring characters, and package clip-level metadata and annotations.
+  recommended_format: native
+  notes: Preserve original movie and clip identifiers, face-track lineage, caption source, retrieval timestamp, availability outcome, and rights metadata.
+evidence:
+  homepage: https://www.robots.ox.ac.uk/~vgg/data/condensed-movies/
+  paper: https://arxiv.org/abs/2005.04208
+  used_by:
+    - InsAVE-80K
+status: partial
+last_verified: "2026-08-01"

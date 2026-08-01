@@ -47,6 +47,199 @@
   ],
   "entries": [
     {
+      "date": "2026-08-01",
+      "title": {
+        "zh": "2026-08-01 更新",
+        "en": "2026-08-01 Update"
+      },
+      "summary": [
+        {
+          "id": "models",
+          "label": {
+            "zh": "模型",
+            "en": "Models"
+          },
+          "text": {
+            "zh": "新增 Seedance 2.5 与 InstructAV2AV 两张模型卡；前者是最长 30 秒、支持参考控制和音视频联合编辑的产品模型，后者是已开放 Apache-2.0 权重的指令式音视频编辑模型。同步更新 Grok Imagine Video 1.5 的文生视频、图像/预设声线参考能力。",
+            "en": "Added Seedance 2.5 and InstructAV2AV. Seedance 2.5 is a product-only joint audiovisual generation and editing model supporting up to 30 seconds; InstructAV2AV releases Apache-2.0 weights for instruction-driven audiovisual editing. Grok Imagine Video 1.5 now records text, image-reference, and preset-voice-reference generation."
+          },
+          "links": [
+            {
+              "href": "/#model-seedance-2-5",
+              "label": {
+                "zh": "Seedance 2.5",
+                "en": "Seedance 2.5"
+              }
+            },
+            {
+              "href": "/#model-instructav2av",
+              "label": {
+                "zh": "InstructAV2AV",
+                "en": "InstructAV2AV"
+              }
+            },
+            {
+              "href": "/#model-grok-imagine-video-1-5",
+              "label": {
+                "zh": "Grok Imagine Video 1.5",
+                "en": "Grok Imagine Video 1.5"
+              }
+            }
+          ]
+        },
+        {
+          "id": "datasets",
+          "label": {
+            "zh": "数据集",
+            "en": "Datasets"
+          },
+          "text": {
+            "zh": "新增 InsAVE-80K、MovieBench、Condensed Movies、Short-Films-20K 与 AvED-Bench 五张数据卡；分别记录可下载的 139 GB 音视频编辑对、三项上游长视频来源和 110 条评测元数据的访问与分层权利边界。",
+            "en": "Added InsAVE-80K, MovieBench, Condensed Movies, Short-Films-20K, and AvED-Bench, covering a downloadable 139 GB audiovisual editing release, three upstream long-video sources, and 110 benchmark metadata rows with explicit layered-rights notes."
+          },
+          "links": [
+            {
+              "href": "/#dataset-insave-80k",
+              "label": {
+                "zh": "InsAVE-80K",
+                "en": "InsAVE-80K"
+              }
+            },
+            {
+              "href": "/#dataset-moviebench",
+              "label": {
+                "zh": "MovieBench",
+                "en": "MovieBench"
+              }
+            },
+            {
+              "href": "/#dataset-condensed-movies",
+              "label": {
+                "zh": "Condensed Movies",
+                "en": "Condensed Movies"
+              }
+            },
+            {
+              "href": "/#dataset-sf20k",
+              "label": {
+                "zh": "Short-Films-20K",
+                "en": "Short-Films-20K"
+              }
+            },
+            {
+              "href": "/#dataset-aved-bench",
+              "label": {
+                "zh": "AvED-Bench",
+                "en": "AvED-Bench"
+              }
+            }
+          ]
+        },
+        {
+          "id": "relations",
+          "label": {
+            "zh": "数据关系",
+            "en": "Data relations"
+          },
+          "text": {
+            "zh": "新增 InstructAV2AV→InsAVE-80K 微调关系和 InstructAV2AV→AvED-Bench 评测关系；新增 InsAVE-80K 对 MovieBench、Condensed Movies、Short-Films-20K、VGGSound 的四条 source-component lineage，以及 AvED-Bench→VGGSound 的 benchmark-derivative lineage。",
+            "en": "Added InstructAV2AV fine-tuning and evaluation edges to InsAVE-80K and AvED-Bench, four InsAVE source-component edges, and one AvED-Bench benchmark-derivative edge to VGGSound. Evaluation data remains separate from training data."
+          },
+          "links": [
+            {
+              "href": "/#lineage",
+              "label": {
+                "zh": "查看关系图谱",
+                "en": "View data lineage"
+              }
+            }
+          ]
+        },
+        {
+          "id": "rankings",
+          "label": {
+            "zh": "排行榜",
+            "en": "Rankings"
+          },
+          "text": {
+            "zh": "Artificial Analysis 图像编辑榜发生七处名次调整：MAI-Image-2.5 升至第 3、Nano Banana 2 降至第 4、Nano Banana Pro 升至第 5、Seedream 5.0 Pro 降至第 6、FLUX.2 max 升至第 13，HiDream 与 Kling Image 3.0 顺移；文生图榜 GPT Image 1.5 high 与 Nano Banana 2 互换第 5/6。没有未映射的前列模型。",
+            "en": "Artificial Analysis changed seven image-editing positions, led by MAI-Image-2.5 rising to #3 and Nano Banana 2 falling to #4; GPT Image 1.5 high and Nano Banana 2 swapped #5/#6 in text-to-image. Every ranked name remains mapped to a canonical model card."
+          },
+          "links": [
+            {
+              "href": "/#rankings",
+              "label": {
+                "zh": "查看行业排行榜",
+                "en": "View rankings"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monitoring",
+          "label": {
+            "zh": "监控",
+            "en": "Monitoring"
+          },
+          "text": {
+            "zh": "新增 Seedance 2.5、InstructAV2AV、InsAVE-80K、MovieBench、Condensed Movies、Short-Films-20K 与 AvED-Bench 的一手探针，并把 audio-video-editing、video-extension 纳入生视频场景映射；未创建 Physical AI 分类或发现入口。",
+            "en": "Added primary-source probes for both new models and all five new dataset cards, and mapped audio-video editing and video extension into the public video-generation scenario. No Physical AI category or discovery feed was introduced."
+          },
+          "links": [
+            {
+              "href": "/#sources",
+              "label": {
+                "zh": "查看来源监控",
+                "en": "View monitored sources"
+              }
+            }
+          ]
+        },
+        {
+          "id": "unknowns",
+          "label": {
+            "zh": "未披露",
+            "en": "Undisclosed"
+          },
+          "text": {
+            "zh": "Seedance 2.5 未披露架构、参数、技术报告、API、权重或任何训练数据；InstructAV2AV 未给出最终参数量、完整混合权重、逐来源留存量和继承自 Ovi 的预训练血缘；InsAVE-80K 的底层媒体权利、去重与论文 79K/公开版 87,074 训练对差异仍需逐项审计；AvED-Bench 未声明数据许可证。",
+            "en": "Seedance 2.5 publishes no architecture, parameter count, report, API, weights, or training data. InstructAV2AV omits final size, full mixture weights, retained counts, and inherited Ovi lineage. InsAVE retains layered-media, deduplication, and 79K-versus-87,074 reconciliation gaps; AvED-Bench states no dataset license."
+          },
+          "links": [
+            {
+              "href": "/#model-seedance-2-5",
+              "label": {
+                "zh": "Seedance 2.5 未知项",
+                "en": "Seedance 2.5 unknowns"
+              }
+            },
+            {
+              "href": "/#model-instructav2av",
+              "label": {
+                "zh": "InstructAV2AV 未知项",
+                "en": "InstructAV2AV unknowns"
+              }
+            },
+            {
+              "href": "/#dataset-insave-80k",
+              "label": {
+                "zh": "InsAVE-80K 权利边界",
+                "en": "InsAVE-80K rights"
+              }
+            },
+            {
+              "href": "/#dataset-aved-bench",
+              "label": {
+                "zh": "AvED-Bench 权利边界",
+                "en": "AvED-Bench rights"
+              }
+            }
+          ]
+        }
+      ],
+      "source_path": "updates/2026-08-01.md"
+    },
+    {
       "date": "2026-07-31",
       "title": {
         "zh": "2026-07-31 更新",

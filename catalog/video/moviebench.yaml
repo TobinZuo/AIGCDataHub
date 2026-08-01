@@ -1,0 +1,69 @@
+id: moviebench
+name: MovieBench
+organization: Show Lab, National University of Singapore
+released_at: "2024-12-16"
+release_date_source: https://github.com/showlab/MovieBench
+modality: video
+tasks:
+  - movie-understanding
+  - video-captioning
+  - character-reasoning
+  - long-video-understanding
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A long-form movie understanding resource built on the LSMDC and MPII Movie
+  Description collection, with shot descriptions, scene structure, character
+  banks, and question-answer annotations for 160 released movies.
+access:
+  status: gated
+  type: request
+  url: https://github.com/showlab/MovieBench
+  requires_account: true
+  notes: Annotations are downloadable from the official Hugging Face repository, but source movies require separate MPII-MD approval and access credentials; the GitHub README documents the request path.
+scale:
+  samples: 160
+  source_items: 160
+  hours: null
+  approximate: false
+  notes: The released annotation filenames and repository documentation cover 160 movies; annotation rows vary by task and should not be treated as additional source films.
+annotations:
+  types:
+    - shot-description
+    - scene-boundary
+    - character-bank
+    - question-answer
+    - subtitle
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: MPII Movie Description and original film copyright terms
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Public annotation hosting does not override the separate approval requirement or the copyrights attached to source movies.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Access to source movies depends on a separate legacy approval process and may not be reproducible from annotations alone.
+    - Model-generated descriptions and questions can contain character, event, or temporal errors.
+    - Feature films, English-language annotations, and a 160-movie release limit cultural and genre coverage.
+processing:
+  recipe: Split approved MPII-MD movies into shots and scenes, create shot descriptions and character banks, and generate task-specific long-movie annotations.
+  recommended_format: native
+  notes: Keep movie IDs aligned with the approved media copy, preserve annotation version and generation provenance, and do not redistribute source films with the annotation bundle.
+evidence:
+  homepage: https://github.com/showlab/MovieBench
+  paper: https://arxiv.org/abs/2411.15262
+  used_by:
+    - InsAVE-80K
+status: partial
+last_verified: "2026-08-01"

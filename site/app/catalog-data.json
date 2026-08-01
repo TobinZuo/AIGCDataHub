@@ -8,7 +8,7 @@
     "sources/watchlist.yaml",
     "sources/discovery-state.json"
   ],
-  "last_verified": "2026-07-31",
+  "last_verified": "2026-08-01",
   "scenarios": [
     {
       "id": "image-generation",
@@ -983,6 +983,137 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "unigen-ar"
+      ]
+    },
+    {
+      "id": "insave-80k",
+      "name": "InsAVE-80K",
+      "organization": "Nanyang Technological University and MMLab, The Chinese University of Hong Kong",
+      "released_at": "2026-07-26",
+      "release_date_source": "https://huggingface.co/datasets/suimu/InsAVE-80K",
+      "modality": "video",
+      "tasks": [
+        "audio-video-editing",
+        "video-editing",
+        "audio-editing"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A paired audiovisual editing corpus with 87,074 released training pairs and 1,000 evaluation pairs spanning object insertion and removal, identity and voice cloning, and general joint audio-video edits.",
+      "derived_from": [
+        {
+          "catalog_id": "moviebench",
+          "relationship": "source-component",
+          "contribution": "source movie clips",
+          "notes": "The paper names MovieBench among the public datasets used to source original audiovisual clips; retained counts are not disclosed."
+        },
+        {
+          "catalog_id": "condensed-movies",
+          "relationship": "source-component",
+          "contribution": "source movie clips",
+          "notes": "The paper names Condensed Movies among the public datasets used to source original audiovisual clips; retained counts are not disclosed."
+        },
+        {
+          "catalog_id": "sf20k",
+          "relationship": "source-component",
+          "contribution": "source short-film clips",
+          "notes": "The paper names Short-Films-20K among the public datasets used to source original audiovisual clips; retained counts are not disclosed."
+        },
+        {
+          "catalog_id": "vggsound",
+          "relationship": "source-component",
+          "contribution": "source sound-event videos",
+          "notes": "The paper names VGGSound among the public datasets used to source original audiovisual clips; retained counts are not disclosed."
+        }
+      ],
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/suimu/InsAVE-80K",
+        "requires_account": false,
+        "notes": "Hugging Face hosts eleven WebDataset tar shards totaling about 139 GB; pin revision 8ba8cca1917186fe21f610954af6146def52b259 and preserve the released train and eval directories."
+      },
+      "scale": {
+        "samples": 88074,
+        "source_items": 176148,
+        "hours": null,
+        "approximate": false,
+        "notes": "Current card counts are 87,074 train plus 1,000 eval pairs and 176,148 video files; the paper's original 79K-train figure predates this larger release."
+      },
+      "annotations": {
+        "types": [
+          "source-video",
+          "target-video",
+          "forward-instruction",
+          "reverse-instruction",
+          "edit-category",
+          "audiovisual-quality-score"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "MIT",
+        "media": "Layered upstream and original-media rights are not relicensed by the dataset card",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The Hugging Face card declares MIT but explicitly makes users responsible for permissions, licenses, and copyrights attached to underlying media."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "safety",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Synthetic video and audio targets can retain artifacts, identity errors, hallucinated content, or imperfect audiovisual synchronization after automated filtering.",
+          "Public-web and upstream-dataset media have layered rights and incomplete retained-item provenance.",
+          "The current release has 8,074 more training pairs than the paper's 79K figure without a published version-by-version reconciliation.",
+          "Automatic quality judges and human verification of only the evaluation split do not eliminate model-specific selection bias."
+        ]
+      },
+      "processing": {
+        "recipe": "Segment source media, filter motion and audiovisual quality, categorize content, localize speakers and objects, generate masks and reversible instructions, synthesize or separate audio, produce edited targets, and retain pairs passing five multimodal quality criteria.",
+        "recommended_format": "webdataset",
+        "notes": "Preserve pair direction, category, original source identity, synthesis lineage, quality judgments, release split, shard hash, and upstream rights metadata."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/suimu/InsAVE-80K",
+        "paper": "https://arxiv.org/abs/2605.18467",
+        "used_by": [
+          "InstructAV2AV"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-01",
+      "source_path": "catalog/video/insave-80k.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "88.1K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/suimu/InsAVE-80K?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [
+        "moviebench",
+        "condensed-movies",
+        "sf20k",
+        "vggsound"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "instructav2av"
       ]
     },
     {
@@ -7490,6 +7621,111 @@
       ]
     },
     {
+      "id": "aved-bench",
+      "name": "AvED-Bench",
+      "organization": "University of North Carolina at Chapel Hill and Microsoft",
+      "released_at": "2025-03-26",
+      "release_date_source": "https://arxiv.org/abs/2503.20782",
+      "modality": "evaluation",
+      "tasks": [
+        "audio-video-editing",
+        "audio-visual-alignment"
+      ],
+      "stages": [
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A zero-shot joint audio-video editing benchmark with 110 ten-second source videos across 11 VGGSound categories and paired source-to-target editing prompts for synchronized auditory and visual transformations.",
+      "derived_from": [
+        {
+          "catalog_id": "vggsound",
+          "relationship": "benchmark-derivative",
+          "contribution": "110 source videos across 11 categories",
+          "notes": "The paper and official repository explicitly derive benchmark categories and source clips from VGGSound and warn VGGSound-trained models to exclude overlapping samples."
+        }
+      ],
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://genjib.github.io/project_page/AVED/assets/avedit_dataset_v3.csv",
+        "requires_account": false,
+        "notes": "The official project directly serves a CSV containing clip IDs, source and target prompts, semantic categories, and VGGSound labels; it does not publish a durable bundled video archive."
+      },
+      "scale": {
+        "samples": 110,
+        "source_items": 110,
+        "hours": 0.3056,
+        "approximate": true,
+        "notes": "The paper states 110 videos of ten seconds each across 11 categories; the hour value is the arithmetic duration equivalent."
+      },
+      "annotations": {
+        "types": [
+          "source-prompt",
+          "target-prompt",
+          "source-category",
+          "target-category",
+          "vggsound-label",
+          "clip-id"
+        ],
+        "source": "human",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "VGGSound source-video and original-owner terms apply",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Neither the project page nor repository states a dataset license; public CSV access is not treated as permission to redistribute source media."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The 110-video scale and 11 source categories provide limited coverage of the broader audio-video editing space.",
+          "Source media inherits VGGSound and original-platform availability and rights constraints.",
+          "Models trained on VGGSound can overlap benchmark source clips unless the warned samples are excluded."
+        ]
+      },
+      "processing": {
+        "recipe": "Select ten-second VGGSound clips from 11 categories and author source-to-target prompts requiring coordinated visible-object and sound changes.",
+        "recommended_format": "csv",
+        "notes": "Preserve the official CSV, VGGSound label, clip ID, both prompts, retrieval date, media availability, and any overlap exclusion applied during evaluation."
+      },
+      "evidence": {
+        "homepage": "https://genjib.github.io/project_page/AVED/index.html",
+        "paper": "https://arxiv.org/abs/2503.20782",
+        "used_by": [
+          "InstructAV2AV"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-01",
+      "source_path": "catalog/evaluation/aved-bench.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~110",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://genjib.github.io/project_page/AVED/assets/avedit_dataset_v3.csv"
+      },
+      "upstream_dataset_ids": [
+        "vggsound"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "instructav2av"
+      ]
+    },
+    {
       "id": "audiocaps-2-0",
       "name": "AudioCaps 2.0",
       "organization": "Seoul National University",
@@ -8061,6 +8297,100 @@
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [
         "videocof-50k"
+      ],
+      "linked_model_ids": []
+    },
+    {
+      "id": "moviebench",
+      "name": "MovieBench",
+      "organization": "Show Lab, National University of Singapore",
+      "released_at": "2024-12-16",
+      "release_date_source": "https://github.com/showlab/MovieBench",
+      "modality": "video",
+      "tasks": [
+        "movie-understanding",
+        "video-captioning",
+        "character-reasoning",
+        "long-video-understanding"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A long-form movie understanding resource built on the LSMDC and MPII Movie Description collection, with shot descriptions, scene structure, character banks, and question-answer annotations for 160 released movies.",
+      "access": {
+        "status": "gated",
+        "type": "request",
+        "url": "https://github.com/showlab/MovieBench",
+        "requires_account": true,
+        "notes": "Annotations are downloadable from the official Hugging Face repository, but source movies require separate MPII-MD approval and access credentials; the GitHub README documents the request path."
+      },
+      "scale": {
+        "samples": 160,
+        "source_items": 160,
+        "hours": null,
+        "approximate": false,
+        "notes": "The released annotation filenames and repository documentation cover 160 movies; annotation rows vary by task and should not be treated as additional source films."
+      },
+      "annotations": {
+        "types": [
+          "shot-description",
+          "scene-boundary",
+          "character-bank",
+          "question-answer",
+          "subtitle"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "MPII Movie Description and original film copyright terms",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Public annotation hosting does not override the separate approval requirement or the copyrights attached to source movies."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Access to source movies depends on a separate legacy approval process and may not be reproducible from annotations alone.",
+          "Model-generated descriptions and questions can contain character, event, or temporal errors.",
+          "Feature films, English-language annotations, and a 160-movie release limit cultural and genre coverage."
+        ]
+      },
+      "processing": {
+        "recipe": "Split approved MPII-MD movies into shots and scenes, create shot descriptions and character banks, and generate task-specific long-movie annotations.",
+        "recommended_format": "native",
+        "notes": "Keep movie IDs aligned with the approved media copy, preserve annotation version and generation provenance, and do not redistribute source films with the annotation bundle."
+      },
+      "evidence": {
+        "homepage": "https://github.com/showlab/MovieBench",
+        "paper": "https://arxiv.org/abs/2411.15262",
+        "used_by": [
+          "InsAVE-80K"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-01",
+      "source_path": "catalog/video/moviebench.yaml",
+      "scenario_ids": [],
+      "scale_label": "160",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/weijiawu/MovieBench?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "insave-80k"
       ],
       "linked_model_ids": []
     },
@@ -9206,6 +9536,100 @@
       "linked_model_ids": [
         "itryon"
       ]
+    },
+    {
+      "id": "sf20k",
+      "name": "Short-Films-20K",
+      "organization": "University of Central Florida and University of Maryland",
+      "released_at": "2024-06-17",
+      "release_date_source": "https://huggingface.co/datasets/rghermi/sf20k",
+      "modality": "video",
+      "tasks": [
+        "long-video-understanding",
+        "video-question-answering",
+        "video-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A metadata release covering 20,143 amateur short films from YouTube and Vimeo, totaling 3,582 hours, with 189,965 natural-language question-answer rows tied to source-film URLs.",
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://huggingface.co/datasets/rghermi/sf20k",
+        "requires_account": false,
+        "notes": "Hugging Face hosts CSV metadata and source URLs rather than a durable archive of the YouTube and Vimeo media; retrieval and availability must be checked per item."
+      },
+      "scale": {
+        "samples": 20143,
+        "source_items": 20143,
+        "hours": 3582,
+        "approximate": false,
+        "notes": "The official project reports 20,143 films and 3,582 hours; the Hugging Face table contains 189,965 question-answer rows, which are annotations rather than extra films."
+      },
+      "annotations": {
+        "types": [
+          "question-answer",
+          "source-url",
+          "film-metadata",
+          "temporal-reasoning"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-SA-4.0",
+        "media": "Copyright remains with original YouTube and Vimeo owners",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The dataset card's noncommercial share-alike license covers the released metadata; source-video rights remain layered and must be reviewed independently."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source URLs can disappear, change, or become geographically restricted after the metadata snapshot.",
+          "Amateur-film and platform selection biases affect genre, production quality, language, and demographic coverage.",
+          "Question-answer generation and filtering can retain factual or temporal errors."
+        ]
+      },
+      "processing": {
+        "recipe": "Collect amateur short-film URLs, retain long-form narrative videos, and create question-answer annotations for temporal and narrative understanding.",
+        "recommended_format": "csv",
+        "notes": "Preserve the original URL, platform ID, retrieval timestamp, availability result, annotation row ID, and split; do not treat metadata licensing as a media redistribution grant."
+      },
+      "evidence": {
+        "homepage": "https://shortfilmdataset.github.io/",
+        "paper": "https://arxiv.org/abs/2406.10221",
+        "used_by": [
+          "InsAVE-80K"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-01",
+      "source_path": "catalog/video/sf20k.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "20.1K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/rghermi/sf20k?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "insave-80k"
+      ],
+      "linked_model_ids": []
     },
     {
       "id": "infinity-instruct",
@@ -12421,6 +12845,103 @@
       ]
     },
     {
+      "id": "condensed-movies",
+      "name": "Condensed Movies Dataset",
+      "organization": "Visual Geometry Group, University of Oxford",
+      "released_at": "2020-05-08",
+      "release_date_source": "https://arxiv.org/abs/2005.04208",
+      "modality": "video",
+      "tasks": [
+        "movie-captioning",
+        "character-identification",
+        "audio-visual-learning",
+        "video-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A movie-derived audiovisual corpus with more than 30,000 captioned clips from more than 3,000 films, over 1,000 hours of video, 400,000 face tracks, and 8,000 recurring character identities.",
+      "access": {
+        "status": "metadata-only",
+        "type": "urls",
+        "url": "https://www.robots.ox.ac.uk/~vgg/data/condensed-movies/",
+        "requires_account": false,
+        "notes": "The official page and repository provide annotations and download tooling, but the original video links are no longer distributed and surviving third-party availability varies."
+      },
+      "scale": {
+        "samples": 30000,
+        "source_items": 3000,
+        "hours": 1000,
+        "approximate": true,
+        "notes": "Official headline figures are 30K+ captioned clips from 3K+ movies, 1K+ hours, 400K face tracks, and 8K characters."
+      },
+      "annotations": {
+        "types": [
+          "clip-caption",
+          "character-identity",
+          "face-track",
+          "subtitle",
+          "movie-id"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0",
+        "media": "Copyright remains with original movie and video owners",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The official site applies CC BY 4.0 to the dataset release while retaining original-owner copyright for the underlying video material."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "audio-quality",
+          "audio-visual-alignment",
+          "text-media-alignment",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source-video links decay and the official site no longer supplies the original media URLs.",
+          "Subtitle-derived captions can omit visual information or misalign with clip boundaries.",
+          "Commercial feature-film content has layered copyright that is not resolved by the annotation license."
+        ]
+      },
+      "processing": {
+        "recipe": "Align movie clips with textual descriptions and subtitles, track faces, cluster recurring characters, and package clip-level metadata and annotations.",
+        "recommended_format": "native",
+        "notes": "Preserve original movie and clip identifiers, face-track lineage, caption source, retrieval timestamp, availability outcome, and rights metadata."
+      },
+      "evidence": {
+        "homepage": "https://www.robots.ox.ac.uk/~vgg/data/condensed-movies/",
+        "paper": "https://arxiv.org/abs/2005.04208",
+        "used_by": [
+          "InsAVE-80K"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-01",
+      "source_path": "catalog/video/condensed-movies.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~30K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://github.com/m-bain/CondensedMovies/commits/master.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "insave-80k"
+      ],
+      "linked_model_ids": []
+    },
+    {
       "id": "vggsound",
       "name": "VGGSound",
       "organization": "Visual Geometry Group, University of Oxford",
@@ -12496,7 +13017,9 @@
         "used_by": [
           "Omni2Sound",
           "MOVA-720p",
-          "HunyuanVideo-Foley"
+          "HunyuanVideo-Foley",
+          "InsAVE-80K",
+          "AvED-Bench"
         ]
       },
       "status": "partial",
@@ -12510,8 +13033,10 @@
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [
+        "insave-80k",
         "vggsound-omni",
-        "soundatlas"
+        "soundatlas",
+        "aved-bench"
       ],
       "linked_model_ids": [
         "skyreels-v4",
@@ -13830,6 +14355,98 @@
   ],
   "models": [
     {
+      "id": "seedance-2-5",
+      "name": "Seedance 2.5",
+      "organization": "ByteDance Seed",
+      "released_at": "2026-07-31",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "reference-to-video",
+        "video-editing",
+        "video-extension",
+        "audio-video-generation"
+      ],
+      "access": {
+        "status": "product-only",
+        "license": "Proprietary product terms",
+        "release_url": "https://seed.bytedance.com/en/seedance2_5",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Undisclosed joint audio-video generation and editing architecture",
+        "parameters": null,
+        "notes": "The official page describes precise reference control, synchronized audio-video output, and up-to-30-second generation, but publishes no architecture or parameter count."
+      },
+      "data": {
+        "disclosure_level": "undisclosed",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "audio",
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [],
+            "scale_disclosed": false,
+            "strategy": "The official product page documents generation, reference control, extension, and editing behavior without identifying any training corpus or construction stage."
+          }
+        ],
+        "strategy_summary": [
+          "Keep capability claims separate from data provenance because ByteDance has not disclosed Seedance 2.5 training sources, mixtures, or curation methods."
+        ],
+        "unknowns": [
+          "All training dataset identities, source rights, sizes, sampling mixtures, captions, filtering, deduplication, safety review, and post-training data.",
+          "Architecture, parameter count, optimizer recipe, technical report, model weights, model license, and a public API endpoint.",
+          "Whether the public Dreamina product checkpoint exactly matches every capability described on the research page."
+        ]
+      },
+      "evidence": {
+        "release": "https://seed.bytedance.com/en/seedance2_5",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-08-01",
+      "source_path": "models/video/seedance-2-5.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "undisclosed"
+        ],
+        "operations": [],
+        "data_reference_count": 0,
+        "linked_dataset_count": 0,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 1,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://seed.bytedance.com/en/seedance2_5"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": []
+    },
+    {
       "id": "minimax-h3",
       "name": "MiniMax H3",
       "organization": "MiniMax",
@@ -13933,7 +14550,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 3,
-          "score": 1185,
+          "score": 1184,
           "score_label": "Elo",
           "entry_model": "MiniMax H3",
           "component_count": 1
@@ -16606,8 +17223,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 5,
-          "score": 1240,
+          "rank": 6,
+          "score": 1236,
           "score_label": "Elo",
           "entry_model": "Seedream 5.0 Pro",
           "component_count": 1
@@ -16616,7 +17233,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 8,
-          "score": 1241,
+          "score": 1240,
           "score_label": "Elo",
           "entry_model": "Seedream 5.0 Pro",
           "component_count": 1
@@ -16952,7 +17569,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1300,
+          "score": 1299,
           "score_label": "Elo",
           "entry_model": "Reve 2.1",
           "component_count": 1
@@ -17348,7 +17965,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1195,
+          "score": 1194,
           "score_label": "Elo",
           "entry_model": "Gemini Omni Flash",
           "component_count": 1
@@ -17366,7 +17983,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1121,
+          "score": 1122,
           "score_label": "Elo",
           "entry_model": "Gemini Omni Flash",
           "component_count": 1
@@ -17552,7 +18169,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 4,
-          "score": 1264,
+          "score": 1263,
           "score_label": "Elo",
           "entry_model": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
           "component_count": 1
@@ -17818,7 +18435,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1109,
+          "score": 1108,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.1",
           "component_count": 1
@@ -17827,7 +18444,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1150,
+          "score": 1151,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.1",
           "component_count": 1
@@ -17850,7 +18467,9 @@
         "audio"
       ],
       "tasks": [
+        "text-to-video",
         "image-to-video",
+        "reference-to-video",
         "video-editing",
         "audio-video-generation"
       ],
@@ -17864,7 +18483,7 @@
       "architecture": {
         "family": "Undisclosed native audiovisual generation model",
         "parameters": null,
-        "notes": "Generates video, synchronized effects, ambience, dialogue, and speech from an image; architecture and size are not published."
+        "notes": "Generates video with synchronized effects, ambience, dialogue, and speech; the reference API accepts up to seven images and, for trusted US partners, up to three preset voices, while architecture and size remain unpublished."
       },
       "data": {
         "disclosure_level": "undisclosed",
@@ -17885,7 +18504,7 @@
             ],
             "operations": [],
             "scale_disclosed": false,
-            "strategy": "xAI documents generation quality, native audio, speed, and API behavior without identifying model-development datasets."
+            "strategy": "xAI documents generation quality, native audio, speed, image and preset-voice reference control, and API behavior without identifying model-development datasets."
           }
         ],
         "strategy_summary": [
@@ -17901,7 +18520,7 @@
         "repository": null
       },
       "status": "watch",
-      "last_verified": "2026-07-30",
+      "last_verified": "2026-08-01",
       "source_path": "models/video/grok-imagine-video-1-5.yaml",
       "scenario_ids": [
         "video-generation"
@@ -17938,7 +18557,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 4,
-          "score": 1114,
+          "score": 1113,
           "score_label": "Elo",
           "entry_model": "grok-imagine-video-1.5",
           "component_count": 1
@@ -18090,7 +18709,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 7,
-          "score": 1246,
+          "score": 1245,
           "score_label": "Elo",
           "entry_model": "HiDream-O1-Image-1.5",
           "component_count": 1
@@ -18811,8 +19430,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 4,
-          "score": 1244,
+          "rank": 3,
+          "score": 1249,
           "score_label": "Elo",
           "entry_model": "MAI-Image-2.5",
           "component_count": 1
@@ -19755,6 +20374,148 @@
       "linked_dataset_ids": []
     },
     {
+      "id": "instructav2av",
+      "name": "InstructAV2AV",
+      "organization": "Nanyang Technological University and MMLab, The Chinese University of Hong Kong",
+      "released_at": "2026-05-18",
+      "modalities": [
+        "video",
+        "audio"
+      ],
+      "tasks": [
+        "video-editing",
+        "audio-video-editing"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0",
+        "release_url": "https://hjzheng.net/projects/InstructAV2AV/",
+        "weights_url": "https://huggingface.co/suimu/InstructAV2AV",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Ovi-initialized symmetric dual-stream diffusion transformer with bidirectional audio-video cross-attention",
+        "parameters": null,
+        "notes": "Uses the Wan2.2 video VAE, MMAudio audio VAE and vocoder, and T5 instruction encoder; the six released checkpoints are task variants, while an authoritative parameter count is not stated."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "InsAVE-80K",
+            "catalog_id": "insave-80k",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "87,074 released training pairs plus a separate 1,000-pair evaluation split",
+            "notes": "The paper describes 79K training pairs, while the later public release contains 87,074 training pairs; the released split counts are preserved without silently reconciling the discrepancy."
+          },
+          {
+            "name": "AvED-Bench",
+            "catalog_id": "aved-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "110 ten-second videos across 11 VGGSound categories",
+            "notes": "Used only for evaluation; it is not reported as an InstructAV2AV training source."
+          }
+        ],
+        "stages": [
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "audio",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "public-web",
+              "synthetic"
+            ],
+            "operations": [
+              "scene-segmentation",
+              "motion-filtering",
+              "aesthetic-filtering",
+              "silence-filtering",
+              "audio-quality-filtering",
+              "content-categorization",
+              "speaker-filtering",
+              "mask-generation",
+              "instruction-generation",
+              "audio-separation",
+              "audio-synthesis",
+              "video-inpainting",
+              "multimodal-quality-filtering"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train video and audio branches separately for 320K and 960K steps, then jointly optimize both streams for 400K steps on InsAVE pairs with flow-matching losses weighted 0.85 for video and 0.15 for audio."
+          }
+        ],
+        "strategy_summary": [
+          "Build reversible instruction pairs for removal, insertion, cloning, identity transfer, voice transfer, and general editing while preserving both source and target audiovisual content.",
+          "Use source/noise concatenation, source-informed guidance, and bidirectional cross-modal attention to keep edited sound and visible events synchronized.",
+          "Apply automatic five-axis filtering for instruction fidelity, content preservation, perceptual quality, audiovisual synchronization, and safety; human volunteers verify the held-out evaluation split."
+        ],
+        "unknowns": [
+          "Final category sampling weights, exact retained counts by upstream source, and the reason the released training split grew from the paper's 79K pairs to 87,074.",
+          "Rights and retained-item provenance for publicly accessible online videos and every upstream media item.",
+          "Complete duplicate detection, train-evaluation overlap, demographic, language, privacy, and safety audits.",
+          "The inherited Ovi pretraining-data lineage is not restated for InstructAV2AV."
+        ]
+      },
+      "evidence": {
+        "release": "https://hjzheng.net/projects/InstructAV2AV/",
+        "technical_report": "https://arxiv.org/abs/2605.18467",
+        "repository": "https://github.com/suimuc/InstructAV2AV"
+      },
+      "status": "partial",
+      "last_verified": "2026-08-01",
+      "source_path": "models/video/instructav2av.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "fine-tuning"
+        ],
+        "source_types": [
+          "public-dataset",
+          "public-web",
+          "synthetic"
+        ],
+        "operations": [
+          "scene-segmentation",
+          "motion-filtering",
+          "aesthetic-filtering",
+          "silence-filtering",
+          "audio-quality-filtering",
+          "content-categorization",
+          "speaker-filtering",
+          "mask-generation",
+          "instruction-generation",
+          "audio-separation",
+          "audio-synthesis",
+          "video-inpainting",
+          "multimodal-quality-filtering"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 2,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 1,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/suimu/InstructAV2AV?expand=lastModified&expand=sha"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "insave-80k",
+        "aved-bench"
+      ]
+    },
+    {
       "id": "recraft-v4-1",
       "name": "Recraft V4.1",
       "organization": "Recraft",
@@ -19846,7 +20607,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 12,
-          "score": 1206,
+          "score": 1205,
           "score_label": "Elo",
           "entry_model": "Recraft V4.1 Utility",
           "component_count": 1
@@ -20007,8 +20768,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 13,
-          "score": 1206,
+          "rank": 14,
+          "score": 1202,
           "score_label": "Elo",
           "entry_model": "HiDream-O1-Image",
           "component_count": 1
@@ -20134,7 +20895,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 7,
-          "score": 1232,
+          "score": 1231,
           "score_label": "Elo",
           "entry_model": "grok-imagine-image-quality",
           "component_count": 1
@@ -20143,7 +20904,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 13,
-          "score": 1205,
+          "score": 1204,
           "score_label": "Elo",
           "entry_model": "grok-imagine-image-quality",
           "component_count": 1
@@ -20759,7 +21520,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 1,
-          "score": 1340,
+          "score": 1339,
           "score_label": "Elo",
           "entry_model": "GPT Image 2 (high)",
           "component_count": 1
@@ -21446,7 +22207,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 6,
-          "score": 1092,
+          "score": 1093,
           "score_label": "Elo",
           "entry_model": "Wan 2.7",
           "component_count": 1
@@ -21464,7 +22225,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 9,
-          "score": 1109,
+          "score": 1108,
           "score_label": "Elo",
           "entry_model": "Wan 2.7",
           "component_count": 1
@@ -22125,8 +22886,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 3,
-          "score": 1247,
+          "rank": 4,
+          "score": 1245,
           "score_label": "Elo",
           "entry_model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
           "component_count": 1
@@ -22134,8 +22895,8 @@
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
-          "rank": 5,
-          "score": 1264,
+          "rank": 6,
+          "score": 1262,
           "score_label": "Elo",
           "entry_model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
           "component_count": 1
@@ -22940,7 +23701,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1034,
+          "score": 1035,
           "score_label": "Elo",
           "entry_model": "Dreamina Seedance 2.0 720p",
           "component_count": 1
@@ -23540,8 +24301,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 14,
-          "score": 1205,
+          "rank": 15,
+          "score": 1202,
           "score_label": "Elo",
           "entry_model": "Kling Image 3.0",
           "component_count": 1
@@ -23568,7 +24329,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 7,
-          "score": 1114,
+          "score": 1113,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 1080p (Pro)",
           "component_count": 1
@@ -23577,7 +24338,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 10,
-          "score": 1102,
+          "score": 1101,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 720p (Standard)",
           "component_count": 1
@@ -23595,7 +24356,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 13,
-          "score": 1093,
+          "score": 1092,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 Omni 720p (Standard)",
           "component_count": 1
@@ -24031,7 +24792,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 10,
-          "score": 1079,
+          "score": 1080,
           "score_label": "Elo",
           "entry_model": "grok-imagine-video",
           "component_count": 1
@@ -24450,7 +25211,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 9,
-          "score": 1224,
+          "score": 1223,
           "score_label": "Elo",
           "entry_model": "HunyuanImage 3.0 Instruct (Fal)",
           "component_count": 1
@@ -25072,7 +25833,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 9,
-          "score": 1087,
+          "score": 1086,
           "score_label": "Elo",
           "entry_model": "Veo 3.1",
           "component_count": 1
@@ -25099,7 +25860,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 14,
-          "score": 1092,
+          "score": 1091,
           "score_label": "Elo",
           "entry_model": "Veo 3.1 Fast",
           "component_count": 1
@@ -26093,8 +26854,8 @@
         {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
-          "rank": 6,
-          "score": 1264,
+          "rank": 5,
+          "score": 1263,
           "score_label": "Elo",
           "entry_model": "GPT Image 1.5 (high)",
           "component_count": 1
@@ -26193,8 +26954,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 15,
-          "score": 1204,
+          "rank": 13,
+          "score": 1205,
           "score_label": "Elo",
           "entry_model": "FLUX.2 [max]",
           "component_count": 1
@@ -26203,7 +26964,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 15,
-          "score": 1197,
+          "score": 1196,
           "score_label": "Elo",
           "entry_model": "FLUX.2 [max]",
           "component_count": 1
@@ -26922,7 +27683,7 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 6,
+          "rank": 5,
           "score": 1239,
           "score_label": "Elo",
           "entry_model": "Nano Banana Pro (Gemini 3 Pro Image)",
@@ -26932,7 +27693,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 9,
-          "score": 1227,
+          "score": 1225,
           "score_label": "Elo",
           "entry_model": "Nano Banana Pro (Gemini 3 Pro Image)",
           "component_count": 1
@@ -29531,6 +30292,22 @@
       "reference_name": "InnoText-30K"
     },
     {
+      "model_id": "instructav2av",
+      "dataset_id": "aved-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "110 ten-second videos across 11 VGGSound categories",
+      "reference_name": "AvED-Bench"
+    },
+    {
+      "model_id": "instructav2av",
+      "dataset_id": "insave-80k",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "87,074 released training pairs plus a separate 1,000-pair evaluation split",
+      "reference_name": "InsAVE-80K"
+    },
+    {
       "model_id": "itryon",
       "dataset_id": "vivid",
       "role": "evaluation",
@@ -30324,6 +31101,13 @@
       "notes": "The paper explicitly names CO3D among the public candidate sources filtered and recaptioned for ConsIDVid."
     },
     {
+      "source_dataset_id": "condensed-movies",
+      "derived_dataset_id": "insave-80k",
+      "relationship": "source-component",
+      "contribution": "source movie clips",
+      "notes": "The paper names Condensed Movies among the public datasets used to source original audiovisual clips; retained counts are not disclosed."
+    },
+    {
       "source_dataset_id": "davis-2017",
       "derived_dataset_id": "elasticttt-video-editing",
       "relationship": "filtered-subset",
@@ -30371,6 +31155,13 @@
       "relationship": "source-component",
       "contribution": "Roughly 6.5M Internet-video self-pair frames",
       "notes": "The paper names MiraData for visual-realism self-pairs; source URL rights remain upstream-dependent."
+    },
+    {
+      "source_dataset_id": "moviebench",
+      "derived_dataset_id": "insave-80k",
+      "relationship": "source-component",
+      "contribution": "source movie clips",
+      "notes": "The paper names MovieBench among the public datasets used to source original audiovisual clips; retained counts are not disclosed."
     },
     {
       "source_dataset_id": "mvhumannet",
@@ -30455,6 +31246,27 @@
       "relationship": "transformed-derivative",
       "contribution": "Filtered source videos for the four released local-edit task archives",
       "notes": "VideoCoF-50K selects Señorita source clips, creates new synthetic edits and edit-region reasoning videos, and applies DOVER and VIE filtering rather than copying Señorita pairs unchanged."
+    },
+    {
+      "source_dataset_id": "sf20k",
+      "derived_dataset_id": "insave-80k",
+      "relationship": "source-component",
+      "contribution": "source short-film clips",
+      "notes": "The paper names Short-Films-20K among the public datasets used to source original audiovisual clips; retained counts are not disclosed."
+    },
+    {
+      "source_dataset_id": "vggsound",
+      "derived_dataset_id": "aved-bench",
+      "relationship": "benchmark-derivative",
+      "contribution": "110 source videos across 11 categories",
+      "notes": "The paper and official repository explicitly derive benchmark categories and source clips from VGGSound and warn VGGSound-trained models to exclude overlapping samples."
+    },
+    {
+      "source_dataset_id": "vggsound",
+      "derived_dataset_id": "insave-80k",
+      "relationship": "source-component",
+      "contribution": "source sound-event videos",
+      "notes": "The paper names VGGSound among the public datasets used to source original audiovisual clips; retained counts are not disclosed."
     },
     {
       "source_dataset_id": "vggsound",
@@ -32392,7 +33204,7 @@
           "model": "GPT Image 2 (high)",
           "score": 1259,
           "confidence_interval": "-7/7",
-          "samples": 16140,
+          "samples": 16344,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32414,7 +33226,7 @@
           "model": "GPT Image 1.5 (high)",
           "score": 1254,
           "confidence_interval": "-8/8",
-          "samples": 9578,
+          "samples": 9777,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32432,33 +33244,11 @@
         },
         {
           "rank": 3,
-          "creator": "Google",
-          "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-          "score": 1247,
-          "confidence_interval": "-8/8",
-          "samples": 10589,
-          "released": "Feb 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-              "model_id": "gemini-3-1-flash-image"
-            }
-          ],
-          "model_ids": [
-            "gemini-3-1-flash-image"
-          ],
-          "model_id": "gemini-3-1-flash-image"
-        },
-        {
-          "rank": 4,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5",
-          "score": 1244,
+          "score": 1249,
           "confidence_interval": "-9/9",
-          "samples": 6461,
+          "samples": 7659,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32475,34 +33265,34 @@
           "model_id": "mai-image-2-5"
         },
         {
-          "rank": 5,
-          "creator": "Bytedance",
-          "model": "Seedream 5.0 Pro",
-          "score": 1240,
-          "confidence_interval": "-12/12",
-          "samples": 2569,
-          "released": "Jul 2026",
+          "rank": 4,
+          "creator": "Google",
+          "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
+          "score": 1245,
+          "confidence_interval": "-8/8",
+          "samples": 10782,
+          "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": [],
           "components": [
             {
-              "name": "Seedream 5.0 Pro",
-              "model_id": "seedream-5-0-pro"
+              "name": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
+              "model_id": "gemini-3-1-flash-image"
             }
           ],
           "model_ids": [
-            "seedream-5-0-pro"
+            "gemini-3-1-flash-image"
           ],
-          "model_id": "seedream-5-0-pro"
+          "model_id": "gemini-3-1-flash-image"
         },
         {
-          "rank": 6,
+          "rank": 5,
           "creator": "Google",
           "model": "Nano Banana Pro (Gemini 3 Pro Image)",
           "score": 1239,
           "confidence_interval": "-8/8",
-          "samples": 8921,
+          "samples": 9114,
           "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32519,12 +33309,34 @@
           "model_id": "gemini-3-pro-image"
         },
         {
+          "rank": 6,
+          "creator": "Bytedance",
+          "model": "Seedream 5.0 Pro",
+          "score": 1236,
+          "confidence_interval": "-11/11",
+          "samples": 2681,
+          "released": "Jul 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Seedream 5.0 Pro",
+              "model_id": "seedream-5-0-pro"
+            }
+          ],
+          "model_ids": [
+            "seedream-5-0-pro"
+          ],
+          "model_id": "seedream-5-0-pro"
+        },
+        {
           "rank": 7,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image-quality",
-          "score": 1232,
+          "score": 1231,
           "confidence_interval": "-8/8",
-          "samples": 8120,
+          "samples": 8325,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32546,7 +33358,7 @@
           "model": "MAI-Image-2.5-Flash",
           "score": 1230,
           "confidence_interval": "-10/10",
-          "samples": 4171,
+          "samples": 4279,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32566,9 +33378,9 @@
           "rank": 9,
           "creator": "Tencent",
           "model": "HunyuanImage 3.0 Instruct (Fal)",
-          "score": 1224,
+          "score": 1223,
           "confidence_interval": "-8/8",
-          "samples": 8375,
+          "samples": 8440,
           "released": "Jan 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -32590,7 +33402,7 @@
           "model": "Luma UNI 1 Max",
           "score": 1221,
           "confidence_interval": "-9/9",
-          "samples": 5409,
+          "samples": 5523,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32612,7 +33424,7 @@
           "model": "Kling Image 3.0 Omni",
           "score": 1216,
           "confidence_interval": "-8/8",
-          "samples": 8206,
+          "samples": 8285,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32634,7 +33446,7 @@
           "model": "grok-imagine-image",
           "score": 1213,
           "confidence_interval": "-8/8",
-          "samples": 8590,
+          "samples": 8666,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32652,11 +33464,33 @@
         },
         {
           "rank": 13,
+          "creator": "Black Forest Labs",
+          "model": "FLUX.2 [max]",
+          "score": 1205,
+          "confidence_interval": "-8/8",
+          "samples": 8291,
+          "released": "Dec 2025",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "FLUX.2 [max]",
+              "model_id": "flux-2-max"
+            }
+          ],
+          "model_ids": [
+            "flux-2-max"
+          ],
+          "model_id": "flux-2-max"
+        },
+        {
+          "rank": 14,
           "creator": "HiDream",
           "model": "HiDream-O1-Image",
-          "score": 1206,
+          "score": 1202,
           "confidence_interval": "-9/9",
-          "samples": 5710,
+          "samples": 5798,
           "released": "May 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -32673,12 +33507,12 @@
           "model_id": "hidream-o1-image"
         },
         {
-          "rank": 14,
+          "rank": 15,
           "creator": "KlingAI",
           "model": "Kling Image 3.0",
-          "score": 1205,
+          "score": 1202,
           "confidence_interval": "-8/8",
-          "samples": 7875,
+          "samples": 7943,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32693,28 +33527,6 @@
             "kling-3"
           ],
           "model_id": "kling-3"
-        },
-        {
-          "rank": 15,
-          "creator": "Black Forest Labs",
-          "model": "FLUX.2 [max]",
-          "score": 1204,
-          "confidence_interval": "-8/8",
-          "samples": 8098,
-          "released": "Dec 2025",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "FLUX.2 [max]",
-              "model_id": "flux-2-max"
-            }
-          ],
-          "model_ids": [
-            "flux-2-max"
-          ],
-          "model_id": "flux-2-max"
         }
       ]
     },
@@ -32735,7 +33547,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1196,
           "confidence_interval": "-8/8",
-          "samples": 10149,
+          "samples": 10215,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32755,9 +33567,9 @@
           "rank": 2,
           "creator": "Google",
           "model": "Gemini Omni Flash",
-          "score": 1195,
+          "score": 1194,
           "confidence_interval": "-10/10",
-          "samples": 4517,
+          "samples": 4589,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32777,9 +33589,9 @@
           "rank": 3,
           "creator": "MiniMax",
           "model": "MiniMax H3",
-          "score": 1185,
+          "score": 1184,
           "confidence_interval": "-11/11",
-          "samples": 5008,
+          "samples": 5032,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32799,9 +33611,9 @@
           "rank": 4,
           "creator": "SpaceXAI",
           "model": "grok-imagine-video-1.5",
-          "score": 1114,
+          "score": 1113,
           "confidence_interval": "-9/9",
-          "samples": 4238,
+          "samples": 4270,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32821,9 +33633,9 @@
           "rank": 5,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.1",
-          "score": 1109,
+          "score": 1108,
           "confidence_interval": "-9/9",
-          "samples": 4911,
+          "samples": 5004,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32843,9 +33655,9 @@
           "rank": 6,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "score": 1092,
+          "score": 1093,
           "confidence_interval": "-9/9",
-          "samples": 3559,
+          "samples": 3609,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32867,7 +33679,7 @@
           "model": "HappyHorse-1.0",
           "score": 1091,
           "confidence_interval": "-8/8",
-          "samples": 6924,
+          "samples": 6952,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32889,7 +33701,7 @@
           "model": "SkyReels V4",
           "score": 1088,
           "confidence_interval": "-9/9",
-          "samples": 3891,
+          "samples": 3923,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32909,9 +33721,9 @@
           "rank": 9,
           "creator": "Google",
           "model": "Veo 3.1",
-          "score": 1087,
+          "score": 1086,
           "confidence_interval": "-8/8",
-          "samples": 7262,
+          "samples": 7290,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32931,9 +33743,9 @@
           "rank": 10,
           "creator": "SpaceXAI",
           "model": "grok-imagine-video",
-          "score": 1079,
+          "score": 1080,
           "confidence_interval": "-7/7",
-          "samples": 9714,
+          "samples": 9809,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32955,7 +33767,7 @@
           "model": "Veo 3.1 Fast",
           "score": 1076,
           "confidence_interval": "-8/8",
-          "samples": 8890,
+          "samples": 8989,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32976,8 +33788,8 @@
           "creator": "KlingAI",
           "model": "Kling 3.0 1080p (Pro)",
           "score": 1074,
-          "confidence_interval": "-8/8",
-          "samples": 9407,
+          "confidence_interval": "-7/7",
+          "samples": 9499,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -32999,7 +33811,7 @@
           "model": "PixVerse V6",
           "score": 1070,
           "confidence_interval": "-8/8",
-          "samples": 8547,
+          "samples": 8562,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33020,8 +33832,8 @@
           "creator": "KlingAI",
           "model": "Kling 3.0 720p (Standard)",
           "score": 1068,
-          "confidence_interval": "-8/8",
-          "samples": 9392,
+          "confidence_interval": "-7/7",
+          "samples": 9483,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33043,7 +33855,7 @@
           "model": "Vidu Q3 Pro",
           "score": 1066,
           "confidence_interval": "-7/7",
-          "samples": 9904,
+          "samples": 9994,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33076,9 +33888,9 @@
           "rank": 1,
           "creator": "OpenAI",
           "model": "GPT Image 2 (high)",
-          "score": 1340,
+          "score": 1339,
           "confidence_interval": "-7/7",
-          "samples": 21403,
+          "samples": 21321,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33098,9 +33910,9 @@
           "rank": 2,
           "creator": "Reve",
           "model": "Reve 2.1",
-          "score": 1300,
-          "confidence_interval": "-10/10",
-          "samples": 10013,
+          "score": 1299,
+          "confidence_interval": "-11/11",
+          "samples": 9889,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33122,7 +33934,7 @@
           "model": "MAI-Image-2.5",
           "score": 1270,
           "confidence_interval": "-9/9",
-          "samples": 10082,
+          "samples": 9868,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33142,9 +33954,9 @@
           "rank": 4,
           "creator": "Google",
           "model": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
-          "score": 1264,
+          "score": 1263,
           "confidence_interval": "-9/9",
-          "samples": 10134,
+          "samples": 9900,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33162,33 +33974,11 @@
         },
         {
           "rank": 5,
-          "creator": "Google",
-          "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-          "score": 1264,
-          "confidence_interval": "-7/7",
-          "samples": 19907,
-          "released": "Feb 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-              "model_id": "gemini-3-1-flash-image"
-            }
-          ],
-          "model_ids": [
-            "gemini-3-1-flash-image"
-          ],
-          "model_id": "gemini-3-1-flash-image"
-        },
-        {
-          "rank": 6,
           "creator": "OpenAI",
           "model": "GPT Image 1.5 (high)",
-          "score": 1264,
+          "score": 1263,
           "confidence_interval": "-7/7",
-          "samples": 13019,
+          "samples": 12752,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33205,12 +33995,34 @@
           "model_id": "gpt-image-1-5"
         },
         {
+          "rank": 6,
+          "creator": "Google",
+          "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
+          "score": 1262,
+          "confidence_interval": "-7/7",
+          "samples": 19616,
+          "released": "Feb 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
+              "model_id": "gemini-3-1-flash-image"
+            }
+          ],
+          "model_ids": [
+            "gemini-3-1-flash-image"
+          ],
+          "model_id": "gemini-3-1-flash-image"
+        },
+        {
           "rank": 7,
           "creator": "HiDream",
           "model": "HiDream-O1-Image-1.5",
-          "score": 1246,
+          "score": 1245,
           "confidence_interval": "-8/8",
-          "samples": 12523,
+          "samples": 12456,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33230,9 +34042,9 @@
           "rank": 8,
           "creator": "Bytedance",
           "model": "Seedream 5.0 Pro",
-          "score": 1241,
+          "score": 1240,
           "confidence_interval": "-9/9",
-          "samples": 8382,
+          "samples": 8271,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33252,9 +34064,9 @@
           "rank": 9,
           "creator": "Google",
           "model": "Nano Banana Pro (Gemini 3 Pro Image)",
-          "score": 1227,
+          "score": 1225,
           "confidence_interval": "-7/7",
-          "samples": 12287,
+          "samples": 12019,
           "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33276,7 +34088,7 @@
           "model": "Cosmos3-Super-Text2Image (agentic)",
           "score": 1219,
           "confidence_interval": "-8/8",
-          "samples": 10510,
+          "samples": 10414,
           "released": "May 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -33298,7 +34110,7 @@
           "model": "MAI-Image-2.5-Flash",
           "score": 1208,
           "confidence_interval": "-9/9",
-          "samples": 5068,
+          "samples": 4979,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33318,9 +34130,9 @@
           "rank": 12,
           "creator": "Recraft",
           "model": "Recraft V4.1 Utility",
-          "score": 1206,
+          "score": 1205,
           "confidence_interval": "-8/8",
-          "samples": 5579,
+          "samples": 5511,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33340,9 +34152,9 @@
           "rank": 13,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image-quality",
-          "score": 1205,
+          "score": 1204,
           "confidence_interval": "-7/7",
-          "samples": 16227,
+          "samples": 15871,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33364,7 +34176,7 @@
           "model": "Recraft V4.1 Utility Pro",
           "score": 1201,
           "confidence_interval": "-7/7",
-          "samples": 15694,
+          "samples": 15341,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33384,9 +34196,9 @@
           "rank": 15,
           "creator": "Black Forest Labs",
           "model": "FLUX.2 [max]",
-          "score": 1197,
+          "score": 1196,
           "confidence_interval": "-7/7",
-          "samples": 12027,
+          "samples": 11711,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33421,7 +34233,7 @@
           "model": "Gemini Omni Flash",
           "score": 1245,
           "confidence_interval": "-9/9",
-          "samples": 6580,
+          "samples": 6665,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33443,7 +34255,7 @@
           "model": "MiniMax H3",
           "score": 1242,
           "confidence_interval": "-11/11",
-          "samples": 5070,
+          "samples": 5094,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33465,7 +34277,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1225,
           "confidence_interval": "-7/7",
-          "samples": 13334,
+          "samples": 13414,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33487,7 +34299,7 @@
           "model": "Wan2.7-260612",
           "score": 1163,
           "confidence_interval": "-8/8",
-          "samples": 6958,
+          "samples": 7082,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33507,9 +34319,9 @@
           "rank": 5,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.1",
-          "score": 1150,
+          "score": 1151,
           "confidence_interval": "-8/8",
-          "samples": 7461,
+          "samples": 7588,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33531,7 +34343,7 @@
           "model": "HappyHorse-1.0",
           "score": 1131,
           "confidence_interval": "-8/8",
-          "samples": 7714,
+          "samples": 7742,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33551,9 +34363,9 @@
           "rank": 7,
           "creator": "KlingAI",
           "model": "Kling 3.0 1080p (Pro)",
-          "score": 1114,
+          "score": 1113,
           "confidence_interval": "-7/7",
-          "samples": 12603,
+          "samples": 12705,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33575,7 +34387,7 @@
           "model": "SkyReels V4",
           "score": 1109,
           "confidence_interval": "-8/8",
-          "samples": 4811,
+          "samples": 4846,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33595,9 +34407,9 @@
           "rank": 9,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "score": 1109,
+          "score": 1108,
           "confidence_interval": "-9/9",
-          "samples": 4295,
+          "samples": 4334,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33617,9 +34429,9 @@
           "rank": 10,
           "creator": "KlingAI",
           "model": "Kling 3.0 720p (Standard)",
-          "score": 1102,
+          "score": 1101,
           "confidence_interval": "-7/7",
-          "samples": 12376,
+          "samples": 12483,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33641,7 +34453,7 @@
           "model": "Veo 3.1",
           "score": 1098,
           "confidence_interval": "-7/7",
-          "samples": 8086,
+          "samples": 8106,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33663,7 +34475,7 @@
           "model": "Kling 3.0 Omni 1080p (Pro)",
           "score": 1096,
           "confidence_interval": "-7/7",
-          "samples": 7872,
+          "samples": 7898,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33683,9 +34495,9 @@
           "rank": 13,
           "creator": "KlingAI",
           "model": "Kling 3.0 Omni 720p (Standard)",
-          "score": 1093,
+          "score": 1092,
           "confidence_interval": "-7/7",
-          "samples": 7717,
+          "samples": 7739,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33705,9 +34517,9 @@
           "rank": 14,
           "creator": "Google",
           "model": "Veo 3.1 Fast",
-          "score": 1092,
+          "score": 1091,
           "confidence_interval": "-7/7",
-          "samples": 11607,
+          "samples": 11701,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33729,7 +34541,7 @@
           "model": "Veo 3.1 Lite",
           "score": 1090,
           "confidence_interval": "-7/7",
-          "samples": 7512,
+          "samples": 7544,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33764,7 +34576,7 @@
           "model": "MiniMax H3",
           "score": 1130,
           "confidence_interval": "-7/7",
-          "samples": 5035,
+          "samples": 5050,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33784,9 +34596,9 @@
           "rank": 2,
           "creator": "Google",
           "model": "Gemini Omni Flash",
-          "score": 1121,
+          "score": 1122,
           "confidence_interval": "-6/6",
-          "samples": 10175,
+          "samples": 10203,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33808,7 +34620,7 @@
           "model": "HappyHorse-1.0",
           "score": 1096,
           "confidence_interval": "-5/5",
-          "samples": 17748,
+          "samples": 17774,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33830,7 +34642,7 @@
           "model": "Wan 2.7",
           "score": 1080,
           "confidence_interval": "-5/5",
-          "samples": 13540,
+          "samples": 13571,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33850,9 +34662,9 @@
           "rank": 5,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
-          "score": 1034,
+          "score": 1035,
           "confidence_interval": "-5/5",
-          "samples": 17512,
+          "samples": 17540,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33874,7 +34686,7 @@
           "model": "Aleph 2.0",
           "score": 1011,
           "confidence_interval": "-5/5",
-          "samples": 17189,
+          "samples": 17212,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33896,7 +34708,7 @@
           "model": "Kling 3.0 Omni 1080p (Pro)",
           "score": 1000,
           "confidence_interval": "0/0",
-          "samples": 16097,
+          "samples": 16115,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33918,7 +34730,7 @@
           "model": "SkyReels V4",
           "score": 951,
           "confidence_interval": "-6/6",
-          "samples": 14205,
+          "samples": 14222,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",

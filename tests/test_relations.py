@@ -34,7 +34,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
                 self.assertIn(model_id, self.datasets[dataset_id]["linked_model_ids"])
 
     def test_dataset_lineage_index_and_backlinks_are_symmetric(self) -> None:
-        self.assertEqual(len(self.payload["dataset_relations"]), 33)
+        self.assertEqual(len(self.payload["dataset_relations"]), 38)
         relation_pairs = {
             (relation["source_dataset_id"], relation["derived_dataset_id"])
             for relation in self.payload["dataset_relations"]
@@ -74,6 +74,11 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn(("celebv-dub", "holidub-bench"), relation_pairs)
         self.assertIn(("cinedub-cn", "cinedub-example"), relation_pairs)
         self.assertIn(("davis-2017", "elasticttt-video-editing"), relation_pairs)
+        self.assertIn(("moviebench", "insave-80k"), relation_pairs)
+        self.assertIn(("condensed-movies", "insave-80k"), relation_pairs)
+        self.assertIn(("sf20k", "insave-80k"), relation_pairs)
+        self.assertIn(("vggsound", "insave-80k"), relation_pairs)
+        self.assertIn(("vggsound", "aved-bench"), relation_pairs)
 
         for source_id, derived_id in relation_pairs:
             with self.subTest(source=source_id, derived=derived_id):

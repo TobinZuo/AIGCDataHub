@@ -1,0 +1,78 @@
+id: instructav2av
+name: InstructAV2AV
+organization: Nanyang Technological University and MMLab, The Chinese University of Hong Kong
+released_at: "2026-05-18"
+modalities:
+  - video
+  - audio
+tasks:
+  - video-editing
+  - audio-video-editing
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://hjzheng.net/projects/InstructAV2AV/
+  weights_url: https://huggingface.co/suimu/InstructAV2AV
+  api_url: null
+architecture:
+  family: Ovi-initialized symmetric dual-stream diffusion transformer with bidirectional audio-video cross-attention
+  parameters: null
+  notes: Uses the Wan2.2 video VAE, MMAudio audio VAE and vocoder, and T5 instruction encoder; the six released checkpoints are task variants, while an authoritative parameter count is not stated.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: InsAVE-80K
+      catalog_id: insave-80k
+      role: fine-tuning
+      availability: public
+      scale: 87,074 released training pairs plus a separate 1,000-pair evaluation split
+      notes: The paper describes 79K training pairs, while the later public release contains 87,074 training pairs; the released split counts are preserved without silently reconciling the discrepancy.
+    - name: AvED-Bench
+      catalog_id: aved-bench
+      role: evaluation
+      availability: public
+      scale: 110 ten-second videos across 11 VGGSound categories
+      notes: Used only for evaluation; it is not reported as an InstructAV2AV training source.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - public-dataset
+        - public-web
+        - synthetic
+      operations:
+        - scene-segmentation
+        - motion-filtering
+        - aesthetic-filtering
+        - silence-filtering
+        - audio-quality-filtering
+        - content-categorization
+        - speaker-filtering
+        - mask-generation
+        - instruction-generation
+        - audio-separation
+        - audio-synthesis
+        - video-inpainting
+        - multimodal-quality-filtering
+      scale_disclosed: true
+      strategy: Train video and audio branches separately for 320K and 960K steps, then jointly optimize both streams for 400K steps on InsAVE pairs with flow-matching losses weighted 0.85 for video and 0.15 for audio.
+  strategy_summary:
+    - Build reversible instruction pairs for removal, insertion, cloning, identity transfer, voice transfer, and general editing while preserving both source and target audiovisual content.
+    - Use source/noise concatenation, source-informed guidance, and bidirectional cross-modal attention to keep edited sound and visible events synchronized.
+    - Apply automatic five-axis filtering for instruction fidelity, content preservation, perceptual quality, audiovisual synchronization, and safety; human volunteers verify the held-out evaluation split.
+  unknowns:
+    - Final category sampling weights, exact retained counts by upstream source, and the reason the released training split grew from the paper's 79K pairs to 87,074.
+    - Rights and retained-item provenance for publicly accessible online videos and every upstream media item.
+    - Complete duplicate detection, train-evaluation overlap, demographic, language, privacy, and safety audits.
+    - The inherited Ovi pretraining-data lineage is not restated for InstructAV2AV.
+evidence:
+  release: https://hjzheng.net/projects/InstructAV2AV/
+  technical_report: https://arxiv.org/abs/2605.18467
+  repository: https://github.com/suimuc/InstructAV2AV
+status: partial
+last_verified: "2026-08-01"

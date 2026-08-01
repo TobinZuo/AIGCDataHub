@@ -1,0 +1,73 @@
+id: aved-bench
+name: AvED-Bench
+organization: University of North Carolina at Chapel Hill and Microsoft
+released_at: "2025-03-26"
+release_date_source: https://arxiv.org/abs/2503.20782
+modality: evaluation
+tasks:
+  - audio-video-editing
+  - audio-visual-alignment
+stages:
+  - evaluation
+  - data-curation
+description: >-
+  A zero-shot joint audio-video editing benchmark with 110 ten-second source
+  videos across 11 VGGSound categories and paired source-to-target editing
+  prompts for synchronized auditory and visual transformations.
+derived_from:
+  - catalog_id: vggsound
+    relationship: benchmark-derivative
+    contribution: 110 source videos across 11 categories
+    notes: The paper and official repository explicitly derive benchmark categories and source clips from VGGSound and warn VGGSound-trained models to exclude overlapping samples.
+access:
+  status: metadata-only
+  type: urls
+  url: https://genjib.github.io/project_page/AVED/assets/avedit_dataset_v3.csv
+  requires_account: false
+  notes: The official project directly serves a CSV containing clip IDs, source and target prompts, semantic categories, and VGGSound labels; it does not publish a durable bundled video archive.
+scale:
+  samples: 110
+  source_items: 110
+  hours: 0.3056
+  approximate: true
+  notes: The paper states 110 videos of ten seconds each across 11 categories; the hour value is the arithmetic duration equivalent.
+annotations:
+  types:
+    - source-prompt
+    - target-prompt
+    - source-category
+    - target-category
+    - vggsound-label
+    - clip-id
+  source: human
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: VGGSound source-video and original-owner terms apply
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Neither the project page nor repository states a dataset license; public CSV access is not treated as permission to redistribute source media.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - The 110-video scale and 11 source categories provide limited coverage of the broader audio-video editing space.
+    - Source media inherits VGGSound and original-platform availability and rights constraints.
+    - Models trained on VGGSound can overlap benchmark source clips unless the warned samples are excluded.
+processing:
+  recipe: Select ten-second VGGSound clips from 11 categories and author source-to-target prompts requiring coordinated visible-object and sound changes.
+  recommended_format: csv
+  notes: Preserve the official CSV, VGGSound label, clip ID, both prompts, retrieval date, media availability, and any overlap exclusion applied during evaluation.
+evidence:
+  homepage: https://genjib.github.io/project_page/AVED/index.html
+  paper: https://arxiv.org/abs/2503.20782
+  used_by:
+    - InstructAV2AV
+status: partial
+last_verified: "2026-08-01"

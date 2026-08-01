@@ -10,7 +10,9 @@ modalities:
   - video
   - audio
 tasks:
+  - text-to-video
   - image-to-video
+  - reference-to-video
   - video-editing
   - audio-video-generation
 access:
@@ -22,7 +24,7 @@ access:
 architecture:
   family: Undisclosed native audiovisual generation model
   parameters: null
-  notes: Generates video, synchronized effects, ambience, dialogue, and speech from an image; architecture and size are not published.
+  notes: Generates video with synchronized effects, ambience, dialogue, and speech; the reference API accepts up to seven images and, for trusted US partners, up to three preset voices, while architecture and size remain unpublished.
 data:
   disclosure_level: undisclosed
   exact_datasets_disclosed: false
@@ -39,7 +41,7 @@ data:
         - undisclosed
       operations: []
       scale_disclosed: false
-      strategy: xAI documents generation quality, native audio, speed, and API behavior without identifying model-development datasets.
+      strategy: xAI documents generation quality, native audio, speed, image and preset-voice reference control, and API behavior without identifying model-development datasets.
   strategy_summary:
     - "Separate xAI's general statements about synthetic data from this model: no Imagine Video 1.5 corpus or stage-specific recipe is published."
   unknowns:
@@ -49,4 +51,4 @@ evidence:
   technical_report: null
   repository: null
 status: watch
-last_verified: "2026-07-30"
+last_verified: "2026-08-01"

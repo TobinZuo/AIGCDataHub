@@ -2,13 +2,14 @@
 
 Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; runtime inputs, unreleased data, and undisclosed data must state why no card exists.
 
-- Models: 99
-- References linked to catalog cards: 147
-- References without a card, with an explicit evidence boundary: 95
+- Models: 101
+- References linked to catalog cards: 149
+- References without a card, with an explicit evidence boundary: 96
 - Ordering: model release date, newest first
 
 | Model | Released | Dataset or corpus named by source | Availability | Catalog resolution | Role | Evidence boundary |
 |---|---:|---|---|---|---|---|
+| [Seedance 2.5](models/video/seedance-2-5.yaml) | 2026-07-31 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [MiniMax H3](models/multimodal/minimax-h3.yaml) | 2026-07-31 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [ShadowDancer](models/video/shadowdancer.yaml) | 2026-07-30 | Shadow Library | not-released | [`shadow-library`](catalog/video/shadow-library.yaml) | fine-tuning | The paper names simulator, rendered, game, DL3DV, MiraData, and Open X-Embodiment sources, but does not release the paired corpus or complete per-source rights. |
 | [S-Avatar](models/image/s-avatar.yaml) | 2026-07-30 | NeRSemble | gated | [`nersemble`](catalog/3d/nersemble.yaml) | evaluation | NeRSemble is used only for novel-view and expression evaluation; the paper does not report training S-Avatar on it. |
@@ -91,6 +92,8 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [iTryOn](models/video/itryon.yaml) | 2026-05-20 | ViViD | public | [`vivid`](catalog/video/vivid.yaml) | evaluation | The public benchmark measures conventional non-interactive virtual try-on quality after the first stage. |
 | [iTryOn](models/video/itryon.yaml) | 2026-05-20 | VVT-Interact | not-released | [`vvt-interact`](catalog/video/vvt-interact.yaml) | evaluation | The unreleased test split supports SSIM, LPIPS, VFID, FVD, and the proposed Qwen-VL-based Interaction Success Rate. |
 | [Lance](models/multimodal/lance.yaml) | 2026-05-18 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
+| [InstructAV2AV](models/video/instructav2av.yaml) | 2026-05-18 | InsAVE-80K | public | [`insave-80k`](catalog/video/insave-80k.yaml) | fine-tuning | The paper describes 79K training pairs, while the later public release contains 87,074 training pairs; the released split counts are preserved without silently reconciling the discrepancy. |
+| [InstructAV2AV](models/video/instructav2av.yaml) | 2026-05-18 | AvED-Bench | public | [`aved-bench`](catalog/evaluation/aved-bench.yaml) | evaluation | Used only for evaluation; it is not reported as an InstructAV2AV training source. |
 | [Recraft V4.1](models/image/recraft-v4-1.yaml) | 2026-05-14 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [HiDream-O1-Image](models/image/hidream-o1-image.yaml) | 2026-05-08 | HiDream O1 heterogeneous visual corpus | undisclosed | — exact source is not disclosed | pretraining | The report describes source classes and constructed supervision but does not name component datasets or publish the compiled corpus. |
 | [Grok Imagine Image Quality](models/image/grok-imagine-image-quality.yaml) | 2026-05-06 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
