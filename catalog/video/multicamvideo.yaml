@@ -1,0 +1,71 @@
+id: multicamvideo
+name: MultiCamVideo Dataset
+organization: Kling Team, Kuaishou Technology, and ReCamMaster authors
+released_at: "2025-03-14"
+release_date_source: https://arxiv.org/abs/2503.11647
+modality: video
+tasks:
+  - camera-controlled-video-generation
+  - video-to-video
+  - multi-view-video-generation
+  - 3d-reconstruction
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  An Unreal Engine 5 collection of 13,600 dynamic scenes captured synchronously
+  by ten cameras, pairing 136,000 short videos with camera trajectories for
+  camera-controlled generation and multi-view reconstruction.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/KlingTeam/MultiCamVideo-Dataset
+  requires_account: false
+  notes: The official Kling Team Hugging Face repository hosts roughly 333 GB as multipart archives with extraction instructions and camera JSON files.
+scale:
+  samples: 136000
+  source_items: 13600
+  hours: 204
+  approximate: true
+  notes: Each 81-frame video is rendered at 1280x1280 and 15 FPS; 136,000 multiplied by 5.4 seconds is approximately 204 hours.
+annotations:
+  types:
+    - camera-extrinsics
+    - synchronized-camera-id
+    - scene-id
+    - focal-length
+    - aperture
+    - animation
+  source: mixed
+  languages:
+    - none
+license:
+  metadata: Apache-2.0
+  media: Apache-2.0 is declared by the dataset repository; upstream Fab and Mixamo asset terms remain relevant
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The hosted card declares Apache-2.0, but the renders incorporate 37 environments, 66 characters, and 93 animations sourced from Fab and Mixamo, so downstream asset rights require separate review.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - multi-view-consistency
+    - provenance
+  known_limitations:
+    - Synthetic UE5 rendering and a finite asset library can create a domain gap from real-world footage.
+    - Clips are only 81 frames, about 5.4 seconds at 15 FPS, and do not directly cover long-horizon generation.
+    - Upstream 3D environment, character, and animation licenses are not itemized in the dataset card.
+processing:
+  recipe: Combine 37 UE5 environments, 66 characters, and 93 animations, then render each dynamic scene from ten synchronized cameras with rule-generated static, pan, tilt, translation, arc, and random trajectories.
+  recommended_format: native
+  notes: Preserve scene groups, all ten synchronized views, 81-frame camera extrinsics, focal/aperture settings, archive checksums, and upstream asset provenance.
+evidence:
+  homepage: https://huggingface.co/datasets/KlingTeam/MultiCamVideo-Dataset
+  paper: https://arxiv.org/abs/2503.11647
+  used_by:
+    - ReCamMaster
+    - Wonder
+status: partial
+last_verified: "2026-08-02"

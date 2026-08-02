@@ -1,0 +1,81 @@
+id: mpie-bench
+name: MPIE-Bench
+organization: MPIE-Bench authors
+released_at: "2026-07-30"
+release_date_source: https://arxiv.org/abs/2607.27616
+modality: evaluation
+tasks:
+  - image-editing
+  - image-personalization
+  - multi-person-interaction-editing
+stages:
+  - evaluation
+  - data-curation
+description: >-
+  A 2,500-sample benchmark of multi-person image-editing triplets mined from 405
+  video scenes, with identity references, interaction instructions, held-out
+  targets, and anatomy- and contact-aware evaluation.
+access:
+  status: open
+  type: hosted
+  url: https://github.com/AnnLin0628/mpie-bench/tree/main/data/testset
+  requires_account: false
+  notes: The official repository includes the 2,500-sample test pack, manifest, instruction QA, evaluation code, and optional closed-model artifacts; source-dataset rights remain layered.
+scale:
+  samples: 2500
+  source_items: 405
+  hours: null
+  approximate: false
+  notes: The scene-level frozen set spans 14 interaction categories and four contact-density bins; about 2,135 targets come from Pexels and the rest from CHI3D and Harmony4D.
+annotations:
+  types:
+    - identity-reference
+    - held-out-target
+    - edit-instruction
+    - interaction-category
+    - contact-density
+    - person-count
+    - instruction-qa
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Apache-2.0 repository license with layered source-dataset terms
+  media: Pexels, Harmony4D, CHI3D, and original-rightsholder terms apply
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The repository licenses code under Apache-2.0 and explicitly leaves third-party source datasets under their own licenses; public test-pack access is not a universal media relicense.
+quality:
+  dimensions:
+    - visual-quality
+    - aesthetics
+    - human-preference
+    - geometry-quality
+    - deduplication
+    - safety
+    - provenance
+  known_limitations:
+    - About 61 percent of samples fall in the two denser contact bins, so the distribution is intentionally stress-test oriented rather than population representative.
+    - Camera or background can change between separated identity-reference frames and later interaction targets within one scene.
+    - Multi-HMR geometry is a ranking proxy with moderate human agreement, and part-specific contact remains imperfectly localized.
+    - Pexels, Harmony4D, and CHI3D retain distinct access, consent, redistribution, and commercial-use conditions.
+processing:
+  recipe: Mine roughly 20,000 video candidates for low-contact identity references and later high-contact targets, reverse-caption pairs with a VLM, then use adult reviewers to remove unsafe or off-task clips, validate interactions, deduplicate, and cap each scene to 2,500 triplets.
+  recommended_format: native
+  notes: Preserve scene-level grouping, source collection, per-person references, held-out targets, contact bin, prompt, safety review, deduplication decision, and the frozen six-axis protocol version.
+evidence:
+  homepage: https://github.com/AnnLin0628/mpie-bench
+  paper: https://arxiv.org/abs/2607.27616
+  used_by:
+    - GPT-Image-2
+    - Gemini-3-Pro-Image
+    - Seedream-5-Pro
+    - FLUX.1-Kontext
+    - DreamO
+    - OmniGen2
+    - UNO
+    - ACE++
+    - BAGEL
+    - FireRed-Image-Edit
+status: partial
+last_verified: "2026-08-02"

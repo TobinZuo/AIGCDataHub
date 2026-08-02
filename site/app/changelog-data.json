@@ -47,6 +47,171 @@
   ],
   "entries": [
     {
+      "date": "2026-08-02",
+      "title": {
+        "zh": "2026-08-02 更新",
+        "en": "2026-08-02 Update"
+      },
+      "summary": [
+        {
+          "id": "models",
+          "label": {
+            "zh": "模型",
+            "en": "Models"
+          },
+          "text": {
+            "zh": "新增 Wonder：Adobe Research 与 Johns Hopkins University 于 2026-07-28 公布的相机可控实时视频生成系统。它以 Wan2.1-I2V-14B 初始化双向教师，再蒸馏为四步、三学生生成器的因果流式系统，支持图生视频和视频重拍、分钟级 16 FPS 生成与稀疏长程记忆；代码、权重、API 与模型许可证均未发布。",
+            "en": "Added Wonder, an announced camera-controlled I2V/V2V streaming system initialized from Wan2.1-I2V-14B and distilled into a four-step, three-student causal generator. No code, weights, API, or model license is released."
+          },
+          "links": [
+            {
+              "href": "/#model-wonder",
+              "label": {
+                "zh": "Wonder",
+                "en": "Wonder"
+              }
+            }
+          ]
+        },
+        {
+          "id": "datasets",
+          "label": {
+            "zh": "数据集",
+            "en": "Datasets"
+          },
+          "text": {
+            "zh": "新增 MultiCamVideo、CamXTime、Wonder UE I2V Corpus、Wonder Blender V2V Corpus、Wonder I2V Benchmark、Wonder V2V Benchmark 与 MPIE-Bench 七张数据卡。前两项分别记录 333 GB 可直接下载的 136,000 条 UE5 多机位视频和需研究机构申请的 360,960 条完整时空网格视频；Wonder 两套合成训练语料和两套评测集均未发布；MPIE-Bench 已在官方仓库公开 2,500 个多人交互编辑测试样本与评分代码。",
+            "en": "Added MultiCamVideo, CamXTime, two unreleased Wonder training corpora, two unreleased Wonder benchmarks, and the public MPIE-Bench test pack, with public, gated, and unavailable access represented separately."
+          },
+          "links": [
+            {
+              "href": "/#dataset-multicamvideo",
+              "label": {
+                "zh": "MultiCamVideo",
+                "en": "MultiCamVideo"
+              }
+            },
+            {
+              "href": "/#dataset-camxtime",
+              "label": {
+                "zh": "CamXTime",
+                "en": "CamXTime"
+              }
+            },
+            {
+              "href": "/#dataset-mpie-bench",
+              "label": {
+                "zh": "MPIE-Bench",
+                "en": "MPIE-Bench"
+              }
+            }
+          ]
+        },
+        {
+          "id": "relations",
+          "label": {
+            "zh": "数据关系",
+            "en": "Data relations"
+          },
+          "text": {
+            "zh": "新增 Wonder→DL3DV、MultiCamVideo、CamXTime、Wonder UE I2V Corpus、Wonder Blender V2V Corpus 五条微调关系，以及 Wonder→Wonder I2V/V2V Benchmark 两条评测关系。Wan2.1 继承数据单独记为未披露预训练血缘，不把评测集写成训练集。",
+            "en": "Added five Wonder fine-tuning edges and two evaluation edges. The inherited Wan2.1 mixture remains explicitly undisclosed, and neither benchmark is represented as training data."
+          },
+          "links": [
+            {
+              "href": "/#lineage",
+              "label": {
+                "zh": "查看关系图谱",
+                "en": "View data lineage"
+              }
+            }
+          ]
+        },
+        {
+          "id": "rankings",
+          "label": {
+            "zh": "排行榜",
+            "en": "Rankings"
+          },
+          "text": {
+            "zh": "Artificial Analysis 图像编辑榜发生七处变化；生视频榜 Veo 3.1 Lite 进入图生视频前 15、Vidu Q3 Pro 移出，文生视频榜 Wan 2.7 与 SkyReels V4 互换第 8/9。所有前列名称仍可解析到模型卡，榜单只作为监控信号，不用于反推训练数据。",
+            "en": "Artificial Analysis recorded seven image-editing movements, Veo 3.1 Lite entering the image-to-video top 15, and Wan 2.7 swapping with SkyReels V4 in text-to-video. Every current top-15 name remains mapped."
+          },
+          "links": [
+            {
+              "href": "/#rankings",
+              "label": {
+                "zh": "查看行业排行榜",
+                "en": "View industry rankings"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monitoring",
+          "label": {
+            "zh": "监控",
+            "en": "Monitoring"
+          },
+          "text": {
+            "zh": "新增 Wonder、MultiCamVideo、CamXTime 与 MPIE-Bench 一手探针，并把相机可控、交互式和长视频生成映射到既有生视频场景。Pexels 访问卡补充默认 200 次/小时、20,000 次/月限额、无限调用审核条件、可返回媒体尺寸和不返回标题/标签/详细统计的边界；API 可访问不代表获得训练权利。未创建 Physical AI 分类或公开入口。",
+            "en": "Added primary probes for Wonder, MultiCamVideo, CamXTime, and MPIE-Bench and expanded the existing video-generation scenario mapping. Pexels now records exact default quotas and response-field boundaries. No Physical AI category was introduced."
+          },
+          "links": [
+            {
+              "href": "/#sources",
+              "label": {
+                "zh": "查看来源监控",
+                "en": "View source monitoring"
+              }
+            }
+          ]
+        },
+        {
+          "id": "unknowns",
+          "label": {
+            "zh": "未披露",
+            "en": "Undisclosed"
+          },
+          "text": {
+            "zh": "Wonder 未披露各训练源精确留存量与混合权重、合成资产来源和许可、继承自 Wan2.1 的完整数据血缘、总训练步数、最终系统参数占用、代码、权重、API 与模型许可证。其四套未发布语料/评测集缺少文件、逐项来源和许可证；CamXTime 未声明数据许可证；MultiCamVideo 的 Fab/Mixamo 资产权利需另审；MPIE-Bench 的 Pexels、Harmony4D 与 CHI3D 媒体权利仍分层适用。",
+            "en": "Wonder omits exact retained counts and mixture weights, synthetic-asset provenance and licenses, inherited Wan2.1 lineage, system footprint, code, weights, API, and model license. CamXTime, MultiCamVideo, and MPIE-Bench retain distinct dataset or upstream-media rights gaps."
+          },
+          "links": [
+            {
+              "href": "/#model-wonder",
+              "label": {
+                "zh": "Wonder 未知项",
+                "en": "Wonder unknowns"
+              }
+            },
+            {
+              "href": "/#dataset-camxtime",
+              "label": {
+                "zh": "CamXTime 权利边界",
+                "en": "CamXTime rights"
+              }
+            },
+            {
+              "href": "/#dataset-multicamvideo",
+              "label": {
+                "zh": "MultiCamVideo 权利边界",
+                "en": "MultiCamVideo rights"
+              }
+            },
+            {
+              "href": "/#dataset-mpie-bench",
+              "label": {
+                "zh": "MPIE-Bench 权利边界",
+                "en": "MPIE-Bench rights"
+              }
+            }
+          ]
+        }
+      ],
+      "source_path": "updates/2026-08-02.md"
+    },
+    {
       "date": "2026-08-01",
       "title": {
         "zh": "2026-08-01 更新",

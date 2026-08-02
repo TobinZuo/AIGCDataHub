@@ -1,6 +1,6 @@
 {
   "schema_version": 10,
-  "generated_at": "2026-08-01T04:10:53Z",
+  "generated_at": "2026-08-02T02:38:11Z",
   "sources": [
     {
       "track_id": "dataset-release-feeds",
@@ -40,7 +40,7 @@
             "usage-signal"
           ],
           "created_at": "2023-09-06T04:06:45.000Z",
-          "downloads": 28,
+          "downloads": 26,
           "likes": 2,
           "gated": false
         },
@@ -72,7 +72,7 @@
             "size-declared"
           ],
           "created_at": "2024-08-21T14:37:28.000Z",
-          "downloads": 61,
+          "downloads": 62,
           "likes": 0,
           "gated": false
         },
@@ -120,7 +120,7 @@
             "size-declared"
           ],
           "created_at": "2025-10-12T05:48:12.000Z",
-          "downloads": 60,
+          "downloads": 58,
           "likes": 0,
           "gated": false
         },
@@ -168,7 +168,7 @@
             "usage-signal"
           ],
           "created_at": "2025-08-25T02:56:11.000Z",
-          "downloads": 88,
+          "downloads": 81,
           "likes": 5,
           "gated": false
         },
@@ -184,7 +184,7 @@
             "usage-signal"
           ],
           "created_at": "2024-02-08T17:14:15.000Z",
-          "downloads": 22,
+          "downloads": 19,
           "likes": 3,
           "gated": false
         },
@@ -215,7 +215,7 @@
             "license-declared"
           ],
           "created_at": "2026-06-06T03:57:35.000Z",
-          "downloads": 8,
+          "downloads": 9,
           "likes": 0,
           "gated": false
         },
@@ -232,7 +232,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-06-05T09:32:07.000Z",
-          "downloads": 11,
+          "downloads": 12,
           "likes": 0,
           "gated": false
         },
@@ -262,7 +262,7 @@
             "size-declared"
           ],
           "created_at": "2024-06-13T06:27:22.000Z",
-          "downloads": 19,
+          "downloads": 15,
           "likes": 0,
           "gated": false
         },
@@ -278,7 +278,7 @@
             "thin-metadata"
           ],
           "created_at": "2025-11-20T10:33:56.000Z",
-          "downloads": 16,
+          "downloads": 17,
           "likes": 0,
           "gated": false
         },
@@ -323,7 +323,7 @@
             "size-declared"
           ],
           "created_at": "2024-06-01T19:49:44.000Z",
-          "downloads": 23,
+          "downloads": 22,
           "likes": 0,
           "gated": false
         },
@@ -338,7 +338,7 @@
             "usage-signal"
           ],
           "created_at": "2023-08-23T14:48:08.000Z",
-          "downloads": 39,
+          "downloads": 38,
           "likes": 24,
           "gated": false
         },
@@ -412,7 +412,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-02-06T23:58:39.000Z",
-          "downloads": 22,
+          "downloads": 23,
           "likes": 0,
           "gated": false
         },
@@ -456,7 +456,7 @@
             "thin-metadata"
           ],
           "created_at": "2025-04-08T08:48:35.000Z",
-          "downloads": 23,
+          "downloads": 24,
           "likes": 0,
           "gated": false
         },
@@ -484,7 +484,7 @@
             "thin-metadata"
           ],
           "created_at": "2025-08-15T17:59:52.000Z",
-          "downloads": 16,
+          "downloads": 17,
           "likes": 0,
           "gated": false
         },
@@ -543,7 +543,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-07-13T12:13:11.000Z",
-          "downloads": 29,
+          "downloads": 30,
           "likes": 0,
           "gated": "manual"
         },
@@ -600,7 +600,7 @@
             "usage-signal"
           ],
           "created_at": "2026-02-09T21:19:32.000Z",
-          "downloads": 177,
+          "downloads": 176,
           "likes": 1,
           "gated": false
         },
@@ -636,7 +636,7 @@
             "usage-signal"
           ],
           "created_at": "2025-08-08T15:13:18.000Z",
-          "downloads": 332,
+          "downloads": 330,
           "likes": 12,
           "gated": false
         },
@@ -653,7 +653,7 @@
             "size-declared"
           ],
           "created_at": "2026-01-02T13:21:24.000Z",
-          "downloads": 25,
+          "downloads": 22,
           "likes": 0,
           "gated": false
         },
@@ -670,7 +670,7 @@
             "size-declared"
           ],
           "created_at": "2026-07-23T03:54:06.000Z",
-          "downloads": 51,
+          "downloads": 55,
           "likes": 0,
           "gated": false
         },
@@ -744,7 +744,7 @@
             "gated-access"
           ],
           "created_at": "2026-06-24T20:03:39.000Z",
-          "downloads": 1809,
+          "downloads": 1533,
           "likes": 1,
           "gated": "auto"
         },
@@ -762,7 +762,7 @@
             "usage-signal"
           ],
           "created_at": "2025-05-15T04:01:47.000Z",
-          "downloads": 2500,
+          "downloads": 2754,
           "likes": 11,
           "gated": false
         },
@@ -779,7 +779,7 @@
             "usage-signal"
           ],
           "created_at": "2026-01-06T15:52:55.000Z",
-          "downloads": 1651,
+          "downloads": 1654,
           "likes": 0,
           "gated": false
         },
@@ -795,7 +795,7 @@
             "usage-signal"
           ],
           "created_at": "2024-09-23T13:17:56.000Z",
-          "downloads": 939,
+          "downloads": 949,
           "likes": 1,
           "gated": false
         },
@@ -812,7 +812,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-07-01T18:01:01.000Z",
-          "downloads": 228,
+          "downloads": 191,
           "likes": 0,
           "gated": false
         },
@@ -862,7 +862,7 @@
             "thin-metadata"
           ],
           "created_at": "2025-09-17T08:16:43.000Z",
-          "downloads": 107,
+          "downloads": 106,
           "likes": 2,
           "gated": false
         },
@@ -876,7 +876,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-04-13T06:50:50.000Z",
-          "downloads": 6,
+          "downloads": 7,
           "likes": 0,
           "gated": false
         },
@@ -889,7 +889,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-04-22T16:57:59.000Z",
-          "downloads": 15,
+          "downloads": 16,
           "likes": 0,
           "gated": false
         }
@@ -952,7 +952,7 @@
             "gated-access"
           ],
           "created_at": "2026-04-28T15:05:05.000Z",
-          "downloads": 19,
+          "downloads": 20,
           "likes": 2,
           "gated": "auto"
         },
@@ -970,7 +970,7 @@
             "usage-signal"
           ],
           "created_at": "2024-11-30T15:11:56.000Z",
-          "downloads": 63,
+          "downloads": 60,
           "likes": 8,
           "gated": false
         },
@@ -987,7 +987,7 @@
             "size-declared"
           ],
           "created_at": "2026-05-13T06:27:31.000Z",
-          "downloads": 81,
+          "downloads": 62,
           "likes": 0,
           "gated": false
         },
@@ -1022,6 +1022,23 @@
           ],
           "created_at": "2024-11-21T10:56:31.000Z",
           "downloads": 34,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "bofbofai/text-to-image-prompts",
+          "url": "https://huggingface.co/datasets/bofbofai/text-to-image-prompts",
+          "review_priority": "high",
+          "priority_score": 9,
+          "priority_signals": [
+            "explicit-generative-media-match",
+            "dataset-card-metadata",
+            "license-declared",
+            "size-declared",
+            "usage-signal"
+          ],
+          "created_at": "2026-03-20T08:12:42.000Z",
+          "downloads": 420,
           "likes": 0,
           "gated": false
         },
@@ -1166,23 +1183,7 @@
             "size-declared"
           ],
           "created_at": "2024-12-01T12:58:11.000Z",
-          "downloads": 36,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "bofbofai/text-to-image-prompts",
-          "url": "https://huggingface.co/datasets/bofbofai/text-to-image-prompts",
-          "review_priority": "high",
-          "priority_score": 8,
-          "priority_signals": [
-            "explicit-generative-media-match",
-            "dataset-card-metadata",
-            "license-declared",
-            "size-declared"
-          ],
-          "created_at": "2026-03-20T08:12:42.000Z",
-          "downloads": 84,
+          "downloads": 34,
           "likes": 0,
           "gated": false
         },
@@ -1215,7 +1216,7 @@
             "usage-signal"
           ],
           "created_at": "2026-06-27T16:59:44.000Z",
-          "downloads": 175,
+          "downloads": 152,
           "likes": 0,
           "gated": false
         },
@@ -1230,7 +1231,7 @@
             "license-declared"
           ],
           "created_at": "2025-04-11T15:18:30.000Z",
-          "downloads": 42,
+          "downloads": 43,
           "likes": 1,
           "gated": false
         },
@@ -1245,7 +1246,7 @@
             "size-declared"
           ],
           "created_at": "2025-03-06T12:02:14.000Z",
-          "downloads": 17,
+          "downloads": 18,
           "likes": 1,
           "gated": false
         },
@@ -1260,7 +1261,7 @@
             "size-declared"
           ],
           "created_at": "2025-04-19T08:08:07.000Z",
-          "downloads": 16,
+          "downloads": 17,
           "likes": 0,
           "gated": false
         },
@@ -1336,7 +1337,7 @@
             "size-declared"
           ],
           "created_at": "2026-01-29T10:08:49.000Z",
-          "downloads": 51,
+          "downloads": 50,
           "likes": 0,
           "gated": false
         },
@@ -1352,7 +1353,7 @@
             "thin-metadata"
           ],
           "created_at": "2025-03-05T16:34:55.000Z",
-          "downloads": 22,
+          "downloads": 23,
           "likes": 0,
           "gated": false
         },
@@ -1368,7 +1369,7 @@
             "gated-access"
           ],
           "created_at": "2025-02-21T05:31:26.000Z",
-          "downloads": 18,
+          "downloads": 19,
           "likes": 0,
           "gated": "manual"
         },
@@ -1399,7 +1400,7 @@
             "size-declared"
           ],
           "created_at": "2026-04-30T07:04:16.000Z",
-          "downloads": 34,
+          "downloads": 35,
           "likes": 0,
           "gated": false
         },
@@ -1519,7 +1520,7 @@
             "thin-metadata"
           ],
           "created_at": "2025-04-08T08:48:35.000Z",
-          "downloads": 23,
+          "downloads": 24,
           "likes": 0,
           "gated": false
         },
@@ -1535,7 +1536,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-07-20T10:28:36.000Z",
-          "downloads": 355,
+          "downloads": 416,
           "likes": 1,
           "gated": false
         },
@@ -1551,7 +1552,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-07-20T10:22:39.000Z",
-          "downloads": 671,
+          "downloads": 683,
           "likes": 1,
           "gated": false
         },
@@ -1567,7 +1568,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-05-23T11:46:24.000Z",
-          "downloads": 53,
+          "downloads": 54,
           "likes": 0,
           "gated": false
         },
@@ -1581,7 +1582,7 @@
             "thin-metadata"
           ],
           "created_at": "2025-12-28T15:27:32.000Z",
-          "downloads": 27,
+          "downloads": 26,
           "likes": 0,
           "gated": false
         },
@@ -1595,7 +1596,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-02-27T05:16:33.000Z",
-          "downloads": 26,
+          "downloads": 27,
           "likes": 0,
           "gated": false
         },
@@ -1696,7 +1697,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-02-05T09:19:19.000Z",
-          "downloads": 28,
+          "downloads": 30,
           "likes": 0,
           "gated": false
         }
@@ -1741,7 +1742,7 @@
             "usage-signal"
           ],
           "created_at": "2026-05-29T01:00:29.000Z",
-          "downloads": 810,
+          "downloads": 811,
           "likes": 0,
           "gated": false
         },
@@ -1802,7 +1803,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-05-03T06:55:03.000Z",
-          "downloads": 18,
+          "downloads": 14,
           "likes": 0,
           "gated": false
         },
@@ -1869,7 +1870,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-07-01T07:49:29.000Z",
-          "downloads": 44,
+          "downloads": 28,
           "likes": 0,
           "gated": false
         }
@@ -1914,7 +1915,7 @@
             "usage-signal"
           ],
           "created_at": "2026-05-29T01:00:29.000Z",
-          "downloads": 810,
+          "downloads": 811,
           "likes": 0,
           "gated": false
         },
@@ -1932,7 +1933,7 @@
             "usage-signal"
           ],
           "created_at": "2025-02-04T09:27:46.000Z",
-          "downloads": 67,
+          "downloads": 66,
           "likes": 18,
           "gated": false
         },
@@ -1950,7 +1951,7 @@
             "usage-signal"
           ],
           "created_at": "2025-01-31T17:02:28.000Z",
-          "downloads": 311,
+          "downloads": 310,
           "likes": 14,
           "gated": false
         },
@@ -1968,7 +1969,7 @@
             "usage-signal"
           ],
           "created_at": "2025-01-31T17:58:46.000Z",
-          "downloads": 336,
+          "downloads": 328,
           "likes": 19,
           "gated": false
         },
@@ -1986,7 +1987,7 @@
             "usage-signal"
           ],
           "created_at": "2025-01-22T12:42:27.000Z",
-          "downloads": 340,
+          "downloads": 339,
           "likes": 18,
           "gated": false
         },
@@ -2004,7 +2005,7 @@
             "usage-signal"
           ],
           "created_at": "2025-02-04T11:31:45.000Z",
-          "downloads": 24,
+          "downloads": 25,
           "likes": 14,
           "gated": false
         },
@@ -2022,7 +2023,7 @@
             "usage-signal"
           ],
           "created_at": "2024-09-17T13:47:46.000Z",
-          "downloads": 535,
+          "downloads": 532,
           "likes": 28,
           "gated": false
         },
@@ -2039,7 +2040,7 @@
             "size-declared"
           ],
           "created_at": "2026-03-17T09:40:25.000Z",
-          "downloads": 38,
+          "downloads": 43,
           "likes": 0,
           "gated": false
         },
@@ -2056,7 +2057,7 @@
             "usage-signal"
           ],
           "created_at": "2024-09-17T14:58:30.000Z",
-          "downloads": 1358,
+          "downloads": 1362,
           "likes": 4,
           "gated": false
         },
@@ -2151,7 +2152,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-04-23T11:54:47.000Z",
-          "downloads": 7,
+          "downloads": 8,
           "likes": 0,
           "gated": "manual"
         },
@@ -2166,7 +2167,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-02-07T23:57:01.000Z",
-          "downloads": 16,
+          "downloads": 20,
           "likes": 0,
           "gated": false
         },
@@ -2212,7 +2213,7 @@
             "thin-metadata"
           ],
           "created_at": "2025-09-30T04:24:20.000Z",
-          "downloads": 5,
+          "downloads": 6,
           "likes": 0,
           "gated": false
         },
@@ -2229,20 +2230,6 @@
           "created_at": "2024-08-17T12:37:51.000Z",
           "downloads": 67,
           "likes": 1,
-          "gated": false
-        },
-        {
-          "title": "luyu1021/video_generation",
-          "url": "https://huggingface.co/datasets/luyu1021/video_generation",
-          "review_priority": "low",
-          "priority_score": -1,
-          "priority_signals": [
-            "usage-signal",
-            "thin-metadata"
-          ],
-          "created_at": "2026-06-30T06:08:22.000Z",
-          "downloads": 333,
-          "likes": 0,
           "gated": false
         },
         {
@@ -2269,6 +2256,19 @@
           ],
           "created_at": "2025-06-21T12:02:55.000Z",
           "downloads": 28,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "luyu1021/video_generation",
+          "url": "https://huggingface.co/datasets/luyu1021/video_generation",
+          "review_priority": "low",
+          "priority_score": -2,
+          "priority_signals": [
+            "thin-metadata"
+          ],
+          "created_at": "2026-06-30T06:08:22.000Z",
+          "downloads": 74,
           "likes": 0,
           "gated": false
         },
@@ -2336,7 +2336,7 @@
             "size-declared"
           ],
           "created_at": "2026-03-05T09:54:44.000Z",
-          "downloads": 17,
+          "downloads": 18,
           "likes": 0,
           "gated": false
         },
@@ -2384,7 +2384,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-07-03T09:07:15.000Z",
-          "downloads": 828,
+          "downloads": 830,
           "likes": 0,
           "gated": false
         },
@@ -2410,7 +2410,7 @@
             "thin-metadata"
           ],
           "created_at": "2026-05-17T01:17:45.000Z",
-          "downloads": 22,
+          "downloads": 21,
           "likes": 1,
           "gated": false
         }
@@ -4741,6 +4741,31 @@
     },
     {
       "track_id": "important-dataset-updates",
+      "source_url": "https://arxiv.org/abs/2607.26037v1",
+      "resolved_url": "https://arxiv.org/abs/2607.26037v1",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:31b8af539583eb7f31ddb28417ee338bf67e6e78121f64c808dbdec9c27d3167",
+      "revision_url": "https://arxiv.org/abs/2607.26037v1",
+      "catalog_id": "wonder-i2v-benchmark",
+      "priority": "critical",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
       "source_url": "https://arxiv.org/html/2603.03882",
       "resolved_url": "https://arxiv.org/html/2603.03882",
       "status": 200,
@@ -5066,6 +5091,56 @@
     },
     {
       "track_id": "important-dataset-updates",
+      "source_url": "https://arxiv.org/html/2607.26037",
+      "resolved_url": "https://arxiv.org/html/2607.26037",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:2daaa13c37520e9a5f4399629adf89f525762cdc421368698e3ab994e3baa0ba",
+      "revision_url": "https://arxiv.org/html/2607.26037",
+      "catalog_id": "wonder-ue-i2v-corpus",
+      "priority": "critical",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://arxiv.org/html/2607.26037v1",
+      "resolved_url": "https://arxiv.org/html/2607.26037v1",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:2daaa13c37520e9a5f4399629adf89f525762cdc421368698e3ab994e3baa0ba",
+      "revision_url": "https://arxiv.org/html/2607.26037v1",
+      "catalog_id": "wonder-blender-v2v-corpus",
+      "priority": "critical",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
       "source_url": "https://arxiv.org/html/2607.28362",
       "resolved_url": "https://arxiv.org/html/2607.28362",
       "status": 200,
@@ -5116,6 +5191,31 @@
     },
     {
       "track_id": "important-dataset-updates",
+      "source_url": "https://export.arxiv.org/api/query?id_list=2607.26037",
+      "resolved_url": "https://export.arxiv.org/api/query?id_list=2607.26037",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "https://arxiv.org/abs/2607.26037v1@2026-07-28T17:45:25Z",
+      "revision_url": "https://arxiv.org/abs/2607.26037v1",
+      "catalog_id": "wonder-v2v-benchmark",
+      "priority": "critical",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
       "source_url": "https://genjib.github.io/project_page/AVED/assets/avedit_dataset_v3.csv",
       "resolved_url": "https://genjib.github.io/project_page/AVED/assets/avedit_dataset_v3.csv",
       "status": 200,
@@ -5124,6 +5224,31 @@
       "revision": "sha256:189f289d520b68ac5008c230790ddd089a1635053c06ff9abb453140cde36e8c",
       "revision_url": "https://genjib.github.io/project_page/AVED/assets/avedit_dataset_v3.csv",
       "catalog_id": "aved-bench",
+      "priority": "critical",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://github.com/AnnLin0628/mpie-bench/commits/main.atom",
+      "resolved_url": "https://github.com/AnnLin0628/mpie-bench/commits/main.atom",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:c8f3776ebbfd22dc77558648fd7272c9c094aeb13c151f586a523f8202913510",
+      "revision_url": "https://github.com/AnnLin0628/mpie-bench/commits/main.atom",
+      "catalog_id": "mpie-bench",
       "priority": "critical",
       "model_id": null,
       "ranking_id": null,
@@ -5846,7 +5971,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:cbec09b2771f0b67ce7a9298acc32980ff8b4070605256d8f8c0507b7e9d71fa",
+      "revision": "sha256:ae3a40875a6176d6779104acdb47719efecc136c0c33c3c81c77d451faf8ce69",
       "revision_url": "https://huggingface.co/PosterCraft/datasets",
       "catalog_id": "postercraft-public-corpora",
       "priority": "high",
@@ -6149,6 +6274,31 @@
       "revision": "2026-04-30T18:21:00.000Z@84c74091e1c6ee7a5dffabfafb5c9033e4718883",
       "revision_url": "https://huggingface.co/datasets/HuggingFaceFV/finevideo",
       "catalog_id": "finevideo",
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://huggingface.co/api/datasets/KlingTeam/MultiCamVideo-Dataset?expand=lastModified&expand=sha",
+      "resolved_url": "https://huggingface.co/api/datasets/KlingTeam/MultiCamVideo-Dataset?expand=lastModified&expand=sha",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "2025-10-18T06:53:33.000Z@4e7d995480cfa915f7c3721e616ed14789d87ff7",
+      "revision_url": "https://huggingface.co/datasets/KlingTeam/MultiCamVideo-Dataset",
+      "catalog_id": "multicamvideo",
       "priority": "high",
       "model_id": null,
       "ranking_id": null,
@@ -7796,7 +7946,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:8894e8e0d2d4d0d891ab4720a35d6bff79186972e84d7f8d6c7612e9da4b392e",
+      "revision": "sha256:7e9c126f12179cfc0ae7ed7bfdebcdd3bed1b4707b7c97af854e243ff904d244",
       "revision_url": "https://vail.cs.ucla.edu/worldweaver",
       "catalog_id": "worldweaver-minecraft-126h",
       "priority": "critical",
@@ -7974,6 +8124,31 @@
       "revision": "2021-05-30T02:20:54.275726+00:00@revision-6",
       "revision_url": "https://doi.org/10.5281/zenodo.4783391",
       "catalog_id": "clotho-2-1",
+      "priority": "high",
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-dataset-updates",
+      "source_url": "https://zheninghuang.github.io/camxtime_dataset/",
+      "resolved_url": "https://zheninghuang.github.io/camxtime_dataset",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:8f19a8531d608e2d05eec4b71406f633d55fc1f6363136cec2f660c9d87f2981",
+      "revision_url": "https://zheninghuang.github.io/camxtime_dataset",
+      "catalog_id": "camxtime",
       "priority": "high",
       "model_id": null,
       "ranking_id": null,
@@ -8271,11 +8446,36 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:edf0218707e8c4918ba9b8e884607a0f1dbcfadb475e0aa98674d5eb191ed60b",
+      "revision": "sha256:8abfd62727878042db67656ea570412a934689d79891449ba32fc3c5f7c466cf",
       "revision_url": "https://arxiv.org/abs/2607.22302",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "fmri2face",
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "important-model-updates",
+      "source_url": "https://arxiv.org/abs/2607.26037",
+      "resolved_url": "https://arxiv.org/abs/2607.26037",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": "sha256:4344111d3b87007a0a8ee02c9c3185d22e2b4517c4e2bb513f8a682c89dfeb20",
+      "revision_url": "https://arxiv.org/abs/2607.26037",
+      "catalog_id": null,
+      "priority": "critical",
+      "model_id": "wonder",
       "ranking_id": null,
       "rankings": [],
       "ranking_provider": null,
@@ -8396,7 +8596,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:89fd28c8052fe1c06a1c1f21fee7ab79e343e41d7c6e8d903980a339230b4189",
+      "revision": "sha256:efe49bd96b2fa65b416ef11de0e8b4f5e70eed89b8b12bebe21ea37f64682cde",
       "revision_url": "https://bfl.ai/blog/flux-3",
       "catalog_id": null,
       "priority": "critical",
@@ -8746,7 +8946,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:bf008a5e6dace5682914e9d9becf90896d975941f909044c0abb40c161a21ee2",
+      "revision": "sha256:a674aa9b73915e32250598e33bee7cd23dae9ecc305ebbe77a62a696236edfcb",
       "revision_url": "https://docs.x.ai/developers/models/grok-imagine-video-1.5",
       "catalog_id": null,
       "priority": "critical",
@@ -10442,12 +10642,12 @@
     {
       "track_id": "important-model-updates",
       "source_url": "https://www.hidream.ai/",
-      "resolved_url": "https://hidreamai.com/home",
+      "resolved_url": "https://www.hidream.ai/",
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:5bed619fb4df5305f53b7de44423cd8dc1f3b82139d826811de58763ab80e76d",
-      "revision_url": "https://hidreamai.com/home",
+      "revision": "sha256:c97b3d6f03c75d0078362c34b2866d687b403721d227719261d3dec1450224de",
+      "revision_url": "https://www.hidream.ai/",
       "catalog_id": null,
       "priority": "critical",
       "model_id": "hidream-o1-image-1-5",
@@ -10509,7 +10709,7 @@
           "model": "GPT Image 2 (high)",
           "score": 1259,
           "confidence_interval": "-7/7",
-          "samples": 16344,
+          "samples": 16854,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10520,8 +10720,8 @@
           "creator": "OpenAI",
           "model": "GPT Image 1.5 (high)",
           "score": 1254,
-          "confidence_interval": "-8/8",
-          "samples": 9777,
+          "confidence_interval": "-7/7",
+          "samples": 10348,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10531,9 +10731,9 @@
           "rank": 3,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5",
-          "score": 1249,
+          "score": 1253,
           "confidence_interval": "-9/9",
-          "samples": 7659,
+          "samples": 9812,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10543,9 +10743,9 @@
           "rank": 4,
           "creator": "Google",
           "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-          "score": 1245,
-          "confidence_interval": "-8/8",
-          "samples": 10782,
+          "score": 1247,
+          "confidence_interval": "-7/7",
+          "samples": 11296,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10553,48 +10753,48 @@
         },
         {
           "rank": 5,
-          "creator": "Google",
-          "model": "Nano Banana Pro (Gemini 3 Pro Image)",
-          "score": 1239,
-          "confidence_interval": "-8/8",
-          "samples": 9114,
-          "released": "Nov 2025",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": []
-        },
-        {
-          "rank": 6,
           "creator": "Bytedance",
           "model": "Seedream 5.0 Pro",
-          "score": 1236,
+          "score": 1240,
           "confidence_interval": "-11/11",
-          "samples": 2681,
+          "samples": 2817,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
+          "rank": 6,
+          "creator": "Google",
+          "model": "Nano Banana Pro (Gemini 3 Pro Image)",
+          "score": 1240,
+          "confidence_interval": "-7/7",
+          "samples": 9667,
+          "released": "Nov 2025",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": []
+        },
+        {
           "rank": 7,
-          "creator": "SpaceXAI",
-          "model": "grok-imagine-image-quality",
-          "score": 1231,
-          "confidence_interval": "-8/8",
-          "samples": 8325,
-          "released": "Apr 2026",
+          "creator": "Microsoft AI",
+          "model": "MAI-Image-2.5-Flash",
+          "score": 1232,
+          "confidence_interval": "-9/9",
+          "samples": 4413,
+          "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 8,
-          "creator": "Microsoft AI",
-          "model": "MAI-Image-2.5-Flash",
-          "score": 1230,
-          "confidence_interval": "-10/10",
-          "samples": 4279,
-          "released": "Jun 2026",
+          "creator": "SpaceXAI",
+          "model": "grok-imagine-image-quality",
+          "score": 1231,
+          "confidence_interval": "-8/8",
+          "samples": 8879,
+          "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
@@ -10605,7 +10805,7 @@
           "model": "HunyuanImage 3.0 Instruct (Fal)",
           "score": 1223,
           "confidence_interval": "-8/8",
-          "samples": 8440,
+          "samples": 8552,
           "released": "Jan 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -10617,7 +10817,7 @@
           "model": "Luma UNI 1 Max",
           "score": 1221,
           "confidence_interval": "-9/9",
-          "samples": 5523,
+          "samples": 5651,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10627,9 +10827,9 @@
           "rank": 11,
           "creator": "KlingAI",
           "model": "Kling Image 3.0 Omni",
-          "score": 1216,
-          "confidence_interval": "-8/8",
-          "samples": 8285,
+          "score": 1215,
+          "confidence_interval": "-7/7",
+          "samples": 8393,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10639,9 +10839,9 @@
           "rank": 12,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image",
-          "score": 1213,
+          "score": 1214,
           "confidence_interval": "-8/8",
-          "samples": 8666,
+          "samples": 8753,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10649,36 +10849,36 @@
         },
         {
           "rank": 13,
-          "creator": "Black Forest Labs",
-          "model": "FLUX.2 [max]",
-          "score": 1205,
-          "confidence_interval": "-8/8",
-          "samples": 8291,
-          "released": "Dec 2025",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": []
-        },
-        {
-          "rank": 14,
           "creator": "HiDream",
           "model": "HiDream-O1-Image",
-          "score": 1202,
+          "score": 1203,
           "confidence_interval": "-9/9",
-          "samples": 5798,
+          "samples": 5886,
           "released": "May 2026",
           "open_weights": true,
           "license": "Open weights",
           "component_models": []
         },
         {
-          "rank": 15,
+          "rank": 14,
           "creator": "KlingAI",
           "model": "Kling Image 3.0",
+          "score": 1203,
+          "confidence_interval": "-8/8",
+          "samples": 8036,
+          "released": "Feb 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": []
+        },
+        {
+          "rank": 15,
+          "creator": "Black Forest Labs",
+          "model": "FLUX.2 [max]",
           "score": 1202,
           "confidence_interval": "-8/8",
-          "samples": 7943,
-          "released": "Feb 2026",
+          "samples": 8766,
+          "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
@@ -10921,7 +11121,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1196,
           "confidence_interval": "-8/8",
-          "samples": 10215,
+          "samples": 10812,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10931,9 +11131,9 @@
           "rank": 2,
           "creator": "Google",
           "model": "Gemini Omni Flash",
-          "score": 1194,
+          "score": 1192,
           "confidence_interval": "-10/10",
-          "samples": 4589,
+          "samples": 5195,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10943,9 +11143,9 @@
           "rank": 3,
           "creator": "MiniMax",
           "model": "MiniMax H3",
-          "score": 1184,
-          "confidence_interval": "-11/11",
-          "samples": 5032,
+          "score": 1186,
+          "confidence_interval": "-10/10",
+          "samples": 5229,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10955,9 +11155,9 @@
           "rank": 4,
           "creator": "SpaceXAI",
           "model": "grok-imagine-video-1.5",
-          "score": 1113,
+          "score": 1114,
           "confidence_interval": "-9/9",
-          "samples": 4270,
+          "samples": 4418,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10969,7 +11169,7 @@
           "model": "HappyHorse-1.1",
           "score": 1108,
           "confidence_interval": "-9/9",
-          "samples": 5004,
+          "samples": 5590,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10981,7 +11181,7 @@
           "model": "Wan 2.7",
           "score": 1093,
           "confidence_interval": "-9/9",
-          "samples": 3609,
+          "samples": 3742,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -10993,7 +11193,7 @@
           "model": "HappyHorse-1.0",
           "score": 1091,
           "confidence_interval": "-8/8",
-          "samples": 6952,
+          "samples": 7079,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11003,9 +11203,9 @@
           "rank": 8,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "score": 1088,
+          "score": 1087,
           "confidence_interval": "-9/9",
-          "samples": 3923,
+          "samples": 4039,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11015,9 +11215,9 @@
           "rank": 9,
           "creator": "Google",
           "model": "Veo 3.1",
-          "score": 1086,
+          "score": 1084,
           "confidence_interval": "-8/8",
-          "samples": 7290,
+          "samples": 7365,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11027,9 +11227,9 @@
           "rank": 10,
           "creator": "SpaceXAI",
           "model": "grok-imagine-video",
-          "score": 1080,
+          "score": 1079,
           "confidence_interval": "-7/7",
-          "samples": 9809,
+          "samples": 10291,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11040,8 +11240,8 @@
           "creator": "Google",
           "model": "Veo 3.1 Fast",
           "score": 1076,
-          "confidence_interval": "-8/8",
-          "samples": 8989,
+          "confidence_interval": "-7/7",
+          "samples": 9417,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11051,9 +11251,9 @@
           "rank": 12,
           "creator": "KlingAI",
           "model": "Kling 3.0 1080p (Pro)",
-          "score": 1074,
+          "score": 1073,
           "confidence_interval": "-7/7",
-          "samples": 9499,
+          "samples": 9969,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11063,9 +11263,9 @@
           "rank": 13,
           "creator": "PixVerse",
           "model": "PixVerse V6",
-          "score": 1070,
+          "score": 1069,
           "confidence_interval": "-8/8",
-          "samples": 8562,
+          "samples": 8645,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11075,9 +11275,9 @@
           "rank": 14,
           "creator": "KlingAI",
           "model": "Kling 3.0 720p (Standard)",
-          "score": 1068,
+          "score": 1067,
           "confidence_interval": "-7/7",
-          "samples": 9483,
+          "samples": 9914,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11085,12 +11285,12 @@
         },
         {
           "rank": 15,
-          "creator": "Vidu",
-          "model": "Vidu Q3 Pro",
-          "score": 1066,
-          "confidence_interval": "-7/7",
-          "samples": 9994,
-          "released": "Jan 2026",
+          "creator": "Google",
+          "model": "Veo 3.1 Lite",
+          "score": 1064,
+          "confidence_interval": "-8/8",
+          "samples": 6695,
+          "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
@@ -11126,8 +11326,8 @@
           "creator": "Google",
           "model": "Gemini Omni Flash",
           "score": 1245,
-          "confidence_interval": "-9/9",
-          "samples": 6665,
+          "confidence_interval": "-8/8",
+          "samples": 9366,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11137,9 +11337,9 @@
           "rank": 2,
           "creator": "MiniMax",
           "model": "MiniMax H3",
-          "score": 1242,
-          "confidence_interval": "-11/11",
-          "samples": 5094,
+          "score": 1239,
+          "confidence_interval": "-10/10",
+          "samples": 5731,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11149,9 +11349,9 @@
           "rank": 3,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
-          "score": 1225,
-          "confidence_interval": "-7/7",
-          "samples": 13414,
+          "score": 1223,
+          "confidence_interval": "-6/6",
+          "samples": 16138,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11161,9 +11361,9 @@
           "rank": 4,
           "creator": "Alibaba",
           "model": "Wan2.7-260612",
-          "score": 1163,
-          "confidence_interval": "-8/8",
-          "samples": 7082,
+          "score": 1160,
+          "confidence_interval": "-7/7",
+          "samples": 9888,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11173,9 +11373,9 @@
           "rank": 5,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.1",
-          "score": 1151,
-          "confidence_interval": "-8/8",
-          "samples": 7588,
+          "score": 1149,
+          "confidence_interval": "-7/7",
+          "samples": 10188,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11185,9 +11385,9 @@
           "rank": 6,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.0",
-          "score": 1131,
-          "confidence_interval": "-8/8",
-          "samples": 7742,
+          "score": 1126,
+          "confidence_interval": "-7/7",
+          "samples": 8165,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11197,9 +11397,9 @@
           "rank": 7,
           "creator": "KlingAI",
           "model": "Kling 3.0 1080p (Pro)",
-          "score": 1113,
-          "confidence_interval": "-7/7",
-          "samples": 12705,
+          "score": 1111,
+          "confidence_interval": "-6/6",
+          "samples": 14811,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11207,24 +11407,24 @@
         },
         {
           "rank": 8,
-          "creator": "Skywork AI",
-          "model": "SkyReels V4",
+          "creator": "Alibaba",
+          "model": "Wan 2.7",
           "score": 1109,
           "confidence_interval": "-8/8",
-          "samples": 4846,
-          "released": "Mar 2026",
+          "samples": 4668,
+          "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
         },
         {
           "rank": 9,
-          "creator": "Alibaba",
-          "model": "Wan 2.7",
+          "creator": "Skywork AI",
+          "model": "SkyReels V4",
           "score": 1108,
-          "confidence_interval": "-9/9",
-          "samples": 4334,
-          "released": "Apr 2026",
+          "confidence_interval": "-8/8",
+          "samples": 5144,
+          "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": []
@@ -11234,8 +11434,8 @@
           "creator": "KlingAI",
           "model": "Kling 3.0 720p (Standard)",
           "score": 1101,
-          "confidence_interval": "-7/7",
-          "samples": 12483,
+          "confidence_interval": "-6/6",
+          "samples": 14302,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11245,9 +11445,9 @@
           "rank": 11,
           "creator": "Google",
           "model": "Veo 3.1",
-          "score": 1098,
+          "score": 1095,
           "confidence_interval": "-7/7",
-          "samples": 8106,
+          "samples": 8373,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11257,9 +11457,9 @@
           "rank": 12,
           "creator": "KlingAI",
           "model": "Kling 3.0 Omni 1080p (Pro)",
-          "score": 1096,
+          "score": 1093,
           "confidence_interval": "-7/7",
-          "samples": 7898,
+          "samples": 8139,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11271,7 +11471,7 @@
           "model": "Kling 3.0 Omni 720p (Standard)",
           "score": 1092,
           "confidence_interval": "-7/7",
-          "samples": 7739,
+          "samples": 7986,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11282,8 +11482,8 @@
           "creator": "Google",
           "model": "Veo 3.1 Fast",
           "score": 1091,
-          "confidence_interval": "-7/7",
-          "samples": 11701,
+          "confidence_interval": "-6/6",
+          "samples": 13528,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11295,7 +11495,7 @@
           "model": "Veo 3.1 Lite",
           "score": 1090,
           "confidence_interval": "-7/7",
-          "samples": 7544,
+          "samples": 7786,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11333,7 +11533,7 @@
           "model": "MiniMax H3",
           "score": 1130,
           "confidence_interval": "-7/7",
-          "samples": 5050,
+          "samples": 5095,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11345,7 +11545,7 @@
           "model": "Gemini Omni Flash",
           "score": 1122,
           "confidence_interval": "-6/6",
-          "samples": 10203,
+          "samples": 10270,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11357,7 +11557,7 @@
           "model": "HappyHorse-1.0",
           "score": 1096,
           "confidence_interval": "-5/5",
-          "samples": 17774,
+          "samples": 17822,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11369,7 +11569,7 @@
           "model": "Wan 2.7",
           "score": 1080,
           "confidence_interval": "-5/5",
-          "samples": 13571,
+          "samples": 13635,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11381,7 +11581,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1035,
           "confidence_interval": "-5/5",
-          "samples": 17540,
+          "samples": 17594,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11393,7 +11593,7 @@
           "model": "Aleph 2.0",
           "score": 1011,
           "confidence_interval": "-5/5",
-          "samples": 17212,
+          "samples": 17260,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11405,7 +11605,7 @@
           "model": "Kling 3.0 Omni 1080p (Pro)",
           "score": 1000,
           "confidence_interval": "0/0",
-          "samples": 16115,
+          "samples": 16158,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -11415,9 +11615,9 @@
           "rank": 8,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "score": 951,
+          "score": 950,
           "confidence_interval": "-6/6",
-          "samples": 14222,
+          "samples": 14263,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -12650,7 +12850,7 @@
             "usage-signal"
           ],
           "created_at": "2026-07-09T11:26:25.000Z",
-          "downloads": 153,
+          "downloads": 178,
           "likes": 1,
           "gated": false
         },
@@ -12704,6 +12904,22 @@
           "gated": false
         },
         {
+          "title": "apakutya111/Hunyuan3D-2.1",
+          "url": "https://huggingface.co/apakutya111/Hunyuan3D-2.1",
+          "review_priority": "high",
+          "priority_score": 9,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-08-01T20:21:06.000Z",
+          "downloads": 0,
+          "likes": 1,
+          "gated": false
+        },
+        {
           "title": "Ares-Realm-Studios/TRELLIS.2-4B",
           "url": "https://huggingface.co/Ares-Realm-Studios/TRELLIS.2-4B",
           "review_priority": "high",
@@ -12731,7 +12947,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-17T20:50:17.000Z",
-          "downloads": 22,
+          "downloads": 24,
           "likes": 0,
           "gated": false
         },
@@ -12779,6 +12995,22 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-03T12:43:08.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "duckky-green/Hunyuan3D-2.1",
+          "url": "https://huggingface.co/duckky-green/Hunyuan3D-2.1",
+          "review_priority": "high",
+          "priority_score": 9,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-08-01T07:23:29.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
@@ -12896,38 +13128,6 @@
           "gated": false
         },
         {
-          "title": "mrbrz/Hunyuan3D-2.1",
-          "url": "https://huggingface.co/mrbrz/Hunyuan3D-2.1",
-          "review_priority": "high",
-          "priority_score": 9,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-01T19:44:18.000Z",
-          "downloads": 5,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "mrbrz/TRELLIS.2-4B",
-          "url": "https://huggingface.co/mrbrz/TRELLIS.2-4B",
-          "review_priority": "high",
-          "priority_score": 9,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-01T15:21:48.000Z",
-          "downloads": 31,
-          "likes": 0,
-          "gated": false
-        },
-        {
           "title": "nitesh-ml/TRELLIS.2-4B-nb-3D",
           "url": "https://huggingface.co/nitesh-ml/TRELLIS.2-4B-nb-3D",
           "review_priority": "high",
@@ -12939,7 +13139,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-18T12:51:29.000Z",
-          "downloads": 5,
+          "downloads": 7,
           "likes": 0,
           "gated": false
         },
@@ -13073,6 +13273,21 @@
           "gated": false
         },
         {
+          "title": "blancocd/Geometrically_Accurate_FeedForward_Gaussian_Splatting_for_Unbounded_Scenes",
+          "url": "https://huggingface.co/blancocd/Geometrically_Accurate_FeedForward_Gaussian_Splatting_for_Unbounded_Scenes",
+          "review_priority": "high",
+          "priority_score": 7,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-08-01T16:14:37.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
           "title": "GilgameshYX/Trellis_segPart",
           "url": "https://huggingface.co/GilgameshYX/Trellis_segPart",
           "review_priority": "high",
@@ -13191,20 +13406,6 @@
           "gated": false
         },
         {
-          "title": "jc-builds/haplosr-mv",
-          "url": "https://huggingface.co/jc-builds/haplosr-mv",
-          "review_priority": "standard",
-          "priority_score": 5,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared"
-          ],
-          "created_at": "2026-07-02T22:52:03.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
           "title": "zimengxiong/hunyuan3d-mlx-shape-large",
           "url": "https://huggingface.co/zimengxiong/hunyuan3d-mlx-shape-large",
           "review_priority": "low",
@@ -13217,7 +13418,7 @@
             "conversion-or-mirror"
           ],
           "created_at": "2026-07-10T06:10:29.000Z",
-          "downloads": 320,
+          "downloads": 321,
           "likes": 0,
           "gated": false
         },
@@ -13234,7 +13435,7 @@
             "conversion-or-mirror"
           ],
           "created_at": "2026-07-10T06:10:28.000Z",
-          "downloads": 411,
+          "downloads": 412,
           "likes": 0,
           "gated": false
         },
@@ -13287,6 +13488,22 @@
           "gated": false
         },
         {
+          "title": "needle-tools/SF3D-webgpu",
+          "url": "https://huggingface.co/needle-tools/SF3D-webgpu",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "quantized-derivative"
+          ],
+          "created_at": "2026-08-01T21:29:53.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
           "title": "Yosun/TripoSplat-WebGPU",
           "url": "https://huggingface.co/Yosun/TripoSplat-WebGPU",
           "review_priority": "low",
@@ -13314,7 +13531,7 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-18T21:35:22.000Z",
-          "downloads": 291,
+          "downloads": 292,
           "likes": 0,
           "gated": false
         },
@@ -13330,7 +13547,7 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-16T12:00:32.000Z",
-          "downloads": 192,
+          "downloads": 204,
           "likes": 0,
           "gated": false
         },
@@ -13346,23 +13563,8 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-16T11:59:24.000Z",
-          "downloads": 1022,
+          "downloads": 1079,
           "likes": 3,
-          "gated": false
-        },
-        {
-          "title": "jc-builds/sf3d-ios",
-          "url": "https://huggingface.co/jc-builds/sf3d-ios",
-          "review_priority": "low",
-          "priority_score": -3,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "quantized-derivative"
-          ],
-          "created_at": "2026-07-03T00:13:46.000Z",
-          "downloads": 14,
-          "likes": 0,
           "gated": false
         },
         {
@@ -13379,7 +13581,7 @@
             "conversion-or-mirror"
           ],
           "created_at": "2026-07-04T19:45:35.000Z",
-          "downloads": 301,
+          "downloads": 307,
           "likes": 1,
           "gated": false
         }
@@ -13508,8 +13710,24 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-30T12:09:41.000Z",
-          "downloads": 12,
+          "downloads": 14,
           "likes": 1,
+          "gated": false
+        },
+        {
+          "title": "vivekchakraverty/image-generator-marketer",
+          "url": "https://huggingface.co/vivekchakraverty/image-generator-marketer",
+          "review_priority": "high",
+          "priority_score": 11,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "explicit-scenario-match",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-08-02T01:46:00.000Z",
+          "downloads": 0,
+          "likes": 0,
           "gated": false
         },
         {
@@ -13557,6 +13775,22 @@
           ],
           "created_at": "2026-07-31T02:00:43.000Z",
           "downloads": 6,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "mlx-community/Moebius-Places2-fp16",
+          "url": "https://huggingface.co/mlx-community/Moebius-Places2-fp16",
+          "review_priority": "high",
+          "priority_score": 9,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-08-01T15:47:47.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
@@ -13621,7 +13855,7 @@
           ],
           "created_at": "2026-07-29T12:54:47.000Z",
           "downloads": 0,
-          "likes": 30,
+          "likes": 31,
           "gated": false
         },
         {
@@ -13640,21 +13874,6 @@
           "gated": false
         },
         {
-          "title": "ApacheOne/voir-mage-pilot48-albedo-v1",
-          "url": "https://huggingface.co/ApacheOne/voir-mage-pilot48-albedo-v1",
-          "review_priority": "high",
-          "priority_score": 7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-27T19:38:03.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
           "title": "AyaanZ30/sar2eo-cdiff",
           "url": "https://huggingface.co/AyaanZ30/sar2eo-cdiff",
           "review_priority": "high",
@@ -13665,6 +13884,36 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-31T12:06:07.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "clark-labs/clark-realtime-ui-video-upscaler-x2",
+          "url": "https://huggingface.co/clark-labs/clark-realtime-ui-video-upscaler-x2",
+          "review_priority": "high",
+          "priority_score": 7,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-08-01T09:46:49.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "coreai-community/Moebius-CoreAI",
+          "url": "https://huggingface.co/coreai-community/Moebius-CoreAI",
+          "review_priority": "high",
+          "priority_score": 7,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared"
+          ],
+          "created_at": "2026-08-01T21:12:48.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
@@ -13695,111 +13944,6 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-29T10:38:40.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "mlx-community/DRUNet-color-fp32",
-          "url": "https://huggingface.co/mlx-community/DRUNet-color-fp32",
-          "review_priority": "high",
-          "priority_score": 7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-27T20:31:59.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "mlx-community/HVI-CIDNet-SICE-fp32",
-          "url": "https://huggingface.co/mlx-community/HVI-CIDNet-SICE-fp32",
-          "review_priority": "high",
-          "priority_score": 7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-27T18:27:38.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "mlx-community/Restormer-defocus-deblurring-fp32",
-          "url": "https://huggingface.co/mlx-community/Restormer-defocus-deblurring-fp32",
-          "review_priority": "high",
-          "priority_score": 7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-27T19:41:26.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "mlx-community/Restormer-motion-deblurring-fp32",
-          "url": "https://huggingface.co/mlx-community/Restormer-motion-deblurring-fp32",
-          "review_priority": "high",
-          "priority_score": 7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-27T19:41:12.000Z",
-          "downloads": 0,
-          "likes": 1,
-          "gated": false
-        },
-        {
-          "title": "mlx-community/Restormer-real-denoising-fp32",
-          "url": "https://huggingface.co/mlx-community/Restormer-real-denoising-fp32",
-          "review_priority": "high",
-          "priority_score": 7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-27T19:41:37.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "mlx-community/SCUNet-color-real-gan-fp32",
-          "url": "https://huggingface.co/mlx-community/SCUNet-color-real-gan-fp32",
-          "review_priority": "high",
-          "priority_score": 7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-27T22:09:27.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "mlx-community/SCUNet-color-real-psnr-fp32",
-          "url": "https://huggingface.co/mlx-community/SCUNet-color-real-psnr-fp32",
-          "review_priority": "high",
-          "priority_score": 7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-27T22:09:18.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
@@ -13847,20 +13991,6 @@
           ],
           "created_at": "2026-07-30T14:41:40.000Z",
           "downloads": 3,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "chenjiashuo/T2exture_model",
-          "url": "https://huggingface.co/chenjiashuo/T2exture_model",
-          "review_priority": "standard",
-          "priority_score": 6,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-28T07:18:06.000Z",
-          "downloads": 0,
           "likes": 0,
           "gated": false
         },
@@ -13949,6 +14079,42 @@
           "gated": false
         },
         {
+          "title": "szwagros/mage-flow-edit-bf16-fp8",
+          "url": "https://huggingface.co/szwagros/mage-flow-edit-bf16-fp8",
+          "review_priority": "standard",
+          "priority_score": 5,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "explicit-scenario-match",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present",
+            "quantized-derivative"
+          ],
+          "created_at": "2026-08-01T06:25:40.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "szwagros/mage-flow-edit-turbo-bf16-fp8",
+          "url": "https://huggingface.co/szwagros/mage-flow-edit-turbo-bf16-fp8",
+          "review_priority": "standard",
+          "priority_score": 5,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "explicit-scenario-match",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present",
+            "quantized-derivative"
+          ],
+          "created_at": "2026-08-01T06:22:48.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
           "title": "ajh-code/Mage-Flow-Edit-Turbo-XPO3-NVFP4",
           "url": "https://huggingface.co/ajh-code/Mage-Flow-Edit-Turbo-XPO3-NVFP4",
           "review_priority": "standard",
@@ -13962,7 +14128,7 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-30T11:55:55.000Z",
-          "downloads": 521,
+          "downloads": 523,
           "likes": 0,
           "gated": false
         },
@@ -13980,7 +14146,7 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-30T16:30:50.000Z",
-          "downloads": 491,
+          "downloads": 493,
           "likes": 0,
           "gated": false
         },
@@ -13997,7 +14163,7 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-31T10:24:36.000Z",
-          "downloads": 0,
+          "downloads": 30,
           "likes": 0,
           "gated": false
         },
@@ -14013,7 +14179,7 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-31T22:07:26.000Z",
-          "downloads": 0,
+          "downloads": 12,
           "likes": 0,
           "gated": false
         },
@@ -14034,18 +14200,53 @@
           "gated": false
         },
         {
-          "title": "MinhNH232331M/FlowUpscaler-diffusers",
-          "url": "https://huggingface.co/MinhNH232331M/FlowUpscaler-diffusers",
+          "title": "szwagros/boogu-image-0.1-edit-bf16-fp8",
+          "url": "https://huggingface.co/szwagros/boogu-image-0.1-edit-bf16-fp8",
           "review_priority": "low",
           "priority_score": 1,
           "priority_signals": [
             "generative-media-pipeline",
+            "paper-linked",
             "license-declared",
             "weight-artifact-present",
-            "conversion-or-mirror"
+            "quantized-derivative"
           ],
-          "created_at": "2026-07-28T11:29:27.000Z",
-          "downloads": 38,
+          "created_at": "2026-08-01T06:38:39.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "szwagros/boogu-image-0.1-edit-turbo-bf16-fp8",
+          "url": "https://huggingface.co/szwagros/boogu-image-0.1-edit-turbo-bf16-fp8",
+          "review_priority": "low",
+          "priority_score": 1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present",
+            "quantized-derivative"
+          ],
+          "created_at": "2026-08-01T06:33:49.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "szwagros/qwen-image-edit-2511-base-te-fp8",
+          "url": "https://huggingface.co/szwagros/qwen-image-edit-2511-base-te-fp8",
+          "review_priority": "low",
+          "priority_score": 1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present",
+            "quantized-derivative"
+          ],
+          "created_at": "2026-08-01T06:28:58.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
@@ -14062,24 +14263,8 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-31T08:06:42.000Z",
-          "downloads": 0,
+          "downloads": 21,
           "likes": 6,
-          "gated": false
-        },
-        {
-          "title": "Amirulazmi16/Flux-Uncensored-V2",
-          "url": "https://huggingface.co/Amirulazmi16/Flux-Uncensored-V2",
-          "review_priority": "low",
-          "priority_score": -1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-28T10:46:42.000Z",
-          "downloads": 30,
-          "likes": 0,
           "gated": false
         },
         {
@@ -14099,6 +14284,22 @@
           "gated": false
         },
         {
+          "title": "gabrielemidulla/FLUX.2-klein-9B-SDNQ-4bit-dynamic-svd-r32",
+          "url": "https://huggingface.co/gabrielemidulla/FLUX.2-klein-9B-SDNQ-4bit-dynamic-svd-r32",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "quantized-derivative"
+          ],
+          "created_at": "2026-08-01T11:24:59.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
           "title": "GbrlOl/thermal-fr-lora",
           "url": "https://huggingface.co/GbrlOl/thermal-fr-lora",
           "review_priority": "low",
@@ -14110,7 +14311,7 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-07-29T15:27:23.000Z",
-          "downloads": 10,
+          "downloads": 11,
           "likes": 0,
           "gated": false
         },
@@ -14146,7 +14347,7 @@
           ],
           "created_at": "2026-07-31T14:09:23.000Z",
           "downloads": 0,
-          "likes": 8,
+          "likes": 24,
           "gated": false
         },
         {
@@ -14163,7 +14364,7 @@
             "conversion-or-mirror"
           ],
           "created_at": "2026-07-29T10:31:06.000Z",
-          "downloads": 13,
+          "downloads": 14,
           "likes": 0,
           "gated": false
         },
@@ -14181,7 +14382,24 @@
             "conversion-or-mirror"
           ],
           "created_at": "2026-07-29T06:08:54.000Z",
-          "downloads": 10,
+          "downloads": 11,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "Hoops-McCann/hoi4-portraits-flux2-klein-9b-lora",
+          "url": "https://huggingface.co/Hoops-McCann/hoi4-portraits-flux2-klein-9b-lora",
+          "review_priority": "low",
+          "priority_score": -7,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative",
+            "wrapper-or-demo"
+          ],
+          "created_at": "2026-08-01T05:18:35.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
@@ -14242,7 +14460,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-21T14:58:50.000Z",
-          "downloads": 31,
+          "downloads": 33,
           "likes": 0,
           "gated": false
         },
@@ -14259,7 +14477,24 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-29T09:08:32.000Z",
-          "downloads": 4,
+          "downloads": 6,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "Glowglow11/LTX-2.3",
+          "url": "https://huggingface.co/Glowglow11/LTX-2.3",
+          "review_priority": "high",
+          "priority_score": 13,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "explicit-scenario-match",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present"
+          ],
+          "created_at": "2026-08-01T19:48:22.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
@@ -14276,7 +14511,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-26T13:13:15.000Z",
-          "downloads": 37,
+          "downloads": 43,
           "likes": 0,
           "gated": false
         },
@@ -14293,24 +14528,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-29T22:02:28.000Z",
-          "downloads": 7,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "jemasa/LTX-2.3",
-          "url": "https://huggingface.co/jemasa/LTX-2.3",
-          "review_priority": "high",
-          "priority_score": 13,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "explicit-scenario-match",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-20T12:24:18.000Z",
-          "downloads": 20,
+          "downloads": 8,
           "likes": 0,
           "gated": false
         },
@@ -14344,7 +14562,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-21T19:55:59.000Z",
-          "downloads": 39,
+          "downloads": 40,
           "likes": 0,
           "gated": false
         },
@@ -14377,39 +14595,6 @@
           ],
           "created_at": "2026-07-22T09:36:17.000Z",
           "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "nvidia/Cosmos-H-Dreams",
-          "url": "https://huggingface.co/nvidia/Cosmos-H-Dreams",
-          "review_priority": "high",
-          "priority_score": 10,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present",
-            "usage-signal"
-          ],
-          "created_at": "2026-07-21T10:50:34.000Z",
-          "downloads": 287,
-          "likes": 12,
-          "gated": false
-        },
-        {
-          "title": "conwaywillem3/CogVideoX-5b-I2V",
-          "url": "https://huggingface.co/conwaywillem3/CogVideoX-5b-I2V",
-          "review_priority": "high",
-          "priority_score": 9,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-21T04:29:31.000Z",
-          "downloads": 18,
           "likes": 0,
           "gated": false
         },
@@ -14473,7 +14658,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-21T19:57:50.000Z",
-          "downloads": 9,
+          "downloads": 25,
           "likes": 0,
           "gated": false
         },
@@ -14549,7 +14734,7 @@
             "usage-signal"
           ],
           "created_at": "2026-07-24T10:57:45.000Z",
-          "downloads": 2439,
+          "downloads": 2477,
           "likes": 0,
           "gated": false
         },
@@ -14613,7 +14798,21 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-21T14:20:38.000Z",
-          "downloads": 203,
+          "downloads": 204,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "jayseanbrambila/Seedance2-Video-Generator",
+          "url": "https://huggingface.co/jayseanbrambila/Seedance2-Video-Generator",
+          "review_priority": "standard",
+          "priority_score": 5,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared"
+          ],
+          "created_at": "2026-08-01T16:49:52.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
@@ -14635,6 +14834,24 @@
           "gated": false
         },
         {
+          "title": "JonneyWang/AnyID",
+          "url": "https://huggingface.co/JonneyWang/AnyID",
+          "review_priority": "low",
+          "priority_score": 2,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present",
+            "usage-signal",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-07-30T07:42:43.000Z",
+          "downloads": 13,
+          "likes": 2,
+          "gated": false
+        },
+        {
           "title": "rootonchair/LTX-2.3-Distilled-v1.1-Diffusers",
           "url": "https://huggingface.co/rootonchair/LTX-2.3-Distilled-v1.1-Diffusers",
           "review_priority": "low",
@@ -14647,7 +14864,7 @@
             "conversion-or-mirror"
           ],
           "created_at": "2026-07-25T13:58:18.000Z",
-          "downloads": 387,
+          "downloads": 388,
           "likes": 0,
           "gated": false
         },
@@ -14669,23 +14886,6 @@
           "gated": false
         },
         {
-          "title": "JonneyWang/AnyID",
-          "url": "https://huggingface.co/JonneyWang/AnyID",
-          "review_priority": "low",
-          "priority_score": 1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-30T07:42:43.000Z",
-          "downloads": 12,
-          "likes": 1,
-          "gated": false
-        },
-        {
           "title": "Catty1w312/Wan2.2-I2V-A14B-GGUF",
           "url": "https://huggingface.co/Catty1w312/Wan2.2-I2V-A14B-GGUF",
           "review_priority": "low",
@@ -14698,7 +14898,7 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-27T13:22:24.000Z",
-          "downloads": 165,
+          "downloads": 167,
           "likes": 0,
           "gated": false
         },
@@ -14731,7 +14931,7 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-31T22:05:28.000Z",
-          "downloads": 0,
+          "downloads": 12,
           "likes": 0,
           "gated": false
         },
@@ -14747,7 +14947,7 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-07-25T16:07:15.000Z",
-          "downloads": 45,
+          "downloads": 50,
           "likes": 1,
           "gated": false
         },
@@ -14763,8 +14963,8 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-31T04:54:58.000Z",
-          "downloads": 0,
-          "likes": 4,
+          "downloads": 57,
+          "likes": 5,
           "gated": false
         },
         {
@@ -14779,22 +14979,6 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-08-01T02:41:46.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "N0vice/BFS-Best-Face-Swap-Video",
-          "url": "https://huggingface.co/N0vice/BFS-Best-Face-Swap-Video",
-          "review_priority": "low",
-          "priority_score": -1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-19T18:55:46.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
@@ -14858,7 +15042,7 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-23T21:35:07.000Z",
-          "downloads": 73,
+          "downloads": 74,
           "likes": 0,
           "gated": false
         },
@@ -14876,6 +15060,22 @@
           "created_at": "2026-07-24T20:26:11.000Z",
           "downloads": 21,
           "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "rockerBOO/ltx2.3-10eros-nvfp4",
+          "url": "https://huggingface.co/rockerBOO/ltx2.3-10eros-nvfp4",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "quantized-derivative"
+          ],
+          "created_at": "2026-08-01T05:08:17.000Z",
+          "downloads": 0,
+          "likes": 1,
           "gated": false
         },
         {
@@ -14927,6 +15127,21 @@
           "gated": false
         },
         {
+          "title": "CornLogic/10EROS_Int4",
+          "url": "https://huggingface.co/CornLogic/10EROS_Int4",
+          "review_priority": "low",
+          "priority_score": -2,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "weight-artifact-present",
+            "quantized-derivative"
+          ],
+          "created_at": "2026-07-30T09:52:00.000Z",
+          "downloads": 45,
+          "likes": 1,
+          "gated": false
+        },
+        {
           "title": "Bn53/HunyuanVideo-1.5_I2V_720p-GGUF",
           "url": "https://huggingface.co/Bn53/HunyuanVideo-1.5_I2V_720p-GGUF",
           "review_priority": "low",
@@ -14942,18 +15157,21 @@
           "gated": false
         },
         {
-          "title": "chfm/LTX2.3-10Eros-1.4-GGUF",
-          "url": "https://huggingface.co/chfm/LTX2.3-10Eros-1.4-GGUF",
+          "title": "SuShuHeng/wan2.2_it2v_5B_Turbo_ConvRot_INT8_INT4",
+          "url": "https://huggingface.co/SuShuHeng/wan2.2_it2v_5B_Turbo_ConvRot_INT8_INT4",
           "review_priority": "low",
-          "priority_score": -3,
+          "priority_score": -5,
           "priority_signals": [
             "generative-media-pipeline",
-            "usage-signal",
-            "quantized-derivative"
+            "paper-linked",
+            "license-declared",
+            "weight-artifact-present",
+            "quantized-derivative",
+            "wrapper-or-demo"
           ],
-          "created_at": "2026-07-21T07:17:50.000Z",
-          "downloads": 192,
-          "likes": 1,
+          "created_at": "2026-08-01T08:28:57.000Z",
+          "downloads": 0,
+          "likes": 0,
           "gated": false
         },
         {
@@ -14970,7 +15188,7 @@
             "wrapper-or-demo"
           ],
           "created_at": "2026-07-23T23:11:31.000Z",
-          "downloads": 187,
+          "downloads": 196,
           "likes": 4,
           "gated": false
         },
@@ -15115,7 +15333,7 @@
             "usage-signal"
           ],
           "created_at": "2025-12-08T12:22:59.000Z",
-          "downloads": 157,
+          "downloads": 155,
           "likes": 17,
           "gated": false
         },
@@ -15166,7 +15384,7 @@
             "usage-signal"
           ],
           "created_at": "2025-12-29T09:39:21.000Z",
-          "downloads": 262,
+          "downloads": 257,
           "likes": 424,
           "gated": false
         },
@@ -15198,7 +15416,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-01-08T07:00:07.000Z",
-          "downloads": 22,
+          "downloads": 24,
           "likes": 0,
           "gated": false
         },
@@ -15246,7 +15464,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-06-26T02:20:25.000Z",
-          "downloads": 7,
+          "downloads": 9,
           "likes": 0,
           "gated": false
         },
@@ -15262,7 +15480,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-06-26T02:20:34.000Z",
-          "downloads": 7,
+          "downloads": 9,
           "likes": 0,
           "gated": false
         },
@@ -15278,7 +15496,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-06-26T02:20:40.000Z",
-          "downloads": 11,
+          "downloads": 13,
           "likes": 0,
           "gated": false
         },
@@ -15342,7 +15560,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2025-06-13T16:33:58.000Z",
-          "downloads": 0,
+          "downloads": 2,
           "likes": 0,
           "gated": false
         },
@@ -15358,7 +15576,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2025-06-13T16:13:27.000Z",
-          "downloads": 0,
+          "downloads": 3,
           "likes": 0,
           "gated": false
         },
@@ -15498,7 +15716,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2025-08-06T07:56:50.000Z",
-          "downloads": 8,
+          "downloads": 5,
           "likes": 0,
           "gated": false
         },
@@ -15804,7 +16022,7 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-03-22T11:27:49.000Z",
-          "downloads": 31,
+          "downloads": 19,
           "likes": 0,
           "gated": "auto"
         },
@@ -15851,7 +16069,7 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-02T13:39:02.000Z",
-          "downloads": 333,
+          "downloads": 262,
           "likes": 2,
           "gated": false
         }
@@ -15882,8 +16100,8 @@
       "status": 200,
       "candidates": [
         {
-          "title": "emotion123/stable-diffusion-v1-4",
-          "url": "https://huggingface.co/emotion123/stable-diffusion-v1-4",
+          "title": "embedingHF/stable-diffusion-v1-5",
+          "url": "https://huggingface.co/embedingHF/stable-diffusion-v1-5",
           "review_priority": "high",
           "priority_score": 9,
           "priority_signals": [
@@ -15892,24 +16110,8 @@
             "license-declared",
             "weight-artifact-present"
           ],
-          "created_at": "2026-07-31T12:46:53.000Z",
+          "created_at": "2026-08-01T13:44:12.000Z",
           "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "jilao/stable-diffusion-xl-base-1.0",
-          "url": "https://huggingface.co/jilao/stable-diffusion-xl-base-1.0",
-          "review_priority": "high",
-          "priority_score": 9,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present"
-          ],
-          "created_at": "2026-07-31T02:53:21.000Z",
-          "downloads": 1,
           "likes": 0,
           "gated": false
         },
@@ -15925,7 +16127,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-31T19:12:27.000Z",
-          "downloads": 0,
+          "downloads": 1,
           "likes": 0,
           "gated": false
         },
@@ -15957,7 +16159,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-31T19:13:00.000Z",
-          "downloads": 0,
+          "downloads": 1,
           "likes": 0,
           "gated": false
         },
@@ -15989,7 +16191,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-31T19:12:38.000Z",
-          "downloads": 0,
+          "downloads": 1,
           "likes": 0,
           "gated": false
         },
@@ -16005,7 +16207,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-31T19:12:49.000Z",
-          "downloads": 0,
+          "downloads": 1,
           "likes": 0,
           "gated": false
         },
@@ -16026,8 +16228,8 @@
           "gated": false
         },
         {
-          "title": "aschjj/FLUX-UNCENSORED-merged",
-          "url": "https://huggingface.co/aschjj/FLUX-UNCENSORED-merged",
+          "title": "rAVEUK/GLM-Image",
+          "url": "https://huggingface.co/rAVEUK/GLM-Image",
           "review_priority": "high",
           "priority_score": 7,
           "priority_signals": [
@@ -16035,29 +16237,14 @@
             "license-declared",
             "weight-artifact-present"
           ],
-          "created_at": "2026-07-31T11:28:53.000Z",
+          "created_at": "2026-08-01T10:03:04.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "KevinWang1115/Stable_Diffusion_2.1_base",
-          "url": "https://huggingface.co/KevinWang1115/Stable_Diffusion_2.1_base",
-          "review_priority": "high",
-          "priority_score": 7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "paper-linked",
-            "license-declared"
-          ],
-          "created_at": "2026-07-31T05:28:12.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "Mspanz88/NSFW-Uncensored",
-          "url": "https://huggingface.co/Mspanz88/NSFW-Uncensored",
+          "title": "Severelotus/NSFW-Uncensored",
+          "url": "https://huggingface.co/Severelotus/NSFW-Uncensored",
           "review_priority": "high",
           "priority_score": 7,
           "priority_signals": [
@@ -16065,38 +16252,88 @@
             "license-declared",
             "weight-artifact-present"
           ],
-          "created_at": "2026-07-31T01:41:17.000Z",
-          "downloads": 1,
+          "created_at": "2026-08-01T13:46:03.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "Ujjwal-Tyagi/pre-mirage-30B",
-          "url": "https://huggingface.co/Ujjwal-Tyagi/pre-mirage-30B",
-          "review_priority": "standard",
-          "priority_score": 6,
+          "title": "shibatch/tinydigitdiffusion3m",
+          "url": "https://huggingface.co/shibatch/tinydigitdiffusion3m",
+          "review_priority": "high",
+          "priority_score": 7,
           "priority_signals": [
             "generative-media-pipeline",
-            "weight-artifact-present",
-            "gated-access"
+            "license-declared",
+            "weight-artifact-present"
           ],
-          "created_at": "2026-07-31T15:55:25.000Z",
+          "created_at": "2026-08-01T11:12:27.000Z",
           "downloads": 0,
           "likes": 0,
-          "gated": "manual"
+          "gated": false
         },
         {
-          "title": "hub-sarrasin/Qwen-Image-Edit-Rapid-AIO",
-          "url": "https://huggingface.co/hub-sarrasin/Qwen-Image-Edit-Rapid-AIO",
+          "title": "SeFi-Image/SeFi-Image-1B-Base-diffusers",
+          "url": "https://huggingface.co/SeFi-Image/SeFi-Image-1B-Base-diffusers",
           "review_priority": "low",
           "priority_score": 1,
           "priority_signals": [
             "generative-media-pipeline",
             "license-declared",
             "weight-artifact-present",
-            "wrapper-or-demo"
+            "gated-access",
+            "conversion-or-mirror"
           ],
-          "created_at": "2026-07-31T13:41:14.000Z",
+          "created_at": "2026-08-01T09:50:01.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": "auto"
+        },
+        {
+          "title": "SeFi-Image/SeFi-Image-1B-turbo-diffusers",
+          "url": "https://huggingface.co/SeFi-Image/SeFi-Image-1B-turbo-diffusers",
+          "review_priority": "low",
+          "priority_score": 1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "gated-access",
+            "conversion-or-mirror"
+          ],
+          "created_at": "2026-08-01T09:50:02.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": "auto"
+        },
+        {
+          "title": "BlueTriangles/SDXL_Honjo_Rena",
+          "url": "https://huggingface.co/BlueTriangles/SDXL_Honjo_Rena",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-08-01T22:10:54.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "BlueTriangles/SDXL_Kuon_Nanami",
+          "url": "https://huggingface.co/BlueTriangles/SDXL_Kuon_Nanami",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-08-01T22:04:13.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
@@ -16118,8 +16355,8 @@
           "gated": false
         },
         {
-          "title": "guillekenzo/aros-08bc7d94-PlayfulComet",
-          "url": "https://huggingface.co/guillekenzo/aros-08bc7d94-PlayfulComet",
+          "title": "chandlr/krea2-gs",
+          "url": "https://huggingface.co/chandlr/krea2-gs",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -16128,7 +16365,87 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-31T13:41:59.000Z",
+          "created_at": "2026-08-01T05:46:16.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "cicalooo/krea2_unidepth_depth",
+          "url": "https://huggingface.co/cicalooo/krea2_unidepth_depth",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-08-01T14:52:28.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "D33pStateTech/d33pstateLora",
+          "url": "https://huggingface.co/D33pStateTech/d33pstateLora",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-08-01T09:20:20.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "D33pStateTech/d33pstateten",
+          "url": "https://huggingface.co/D33pStateTech/d33pstateten",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-08-01T08:53:42.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "Dinklemann/drjl_lifestyle",
+          "url": "https://huggingface.co/Dinklemann/drjl_lifestyle",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-08-01T22:08:49.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "DiSS0245/uvubabefresh",
+          "url": "https://huggingface.co/DiSS0245/uvubabefresh",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-08-01T20:20:09.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
@@ -16145,13 +16462,13 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-08-01T01:18:19.000Z",
-          "downloads": 0,
+          "downloads": 8,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "guillekenzo/aros-a5ce2acd-CrimsonZenith",
-          "url": "https://huggingface.co/guillekenzo/aros-a5ce2acd-CrimsonZenith",
+          "title": "guillekenzo/aros-53b63ec6-VelvetVertex",
+          "url": "https://huggingface.co/guillekenzo/aros-53b63ec6-VelvetVertex",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -16160,14 +16477,14 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-31T17:10:36.000Z",
+          "created_at": "2026-08-01T06:48:13.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "guillekenzo/aros-d31b3990-ElectricRaven",
-          "url": "https://huggingface.co/guillekenzo/aros-d31b3990-ElectricRaven",
+          "title": "guillekenzo/aros-86f0526e-ZHJ",
+          "url": "https://huggingface.co/guillekenzo/aros-86f0526e-ZHJ",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -16176,7 +16493,23 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-31T10:40:47.000Z",
+          "created_at": "2026-08-01T07:46:02.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "guillekenzo/aros-8815e289-MellowRaven",
+          "url": "https://huggingface.co/guillekenzo/aros-8815e289-MellowRaven",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-08-01T16:14:03.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
@@ -16193,7 +16526,7 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-08-01T01:08:42.000Z",
-          "downloads": 0,
+          "downloads": 7,
           "likes": 0,
           "gated": false
         },
@@ -16225,13 +16558,13 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-31T19:21:24.000Z",
-          "downloads": 0,
+          "downloads": 10,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "IronBloodhound/emberink-cinematic-graphic-novel-style",
-          "url": "https://huggingface.co/IronBloodhound/emberink-cinematic-graphic-novel-style",
+          "title": "jakohist/habin-e6",
+          "url": "https://huggingface.co/jakohist/habin-e6",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -16240,14 +16573,14 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-31T04:42:20.000Z",
+          "created_at": "2026-08-02T00:03:11.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "jakohist/yonyuu-krea2",
-          "url": "https://huggingface.co/jakohist/yonyuu-krea2",
+          "title": "jakohist/yonyu-e2-krea2",
+          "url": "https://huggingface.co/jakohist/yonyu-e2-krea2",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -16256,14 +16589,30 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-31T02:21:22.000Z",
-          "downloads": 2,
+          "created_at": "2026-08-01T08:29:28.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "jakohist/yonyu-e3-krea2",
+          "url": "https://huggingface.co/jakohist/yonyu-e3-krea2",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-08-01T08:31:16.000Z",
+          "downloads": 0,
           "likes": 1,
           "gated": false
         },
         {
-          "title": "justacoderwhocodes/tinylau",
-          "url": "https://huggingface.co/justacoderwhocodes/tinylau",
+          "title": "neonforestmist/clover-image-tiny-storybook-anime-lora",
+          "url": "https://huggingface.co/neonforestmist/clover-image-tiny-storybook-anime-lora",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -16272,30 +16621,46 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-31T12:17:19.000Z",
+          "created_at": "2026-08-02T01:50:00.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "justafuxy/control-lora",
-          "url": "https://huggingface.co/justafuxy/control-lora",
+          "title": "Omnico/Krea2_turbo_diff_loras",
+          "url": "https://huggingface.co/Omnico/Krea2_turbo_diff_loras",
+          "review_priority": "low",
+          "priority_score": -1,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "weight-artifact-present",
+            "usage-signal",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-08-01T13:23:43.000Z",
+          "downloads": 0,
+          "likes": 2,
+          "gated": false
+        },
+        {
+          "title": "rockerBOO/flux.1-krea-dev-convrot-int8",
+          "url": "https://huggingface.co/rockerBOO/flux.1-krea-dev-convrot-int8",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
             "generative-media-pipeline",
             "license-declared",
             "weight-artifact-present",
-            "adapter-or-lora-derivative"
+            "quantized-derivative"
           ],
-          "created_at": "2026-07-31T08:34:56.000Z",
+          "created_at": "2026-08-01T19:10:50.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "justafuxy/flux-controlnet-collections",
-          "url": "https://huggingface.co/justafuxy/flux-controlnet-collections",
+          "title": "Ser-hiiv/forsp1r1t",
+          "url": "https://huggingface.co/Ser-hiiv/forsp1r1t",
           "review_priority": "low",
           "priority_score": -1,
           "priority_signals": [
@@ -16304,87 +16669,7 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-31T08:35:39.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "neonforestmist/clover-image-tiny-watercolor-anime-lora",
-          "url": "https://huggingface.co/neonforestmist/clover-image-tiny-watercolor-anime-lora",
-          "review_priority": "low",
-          "priority_score": -1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-30T23:52:31.000Z",
-          "downloads": 4,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "pedrooberlaender/hotcowgirl",
-          "url": "https://huggingface.co/pedrooberlaender/hotcowgirl",
-          "review_priority": "low",
-          "priority_score": -1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-31T00:59:24.000Z",
-          "downloads": 5,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "perpetual3x/ROC_Vintage_Poster",
-          "url": "https://huggingface.co/perpetual3x/ROC_Vintage_Poster",
-          "review_priority": "low",
-          "priority_score": -1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-31T15:24:49.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "SkillFi24/mature_female",
-          "url": "https://huggingface.co/SkillFi24/mature_female",
-          "review_priority": "low",
-          "priority_score": -1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-31T16:30:04.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "Solando/Krea-2-di-illustration-style-v4",
-          "url": "https://huggingface.co/Solando/Krea-2-di-illustration-style-v4",
-          "review_priority": "low",
-          "priority_score": -1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-31T07:11:03.000Z",
+          "created_at": "2026-08-02T01:45:54.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
@@ -16417,28 +16702,29 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-07-31T19:34:59.000Z",
-          "downloads": 0,
+          "downloads": 3,
           "likes": 2,
           "gated": false
         },
         {
-          "title": "B0rghese/Grotesque_Magical_Realism",
-          "url": "https://huggingface.co/B0rghese/Grotesque_Magical_Realism",
+          "title": "xpamelax/pamall-krea2-hf",
+          "url": "https://huggingface.co/xpamelax/pamall-krea2-hf",
           "review_priority": "low",
-          "priority_score": -2,
+          "priority_score": -1,
           "priority_signals": [
             "generative-media-pipeline",
+            "license-declared",
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-31T12:44:37.000Z",
+          "created_at": "2026-08-02T01:38:10.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "B0rghese/Hair_Flip",
-          "url": "https://huggingface.co/B0rghese/Hair_Flip",
+          "title": "B0rghese/Demira",
+          "url": "https://huggingface.co/B0rghese/Demira",
           "review_priority": "low",
           "priority_score": -2,
           "priority_signals": [
@@ -16446,9 +16732,24 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-31T11:50:04.000Z",
+          "created_at": "2026-08-01T18:43:38.000Z",
           "downloads": 0,
           "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "dtecho/live2d-model-maker",
+          "url": "https://huggingface.co/dtecho/live2d-model-maker",
+          "review_priority": "low",
+          "priority_score": -2,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "weight-artifact-present",
+            "adapter-or-lora-derivative"
+          ],
+          "created_at": "2026-08-01T20:15:17.000Z",
+          "downloads": 0,
+          "likes": 1,
           "gated": false
         },
         {
@@ -16482,8 +16783,8 @@
           "gated": false
         },
         {
-          "title": "pawelfilip/anna_iceland_krea2_1000",
-          "url": "https://huggingface.co/pawelfilip/anna_iceland_krea2_1000",
+          "title": "Forost/nsfw-grim-zimage-lora-merged-exact-09-06",
+          "url": "https://huggingface.co/Forost/nsfw-grim-zimage-lora-merged-exact-09-06",
           "review_priority": "low",
           "priority_score": -2,
           "priority_signals": [
@@ -16491,14 +16792,14 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-31T15:00:10.000Z",
+          "created_at": "2026-08-01T21:41:57.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "PromptWaffle/ButternutCrunch_Storybook_Krea2_V1",
-          "url": "https://huggingface.co/PromptWaffle/ButternutCrunch_Storybook_Krea2_V1",
+          "title": "Forost/nsfw-grim-zimage-lora-merged-svd-r192-09-06",
+          "url": "https://huggingface.co/Forost/nsfw-grim-zimage-lora-merged-svd-r192-09-06",
           "review_priority": "low",
           "priority_score": -2,
           "priority_signals": [
@@ -16506,14 +16807,14 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-31T01:29:18.000Z",
-          "downloads": 2,
+          "created_at": "2026-08-01T22:00:06.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "PromptWaffle/FruityKicks",
-          "url": "https://huggingface.co/PromptWaffle/FruityKicks",
+          "title": "Forost/nsfw-grim-zimage-lora-merged-svd-r256-09-06",
+          "url": "https://huggingface.co/Forost/nsfw-grim-zimage-lora-merged-svd-r256-09-06",
           "review_priority": "low",
           "priority_score": -2,
           "priority_signals": [
@@ -16521,14 +16822,14 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-31T01:16:39.000Z",
-          "downloads": 4,
+          "created_at": "2026-08-01T21:59:26.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "PromptWaffle/RustedHorizons",
-          "url": "https://huggingface.co/PromptWaffle/RustedHorizons",
+          "title": "Stereo0001/Krea-2-NF4-for-LoRA-Training",
+          "url": "https://huggingface.co/Stereo0001/Krea-2-NF4-for-LoRA-Training",
           "review_priority": "low",
           "priority_score": -2,
           "priority_signals": [
@@ -16536,14 +16837,14 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-31T01:20:34.000Z",
-          "downloads": 3,
+          "created_at": "2026-08-01T04:39:47.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "PromptWaffle/SaintFrame",
-          "url": "https://huggingface.co/PromptWaffle/SaintFrame",
+          "title": "xixxix-HF/AiShinozaki_Krea2",
+          "url": "https://huggingface.co/xixxix-HF/AiShinozaki_Krea2",
           "review_priority": "low",
           "priority_score": -2,
           "priority_signals": [
@@ -16551,81 +16852,14 @@
             "weight-artifact-present",
             "adapter-or-lora-derivative"
           ],
-          "created_at": "2026-07-31T01:24:04.000Z",
-          "downloads": 4,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "jakohist/yonyu-krea2",
-          "url": "https://huggingface.co/jakohist/yonyu-krea2",
-          "review_priority": "low",
-          "priority_score": -3,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "adapter-or-lora-derivative"
-          ],
-          "created_at": "2026-07-31T02:15:35.000Z",
+          "created_at": "2026-08-01T20:57:17.000Z",
           "downloads": 0,
-          "likes": 0,
+          "likes": 1,
           "gated": false
         },
         {
-          "title": "lodestones/Kroma",
-          "url": "https://huggingface.co/lodestones/Kroma",
-          "review_priority": "low",
-          "priority_score": -6,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "usage-signal",
-            "adapter-or-lora-derivative",
-            "wrapper-or-demo"
-          ],
-          "created_at": "2026-07-31T06:24:58.000Z",
-          "downloads": 0,
-          "likes": 72,
-          "gated": false
-        },
-        {
-          "title": "Aikimi/anima-mixbit-6.44-v1.2",
-          "url": "https://huggingface.co/Aikimi/anima-mixbit-6.44-v1.2",
-          "review_priority": "low",
-          "priority_score": -7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "quantized-derivative",
-            "wrapper-or-demo"
-          ],
-          "created_at": "2026-07-31T16:30:08.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "Jeansung/seori",
-          "url": "https://huggingface.co/Jeansung/seori",
-          "review_priority": "low",
-          "priority_score": -7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative",
-            "wrapper-or-demo"
-          ],
-          "created_at": "2026-07-31T02:20:56.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "neonforestmist/clover-image-tiny-monet-lora-coreml",
-          "url": "https://huggingface.co/neonforestmist/clover-image-tiny-monet-lora-coreml",
+          "title": "neonforestmist/clover-image-tiny-storybook-anime-lora-coreml",
+          "url": "https://huggingface.co/neonforestmist/clover-image-tiny-storybook-anime-lora-coreml",
           "review_priority": "low",
           "priority_score": -7,
           "priority_signals": [
@@ -16635,44 +16869,28 @@
             "adapter-or-lora-derivative",
             "conversion-or-mirror"
           ],
-          "created_at": "2026-07-30T23:26:46.000Z",
+          "created_at": "2026-08-02T01:50:12.000Z",
           "downloads": 0,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "neonforestmist/clover-image-tiny-pointillism-lora-coreml",
-          "url": "https://huggingface.co/neonforestmist/clover-image-tiny-pointillism-lora-coreml",
+          "title": "SEEDRAAI/SEEDRAAI",
+          "url": "https://huggingface.co/SEEDRAAI/SEEDRAAI",
           "review_priority": "low",
-          "priority_score": -7,
+          "priority_score": -9,
           "priority_signals": [
             "generative-media-pipeline",
             "license-declared",
             "weight-artifact-present",
+            "gated-access",
             "adapter-or-lora-derivative",
-            "conversion-or-mirror"
+            "quantized-derivative"
           ],
-          "created_at": "2026-07-30T23:32:43.000Z",
+          "created_at": "2026-08-01T12:18:19.000Z",
           "downloads": 0,
           "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "neonforestmist/clover-image-tiny-watercolor-anime-lora-coreml",
-          "url": "https://huggingface.co/neonforestmist/clover-image-tiny-watercolor-anime-lora-coreml",
-          "review_priority": "low",
-          "priority_score": -7,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "adapter-or-lora-derivative",
-            "conversion-or-mirror"
-          ],
-          "created_at": "2026-07-31T00:12:15.000Z",
-          "downloads": 0,
-          "likes": 0,
-          "gated": false
+          "gated": "manual"
         }
       ],
       "error": null,
@@ -16713,13 +16931,13 @@
             "usage-signal"
           ],
           "created_at": "2026-07-30T11:23:52.000Z",
-          "downloads": 8691,
+          "downloads": 8692,
           "likes": 0,
           "gated": false
         },
         {
-          "title": "JunhaoZhuang/Self_Gradient_Forcing",
-          "url": "https://huggingface.co/JunhaoZhuang/Self_Gradient_Forcing",
+          "title": "LiJiaxing/DistillAlign",
+          "url": "https://huggingface.co/LiJiaxing/DistillAlign",
           "review_priority": "high",
           "priority_score": 10,
           "priority_signals": [
@@ -16729,9 +16947,9 @@
             "weight-artifact-present",
             "usage-signal"
           ],
-          "created_at": "2026-07-22T12:03:28.000Z",
-          "downloads": 101,
-          "likes": 6,
+          "created_at": "2026-07-28T03:41:24.000Z",
+          "downloads": 137,
+          "likes": 2,
           "gated": false
         },
         {
@@ -16746,7 +16964,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-07-31T14:25:33.000Z",
-          "downloads": 0,
+          "downloads": 1,
           "likes": 1,
           "gated": false
         },
@@ -16796,22 +17014,6 @@
           "created_at": "2026-07-22T22:32:37.000Z",
           "downloads": 19,
           "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "LiJiaxing/DistillAlign",
-          "url": "https://huggingface.co/LiJiaxing/DistillAlign",
-          "review_priority": "high",
-          "priority_score": 8,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "usage-signal"
-          ],
-          "created_at": "2026-07-28T03:41:24.000Z",
-          "downloads": 137,
-          "likes": 1,
           "gated": false
         },
         {
@@ -16934,7 +17136,7 @@
             "conversion-or-mirror"
           ],
           "created_at": "2026-07-30T11:10:50.000Z",
-          "downloads": 24,
+          "downloads": 26,
           "likes": 0,
           "gated": false
         },
@@ -16951,7 +17153,7 @@
             "conversion-or-mirror"
           ],
           "created_at": "2026-07-30T11:39:19.000Z",
-          "downloads": 52,
+          "downloads": 54,
           "likes": 0,
           "gated": false
         },
@@ -16968,7 +17170,7 @@
             "conversion-or-mirror"
           ],
           "created_at": "2026-07-30T11:58:20.000Z",
-          "downloads": 27,
+          "downloads": 29,
           "likes": 0,
           "gated": false
         },
@@ -16985,7 +17187,7 @@
             "conversion-or-mirror"
           ],
           "created_at": "2026-07-30T11:20:50.000Z",
-          "downloads": 52,
+          "downloads": 54,
           "likes": 0,
           "gated": false
         },
@@ -17018,24 +17220,7 @@
             "conversion-or-mirror"
           ],
           "created_at": "2026-07-30T22:40:47.000Z",
-          "downloads": 7,
-          "likes": 0,
-          "gated": false
-        },
-        {
-          "title": "addlabsviral/wan22-5B-TI2V-quantized",
-          "url": "https://huggingface.co/addlabsviral/wan22-5B-TI2V-quantized",
-          "review_priority": "low",
-          "priority_score": 1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "paper-linked",
-            "license-declared",
-            "weight-artifact-present",
-            "quantized-derivative"
-          ],
-          "created_at": "2026-07-26T15:55:49.000Z",
-          "downloads": 26,
+          "downloads": 12,
           "likes": 0,
           "gated": false
         },
@@ -17137,6 +17322,23 @@
           "gated": false
         },
         {
+          "title": "SimpleTuner/ltxvideo-2.3-distilled-convrot-int8",
+          "url": "https://huggingface.co/SimpleTuner/ltxvideo-2.3-distilled-convrot-int8",
+          "review_priority": "low",
+          "priority_score": 0,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "license-declared",
+            "weight-artifact-present",
+            "usage-signal",
+            "quantized-derivative"
+          ],
+          "created_at": "2026-07-29T22:35:20.000Z",
+          "downloads": 1384,
+          "likes": 0,
+          "gated": false
+        },
+        {
           "title": "TracNetwork/mayhem-catalog-SulphurAI-Sulphur-2-base-GGUF",
           "url": "https://huggingface.co/TracNetwork/mayhem-catalog-SulphurAI-Sulphur-2-base-GGUF",
           "review_priority": "low",
@@ -17149,7 +17351,7 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-23T10:13:25.000Z",
-          "downloads": 156,
+          "downloads": 158,
           "likes": 0,
           "gated": false
         },
@@ -17197,7 +17399,7 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-26T19:33:20.000Z",
-          "downloads": 21,
+          "downloads": 22,
           "likes": 0,
           "gated": false
         },
@@ -17330,22 +17532,6 @@
           "gated": false
         },
         {
-          "title": "SimpleTuner/ltxvideo-2.3-distilled-convrot-int8",
-          "url": "https://huggingface.co/SimpleTuner/ltxvideo-2.3-distilled-convrot-int8",
-          "review_priority": "low",
-          "priority_score": -1,
-          "priority_signals": [
-            "generative-media-pipeline",
-            "license-declared",
-            "weight-artifact-present",
-            "quantized-derivative"
-          ],
-          "created_at": "2026-07-29T22:35:20.000Z",
-          "downloads": 6,
-          "likes": 0,
-          "gated": false
-        },
-        {
           "title": "yang29/AFD-OpenVid-Students",
           "url": "https://huggingface.co/yang29/AFD-OpenVid-Students",
           "review_priority": "low",
@@ -17362,6 +17548,21 @@
           "gated": false
         },
         {
+          "title": "SimonTheEngineer/Sulphur-2-base",
+          "url": "https://huggingface.co/SimonTheEngineer/Sulphur-2-base",
+          "review_priority": "low",
+          "priority_score": -2,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "weight-artifact-present",
+            "quantized-derivative"
+          ],
+          "created_at": "2026-08-01T11:50:43.000Z",
+          "downloads": 0,
+          "likes": 0,
+          "gated": false
+        },
+        {
           "title": "Hagwell/wan-1.3b-gguf",
           "url": "https://huggingface.co/Hagwell/wan-1.3b-gguf",
           "review_priority": "low",
@@ -17372,7 +17573,7 @@
             "quantized-derivative"
           ],
           "created_at": "2026-07-31T19:28:04.000Z",
-          "downloads": 0,
+          "downloads": 10,
           "likes": 0,
           "gated": false
         },
@@ -17404,7 +17605,7 @@
             "wrapper-or-demo"
           ],
           "created_at": "2026-07-31T22:54:33.000Z",
-          "downloads": 0,
+          "downloads": 11,
           "likes": 0,
           "gated": false
         },
@@ -17422,7 +17623,7 @@
             "wrapper-or-demo"
           ],
           "created_at": "2026-07-22T13:16:11.000Z",
-          "downloads": 6062,
+          "downloads": 6067,
           "likes": 7,
           "gated": false
         },
@@ -17511,6 +17712,22 @@
           ],
           "created_at": "2026-07-23T04:07:10.000Z",
           "downloads": 14,
+          "likes": 0,
+          "gated": false
+        },
+        {
+          "title": "GingerLabsPlatform/GingerLabs-Wan2.2-T2V-A14B",
+          "url": "https://huggingface.co/GingerLabsPlatform/GingerLabs-Wan2.2-T2V-A14B",
+          "review_priority": "low",
+          "priority_score": -8,
+          "priority_signals": [
+            "generative-media-pipeline",
+            "weight-artifact-present",
+            "quantized-derivative",
+            "wrapper-or-demo"
+          ],
+          "created_at": "2026-08-01T04:41:17.000Z",
+          "downloads": 0,
           "likes": 0,
           "gated": false
         }
@@ -17622,7 +17839,7 @@
             "usage-signal"
           ],
           "created_at": "2026-06-02T06:16:32.000Z",
-          "downloads": 529,
+          "downloads": 540,
           "likes": 27,
           "gated": false
         },
@@ -17655,7 +17872,7 @@
             "weight-artifact-present"
           ],
           "created_at": "2026-06-29T07:51:18.000Z",
-          "downloads": 85,
+          "downloads": 88,
           "likes": 1,
           "gated": false
         },
@@ -17815,7 +18032,7 @@
             "usage-signal"
           ],
           "created_at": "2026-06-06T02:23:49.000Z",
-          "downloads": 141,
+          "downloads": 142,
           "likes": 1,
           "gated": false
         },
@@ -17985,7 +18202,7 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-06-05T15:12:45.000Z",
-          "downloads": 1223,
+          "downloads": 1222,
           "likes": 0,
           "gated": false
         },
@@ -18103,8 +18320,8 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-07-27T03:54:33.000Z",
-          "downloads": 127,
-          "likes": 28,
+          "downloads": 155,
+          "likes": 29,
           "gated": false
         },
         {
@@ -18138,7 +18355,7 @@
           ],
           "created_at": "2026-07-27T19:39:44.000Z",
           "downloads": 0,
-          "likes": 13,
+          "likes": 15,
           "gated": false
         },
         {
@@ -18155,8 +18372,8 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-07-19T12:55:10.000Z",
-          "downloads": 1704,
-          "likes": 87,
+          "downloads": 1736,
+          "likes": 90,
           "gated": "auto"
         },
         {
@@ -18173,7 +18390,7 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-06-17T10:57:40.000Z",
-          "downloads": 2786,
+          "downloads": 2773,
           "likes": 20,
           "gated": "auto"
         },
@@ -18191,7 +18408,7 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-06-17T10:42:54.000Z",
-          "downloads": 1979,
+          "downloads": 1956,
           "likes": 23,
           "gated": "auto"
         },
@@ -18209,8 +18426,8 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-06-17T11:19:45.000Z",
-          "downloads": 2973,
-          "likes": 19,
+          "downloads": 2962,
+          "likes": 21,
           "gated": "auto"
         },
         {
@@ -18227,7 +18444,7 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-06-17T11:22:08.000Z",
-          "downloads": 3016,
+          "downloads": 3000,
           "likes": 26,
           "gated": "auto"
         },
@@ -18245,8 +18462,8 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-06-17T13:15:07.000Z",
-          "downloads": 3713,
-          "likes": 23,
+          "downloads": 3662,
+          "likes": 25,
           "gated": "auto"
         },
         {
@@ -18263,8 +18480,8 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-06-17T11:28:29.000Z",
-          "downloads": 9559,
-          "likes": 162,
+          "downloads": 9419,
+          "likes": 165,
           "gated": "auto"
         },
         {
@@ -18281,7 +18498,7 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-06-17T11:30:33.000Z",
-          "downloads": 1951,
+          "downloads": 1989,
           "likes": 5,
           "gated": "auto"
         },
@@ -18299,8 +18516,8 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-06-23T08:42:28.000Z",
-          "downloads": 6100,
-          "likes": 41,
+          "downloads": 6176,
+          "likes": 42,
           "gated": "auto"
         },
         {
@@ -18317,8 +18534,8 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-07-27T13:57:44.000Z",
-          "downloads": 276,
-          "likes": 18,
+          "downloads": 301,
+          "likes": 19,
           "gated": "auto"
         },
         {
@@ -18335,7 +18552,7 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-06-17T11:56:23.000Z",
-          "downloads": 1075,
+          "downloads": 1072,
           "likes": 31,
           "gated": "auto"
         },
@@ -18434,7 +18651,7 @@
             "usage-signal"
           ],
           "created_at": "2025-06-01T18:23:09.000Z",
-          "downloads": 0,
+          "downloads": 2,
           "likes": 3,
           "gated": false
         },
@@ -19680,7 +19897,7 @@
             "quantized-derivative"
           ],
           "created_at": "2025-03-14T04:27:23.000Z",
-          "downloads": 8,
+          "downloads": 7,
           "likes": 0,
           "gated": false
         }
@@ -19785,7 +20002,7 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2026-03-24T13:42:52.000Z",
-          "downloads": 3953,
+          "downloads": 3858,
           "likes": 71,
           "gated": false
         },
@@ -20269,7 +20486,7 @@
           ],
           "created_at": "2024-12-31T14:26:45.000Z",
           "downloads": 0,
-          "likes": 9,
+          "likes": 10,
           "gated": false
         },
         {
@@ -20494,7 +20711,7 @@
             "adapter-or-lora-derivative"
           ],
           "created_at": "2025-09-25T06:25:14.000Z",
-          "downloads": 91,
+          "downloads": 89,
           "likes": 20,
           "gated": false
         },
@@ -20633,7 +20850,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:cd96eb9f0cbff88e407905a09cecdddc29874e3bed8b6618d0ed0772aff5f098",
+      "revision": "sha256:d55e68ff9495619ed14de977f7a97c8a6e59b464cedb65e2af9f97da83911469",
       "revision_url": "https://developers.dailymotion.com/docs/welcome",
       "catalog_id": null,
       "priority": "high",
@@ -20683,7 +20900,7 @@
       "status": 200,
       "candidates": [],
       "error": null,
-      "revision": "sha256:c9c65bd0440cd5d7be7644a630f209644a238e0bbe2ecd340cdd1aa08f7551a3",
+      "revision": "sha256:307215e75a63ff8beef95026be9444c2e7021fb6fa5ba6496e7a73195cdf6921",
       "revision_url": "https://help.pexels.com/api/v2/help_center/en-us/categories/900001326143/articles.json",
       "catalog_id": null,
       "priority": "high",
@@ -21741,6 +21958,31 @@
     },
     {
       "track_id": "video-and-audio-generation",
+      "source_url": "https://wonder-world-model.github.io/",
+      "resolved_url": "https://wonder-world-model.github.io/",
+      "status": 200,
+      "candidates": [],
+      "error": null,
+      "revision": null,
+      "revision_url": null,
+      "catalog_id": null,
+      "priority": null,
+      "model_id": null,
+      "ranking_id": null,
+      "rankings": [],
+      "ranking_provider": null,
+      "ranking_label": null,
+      "ranking_modality": null,
+      "ranking_parser": null,
+      "ranking_score_label": null,
+      "ranking_date_label": null,
+      "ranking_coverage_policy": null,
+      "ranking_page_url": null,
+      "platform_id": null,
+      "revision_mode": null
+    },
+    {
+      "track_id": "video-and-audio-generation",
       "source_url": "https://www.minimax.io/news",
       "resolved_url": "https://www.minimax.io/news",
       "status": 200,
@@ -21920,17 +22162,6 @@
         {
           "title": "Flux Tools",
           "url": "https://bfl.ai/models/flux-tools",
-          "review_priority": "standard",
-          "priority_score": 0,
-          "priority_signals": [],
-          "created_at": null,
-          "downloads": null,
-          "likes": null,
-          "gated": null
-        },
-        {
-          "title": "Training Data Disclosure",
-          "url": "https://bfl.ai/transparency",
           "review_priority": "standard",
           "priority_score": 0,
           "priority_signals": [],

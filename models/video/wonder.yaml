@@ -1,0 +1,151 @@
+id: wonder
+name: Wonder
+organization: Adobe Research and Johns Hopkins University
+released_at: "2026-07-28"
+modalities:
+  - video
+tasks:
+  - image-to-video
+  - video-to-video
+  - camera-controlled-video-generation
+  - interactive-video-generation
+  - long-video-generation
+access:
+  status: announced
+  license: Paper is available under the arXiv non-exclusive license; code, weights, API, and model license are not released
+  release_url: https://wonder-world-model.github.io/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Camera-conditioned bidirectional diffusion teacher with a causal mixture-of-students streaming generator
+  parameters: null
+  notes: >-
+    The teacher starts from Wan2.1-I2V-14B and adds a rendered pixel-space camera field.
+    A four-step causal sampler uses three specialized student generators with sparse full-fidelity
+    memory; the paper does not state a single deployable parameter count for the complete system.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Wan2.1 inherited pretraining mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: Wonder initializes its teacher from Wan2.1-I2V-14B without restating the inherited checkpoint's complete training-data lineage.
+    - name: DL3DV-10K
+      catalog_id: dl3dv-10k
+      role: fine-tuning
+      availability: gated
+      scale: Used as a major source of real-world navigation videos; retained count is not disclosed
+      notes: The paper explicitly uses DL3DV for realistic geometry-aware camera motion in image-to-video training.
+    - name: MultiCamVideo Dataset
+      catalog_id: multicamvideo
+      role: fine-tuning
+      availability: public
+      scale: Upstream release contains 136,000 short synchronized videos; retained count is not disclosed
+      notes: The V2V training-data section names MultiCamVideo as an open paired-video source and does not publish its mixture weight.
+    - name: CamXTime
+      catalog_id: camxtime
+      role: fine-tuning
+      availability: gated
+      scale: Upstream release contains 360,960 rendered videos; retained count is not disclosed
+      notes: The V2V training-data section names CamXTime as an open paired-video source, although full dataset access is request-gated.
+    - name: Wonder UE I2V Corpus
+      catalog_id: wonder-ue-i2v-corpus
+      role: fine-tuning
+      availability: not-released
+      scale: Described only as large-scale
+      notes: The team rendered indoor and outdoor Unreal Engine scenes along difficult, user-like camera trajectories but released no files or exact count.
+    - name: Wonder Blender V2V Corpus
+      catalog_id: wonder-blender-v2v-corpus
+      role: fine-tuning
+      availability: not-released
+      scale: Described only as a large amount of long paired data
+      notes: The unreleased Blender pairs cover standard trajectories, speed variation, and bullet-time with partly decoupled camera and scene time.
+    - name: Wonder I2V Benchmark
+      catalog_id: wonder-i2v-benchmark
+      role: evaluation
+      availability: not-released
+      scale: 1,000 images, each paired with five camera trajectories
+      notes: The benchmark is kept separate from training and contains open-source, AI-generated, cartoon, art, and game images of undisclosed item-level provenance.
+    - name: Wonder V2V Benchmark
+      catalog_id: wonder-v2v-benchmark
+      role: evaluation
+      availability: not-released
+      scale: 500 source videos, each paired with six camera trajectories
+      notes: The benchmark is kept separate from training and focuses on dynamic humans, animals, and vehicles; item-level sources are not published.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-wan2-1-initialization
+      scale_disclosed: false
+      strategy: Initialize the bidirectional teacher from Wan2.1-I2V-14B without claiming the inherited model's undisclosed mixture as Wonder's newly collected data.
+    - name: fine-tuning
+      modalities:
+        - video
+        - image
+        - text
+        - 3d
+      source_types:
+        - public-dataset
+        - synthetic
+      operations:
+        - multi-duration-clipping
+        - rule-based-filtering
+        - hierarchical-vlm-captioning
+        - camera-pose-estimation
+        - gaussian-pose-smoothing
+        - action-discretization
+        - reverse-playback-augmentation
+        - speed-resampling
+        - vlm-quality-filtering
+        - progressive-horizon-training
+      scale_disclosed: false
+      strategy: >-
+        Adapt the bidirectional teacher jointly on I2V and V2V clips, progressing through
+        5-, 10-, and 20-second horizons while holding most costly V2V batches at five seconds.
+    - name: distillation
+      modalities:
+        - video
+        - image
+        - text
+        - 3d
+      source_types:
+        - public-dataset
+        - synthetic
+      operations:
+        - ode-initialization
+        - self-forcing
+        - distribution-matching-distillation
+        - sparse-context-forcing
+        - mixture-of-students
+        - gan-control-regularization
+      scale_disclosed: false
+      strategy: >-
+        Distill the many-step teacher into a causal four-step mixture of three students using
+        autoregressive rollouts, sparse memory exposure, DMD, and low-frequency adversarial
+        camera-control supervision; training uses a global batch of 64 on 32 H200 GPUs.
+  strategy_summary:
+    - Render a synthetic 3D scaffold and environment map as frame-aligned camera evidence instead of relying only on abstract pose embeddings.
+    - Preserve full-fidelity historical KV states while selecting a constant-size sparse memory set for minute-scale generation at stable latency.
+    - Curate 5-, 10-, and 20-second clips with corruption and motion filters, hierarchical VLM captions, pose recovery, smoothing, temporal augmentation, and a final VLM quality gate.
+    - Separate the two unreleased evaluation suites from every training source and record the inherited Wan2.1 mixture as undisclosed.
+  unknowns:
+    - Exact example counts and mixture weights for DL3DV, MultiCamVideo, CamXTime, the Unreal Engine corpus, and the Blender corpus.
+    - Licenses, asset provenance, commercial-use rights, deduplication, safety review, and item-level release plans for both synthetic training corpora.
+    - Item-level sources and licenses for both evaluation benchmarks, plus whether either benchmark will be downloadable.
+    - Complete inherited Wan2.1 data lineage, total training steps, optimizer schedule, final system parameter footprint, weights, code, API, and model license.
+evidence:
+  release: https://wonder-world-model.github.io/
+  technical_report: https://arxiv.org/abs/2607.26037
+  repository: null
+status: watch
+last_verified: "2026-08-02"

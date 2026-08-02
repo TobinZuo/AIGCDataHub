@@ -1,0 +1,70 @@
+id: wonder-blender-v2v-corpus
+name: Wonder Blender V2V Corpus
+organization: Adobe Research and Johns Hopkins University
+released_at: "2026-07-28"
+release_date_source: https://arxiv.org/abs/2607.26037
+modality: video
+tasks:
+  - video-to-video
+  - camera-controlled-video-generation
+  - space-time-video-generation
+  - long-video-generation
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  An unreleased Blender-rendered corpus of long paired videos that share a
+  dynamic scene while varying camera trajectory or temporal evolution.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2607.26037v1
+  requires_account: false
+  notes: The Wonder paper describes the paired corpus but publishes no files, item browser, request workflow, repository, or release date.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The paper says a large amount of long paired data but gives no exact pair, scene, frame, or hour count.
+annotations:
+  types:
+    - paired-video
+    - hierarchical-caption
+    - camera-intrinsics
+    - camera-extrinsics
+    - discrete-camera-action
+    - temporal-warp
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: Not stated
+  commercial_use: unknown
+  redistribution: unknown
+  notes: No dataset license, Blender asset provenance, redistribution grant, or commercial-use terms are published because the corpus is not released.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - multi-view-consistency
+    - provenance
+  known_limitations:
+    - Exact scale, scene assets, rights, mixture weights, and release plans are undisclosed.
+    - Standard, speed-varied, and bullet-time pairs may not cover the full range of real-world dynamics.
+    - VLM captions, estimated poses, and automated quality filters can introduce model-specific errors and selection bias.
+processing:
+  recipe: Render long paired Blender sequences with standard camera changes, speed variation, and bullet-time; clip at multiple horizons, reject corrupt or invalid motion, add hierarchical captions and camera estimates, smooth and discretize trajectories, augment time, and apply VLM quality filtering.
+  recommended_format: native
+  notes: If released, preserve source-target pairing, scene and asset provenance, camera-time transforms, captions, temporal variants, rejection reasons, and versioned train membership.
+evidence:
+  homepage: https://wonder-world-model.github.io/
+  paper: https://arxiv.org/abs/2607.26037
+  used_by:
+    - Wonder
+status: partial
+last_verified: "2026-08-02"

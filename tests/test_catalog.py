@@ -296,7 +296,7 @@ class CatalogTests(unittest.TestCase):
         newest_ids = {card["id"] for card in datasets if card["released_at"] == newest_date}
         self.assertEqual(
             newest_ids,
-            {"shadow-library", "remind1m"},
+            {"shadow-library", "remind1m", "mpie-bench"},
         )
 
     def test_site_catalog_orders_models_by_release_date(self) -> None:

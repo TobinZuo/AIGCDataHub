@@ -1,0 +1,65 @@
+id: wonder-v2v-benchmark
+name: Wonder V2V Benchmark
+organization: Adobe Research and Johns Hopkins University
+released_at: "2026-07-28"
+release_date_source: https://arxiv.org/abs/2607.26037
+modality: evaluation
+tasks:
+  - video-to-video
+  - camera-controlled-video-generation
+stages:
+  - evaluation
+  - data-curation
+description: >-
+  An unreleased 500-video evaluation suite for re-shooting dynamic subjects under
+  retreat, follow, and free camera trajectories while retaining source motion.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.26037v1
+  requires_account: false
+  notes: The paper reports aggregate results but provides no benchmark download, manifest, item browser, or request form.
+scale:
+  samples: 500
+  source_items: 500
+  hours: null
+  approximate: false
+  notes: Every source video is paired with six camera trajectories grouped as retreat, follow, and free exploration.
+annotations:
+  types:
+    - video-caption
+    - navigation-key
+    - camera-trajectory
+    - dynamic-subject-category
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: Item-level video sources and rights are not stated
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The paper gives no item-level source, license, consent, redistribution, or commercial-use information for the 500 dynamic videos.
+quality:
+  dimensions:
+    - visual-quality
+    - aesthetics
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - The benchmark, source videos, captions, trajectories, generated outputs, and item-level provenance are not released.
+    - VLM-generated captions and navigation keys may introduce annotation bias.
+    - Aggregate comparisons cannot be independently reproduced without the exact source set and evaluation configuration.
+processing:
+  recipe: Select 500 videos containing dynamic humans, animals, or vehicles, generate captions and navigation keys with a VLM, pair each input with six retreat, follow, and free camera paths, and score quality plus pose-estimated camera error.
+  recommended_format: native
+  notes: Keep the suite evaluation-only; a future release should preserve item-level source rights, captions, camera paths, subject groups, split freeze, overlap checks, and metric versions.
+evidence:
+  homepage: https://wonder-world-model.github.io/
+  paper: https://arxiv.org/abs/2607.26037
+  used_by:
+    - Wonder
+status: partial
+last_verified: "2026-08-02"

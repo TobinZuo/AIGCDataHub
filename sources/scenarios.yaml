@@ -29,7 +29,10 @@ scenarios:
       - audio-to-video
       - audio-video-editing
       - audio-video-generation
+      - camera-controlled-video-generation
       - image-to-video
+      - interactive-video-generation
+      - long-video-generation
       - reference-to-video
       - text-to-video
       - video-editing

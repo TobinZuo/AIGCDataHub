@@ -1,0 +1,65 @@
+id: wonder-i2v-benchmark
+name: Wonder I2V Benchmark
+organization: Adobe Research and Johns Hopkins University
+released_at: "2026-07-28"
+release_date_source: https://arxiv.org/abs/2607.26037
+modality: evaluation
+tasks:
+  - image-to-video
+  - camera-controlled-video-generation
+stages:
+  - evaluation
+  - data-curation
+description: >-
+  An unreleased 1,000-image evaluation suite for visual quality, long-horizon
+  memory, and camera-following accuracy in interactive image-to-video systems.
+access:
+  status: unavailable
+  type: none
+  url: https://wonder-world-model.github.io/
+  requires_account: false
+  notes: The paper reports aggregate results but provides no benchmark download, manifest, item browser, or request form.
+scale:
+  samples: 1000
+  source_items: 1000
+  hours: null
+  approximate: false
+  notes: Each image is paired with five camera trajectories of different translation scales and rotation speeds.
+annotations:
+  types:
+    - scene-caption
+    - navigation-key
+    - camera-trajectory
+    - image-category
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: Source images are described only as open-source, AI-generated, cartoon, art, and game imagery
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Item-level origins, licenses, AI-image generators, and redistribution terms are not published.
+quality:
+  dimensions:
+    - visual-quality
+    - aesthetics
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - The benchmark, prompts, trajectories, generated outputs, and item-level provenance are not released.
+    - VLM-generated captions and navigation keys may introduce annotation bias.
+    - Aggregate comparisons cannot be independently reproduced without the exact source set and evaluation configuration.
+processing:
+  recipe: Select 1,000 diverse images, generate scene captions and compatible navigation keys with a VLM, pair every image with five camera paths, and score generation quality plus pose-estimated camera error.
+  recommended_format: native
+  notes: Keep the suite evaluation-only; a future release should preserve source URLs and licenses, generator provenance for AI images, captions, camera paths, split freeze, and metric versions.
+evidence:
+  homepage: https://wonder-world-model.github.io/
+  paper: https://arxiv.org/abs/2607.26037
+  used_by:
+    - Wonder
+status: partial
+last_verified: "2026-08-02"

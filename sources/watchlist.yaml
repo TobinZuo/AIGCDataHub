@@ -99,6 +99,7 @@ tracks:
       - https://github.com/omni2sound/Omni2Sound
       - https://hjzheng.net/projects/InstructAV2AV/
       - https://seed.bytedance.com/en/seedance2_5
+      - https://wonder-world-model.github.io/
       - https://x.ai/news
       - https://runwayml.com/news
       - https://ir.kuaishou.com/news-events/company-news/
@@ -160,6 +161,8 @@ tracks:
       - lip-sync-benchmark
       - virtual-try-on-dataset
       - identity-preservation-benchmark
+      - camera-controlled-video-dataset
+      - multi-person-editing-benchmark
     official_sources:
       - https://huggingface.co/datasets
       - https://arxiv.org/list/cs.CV/recent
@@ -817,6 +820,27 @@ tracks:
       - url: https://genjib.github.io/project_page/AVED/assets/avedit_dataset_v3.csv
         catalog_id: aved-bench
         priority: critical
+      - url: "https://huggingface.co/api/datasets/KlingTeam/MultiCamVideo-Dataset?expand=lastModified&expand=sha"
+        catalog_id: multicamvideo
+        priority: high
+      - url: https://zheninghuang.github.io/camxtime_dataset/
+        catalog_id: camxtime
+        priority: high
+      - url: https://github.com/AnnLin0628/mpie-bench/commits/main.atom
+        catalog_id: mpie-bench
+        priority: critical
+      - url: https://arxiv.org/html/2607.26037
+        catalog_id: wonder-ue-i2v-corpus
+        priority: critical
+      - url: https://arxiv.org/html/2607.26037v1
+        catalog_id: wonder-blender-v2v-corpus
+        priority: critical
+      - url: https://arxiv.org/abs/2607.26037v1
+        catalog_id: wonder-i2v-benchmark
+        priority: critical
+      - url: https://export.arxiv.org/api/query?id_list=2607.26037
+        catalog_id: wonder-v2v-benchmark
+        priority: critical
 
   - id: important-model-updates
     topics:
@@ -1037,6 +1061,9 @@ tracks:
         priority: critical
       - url: https://deploymentsafety.openai.com/sora-2/overview-of-sora-2
         model_id: sora-2
+        priority: critical
+      - url: https://arxiv.org/abs/2607.26037
+        model_id: wonder
         priority: critical
       - url: https://help.aliyun.com/en/model-studio/legacy-wan-text-to-video-api-reference
         model_id: wan-2-6

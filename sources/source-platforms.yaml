@@ -107,8 +107,8 @@ platforms:
       status: documented-api
       interface_name: Pexels API
       interface_url: https://www.pexels.com/api/documentation/
-      scope: Authenticated photo and video search, curated collections, media metadata, contributor attribution, and downloadable file variants.
-      requirements: Pexels account, API key, attribution and rate-limit compliance, plus explicit Pexels permission for dataset construction or ML and AI use.
+      scope: Authenticated photo and video search, curated collections, creator attribution, eight photo sizes, and multiple HD or SD video variants; titles, tags, detailed metadata, and public media or creator statistics are not exposed.
+      requirements: Pexels account and per-account API key; default limits are 200 requests per hour and 20,000 per month, while unlimited access requires an eligible app, Pexels and contributor attribution, and use-case review; dataset construction or ML and AI use still needs explicit Pexels permission.
       training_rights: not-granted-by-interface
     monitoring:
       url: https://help.pexels.com/api/v2/help_center/en-us/categories/900001326143/articles.json
@@ -118,7 +118,7 @@ platforms:
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
-    last_reviewed: "2026-07-27"
+    last_reviewed: "2026-08-02"
   - id: mixkit
     name: Mixkit
     homepage: https://mixkit.co/

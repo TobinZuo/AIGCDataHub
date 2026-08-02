@@ -2,9 +2,9 @@
 
 Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; runtime inputs, unreleased data, and undisclosed data must state why no card exists.
 
-- Models: 101
-- References linked to catalog cards: 149
-- References without a card, with an explicit evidence boundary: 96
+- Models: 102
+- References linked to catalog cards: 156
+- References without a card, with an explicit evidence boundary: 97
 - Ordering: model release date, newest first
 
 | Model | Released | Dataset or corpus named by source | Availability | Catalog resolution | Role | Evidence boundary |
@@ -17,6 +17,14 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [ReMind 5B](models/video/remind.yaml) | 2026-07-30 | OpenVid-1M | public | [`openvid-1m`](catalog/video/openvid-1m.yaml) | fine-tuning | Named as a general real-video source; the exact retained count and sampling weight are not disclosed. |
 | [ReMind 5B](models/video/remind.yaml) | 2026-07-30 | DL3DV-10K | gated | [`dl3dv-10k`](catalog/video/dl3dv-10k.yaml) | fine-tuning | Named as a general scene-video source; the exact retained subset and sampling weight are not disclosed. |
 | [ReMind 5B](models/video/remind.yaml) | 2026-07-30 | ReMind Pexels dynamic clips | not-released | [`remind-pexels-dynamic-clips`](catalog/video/remind-pexels-dynamic-clips.yaml) | fine-tuning | Retrieved with a 100+ event taxonomy and filtered with Qwen3-VL; no source manifest or retained count is public. |
+| [Wonder](models/video/wonder.yaml) | 2026-07-28 | Wan2.1 inherited pretraining mixture | undisclosed | — exact source is not disclosed | pretraining | Wonder initializes its teacher from Wan2.1-I2V-14B without restating the inherited checkpoint's complete training-data lineage. |
+| [Wonder](models/video/wonder.yaml) | 2026-07-28 | DL3DV-10K | gated | [`dl3dv-10k`](catalog/video/dl3dv-10k.yaml) | fine-tuning | The paper explicitly uses DL3DV for realistic geometry-aware camera motion in image-to-video training. |
+| [Wonder](models/video/wonder.yaml) | 2026-07-28 | MultiCamVideo Dataset | public | [`multicamvideo`](catalog/video/multicamvideo.yaml) | fine-tuning | The V2V training-data section names MultiCamVideo as an open paired-video source and does not publish its mixture weight. |
+| [Wonder](models/video/wonder.yaml) | 2026-07-28 | CamXTime | gated | [`camxtime`](catalog/video/camxtime.yaml) | fine-tuning | The V2V training-data section names CamXTime as an open paired-video source, although full dataset access is request-gated. |
+| [Wonder](models/video/wonder.yaml) | 2026-07-28 | Wonder UE I2V Corpus | not-released | [`wonder-ue-i2v-corpus`](catalog/video/wonder-ue-i2v-corpus.yaml) | fine-tuning | The team rendered indoor and outdoor Unreal Engine scenes along difficult, user-like camera trajectories but released no files or exact count. |
+| [Wonder](models/video/wonder.yaml) | 2026-07-28 | Wonder Blender V2V Corpus | not-released | [`wonder-blender-v2v-corpus`](catalog/video/wonder-blender-v2v-corpus.yaml) | fine-tuning | The unreleased Blender pairs cover standard trajectories, speed variation, and bullet-time with partly decoupled camera and scene time. |
+| [Wonder](models/video/wonder.yaml) | 2026-07-28 | Wonder I2V Benchmark | not-released | [`wonder-i2v-benchmark`](catalog/evaluation/wonder-i2v-benchmark.yaml) | evaluation | The benchmark is kept separate from training and contains open-source, AI-generated, cartoon, art, and game images of undisclosed item-level provenance. |
+| [Wonder](models/video/wonder.yaml) | 2026-07-28 | Wonder V2V Benchmark | not-released | [`wonder-v2v-benchmark`](catalog/evaluation/wonder-v2v-benchmark.yaml) | evaluation | The benchmark is kept separate from training and focuses on dynamic humans, animals, and vehicles; item-level sources are not published. |
 | [JoyFox LiveTalk-DH 1.3B](models/video/joyfox-livetalk-dh-1-3b.yaml) | 2026-07-28 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [UniGen-AR](models/multimodal/unigen-ar.yaml) | 2026-07-27 | LAION-COCO-Aesthetic | public | [`laion-coco-aesthetic`](catalog/image/laion-coco-aesthetic.yaml) | fine-tuning | UniGen-AR uses CLIP captions and sets the text-to-image batch probability to 0.25 in the joint stage. |
 | [UniGen-AR](models/multimodal/unigen-ar.yaml) | 2026-07-27 | Graph200K | public | [`graph200k`](catalog/image/graph200k.yaml) | fine-tuning | Several targets are synthetic or model-labeled; repeated task rows are not treated as distinct source images. |

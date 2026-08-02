@@ -8,7 +8,7 @@
     "sources/watchlist.yaml",
     "sources/discovery-state.json"
   ],
-  "last_verified": "2026-08-01",
+  "last_verified": "2026-08-02",
   "scenarios": [
     {
       "id": "image-generation",
@@ -272,8 +272,8 @@
         "status": "documented-api",
         "interface_name": "Pexels API",
         "interface_url": "https://www.pexels.com/api/documentation/",
-        "scope": "Authenticated photo and video search, curated collections, media metadata, contributor attribution, and downloadable file variants.",
-        "requirements": "Pexels account, API key, attribution and rate-limit compliance, plus explicit Pexels permission for dataset construction or ML and AI use.",
+        "scope": "Authenticated photo and video search, curated collections, creator attribution, eight photo sizes, and multiple HD or SD video variants; titles, tags, detailed metadata, and public media or creator statistics are not exposed.",
+        "requirements": "Pexels account and per-account API key; default limits are 200 requests per hour and 20,000 per month, while unlimited access requires an eligible app, Pexels and contributor attribution, and use-case review; dataset construction or ML and AI use still needs explicit Pexels permission.",
         "training_rights": "not-granted-by-interface"
       },
       "monitoring": {
@@ -285,7 +285,7 @@
       "source_status": "candidate",
       "access_boundary": "source-platform-not-dataset",
       "rights_review": "required",
-      "last_reviewed": "2026-07-27"
+      "last_reviewed": "2026-08-02"
     },
     {
       "id": "shutterstock",
@@ -890,6 +890,491 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "remind"
+      ]
+    },
+    {
+      "id": "mpie-bench",
+      "name": "MPIE-Bench",
+      "organization": "MPIE-Bench authors",
+      "released_at": "2026-07-30",
+      "release_date_source": "https://arxiv.org/abs/2607.27616",
+      "modality": "evaluation",
+      "tasks": [
+        "image-editing",
+        "image-personalization",
+        "multi-person-interaction-editing"
+      ],
+      "stages": [
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A 2,500-sample benchmark of multi-person image-editing triplets mined from 405 video scenes, with identity references, interaction instructions, held-out targets, and anatomy- and contact-aware evaluation.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://github.com/AnnLin0628/mpie-bench/tree/main/data/testset",
+        "requires_account": false,
+        "notes": "The official repository includes the 2,500-sample test pack, manifest, instruction QA, evaluation code, and optional closed-model artifacts; source-dataset rights remain layered."
+      },
+      "scale": {
+        "samples": 2500,
+        "source_items": 405,
+        "hours": null,
+        "approximate": false,
+        "notes": "The scene-level frozen set spans 14 interaction categories and four contact-density bins; about 2,135 targets come from Pexels and the rest from CHI3D and Harmony4D."
+      },
+      "annotations": {
+        "types": [
+          "identity-reference",
+          "held-out-target",
+          "edit-instruction",
+          "interaction-category",
+          "contact-density",
+          "person-count",
+          "instruction-qa"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Apache-2.0 repository license with layered source-dataset terms",
+        "media": "Pexels, Harmony4D, CHI3D, and original-rightsholder terms apply",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The repository licenses code under Apache-2.0 and explicitly leaves third-party source datasets under their own licenses; public test-pack access is not a universal media relicense."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "aesthetics",
+          "human-preference",
+          "geometry-quality",
+          "deduplication",
+          "safety",
+          "provenance"
+        ],
+        "known_limitations": [
+          "About 61 percent of samples fall in the two denser contact bins, so the distribution is intentionally stress-test oriented rather than population representative.",
+          "Camera or background can change between separated identity-reference frames and later interaction targets within one scene.",
+          "Multi-HMR geometry is a ranking proxy with moderate human agreement, and part-specific contact remains imperfectly localized.",
+          "Pexels, Harmony4D, and CHI3D retain distinct access, consent, redistribution, and commercial-use conditions."
+        ]
+      },
+      "processing": {
+        "recipe": "Mine roughly 20,000 video candidates for low-contact identity references and later high-contact targets, reverse-caption pairs with a VLM, then use adult reviewers to remove unsafe or off-task clips, validate interactions, deduplicate, and cap each scene to 2,500 triplets.",
+        "recommended_format": "native",
+        "notes": "Preserve scene-level grouping, source collection, per-person references, held-out targets, contact bin, prompt, safety review, deduplication decision, and the frozen six-axis protocol version."
+      },
+      "evidence": {
+        "homepage": "https://github.com/AnnLin0628/mpie-bench",
+        "paper": "https://arxiv.org/abs/2607.27616",
+        "used_by": [
+          "GPT-Image-2",
+          "Gemini-3-Pro-Image",
+          "Seedream-5-Pro",
+          "FLUX.1-Kontext",
+          "DreamO",
+          "OmniGen2",
+          "UNO",
+          "ACE++",
+          "BAGEL",
+          "FireRed-Image-Edit"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-02",
+      "source_path": "catalog/evaluation/mpie-bench.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "2.5K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/AnnLin0628/mpie-bench/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
+    },
+    {
+      "id": "wonder-v2v-benchmark",
+      "name": "Wonder V2V Benchmark",
+      "organization": "Adobe Research and Johns Hopkins University",
+      "released_at": "2026-07-28",
+      "release_date_source": "https://arxiv.org/abs/2607.26037",
+      "modality": "evaluation",
+      "tasks": [
+        "video-to-video",
+        "camera-controlled-video-generation"
+      ],
+      "stages": [
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "An unreleased 500-video evaluation suite for re-shooting dynamic subjects under retreat, follow, and free camera trajectories while retaining source motion.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.26037v1",
+        "requires_account": false,
+        "notes": "The paper reports aggregate results but provides no benchmark download, manifest, item browser, or request form."
+      },
+      "scale": {
+        "samples": 500,
+        "source_items": 500,
+        "hours": null,
+        "approximate": false,
+        "notes": "Every source video is paired with six camera trajectories grouped as retreat, follow, and free exploration."
+      },
+      "annotations": {
+        "types": [
+          "video-caption",
+          "navigation-key",
+          "camera-trajectory",
+          "dynamic-subject-category"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Item-level video sources and rights are not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The paper gives no item-level source, license, consent, redistribution, or commercial-use information for the 500 dynamic videos."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "aesthetics",
+          "motion",
+          "temporal-consistency",
+          "geometry-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The benchmark, source videos, captions, trajectories, generated outputs, and item-level provenance are not released.",
+          "VLM-generated captions and navigation keys may introduce annotation bias.",
+          "Aggregate comparisons cannot be independently reproduced without the exact source set and evaluation configuration."
+        ]
+      },
+      "processing": {
+        "recipe": "Select 500 videos containing dynamic humans, animals, or vehicles, generate captions and navigation keys with a VLM, pair each input with six retreat, follow, and free camera paths, and score quality plus pose-estimated camera error.",
+        "recommended_format": "native",
+        "notes": "Keep the suite evaluation-only; a future release should preserve item-level source rights, captions, camera paths, subject groups, split freeze, overlap checks, and metric versions."
+      },
+      "evidence": {
+        "homepage": "https://wonder-world-model.github.io/",
+        "paper": "https://arxiv.org/abs/2607.26037",
+        "used_by": [
+          "Wonder"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-02",
+      "source_path": "catalog/evaluation/wonder-v2v-benchmark.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "500",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://export.arxiv.org/api/query?id_list=2607.26037"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "wonder"
+      ]
+    },
+    {
+      "id": "wonder-ue-i2v-corpus",
+      "name": "Wonder UE I2V Corpus",
+      "organization": "Adobe Research and Johns Hopkins University",
+      "released_at": "2026-07-28",
+      "release_date_source": "https://arxiv.org/abs/2607.26037",
+      "modality": "video",
+      "tasks": [
+        "image-to-video",
+        "camera-controlled-video-generation",
+        "long-video-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "An unreleased large-scale Unreal Engine image-to-video training corpus rendered across indoor and outdoor environments with difficult, user-like camera paths.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.26037",
+        "requires_account": false,
+        "notes": "The Wonder paper describes this corpus but provides no download, browser, request form, repository, or announced release date."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The paper says large-scale but discloses no clip, frame, scene, or hour count."
+      },
+      "annotations": {
+        "types": [
+          "hierarchical-caption",
+          "camera-intrinsics",
+          "camera-extrinsics",
+          "discrete-camera-action",
+          "clip-duration"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "No dataset license, asset provenance, redistribution grant, or commercial-use terms are published because the corpus is not released."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "geometry-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Exact scale, asset sources, rights, mixture weights, and release plans are undisclosed.",
+          "Synthetic UE environments may not reproduce the full distribution of real scenes and camera behavior.",
+          "VLM captions, estimated poses, and VLM quality filtering can introduce model-specific errors and selection bias."
+        ]
+      },
+      "processing": {
+        "recipe": "Render indoor and outdoor UE environments along sharp turns, lateral and backward movements, and compound camera trajectories; clip to 5, 10, and 20 seconds, filter invalid media and motion, caption hierarchically, estimate and smooth poses, augment time, and apply a final VLM quality check.",
+        "recommended_format": "native",
+        "notes": "If released, preserve render assets and licenses, raw and smoothed poses, discrete actions, global and subclip captions, temporal augmentations, rejection reasons, and versioned mixture membership."
+      },
+      "evidence": {
+        "homepage": "https://wonder-world-model.github.io/",
+        "paper": "https://arxiv.org/abs/2607.26037",
+        "used_by": [
+          "Wonder"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-02",
+      "source_path": "catalog/video/wonder-ue-i2v-corpus.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2607.26037"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "wonder"
+      ]
+    },
+    {
+      "id": "wonder-i2v-benchmark",
+      "name": "Wonder I2V Benchmark",
+      "organization": "Adobe Research and Johns Hopkins University",
+      "released_at": "2026-07-28",
+      "release_date_source": "https://arxiv.org/abs/2607.26037",
+      "modality": "evaluation",
+      "tasks": [
+        "image-to-video",
+        "camera-controlled-video-generation"
+      ],
+      "stages": [
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "An unreleased 1,000-image evaluation suite for visual quality, long-horizon memory, and camera-following accuracy in interactive image-to-video systems.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://wonder-world-model.github.io/",
+        "requires_account": false,
+        "notes": "The paper reports aggregate results but provides no benchmark download, manifest, item browser, or request form."
+      },
+      "scale": {
+        "samples": 1000,
+        "source_items": 1000,
+        "hours": null,
+        "approximate": false,
+        "notes": "Each image is paired with five camera trajectories of different translation scales and rotation speeds."
+      },
+      "annotations": {
+        "types": [
+          "scene-caption",
+          "navigation-key",
+          "camera-trajectory",
+          "image-category"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Source images are described only as open-source, AI-generated, cartoon, art, and game imagery",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Item-level origins, licenses, AI-image generators, and redistribution terms are not published."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "aesthetics",
+          "motion",
+          "temporal-consistency",
+          "geometry-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The benchmark, prompts, trajectories, generated outputs, and item-level provenance are not released.",
+          "VLM-generated captions and navigation keys may introduce annotation bias.",
+          "Aggregate comparisons cannot be independently reproduced without the exact source set and evaluation configuration."
+        ]
+      },
+      "processing": {
+        "recipe": "Select 1,000 diverse images, generate scene captions and compatible navigation keys with a VLM, pair every image with five camera paths, and score generation quality plus pose-estimated camera error.",
+        "recommended_format": "native",
+        "notes": "Keep the suite evaluation-only; a future release should preserve source URLs and licenses, generator provenance for AI images, captions, camera paths, split freeze, and metric versions."
+      },
+      "evidence": {
+        "homepage": "https://wonder-world-model.github.io/",
+        "paper": "https://arxiv.org/abs/2607.26037",
+        "used_by": [
+          "Wonder"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-02",
+      "source_path": "catalog/evaluation/wonder-i2v-benchmark.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "1K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2607.26037v1"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "wonder"
+      ]
+    },
+    {
+      "id": "wonder-blender-v2v-corpus",
+      "name": "Wonder Blender V2V Corpus",
+      "organization": "Adobe Research and Johns Hopkins University",
+      "released_at": "2026-07-28",
+      "release_date_source": "https://arxiv.org/abs/2607.26037",
+      "modality": "video",
+      "tasks": [
+        "video-to-video",
+        "camera-controlled-video-generation",
+        "space-time-video-generation",
+        "long-video-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "An unreleased Blender-rendered corpus of long paired videos that share a dynamic scene while varying camera trajectory or temporal evolution.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2607.26037v1",
+        "requires_account": false,
+        "notes": "The Wonder paper describes the paired corpus but publishes no files, item browser, request workflow, repository, or release date."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The paper says a large amount of long paired data but gives no exact pair, scene, frame, or hour count."
+      },
+      "annotations": {
+        "types": [
+          "paired-video",
+          "hierarchical-caption",
+          "camera-intrinsics",
+          "camera-extrinsics",
+          "discrete-camera-action",
+          "temporal-warp"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "No dataset license, Blender asset provenance, redistribution grant, or commercial-use terms are published because the corpus is not released."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "geometry-quality",
+          "multi-view-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Exact scale, scene assets, rights, mixture weights, and release plans are undisclosed.",
+          "Standard, speed-varied, and bullet-time pairs may not cover the full range of real-world dynamics.",
+          "VLM captions, estimated poses, and automated quality filters can introduce model-specific errors and selection bias."
+        ]
+      },
+      "processing": {
+        "recipe": "Render long paired Blender sequences with standard camera changes, speed variation, and bullet-time; clip at multiple horizons, reject corrupt or invalid motion, add hierarchical captions and camera estimates, smooth and discretize trajectories, augment time, and apply VLM quality filtering.",
+        "recommended_format": "native",
+        "notes": "If released, preserve source-target pairing, scene and asset provenance, camera-time transforms, captions, temporal variants, rejection reasons, and versioned train membership."
+      },
+      "evidence": {
+        "homepage": "https://wonder-world-model.github.io/",
+        "paper": "https://arxiv.org/abs/2607.26037",
+        "used_by": [
+          "Wonder"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-02",
+      "source_path": "catalog/video/wonder-blender-v2v-corpus.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2607.26037v1"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "wonder"
       ]
     },
     {
@@ -4737,6 +5222,103 @@
       ]
     },
     {
+      "id": "camxtime",
+      "name": "CamXTime",
+      "organization": "University of Cambridge and Adobe Research",
+      "released_at": "2026-05-17",
+      "release_date_source": "https://github.com/ZheningHuang/SpaceTimePilot",
+      "modality": "video",
+      "tasks": [
+        "camera-controlled-video-generation",
+        "video-to-video",
+        "space-time-video-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A synthetic space-time grid dataset with 744 dynamic scenes, four camera trajectories per scene, and every animation time rendered from all 120 camera positions, producing 360,960 videos for controllable 4D video generation.",
+      "access": {
+        "status": "gated",
+        "type": "request",
+        "url": "https://zheninghuang.github.io/camxtime_dataset/",
+        "requires_account": true,
+        "notes": "Full training data requires a form submission plus email follow-up and is currently shared with research groups and institutes; a separate 32-scene evaluation release is openly hosted on Hugging Face."
+      },
+      "scale": {
+        "samples": 360960,
+        "source_items": 744,
+        "hours": null,
+        "approximate": false,
+        "notes": "The official page reports 744 training scenes, four trajectories per scene, 120 camera positions per trajectory, and 360,960 total videos at 1080x1080 and 30 FPS."
+      },
+      "annotations": {
+        "types": [
+          "camera-trajectory",
+          "camera-position",
+          "time-index",
+          "scene-id",
+          "full-space-time-grid"
+        ],
+        "source": "mixed",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated for the dataset",
+        "media": "Not stated; repository Apache-2.0 applies to code, not automatically to requested scene renders",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The dataset request page provides no dataset license or commercial and redistribution grant; written terms must be obtained with access."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "motion",
+          "temporal-consistency",
+          "geometry-quality",
+          "multi-view-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Full training access is manually reviewed and is described as sharing with research groups and institutes.",
+          "Synthetic rendering may not match real-world camera, lighting, subject, and motion distributions.",
+          "The public evaluation subset covers only 32 scenes and must not be conflated with the gated 744-scene training corpus."
+        ]
+      },
+      "processing": {
+        "recipe": "Render each complete scene animation at all 120 camera positions along four trajectories, forming a 120-by-120 camera-time grid that supports forward, reverse, slow, fast, bullet-time, and non-linear paths.",
+        "recommended_format": "native",
+        "notes": "Preserve scene-level splits, camera and time axes, source asset lineage, full-grid membership, access approval, and the distinction between the requested training corpus and public evaluation archives."
+      },
+      "evidence": {
+        "homepage": "https://zheninghuang.github.io/camxtime_dataset/",
+        "paper": "https://arxiv.org/abs/2512.25075",
+        "used_by": [
+          "SpaceTimePilot",
+          "Wonder"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-02",
+      "source_path": "catalog/video/camxtime.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "361K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://zheninghuang.github.io/camxtime_dataset/"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "wonder"
+      ]
+    },
+    {
       "id": "fit-vto-100k",
       "name": "FIT-VTO-100K",
       "organization": "University of Washington and Google Research",
@@ -6798,7 +7380,9 @@
       "status": "partial",
       "last_verified": "2026-07-27",
       "source_path": "catalog/video/spatialvid.yaml",
-      "scenario_ids": [],
+      "scenario_ids": [
+        "video-generation"
+      ],
       "scale_label": "~2.7M",
       "monitoring": {
         "priority": "critical",
@@ -7723,6 +8307,104 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "instructav2av"
+      ]
+    },
+    {
+      "id": "multicamvideo",
+      "name": "MultiCamVideo Dataset",
+      "organization": "Kling Team, Kuaishou Technology, and ReCamMaster authors",
+      "released_at": "2025-03-14",
+      "release_date_source": "https://arxiv.org/abs/2503.11647",
+      "modality": "video",
+      "tasks": [
+        "camera-controlled-video-generation",
+        "video-to-video",
+        "multi-view-video-generation",
+        "3d-reconstruction"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "An Unreal Engine 5 collection of 13,600 dynamic scenes captured synchronously by ten cameras, pairing 136,000 short videos with camera trajectories for camera-controlled generation and multi-view reconstruction.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/KlingTeam/MultiCamVideo-Dataset",
+        "requires_account": false,
+        "notes": "The official Kling Team Hugging Face repository hosts roughly 333 GB as multipart archives with extraction instructions and camera JSON files."
+      },
+      "scale": {
+        "samples": 136000,
+        "source_items": 13600,
+        "hours": 204,
+        "approximate": true,
+        "notes": "Each 81-frame video is rendered at 1280x1280 and 15 FPS; 136,000 multiplied by 5.4 seconds is approximately 204 hours."
+      },
+      "annotations": {
+        "types": [
+          "camera-extrinsics",
+          "synchronized-camera-id",
+          "scene-id",
+          "focal-length",
+          "aperture",
+          "animation"
+        ],
+        "source": "mixed",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "Apache-2.0",
+        "media": "Apache-2.0 is declared by the dataset repository; upstream Fab and Mixamo asset terms remain relevant",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The hosted card declares Apache-2.0, but the renders incorporate 37 environments, 66 characters, and 93 animations sourced from Fab and Mixamo, so downstream asset rights require separate review."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "motion",
+          "temporal-consistency",
+          "geometry-quality",
+          "multi-view-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Synthetic UE5 rendering and a finite asset library can create a domain gap from real-world footage.",
+          "Clips are only 81 frames, about 5.4 seconds at 15 FPS, and do not directly cover long-horizon generation.",
+          "Upstream 3D environment, character, and animation licenses are not itemized in the dataset card."
+        ]
+      },
+      "processing": {
+        "recipe": "Combine 37 UE5 environments, 66 characters, and 93 animations, then render each dynamic scene from ten synchronized cameras with rule-generated static, pan, tilt, translation, arc, and random trajectories.",
+        "recommended_format": "native",
+        "notes": "Preserve scene groups, all ten synchronized views, 81-frame camera extrinsics, focal/aperture settings, archive checksums, and upstream asset provenance."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/KlingTeam/MultiCamVideo-Dataset",
+        "paper": "https://arxiv.org/abs/2503.11647",
+        "used_by": [
+          "ReCamMaster",
+          "Wonder"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-02",
+      "source_path": "catalog/video/multicamvideo.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~136K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/KlingTeam/MultiCamVideo-Dataset?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "wonder"
       ]
     },
     {
@@ -10091,7 +10773,9 @@
       "status": "verified",
       "last_verified": "2026-07-31",
       "source_path": "catalog/video/dl3dv-10k.yaml",
-      "scenario_ids": [],
+      "scenario_ids": [
+        "video-generation"
+      ],
       "scale_label": "10.5K",
       "monitoring": {
         "priority": "high",
@@ -10102,7 +10786,8 @@
         "shadow-library"
       ],
       "linked_model_ids": [
-        "remind"
+        "remind",
+        "wonder"
       ]
     },
     {
@@ -14550,7 +15235,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 3,
-          "score": 1184,
+          "score": 1186,
           "score_label": "Elo",
           "entry_model": "MiniMax H3",
           "component_count": 1
@@ -14559,7 +15244,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1242,
+          "score": 1239,
           "score_label": "Elo",
           "entry_model": "MiniMax H3",
           "component_count": 1
@@ -15011,6 +15696,246 @@
         "openvid-1m",
         "dl3dv-10k",
         "remind-pexels-dynamic-clips"
+      ]
+    },
+    {
+      "id": "wonder",
+      "name": "Wonder",
+      "organization": "Adobe Research and Johns Hopkins University",
+      "released_at": "2026-07-28",
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "image-to-video",
+        "video-to-video",
+        "camera-controlled-video-generation",
+        "interactive-video-generation",
+        "long-video-generation"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Paper is available under the arXiv non-exclusive license; code, weights, API, and model license are not released",
+        "release_url": "https://wonder-world-model.github.io/",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Camera-conditioned bidirectional diffusion teacher with a causal mixture-of-students streaming generator",
+        "parameters": null,
+        "notes": "The teacher starts from Wan2.1-I2V-14B and adds a rendered pixel-space camera field. A four-step causal sampler uses three specialized student generators with sparse full-fidelity memory; the paper does not state a single deployable parameter count for the complete system."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Wan2.1 inherited pretraining mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "Wonder initializes its teacher from Wan2.1-I2V-14B without restating the inherited checkpoint's complete training-data lineage."
+          },
+          {
+            "name": "DL3DV-10K",
+            "catalog_id": "dl3dv-10k",
+            "role": "fine-tuning",
+            "availability": "gated",
+            "scale": "Used as a major source of real-world navigation videos; retained count is not disclosed",
+            "notes": "The paper explicitly uses DL3DV for realistic geometry-aware camera motion in image-to-video training."
+          },
+          {
+            "name": "MultiCamVideo Dataset",
+            "catalog_id": "multicamvideo",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "Upstream release contains 136,000 short synchronized videos; retained count is not disclosed",
+            "notes": "The V2V training-data section names MultiCamVideo as an open paired-video source and does not publish its mixture weight."
+          },
+          {
+            "name": "CamXTime",
+            "catalog_id": "camxtime",
+            "role": "fine-tuning",
+            "availability": "gated",
+            "scale": "Upstream release contains 360,960 rendered videos; retained count is not disclosed",
+            "notes": "The V2V training-data section names CamXTime as an open paired-video source, although full dataset access is request-gated."
+          },
+          {
+            "name": "Wonder UE I2V Corpus",
+            "catalog_id": "wonder-ue-i2v-corpus",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "Described only as large-scale",
+            "notes": "The team rendered indoor and outdoor Unreal Engine scenes along difficult, user-like camera trajectories but released no files or exact count."
+          },
+          {
+            "name": "Wonder Blender V2V Corpus",
+            "catalog_id": "wonder-blender-v2v-corpus",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "Described only as a large amount of long paired data",
+            "notes": "The unreleased Blender pairs cover standard trajectories, speed variation, and bullet-time with partly decoupled camera and scene time."
+          },
+          {
+            "name": "Wonder I2V Benchmark",
+            "catalog_id": "wonder-i2v-benchmark",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "1,000 images, each paired with five camera trajectories",
+            "notes": "The benchmark is kept separate from training and contains open-source, AI-generated, cartoon, art, and game images of undisclosed item-level provenance."
+          },
+          {
+            "name": "Wonder V2V Benchmark",
+            "catalog_id": "wonder-v2v-benchmark",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "500 source videos, each paired with six camera trajectories",
+            "notes": "The benchmark is kept separate from training and focuses on dynamic humans, animals, and vehicles; item-level sources are not published."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "video",
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-wan2-1-initialization"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Initialize the bidirectional teacher from Wan2.1-I2V-14B without claiming the inherited model's undisclosed mixture as Wonder's newly collected data."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "image",
+              "text",
+              "3d"
+            ],
+            "source_types": [
+              "public-dataset",
+              "synthetic"
+            ],
+            "operations": [
+              "multi-duration-clipping",
+              "rule-based-filtering",
+              "hierarchical-vlm-captioning",
+              "camera-pose-estimation",
+              "gaussian-pose-smoothing",
+              "action-discretization",
+              "reverse-playback-augmentation",
+              "speed-resampling",
+              "vlm-quality-filtering",
+              "progressive-horizon-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Adapt the bidirectional teacher jointly on I2V and V2V clips, progressing through 5-, 10-, and 20-second horizons while holding most costly V2V batches at five seconds."
+          },
+          {
+            "name": "distillation",
+            "modalities": [
+              "video",
+              "image",
+              "text",
+              "3d"
+            ],
+            "source_types": [
+              "public-dataset",
+              "synthetic"
+            ],
+            "operations": [
+              "ode-initialization",
+              "self-forcing",
+              "distribution-matching-distillation",
+              "sparse-context-forcing",
+              "mixture-of-students",
+              "gan-control-regularization"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Distill the many-step teacher into a causal four-step mixture of three students using autoregressive rollouts, sparse memory exposure, DMD, and low-frequency adversarial camera-control supervision; training uses a global batch of 64 on 32 H200 GPUs."
+          }
+        ],
+        "strategy_summary": [
+          "Render a synthetic 3D scaffold and environment map as frame-aligned camera evidence instead of relying only on abstract pose embeddings.",
+          "Preserve full-fidelity historical KV states while selecting a constant-size sparse memory set for minute-scale generation at stable latency.",
+          "Curate 5-, 10-, and 20-second clips with corruption and motion filters, hierarchical VLM captions, pose recovery, smoothing, temporal augmentation, and a final VLM quality gate.",
+          "Separate the two unreleased evaluation suites from every training source and record the inherited Wan2.1 mixture as undisclosed."
+        ],
+        "unknowns": [
+          "Exact example counts and mixture weights for DL3DV, MultiCamVideo, CamXTime, the Unreal Engine corpus, and the Blender corpus.",
+          "Licenses, asset provenance, commercial-use rights, deduplication, safety review, and item-level release plans for both synthetic training corpora.",
+          "Item-level sources and licenses for both evaluation benchmarks, plus whether either benchmark will be downloadable.",
+          "Complete inherited Wan2.1 data lineage, total training steps, optimizer schedule, final system parameter footprint, weights, code, API, and model license."
+        ]
+      },
+      "evidence": {
+        "release": "https://wonder-world-model.github.io/",
+        "technical_report": "https://arxiv.org/abs/2607.26037",
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-08-02",
+      "source_path": "models/video/wonder.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "distillation"
+        ],
+        "source_types": [
+          "undisclosed",
+          "public-dataset",
+          "synthetic"
+        ],
+        "operations": [
+          "inherited-wan2-1-initialization",
+          "multi-duration-clipping",
+          "rule-based-filtering",
+          "hierarchical-vlm-captioning",
+          "camera-pose-estimation",
+          "gaussian-pose-smoothing",
+          "action-discretization",
+          "reverse-playback-augmentation",
+          "speed-resampling",
+          "vlm-quality-filtering",
+          "progressive-horizon-training",
+          "ode-initialization",
+          "self-forcing",
+          "distribution-matching-distillation",
+          "sparse-context-forcing",
+          "mixture-of-students",
+          "gan-control-regularization"
+        ],
+        "data_reference_count": 8,
+        "linked_dataset_count": 7,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 3,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2607.26037"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "dl3dv-10k",
+        "multicamvideo",
+        "camxtime",
+        "wonder-ue-i2v-corpus",
+        "wonder-blender-v2v-corpus",
+        "wonder-i2v-benchmark",
+        "wonder-v2v-benchmark"
       ]
     },
     {
@@ -17223,8 +18148,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 6,
-          "score": 1236,
+          "rank": 5,
+          "score": 1240,
           "score_label": "Elo",
           "entry_model": "Seedream 5.0 Pro",
           "component_count": 1
@@ -17965,7 +18890,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1194,
+          "score": 1192,
           "score_label": "Elo",
           "entry_model": "Gemini Omni Flash",
           "component_count": 1
@@ -18444,7 +19369,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1151,
+          "score": 1149,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.1",
           "component_count": 1
@@ -18557,7 +19482,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 4,
-          "score": 1113,
+          "score": 1114,
           "score_label": "Elo",
           "entry_model": "grok-imagine-video-1.5",
           "component_count": 1
@@ -19431,7 +20356,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 3,
-          "score": 1249,
+          "score": 1253,
           "score_label": "Elo",
           "entry_model": "MAI-Image-2.5",
           "component_count": 1
@@ -19439,8 +20364,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 8,
-          "score": 1230,
+          "rank": 7,
+          "score": 1232,
           "score_label": "Elo",
           "entry_model": "MAI-Image-2.5-Flash",
           "component_count": 1
@@ -20768,8 +21693,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 14,
-          "score": 1202,
+          "rank": 13,
+          "score": 1203,
           "score_label": "Elo",
           "entry_model": "HiDream-O1-Image",
           "component_count": 1
@@ -20894,7 +21819,7 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 7,
+          "rank": 8,
           "score": 1231,
           "score_label": "Elo",
           "entry_model": "grok-imagine-image-quality",
@@ -21385,7 +22310,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 6,
-          "score": 1131,
+          "score": 1126,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.0",
           "component_count": 1
@@ -22216,7 +23141,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 4,
-          "score": 1163,
+          "score": 1160,
           "score_label": "Elo",
           "entry_model": "Wan2.7-260612",
           "component_count": 1
@@ -22224,8 +23149,8 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 9,
-          "score": 1108,
+          "rank": 8,
+          "score": 1109,
           "score_label": "Elo",
           "entry_model": "Wan 2.7",
           "component_count": 1
@@ -22328,6 +23253,15 @@
         "source_url": "https://ai.google.dev/gemini-api/docs/models/veo-3.1-lite-generate-preview"
       },
       "ranking_positions": [
+        {
+          "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
+          "rank": 15,
+          "score": 1064,
+          "score_label": "Elo",
+          "entry_model": "Veo 3.1 Lite",
+          "component_count": 1
+        },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
@@ -22436,7 +23370,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 13,
-          "score": 1070,
+          "score": 1069,
           "score_label": "Elo",
           "entry_model": "PixVerse V6",
           "component_count": 1
@@ -22887,7 +23821,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 4,
-          "score": 1245,
+          "score": 1247,
           "score_label": "Elo",
           "entry_model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
           "component_count": 1
@@ -23347,7 +24281,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 8,
-          "score": 1088,
+          "score": 1087,
           "score_label": "Elo",
           "entry_model": "SkyReels V4",
           "component_count": 1
@@ -23355,8 +24289,8 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 8,
-          "score": 1109,
+          "rank": 9,
+          "score": 1108,
           "score_label": "Elo",
           "entry_model": "SkyReels V4",
           "component_count": 1
@@ -23365,7 +24299,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 8,
-          "score": 951,
+          "score": 950,
           "score_label": "Elo",
           "entry_model": "SkyReels V4",
           "component_count": 1
@@ -23692,7 +24626,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 3,
-          "score": 1225,
+          "score": 1223,
           "score_label": "Elo",
           "entry_model": "Dreamina Seedance 2.0 720p",
           "component_count": 1
@@ -24293,7 +25227,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 11,
-          "score": 1216,
+          "score": 1215,
           "score_label": "Elo",
           "entry_model": "Kling Image 3.0 Omni",
           "component_count": 1
@@ -24301,8 +25235,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 15,
-          "score": 1202,
+          "rank": 14,
+          "score": 1203,
           "score_label": "Elo",
           "entry_model": "Kling Image 3.0",
           "component_count": 1
@@ -24311,7 +25245,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 12,
-          "score": 1074,
+          "score": 1073,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 1080p (Pro)",
           "component_count": 1
@@ -24320,7 +25254,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 14,
-          "score": 1068,
+          "score": 1067,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 720p (Standard)",
           "component_count": 1
@@ -24329,7 +25263,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 7,
-          "score": 1113,
+          "score": 1111,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 1080p (Pro)",
           "component_count": 1
@@ -24347,7 +25281,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 12,
-          "score": 1096,
+          "score": 1093,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 Omni 1080p (Pro)",
           "component_count": 1
@@ -24792,7 +25726,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 10,
-          "score": 1080,
+          "score": 1079,
           "score_label": "Elo",
           "entry_model": "grok-imagine-video",
           "component_count": 1
@@ -24899,7 +25833,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 12,
-          "score": 1213,
+          "score": 1214,
           "score_label": "Elo",
           "entry_model": "grok-imagine-image",
           "component_count": 1
@@ -25007,15 +25941,6 @@
           "score": 1361.3,
           "score_label": "Arena",
           "entry_model": "vidu-q3-pro",
-          "component_count": 1
-        },
-        {
-          "ranking_id": "image-to-video",
-          "provider": "Artificial Analysis",
-          "rank": 15,
-          "score": 1066,
-          "score_label": "Elo",
-          "entry_model": "Vidu Q3 Pro",
           "component_count": 1
         }
       ],
@@ -25833,7 +26758,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 9,
-          "score": 1086,
+          "score": 1084,
           "score_label": "Elo",
           "entry_model": "Veo 3.1",
           "component_count": 1
@@ -25851,7 +26776,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 11,
-          "score": 1098,
+          "score": 1095,
           "score_label": "Elo",
           "entry_model": "Veo 3.1",
           "component_count": 1
@@ -26954,8 +27879,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 13,
-          "score": 1205,
+          "rank": 15,
+          "score": 1202,
           "score_label": "Elo",
           "entry_model": "FLUX.2 [max]",
           "component_count": 1
@@ -27683,8 +28608,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 5,
-          "score": 1239,
+          "rank": 6,
+          "score": 1240,
           "score_label": "Elo",
           "entry_model": "Nano Banana Pro (Gemini 3 Pro Image)",
           "component_count": 1
@@ -31020,6 +31945,62 @@
       "reference_name": "AVGen-Bench"
     },
     {
+      "model_id": "wonder",
+      "dataset_id": "camxtime",
+      "role": "fine-tuning",
+      "availability": "gated",
+      "scale": "Upstream release contains 360,960 rendered videos; retained count is not disclosed",
+      "reference_name": "CamXTime"
+    },
+    {
+      "model_id": "wonder",
+      "dataset_id": "dl3dv-10k",
+      "role": "fine-tuning",
+      "availability": "gated",
+      "scale": "Used as a major source of real-world navigation videos; retained count is not disclosed",
+      "reference_name": "DL3DV-10K"
+    },
+    {
+      "model_id": "wonder",
+      "dataset_id": "multicamvideo",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "Upstream release contains 136,000 short synchronized videos; retained count is not disclosed",
+      "reference_name": "MultiCamVideo Dataset"
+    },
+    {
+      "model_id": "wonder",
+      "dataset_id": "wonder-blender-v2v-corpus",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "Described only as a large amount of long paired data",
+      "reference_name": "Wonder Blender V2V Corpus"
+    },
+    {
+      "model_id": "wonder",
+      "dataset_id": "wonder-i2v-benchmark",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "1,000 images, each paired with five camera trajectories",
+      "reference_name": "Wonder I2V Benchmark"
+    },
+    {
+      "model_id": "wonder",
+      "dataset_id": "wonder-ue-i2v-corpus",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "Described only as large-scale",
+      "reference_name": "Wonder UE I2V Corpus"
+    },
+    {
+      "model_id": "wonder",
+      "dataset_id": "wonder-v2v-benchmark",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "500 source videos, each paired with six camera trajectories",
+      "reference_name": "Wonder V2V Benchmark"
+    },
+    {
       "model_id": "worldweaver",
       "dataset_id": "solaris-eval-datasets",
       "role": "evaluation",
@@ -33204,7 +34185,7 @@
           "model": "GPT Image 2 (high)",
           "score": 1259,
           "confidence_interval": "-7/7",
-          "samples": 16344,
+          "samples": 16854,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33225,8 +34206,8 @@
           "creator": "OpenAI",
           "model": "GPT Image 1.5 (high)",
           "score": 1254,
-          "confidence_interval": "-8/8",
-          "samples": 9777,
+          "confidence_interval": "-7/7",
+          "samples": 10348,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33246,9 +34227,9 @@
           "rank": 3,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5",
-          "score": 1249,
+          "score": 1253,
           "confidence_interval": "-9/9",
-          "samples": 7659,
+          "samples": 9812,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33268,9 +34249,9 @@
           "rank": 4,
           "creator": "Google",
           "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-          "score": 1245,
-          "confidence_interval": "-8/8",
-          "samples": 10782,
+          "score": 1247,
+          "confidence_interval": "-7/7",
+          "samples": 11296,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33288,33 +34269,11 @@
         },
         {
           "rank": 5,
-          "creator": "Google",
-          "model": "Nano Banana Pro (Gemini 3 Pro Image)",
-          "score": 1239,
-          "confidence_interval": "-8/8",
-          "samples": 9114,
-          "released": "Nov 2025",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "Nano Banana Pro (Gemini 3 Pro Image)",
-              "model_id": "gemini-3-pro-image"
-            }
-          ],
-          "model_ids": [
-            "gemini-3-pro-image"
-          ],
-          "model_id": "gemini-3-pro-image"
-        },
-        {
-          "rank": 6,
           "creator": "Bytedance",
           "model": "Seedream 5.0 Pro",
-          "score": 1236,
+          "score": 1240,
           "confidence_interval": "-11/11",
-          "samples": 2681,
+          "samples": 2817,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33331,34 +34290,34 @@
           "model_id": "seedream-5-0-pro"
         },
         {
-          "rank": 7,
-          "creator": "SpaceXAI",
-          "model": "grok-imagine-image-quality",
-          "score": 1231,
-          "confidence_interval": "-8/8",
-          "samples": 8325,
-          "released": "Apr 2026",
+          "rank": 6,
+          "creator": "Google",
+          "model": "Nano Banana Pro (Gemini 3 Pro Image)",
+          "score": 1240,
+          "confidence_interval": "-7/7",
+          "samples": 9667,
+          "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": [],
           "components": [
             {
-              "name": "grok-imagine-image-quality",
-              "model_id": "grok-imagine-image-quality"
+              "name": "Nano Banana Pro (Gemini 3 Pro Image)",
+              "model_id": "gemini-3-pro-image"
             }
           ],
           "model_ids": [
-            "grok-imagine-image-quality"
+            "gemini-3-pro-image"
           ],
-          "model_id": "grok-imagine-image-quality"
+          "model_id": "gemini-3-pro-image"
         },
         {
-          "rank": 8,
+          "rank": 7,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5-Flash",
-          "score": 1230,
-          "confidence_interval": "-10/10",
-          "samples": 4279,
+          "score": 1232,
+          "confidence_interval": "-9/9",
+          "samples": 4413,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33375,12 +34334,34 @@
           "model_id": "mai-image-2-5"
         },
         {
+          "rank": 8,
+          "creator": "SpaceXAI",
+          "model": "grok-imagine-image-quality",
+          "score": 1231,
+          "confidence_interval": "-8/8",
+          "samples": 8879,
+          "released": "Apr 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-image-quality",
+              "model_id": "grok-imagine-image-quality"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-image-quality"
+          ],
+          "model_id": "grok-imagine-image-quality"
+        },
+        {
           "rank": 9,
           "creator": "Tencent",
           "model": "HunyuanImage 3.0 Instruct (Fal)",
           "score": 1223,
           "confidence_interval": "-8/8",
-          "samples": 8440,
+          "samples": 8552,
           "released": "Jan 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -33402,7 +34383,7 @@
           "model": "Luma UNI 1 Max",
           "score": 1221,
           "confidence_interval": "-9/9",
-          "samples": 5523,
+          "samples": 5651,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33422,9 +34403,9 @@
           "rank": 11,
           "creator": "KlingAI",
           "model": "Kling Image 3.0 Omni",
-          "score": 1216,
-          "confidence_interval": "-8/8",
-          "samples": 8285,
+          "score": 1215,
+          "confidence_interval": "-7/7",
+          "samples": 8393,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33444,9 +34425,9 @@
           "rank": 12,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image",
-          "score": 1213,
+          "score": 1214,
           "confidence_interval": "-8/8",
-          "samples": 8666,
+          "samples": 8753,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33464,33 +34445,11 @@
         },
         {
           "rank": 13,
-          "creator": "Black Forest Labs",
-          "model": "FLUX.2 [max]",
-          "score": 1205,
-          "confidence_interval": "-8/8",
-          "samples": 8291,
-          "released": "Dec 2025",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "FLUX.2 [max]",
-              "model_id": "flux-2-max"
-            }
-          ],
-          "model_ids": [
-            "flux-2-max"
-          ],
-          "model_id": "flux-2-max"
-        },
-        {
-          "rank": 14,
           "creator": "HiDream",
           "model": "HiDream-O1-Image",
-          "score": 1202,
+          "score": 1203,
           "confidence_interval": "-9/9",
-          "samples": 5798,
+          "samples": 5886,
           "released": "May 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -33507,12 +34466,12 @@
           "model_id": "hidream-o1-image"
         },
         {
-          "rank": 15,
+          "rank": 14,
           "creator": "KlingAI",
           "model": "Kling Image 3.0",
-          "score": 1202,
+          "score": 1203,
           "confidence_interval": "-8/8",
-          "samples": 7943,
+          "samples": 8036,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33527,6 +34486,28 @@
             "kling-3"
           ],
           "model_id": "kling-3"
+        },
+        {
+          "rank": 15,
+          "creator": "Black Forest Labs",
+          "model": "FLUX.2 [max]",
+          "score": 1202,
+          "confidence_interval": "-8/8",
+          "samples": 8766,
+          "released": "Dec 2025",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "FLUX.2 [max]",
+              "model_id": "flux-2-max"
+            }
+          ],
+          "model_ids": [
+            "flux-2-max"
+          ],
+          "model_id": "flux-2-max"
         }
       ]
     },
@@ -33547,7 +34528,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1196,
           "confidence_interval": "-8/8",
-          "samples": 10215,
+          "samples": 10812,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33567,9 +34548,9 @@
           "rank": 2,
           "creator": "Google",
           "model": "Gemini Omni Flash",
-          "score": 1194,
+          "score": 1192,
           "confidence_interval": "-10/10",
-          "samples": 4589,
+          "samples": 5195,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33589,9 +34570,9 @@
           "rank": 3,
           "creator": "MiniMax",
           "model": "MiniMax H3",
-          "score": 1184,
-          "confidence_interval": "-11/11",
-          "samples": 5032,
+          "score": 1186,
+          "confidence_interval": "-10/10",
+          "samples": 5229,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33611,9 +34592,9 @@
           "rank": 4,
           "creator": "SpaceXAI",
           "model": "grok-imagine-video-1.5",
-          "score": 1113,
+          "score": 1114,
           "confidence_interval": "-9/9",
-          "samples": 4270,
+          "samples": 4418,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33635,7 +34616,7 @@
           "model": "HappyHorse-1.1",
           "score": 1108,
           "confidence_interval": "-9/9",
-          "samples": 5004,
+          "samples": 5590,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33657,7 +34638,7 @@
           "model": "Wan 2.7",
           "score": 1093,
           "confidence_interval": "-9/9",
-          "samples": 3609,
+          "samples": 3742,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33679,7 +34660,7 @@
           "model": "HappyHorse-1.0",
           "score": 1091,
           "confidence_interval": "-8/8",
-          "samples": 6952,
+          "samples": 7079,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33699,9 +34680,9 @@
           "rank": 8,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "score": 1088,
+          "score": 1087,
           "confidence_interval": "-9/9",
-          "samples": 3923,
+          "samples": 4039,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33721,9 +34702,9 @@
           "rank": 9,
           "creator": "Google",
           "model": "Veo 3.1",
-          "score": 1086,
+          "score": 1084,
           "confidence_interval": "-8/8",
-          "samples": 7290,
+          "samples": 7365,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33743,9 +34724,9 @@
           "rank": 10,
           "creator": "SpaceXAI",
           "model": "grok-imagine-video",
-          "score": 1080,
+          "score": 1079,
           "confidence_interval": "-7/7",
-          "samples": 9809,
+          "samples": 10291,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33766,8 +34747,8 @@
           "creator": "Google",
           "model": "Veo 3.1 Fast",
           "score": 1076,
-          "confidence_interval": "-8/8",
-          "samples": 8989,
+          "confidence_interval": "-7/7",
+          "samples": 9417,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33787,9 +34768,9 @@
           "rank": 12,
           "creator": "KlingAI",
           "model": "Kling 3.0 1080p (Pro)",
-          "score": 1074,
+          "score": 1073,
           "confidence_interval": "-7/7",
-          "samples": 9499,
+          "samples": 9969,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33809,9 +34790,9 @@
           "rank": 13,
           "creator": "PixVerse",
           "model": "PixVerse V6",
-          "score": 1070,
+          "score": 1069,
           "confidence_interval": "-8/8",
-          "samples": 8562,
+          "samples": 8645,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33831,9 +34812,9 @@
           "rank": 14,
           "creator": "KlingAI",
           "model": "Kling 3.0 720p (Standard)",
-          "score": 1068,
+          "score": 1067,
           "confidence_interval": "-7/7",
-          "samples": 9483,
+          "samples": 9914,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -33851,25 +34832,25 @@
         },
         {
           "rank": 15,
-          "creator": "Vidu",
-          "model": "Vidu Q3 Pro",
-          "score": 1066,
-          "confidence_interval": "-7/7",
-          "samples": 9994,
-          "released": "Jan 2026",
+          "creator": "Google",
+          "model": "Veo 3.1 Lite",
+          "score": 1064,
+          "confidence_interval": "-8/8",
+          "samples": 6695,
+          "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": [],
           "components": [
             {
-              "name": "Vidu Q3 Pro",
-              "model_id": "vidu-q3-pro"
+              "name": "Veo 3.1 Lite",
+              "model_id": "veo-3-1-lite"
             }
           ],
           "model_ids": [
-            "vidu-q3-pro"
+            "veo-3-1-lite"
           ],
-          "model_id": "vidu-q3-pro"
+          "model_id": "veo-3-1-lite"
         }
       ]
     },
@@ -34232,8 +35213,8 @@
           "creator": "Google",
           "model": "Gemini Omni Flash",
           "score": 1245,
-          "confidence_interval": "-9/9",
-          "samples": 6665,
+          "confidence_interval": "-8/8",
+          "samples": 9366,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34253,9 +35234,9 @@
           "rank": 2,
           "creator": "MiniMax",
           "model": "MiniMax H3",
-          "score": 1242,
-          "confidence_interval": "-11/11",
-          "samples": 5094,
+          "score": 1239,
+          "confidence_interval": "-10/10",
+          "samples": 5731,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34275,9 +35256,9 @@
           "rank": 3,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
-          "score": 1225,
-          "confidence_interval": "-7/7",
-          "samples": 13414,
+          "score": 1223,
+          "confidence_interval": "-6/6",
+          "samples": 16138,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34297,9 +35278,9 @@
           "rank": 4,
           "creator": "Alibaba",
           "model": "Wan2.7-260612",
-          "score": 1163,
-          "confidence_interval": "-8/8",
-          "samples": 7082,
+          "score": 1160,
+          "confidence_interval": "-7/7",
+          "samples": 9888,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34319,9 +35300,9 @@
           "rank": 5,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.1",
-          "score": 1151,
-          "confidence_interval": "-8/8",
-          "samples": 7588,
+          "score": 1149,
+          "confidence_interval": "-7/7",
+          "samples": 10188,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34341,9 +35322,9 @@
           "rank": 6,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.0",
-          "score": 1131,
-          "confidence_interval": "-8/8",
-          "samples": 7742,
+          "score": 1126,
+          "confidence_interval": "-7/7",
+          "samples": 8165,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34363,9 +35344,9 @@
           "rank": 7,
           "creator": "KlingAI",
           "model": "Kling 3.0 1080p (Pro)",
-          "score": 1113,
-          "confidence_interval": "-7/7",
-          "samples": 12705,
+          "score": 1111,
+          "confidence_interval": "-6/6",
+          "samples": 14811,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34383,33 +35364,11 @@
         },
         {
           "rank": 8,
-          "creator": "Skywork AI",
-          "model": "SkyReels V4",
-          "score": 1109,
-          "confidence_interval": "-8/8",
-          "samples": 4846,
-          "released": "Mar 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "SkyReels V4",
-              "model_id": "skyreels-v4"
-            }
-          ],
-          "model_ids": [
-            "skyreels-v4"
-          ],
-          "model_id": "skyreels-v4"
-        },
-        {
-          "rank": 9,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "score": 1108,
-          "confidence_interval": "-9/9",
-          "samples": 4334,
+          "score": 1109,
+          "confidence_interval": "-8/8",
+          "samples": 4668,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34426,12 +35385,34 @@
           "model_id": "wan-2-7"
         },
         {
+          "rank": 9,
+          "creator": "Skywork AI",
+          "model": "SkyReels V4",
+          "score": 1108,
+          "confidence_interval": "-8/8",
+          "samples": 5144,
+          "released": "Mar 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "SkyReels V4",
+              "model_id": "skyreels-v4"
+            }
+          ],
+          "model_ids": [
+            "skyreels-v4"
+          ],
+          "model_id": "skyreels-v4"
+        },
+        {
           "rank": 10,
           "creator": "KlingAI",
           "model": "Kling 3.0 720p (Standard)",
           "score": 1101,
-          "confidence_interval": "-7/7",
-          "samples": 12483,
+          "confidence_interval": "-6/6",
+          "samples": 14302,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34451,9 +35432,9 @@
           "rank": 11,
           "creator": "Google",
           "model": "Veo 3.1",
-          "score": 1098,
+          "score": 1095,
           "confidence_interval": "-7/7",
-          "samples": 8106,
+          "samples": 8373,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34473,9 +35454,9 @@
           "rank": 12,
           "creator": "KlingAI",
           "model": "Kling 3.0 Omni 1080p (Pro)",
-          "score": 1096,
+          "score": 1093,
           "confidence_interval": "-7/7",
-          "samples": 7898,
+          "samples": 8139,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34497,7 +35478,7 @@
           "model": "Kling 3.0 Omni 720p (Standard)",
           "score": 1092,
           "confidence_interval": "-7/7",
-          "samples": 7739,
+          "samples": 7986,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34518,8 +35499,8 @@
           "creator": "Google",
           "model": "Veo 3.1 Fast",
           "score": 1091,
-          "confidence_interval": "-7/7",
-          "samples": 11701,
+          "confidence_interval": "-6/6",
+          "samples": 13528,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34541,7 +35522,7 @@
           "model": "Veo 3.1 Lite",
           "score": 1090,
           "confidence_interval": "-7/7",
-          "samples": 7544,
+          "samples": 7786,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34576,7 +35557,7 @@
           "model": "MiniMax H3",
           "score": 1130,
           "confidence_interval": "-7/7",
-          "samples": 5050,
+          "samples": 5095,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34598,7 +35579,7 @@
           "model": "Gemini Omni Flash",
           "score": 1122,
           "confidence_interval": "-6/6",
-          "samples": 10203,
+          "samples": 10270,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34620,7 +35601,7 @@
           "model": "HappyHorse-1.0",
           "score": 1096,
           "confidence_interval": "-5/5",
-          "samples": 17774,
+          "samples": 17822,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34642,7 +35623,7 @@
           "model": "Wan 2.7",
           "score": 1080,
           "confidence_interval": "-5/5",
-          "samples": 13571,
+          "samples": 13635,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34664,7 +35645,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1035,
           "confidence_interval": "-5/5",
-          "samples": 17540,
+          "samples": 17594,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34686,7 +35667,7 @@
           "model": "Aleph 2.0",
           "score": 1011,
           "confidence_interval": "-5/5",
-          "samples": 17212,
+          "samples": 17260,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34708,7 +35689,7 @@
           "model": "Kling 3.0 Omni 1080p (Pro)",
           "score": 1000,
           "confidence_interval": "0/0",
-          "samples": 16115,
+          "samples": 16158,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34728,9 +35709,9 @@
           "rank": 8,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "score": 951,
+          "score": 950,
           "confidence_interval": "-6/6",
-          "samples": 14222,
+          "samples": 14263,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",

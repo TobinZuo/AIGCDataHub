@@ -1,0 +1,70 @@
+id: camxtime
+name: CamXTime
+organization: University of Cambridge and Adobe Research
+released_at: "2026-05-17"
+release_date_source: https://github.com/ZheningHuang/SpaceTimePilot
+modality: video
+tasks:
+  - camera-controlled-video-generation
+  - video-to-video
+  - space-time-video-generation
+stages:
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A synthetic space-time grid dataset with 744 dynamic scenes, four camera
+  trajectories per scene, and every animation time rendered from all 120 camera
+  positions, producing 360,960 videos for controllable 4D video generation.
+access:
+  status: gated
+  type: request
+  url: https://zheninghuang.github.io/camxtime_dataset/
+  requires_account: true
+  notes: Full training data requires a form submission plus email follow-up and is currently shared with research groups and institutes; a separate 32-scene evaluation release is openly hosted on Hugging Face.
+scale:
+  samples: 360960
+  source_items: 744
+  hours: null
+  approximate: false
+  notes: The official page reports 744 training scenes, four trajectories per scene, 120 camera positions per trajectory, and 360,960 total videos at 1080x1080 and 30 FPS.
+annotations:
+  types:
+    - camera-trajectory
+    - camera-position
+    - time-index
+    - scene-id
+    - full-space-time-grid
+  source: mixed
+  languages:
+    - none
+license:
+  metadata: Not stated for the dataset
+  media: Not stated; repository Apache-2.0 applies to code, not automatically to requested scene renders
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The dataset request page provides no dataset license or commercial and redistribution grant; written terms must be obtained with access.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - multi-view-consistency
+    - provenance
+  known_limitations:
+    - Full training access is manually reviewed and is described as sharing with research groups and institutes.
+    - Synthetic rendering may not match real-world camera, lighting, subject, and motion distributions.
+    - The public evaluation subset covers only 32 scenes and must not be conflated with the gated 744-scene training corpus.
+processing:
+  recipe: Render each complete scene animation at all 120 camera positions along four trajectories, forming a 120-by-120 camera-time grid that supports forward, reverse, slow, fast, bullet-time, and non-linear paths.
+  recommended_format: native
+  notes: Preserve scene-level splits, camera and time axes, source asset lineage, full-grid membership, access approval, and the distinction between the requested training corpus and public evaluation archives.
+evidence:
+  homepage: https://zheninghuang.github.io/camxtime_dataset/
+  paper: https://arxiv.org/abs/2512.25075
+  used_by:
+    - SpaceTimePilot
+    - Wonder
+status: partial
+last_verified: "2026-08-02"
