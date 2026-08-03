@@ -1,0 +1,69 @@
+id: intelligentvbench
+name: IntelligentVBench
+organization: Tencent Hunyuan and Zhejiang University
+released_at: "2026-04-03"
+release_date_source: https://omniweaving.github.io/
+modality: evaluation
+tasks:
+  - image-to-video
+  - video-editing
+  - multi-reference-composition
+  - reference-to-video
+stages:
+  - evaluation
+description: >-
+  A public unified-video benchmark for implicit I2V, first-last-frame interpolation,
+  text-image-video editing, and compositional multi-image-to-video generation.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/midbee/IntelligentVBench
+  requires_account: false
+  notes: The official project links an ungated 1.39 GB Hugging Face repository containing images, videos, and CSV manifests.
+scale:
+  samples: 1694
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The official Hugging Face dataset service reports 1,694 hosted rows; the project table separately identifies 320 compositional MI2V cases, so row and task-case units must not be conflated.
+annotations:
+  types:
+    - source-image
+    - source-video
+    - text-instruction
+    - target-video
+    - task-category
+    - multi-reference-count
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-NC-4.0
+  media: CC-BY-NC-4.0 release terms plus source-media dependencies
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The official Hugging Face repository labels the benchmark non-commercial; component-media provenance and rights still require review.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - human-preference
+    - provenance
+  known_limitations:
+    - Hosted rows represent media items rather than a one-to-one count of evaluation task cases.
+    - Task distributions are intentionally heterogeneous and aggregated scores can hide weak sub-tasks.
+    - Non-commercial terms and component-media rights limit some reuse.
+processing:
+  recipe: Group image, video, and instruction inputs into implicit I2V, dual-image interpolation, text-image-video editing, and one-to-three-subject compositional MI2V tasks, then score minimum and average quality across sub-tasks.
+  recommended_format: native
+  notes: Preserve task and sub-task, input grouping, reference count, source provenance, expected output, per-case metric, and license metadata.
+evidence:
+  homepage: https://omniweaving.github.io/
+  paper: https://arxiv.org/abs/2603.24458
+  used_by:
+    - OmniWeaving
+    - MoRoute
+status: partial
+last_verified: "2026-08-03"

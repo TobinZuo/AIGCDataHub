@@ -1,0 +1,65 @@
+id: heliosbench
+name: HeliosBench
+organization: PKU-YuanGroup
+released_at: "2026-03-04"
+release_date_source: https://github.com/PKU-YuanGroup/Helios
+modality: evaluation
+tasks:
+  - text-to-video
+  - long-video-generation
+stages:
+  - evaluation
+description: >-
+  A public 240-prompt evaluation suite for real-time video generation across very
+  short, short, medium, and long frame horizons with drift-aware automatic metrics.
+access:
+  status: open
+  type: hosted
+  url: https://github.com/PKU-YuanGroup/Helios/blob/main/eval/playground/helios_t2v_prompts.csv
+  requires_account: false
+  notes: The official repository directly hosts the 240-row prompt CSV and evaluation code under its Apache-2.0 license.
+scale:
+  samples: 240
+  source_items: 240
+  hours: null
+  approximate: false
+  notes: Prompts cover 81, 240, 720, and 1,440 output-frame regimes; generated videos are not included in the benchmark CSV.
+annotations:
+  types:
+    - text-prompt
+    - target-frame-count
+    - duration-regime
+    - drift-metric
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Apache-2.0 repository license
+  media: Prompt text includes adaptations from prior work and should retain cited provenance
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Repository code and files are Apache-2.0, but the paper says prompts were collected from Self-Forcing and media examples from other benchmarks; review source terms for downstream media.
+quality:
+  dimensions:
+    - visual-quality
+    - aesthetics
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - human-preference
+    - provenance
+  known_limitations:
+    - Only 240 prompts are used across four duration regimes.
+    - Automatic aesthetic, motion, semantic, naturalness, and drift scores can diverge from human preference.
+    - Part of the prompt set is adapted from Self-Forcing, so provenance and overlap should be retained in comparisons.
+processing:
+  recipe: Generate each prompt at the assigned frame horizon, score aesthetic quality, motion amplitude, motion smoothness, semantic alignment, naturalness, throughput, and cross-chunk drift, then map noisy continuous metrics to calibrated ten-point bands.
+  recommended_format: csv
+  notes: Keep prompt ID, target frames, model generation settings, metric version, raw score, calibrated score, hardware, and random seed.
+evidence:
+  homepage: https://github.com/PKU-YuanGroup/Helios
+  paper: https://arxiv.org/abs/2603.04379
+  used_by:
+    - Helios
+status: partial
+last_verified: "2026-08-03"

@@ -1,0 +1,65 @@
+id: sefi-image-internal-pretraining-corpus
+name: SeFi-Image Internal Pretraining Corpus
+organization: SeFi-Team
+released_at: "2026-06-21"
+release_date_source: https://arxiv.org/abs/2606.22568
+modality: image
+tasks:
+  - image-text-pretraining
+  - text-to-image
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  An unreleased 450M-pair internal image-text corpus, dominated by natural images and
+  fully recaptioned into bilingual dense and short variants for SeFi-Image.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2606.22568
+  requires_account: false
+  notes: The paper provides aggregate scale and annotation details but no source list, manifest, files, request form, or release plan.
+scale:
+  samples: 450000000
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The paper reports 450M image-text samples; unique images and overlap with later stages are not stated.
+annotations:
+  types:
+    - dense-caption-en
+    - dense-caption-zh
+    - short-caption-en
+    - short-caption-zh
+  source: model-generated
+  languages:
+    - en
+    - zh
+license:
+  metadata: Not stated
+  media: Not stated
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The non-commercial model license does not establish rights for the unreleased internal media or captions.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - provenance
+    - deduplication
+    - safety
+  known_limitations:
+    - Original sources, collection rights, licenses, filtering, safety review, and deduplication are undisclosed.
+    - The natural-image-heavy distribution underrepresents UI, art, design, and infographic content.
+    - Qwen3.5-2B recaptioning can introduce bilingual or factual annotation errors.
+processing:
+  recipe: Recaption every image with Qwen3.5-2B into English and Chinese dense and short variants, then sample dense versus short captions at a 4:1 ratio across a 256-to-1024-pixel curriculum.
+  recommended_format: parquet
+  notes: Preserve original source and rights, all caption variants, captioner version, filter decisions, deduplication clusters, and stage membership if released.
+evidence:
+  homepage: https://huggingface.co/SeFi-Image/SeFi-Image-5B-Base
+  paper: https://arxiv.org/abs/2606.22568
+  used_by:
+    - SeFi-Image
+status: partial
+last_verified: "2026-08-03"

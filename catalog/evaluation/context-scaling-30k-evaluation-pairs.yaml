@@ -1,0 +1,63 @@
+id: context-scaling-30k-evaluation-pairs
+name: Context Scaling 30K Evaluation Pairs
+organization: ByteDance Seed
+released_at: "2026-07-31"
+release_date_source: https://arxiv.org/abs/2607.29679
+modality: evaluation
+tasks:
+  - text-to-image
+  - image-editing
+stages:
+  - evaluation
+description: >-
+  An unreleased set of paired images used to compare fifteen text-conditioning
+  configurations under a fixed BAGEL image-token training budget.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2607.29679
+  requires_account: false
+  notes: The paper reports the evaluation size and experiment but no image files, prompts, manifest, or release plan.
+scale:
+  samples: 30000
+  source_items: null
+  hours: null
+  approximate: false
+  notes: 30,000 paired images are used for the controlled GPG and ED evaluation; the number of unique source images is not stated.
+annotations:
+  types:
+    - natural-language-prompt
+    - structured-prompt-level
+    - paired-image
+    - generation-score
+    - editing-score
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: Not stated
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Evaluation media provenance and rights are not disclosed, and the benchmark is not released.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - human-preference
+    - provenance
+  known_limitations:
+    - Image and prompt sources, licensing, category balance, and split construction are undisclosed.
+    - The suite is designed around the paper's structured-prompt hierarchy and may favor similar conditioning formats.
+    - It is not described as part of the training corpus and must not be treated as training data.
+processing:
+  recipe: Evaluate fifteen caption-length and structured-prompt configurations on 30,000 paired images after holding BAGEL training to 2.84e10 image tokens.
+  recommended_format: native
+  notes: Keep evaluation pairs, conditioning variant, common-budget run ID, and generation versus editing metrics separate if released.
+evidence:
+  homepage: https://heheyas.github.io/context-scaling/
+  paper: https://arxiv.org/abs/2607.29679
+  used_by:
+    - Qwen-Image-SP
+status: partial
+last_verified: "2026-08-03"

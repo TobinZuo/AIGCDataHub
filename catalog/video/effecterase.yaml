@@ -1,0 +1,69 @@
+id: effecterase
+name: EffectErase Dataset
+organization: FudanCVL
+released_at: "2026-03-19"
+release_date_source: https://arxiv.org/abs/2603.19224
+modality: video
+tasks:
+  - video-editing
+  - video-to-video
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A gated hybrid real-and-synthetic video object removal and insertion corpus with
+  object-present, object-absent, and mask triplets, introduced as VOR by EffectErase.
+access:
+  status: gated
+  type: request
+  url: https://huggingface.co/datasets/FudanCVL/EffectErase
+  requires_account: true
+  notes: Users must accept updated CC BY-NC 4.0 non-commercial terms; raw or substantial redistribution is explicitly prohibited.
+scale:
+  samples: 60000
+  source_items: null
+  hours: 145.33
+  approximate: false
+  notes: The paper reports 60,000 video triplets spanning 145.33 hours; the gated Hugging Face repository stores about 375 GB.
+annotations:
+  types:
+    - object-present-video
+    - object-absent-video
+    - object-mask-video
+    - removal-pair
+    - insertion-pair
+    - effect-type
+  source: mixed
+  languages:
+    - und
+license:
+  metadata: CC-BY-NC-4.0 with gated access terms
+  media: Non-commercial research only; raw or substantial redistribution prohibited
+  commercial_use: noncommercial
+  redistribution: prohibited
+  notes: Commercial use requires separate author permission, and users approved before the March 20 terms update must reapply.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - provenance
+    - safety
+  known_limitations:
+    - Synthetic Blender environments and trajectories do not cover all real-world effects or capture conditions.
+    - SAM2 masks require manual cleanup and can still contain boundary or temporal errors.
+    - Access and redistribution constraints limit reproducibility and derivative release.
+processing:
+  recipe: Combine Blender scenes, public 3D assets, objects, and animations with real-world captures; synthesize natural object and camera trajectories, apply Ken Burns motion to real footage, segment with SAM2, and manually clean masks into object-present, object-absent, and mask triplets.
+  recommended_format: webdataset
+  notes: Preserve synthetic versus real source, asset provenance, trajectory, scene and object category, effect type, raw and refined masks, annotator pass, and license acceptance date.
+evidence:
+  homepage: https://henghuiding.com/EffectErase/
+  paper: https://arxiv.org/abs/2603.19224
+  used_by:
+    - EffectErase
+    - MoRoute
+status: verified
+last_verified: "2026-08-03"

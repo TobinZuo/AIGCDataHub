@@ -1,0 +1,64 @@
+id: moroute-internal-t2v-corpus
+name: MoRoute Internal T2V Corpus
+organization: MoRoute authors
+released_at: "2026-07-31"
+release_date_source: https://arxiv.org/abs/2607.29545
+modality: video
+tasks:
+  - text-to-video
+  - video-text-pretraining
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  An unreleased internal video-text corpus mixed with Vchitect data for MoRoute's
+  600K-example stage-2 text-to-video alignment phase.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.29545
+  requires_account: false
+  notes: No constituent source, files, manifest, request form, standalone count, or release plan is published.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The combined Vchitect-plus-internal stage contains 600K examples, but the internal contribution is not separated.
+annotations:
+  types:
+    - source-video
+    - vlm-recaption
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: Not stated
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Collection rights, source-media licenses, model-generated caption terms, and commercial-use status are undisclosed.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - provenance
+    - deduplication
+    - safety
+  known_limitations:
+    - Exact sample count, source identities, licenses, and selection criteria are absent.
+    - VLM recaptioning may introduce hallucinations or erase source-language and cultural details.
+    - Deduplication, safety filtering, identity handling, and overlap with evaluation sets are not reported.
+processing:
+  recipe: Mix internal clips with selected Vchitect examples, recaption every retained clip with a VLM, and train the stage-2 condition interface for two epochs.
+  recommended_format: webdataset
+  notes: A release should preserve source rights, original captions, recaptions, VLM version, filter decisions, deduplication clusters, and mixture membership.
+evidence:
+  homepage: https://orange-3dv-team.github.io/MoRoute/
+  paper: https://arxiv.org/abs/2607.29545
+  used_by:
+    - MoRoute
+status: partial
+last_verified: "2026-08-03"

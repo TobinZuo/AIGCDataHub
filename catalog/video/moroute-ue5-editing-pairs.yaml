@@ -1,0 +1,67 @@
+id: moroute-ue5-editing-pairs
+name: MoRoute UE5 Editing Pairs
+organization: MoRoute authors
+released_at: "2026-07-31"
+release_date_source: https://arxiv.org/abs/2607.29545
+modality: video
+tasks:
+  - video-editing
+  - reference-to-video
+  - video-to-video
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  An unreleased Unreal Engine 5 corpus of paired character-replacement videos used
+  in MoRoute's reference-guided video-editing mixture.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.29545
+  requires_account: false
+  notes: The paper describes the synthetic UE5 construction but supplies no files, asset manifest, request form, or release date.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The corpus contributes to 600K TV2V and 1M TIV2V pools, but its standalone count and scene total are not disclosed.
+annotations:
+  types:
+    - source-video
+    - edited-video
+    - reference-image
+    - character-mask
+    - replacement-instruction
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: Unreal Engine and individual asset terms not stated
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The paper does not identify UE5 environments, character assets, licenses, or downstream redistribution rights.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - Asset, scene, character, and animation diversity are undisclosed.
+    - Synthetic appearance and motion may differ from real footage.
+    - Exact count, filtering, deduplication, safety review, and asset rights are absent.
+processing:
+  recipe: Render aligned UE5 videos before and after character replacement, extract references and masks, generate instructions, and mix pairs into reference-guided TV2V and TIV2V training.
+  recommended_format: native
+  notes: Preserve project and asset IDs, licenses, scene seed, camera and animation trajectory, masks, source-target alignment, captions, and split membership if released.
+evidence:
+  homepage: https://orange-3dv-team.github.io/MoRoute/
+  paper: https://arxiv.org/abs/2607.29545
+  used_by:
+    - MoRoute
+status: partial
+last_verified: "2026-08-03"

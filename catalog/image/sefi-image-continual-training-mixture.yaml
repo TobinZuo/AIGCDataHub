@@ -1,0 +1,70 @@
+id: sefi-image-continual-training-mixture
+name: SeFi-Image Continual-Training Mixture
+organization: SeFi-Team
+released_at: "2026-06-21"
+release_date_source: https://arxiv.org/abs/2606.22568
+modality: image
+tasks:
+  - text-to-image
+  - text-rendering
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  An unreleased 9M high-resolution mixture combining Fine-T2I with internal natural,
+  UI, graphic-design, anime, and other image-text data for continual training.
+derived_from:
+  - catalog_id: fine-t2i
+    relationship: source-component
+    contribution: Public high-quality image-text examples
+    notes: Fine-T2I is explicitly named, but its retained count and mixture share are not disclosed.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2606.22568
+  requires_account: false
+  notes: Fine-T2I is public separately, but the combined 9M manifest and internal components are not released.
+scale:
+  samples: 9000000
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The total is disclosed; public-versus-internal counts, source overlap, and mixture weights are not.
+annotations:
+  types:
+    - image-caption
+    - domain
+    - quality-score
+  source: mixed
+  languages:
+    - en
+    - zh
+license:
+  metadata: Mixed; Fine-T2I and internal terms apply
+  media: Source-dependent rights
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The model is non-commercial and the internal components have no published dataset license or media-rights statement.
+quality:
+  dimensions:
+    - visual-quality
+    - aesthetics
+    - text-media-alignment
+    - provenance
+    - deduplication
+    - safety
+  known_limitations:
+    - Internal source identities, rights, proportions, and retention rules are undisclosed.
+    - Fine-T2I retained IDs and overlap with pretraining or SFT are absent.
+    - Domain labels are high level and do not provide reproducible balance targets.
+processing:
+  recipe: Mix Fine-T2I with internally curated high-quality natural, UI, graphic-design, anime, and other imagery, recaption as needed, and continue 1024-pixel training for 180K iterations.
+  recommended_format: parquet
+  notes: Preserve component and source ID, rights, original and refined captions, domain, quality scores, deduplication cluster, and mixture sampling weight.
+evidence:
+  homepage: https://huggingface.co/SeFi-Image/SeFi-Image-5B-Base
+  paper: https://arxiv.org/abs/2606.22568
+  used_by:
+    - SeFi-Image
+status: partial
+last_verified: "2026-08-03"

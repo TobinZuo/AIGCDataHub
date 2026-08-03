@@ -1,0 +1,105 @@
+id: helios
+name: Helios
+organization: PKU-YuanGroup
+released_at: "2026-03-04"
+modalities:
+  - video
+tasks:
+  - text-to-video
+  - image-to-video
+  - video-to-video
+  - interactive-video-generation
+  - long-video-generation
+access:
+  status: open-weights
+  license: Apache-2.0 repository and Hugging Face checkpoint metadata
+  release_url: https://github.com/PKU-YuanGroup/Helios
+  weights_url: https://huggingface.co/BestWishYsh/Helios-Distilled
+  api_url: null
+architecture:
+  family: 14B autoregressive video diffusion transformer with guidance attention and hierarchical sampling
+  parameters: 14000000000
+  notes: >-
+    Helios-Base, Helios-Mid, and three-step Helios-Distilled share a Wan2.1-derived
+    architecture. Representation Control supports T2V, I2V, V2V, and experimental
+    interactive continuation without retraining task-specific heads.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Wan2.1 inherited pretraining mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: Helios initializes from Wan2.1-T2V-14B and does not restate its complete inherited data lineage.
+    - name: Helios Training Corpus
+      catalog_id: helios-training-corpus
+      role: fine-tuning
+      availability: not-released
+      scale: 0.8M clips shorter than ten seconds
+      notes: The paper gives the retained count and clip constraints but no source identities, licenses, or downloadable manifest.
+    - name: Helios ODE Solution Pairs
+      catalog_id: helios-ode-solution-pairs
+      role: distillation
+      availability: not-released
+      scale: Described only as compact
+      notes: Helios-Mid generates staged ODE solution pairs to initialize hierarchical distillation.
+    - name: HeliosBench
+      catalog_id: heliosbench
+      role: evaluation
+      availability: public
+      scale: 240 prompts across 81, 240, 720, and 1,440-frame regimes
+      notes: The official repository publishes the prompt CSV; these prompts are evaluation-only.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - video
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - short-clip-extraction
+        - resolution-capping
+        - historical-context-corruption
+        - relative-position-encoding
+        - first-frame-anchoring
+        - multi-term-memory-patchification
+      scale_disclosed: true
+      strategy: >-
+        Train two progressive adaptation and compression stages for two epochs each on
+        0.8M clips, capped at 384x640 and extracted as 109-frame sequences.
+    - name: distillation
+      modalities:
+        - video
+        - text
+      source_types:
+        - synthetic
+        - undisclosed
+      operations:
+        - ode-pair-generation
+        - pure-teacher-forcing
+        - staged-backward-simulation
+        - coarse-to-fine-learning
+        - dynamic-renoising
+        - distribution-matching-distillation
+        - adversarial-post-training
+      scale_disclosed: false
+      strategy: >-
+        Initialize from Helios-Mid ODE pairs, distill Helios-Base through staged DMD,
+        and use real clips only as historical context and adversarial supervision.
+  strategy_summary:
+    - Convert a bidirectional Wan2.1 checkpoint into a long-horizon autoregressive generator while retaining bidirectional attention within each generated section.
+    - Compress historical and noisy tokens with multi-term patchification and a three-level predictor-corrector pyramid.
+    - Distill fifty sampling steps to three with pure teacher forcing and real-data adversarial post-training.
+  unknowns:
+    - Source names, collection methods, rights, languages, captions, filtering, deduplication, safety review, and mixture weights for the 0.8M real clips.
+    - Size and license of the ODE-pair corpus, exact real-data contribution during distillation, and whether either training corpus will be released.
+    - Complete Wan2.1 inherited data lineage and the media-level license of prompts adapted from prior work for HeliosBench.
+evidence:
+  release: https://github.com/PKU-YuanGroup/Helios
+  technical_report: https://arxiv.org/abs/2603.04379
+  repository: https://github.com/PKU-YuanGroup/Helios
+status: partial
+last_verified: "2026-08-03"

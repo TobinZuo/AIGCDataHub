@@ -1,0 +1,68 @@
+id: helios-training-corpus
+name: Helios Training Corpus
+organization: PKU-YuanGroup
+released_at: "2026-03-05"
+release_date_source: https://arxiv.org/abs/2603.04379
+modality: video
+tasks:
+  - text-to-video
+  - image-to-video
+  - video-to-video
+  - long-video-generation
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  The unreleased 0.8M short-video corpus used for the Base, Mid, and real-data
+  components of the Distilled Helios training pipeline.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2603.04379
+  requires_account: false
+  notes: The paper names no constituent datasets and provides no manifest, media files, request process, or release schedule.
+scale:
+  samples: 800000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The paper reports 0.8M clips shorter than ten seconds and extracts 109-frame training windows; source-video count and hours are absent.
+annotations:
+  types:
+    - text-caption
+    - clip-duration
+    - historical-context
+    - first-frame-anchor
+  source: unknown
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: Not stated
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Apache-2.0 covers the released code and checkpoints, not the unidentified training media or annotations.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - provenance
+    - deduplication
+    - safety
+  known_limitations:
+    - Source identities, collection methods, rights, licenses, language mix, and captions are undisclosed.
+    - Filtering, deduplication, safety review, people and identity handling, and mixture weights are not reported.
+    - I2V and V2V are learned by history corruption over a conventional T2V pipeline rather than task-specific paired corpora.
+processing:
+  recipe: Retain sub-ten-second videos, cap resolution at 384x640, extract 109-frame clips, randomly zero or corrupt historical context, anchor first frames, and reuse real clips as historical and adversarial supervision during distillation.
+  recommended_format: webdataset
+  notes: A release should preserve source rights, original media IDs, captions, clip windows, context-corruption parameters, rejection reasons, and stage membership.
+evidence:
+  homepage: https://github.com/PKU-YuanGroup/Helios
+  paper: https://arxiv.org/abs/2603.04379
+  used_by:
+    - Helios
+status: partial
+last_verified: "2026-08-03"

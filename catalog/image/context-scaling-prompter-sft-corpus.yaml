@@ -1,0 +1,63 @@
+id: context-scaling-prompter-sft-corpus
+name: Context Scaling Prompter SFT Corpus
+organization: ByteDance Seed
+released_at: "2026-07-31"
+release_date_source: https://arxiv.org/abs/2607.29679
+modality: image
+tasks:
+  - agentic-image-generation
+  - text-to-image
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  An unreleased supervised corpus for the structured-prompt expander, mixing direct
+  and reverse image-prompt tasks with general reasoning and instruction replay.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2607.29679
+  requires_account: false
+  notes: Only aggregate composition and token counts are published; no examples, manifest, or download is provided.
+scale:
+  samples: 333000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: Approximately 333K examples and 0.97B tokens; one third is core prompt supervision and two thirds is replay.
+annotations:
+  types:
+    - prompt-to-structured-prompt
+    - image-to-structured-json
+    - reasoning-trace
+    - instruction-response
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: Not stated
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Neither the task-specific records nor the replay sources receive a dataset license in the paper.
+quality:
+  dimensions:
+    - text-media-alignment
+    - provenance
+    - deduplication
+    - safety
+  known_limitations:
+    - Replay dataset names, licenses, proportions, overlap controls, and source languages are undisclosed.
+    - Reverse image-to-JSON records may inherit specialist annotation errors from the structured-prompt corpus.
+    - The rounded example count is not a released row manifest.
+processing:
+  recipe: Mix prompt-to-structured-prompt and reverse image-to-JSON supervision as one third of training tokens, then add two thirds of undisclosed reasoning and instruction-following replay.
+  recommended_format: native
+  notes: A release should separate task-specific and replay provenance, preserve conversation turns, and identify model-generated reasoning and source licenses.
+evidence:
+  homepage: https://heheyas.github.io/context-scaling/
+  paper: https://arxiv.org/abs/2607.29679
+  used_by:
+    - Qwen-Image-SP
+status: partial
+last_verified: "2026-08-03"

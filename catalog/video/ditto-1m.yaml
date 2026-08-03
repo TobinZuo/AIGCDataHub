@@ -1,0 +1,68 @@
+id: ditto-1m
+name: Ditto-1M
+organization: Ditto authors
+released_at: "2025-10-18"
+release_date_source: https://huggingface.co/datasets/QingyanBai/Ditto-1M
+modality: video
+tasks:
+  - video-editing
+  - video-to-video
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A public million-scale instruction-guided video-editing corpus of source videos,
+  edit instructions, and edited targets used by Ditto and later MoRoute.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/QingyanBai/Ditto-1M
+  requires_account: false
+  notes: The official Hugging Face repository is public and stores about 2.29 TB under the non-commercial share-alike license.
+scale:
+  samples: 1000000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The project names Ditto-1M as a one-million-scale corpus; hosted storage exceeds two terabytes and exact valid triplet count should be read from its manifest.
+annotations:
+  types:
+    - source-video
+    - editing-instruction
+    - edited-video
+    - edit-category
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-NC-SA-4.0
+  media: CC-BY-NC-SA-4.0 release terms plus source-media dependencies
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The official card is non-commercial share-alike; downstream users must also retain source provenance and review component-media rights.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - provenance
+    - deduplication
+    - safety
+  known_limitations:
+    - Synthetic editing targets can inherit teacher artifacts and selection bias.
+    - Million-scale naming is approximate rather than a guarantee that every hosted record is a valid unique triplet.
+    - Non-commercial share-alike terms constrain redistribution and trained artifacts.
+processing:
+  recipe: Pair source clips with diverse edit instructions and generated targets, then filter for instruction alignment, visual quality, and temporal consistency.
+  recommended_format: native
+  notes: Preserve source and target pairing, instruction, edit type, teacher and filter versions, rejection decisions, source rights, and archive checksums.
+evidence:
+  homepage: https://huggingface.co/datasets/QingyanBai/Ditto-1M
+  paper: https://arxiv.org/abs/2510.15742
+  used_by:
+    - Ditto
+    - MoRoute
+status: partial
+last_verified: "2026-08-03"

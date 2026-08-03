@@ -8,7 +8,7 @@
     "sources/watchlist.yaml",
     "sources/discovery-state.json"
   ],
-  "last_verified": "2026-08-02",
+  "last_verified": "2026-08-03",
   "scenarios": [
     {
       "id": "image-generation",
@@ -674,6 +674,758 @@
     }
   ],
   "datasets": [
+    {
+      "id": "moroute-ue5-editing-pairs",
+      "name": "MoRoute UE5 Editing Pairs",
+      "organization": "MoRoute authors",
+      "released_at": "2026-07-31",
+      "release_date_source": "https://arxiv.org/abs/2607.29545",
+      "modality": "video",
+      "tasks": [
+        "video-editing",
+        "reference-to-video",
+        "video-to-video"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "An unreleased Unreal Engine 5 corpus of paired character-replacement videos used in MoRoute's reference-guided video-editing mixture.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.29545",
+        "requires_account": false,
+        "notes": "The paper describes the synthetic UE5 construction but supplies no files, asset manifest, request form, or release date."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The corpus contributes to 600K TV2V and 1M TIV2V pools, but its standalone count and scene total are not disclosed."
+      },
+      "annotations": {
+        "types": [
+          "source-video",
+          "edited-video",
+          "reference-image",
+          "character-mask",
+          "replacement-instruction"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Unreal Engine and individual asset terms not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The paper does not identify UE5 environments, character assets, licenses, or downstream redistribution rights."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "geometry-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Asset, scene, character, and animation diversity are undisclosed.",
+          "Synthetic appearance and motion may differ from real footage.",
+          "Exact count, filtering, deduplication, safety review, and asset rights are absent."
+        ]
+      },
+      "processing": {
+        "recipe": "Render aligned UE5 videos before and after character replacement, extract references and masks, generate instructions, and mix pairs into reference-guided TV2V and TIV2V training.",
+        "recommended_format": "native",
+        "notes": "Preserve project and asset IDs, licenses, scene seed, camera and animation trajectory, masks, source-target alignment, captions, and split membership if released."
+      },
+      "evidence": {
+        "homepage": "https://orange-3dv-team.github.io/MoRoute/",
+        "paper": "https://arxiv.org/abs/2607.29545",
+        "used_by": [
+          "MoRoute"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/video/moroute-ue5-editing-pairs.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2607.29545"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "moroute"
+      ]
+    },
+    {
+      "id": "moroute-laion-2b-subset",
+      "name": "MoRoute LAION-2B Stage-1 Subset",
+      "organization": "MoRoute authors",
+      "released_at": "2026-07-31",
+      "release_date_source": "https://arxiv.org/abs/2607.29545",
+      "modality": "image",
+      "tasks": [
+        "image-text-pretraining",
+        "text-to-image"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "An unreleased 9.9M-sample subset of LAION-2B used to align MoRoute's condition interface with the frozen video diffusion backbone at 512-pixel resolution.",
+      "derived_from": [
+        {
+          "catalog_id": "laion-5b",
+          "relationship": "filtered-subset",
+          "contribution": "LAION-2B component image URLs, alt text, and metadata",
+          "notes": "LAION-2B is a named component of the broader LAION-5B release; MoRoute does not publish its retained identifiers."
+        }
+      ],
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.29545",
+        "requires_account": false,
+        "notes": "The paper gives the retained count but no sample manifest, selection query, files, or request path."
+      },
+      "scale": {
+        "samples": 9900000,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "MoRoute trains two epochs over 9.9M samples at 512x512; the unique upstream URL count before filtering is not reported."
+      },
+      "annotations": {
+        "types": [
+          "alt-text",
+          "image-url",
+          "interface-conditioning"
+        ],
+        "source": "web-metadata",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated for the subset; upstream LAION metadata terms apply",
+        "media": "Original rightsholder terms apply to linked images",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "MoRoute publishes no subset license, and LAION metadata does not relicense the underlying web media."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "visual-quality",
+          "provenance",
+          "deduplication",
+          "safety"
+        ],
+        "known_limitations": [
+          "Selection rules, URL identifiers, filtering, deduplication, safety review, and rights checks are not disclosed.",
+          "Web alt text and imagery can contain noise, bias, unsafe material, and dead links.",
+          "The subset cannot be reconstructed from the headline sample count alone."
+        ]
+      },
+      "processing": {
+        "recipe": "Select 9.9M examples from LAION-2B, resize or crop to 512x512, and train the condition interface for two epochs while keeping the diffusion transformer frozen.",
+        "recommended_format": "parquet",
+        "notes": "A release should provide URL and metadata hashes, LAION source shard, filter decisions, deduplication clusters, media availability, and split membership."
+      },
+      "evidence": {
+        "homepage": "https://orange-3dv-team.github.io/MoRoute/",
+        "paper": "https://arxiv.org/abs/2607.29545",
+        "used_by": [
+          "MoRoute"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/image/moroute-laion-2b-subset.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "9.9M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/html/2607.29545"
+      },
+      "upstream_dataset_ids": [
+        "laion-5b"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "moroute"
+      ]
+    },
+    {
+      "id": "moroute-internal-t2v-corpus",
+      "name": "MoRoute Internal T2V Corpus",
+      "organization": "MoRoute authors",
+      "released_at": "2026-07-31",
+      "release_date_source": "https://arxiv.org/abs/2607.29545",
+      "modality": "video",
+      "tasks": [
+        "text-to-video",
+        "video-text-pretraining"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "An unreleased internal video-text corpus mixed with Vchitect data for MoRoute's 600K-example stage-2 text-to-video alignment phase.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2607.29545",
+        "requires_account": false,
+        "notes": "No constituent source, files, manifest, request form, standalone count, or release plan is published."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The combined Vchitect-plus-internal stage contains 600K examples, but the internal contribution is not separated."
+      },
+      "annotations": {
+        "types": [
+          "source-video",
+          "vlm-recaption"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Collection rights, source-media licenses, model-generated caption terms, and commercial-use status are undisclosed."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "provenance",
+          "deduplication",
+          "safety"
+        ],
+        "known_limitations": [
+          "Exact sample count, source identities, licenses, and selection criteria are absent.",
+          "VLM recaptioning may introduce hallucinations or erase source-language and cultural details.",
+          "Deduplication, safety filtering, identity handling, and overlap with evaluation sets are not reported."
+        ]
+      },
+      "processing": {
+        "recipe": "Mix internal clips with selected Vchitect examples, recaption every retained clip with a VLM, and train the stage-2 condition interface for two epochs.",
+        "recommended_format": "webdataset",
+        "notes": "A release should preserve source rights, original captions, recaptions, VLM version, filter decisions, deduplication clusters, and mixture membership."
+      },
+      "evidence": {
+        "homepage": "https://orange-3dv-team.github.io/MoRoute/",
+        "paper": "https://arxiv.org/abs/2607.29545",
+        "used_by": [
+          "MoRoute"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/video/moroute-internal-t2v-corpus.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2607.29545v1"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "moroute"
+      ]
+    },
+    {
+      "id": "context-scaling-sp-nl-corpus",
+      "name": "Context Scaling SP/NL Image Corpus",
+      "organization": "ByteDance Seed",
+      "released_at": "2026-07-31",
+      "release_date_source": "https://arxiv.org/abs/2607.29679",
+      "modality": "image",
+      "tasks": [
+        "text-to-image",
+        "text-rendering"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "The unreleased image corpus used to fine-tune Qwen-Image-SP with natural-language captions and six recursively nested structured-prompt levels from L5 through L10.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2607.29679",
+        "requires_account": false,
+        "notes": "The paper describes the annotation pipeline but provides no data files, manifest, request form, source list, or release date."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The number of source images, prompt records, epochs, and mixture weights is not disclosed."
+      },
+      "annotations": {
+        "types": [
+          "natural-language-caption",
+          "nested-structured-prompt",
+          "dense-semantic-description",
+          "human-pose",
+          "depth",
+          "segmentation",
+          "text-layout"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The released checkpoints are Apache-2.0, but that does not license the unreleased source images or annotations."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "geometry-quality",
+          "provenance",
+          "deduplication",
+          "safety"
+        ],
+        "known_limitations": [
+          "Image sources, collection rights, licenses, scale, language distribution, and safety policy are undisclosed.",
+          "Specialist models and final VLM reconciliation can propagate pose, depth, segmentation, OCR, and semantic errors.",
+          "The paper does not publish image-level deduplication or train-evaluation overlap controls."
+        ]
+      },
+      "processing": {
+        "recipe": "Use Seed-VL for dense semantics, Sapiens for 133-keypoint pose, Depth Anything V2 for depth, SAM 2.1 for masks, and a final VLM reconciliation pass; serialize six nested prompt levels and randomly expose structured or natural-language conditioning.",
+        "recommended_format": "native",
+        "notes": "If released, preserve source rights, specialist-model versions, every nested level, masked fields, reconciliation output, rejection reasons, and split membership."
+      },
+      "evidence": {
+        "homepage": "https://heheyas.github.io/context-scaling/",
+        "paper": "https://arxiv.org/abs/2607.29679",
+        "used_by": [
+          "Qwen-Image-SP"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/image/context-scaling-sp-nl-corpus.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2607.29679"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "qwen-image-sp"
+      ]
+    },
+    {
+      "id": "context-scaling-rft-pairs",
+      "name": "Context Scaling RFT Pairs",
+      "organization": "ByteDance Seed",
+      "released_at": "2026-07-31",
+      "release_date_source": "https://arxiv.org/abs/2607.29679",
+      "modality": "preference",
+      "tasks": [
+        "agentic-image-generation",
+        "text-to-image-preference"
+      ],
+      "stages": [
+        "preference-tuning",
+        "data-curation"
+      ],
+      "description": "An unreleased on-policy prompt-expansion corpus built from original caption-image pairs, student rollouts, verifier scores, and frozen-teacher distributions.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2607.29679",
+        "requires_account": false,
+        "notes": "Aggregate seed-pair count and acceptance rule are disclosed, but no rollout data or source manifest is released."
+      },
+      "scale": {
+        "samples": 10003,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "10,003 original caption-image pairs seed multiple on-policy rollouts; total generated and accepted rollout counts are not stated."
+      },
+      "annotations": {
+        "types": [
+          "source-caption",
+          "source-image",
+          "structured-prompt-rollout",
+          "verifier-score",
+          "teacher-distribution"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The six prompt-source families, source-image rights, generated-label terms, and redistribution license are undisclosed."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "human-preference",
+          "provenance",
+          "deduplication",
+          "safety"
+        ],
+        "known_limitations": [
+          "The six underlying prompt sources are not named and their proportions are absent.",
+          "Gemini verifier gating at a score of six or higher may encode closed-model bias.",
+          "The paper does not publish rollout multiplicity, acceptance rate, deduplication, or leakage checks."
+        ]
+      },
+      "processing": {
+        "recipe": "Sample structured prompts from the student, render or compare image-conditioned outcomes, retain rollouts scoring at least 6 of 10 under a Gemini verifier, then minimize KL to a frozen image-conditioned teacher through on-policy self-distillation.",
+        "recommended_format": "parquet",
+        "notes": "A release should preserve seed provenance, all rollouts, verifier version and score, accepted/rejected flags, teacher logits, and split membership."
+      },
+      "evidence": {
+        "homepage": "https://heheyas.github.io/context-scaling/",
+        "paper": "https://arxiv.org/abs/2607.29679",
+        "used_by": [
+          "Qwen-Image-SP"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/preference/context-scaling-rft-pairs.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "10K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/heheyas/context-scaling/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "qwen-image-sp"
+      ]
+    },
+    {
+      "id": "context-scaling-prompter-sft-corpus",
+      "name": "Context Scaling Prompter SFT Corpus",
+      "organization": "ByteDance Seed",
+      "released_at": "2026-07-31",
+      "release_date_source": "https://arxiv.org/abs/2607.29679",
+      "modality": "image",
+      "tasks": [
+        "agentic-image-generation",
+        "text-to-image"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "An unreleased supervised corpus for the structured-prompt expander, mixing direct and reverse image-prompt tasks with general reasoning and instruction replay.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2607.29679",
+        "requires_account": false,
+        "notes": "Only aggregate composition and token counts are published; no examples, manifest, or download is provided."
+      },
+      "scale": {
+        "samples": 333000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "Approximately 333K examples and 0.97B tokens; one third is core prompt supervision and two thirds is replay."
+      },
+      "annotations": {
+        "types": [
+          "prompt-to-structured-prompt",
+          "image-to-structured-json",
+          "reasoning-trace",
+          "instruction-response"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Neither the task-specific records nor the replay sources receive a dataset license in the paper."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "provenance",
+          "deduplication",
+          "safety"
+        ],
+        "known_limitations": [
+          "Replay dataset names, licenses, proportions, overlap controls, and source languages are undisclosed.",
+          "Reverse image-to-JSON records may inherit specialist annotation errors from the structured-prompt corpus.",
+          "The rounded example count is not a released row manifest."
+        ]
+      },
+      "processing": {
+        "recipe": "Mix prompt-to-structured-prompt and reverse image-to-JSON supervision as one third of training tokens, then add two thirds of undisclosed reasoning and instruction-following replay.",
+        "recommended_format": "native",
+        "notes": "A release should separate task-specific and replay provenance, preserve conversation turns, and identify model-generated reasoning and source licenses."
+      },
+      "evidence": {
+        "homepage": "https://heheyas.github.io/context-scaling/",
+        "paper": "https://arxiv.org/abs/2607.29679",
+        "used_by": [
+          "Qwen-Image-SP"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/image/context-scaling-prompter-sft-corpus.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~333K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2607.29679v1"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "qwen-image-sp"
+      ]
+    },
+    {
+      "id": "context-scaling-cold-start-corpus",
+      "name": "Context Scaling Cold-Start Corpus",
+      "organization": "ByteDance Seed",
+      "released_at": "2026-07-31",
+      "release_date_source": "https://arxiv.org/abs/2607.29679",
+      "modality": "image",
+      "tasks": [
+        "agentic-image-generation",
+        "text-to-image"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "The unreleased filtered cold-start set used before on-policy structured-prompt distillation, retaining unique prompt-image examples from a larger candidate pool.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2607.29679",
+        "requires_account": false,
+        "notes": "The paper publishes counts and filtering stages but no item identifiers, files, or request mechanism."
+      },
+      "scale": {
+        "samples": 50182,
+        "source_items": 172208,
+        "hours": null,
+        "approximate": false,
+        "notes": "Gemini 3 Pro accepted 58,907 of 172,208 candidates before prompt deduplication retained 50,182 unique examples."
+      },
+      "annotations": {
+        "types": [
+          "structured-prompt",
+          "source-image",
+          "model-quality-verdict",
+          "deduplication-key"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Source-image rights, Gemini-generated labels, and dataset redistribution terms are not published."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "deduplication",
+          "provenance",
+          "safety"
+        ],
+        "known_limitations": [
+          "Candidate image and prompt sources are undisclosed.",
+          "A single closed-model filter can embed undocumented preferences and false-positive rejection patterns.",
+          "Deduplication method, threshold, and train-evaluation overlap policy are not specified."
+        ]
+      },
+      "processing": {
+        "recipe": "Generate candidate structured-prompt examples, filter them with Gemini 3 Pro, then deduplicate by prompt to obtain the cold-start training set.",
+        "recommended_format": "parquet",
+        "notes": "Preserve candidate and retained IDs, filter scores and rationales, prompt-normalization rules, deduplication clusters, and source rights if released."
+      },
+      "evidence": {
+        "homepage": "https://heheyas.github.io/context-scaling/",
+        "paper": "https://arxiv.org/abs/2607.29679",
+        "used_by": [
+          "Qwen-Image-SP"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/image/context-scaling-cold-start-corpus.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "50.2K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://export.arxiv.org/api/query?id_list=2607.29679"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "qwen-image-sp"
+      ]
+    },
+    {
+      "id": "context-scaling-30k-evaluation-pairs",
+      "name": "Context Scaling 30K Evaluation Pairs",
+      "organization": "ByteDance Seed",
+      "released_at": "2026-07-31",
+      "release_date_source": "https://arxiv.org/abs/2607.29679",
+      "modality": "evaluation",
+      "tasks": [
+        "text-to-image",
+        "image-editing"
+      ],
+      "stages": [
+        "evaluation"
+      ],
+      "description": "An unreleased set of paired images used to compare fifteen text-conditioning configurations under a fixed BAGEL image-token training budget.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2607.29679",
+        "requires_account": false,
+        "notes": "The paper reports the evaluation size and experiment but no image files, prompts, manifest, or release plan."
+      },
+      "scale": {
+        "samples": 30000,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "30,000 paired images are used for the controlled GPG and ED evaluation; the number of unique source images is not stated."
+      },
+      "annotations": {
+        "types": [
+          "natural-language-prompt",
+          "structured-prompt-level",
+          "paired-image",
+          "generation-score",
+          "editing-score"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Evaluation media provenance and rights are not disclosed, and the benchmark is not released."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Image and prompt sources, licensing, category balance, and split construction are undisclosed.",
+          "The suite is designed around the paper's structured-prompt hierarchy and may favor similar conditioning formats.",
+          "It is not described as part of the training corpus and must not be treated as training data."
+        ]
+      },
+      "processing": {
+        "recipe": "Evaluate fifteen caption-length and structured-prompt configurations on 30,000 paired images after holding BAGEL training to 2.84e10 image tokens.",
+        "recommended_format": "native",
+        "notes": "Keep evaluation pairs, conditioning variant, common-budget run ID, and generation versus editing metrics separate if released."
+      },
+      "evidence": {
+        "homepage": "https://heheyas.github.io/context-scaling/",
+        "paper": "https://arxiv.org/abs/2607.29679",
+        "used_by": [
+          "Qwen-Image-SP"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/evaluation/context-scaling-30k-evaluation-pairs.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "30K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://heheyas.github.io/context-scaling/"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "qwen-image-sp"
+      ]
+    },
     {
       "id": "shadow-library",
       "name": "Shadow Library",
@@ -4068,6 +4820,502 @@
       ]
     },
     {
+      "id": "sefi-image-synthetic-text-rendered-corpus",
+      "name": "SeFi-Image Synthetic Text-Rendered Corpus",
+      "organization": "SeFi-Team",
+      "released_at": "2026-06-21",
+      "release_date_source": "https://arxiv.org/abs/2606.22568",
+      "modality": "image",
+      "tasks": [
+        "text-to-image",
+        "text-rendering"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "An unreleased 28M-pair synthetic curriculum covering bilingual plain-text canvases and multi-block structured layouts with deterministic character supervision.",
+      "derived_from": [
+        {
+          "catalog_id": "sefi-image-internal-pretraining-corpus",
+          "relationship": "transformed-derivative",
+          "contribution": "English and Chinese dense and short text sampled for plain rendering",
+          "notes": "Part 1 draws text from all four caption variants of the 450M recaptioned corpus."
+        }
+      ],
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2606.22568v1",
+        "requires_account": false,
+        "notes": "Examples and construction details are public, but no generated files, renderer assets, manifest, or release schedule is provided."
+      },
+      "scale": {
+        "samples": 28000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "8M plain samples use four balanced 2M caption buckets; 20M layouts comprise 8M Chinese, 8M English, and 4M mixed-language samples."
+      },
+      "annotations": {
+        "types": [
+          "exact-text",
+          "language",
+          "bounding-box",
+          "layout-role",
+          "position",
+          "color",
+          "relative-size"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en",
+          "zh",
+          "mixed"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated for fonts, templates, or generated images",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The paper does not identify font assets, licenses, renderer dependencies, or dataset redistribution terms."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "visual-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Synthetic layouts do not match the full distribution of real posters, interfaces, slides, or commercial design.",
+          "Font and template provenance and rights are undisclosed.",
+          "Text sampled from model-generated captions inherits their lexical and cultural distribution."
+        ]
+      },
+      "processing": {
+        "recipe": "Render 8M single text blocks on 512x512 plain backgrounds, generate 20M multi-role layouts around 1024 squared pixels across five aspect ratios, and enforce exact character alignment, overflow checks, and bounding-box validation.",
+        "recommended_format": "native",
+        "notes": "Preserve text source, language bucket, font and license, template seed, bounding boxes, render parameters, validation results, and prompt-image checksum."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/SeFi-Image/SeFi-Image-5B-Base",
+        "paper": "https://arxiv.org/abs/2606.22568",
+        "used_by": [
+          "SeFi-Image"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/image/sefi-image-synthetic-text-rendered-corpus.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "28M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2606.22568v1"
+      },
+      "upstream_dataset_ids": [
+        "sefi-image-internal-pretraining-corpus"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "sefi-image"
+      ]
+    },
+    {
+      "id": "sefi-image-sft-corpus",
+      "name": "SeFi-Image SFT Corpus",
+      "organization": "SeFi-Team",
+      "released_at": "2026-06-21",
+      "release_date_source": "https://arxiv.org/abs/2606.22568",
+      "modality": "image",
+      "tasks": [
+        "text-to-image",
+        "text-rendering"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "An unreleased score-refined set of about 650K high-aesthetic, hard-prompt, and text-rich images used for SeFi-Image supervised fine-tuning.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/pdf/2606.22568",
+        "requires_account": false,
+        "notes": "The paper describes composition and filters but provides no source manifest, files, request form, or release plan."
+      },
+      "scale": {
+        "samples": 650000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "About 200K are Chinese text-rich images; remaining open-source and internal high-aesthetic components are not separated."
+      },
+      "annotations": {
+        "types": [
+          "bilingual-short-caption",
+          "bilingual-long-caption",
+          "multilingual-tags",
+          "semantic-category",
+          "ocr-text-location-style",
+          "safety-attributes",
+          "quality-scores"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en",
+          "zh"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated for the combined corpus",
+        "media": "Open-source and internal source terms apply",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Component dataset names, retained records, licenses, and internal media rights are not published."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "aesthetics",
+          "text-media-alignment",
+          "watermark",
+          "safety",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Most source identities, licenses, and proportions are undisclosed.",
+          "Proprietary VLM annotation and scoring can introduce opaque selection bias.",
+          "Exact thresholds, deduplication method, and train-evaluation overlap controls are not published."
+        ]
+      },
+      "processing": {
+        "recipe": "Extract structured metadata, OCR, multilingual tags, safety attributes, initial bilingual captions, and quality signals with proprietary VLMs; refine captions, reject pornography, severe violence, gore, watermarks, corruption, unreadable key text, artifacts, and political sensitivity, enforce core score thresholds, then deduplicate.",
+        "recommended_format": "parquet",
+        "notes": "Preserve source rights, both annotation passes, all scores, hard-gate reasons, OCR, captions, tags, deduplication clusters, and split membership."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/SeFi-Image/SeFi-Image-5B-Base",
+        "paper": "https://arxiv.org/abs/2606.22568",
+        "used_by": [
+          "SeFi-Image"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/image/sefi-image-sft-corpus.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~650K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/SeFi-Image/SeFi-Image-5B-Turbo?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "sefi-image"
+      ]
+    },
+    {
+      "id": "sefi-image-internal-pretraining-corpus",
+      "name": "SeFi-Image Internal Pretraining Corpus",
+      "organization": "SeFi-Team",
+      "released_at": "2026-06-21",
+      "release_date_source": "https://arxiv.org/abs/2606.22568",
+      "modality": "image",
+      "tasks": [
+        "image-text-pretraining",
+        "text-to-image"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "An unreleased 450M-pair internal image-text corpus, dominated by natural images and fully recaptioned into bilingual dense and short variants for SeFi-Image.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2606.22568",
+        "requires_account": false,
+        "notes": "The paper provides aggregate scale and annotation details but no source list, manifest, files, request form, or release plan."
+      },
+      "scale": {
+        "samples": 450000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The paper reports 450M image-text samples; unique images and overlap with later stages are not stated."
+      },
+      "annotations": {
+        "types": [
+          "dense-caption-en",
+          "dense-caption-zh",
+          "short-caption-en",
+          "short-caption-zh"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en",
+          "zh"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The non-commercial model license does not establish rights for the unreleased internal media or captions."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "provenance",
+          "deduplication",
+          "safety"
+        ],
+        "known_limitations": [
+          "Original sources, collection rights, licenses, filtering, safety review, and deduplication are undisclosed.",
+          "The natural-image-heavy distribution underrepresents UI, art, design, and infographic content.",
+          "Qwen3.5-2B recaptioning can introduce bilingual or factual annotation errors."
+        ]
+      },
+      "processing": {
+        "recipe": "Recaption every image with Qwen3.5-2B into English and Chinese dense and short variants, then sample dense versus short captions at a 4:1 ratio across a 256-to-1024-pixel curriculum.",
+        "recommended_format": "parquet",
+        "notes": "Preserve original source and rights, all caption variants, captioner version, filter decisions, deduplication clusters, and stage membership if released."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/SeFi-Image/SeFi-Image-5B-Base",
+        "paper": "https://arxiv.org/abs/2606.22568",
+        "used_by": [
+          "SeFi-Image"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/image/sefi-image-internal-pretraining-corpus.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "450M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2606.22568"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "sefi-image-synthetic-text-rendered-corpus"
+      ],
+      "linked_model_ids": [
+        "sefi-image"
+      ]
+    },
+    {
+      "id": "sefi-image-diffusionnft-prompt-pool",
+      "name": "SeFi-Image DiffusionNFT Prompt Pool",
+      "organization": "SeFi-Team",
+      "released_at": "2026-06-21",
+      "release_date_source": "https://arxiv.org/abs/2606.22568",
+      "modality": "preference",
+      "tasks": [
+        "text-to-image-preference",
+        "text-to-image-reinforcement-learning"
+      ],
+      "stages": [
+        "preference-tuning",
+        "data-curation"
+      ],
+      "description": "An unreleased capability-tagged prompt distribution and online generated reward samples used for DiffusionNFT post-training of SeFi-Image-5B-RL.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2606.22568",
+        "requires_account": false,
+        "notes": "The online loop and per-iteration size are disclosed, but prompts, rewards, generated samples, and release plans are not."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": 400,
+        "hours": null,
+        "approximate": true,
+        "notes": "Each iteration uses 400 prompt groups and 12 generations per group, or 4,800 images; total iterations and retained counts are not stated."
+      },
+      "annotations": {
+        "types": [
+          "capability-tag",
+          "prompt-group",
+          "generated-image",
+          "scalar-reward",
+          "normalized-advantage",
+          "positive-negative-selection"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en",
+          "zh"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated for prompts or generated samples",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Prompt origins, reward-model terms, generated-image rights, and dataset redistribution terms are undisclosed."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "human-preference",
+          "safety",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Prompt origins, exact capability distribution, reward models, and total run size are undisclosed.",
+          "Low-dispersion filtering and top-bottom selection can narrow the learned distribution.",
+          "Online samples inherit the current policy's artifacts and biases."
+        ]
+      },
+      "processing": {
+        "recipe": "Select 400 consistently evaluable capability-tagged prompt groups, generate 12 candidates per group, compute tagged scalar rewards, drop groups with low reward standard deviation or range, and use top versus bottom samples as positive and implicit-negative DiffusionNFT gradients.",
+        "recommended_format": "parquet",
+        "notes": "A release should preserve prompt provenance, capability tags, policy commit, seeds, all 12 samples, reward-model versions, raw rewards, selection decisions, and iteration number."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/SeFi-Image/SeFi-Image-5B-RL",
+        "paper": "https://arxiv.org/abs/2606.22568",
+        "used_by": [
+          "SeFi-Image"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/preference/sefi-image-diffusionnft-prompt-pool.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/SeFi-Image/SeFi-Image-5B-RL?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "sefi-image"
+      ]
+    },
+    {
+      "id": "sefi-image-continual-training-mixture",
+      "name": "SeFi-Image Continual-Training Mixture",
+      "organization": "SeFi-Team",
+      "released_at": "2026-06-21",
+      "release_date_source": "https://arxiv.org/abs/2606.22568",
+      "modality": "image",
+      "tasks": [
+        "text-to-image",
+        "text-rendering"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "An unreleased 9M high-resolution mixture combining Fine-T2I with internal natural, UI, graphic-design, anime, and other image-text data for continual training.",
+      "derived_from": [
+        {
+          "catalog_id": "fine-t2i",
+          "relationship": "source-component",
+          "contribution": "Public high-quality image-text examples",
+          "notes": "Fine-T2I is explicitly named, but its retained count and mixture share are not disclosed."
+        }
+      ],
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/html/2606.22568",
+        "requires_account": false,
+        "notes": "Fine-T2I is public separately, but the combined 9M manifest and internal components are not released."
+      },
+      "scale": {
+        "samples": 9000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The total is disclosed; public-versus-internal counts, source overlap, and mixture weights are not."
+      },
+      "annotations": {
+        "types": [
+          "image-caption",
+          "domain",
+          "quality-score"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en",
+          "zh"
+        ]
+      },
+      "license": {
+        "metadata": "Mixed; Fine-T2I and internal terms apply",
+        "media": "Source-dependent rights",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The model is non-commercial and the internal components have no published dataset license or media-rights statement."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "aesthetics",
+          "text-media-alignment",
+          "provenance",
+          "deduplication",
+          "safety"
+        ],
+        "known_limitations": [
+          "Internal source identities, rights, proportions, and retention rules are undisclosed.",
+          "Fine-T2I retained IDs and overlap with pretraining or SFT are absent.",
+          "Domain labels are high level and do not provide reproducible balance targets."
+        ]
+      },
+      "processing": {
+        "recipe": "Mix Fine-T2I with internally curated high-quality natural, UI, graphic-design, anime, and other imagery, recaption as needed, and continue 1024-pixel training for 180K iterations.",
+        "recommended_format": "parquet",
+        "notes": "Preserve component and source ID, rights, original and refined captions, domain, quality scores, deduplication cluster, and mixture sampling weight."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/SeFi-Image/SeFi-Image-5B-Base",
+        "paper": "https://arxiv.org/abs/2606.22568",
+        "used_by": [
+          "SeFi-Image"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/image/sefi-image-continual-training-mixture.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "9M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/SeFi-Image/SeFi-Image-5B-Base?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [
+        "fine-t2i"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "sefi-image"
+      ]
+    },
+    {
       "id": "holidub-bench",
       "name": "HoliDub-Bench",
       "organization": "HoliDubber research team",
@@ -5643,6 +6891,201 @@
       ]
     },
     {
+      "id": "intelligentvbench",
+      "name": "IntelligentVBench",
+      "organization": "Tencent Hunyuan and Zhejiang University",
+      "released_at": "2026-04-03",
+      "release_date_source": "https://omniweaving.github.io/",
+      "modality": "evaluation",
+      "tasks": [
+        "image-to-video",
+        "video-editing",
+        "multi-reference-composition",
+        "reference-to-video"
+      ],
+      "stages": [
+        "evaluation"
+      ],
+      "description": "A public unified-video benchmark for implicit I2V, first-last-frame interpolation, text-image-video editing, and compositional multi-image-to-video generation.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/midbee/IntelligentVBench",
+        "requires_account": false,
+        "notes": "The official project links an ungated 1.39 GB Hugging Face repository containing images, videos, and CSV manifests."
+      },
+      "scale": {
+        "samples": 1694,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The official Hugging Face dataset service reports 1,694 hosted rows; the project table separately identifies 320 compositional MI2V cases, so row and task-case units must not be conflated."
+      },
+      "annotations": {
+        "types": [
+          "source-image",
+          "source-video",
+          "text-instruction",
+          "target-video",
+          "task-category",
+          "multi-reference-count"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0",
+        "media": "CC-BY-NC-4.0 release terms plus source-media dependencies",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The official Hugging Face repository labels the benchmark non-commercial; component-media provenance and rights still require review."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Hosted rows represent media items rather than a one-to-one count of evaluation task cases.",
+          "Task distributions are intentionally heterogeneous and aggregated scores can hide weak sub-tasks.",
+          "Non-commercial terms and component-media rights limit some reuse."
+        ]
+      },
+      "processing": {
+        "recipe": "Group image, video, and instruction inputs into implicit I2V, dual-image interpolation, text-image-video editing, and one-to-three-subject compositional MI2V tasks, then score minimum and average quality across sub-tasks.",
+        "recommended_format": "native",
+        "notes": "Preserve task and sub-task, input grouping, reference count, source provenance, expected output, per-case metric, and license metadata."
+      },
+      "evidence": {
+        "homepage": "https://omniweaving.github.io/",
+        "paper": "https://arxiv.org/abs/2603.24458",
+        "used_by": [
+          "OmniWeaving",
+          "MoRoute"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/evaluation/intelligentvbench.yaml",
+      "scenario_ids": [
+        "image-generation",
+        "video-generation"
+      ],
+      "scale_label": "1.7K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/midbee/IntelligentVBench?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "moroute"
+      ]
+    },
+    {
+      "id": "effecterase",
+      "name": "EffectErase Dataset",
+      "organization": "FudanCVL",
+      "released_at": "2026-03-19",
+      "release_date_source": "https://arxiv.org/abs/2603.19224",
+      "modality": "video",
+      "tasks": [
+        "video-editing",
+        "video-to-video"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A gated hybrid real-and-synthetic video object removal and insertion corpus with object-present, object-absent, and mask triplets, introduced as VOR by EffectErase.",
+      "access": {
+        "status": "gated",
+        "type": "request",
+        "url": "https://huggingface.co/datasets/FudanCVL/EffectErase",
+        "requires_account": true,
+        "notes": "Users must accept updated CC BY-NC 4.0 non-commercial terms; raw or substantial redistribution is explicitly prohibited."
+      },
+      "scale": {
+        "samples": 60000,
+        "source_items": null,
+        "hours": 145.33,
+        "approximate": false,
+        "notes": "The paper reports 60,000 video triplets spanning 145.33 hours; the gated Hugging Face repository stores about 375 GB."
+      },
+      "annotations": {
+        "types": [
+          "object-present-video",
+          "object-absent-video",
+          "object-mask-video",
+          "removal-pair",
+          "insertion-pair",
+          "effect-type"
+        ],
+        "source": "mixed",
+        "languages": [
+          "und"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0 with gated access terms",
+        "media": "Non-commercial research only; raw or substantial redistribution prohibited",
+        "commercial_use": "noncommercial",
+        "redistribution": "prohibited",
+        "notes": "Commercial use requires separate author permission, and users approved before the March 20 terms update must reapply."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "motion",
+          "temporal-consistency",
+          "geometry-quality",
+          "provenance",
+          "safety"
+        ],
+        "known_limitations": [
+          "Synthetic Blender environments and trajectories do not cover all real-world effects or capture conditions.",
+          "SAM2 masks require manual cleanup and can still contain boundary or temporal errors.",
+          "Access and redistribution constraints limit reproducibility and derivative release."
+        ]
+      },
+      "processing": {
+        "recipe": "Combine Blender scenes, public 3D assets, objects, and animations with real-world captures; synthesize natural object and camera trajectories, apply Ken Burns motion to real footage, segment with SAM2, and manually clean masks into object-present, object-absent, and mask triplets.",
+        "recommended_format": "webdataset",
+        "notes": "Preserve synthetic versus real source, asset provenance, trajectory, scene and object category, effect type, raw and refined masks, annotator pass, and license acceptance date."
+      },
+      "evidence": {
+        "homepage": "https://henghuiding.com/EffectErase/",
+        "paper": "https://arxiv.org/abs/2603.19224",
+        "used_by": [
+          "EffectErase",
+          "MoRoute"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/video/effecterase.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "60K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/FudanCVL/EffectErase?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "moroute"
+      ]
+    },
+    {
       "id": "cinedub-example",
       "name": "CineDub-Example",
       "organization": "Tongyi Lab Speech Team, Alibaba Group",
@@ -5747,6 +7190,300 @@
       ],
       "downstream_dataset_ids": [],
       "linked_model_ids": []
+    },
+    {
+      "id": "refvie-bench",
+      "name": "RefVIE-Bench",
+      "organization": "RefVIE authors",
+      "released_at": "2026-03-05",
+      "release_date_source": "https://huggingface.co/datasets/linyq/RefVIE-Bench",
+      "modality": "evaluation",
+      "tasks": [
+        "video-editing",
+        "reference-to-video",
+        "video-to-video"
+      ],
+      "stages": [
+        "evaluation"
+      ],
+      "description": "A public reference-guided video-editing benchmark containing source videos and background or subject reference images, released with the RefVIE project.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/linyq/RefVIE-Bench",
+        "requires_account": false,
+        "notes": "The official Hugging Face repository is public, ungated, and stores about 129 MB of images and videos."
+      },
+      "scale": {
+        "samples": 32,
+        "source_items": 86,
+        "hours": null,
+        "approximate": false,
+        "notes": "Repository metadata contains 32 source videos and 54 references, including 8 backgrounds and 46 subjects."
+      },
+      "annotations": {
+        "types": [
+          "source-video",
+          "subject-reference-image",
+          "background-reference-image",
+          "editing-instruction"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated on the official Hugging Face card",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "review-required",
+        "notes": "The public repository has no dataset-license field, so access must not be interpreted as a commercial-use grant."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "provenance",
+          "human-preference"
+        ],
+        "known_limitations": [
+          "Only 32 source-video cases are represented.",
+          "Media provenance, consent, and license are not documented in repository metadata.",
+          "Reference-guided editing categories may favor systems built around similar reference-conditioning designs."
+        ]
+      },
+      "processing": {
+        "recipe": "Pair each source video with one or more subject or background reference images and evaluate identity, background, motion, instruction alignment, and temporal preservation after editing.",
+        "recommended_format": "native",
+        "notes": "Preserve source-reference grouping, reference type, instruction, media provenance, generation seed, and per-dimension scores."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/linyq/RefVIE-Bench",
+        "paper": "https://arxiv.org/abs/2603.02175",
+        "used_by": [
+          "RefVIE",
+          "MoRoute"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/evaluation/refvie-bench.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "32",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/linyq/RefVIE-Bench?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "moroute"
+      ]
+    },
+    {
+      "id": "helios-training-corpus",
+      "name": "Helios Training Corpus",
+      "organization": "PKU-YuanGroup",
+      "released_at": "2026-03-05",
+      "release_date_source": "https://arxiv.org/abs/2603.04379",
+      "modality": "video",
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "video-to-video",
+        "long-video-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "The unreleased 0.8M short-video corpus used for the Base, Mid, and real-data components of the Distilled Helios training pipeline.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2603.04379",
+        "requires_account": false,
+        "notes": "The paper names no constituent datasets and provides no manifest, media files, request process, or release schedule."
+      },
+      "scale": {
+        "samples": 800000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The paper reports 0.8M clips shorter than ten seconds and extracts 109-frame training windows; source-video count and hours are absent."
+      },
+      "annotations": {
+        "types": [
+          "text-caption",
+          "clip-duration",
+          "historical-context",
+          "first-frame-anchor"
+        ],
+        "source": "unknown",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Apache-2.0 covers the released code and checkpoints, not the unidentified training media or annotations."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "provenance",
+          "deduplication",
+          "safety"
+        ],
+        "known_limitations": [
+          "Source identities, collection methods, rights, licenses, language mix, and captions are undisclosed.",
+          "Filtering, deduplication, safety review, people and identity handling, and mixture weights are not reported.",
+          "I2V and V2V are learned by history corruption over a conventional T2V pipeline rather than task-specific paired corpora."
+        ]
+      },
+      "processing": {
+        "recipe": "Retain sub-ten-second videos, cap resolution at 384x640, extract 109-frame clips, randomly zero or corrupt historical context, anchor first frames, and reuse real clips as historical and adversarial supervision during distillation.",
+        "recommended_format": "webdataset",
+        "notes": "A release should preserve source rights, original media IDs, captions, clip windows, context-corruption parameters, rejection reasons, and stage membership."
+      },
+      "evidence": {
+        "homepage": "https://github.com/PKU-YuanGroup/Helios",
+        "paper": "https://arxiv.org/abs/2603.04379",
+        "used_by": [
+          "Helios"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/video/helios-training-corpus.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~800K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://arxiv.org/abs/2603.04379"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "helios-ode-solution-pairs"
+      ],
+      "linked_model_ids": [
+        "helios"
+      ]
+    },
+    {
+      "id": "helios-ode-solution-pairs",
+      "name": "Helios ODE Solution Pairs",
+      "organization": "PKU-YuanGroup",
+      "released_at": "2026-03-05",
+      "release_date_source": "https://arxiv.org/abs/2603.04379",
+      "modality": "video",
+      "tasks": [
+        "text-to-video",
+        "long-video-generation"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A compact unreleased synthetic corpus of staged ODE solution pairs generated by Helios-Mid to initialize the three-step Helios-Distilled model.",
+      "derived_from": [
+        {
+          "catalog_id": "helios-training-corpus",
+          "relationship": "transformed-derivative",
+          "contribution": "Text conditioning and real historical context for teacher generation",
+          "notes": "Helios-Mid is trained on the real corpus before producing ODE solution targets for the distilled stage."
+        }
+      ],
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2603.04379",
+        "requires_account": false,
+        "notes": "The paper describes the generated pair corpus as compact but releases no pairs, manifest, size, or license."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "No pair count, prompt count, generated duration, or storage size is disclosed."
+      },
+      "annotations": {
+        "types": [
+          "text-prompt",
+          "teacher-trajectory",
+          "staged-ode-solution",
+          "historical-context"
+        ],
+        "source": "model-generated",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The checkpoint license does not establish rights for unreleased teacher-generated samples or inherited inputs."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Scale, generation seeds, prompt provenance, rejection rules, and teacher version are not fully specified.",
+          "Teacher-generated targets inherit Helios-Mid and upstream Wan2.1 biases.",
+          "No release or independent audit is available."
+        ]
+      },
+      "processing": {
+        "recipe": "Run the autoregressive Helios-Mid teacher across each predictor-corrector pyramid stage, store compact ODE solution pairs, and use them for staged initialization before distribution-matching distillation.",
+        "recommended_format": "native",
+        "notes": "Preserve prompt and source IDs, teacher commit, per-stage state, noise seed, solver schedule, acceptance decision, and inherited licenses if released."
+      },
+      "evidence": {
+        "homepage": "https://github.com/PKU-YuanGroup/Helios",
+        "paper": "https://arxiv.org/abs/2603.04379",
+        "used_by": [
+          "Helios"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/video/helios-ode-solution-pairs.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://arxiv.org/abs/2603.04379v1"
+      },
+      "upstream_dataset_ids": [
+        "helios-training-corpus"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "helios"
+      ]
     },
     {
       "id": "unisync-5k",
@@ -5936,6 +7673,99 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "unisync"
+      ]
+    },
+    {
+      "id": "heliosbench",
+      "name": "HeliosBench",
+      "organization": "PKU-YuanGroup",
+      "released_at": "2026-03-04",
+      "release_date_source": "https://github.com/PKU-YuanGroup/Helios",
+      "modality": "evaluation",
+      "tasks": [
+        "text-to-video",
+        "long-video-generation"
+      ],
+      "stages": [
+        "evaluation"
+      ],
+      "description": "A public 240-prompt evaluation suite for real-time video generation across very short, short, medium, and long frame horizons with drift-aware automatic metrics.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://github.com/PKU-YuanGroup/Helios/blob/main/eval/playground/helios_t2v_prompts.csv",
+        "requires_account": false,
+        "notes": "The official repository directly hosts the 240-row prompt CSV and evaluation code under its Apache-2.0 license."
+      },
+      "scale": {
+        "samples": 240,
+        "source_items": 240,
+        "hours": null,
+        "approximate": false,
+        "notes": "Prompts cover 81, 240, 720, and 1,440 output-frame regimes; generated videos are not included in the benchmark CSV."
+      },
+      "annotations": {
+        "types": [
+          "text-prompt",
+          "target-frame-count",
+          "duration-regime",
+          "drift-metric"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Apache-2.0 repository license",
+        "media": "Prompt text includes adaptations from prior work and should retain cited provenance",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Repository code and files are Apache-2.0, but the paper says prompts were collected from Self-Forcing and media examples from other benchmarks; review source terms for downstream media."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "aesthetics",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Only 240 prompts are used across four duration regimes.",
+          "Automatic aesthetic, motion, semantic, naturalness, and drift scores can diverge from human preference.",
+          "Part of the prompt set is adapted from Self-Forcing, so provenance and overlap should be retained in comparisons."
+        ]
+      },
+      "processing": {
+        "recipe": "Generate each prompt at the assigned frame horizon, score aesthetic quality, motion amplitude, motion smoothness, semantic alignment, naturalness, throughput, and cross-chunk drift, then map noisy continuous metrics to calibrated ten-point bands.",
+        "recommended_format": "csv",
+        "notes": "Keep prompt ID, target frames, model generation settings, metric version, raw score, calibrated score, hardware, and random seed."
+      },
+      "evidence": {
+        "homepage": "https://github.com/PKU-YuanGroup/Helios",
+        "paper": "https://arxiv.org/abs/2603.04379",
+        "used_by": [
+          "Helios"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/evaluation/heliosbench.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "240",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/PKU-YuanGroup/Helios/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "helios"
       ]
     },
     {
@@ -6228,8 +8058,12 @@
         "source_url": "https://huggingface.co/api/datasets/ma-xu/fine-t2i"
       },
       "upstream_dataset_ids": [],
-      "downstream_dataset_ids": [],
-      "linked_model_ids": []
+      "downstream_dataset_ids": [
+        "sefi-image-continual-training-mixture"
+      ],
+      "linked_model_ids": [
+        "sefi-image"
+      ]
     },
     {
       "id": "audiovisual-translation-dub",
@@ -7084,6 +8918,7 @@
       ],
       "downstream_dataset_ids": [],
       "linked_model_ids": [
+        "moroute",
         "openve-edit"
       ]
     },
@@ -7181,7 +9016,104 @@
         "openve-bench"
       ],
       "linked_model_ids": [
+        "moroute",
         "openve-edit"
+      ]
+    },
+    {
+      "id": "ditto-1m",
+      "name": "Ditto-1M",
+      "organization": "Ditto authors",
+      "released_at": "2025-10-18",
+      "release_date_source": "https://huggingface.co/datasets/QingyanBai/Ditto-1M",
+      "modality": "video",
+      "tasks": [
+        "video-editing",
+        "video-to-video"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A public million-scale instruction-guided video-editing corpus of source videos, edit instructions, and edited targets used by Ditto and later MoRoute.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/QingyanBai/Ditto-1M",
+        "requires_account": false,
+        "notes": "The official Hugging Face repository is public and stores about 2.29 TB under the non-commercial share-alike license."
+      },
+      "scale": {
+        "samples": 1000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The project names Ditto-1M as a one-million-scale corpus; hosted storage exceeds two terabytes and exact valid triplet count should be read from its manifest."
+      },
+      "annotations": {
+        "types": [
+          "source-video",
+          "editing-instruction",
+          "edited-video",
+          "edit-category"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-SA-4.0",
+        "media": "CC-BY-NC-SA-4.0 release terms plus source-media dependencies",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The official card is non-commercial share-alike; downstream users must also retain source provenance and review component-media rights."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "provenance",
+          "deduplication",
+          "safety"
+        ],
+        "known_limitations": [
+          "Synthetic editing targets can inherit teacher artifacts and selection bias.",
+          "Million-scale naming is approximate rather than a guarantee that every hosted record is a valid unique triplet.",
+          "Non-commercial share-alike terms constrain redistribution and trained artifacts."
+        ]
+      },
+      "processing": {
+        "recipe": "Pair source clips with diverse edit instructions and generated targets, then filter for instruction alignment, visual quality, and temporal consistency.",
+        "recommended_format": "native",
+        "notes": "Preserve source and target pairing, instruction, edit type, teacher and filter versions, rejection decisions, source rights, and archive checksums."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/QingyanBai/Ditto-1M",
+        "paper": "https://arxiv.org/abs/2510.15742",
+        "used_by": [
+          "Ditto",
+          "MoRoute"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/video/ditto-1m.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "~1M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/QingyanBai/Ditto-1M?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "moroute"
       ]
     },
     {
@@ -7583,6 +9515,385 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "seedance-1-0-pro"
+      ]
+    },
+    {
+      "id": "qwen-image-vae-text-rich-corpus",
+      "name": "Qwen-Image VAE Text-Rich Corpus",
+      "organization": "Qwen Team",
+      "released_at": "2025-08-04",
+      "release_date_source": "https://arxiv.org/abs/2508.02324",
+      "modality": "image",
+      "tasks": [
+        "text-rendering"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "An unreleased in-house corpus of real documents and synthetic paragraphs used to improve small-text reconstruction in the Qwen-Image VAE decoder.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2508.02324",
+        "requires_account": false,
+        "notes": "The paper names media categories but provides no files, source manifest, scale, request form, or release plan."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "Counts for PDFs, PowerPoint slides, posters, and synthetic paragraphs are not disclosed."
+      },
+      "annotations": {
+        "types": [
+          "document-type",
+          "visible-text",
+          "language"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en",
+          "zh"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Document, poster, font, and synthetic-paragraph sources and rights are not published."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Scale, source identities, rights, language balance, and deduplication are undisclosed.",
+          "Text-rich categories do not establish coverage of every script, document style, or layout."
+        ]
+      },
+      "processing": {
+        "recipe": "Fine-tune only the Wan2.1-derived VAE image decoder on real documents and controlled synthetic paragraphs using reconstruction and perceptual losses with a dynamic ratio.",
+        "recommended_format": "native",
+        "notes": "Preserve document source and rights, page and text metadata, language, synthetic renderer and fonts, and train-validation membership if released."
+      },
+      "evidence": {
+        "homepage": "https://qwenlm.github.io/blog/qwen-image/",
+        "paper": "https://arxiv.org/abs/2508.02324",
+        "used_by": [
+          "Qwen-Image"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/image/qwen-image-vae-text-rich-corpus.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://qwenlm.github.io/blog/qwen-image/"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "qwen-image"
+      ]
+    },
+    {
+      "id": "qwen-image-sft-corpus",
+      "name": "Qwen-Image SFT Corpus",
+      "organization": "Qwen Team",
+      "released_at": "2025-08-04",
+      "release_date_source": "https://arxiv.org/abs/2508.02324",
+      "modality": "image",
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "text-rendering"
+      ],
+      "stages": [
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "An unreleased hierarchically organized and human-annotated multi-task corpus for Qwen-Image supervised generation, editing, and reconstruction post-training.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/pdf/2508.02324",
+        "requires_account": false,
+        "notes": "The report describes quality targets and tasks but no dataset identities, files, scale, license, or release plan."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "No T2I, TI2I, I2I, human-annotation, or task-mixture counts are published."
+      },
+      "annotations": {
+        "types": [
+          "text-prompt",
+          "source-image",
+          "target-image",
+          "edit-instruction",
+          "semantic-category",
+          "human-quality-annotation"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en",
+          "zh"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Dataset sources, media rights, human-annotation terms, and redistribution permission are undisclosed."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "aesthetics",
+          "text-media-alignment",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source identities, scale, licenses, task proportions, and annotator protocol are absent.",
+          "Requirements for bright, detailed, photorealistic images can bias the output distribution.",
+          "The report does not provide train-evaluation overlap or identity/privacy auditing details."
+        ]
+      },
+      "processing": {
+        "recipe": "Organize examples by semantic hierarchy, select clear, detailed, bright, photorealistic images, add meticulous human annotation, and mix text-to-image, text-image-to-image editing, and image reconstruction supervision.",
+        "recommended_format": "native",
+        "notes": "Preserve source rights, task role, input-output grouping, human annotations, selection reasons, identities, and split membership if released."
+      },
+      "evidence": {
+        "homepage": "https://qwenlm.github.io/blog/qwen-image/",
+        "paper": "https://arxiv.org/abs/2508.02324",
+        "used_by": [
+          "Qwen-Image"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/image/qwen-image-sft-corpus.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2508.02324v1"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "qwen-image"
+      ]
+    },
+    {
+      "id": "qwen-image-pretraining-corpus",
+      "name": "Qwen-Image Pretraining Corpus",
+      "organization": "Qwen Team",
+      "released_at": "2025-08-04",
+      "release_date_source": "https://arxiv.org/abs/2508.02324",
+      "modality": "image",
+      "tasks": [
+        "image-text-pretraining",
+        "text-to-image",
+        "text-rendering"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "The unreleased Qwen-Image pretraining mixture spanning natural imagery, design, people, and controlled synthetic text rendering under seven curation stages.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2508.02324",
+        "requires_account": false,
+        "notes": "The report discloses proportions and processing but no source names, total scale, manifest, files, or access mechanism."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "Nature is about 55 percent, Design 27 percent, People 13 percent, and controlled synthetic rendering 5 percent; total samples are absent."
+      },
+      "annotations": {
+        "types": [
+          "raw-caption",
+          "vlm-recaption",
+          "fused-caption",
+          "structured-metadata",
+          "visible-text",
+          "domain",
+          "image-quality"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en",
+          "zh",
+          "multilingual"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Apache-2.0 covers released model artifacts, not the unidentified training media, captions, fonts, or templates."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "aesthetics",
+          "text-media-alignment",
+          "watermark",
+          "safety",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source identities, scale, licenses, rights, and item-level provenance are undisclosed.",
+          "Qwen-VL recaptioning and automated filters can introduce semantic errors and selection bias.",
+          "Exact thresholds, deduplication method, and component mixture weights beyond four headline domains are absent."
+        ]
+      },
+      "processing": {
+        "recipe": "Remove broken, small, low-resolution, duplicate, NSFW, blurry, extreme-luma, saturated, low-entropy, and noisy-texture media; split raw, recaptioned, and fused captions; balance image-text languages; introduce controlled rendering; raise resolution and aesthetics; patch weak domains; remove mosaicked faces; and train progressively across resolution stages.",
+        "recommended_format": "parquet",
+        "notes": "Preserve original sources and rights, captions, structured annotations, every filter decision, deduplication cluster, synthetic recipe, domain bucket, and stage membership."
+      },
+      "evidence": {
+        "homepage": "https://qwenlm.github.io/blog/qwen-image/",
+        "paper": "https://arxiv.org/abs/2508.02324",
+        "used_by": [
+          "Qwen-Image"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/image/qwen-image-pretraining-corpus.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2508.02324"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "qwen-image"
+      ]
+    },
+    {
+      "id": "qwen-image-dpo-preferences",
+      "name": "Qwen-Image DPO Preferences",
+      "organization": "Qwen Team",
+      "released_at": "2025-08-04",
+      "release_date_source": "https://arxiv.org/abs/2508.02324",
+      "modality": "preference",
+      "tasks": [
+        "text-to-image-preference",
+        "text-to-image-reinforcement-learning"
+      ],
+      "stages": [
+        "preference-tuning",
+        "data-curation"
+      ],
+      "description": "An unreleased human-ranked preference corpus of best and worst Qwen-Image generations, optionally judged against a gold reference image, for DPO.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2508.02324v1",
+        "requires_account": false,
+        "notes": "The ranking protocol is public, but prompts, images, annotations, scale, and release plans are not."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "Candidate count per prompt, prompt count, annotator count, agreement, and retained pair count are undisclosed."
+      },
+      "annotations": {
+        "types": [
+          "prompt",
+          "generated-candidate",
+          "gold-reference-image",
+          "preferred-image",
+          "rejected-image",
+          "all-unsatisfactory-flag"
+        ],
+        "source": "human",
+        "languages": [
+          "en",
+          "zh"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Prompt and reference-image sources, generated-image terms, annotator consent, and redistribution rights are not published."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "human-preference",
+          "safety",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Scale, prompt distribution, candidate multiplicity, annotator demographics, and agreement are absent.",
+          "Gold-reference comparison and reference-free ranking use different decision rules.",
+          "Human best-worst selection can encode subjective aesthetic and cultural preferences."
+        ]
+      },
+      "processing": {
+        "recipe": "Generate multiple images per prompt from different random seeds; for reference-backed prompts compare candidates against the gold image and select rejected mismatches, otherwise select best and worst candidates or flag all outputs as unsatisfactory; train with DPO.",
+        "recommended_format": "parquet",
+        "notes": "Preserve prompt and reference provenance, every candidate and seed, annotator decisions, agreement, rejection rationale, safety flags, and DPO split."
+      },
+      "evidence": {
+        "homepage": "https://qwenlm.github.io/blog/qwen-image/",
+        "paper": "https://arxiv.org/abs/2508.02324",
+        "used_by": [
+          "Qwen-Image"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/preference/qwen-image-dpo-preferences.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/QwenLM/Qwen-Image/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "qwen-image"
       ]
     },
     {
@@ -8307,6 +10618,100 @@
       "downstream_dataset_ids": [],
       "linked_model_ids": [
         "instructav2av"
+      ]
+    },
+    {
+      "id": "vchitect-t2v-dataverse",
+      "name": "Vchitect T2V DataVerse",
+      "organization": "Vchitect",
+      "released_at": "2025-03-14",
+      "release_date_source": "https://huggingface.co/datasets/Vchitect/Vchitect_T2V_DataVerse",
+      "modality": "video",
+      "tasks": [
+        "text-to-video",
+        "video-text-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "fine-tuning",
+        "data-curation"
+      ],
+      "description": "A public multi-million-row text-to-video WebDataset distributed by Vchitect and reused by MoRoute as part of its recaptioned stage-2 video mixture.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/Vchitect/Vchitect_T2V_DataVerse",
+        "requires_account": false,
+        "notes": "Hugging Face hosts WebDataset shards directly; official metadata reports about 7.18 TB of stored content."
+      },
+      "scale": {
+        "samples": null,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The official card declares the 1M-to-10M size category but does not expose a single authoritative row count in repository metadata."
+      },
+      "annotations": {
+        "types": [
+          "text-caption",
+          "source-video",
+          "webdataset-key"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Apache-2.0",
+        "media": "Dataset release terms plus original source-media rights",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The official card labels the dataset Apache-2.0; users must still review rights and provenance for component videos."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "motion",
+          "temporal-consistency",
+          "provenance",
+          "deduplication",
+          "safety"
+        ],
+        "known_limitations": [
+          "Repository metadata gives only a broad row-count band.",
+          "Component-video rights and removals may vary by source.",
+          "MoRoute does not publish its retained shard list or stage-2 contribution."
+        ]
+      },
+      "processing": {
+        "recipe": "Consume the official WebDataset shards, validate media-caption joins, and retain source and filtering metadata; MoRoute applies a separate VLM recaptioning pass.",
+        "recommended_format": "webdataset",
+        "notes": "Record repository commit, shard checksums, source provenance, media availability, original and recaptioned text, and downstream filter decisions."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/Vchitect/Vchitect_T2V_DataVerse",
+        "paper": "https://arxiv.org/abs/2501.08453",
+        "used_by": [
+          "MoRoute"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "catalog/video/vchitect-t2v-dataverse.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "unknown",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://huggingface.co/api/datasets/Vchitect/Vchitect_T2V_DataVerse?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "moroute"
       ]
     },
     {
@@ -12581,6 +14986,7 @@
       },
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [
+        "moroute-laion-2b-subset",
         "laion-coco-aesthetic"
       ],
       "linked_model_ids": [
@@ -15132,6 +17538,388 @@
       "linked_dataset_ids": []
     },
     {
+      "id": "qwen-image-sp",
+      "name": "Qwen-Image-SP",
+      "organization": "ByteDance Seed",
+      "released_at": "2026-07-31",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "text-rendering",
+        "agentic-image-generation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0 for the released diffusion and prompt-expander checkpoints",
+        "release_url": "https://heheyas.github.io/context-scaling/",
+        "weights_url": "https://huggingface.co/heheyas/Qwen-Image-SP",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Qwen-Image diffusion transformer conditioned by recursively nested structured prompts",
+        "parameters": null,
+        "notes": "The released image checkpoint is initialized from Qwen-Image and paired with a separately released Qwen3.5-35B-A3B structured-prompt expander. The paper's prompter experiments instead describe a rank-128 LoRA on Qwen3.5-397B-A17B and do not explain the transfer between them."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Context Scaling SP/NL Image Corpus",
+            "catalog_id": "context-scaling-sp-nl-corpus",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": null,
+            "notes": "Images receive six nested structured-prompt levels plus natural-language controls, but the image sources and retained sample count are not published."
+          },
+          {
+            "name": "Context Scaling Prompter SFT Corpus",
+            "catalog_id": "context-scaling-prompter-sft-corpus",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "Approximately 333,000 examples and 0.97B tokens",
+            "notes": "One third is task-specific structured-prompt supervision and two thirds is reasoning and instruction-following replay of undisclosed provenance."
+          },
+          {
+            "name": "Context Scaling Cold-Start Corpus",
+            "catalog_id": "context-scaling-cold-start-corpus",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "50,182 unique examples retained from 172,208 candidates",
+            "notes": "Gemini 3 Pro filtering first accepted 58,907 candidates, followed by prompt deduplication."
+          },
+          {
+            "name": "Context Scaling RFT Pairs",
+            "catalog_id": "context-scaling-rft-pairs",
+            "role": "distillation",
+            "availability": "not-released",
+            "scale": "10,003 original caption-image pairs plus generated rollouts",
+            "notes": "Six prompt-source families are named only as categories; a Gemini verifier gates rollouts before frozen-teacher KL distillation."
+          },
+          {
+            "name": "Context Scaling 30K Evaluation Pairs",
+            "catalog_id": "context-scaling-30k-evaluation-pairs",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "30,000 paired images",
+            "notes": "Used only for the controlled BAGEL prompt-scaling evaluation and kept separate from training relations."
+          }
+        ],
+        "stages": [
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed",
+              "synthetic"
+            ],
+            "operations": [
+              "semantic-captioning",
+              "pose-estimation",
+              "depth-estimation",
+              "segmentation",
+              "structured-annotation",
+              "deterministic-field-masking",
+              "token-balanced-mixing"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Fine-tune Qwen-Image-2512 on natural-language and six-level structured prompts derived with Seed-VL, Sapiens, Depth Anything V2, SAM 2.1, and a final VLM reconciliation pass."
+          },
+          {
+            "name": "distillation",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "synthetic",
+              "undisclosed"
+            ],
+            "operations": [
+              "chain-of-thought-distillation",
+              "model-filtering",
+              "prompt-deduplication",
+              "verifier-gating",
+              "on-policy-self-distillation"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train the prompt expander through SFT, a filtered cold start, then verifier-gated on-policy self-distillation with a frozen image-conditioned teacher."
+          }
+        ],
+        "strategy_summary": [
+          "Scale text conditioning through recursively nested structured prompts whose fields can be masked without changing the schema.",
+          "Use specialist vision models for pose, depth, and segmentation before VLM reconciliation instead of relying on captions alone.",
+          "Separate prompt-expander SFT, cold-start filtering, and verifier-gated distillation from the diffusion-model corpus."
+        ],
+        "unknowns": [
+          "Original image sources, collection rights, licenses, total diffusion fine-tuning samples, mixture weights, safety filtering, and image-level deduplication.",
+          "Names and proportions of the six prompt sources behind the 10,003 RFT pairs, plus the provenance of the two-thirds replay portion of SFT.",
+          "Why the released 35B-A3B prompter differs from the paper's 397B-A17B LoRA, and whether its weights were distilled or retrained.",
+          "Complete inherited Qwen-Image data lineage and the in-house BAGEL context-training checkpoint lineage."
+        ]
+      },
+      "evidence": {
+        "release": "https://heheyas.github.io/context-scaling/",
+        "technical_report": "https://arxiv.org/abs/2607.29679",
+        "repository": "https://github.com/heheyas/context-scaling"
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "models/image/qwen-image-sp.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "fine-tuning",
+          "distillation"
+        ],
+        "source_types": [
+          "undisclosed",
+          "synthetic"
+        ],
+        "operations": [
+          "semantic-captioning",
+          "pose-estimation",
+          "depth-estimation",
+          "segmentation",
+          "structured-annotation",
+          "deterministic-field-masking",
+          "token-balanced-mixing",
+          "chain-of-thought-distillation",
+          "model-filtering",
+          "prompt-deduplication",
+          "verifier-gating",
+          "on-policy-self-distillation"
+        ],
+        "data_reference_count": 5,
+        "linked_dataset_count": 5,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/heheyas/Qwen-Image-SP?expand=lastModified&expand=sha"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "context-scaling-sp-nl-corpus",
+        "context-scaling-prompter-sft-corpus",
+        "context-scaling-cold-start-corpus",
+        "context-scaling-rft-pairs",
+        "context-scaling-30k-evaluation-pairs"
+      ]
+    },
+    {
+      "id": "moroute",
+      "name": "MoRoute",
+      "organization": "Sun Yat-sen University, Orange 3DV Team, Moku Lab, and HUJING",
+      "released_at": "2026-07-31",
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "video-to-video",
+        "video-editing",
+        "reference-to-video"
+      ],
+      "access": {
+        "status": "announced",
+        "license": "Paper is available under the arXiv non-exclusive license; code, weights, API, and model license are not released",
+        "release_url": "https://orange-3dv-team.github.io/MoRoute/",
+        "weights_url": null,
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Frozen Qwen3.5 router and Wan2.1-T2V-14B diffusion transformer with a learned condition interface",
+        "parameters": 1890000000,
+        "notes": "The condition interface routes interleaved text, image, and video evidence into frozen Wan2.1 blocks while Qwen3.5-9B extracts key concepts. The complete frozen-plus-trainable footprint is larger than the reported 1.89B trainable component."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "MoRoute LAION-2B Stage-1 Subset",
+            "catalog_id": "moroute-laion-2b-subset",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "9.9M image-text samples",
+            "notes": "A retained LAION-2B subset is used for two 512-pixel interface-alignment epochs; selection rules and identifiers are not released."
+          },
+          {
+            "name": "Vchitect T2V DataVerse",
+            "catalog_id": "vchitect-t2v-dataverse",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "Part of the 600K stage-2 T2V mixture; retained contribution is not separated",
+            "notes": "All retained clips are recaptioned for MoRoute training."
+          },
+          {
+            "name": "MoRoute Internal T2V Corpus",
+            "catalog_id": "moroute-internal-t2v-corpus",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "Part of the 600K stage-2 T2V mixture; retained contribution is not separated",
+            "notes": "No collection source, license, or standalone count is disclosed."
+          },
+          {
+            "name": "OpenVE-3M",
+            "catalog_id": "openve-3m",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "Retained contribution to the 600K TV2V and 1M TIV2V stage-3 pools is not disclosed",
+            "notes": "The paper names OpenVE among its paired video-editing sources."
+          },
+          {
+            "name": "Ditto-1M",
+            "catalog_id": "ditto-1m",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "Retained contribution to stage 3 is not disclosed",
+            "notes": "Used as a public instruction-guided video-editing triplet source."
+          },
+          {
+            "name": "EffectErase Dataset",
+            "catalog_id": "effecterase",
+            "role": "fine-tuning",
+            "availability": "gated",
+            "scale": "Retained contribution to stage 3 is not disclosed",
+            "notes": "The paper cites EffectErase/VOR for object removal and insertion pairs."
+          },
+          {
+            "name": "MoRoute UE5 Editing Pairs",
+            "catalog_id": "moroute-ue5-editing-pairs",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "Retained contribution to stage 3 is not disclosed",
+            "notes": "Synthetic character-replacement pairs are rendered in Unreal Engine 5; assets and exact count are not published."
+          },
+          {
+            "name": "IntelligentVBench",
+            "catalog_id": "intelligentvbench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "Public multi-task unified-video benchmark; MoRoute evaluation subset details are not restated",
+            "notes": "Kept separate from training sources."
+          },
+          {
+            "name": "OpenVE-Bench",
+            "catalog_id": "openve-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "431 video-edit pairs upstream",
+            "notes": "Kept separate from OpenVE-3M training relations."
+          },
+          {
+            "name": "RefVIE-Bench",
+            "catalog_id": "refvie-bench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "32 source videos with 54 reference images upstream",
+            "notes": "Used only for reference-guided video-editing evaluation."
+          }
+        ],
+        "stages": [
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "vlm-recaptioning",
+              "endpoint-frame-conditioning",
+              "key-concept-extraction",
+              "segmentation",
+              "cross-frame-reference-construction",
+              "synthetic-pair-generation"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Progress from 9.9M image-text alignment examples to 600K recaptioned T2V clips, then train two epochs on a 20/20/30/30 mixture of 600K T2V, 600K TI2V, 600K TV2V, and 1M TIV2V examples."
+          }
+        ],
+        "strategy_summary": [
+          "Freeze Qwen3.5-9B and Wan2.1-T2V-14B while learning a modality-routing condition interface.",
+          "Recaption every stage-2 clip and use key concepts, masks, endpoints, and cross-frame references to normalize heterogeneous stage-3 tasks.",
+          "Keep IntelligentVBench, OpenVE-Bench, and RefVIE-Bench evaluation-only."
+        ],
+        "unknowns": [
+          "Weights, code, API, model license, training compute, optimizer details beyond the paper tables, and release schedule.",
+          "Exact contribution and sampling weights of Vchitect, internal video, OpenVE, Ditto, EffectErase, and UE5 sources inside each headline pool.",
+          "Internal-video collection sources and rights, UE5 asset provenance and license, safety filtering, deduplication, and person/identity handling.",
+          "Complete inherited training-data lineage of Qwen3.5-9B and Wan2.1-T2V-14B."
+        ]
+      },
+      "evidence": {
+        "release": "https://orange-3dv-team.github.io/MoRoute/",
+        "technical_report": "https://arxiv.org/abs/2607.29545",
+        "repository": null
+      },
+      "status": "watch",
+      "last_verified": "2026-08-03",
+      "source_path": "models/video/moroute.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "fine-tuning"
+        ],
+        "source_types": [
+          "public-dataset",
+          "proprietary",
+          "synthetic"
+        ],
+        "operations": [
+          "vlm-recaptioning",
+          "endpoint-frame-conditioning",
+          "key-concept-extraction",
+          "segmentation",
+          "cross-frame-reference-construction",
+          "synthetic-pair-generation"
+        ],
+        "data_reference_count": 10,
+        "linked_dataset_count": 10,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 1,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://orange-3dv-team.github.io/MoRoute/"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "moroute-laion-2b-subset",
+        "vchitect-t2v-dataverse",
+        "moroute-internal-t2v-corpus",
+        "openve-3m",
+        "ditto-1m",
+        "effecterase",
+        "moroute-ue5-editing-pairs",
+        "intelligentvbench",
+        "openve-bench",
+        "refvie-bench"
+      ]
+    },
+    {
       "id": "minimax-h3",
       "name": "MiniMax H3",
       "organization": "MiniMax",
@@ -15235,7 +18023,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 3,
-          "score": 1186,
+          "score": 1187,
           "score_label": "Elo",
           "entry_model": "MiniMax H3",
           "component_count": 1
@@ -15253,7 +18041,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 1,
-          "score": 1130,
+          "score": 1129,
           "score_label": "Elo",
           "entry_model": "MiniMax H3",
           "component_count": 1
@@ -18149,7 +20937,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1240,
+          "score": 1241,
           "score_label": "Elo",
           "entry_model": "Seedream 5.0 Pro",
           "component_count": 1
@@ -18899,7 +21687,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 1,
-          "score": 1245,
+          "score": 1244,
           "score_label": "Elo",
           "entry_model": "Gemini Omni Flash",
           "component_count": 1
@@ -19360,7 +22148,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1108,
+          "score": 1106,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.1",
           "component_count": 1
@@ -19376,6 +22164,265 @@
         }
       ],
       "linked_dataset_ids": []
+    },
+    {
+      "id": "sefi-image",
+      "name": "SeFi-Image",
+      "organization": "SeFi-Team",
+      "released_at": "2026-06-21",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "text-rendering",
+        "text-to-image-reinforcement-learning"
+      ],
+      "access": {
+        "status": "gated-weights",
+        "license": "CC-BY-NC-4.0 non-commercial gated checkpoint agreement",
+        "release_url": "https://huggingface.co/SeFi-Image/SeFi-Image-5B-Base",
+        "weights_url": "https://huggingface.co/SeFi-Image/SeFi-Image-5B-Base",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Semantic-First Diffusion with asynchronous semantic and texture latent streams",
+        "parameters": 5000000000,
+        "notes": "The family provides 1B, 2B, and 5B Base and four-step Turbo variants plus a 5B RL checkpoint. It combines a fine-tuned FLUX.2 texture VAE, a semantic VAE over frozen visual features, and Qwen3-VL text encoders."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "SeFi-Image Internal Pretraining Corpus",
+            "catalog_id": "sefi-image-internal-pretraining-corpus",
+            "role": "pretraining",
+            "availability": "not-released",
+            "scale": "450M recaptioned image-text pairs",
+            "notes": "The source domains are described only at a high level and are dominated by natural images."
+          },
+          {
+            "name": "SeFi-Image Synthetic Text-Rendered Corpus",
+            "catalog_id": "sefi-image-synthetic-text-rendered-corpus",
+            "role": "pretraining",
+            "availability": "not-released",
+            "scale": "28M pairs, comprising 8M plain-text and 20M structured-layout samples",
+            "notes": "PIL rendering provides exact bilingual text and layout supervision with character and bounding-box validation."
+          },
+          {
+            "name": "Fine-T2I",
+            "catalog_id": "fine-t2i",
+            "role": "fine-tuning",
+            "availability": "public",
+            "scale": "Retained contribution to the 9M continual-training mixture is not disclosed",
+            "notes": "Fine-T2I is explicitly named as one component of the continual high-resolution mixture."
+          },
+          {
+            "name": "SeFi-Image Continual-Training Mixture",
+            "catalog_id": "sefi-image-continual-training-mixture",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "9M image-text samples",
+            "notes": "Mixes Fine-T2I with internal natural, UI, graphic-design, anime, and other imagery; source proportions are absent."
+          },
+          {
+            "name": "SeFi-Image SFT Corpus",
+            "catalog_id": "sefi-image-sft-corpus",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "Approximately 650K images, including 200K Chinese text-rich images",
+            "notes": "Open-source and internal components are not individually identified or proportioned."
+          },
+          {
+            "name": "SeFi-Image DiffusionNFT Prompt Pool",
+            "catalog_id": "sefi-image-diffusionnft-prompt-pool",
+            "role": "preference",
+            "availability": "not-released",
+            "scale": "400 prompt groups and 4,800 generated images per online iteration",
+            "notes": "Prompt origins, total iterations, and retained positive and negative counts are not published."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "synthetic"
+            ],
+            "operations": [
+              "bilingual-vlm-recaptioning",
+              "dense-short-caption-sampling",
+              "deterministic-text-rendering",
+              "layout-synthesis",
+              "character-alignment-validation",
+              "bounding-box-validation",
+              "resolution-curriculum"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train progressively at 256, 512, 768, and 1024 pixels on 450M internal pairs mixed with 28M bilingual text-rendering samples; sample dense versus short captions 4:1."
+          },
+          {
+            "name": "midtraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "proprietary"
+            ],
+            "operations": [
+              "high-quality-curation",
+              "bilingual-recaptioning"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Continue for 180K iterations at 1024 pixels on a 9M Fine-T2I and internal high-quality mixture."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "proprietary"
+            ],
+            "operations": [
+              "structured-metadata-extraction",
+              "bilingual-caption-refinement",
+              "ocr-annotation",
+              "multi-axis-quality-scoring",
+              "rule-based-safety-filtering",
+              "watermark-filtering",
+              "deduplication"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Fine-tune for 10K iterations at 1024 pixels on about 650K score-refined images with short, long, and tag conditioning."
+          },
+          {
+            "name": "distillation",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "synthetic",
+              "undisclosed"
+            ],
+            "operations": [
+              "dmd2-distillation",
+              "feature-space-adversarial-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Distill each 50-step SFT teacher to four steps while preserving the semantic-first timestep offset; prompt-source and sample counts are not disclosed."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "synthetic"
+            ],
+            "operations": [
+              "online-generation",
+              "tagged-reward-scoring",
+              "low-dispersion-filtering",
+              "top-bottom-selection",
+              "diffusionnft"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Generate 12 samples for each of 400 capability-tagged prompts per iteration, discard low-dispersion groups, and use high and low rewards as positive and implicit-negative gradients."
+          }
+        ],
+        "strategy_summary": [
+          "Recaption 450M internal images into English and Chinese dense and short variants with Qwen3.5-2B.",
+          "Add 28M deterministically aligned plain-text and structured-layout renders before introducing naturally distributed text-rich data at later stages.",
+          "Apply strict SFT quality, safety, OCR, watermark, and deduplication gates, then release Base, DMD2 Turbo, and 5B DiffusionNFT RL variants."
+        ],
+        "unknowns": [
+          "Identities, collection sources, licenses, rights, and mixture weights of the 450M internal pretraining images.",
+          "Fine-T2I retention and internal contribution inside the 9M mixture, plus names and rights of open-source and internal components in SFT.",
+          "Synthetic font and text-source licenses, exact image-level deduplication, total online-RL iterations, reward-model identities, DMD2 prompt distribution, and released training data."
+        ]
+      },
+      "evidence": {
+        "release": "https://huggingface.co/SeFi-Image/SeFi-Image-5B-Base",
+        "technical_report": "https://arxiv.org/abs/2606.22568",
+        "repository": null
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "models/image/sefi-image.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "midtraining",
+          "fine-tuning",
+          "distillation",
+          "preference"
+        ],
+        "source_types": [
+          "proprietary",
+          "synthetic",
+          "public-dataset",
+          "undisclosed"
+        ],
+        "operations": [
+          "bilingual-vlm-recaptioning",
+          "dense-short-caption-sampling",
+          "deterministic-text-rendering",
+          "layout-synthesis",
+          "character-alignment-validation",
+          "bounding-box-validation",
+          "resolution-curriculum",
+          "high-quality-curation",
+          "bilingual-recaptioning",
+          "structured-metadata-extraction",
+          "bilingual-caption-refinement",
+          "ocr-annotation",
+          "multi-axis-quality-scoring",
+          "rule-based-safety-filtering",
+          "watermark-filtering",
+          "deduplication",
+          "dmd2-distillation",
+          "feature-space-adversarial-training",
+          "online-generation",
+          "tagged-reward-scoring",
+          "low-dispersion-filtering",
+          "top-bottom-selection",
+          "diffusionnft"
+        ],
+        "data_reference_count": 6,
+        "linked_dataset_count": 6,
+        "scale_disclosed_stage_count": 3,
+        "stage_count": 5,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/SeFi-Image/SeFi-Image-5B-Base?expand=lastModified&expand=sha"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "sefi-image-internal-pretraining-corpus",
+        "sefi-image-synthetic-text-rendered-corpus",
+        "fine-t2i",
+        "sefi-image-continual-training-mixture",
+        "sefi-image-sft-corpus",
+        "sefi-image-diffusionnft-prompt-pool"
+      ]
     },
     {
       "id": "grok-imagine-video-1-5",
@@ -21693,8 +24740,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 13,
-          "score": 1203,
+          "rank": 15,
+          "score": 1202,
           "score_label": "Elo",
           "entry_model": "HiDream-O1-Image",
           "component_count": 1
@@ -21964,7 +25011,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 10,
-          "score": 1221,
+          "score": 1222,
           "score_label": "Elo",
           "entry_model": "Luma UNI 1 Max",
           "component_count": 1
@@ -22301,7 +25348,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 7,
-          "score": 1091,
+          "score": 1092,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.0",
           "component_count": 1
@@ -22310,7 +25357,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 6,
-          "score": 1126,
+          "score": 1127,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.0",
           "component_count": 1
@@ -23132,7 +26179,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 6,
-          "score": 1093,
+          "score": 1092,
           "score_label": "Elo",
           "entry_model": "Wan 2.7",
           "component_count": 1
@@ -23150,7 +26197,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 8,
-          "score": 1109,
+          "score": 1108,
           "score_label": "Elo",
           "entry_model": "Wan 2.7",
           "component_count": 1
@@ -23253,15 +26300,6 @@
         "source_url": "https://ai.google.dev/gemini-api/docs/models/veo-3.1-lite-generate-preview"
       },
       "ranking_positions": [
-        {
-          "ranking_id": "image-to-video",
-          "provider": "Artificial Analysis",
-          "rank": 15,
-          "score": 1064,
-          "score_label": "Elo",
-          "entry_model": "Veo 3.1 Lite",
-          "component_count": 1
-        },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
@@ -23370,7 +26408,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 13,
-          "score": 1069,
+          "score": 1068,
           "score_label": "Elo",
           "entry_model": "PixVerse V6",
           "component_count": 1
@@ -23690,6 +26728,178 @@
         "unisync-5k",
         "hdtf",
         "realworld-lipsync"
+      ]
+    },
+    {
+      "id": "helios",
+      "name": "Helios",
+      "organization": "PKU-YuanGroup",
+      "released_at": "2026-03-04",
+      "modalities": [
+        "video"
+      ],
+      "tasks": [
+        "text-to-video",
+        "image-to-video",
+        "video-to-video",
+        "interactive-video-generation",
+        "long-video-generation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0 repository and Hugging Face checkpoint metadata",
+        "release_url": "https://github.com/PKU-YuanGroup/Helios",
+        "weights_url": "https://huggingface.co/BestWishYsh/Helios-Distilled",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "14B autoregressive video diffusion transformer with guidance attention and hierarchical sampling",
+        "parameters": 14000000000,
+        "notes": "Helios-Base, Helios-Mid, and three-step Helios-Distilled share a Wan2.1-derived architecture. Representation Control supports T2V, I2V, V2V, and experimental interactive continuation without retraining task-specific heads."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Wan2.1 inherited pretraining mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "Helios initializes from Wan2.1-T2V-14B and does not restate its complete inherited data lineage."
+          },
+          {
+            "name": "Helios Training Corpus",
+            "catalog_id": "helios-training-corpus",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "0.8M clips shorter than ten seconds",
+            "notes": "The paper gives the retained count and clip constraints but no source identities, licenses, or downloadable manifest."
+          },
+          {
+            "name": "Helios ODE Solution Pairs",
+            "catalog_id": "helios-ode-solution-pairs",
+            "role": "distillation",
+            "availability": "not-released",
+            "scale": "Described only as compact",
+            "notes": "Helios-Mid generates staged ODE solution pairs to initialize hierarchical distillation."
+          },
+          {
+            "name": "HeliosBench",
+            "catalog_id": "heliosbench",
+            "role": "evaluation",
+            "availability": "public",
+            "scale": "240 prompts across 81, 240, 720, and 1,440-frame regimes",
+            "notes": "The official repository publishes the prompt CSV; these prompts are evaluation-only."
+          }
+        ],
+        "stages": [
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "short-clip-extraction",
+              "resolution-capping",
+              "historical-context-corruption",
+              "relative-position-encoding",
+              "first-frame-anchoring",
+              "multi-term-memory-patchification"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train two progressive adaptation and compression stages for two epochs each on 0.8M clips, capped at 384x640 and extracted as 109-frame sequences."
+          },
+          {
+            "name": "distillation",
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "source_types": [
+              "synthetic",
+              "undisclosed"
+            ],
+            "operations": [
+              "ode-pair-generation",
+              "pure-teacher-forcing",
+              "staged-backward-simulation",
+              "coarse-to-fine-learning",
+              "dynamic-renoising",
+              "distribution-matching-distillation",
+              "adversarial-post-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Initialize from Helios-Mid ODE pairs, distill Helios-Base through staged DMD, and use real clips only as historical context and adversarial supervision."
+          }
+        ],
+        "strategy_summary": [
+          "Convert a bidirectional Wan2.1 checkpoint into a long-horizon autoregressive generator while retaining bidirectional attention within each generated section.",
+          "Compress historical and noisy tokens with multi-term patchification and a three-level predictor-corrector pyramid.",
+          "Distill fifty sampling steps to three with pure teacher forcing and real-data adversarial post-training."
+        ],
+        "unknowns": [
+          "Source names, collection methods, rights, languages, captions, filtering, deduplication, safety review, and mixture weights for the 0.8M real clips.",
+          "Size and license of the ODE-pair corpus, exact real-data contribution during distillation, and whether either training corpus will be released.",
+          "Complete Wan2.1 inherited data lineage and the media-level license of prompts adapted from prior work for HeliosBench."
+        ]
+      },
+      "evidence": {
+        "release": "https://github.com/PKU-YuanGroup/Helios",
+        "technical_report": "https://arxiv.org/abs/2603.04379",
+        "repository": "https://github.com/PKU-YuanGroup/Helios"
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "models/video/helios.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "fine-tuning",
+          "distillation"
+        ],
+        "source_types": [
+          "undisclosed",
+          "synthetic"
+        ],
+        "operations": [
+          "short-clip-extraction",
+          "resolution-capping",
+          "historical-context-corruption",
+          "relative-position-encoding",
+          "first-frame-anchoring",
+          "multi-term-memory-patchification",
+          "ode-pair-generation",
+          "pure-teacher-forcing",
+          "staged-backward-simulation",
+          "coarse-to-fine-learning",
+          "dynamic-renoising",
+          "distribution-matching-distillation",
+          "adversarial-post-training"
+        ],
+        "data_reference_count": 4,
+        "linked_dataset_count": 3,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 3
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/PKU-YuanGroup/Helios/commits/main.atom"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "helios-training-corpus",
+        "helios-ode-solution-pairs",
+        "heliosbench"
       ]
     },
     {
@@ -24299,7 +27509,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 8,
-          "score": 950,
+          "score": 952,
           "score_label": "Elo",
           "entry_model": "SkyReels V4",
           "component_count": 1
@@ -24617,7 +27827,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 1,
-          "score": 1196,
+          "score": 1195,
           "score_label": "Elo",
           "entry_model": "Dreamina Seedance 2.0 720p",
           "component_count": 1
@@ -24626,7 +27836,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 3,
-          "score": 1223,
+          "score": 1224,
           "score_label": "Elo",
           "entry_model": "Dreamina Seedance 2.0 720p",
           "component_count": 1
@@ -24635,7 +27845,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1035,
+          "score": 1037,
           "score_label": "Elo",
           "entry_model": "Dreamina Seedance 2.0 720p",
           "component_count": 1
@@ -25235,7 +28445,7 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 14,
+          "rank": 13,
           "score": 1203,
           "score_label": "Elo",
           "entry_model": "Kling Image 3.0",
@@ -25245,7 +28455,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 12,
-          "score": 1073,
+          "score": 1072,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 1080p (Pro)",
           "component_count": 1
@@ -25254,7 +28464,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 14,
-          "score": 1067,
+          "score": 1066,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 720p (Standard)",
           "component_count": 1
@@ -25281,9 +28491,9 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 12,
-          "score": 1093,
+          "score": 1092,
           "score_label": "Elo",
-          "entry_model": "Kling 3.0 Omni 1080p (Pro)",
+          "entry_model": "Kling 3.0 Omni 720p (Standard)",
           "component_count": 1
         },
         {
@@ -25292,7 +28502,7 @@
           "rank": 13,
           "score": 1092,
           "score_label": "Elo",
-          "entry_model": "Kling 3.0 Omni 720p (Standard)",
+          "entry_model": "Kling 3.0 Omni 1080p (Pro)",
           "component_count": 1
         },
         {
@@ -25726,7 +28936,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 10,
-          "score": 1079,
+          "score": 1078,
           "score_label": "Elo",
           "entry_model": "grok-imagine-video",
           "component_count": 1
@@ -25941,6 +29151,15 @@
           "score": 1361.3,
           "score_label": "Arena",
           "entry_model": "vidu-q3-pro",
+          "component_count": 1
+        },
+        {
+          "ranking_id": "image-to-video",
+          "provider": "Artificial Analysis",
+          "rank": 15,
+          "score": 1064,
+          "score_label": "Elo",
+          "entry_model": "Vidu Q3 Pro",
           "component_count": 1
         }
       ],
@@ -26758,7 +29977,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 9,
-          "score": 1084,
+          "score": 1085,
           "score_label": "Elo",
           "entry_model": "Veo 3.1",
           "component_count": 1
@@ -26776,7 +29995,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 11,
-          "score": 1095,
+          "score": 1094,
           "score_label": "Elo",
           "entry_model": "Veo 3.1",
           "component_count": 1
@@ -27879,8 +31098,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 15,
-          "score": 1202,
+          "rank": 14,
+          "score": 1203,
           "score_label": "Elo",
           "entry_model": "FLUX.2 [max]",
           "component_count": 1
@@ -29574,6 +32793,206 @@
       ]
     },
     {
+      "id": "qwen-image",
+      "name": "Qwen-Image",
+      "organization": "Qwen Team",
+      "released_at": "2025-08-04",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "text-rendering"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "Apache-2.0",
+        "release_url": "https://qwenlm.github.io/blog/qwen-image/",
+        "weights_url": "https://huggingface.co/Qwen/Qwen-Image",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "20B MMDiT with frozen Qwen2.5-VL conditioning, joint image-video VAE, and MSRoPE",
+        "parameters": 20000000000,
+        "notes": "Qwen-Image unifies native bilingual text rendering and multi-task image generation. The VAE keeps a frozen Wan2.1-derived encoder and fine-tunes a specialized image decoder."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Qwen-Image VAE Text-Rich Corpus",
+            "catalog_id": "qwen-image-vae-text-rich-corpus",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": null,
+            "notes": "In-house PDFs, PowerPoint slides, posters, and synthetic paragraphs fine-tune only the image decoder."
+          },
+          {
+            "name": "Qwen-Image Pretraining Corpus",
+            "catalog_id": "qwen-image-pretraining-corpus",
+            "role": "pretraining",
+            "availability": "not-released",
+            "scale": null,
+            "notes": "The paper discloses a 55/27/13/5 percent Nature, Design, People, and controlled-synthetic distribution but no total sample count or source names."
+          },
+          {
+            "name": "Qwen-Image SFT Corpus",
+            "catalog_id": "qwen-image-sft-corpus",
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": null,
+            "notes": "Human-curated hierarchy targets realism, detail, editing, reconstruction, and other multi-task gaps; identities and size are absent."
+          },
+          {
+            "name": "Qwen-Image DPO Preferences",
+            "catalog_id": "qwen-image-dpo-preferences",
+            "role": "preference",
+            "availability": "not-released",
+            "scale": null,
+            "notes": "Annotators select best and worst seeded generations with and without gold reference images."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed",
+              "synthetic"
+            ],
+            "operations": [
+              "corrupted-file-filtering",
+              "resolution-filtering",
+              "near-deduplication",
+              "nsfw-filtering",
+              "clarity-and-color-filtering",
+              "bilingual-vlm-recaptioning",
+              "clip-alignment-filtering",
+              "text-language-balancing",
+              "text-rendering-synthesis",
+              "progressive-resolution-training"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Progress through seven curation stages, increasing data quality and resolution while introducing controlled text rendering from simple glyphs to realistic contexts and structured layouts."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed",
+              "human-feedback"
+            ],
+            "operations": [
+              "hierarchical-category-curation",
+              "human-annotation",
+              "multi-task-mixing",
+              "reference-conditioned-editing",
+              "image-reconstruction"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Supervise clear, detailed, bright, photorealistic examples across T2I, text-image-to-image editing, and image reconstruction tasks."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "synthetic",
+              "human-feedback"
+            ],
+            "operations": [
+              "multi-seed-generation",
+              "best-worst-ranking",
+              "reference-aware-ranking",
+              "direct-preference-optimization"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Build preferred and rejected generations per prompt through human best-worst selection, optionally comparing candidates with a gold image, then apply DPO."
+          }
+        ],
+        "strategy_summary": [
+          "Balance Nature, Design, People, and controlled synthetic rendering at roughly 55, 27, 13, and 5 percent.",
+          "Use raw, Qwen-VL recaptioned, and fused-caption splits, with seven progressive filtering and resolution stages.",
+          "Add multi-task SFT and human-ranked DPO without presenting evaluation benchmarks as training data."
+        ],
+        "unknowns": [
+          "Total pretraining, VAE, SFT, and DPO sample counts; source identities, licenses, rights, languages beyond the disclosed splits, and exact synthetic font/template provenance.",
+          "Component-level mixture weights inside raw, recaptioned, fused, SFT, editing, reconstruction, and preference data; training compute and released training files."
+        ]
+      },
+      "evidence": {
+        "release": "https://qwenlm.github.io/blog/qwen-image/",
+        "technical_report": "https://arxiv.org/abs/2508.02324",
+        "repository": "https://github.com/QwenLM/Qwen-Image"
+      },
+      "status": "partial",
+      "last_verified": "2026-08-03",
+      "source_path": "models/image/qwen-image.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "preference"
+        ],
+        "source_types": [
+          "undisclosed",
+          "synthetic",
+          "human-feedback"
+        ],
+        "operations": [
+          "corrupted-file-filtering",
+          "resolution-filtering",
+          "near-deduplication",
+          "nsfw-filtering",
+          "clarity-and-color-filtering",
+          "bilingual-vlm-recaptioning",
+          "clip-alignment-filtering",
+          "text-language-balancing",
+          "text-rendering-synthesis",
+          "progressive-resolution-training",
+          "hierarchical-category-curation",
+          "human-annotation",
+          "multi-task-mixing",
+          "reference-conditioned-editing",
+          "image-reconstruction",
+          "multi-seed-generation",
+          "best-worst-ranking",
+          "reference-aware-ranking",
+          "direct-preference-optimization"
+        ],
+        "data_reference_count": 4,
+        "linked_dataset_count": 4,
+        "scale_disclosed_stage_count": 0,
+        "stage_count": 3,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/Qwen/Qwen-Image?expand=lastModified&expand=sha"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "qwen-image-vae-text-rich-corpus",
+        "qwen-image-pretraining-corpus",
+        "qwen-image-sft-corpus",
+        "qwen-image-dpo-preferences"
+      ]
+    },
+    {
       "id": "wan-2-2",
       "name": "Wan2.2",
       "organization": "Wan Team, Alibaba",
@@ -31089,6 +34508,30 @@
       "reference_name": "GraphVid-Bench"
     },
     {
+      "model_id": "helios",
+      "dataset_id": "helios-ode-solution-pairs",
+      "role": "distillation",
+      "availability": "not-released",
+      "scale": "Described only as compact",
+      "reference_name": "Helios ODE Solution Pairs"
+    },
+    {
+      "model_id": "helios",
+      "dataset_id": "helios-training-corpus",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "0.8M clips shorter than ten seconds",
+      "reference_name": "Helios Training Corpus"
+    },
+    {
+      "model_id": "helios",
+      "dataset_id": "heliosbench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "240 prompts across 81, 240, 720, and 1,440-frame regimes",
+      "reference_name": "HeliosBench"
+    },
+    {
       "model_id": "holidubber",
       "dataset_id": "celebv-dub",
       "role": "evaluation",
@@ -31337,6 +34780,86 @@
       "reference_name": "Mage-Flow capability-routed RL prompt pools"
     },
     {
+      "model_id": "moroute",
+      "dataset_id": "ditto-1m",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "Retained contribution to stage 3 is not disclosed",
+      "reference_name": "Ditto-1M"
+    },
+    {
+      "model_id": "moroute",
+      "dataset_id": "effecterase",
+      "role": "fine-tuning",
+      "availability": "gated",
+      "scale": "Retained contribution to stage 3 is not disclosed",
+      "reference_name": "EffectErase Dataset"
+    },
+    {
+      "model_id": "moroute",
+      "dataset_id": "intelligentvbench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "Public multi-task unified-video benchmark; MoRoute evaluation subset details are not restated",
+      "reference_name": "IntelligentVBench"
+    },
+    {
+      "model_id": "moroute",
+      "dataset_id": "moroute-internal-t2v-corpus",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "Part of the 600K stage-2 T2V mixture; retained contribution is not separated",
+      "reference_name": "MoRoute Internal T2V Corpus"
+    },
+    {
+      "model_id": "moroute",
+      "dataset_id": "moroute-laion-2b-subset",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "9.9M image-text samples",
+      "reference_name": "MoRoute LAION-2B Stage-1 Subset"
+    },
+    {
+      "model_id": "moroute",
+      "dataset_id": "moroute-ue5-editing-pairs",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "Retained contribution to stage 3 is not disclosed",
+      "reference_name": "MoRoute UE5 Editing Pairs"
+    },
+    {
+      "model_id": "moroute",
+      "dataset_id": "openve-3m",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "Retained contribution to the 600K TV2V and 1M TIV2V stage-3 pools is not disclosed",
+      "reference_name": "OpenVE-3M"
+    },
+    {
+      "model_id": "moroute",
+      "dataset_id": "openve-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "431 video-edit pairs upstream",
+      "reference_name": "OpenVE-Bench"
+    },
+    {
+      "model_id": "moroute",
+      "dataset_id": "refvie-bench",
+      "role": "evaluation",
+      "availability": "public",
+      "scale": "32 source videos with 54 reference images upstream",
+      "reference_name": "RefVIE-Bench"
+    },
+    {
+      "model_id": "moroute",
+      "dataset_id": "vchitect-t2v-dataverse",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "Part of the 600K stage-2 T2V mixture; retained contribution is not separated",
+      "reference_name": "Vchitect T2V DataVerse"
+    },
+    {
       "model_id": "mova-720p",
       "dataset_id": "acav100m",
       "role": "pretraining",
@@ -31577,6 +35100,78 @@
       "reference_name": "Panda-70M"
     },
     {
+      "model_id": "qwen-image",
+      "dataset_id": "qwen-image-dpo-preferences",
+      "role": "preference",
+      "availability": "not-released",
+      "scale": null,
+      "reference_name": "Qwen-Image DPO Preferences"
+    },
+    {
+      "model_id": "qwen-image",
+      "dataset_id": "qwen-image-pretraining-corpus",
+      "role": "pretraining",
+      "availability": "not-released",
+      "scale": null,
+      "reference_name": "Qwen-Image Pretraining Corpus"
+    },
+    {
+      "model_id": "qwen-image",
+      "dataset_id": "qwen-image-sft-corpus",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": null,
+      "reference_name": "Qwen-Image SFT Corpus"
+    },
+    {
+      "model_id": "qwen-image",
+      "dataset_id": "qwen-image-vae-text-rich-corpus",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": null,
+      "reference_name": "Qwen-Image VAE Text-Rich Corpus"
+    },
+    {
+      "model_id": "qwen-image-sp",
+      "dataset_id": "context-scaling-30k-evaluation-pairs",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "30,000 paired images",
+      "reference_name": "Context Scaling 30K Evaluation Pairs"
+    },
+    {
+      "model_id": "qwen-image-sp",
+      "dataset_id": "context-scaling-cold-start-corpus",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "50,182 unique examples retained from 172,208 candidates",
+      "reference_name": "Context Scaling Cold-Start Corpus"
+    },
+    {
+      "model_id": "qwen-image-sp",
+      "dataset_id": "context-scaling-prompter-sft-corpus",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "Approximately 333,000 examples and 0.97B tokens",
+      "reference_name": "Context Scaling Prompter SFT Corpus"
+    },
+    {
+      "model_id": "qwen-image-sp",
+      "dataset_id": "context-scaling-rft-pairs",
+      "role": "distillation",
+      "availability": "not-released",
+      "scale": "10,003 original caption-image pairs plus generated rollouts",
+      "reference_name": "Context Scaling RFT Pairs"
+    },
+    {
+      "model_id": "qwen-image-sp",
+      "dataset_id": "context-scaling-sp-nl-corpus",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": null,
+      "reference_name": "Context Scaling SP/NL Image Corpus"
+    },
+    {
       "model_id": "remind",
       "dataset_id": "dl3dv-10k",
       "role": "fine-tuning",
@@ -31655,6 +35250,54 @@
       "availability": "public",
       "scale": "235 prompts and 3,009 generated examples",
       "reference_name": "AVGen-Bench"
+    },
+    {
+      "model_id": "sefi-image",
+      "dataset_id": "fine-t2i",
+      "role": "fine-tuning",
+      "availability": "public",
+      "scale": "Retained contribution to the 9M continual-training mixture is not disclosed",
+      "reference_name": "Fine-T2I"
+    },
+    {
+      "model_id": "sefi-image",
+      "dataset_id": "sefi-image-continual-training-mixture",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "9M image-text samples",
+      "reference_name": "SeFi-Image Continual-Training Mixture"
+    },
+    {
+      "model_id": "sefi-image",
+      "dataset_id": "sefi-image-diffusionnft-prompt-pool",
+      "role": "preference",
+      "availability": "not-released",
+      "scale": "400 prompt groups and 4,800 generated images per online iteration",
+      "reference_name": "SeFi-Image DiffusionNFT Prompt Pool"
+    },
+    {
+      "model_id": "sefi-image",
+      "dataset_id": "sefi-image-internal-pretraining-corpus",
+      "role": "pretraining",
+      "availability": "not-released",
+      "scale": "450M recaptioned image-text pairs",
+      "reference_name": "SeFi-Image Internal Pretraining Corpus"
+    },
+    {
+      "model_id": "sefi-image",
+      "dataset_id": "sefi-image-sft-corpus",
+      "role": "fine-tuning",
+      "availability": "not-released",
+      "scale": "Approximately 650K images, including 200K Chinese text-rich images",
+      "reference_name": "SeFi-Image SFT Corpus"
+    },
+    {
+      "model_id": "sefi-image",
+      "dataset_id": "sefi-image-synthetic-text-rendered-corpus",
+      "role": "pretraining",
+      "availability": "not-released",
+      "scale": "28M pairs, comprising 8M plain-text and 20M structured-layout samples",
+      "reference_name": "SeFi-Image Synthetic Text-Rendered Corpus"
     },
     {
       "model_id": "shadowdancer",
@@ -32103,6 +35746,20 @@
       "notes": "The paper names DL3DV as the static-scene source; no released row-level mapping is available."
     },
     {
+      "source_dataset_id": "fine-t2i",
+      "derived_dataset_id": "sefi-image-continual-training-mixture",
+      "relationship": "source-component",
+      "contribution": "Public high-quality image-text examples",
+      "notes": "Fine-T2I is explicitly named, but its retained count and mixture share are not disclosed."
+    },
+    {
+      "source_dataset_id": "helios-training-corpus",
+      "derived_dataset_id": "helios-ode-solution-pairs",
+      "relationship": "transformed-derivative",
+      "contribution": "Text conditioning and real historical context for teacher generation",
+      "notes": "Helios-Mid is trained on the real corpus before producing ODE solution targets for the distilled stage."
+    },
+    {
       "source_dataset_id": "id-v2v-luxpostfacto-olat-subset",
       "derived_dataset_id": "id-v2v-face-relighting-pairs",
       "relationship": "source-component",
@@ -32129,6 +35786,13 @@
       "relationship": "filtered-subset",
       "contribution": "Original web-image URLs and metadata lineage",
       "notes": "LAION-COCO recaptioning and aesthetic filtering add derived annotations but do not replace upstream media rights."
+    },
+    {
+      "source_dataset_id": "laion-5b",
+      "derived_dataset_id": "moroute-laion-2b-subset",
+      "relationship": "filtered-subset",
+      "contribution": "LAION-2B component image URLs, alt text, and metadata",
+      "notes": "LAION-2B is a named component of the broader LAION-5B release; MoRoute does not publish its retained identifiers."
     },
     {
       "source_dataset_id": "miradata",
@@ -32220,6 +35884,13 @@
       "relationship": "source-component",
       "contribution": "General human-related source videos and metadata",
       "notes": "The public TalkVerse metadata exposes a Panda-70M partition of approximately 1.34M rows after TalkVerse-specific filtering and annotation."
+    },
+    {
+      "source_dataset_id": "sefi-image-internal-pretraining-corpus",
+      "derived_dataset_id": "sefi-image-synthetic-text-rendered-corpus",
+      "relationship": "transformed-derivative",
+      "contribution": "English and Chinese dense and short text sampled for plain rendering",
+      "notes": "Part 1 draws text from all four caption variants of the 450M recaptioned corpus."
     },
     {
       "source_dataset_id": "senorita-2m",
@@ -34185,7 +37856,7 @@
           "model": "GPT Image 2 (high)",
           "score": 1259,
           "confidence_interval": "-7/7",
-          "samples": 16854,
+          "samples": 16890,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34207,7 +37878,7 @@
           "model": "GPT Image 1.5 (high)",
           "score": 1254,
           "confidence_interval": "-7/7",
-          "samples": 10348,
+          "samples": 10372,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34229,7 +37900,7 @@
           "model": "MAI-Image-2.5",
           "score": 1253,
           "confidence_interval": "-9/9",
-          "samples": 9812,
+          "samples": 9847,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34251,7 +37922,7 @@
           "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
           "score": 1247,
           "confidence_interval": "-7/7",
-          "samples": 11296,
+          "samples": 11319,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34271,9 +37942,9 @@
           "rank": 5,
           "creator": "Bytedance",
           "model": "Seedream 5.0 Pro",
-          "score": 1240,
+          "score": 1241,
           "confidence_interval": "-11/11",
-          "samples": 2817,
+          "samples": 2833,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34295,7 +37966,7 @@
           "model": "Nano Banana Pro (Gemini 3 Pro Image)",
           "score": 1240,
           "confidence_interval": "-7/7",
-          "samples": 9667,
+          "samples": 9697,
           "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34317,7 +37988,7 @@
           "model": "MAI-Image-2.5-Flash",
           "score": 1232,
           "confidence_interval": "-9/9",
-          "samples": 4413,
+          "samples": 4440,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34339,7 +38010,7 @@
           "model": "grok-imagine-image-quality",
           "score": 1231,
           "confidence_interval": "-8/8",
-          "samples": 8879,
+          "samples": 8907,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34361,7 +38032,7 @@
           "model": "HunyuanImage 3.0 Instruct (Fal)",
           "score": 1223,
           "confidence_interval": "-8/8",
-          "samples": 8552,
+          "samples": 8557,
           "released": "Jan 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -34381,9 +38052,9 @@
           "rank": 10,
           "creator": "Luma Labs",
           "model": "Luma UNI 1 Max",
-          "score": 1221,
+          "score": 1222,
           "confidence_interval": "-9/9",
-          "samples": 5651,
+          "samples": 5681,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34405,7 +38076,7 @@
           "model": "Kling Image 3.0 Omni",
           "score": 1215,
           "confidence_interval": "-7/7",
-          "samples": 8393,
+          "samples": 8402,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34427,7 +38098,7 @@
           "model": "grok-imagine-image",
           "score": 1214,
           "confidence_interval": "-8/8",
-          "samples": 8753,
+          "samples": 8763,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34445,33 +38116,11 @@
         },
         {
           "rank": 13,
-          "creator": "HiDream",
-          "model": "HiDream-O1-Image",
-          "score": 1203,
-          "confidence_interval": "-9/9",
-          "samples": 5886,
-          "released": "May 2026",
-          "open_weights": true,
-          "license": "Open weights",
-          "component_models": [],
-          "components": [
-            {
-              "name": "HiDream-O1-Image",
-              "model_id": "hidream-o1-image"
-            }
-          ],
-          "model_ids": [
-            "hidream-o1-image"
-          ],
-          "model_id": "hidream-o1-image"
-        },
-        {
-          "rank": 14,
           "creator": "KlingAI",
           "model": "Kling Image 3.0",
           "score": 1203,
           "confidence_interval": "-8/8",
-          "samples": 8036,
+          "samples": 8045,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34488,12 +38137,12 @@
           "model_id": "kling-3"
         },
         {
-          "rank": 15,
+          "rank": 14,
           "creator": "Black Forest Labs",
           "model": "FLUX.2 [max]",
-          "score": 1202,
+          "score": 1203,
           "confidence_interval": "-8/8",
-          "samples": 8766,
+          "samples": 8799,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34508,6 +38157,28 @@
             "flux-2-max"
           ],
           "model_id": "flux-2-max"
+        },
+        {
+          "rank": 15,
+          "creator": "HiDream",
+          "model": "HiDream-O1-Image",
+          "score": 1202,
+          "confidence_interval": "-9/9",
+          "samples": 5907,
+          "released": "May 2026",
+          "open_weights": true,
+          "license": "Open weights",
+          "component_models": [],
+          "components": [
+            {
+              "name": "HiDream-O1-Image",
+              "model_id": "hidream-o1-image"
+            }
+          ],
+          "model_ids": [
+            "hidream-o1-image"
+          ],
+          "model_id": "hidream-o1-image"
         }
       ]
     },
@@ -34526,9 +38197,9 @@
           "rank": 1,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
-          "score": 1196,
+          "score": 1195,
           "confidence_interval": "-8/8",
-          "samples": 10812,
+          "samples": 11065,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34549,8 +38220,8 @@
           "creator": "Google",
           "model": "Gemini Omni Flash",
           "score": 1192,
-          "confidence_interval": "-10/10",
-          "samples": 5195,
+          "confidence_interval": "-9/9",
+          "samples": 5453,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34570,9 +38241,9 @@
           "rank": 3,
           "creator": "MiniMax",
           "model": "MiniMax H3",
-          "score": 1186,
+          "score": 1187,
           "confidence_interval": "-10/10",
-          "samples": 5229,
+          "samples": 5314,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34594,7 +38265,7 @@
           "model": "grok-imagine-video-1.5",
           "score": 1114,
           "confidence_interval": "-9/9",
-          "samples": 4418,
+          "samples": 4508,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34614,9 +38285,9 @@
           "rank": 5,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.1",
-          "score": 1108,
+          "score": 1106,
           "confidence_interval": "-9/9",
-          "samples": 5590,
+          "samples": 5838,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34636,9 +38307,9 @@
           "rank": 6,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "score": 1093,
+          "score": 1092,
           "confidence_interval": "-9/9",
-          "samples": 3742,
+          "samples": 3818,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34658,9 +38329,9 @@
           "rank": 7,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.0",
-          "score": 1091,
+          "score": 1092,
           "confidence_interval": "-8/8",
-          "samples": 7079,
+          "samples": 7143,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34682,7 +38353,7 @@
           "model": "SkyReels V4",
           "score": 1087,
           "confidence_interval": "-9/9",
-          "samples": 4039,
+          "samples": 4107,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34702,9 +38373,9 @@
           "rank": 9,
           "creator": "Google",
           "model": "Veo 3.1",
-          "score": 1084,
+          "score": 1085,
           "confidence_interval": "-8/8",
-          "samples": 7365,
+          "samples": 7418,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34724,9 +38395,9 @@
           "rank": 10,
           "creator": "SpaceXAI",
           "model": "grok-imagine-video",
-          "score": 1079,
+          "score": 1078,
           "confidence_interval": "-7/7",
-          "samples": 10291,
+          "samples": 10508,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34748,7 +38419,7 @@
           "model": "Veo 3.1 Fast",
           "score": 1076,
           "confidence_interval": "-7/7",
-          "samples": 9417,
+          "samples": 9617,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34768,9 +38439,9 @@
           "rank": 12,
           "creator": "KlingAI",
           "model": "Kling 3.0 1080p (Pro)",
-          "score": 1073,
+          "score": 1072,
           "confidence_interval": "-7/7",
-          "samples": 9969,
+          "samples": 10181,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34790,9 +38461,9 @@
           "rank": 13,
           "creator": "PixVerse",
           "model": "PixVerse V6",
-          "score": 1069,
+          "score": 1068,
           "confidence_interval": "-8/8",
-          "samples": 8645,
+          "samples": 8692,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34812,9 +38483,9 @@
           "rank": 14,
           "creator": "KlingAI",
           "model": "Kling 3.0 720p (Standard)",
-          "score": 1067,
+          "score": 1066,
           "confidence_interval": "-7/7",
-          "samples": 9914,
+          "samples": 10124,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -34832,25 +38503,25 @@
         },
         {
           "rank": 15,
-          "creator": "Google",
-          "model": "Veo 3.1 Lite",
+          "creator": "Vidu",
+          "model": "Vidu Q3 Pro",
           "score": 1064,
-          "confidence_interval": "-8/8",
-          "samples": 6695,
-          "released": "Mar 2026",
+          "confidence_interval": "-7/7",
+          "samples": 10617,
+          "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": [],
           "components": [
             {
-              "name": "Veo 3.1 Lite",
-              "model_id": "veo-3-1-lite"
+              "name": "Vidu Q3 Pro",
+              "model_id": "vidu-q3-pro"
             }
           ],
           "model_ids": [
-            "veo-3-1-lite"
+            "vidu-q3-pro"
           ],
-          "model_id": "veo-3-1-lite"
+          "model_id": "vidu-q3-pro"
         }
       ]
     },
@@ -35212,9 +38883,9 @@
           "rank": 1,
           "creator": "Google",
           "model": "Gemini Omni Flash",
-          "score": 1245,
+          "score": 1244,
           "confidence_interval": "-8/8",
-          "samples": 9366,
+          "samples": 9660,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35236,7 +38907,7 @@
           "model": "MiniMax H3",
           "score": 1239,
           "confidence_interval": "-10/10",
-          "samples": 5731,
+          "samples": 5864,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35256,9 +38927,9 @@
           "rank": 3,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
-          "score": 1223,
+          "score": 1224,
           "confidence_interval": "-6/6",
-          "samples": 16138,
+          "samples": 16379,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35280,7 +38951,7 @@
           "model": "Wan2.7-260612",
           "score": 1160,
           "confidence_interval": "-7/7",
-          "samples": 9888,
+          "samples": 10166,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35302,7 +38973,7 @@
           "model": "HappyHorse-1.1",
           "score": 1149,
           "confidence_interval": "-7/7",
-          "samples": 10188,
+          "samples": 10478,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35322,9 +38993,9 @@
           "rank": 6,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.0",
-          "score": 1126,
+          "score": 1127,
           "confidence_interval": "-7/7",
-          "samples": 8165,
+          "samples": 8209,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35346,7 +39017,7 @@
           "model": "Kling 3.0 1080p (Pro)",
           "score": 1111,
           "confidence_interval": "-6/6",
-          "samples": 14811,
+          "samples": 15036,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35366,9 +39037,9 @@
           "rank": 8,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "score": 1109,
+          "score": 1108,
           "confidence_interval": "-8/8",
-          "samples": 4668,
+          "samples": 4716,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35390,7 +39061,7 @@
           "model": "SkyReels V4",
           "score": 1108,
           "confidence_interval": "-8/8",
-          "samples": 5144,
+          "samples": 5193,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35412,7 +39083,7 @@
           "model": "Kling 3.0 720p (Standard)",
           "score": 1101,
           "confidence_interval": "-6/6",
-          "samples": 14302,
+          "samples": 14515,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35432,9 +39103,9 @@
           "rank": 11,
           "creator": "Google",
           "model": "Veo 3.1",
-          "score": 1095,
+          "score": 1094,
           "confidence_interval": "-7/7",
-          "samples": 8373,
+          "samples": 8394,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35453,32 +39124,10 @@
         {
           "rank": 12,
           "creator": "KlingAI",
-          "model": "Kling 3.0 Omni 1080p (Pro)",
-          "score": 1093,
-          "confidence_interval": "-7/7",
-          "samples": 8139,
-          "released": "Feb 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "Kling 3.0 Omni 1080p (Pro)",
-              "model_id": "kling-3"
-            }
-          ],
-          "model_ids": [
-            "kling-3"
-          ],
-          "model_id": "kling-3"
-        },
-        {
-          "rank": 13,
-          "creator": "KlingAI",
           "model": "Kling 3.0 Omni 720p (Standard)",
           "score": 1092,
           "confidence_interval": "-7/7",
-          "samples": 7986,
+          "samples": 8016,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35495,12 +39144,34 @@
           "model_id": "kling-3"
         },
         {
+          "rank": 13,
+          "creator": "KlingAI",
+          "model": "Kling 3.0 Omni 1080p (Pro)",
+          "score": 1092,
+          "confidence_interval": "-7/7",
+          "samples": 8170,
+          "released": "Feb 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Kling 3.0 Omni 1080p (Pro)",
+              "model_id": "kling-3"
+            }
+          ],
+          "model_ids": [
+            "kling-3"
+          ],
+          "model_id": "kling-3"
+        },
+        {
           "rank": 14,
           "creator": "Google",
           "model": "Veo 3.1 Fast",
           "score": 1091,
           "confidence_interval": "-6/6",
-          "samples": 13528,
+          "samples": 13718,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35522,7 +39193,7 @@
           "model": "Veo 3.1 Lite",
           "score": 1090,
           "confidence_interval": "-7/7",
-          "samples": 7786,
+          "samples": 7829,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35555,9 +39226,9 @@
           "rank": 1,
           "creator": "MiniMax",
           "model": "MiniMax H3",
-          "score": 1130,
-          "confidence_interval": "-7/7",
-          "samples": 5095,
+          "score": 1129,
+          "confidence_interval": "-6/6",
+          "samples": 7923,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35579,7 +39250,7 @@
           "model": "Gemini Omni Flash",
           "score": 1122,
           "confidence_interval": "-6/6",
-          "samples": 10270,
+          "samples": 10800,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35601,7 +39272,7 @@
           "model": "HappyHorse-1.0",
           "score": 1096,
           "confidence_interval": "-5/5",
-          "samples": 17822,
+          "samples": 18363,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35623,7 +39294,7 @@
           "model": "Wan 2.7",
           "score": 1080,
           "confidence_interval": "-5/5",
-          "samples": 13635,
+          "samples": 14137,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35643,9 +39314,9 @@
           "rank": 5,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
-          "score": 1035,
+          "score": 1037,
           "confidence_interval": "-5/5",
-          "samples": 17594,
+          "samples": 18161,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35667,7 +39338,7 @@
           "model": "Aleph 2.0",
           "score": 1011,
           "confidence_interval": "-5/5",
-          "samples": 17260,
+          "samples": 17720,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35689,7 +39360,7 @@
           "model": "Kling 3.0 Omni 1080p (Pro)",
           "score": 1000,
           "confidence_interval": "0/0",
-          "samples": 16158,
+          "samples": 16475,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -35709,9 +39380,9 @@
           "rank": 8,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "score": 950,
+          "score": 952,
           "confidence_interval": "-6/6",
-          "samples": 14263,
+          "samples": 14376,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",

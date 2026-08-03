@@ -1,0 +1,68 @@
+id: moroute-laion-2b-subset
+name: MoRoute LAION-2B Stage-1 Subset
+organization: MoRoute authors
+released_at: "2026-07-31"
+release_date_source: https://arxiv.org/abs/2607.29545
+modality: image
+tasks:
+  - image-text-pretraining
+  - text-to-image
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  An unreleased 9.9M-sample subset of LAION-2B used to align MoRoute's condition
+  interface with the frozen video diffusion backbone at 512-pixel resolution.
+derived_from:
+  - catalog_id: laion-5b
+    relationship: filtered-subset
+    contribution: LAION-2B component image URLs, alt text, and metadata
+    notes: LAION-2B is a named component of the broader LAION-5B release; MoRoute does not publish its retained identifiers.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/html/2607.29545
+  requires_account: false
+  notes: The paper gives the retained count but no sample manifest, selection query, files, or request path.
+scale:
+  samples: 9900000
+  source_items: null
+  hours: null
+  approximate: false
+  notes: MoRoute trains two epochs over 9.9M samples at 512x512; the unique upstream URL count before filtering is not reported.
+annotations:
+  types:
+    - alt-text
+    - image-url
+    - interface-conditioning
+  source: web-metadata
+  languages:
+    - en
+license:
+  metadata: Not stated for the subset; upstream LAION metadata terms apply
+  media: Original rightsholder terms apply to linked images
+  commercial_use: review-required
+  redistribution: review-required
+  notes: MoRoute publishes no subset license, and LAION metadata does not relicense the underlying web media.
+quality:
+  dimensions:
+    - text-media-alignment
+    - visual-quality
+    - provenance
+    - deduplication
+    - safety
+  known_limitations:
+    - Selection rules, URL identifiers, filtering, deduplication, safety review, and rights checks are not disclosed.
+    - Web alt text and imagery can contain noise, bias, unsafe material, and dead links.
+    - The subset cannot be reconstructed from the headline sample count alone.
+processing:
+  recipe: Select 9.9M examples from LAION-2B, resize or crop to 512x512, and train the condition interface for two epochs while keeping the diffusion transformer frozen.
+  recommended_format: parquet
+  notes: A release should provide URL and metadata hashes, LAION source shard, filter decisions, deduplication clusters, media availability, and split membership.
+evidence:
+  homepage: https://orange-3dv-team.github.io/MoRoute/
+  paper: https://arxiv.org/abs/2607.29545
+  used_by:
+    - MoRoute
+status: partial
+last_verified: "2026-08-03"

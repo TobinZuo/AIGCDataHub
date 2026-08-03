@@ -1,0 +1,72 @@
+id: sefi-image-synthetic-text-rendered-corpus
+name: SeFi-Image Synthetic Text-Rendered Corpus
+organization: SeFi-Team
+released_at: "2026-06-21"
+release_date_source: https://arxiv.org/abs/2606.22568
+modality: image
+tasks:
+  - text-to-image
+  - text-rendering
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  An unreleased 28M-pair synthetic curriculum covering bilingual plain-text canvases
+  and multi-block structured layouts with deterministic character supervision.
+derived_from:
+  - catalog_id: sefi-image-internal-pretraining-corpus
+    relationship: transformed-derivative
+    contribution: English and Chinese dense and short text sampled for plain rendering
+    notes: Part 1 draws text from all four caption variants of the 450M recaptioned corpus.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2606.22568v1
+  requires_account: false
+  notes: Examples and construction details are public, but no generated files, renderer assets, manifest, or release schedule is provided.
+scale:
+  samples: 28000000
+  source_items: null
+  hours: null
+  approximate: false
+  notes: 8M plain samples use four balanced 2M caption buckets; 20M layouts comprise 8M Chinese, 8M English, and 4M mixed-language samples.
+annotations:
+  types:
+    - exact-text
+    - language
+    - bounding-box
+    - layout-role
+    - position
+    - color
+    - relative-size
+  source: model-generated
+  languages:
+    - en
+    - zh
+    - mixed
+license:
+  metadata: Not stated
+  media: Not stated for fonts, templates, or generated images
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The paper does not identify font assets, licenses, renderer dependencies, or dataset redistribution terms.
+quality:
+  dimensions:
+    - text-media-alignment
+    - visual-quality
+    - provenance
+  known_limitations:
+    - Synthetic layouts do not match the full distribution of real posters, interfaces, slides, or commercial design.
+    - Font and template provenance and rights are undisclosed.
+    - Text sampled from model-generated captions inherits their lexical and cultural distribution.
+processing:
+  recipe: Render 8M single text blocks on 512x512 plain backgrounds, generate 20M multi-role layouts around 1024 squared pixels across five aspect ratios, and enforce exact character alignment, overflow checks, and bounding-box validation.
+  recommended_format: native
+  notes: Preserve text source, language bucket, font and license, template seed, bounding boxes, render parameters, validation results, and prompt-image checksum.
+evidence:
+  homepage: https://huggingface.co/SeFi-Image/SeFi-Image-5B-Base
+  paper: https://arxiv.org/abs/2606.22568
+  used_by:
+    - SeFi-Image
+status: partial
+last_verified: "2026-08-03"

@@ -62,13 +62,13 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /aria-pressed="true">中/);
   assert.match(html, /aria-pressed="false">EN/);
   assert.match(html, /最近核验/);
-  assert.match(html, /核验<!-- --> <!-- -->2026\/08\/02/);
-  assert.match(html, /Wonder/);
+  assert.match(html, /核验<!-- --> <!-- -->2026\/08\/03/);
+  assert.match(html, /MoRoute/);
   assert.match(html, /Seedance 2\.5/);
   assert.match(html, /InstructAV2AV/);
   assert.match(html, /ID-V2V/);
   assert.match(html, /JoyFox LiveTalk-DH 1\.3B/);
-  assert.match(html, /发布<!-- --> <!-- -->2026\/07\/28/);
+  assert.match(html, /发布<!-- --> <!-- -->2026\/07\/31/);
   assert.match(html, /部分披露/);
   assert.match(html, /ReMind 5B/);
   assert.ok(html.includes('open_weights\\\":true'));
@@ -317,7 +317,16 @@ test("uses generated catalog data and removes starter preview assets", async () 
         .filter((dataset) => dataset.released_at === newestDatasetDate)
         .map((dataset) => dataset.id),
     ),
-    new Set(["shadow-library", "remind1m", "mpie-bench"]),
+    new Set([
+      "context-scaling-30k-evaluation-pairs",
+      "context-scaling-cold-start-corpus",
+      "context-scaling-prompter-sft-corpus",
+      "context-scaling-rft-pairs",
+      "context-scaling-sp-nl-corpus",
+      "moroute-internal-t2v-corpus",
+      "moroute-laion-2b-subset",
+      "moroute-ue5-editing-pairs",
+    ]),
   );
   const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
   assert.ok(parsedCatalog.models.every((model) => model.monitoring));

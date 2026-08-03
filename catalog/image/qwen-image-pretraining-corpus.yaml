@@ -1,0 +1,72 @@
+id: qwen-image-pretraining-corpus
+name: Qwen-Image Pretraining Corpus
+organization: Qwen Team
+released_at: "2025-08-04"
+release_date_source: https://arxiv.org/abs/2508.02324
+modality: image
+tasks:
+  - image-text-pretraining
+  - text-to-image
+  - text-rendering
+stages:
+  - pretraining
+  - data-curation
+description: >-
+  The unreleased Qwen-Image pretraining mixture spanning natural imagery, design,
+  people, and controlled synthetic text rendering under seven curation stages.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2508.02324
+  requires_account: false
+  notes: The report discloses proportions and processing but no source names, total scale, manifest, files, or access mechanism.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: true
+  notes: Nature is about 55 percent, Design 27 percent, People 13 percent, and controlled synthetic rendering 5 percent; total samples are absent.
+annotations:
+  types:
+    - raw-caption
+    - vlm-recaption
+    - fused-caption
+    - structured-metadata
+    - visible-text
+    - domain
+    - image-quality
+  source: mixed
+  languages:
+    - en
+    - zh
+    - multilingual
+license:
+  metadata: Not stated
+  media: Not stated
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Apache-2.0 covers released model artifacts, not the unidentified training media, captions, fonts, or templates.
+quality:
+  dimensions:
+    - visual-quality
+    - aesthetics
+    - text-media-alignment
+    - watermark
+    - safety
+    - deduplication
+    - provenance
+  known_limitations:
+    - Source identities, scale, licenses, rights, and item-level provenance are undisclosed.
+    - Qwen-VL recaptioning and automated filters can introduce semantic errors and selection bias.
+    - Exact thresholds, deduplication method, and component mixture weights beyond four headline domains are absent.
+processing:
+  recipe: Remove broken, small, low-resolution, duplicate, NSFW, blurry, extreme-luma, saturated, low-entropy, and noisy-texture media; split raw, recaptioned, and fused captions; balance image-text languages; introduce controlled rendering; raise resolution and aesthetics; patch weak domains; remove mosaicked faces; and train progressively across resolution stages.
+  recommended_format: parquet
+  notes: Preserve original sources and rights, captions, structured annotations, every filter decision, deduplication cluster, synthetic recipe, domain bucket, and stage membership.
+evidence:
+  homepage: https://qwenlm.github.io/blog/qwen-image/
+  paper: https://arxiv.org/abs/2508.02324
+  used_by:
+    - Qwen-Image
+status: partial
+last_verified: "2026-08-03"

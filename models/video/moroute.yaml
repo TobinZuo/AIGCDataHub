@@ -1,0 +1,127 @@
+id: moroute
+name: MoRoute
+organization: Sun Yat-sen University, Orange 3DV Team, Moku Lab, and HUJING
+released_at: "2026-07-31"
+modalities:
+  - video
+tasks:
+  - text-to-video
+  - image-to-video
+  - video-to-video
+  - video-editing
+  - reference-to-video
+access:
+  status: announced
+  license: Paper is available under the arXiv non-exclusive license; code, weights, API, and model license are not released
+  release_url: https://orange-3dv-team.github.io/MoRoute/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Frozen Qwen3.5 router and Wan2.1-T2V-14B diffusion transformer with a learned condition interface
+  parameters: 1890000000
+  notes: >-
+    The condition interface routes interleaved text, image, and video evidence into frozen
+    Wan2.1 blocks while Qwen3.5-9B extracts key concepts. The complete frozen-plus-trainable
+    footprint is larger than the reported 1.89B trainable component.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: MoRoute LAION-2B Stage-1 Subset
+      catalog_id: moroute-laion-2b-subset
+      role: fine-tuning
+      availability: not-released
+      scale: 9.9M image-text samples
+      notes: A retained LAION-2B subset is used for two 512-pixel interface-alignment epochs; selection rules and identifiers are not released.
+    - name: Vchitect T2V DataVerse
+      catalog_id: vchitect-t2v-dataverse
+      role: fine-tuning
+      availability: public
+      scale: Part of the 600K stage-2 T2V mixture; retained contribution is not separated
+      notes: All retained clips are recaptioned for MoRoute training.
+    - name: MoRoute Internal T2V Corpus
+      catalog_id: moroute-internal-t2v-corpus
+      role: fine-tuning
+      availability: not-released
+      scale: Part of the 600K stage-2 T2V mixture; retained contribution is not separated
+      notes: No collection source, license, or standalone count is disclosed.
+    - name: OpenVE-3M
+      catalog_id: openve-3m
+      role: fine-tuning
+      availability: public
+      scale: Retained contribution to the 600K TV2V and 1M TIV2V stage-3 pools is not disclosed
+      notes: The paper names OpenVE among its paired video-editing sources.
+    - name: Ditto-1M
+      catalog_id: ditto-1m
+      role: fine-tuning
+      availability: public
+      scale: Retained contribution to stage 3 is not disclosed
+      notes: Used as a public instruction-guided video-editing triplet source.
+    - name: EffectErase Dataset
+      catalog_id: effecterase
+      role: fine-tuning
+      availability: gated
+      scale: Retained contribution to stage 3 is not disclosed
+      notes: The paper cites EffectErase/VOR for object removal and insertion pairs.
+    - name: MoRoute UE5 Editing Pairs
+      catalog_id: moroute-ue5-editing-pairs
+      role: fine-tuning
+      availability: not-released
+      scale: Retained contribution to stage 3 is not disclosed
+      notes: Synthetic character-replacement pairs are rendered in Unreal Engine 5; assets and exact count are not published.
+    - name: IntelligentVBench
+      catalog_id: intelligentvbench
+      role: evaluation
+      availability: public
+      scale: Public multi-task unified-video benchmark; MoRoute evaluation subset details are not restated
+      notes: Kept separate from training sources.
+    - name: OpenVE-Bench
+      catalog_id: openve-bench
+      role: evaluation
+      availability: public
+      scale: 431 video-edit pairs upstream
+      notes: Kept separate from OpenVE-3M training relations.
+    - name: RefVIE-Bench
+      catalog_id: refvie-bench
+      role: evaluation
+      availability: public
+      scale: 32 source videos with 54 reference images upstream
+      notes: Used only for reference-guided video-editing evaluation.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - public-dataset
+        - proprietary
+        - synthetic
+      operations:
+        - vlm-recaptioning
+        - endpoint-frame-conditioning
+        - key-concept-extraction
+        - segmentation
+        - cross-frame-reference-construction
+        - synthetic-pair-generation
+      scale_disclosed: true
+      strategy: >-
+        Progress from 9.9M image-text alignment examples to 600K recaptioned T2V clips,
+        then train two epochs on a 20/20/30/30 mixture of 600K T2V, 600K TI2V,
+        600K TV2V, and 1M TIV2V examples.
+  strategy_summary:
+    - Freeze Qwen3.5-9B and Wan2.1-T2V-14B while learning a modality-routing condition interface.
+    - Recaption every stage-2 clip and use key concepts, masks, endpoints, and cross-frame references to normalize heterogeneous stage-3 tasks.
+    - Keep IntelligentVBench, OpenVE-Bench, and RefVIE-Bench evaluation-only.
+  unknowns:
+    - Weights, code, API, model license, training compute, optimizer details beyond the paper tables, and release schedule.
+    - Exact contribution and sampling weights of Vchitect, internal video, OpenVE, Ditto, EffectErase, and UE5 sources inside each headline pool.
+    - Internal-video collection sources and rights, UE5 asset provenance and license, safety filtering, deduplication, and person/identity handling.
+    - Complete inherited training-data lineage of Qwen3.5-9B and Wan2.1-T2V-14B.
+evidence:
+  release: https://orange-3dv-team.github.io/MoRoute/
+  technical_report: https://arxiv.org/abs/2607.29545
+  repository: null
+status: watch
+last_verified: "2026-08-03"

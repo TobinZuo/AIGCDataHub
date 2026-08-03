@@ -296,7 +296,16 @@ class CatalogTests(unittest.TestCase):
         newest_ids = {card["id"] for card in datasets if card["released_at"] == newest_date}
         self.assertEqual(
             newest_ids,
-            {"shadow-library", "remind1m", "mpie-bench"},
+            {
+                "context-scaling-30k-evaluation-pairs",
+                "context-scaling-cold-start-corpus",
+                "context-scaling-prompter-sft-corpus",
+                "context-scaling-rft-pairs",
+                "context-scaling-sp-nl-corpus",
+                "moroute-internal-t2v-corpus",
+                "moroute-laion-2b-subset",
+                "moroute-ue5-editing-pairs",
+            },
         )
 
     def test_site_catalog_orders_models_by_release_date(self) -> None:
@@ -307,7 +316,7 @@ class CatalogTests(unittest.TestCase):
         newest_ids = {card["id"] for card in models if card["released_at"] == newest_date}
         self.assertEqual(
             newest_ids,
-            {"minimax-h3", "seedance-2-5"},
+            {"minimax-h3", "moroute", "qwen-image-sp", "seedance-2-5"},
         )
 
     def test_every_ranking_top_fifteen_entry_maps_to_a_model_card(self) -> None:

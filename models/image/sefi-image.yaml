@@ -1,0 +1,153 @@
+id: sefi-image
+name: SeFi-Image
+organization: SeFi-Team
+released_at: "2026-06-21"
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - text-rendering
+  - text-to-image-reinforcement-learning
+access:
+  status: gated-weights
+  license: CC-BY-NC-4.0 non-commercial gated checkpoint agreement
+  release_url: https://huggingface.co/SeFi-Image/SeFi-Image-5B-Base
+  weights_url: https://huggingface.co/SeFi-Image/SeFi-Image-5B-Base
+  api_url: null
+architecture:
+  family: Semantic-First Diffusion with asynchronous semantic and texture latent streams
+  parameters: 5000000000
+  notes: >-
+    The family provides 1B, 2B, and 5B Base and four-step Turbo variants plus a 5B RL
+    checkpoint. It combines a fine-tuned FLUX.2 texture VAE, a semantic VAE over frozen
+    visual features, and Qwen3-VL text encoders.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: SeFi-Image Internal Pretraining Corpus
+      catalog_id: sefi-image-internal-pretraining-corpus
+      role: pretraining
+      availability: not-released
+      scale: 450M recaptioned image-text pairs
+      notes: The source domains are described only at a high level and are dominated by natural images.
+    - name: SeFi-Image Synthetic Text-Rendered Corpus
+      catalog_id: sefi-image-synthetic-text-rendered-corpus
+      role: pretraining
+      availability: not-released
+      scale: 28M pairs, comprising 8M plain-text and 20M structured-layout samples
+      notes: PIL rendering provides exact bilingual text and layout supervision with character and bounding-box validation.
+    - name: Fine-T2I
+      catalog_id: fine-t2i
+      role: fine-tuning
+      availability: public
+      scale: Retained contribution to the 9M continual-training mixture is not disclosed
+      notes: Fine-T2I is explicitly named as one component of the continual high-resolution mixture.
+    - name: SeFi-Image Continual-Training Mixture
+      catalog_id: sefi-image-continual-training-mixture
+      role: fine-tuning
+      availability: not-released
+      scale: 9M image-text samples
+      notes: Mixes Fine-T2I with internal natural, UI, graphic-design, anime, and other imagery; source proportions are absent.
+    - name: SeFi-Image SFT Corpus
+      catalog_id: sefi-image-sft-corpus
+      role: fine-tuning
+      availability: not-released
+      scale: Approximately 650K images, including 200K Chinese text-rich images
+      notes: Open-source and internal components are not individually identified or proportioned.
+    - name: SeFi-Image DiffusionNFT Prompt Pool
+      catalog_id: sefi-image-diffusionnft-prompt-pool
+      role: preference
+      availability: not-released
+      scale: 400 prompt groups and 4,800 generated images per online iteration
+      notes: Prompt origins, total iterations, and retained positive and negative counts are not published.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - proprietary
+        - synthetic
+      operations:
+        - bilingual-vlm-recaptioning
+        - dense-short-caption-sampling
+        - deterministic-text-rendering
+        - layout-synthesis
+        - character-alignment-validation
+        - bounding-box-validation
+        - resolution-curriculum
+      scale_disclosed: true
+      strategy: >-
+        Train progressively at 256, 512, 768, and 1024 pixels on 450M internal pairs
+        mixed with 28M bilingual text-rendering samples; sample dense versus short captions 4:1.
+    - name: midtraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - public-dataset
+        - proprietary
+      operations:
+        - high-quality-curation
+        - bilingual-recaptioning
+      scale_disclosed: true
+      strategy: Continue for 180K iterations at 1024 pixels on a 9M Fine-T2I and internal high-quality mixture.
+    - name: fine-tuning
+      modalities:
+        - image
+        - text
+      source_types:
+        - public-dataset
+        - proprietary
+      operations:
+        - structured-metadata-extraction
+        - bilingual-caption-refinement
+        - ocr-annotation
+        - multi-axis-quality-scoring
+        - rule-based-safety-filtering
+        - watermark-filtering
+        - deduplication
+      scale_disclosed: true
+      strategy: Fine-tune for 10K iterations at 1024 pixels on about 650K score-refined images with short, long, and tag conditioning.
+    - name: distillation
+      modalities:
+        - image
+        - text
+      source_types:
+        - synthetic
+        - undisclosed
+      operations:
+        - dmd2-distillation
+        - feature-space-adversarial-training
+      scale_disclosed: false
+      strategy: Distill each 50-step SFT teacher to four steps while preserving the semantic-first timestep offset; prompt-source and sample counts are not disclosed.
+    - name: preference
+      modalities:
+        - image
+        - text
+      source_types:
+        - synthetic
+      operations:
+        - online-generation
+        - tagged-reward-scoring
+        - low-dispersion-filtering
+        - top-bottom-selection
+        - diffusionnft
+      scale_disclosed: false
+      strategy: Generate 12 samples for each of 400 capability-tagged prompts per iteration, discard low-dispersion groups, and use high and low rewards as positive and implicit-negative gradients.
+  strategy_summary:
+    - Recaption 450M internal images into English and Chinese dense and short variants with Qwen3.5-2B.
+    - Add 28M deterministically aligned plain-text and structured-layout renders before introducing naturally distributed text-rich data at later stages.
+    - Apply strict SFT quality, safety, OCR, watermark, and deduplication gates, then release Base, DMD2 Turbo, and 5B DiffusionNFT RL variants.
+  unknowns:
+    - Identities, collection sources, licenses, rights, and mixture weights of the 450M internal pretraining images.
+    - Fine-T2I retention and internal contribution inside the 9M mixture, plus names and rights of open-source and internal components in SFT.
+    - Synthetic font and text-source licenses, exact image-level deduplication, total online-RL iterations, reward-model identities, DMD2 prompt distribution, and released training data.
+evidence:
+  release: https://huggingface.co/SeFi-Image/SeFi-Image-5B-Base
+  technical_report: https://arxiv.org/abs/2606.22568
+  repository: null
+status: partial
+last_verified: "2026-08-03"

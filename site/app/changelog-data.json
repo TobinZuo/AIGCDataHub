@@ -47,6 +47,213 @@
   ],
   "entries": [
     {
+      "date": "2026-08-03",
+      "title": {
+        "zh": "2026-08-03 更新",
+        "en": "2026-08-03 Update"
+      },
+      "summary": [
+        {
+          "id": "models",
+          "label": {
+            "zh": "模型",
+            "en": "Models"
+          },
+          "text": {
+            "zh": "新增 Qwen-Image-SP、MoRoute、Helios、SeFi-Image 与 Qwen-Image。Qwen-Image-SP 公开 Apache-2.0 图像权重及独立 35B-A3B 结构化提示扩展器；MoRoute 公布统一 T2V/I2V/参考生成/视频编辑方法但尚无代码、权重或 API；Helios 补齐 2026-03-04 已公开的 14B 实时长视频模型缺口；SeFi-Image 补齐 1B/2B/5B Base、Turbo 与 5B RL 非商业权重家族；Qwen-Image 补齐 2025-08-04 的 20B Apache-2.0 开放权重及其分阶段数据策略。",
+            "en": "Added Qwen-Image-SP, MoRoute, Helios, SeFi-Image, and Qwen-Image. The additions cover current structured-conditioning and routing releases plus verified historical gaps for open long-video, semantic-first image generation, and Qwen's 20B image family."
+          },
+          "links": [
+            {
+              "href": "/#model-qwen-image-sp",
+              "label": {
+                "zh": "Qwen-Image-SP",
+                "en": "Qwen-Image-SP"
+              }
+            },
+            {
+              "href": "/#model-moroute",
+              "label": {
+                "zh": "MoRoute",
+                "en": "MoRoute"
+              }
+            },
+            {
+              "href": "/#model-helios",
+              "label": {
+                "zh": "Helios",
+                "en": "Helios"
+              }
+            },
+            {
+              "href": "/#model-sefi-image",
+              "label": {
+                "zh": "SeFi-Image",
+                "en": "SeFi-Image"
+              }
+            },
+            {
+              "href": "/#model-qwen-image",
+              "label": {
+                "zh": "Qwen-Image",
+                "en": "Qwen-Image"
+              }
+            }
+          ]
+        },
+        {
+          "id": "datasets",
+          "label": {
+            "zh": "数据集",
+            "en": "Datasets"
+          },
+          "text": {
+            "zh": "新增 25 张数据卡：Context Scaling 五套语料，MoRoute 的公开、受限及未发布训练/评测来源，Helios 三套训练/蒸馏/评测资源，SeFi-Image 的 450M 内部预训练、28M 合成文字、9M 续训、约 650K SFT 与 DiffusionNFT 提示池，以及 Qwen-Image 的 VAE 文字密集语料、预训练混合、SFT 与 DPO 偏好。下载状态、访问门槛、许可与缺失链接分别记录，不以模型许可覆盖训练媒体权利。",
+            "en": "Added twenty-five cards spanning Context Scaling, MoRoute, Helios, SeFi-Image, and Qwen-Image training, distillation, preference, and evaluation resources. Public, gated, and unavailable access are represented separately, and existing upstream cards are reused by relation."
+          },
+          "links": [
+            {
+              "href": "/#dataset-vchitect-t2v-dataverse",
+              "label": {
+                "zh": "Vchitect T2V DataVerse",
+                "en": "Vchitect T2V DataVerse"
+              }
+            },
+            {
+              "href": "/#dataset-ditto-1m",
+              "label": {
+                "zh": "Ditto-1M",
+                "en": "Ditto-1M"
+              }
+            },
+            {
+              "href": "/#dataset-effecterase",
+              "label": {
+                "zh": "EffectErase",
+                "en": "EffectErase"
+              }
+            },
+            {
+              "href": "/#dataset-refvie-bench",
+              "label": {
+                "zh": "RefVIE-Bench",
+                "en": "RefVIE-Bench"
+              }
+            },
+            {
+              "href": "/#dataset-intelligentvbench",
+              "label": {
+                "zh": "IntelligentVBench",
+                "en": "IntelligentVBench"
+              }
+            },
+            {
+              "href": "/#dataset-heliosbench",
+              "label": {
+                "zh": "HeliosBench",
+                "en": "HeliosBench"
+              }
+            }
+          ]
+        },
+        {
+          "id": "relations",
+          "label": {
+            "zh": "数据关系",
+            "en": "Data relations"
+          },
+          "text": {
+            "zh": "新增 28 条模型—数据集关系：Qwen-Image-SP 五条、MoRoute 十条、Helios 三条、SeFi-Image 六条、Qwen-Image 四条。MoRoute LAION 子集、Helios ODE 对、SeFi 合成文字语料及续训混合共新增四条数据 lineage；评估集保持 evaluation-only，继承自 BAGEL、Wan2.1、Qwen3.5 等模型的未披露血缘没有伪造 catalog_id。",
+            "en": "Added 28 model-to-dataset edges across the five families and four dataset-lineage edges. Evaluation suites remain evaluation-only, and inherited undisclosed corpora are not assigned fabricated catalog IDs."
+          },
+          "links": [
+            {
+              "href": "/#lineage",
+              "label": {
+                "zh": "查看关系图谱",
+                "en": "View data lineage"
+              }
+            }
+          ]
+        },
+        {
+          "id": "rankings",
+          "label": {
+            "zh": "排行榜",
+            "en": "Rankings"
+          },
+          "text": {
+            "zh": "Artificial Analysis 图像编辑榜中 FLUX.2 [max] 15→14、Kling Image 3.0 14→13、HiDream-O1-Image 13→15；图生视频榜 Vidu Q3 Pro 进入第 15、Veo 3.1 Lite 移出；文生视频榜 Kling 3.0 Omni 720p Standard 与 1080p Pro 分别 13→12、12→13。当前前 15 名称全部可解析，不从榜单能力或名次推断训练数据。",
+            "en": "Artificial Analysis moved FLUX.2 [max] to 14, Kling Image 3.0 to 13, and HiDream-O1-Image to 15 in image editing, replaced Veo 3.1 Lite with Vidu Q3 Pro at image-to-video rank 15, and swapped the two Kling 3.0 Omni text-to-video variants at ranks 12 and 13. All top-15 entries remain mapped."
+          },
+          "links": [
+            {
+              "href": "/#rankings",
+              "label": {
+                "zh": "查看行业排行榜",
+                "en": "View industry rankings"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monitoring",
+          "label": {
+            "zh": "监控",
+            "en": "Monitoring"
+          },
+          "text": {
+            "zh": "新增 Context Scaling、MoRoute、Helios、SeFi-Image 与 Qwen-Image 官方项目/组织广域源，以及 5 个模型和 25 个数据集的一手 revision 探针；公开 Hugging Face 数据集和模型页加入候选排除表，避免将已覆盖条目反复当作新发布。PosterCraft、Wan 2.7、LTX-2.3、Dailymotion、Pexels 的 revision 均完成内容核对；WorldWeaver 仍因 Physical AI/交互环境范围明确排除。未修改 `sources/scenarios.yaml`，未创建 Physical AI 分类。",
+            "en": "Added primary project, organization, and revision probes for all five models and 25 datasets, and excluded accepted Hugging Face pages from repeated candidate discovery. Six important revisions were reviewed without inventing new facts. No Physical AI category or scenario was added."
+          },
+          "links": [
+            {
+              "href": "/#sources",
+              "label": {
+                "zh": "查看来源监控",
+                "en": "View source monitoring"
+              }
+            }
+          ]
+        },
+        {
+          "id": "unknowns",
+          "label": {
+            "zh": "未披露",
+            "en": "Undisclosed"
+          },
+          "text": {
+            "zh": "Qwen-Image-SP 未披露原始图片来源、权利、扩散微调规模、六类 RFT 提示源与 35B 公开扩展器相对论文 397B LoRA 的迁移方法；MoRoute 未披露内部视频、UE5 资产、各公开源实际贡献、权重与模型许可；Helios 未披露 0.8M 视频来源、过滤/去重/安全策略、ODE 对规模和完整 Wan2.1 血缘；SeFi-Image 未披露 450M 内部图片来源与权利、9M/650K 混合组成、合成字体许可及 RL 总迭代；Qwen-Image 未披露所有阶段的总规模、来源身份、许可与组件级配比。RefVIE-Bench 无数据集许可证；多套公开数据仍需分层复核媒体权利或非商业限制。",
+            "en": "Qwen-Image-SP, MoRoute, and Helios retain the source and scale gaps detailed above. SeFi-Image omits internal-image provenance, later-stage mixture composition, synthetic font rights, and total RL iterations; Qwen-Image omits stage totals, source identities, licenses, and component-level weights. Several public datasets retain layered or non-commercial media rights."
+          },
+          "links": [
+            {
+              "href": "/#model-qwen-image-sp",
+              "label": {
+                "zh": "Qwen-Image-SP 未知项",
+                "en": "Qwen-Image-SP unknowns"
+              }
+            },
+            {
+              "href": "/#model-moroute",
+              "label": {
+                "zh": "MoRoute 未知项",
+                "en": "MoRoute unknowns"
+              }
+            },
+            {
+              "href": "/#model-helios",
+              "label": {
+                "zh": "Helios 未知项",
+                "en": "Helios unknowns"
+              }
+            }
+          ]
+        }
+      ],
+      "source_path": "updates/2026-08-03.md"
+    },
+    {
       "date": "2026-08-02",
       "title": {
         "zh": "2026-08-02 更新",

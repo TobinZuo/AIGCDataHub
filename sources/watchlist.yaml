@@ -56,6 +56,16 @@ discovery:
     - https://huggingface.co/datasets/mali6/autocap
     - https://huggingface.co/datasets/amaai-lab/JamendoMaxCaps
     - https://arxiv.org/abs/2607.21594
+    - https://huggingface.co/heheyas/Qwen-Image-SP
+    - https://huggingface.co/heheyas/SP-PE-Qwen3.5-35B-A3B
+    - https://huggingface.co/datasets/Vchitect/Vchitect_T2V_DataVerse
+    - https://huggingface.co/datasets/QingyanBai/Ditto-1M
+    - https://huggingface.co/datasets/FudanCVL/EffectErase
+    - https://huggingface.co/datasets/linyq/RefVIE-Bench
+    - https://huggingface.co/datasets/midbee/IntelligentVBench
+    - https://huggingface.co/SeFi-Image/SeFi-Image-2B-Base-diffusers
+    - https://huggingface.co/SeFi-Image/SeFi-Image-2B-turbo-diffusers
+    - https://huggingface.co/Qwen/Qwen-Image
 
 tracks:
   - id: image-generation
@@ -75,6 +85,8 @@ tracks:
       - https://stability.ai/news
       - https://updates.midjourney.com/
       - https://ai.google.dev/gemini-api/docs/changelog
+      - https://heheyas.github.io/context-scaling/
+      - https://github.com/heheyas/context-scaling
 
   - id: video-and-audio-generation
     topics:
@@ -104,6 +116,8 @@ tracks:
       - https://runwayml.com/news
       - https://ir.kuaishou.com/news-events/company-news/
       - https://www.minimax.io/news
+      - https://orange-3dv-team.github.io/MoRoute/
+      - https://github.com/PKU-YuanGroup/Helios
 
   - id: digital-human-and-localization
     topics:
@@ -841,6 +855,81 @@ tracks:
       - url: https://export.arxiv.org/api/query?id_list=2607.26037
         catalog_id: wonder-v2v-benchmark
         priority: critical
+      - url: https://arxiv.org/abs/2607.29679
+        catalog_id: context-scaling-sp-nl-corpus
+        priority: critical
+      - url: https://arxiv.org/abs/2607.29679v1
+        catalog_id: context-scaling-prompter-sft-corpus
+        priority: critical
+      - url: https://export.arxiv.org/api/query?id_list=2607.29679
+        catalog_id: context-scaling-cold-start-corpus
+        priority: critical
+      - url: https://github.com/heheyas/context-scaling/commits/main.atom
+        catalog_id: context-scaling-rft-pairs
+        priority: critical
+      - url: https://heheyas.github.io/context-scaling/
+        catalog_id: context-scaling-30k-evaluation-pairs
+        priority: high
+      - url: "https://huggingface.co/api/datasets/Vchitect/Vchitect_T2V_DataVerse?expand=lastModified&expand=sha"
+        catalog_id: vchitect-t2v-dataverse
+        priority: high
+      - url: "https://huggingface.co/api/datasets/QingyanBai/Ditto-1M?expand=lastModified&expand=sha"
+        catalog_id: ditto-1m
+        priority: high
+      - url: "https://huggingface.co/api/datasets/FudanCVL/EffectErase?expand=lastModified&expand=sha"
+        catalog_id: effecterase
+        priority: high
+      - url: https://arxiv.org/html/2607.29545
+        catalog_id: moroute-laion-2b-subset
+        priority: critical
+      - url: https://arxiv.org/abs/2607.29545v1
+        catalog_id: moroute-internal-t2v-corpus
+        priority: critical
+      - url: https://arxiv.org/abs/2607.29545
+        catalog_id: moroute-ue5-editing-pairs
+        priority: critical
+      - url: "https://huggingface.co/api/datasets/linyq/RefVIE-Bench?expand=lastModified&expand=sha"
+        catalog_id: refvie-bench
+        priority: high
+      - url: "https://huggingface.co/api/datasets/midbee/IntelligentVBench?expand=lastModified&expand=sha"
+        catalog_id: intelligentvbench
+        priority: high
+      - url: https://arxiv.org/abs/2603.04379
+        catalog_id: helios-training-corpus
+        priority: high
+      - url: https://arxiv.org/abs/2603.04379v1
+        catalog_id: helios-ode-solution-pairs
+        priority: high
+      - url: https://github.com/PKU-YuanGroup/Helios/commits/main.atom
+        catalog_id: heliosbench
+        priority: critical
+      - url: https://arxiv.org/abs/2606.22568
+        catalog_id: sefi-image-internal-pretraining-corpus
+        priority: critical
+      - url: https://arxiv.org/abs/2606.22568v1
+        catalog_id: sefi-image-synthetic-text-rendered-corpus
+        priority: critical
+      - url: "https://huggingface.co/api/models/SeFi-Image/SeFi-Image-5B-Base?expand=lastModified&expand=sha"
+        catalog_id: sefi-image-continual-training-mixture
+        priority: critical
+      - url: "https://huggingface.co/api/models/SeFi-Image/SeFi-Image-5B-Turbo?expand=lastModified&expand=sha"
+        catalog_id: sefi-image-sft-corpus
+        priority: critical
+      - url: "https://huggingface.co/api/models/SeFi-Image/SeFi-Image-5B-RL?expand=lastModified&expand=sha"
+        catalog_id: sefi-image-diffusionnft-prompt-pool
+        priority: critical
+      - url: https://qwenlm.github.io/blog/qwen-image/
+        catalog_id: qwen-image-vae-text-rich-corpus
+        priority: high
+      - url: https://arxiv.org/abs/2508.02324
+        catalog_id: qwen-image-pretraining-corpus
+        priority: critical
+      - url: https://arxiv.org/abs/2508.02324v1
+        catalog_id: qwen-image-sft-corpus
+        priority: critical
+      - url: https://github.com/QwenLM/Qwen-Image/commits/main.atom
+        catalog_id: qwen-image-dpo-preferences
+        priority: critical
 
   - id: important-model-updates
     topics:
@@ -849,6 +938,21 @@ tracks:
       - release-files
       - license-change
     official_sources:
+      - url: "https://huggingface.co/api/models/heheyas/Qwen-Image-SP?expand=lastModified&expand=sha"
+        model_id: qwen-image-sp
+        priority: critical
+      - url: https://orange-3dv-team.github.io/MoRoute/
+        model_id: moroute
+        priority: critical
+      - url: https://github.com/PKU-YuanGroup/Helios/commits/main.atom
+        model_id: helios
+        priority: critical
+      - url: "https://huggingface.co/api/models/SeFi-Image/SeFi-Image-5B-Base?expand=lastModified&expand=sha"
+        model_id: sefi-image
+        priority: critical
+      - url: "https://huggingface.co/api/models/Qwen/Qwen-Image?expand=lastModified&expand=sha"
+        model_id: qwen-image
+        priority: critical
       - url: https://updates.midjourney.com/version-8-2/
         model_id: midjourney-v8-2
         priority: critical

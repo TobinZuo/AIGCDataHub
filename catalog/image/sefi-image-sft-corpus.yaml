@@ -1,0 +1,70 @@
+id: sefi-image-sft-corpus
+name: SeFi-Image SFT Corpus
+organization: SeFi-Team
+released_at: "2026-06-21"
+release_date_source: https://arxiv.org/abs/2606.22568
+modality: image
+tasks:
+  - text-to-image
+  - text-rendering
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  An unreleased score-refined set of about 650K high-aesthetic, hard-prompt, and
+  text-rich images used for SeFi-Image supervised fine-tuning.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/pdf/2606.22568
+  requires_account: false
+  notes: The paper describes composition and filters but provides no source manifest, files, request form, or release plan.
+scale:
+  samples: 650000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: About 200K are Chinese text-rich images; remaining open-source and internal high-aesthetic components are not separated.
+annotations:
+  types:
+    - bilingual-short-caption
+    - bilingual-long-caption
+    - multilingual-tags
+    - semantic-category
+    - ocr-text-location-style
+    - safety-attributes
+    - quality-scores
+  source: mixed
+  languages:
+    - en
+    - zh
+license:
+  metadata: Not stated for the combined corpus
+  media: Open-source and internal source terms apply
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Component dataset names, retained records, licenses, and internal media rights are not published.
+quality:
+  dimensions:
+    - visual-quality
+    - aesthetics
+    - text-media-alignment
+    - watermark
+    - safety
+    - deduplication
+    - provenance
+  known_limitations:
+    - Most source identities, licenses, and proportions are undisclosed.
+    - Proprietary VLM annotation and scoring can introduce opaque selection bias.
+    - Exact thresholds, deduplication method, and train-evaluation overlap controls are not published.
+processing:
+  recipe: Extract structured metadata, OCR, multilingual tags, safety attributes, initial bilingual captions, and quality signals with proprietary VLMs; refine captions, reject pornography, severe violence, gore, watermarks, corruption, unreadable key text, artifacts, and political sensitivity, enforce core score thresholds, then deduplicate.
+  recommended_format: parquet
+  notes: Preserve source rights, both annotation passes, all scores, hard-gate reasons, OCR, captions, tags, deduplication clusters, and split membership.
+evidence:
+  homepage: https://huggingface.co/SeFi-Image/SeFi-Image-5B-Base
+  paper: https://arxiv.org/abs/2606.22568
+  used_by:
+    - SeFi-Image
+status: partial
+last_verified: "2026-08-03"

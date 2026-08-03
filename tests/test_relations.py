@@ -34,7 +34,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
                 self.assertIn(model_id, self.datasets[dataset_id]["linked_model_ids"])
 
     def test_dataset_lineage_index_and_backlinks_are_symmetric(self) -> None:
-        self.assertEqual(len(self.payload["dataset_relations"]), 38)
+        self.assertEqual(len(self.payload["dataset_relations"]), 42)
         relation_pairs = {
             (relation["source_dataset_id"], relation["derived_dataset_id"])
             for relation in self.payload["dataset_relations"]
@@ -57,6 +57,13 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn(("miradata", "shadow-library"), relation_pairs)
         self.assertIn(("open-x-embodiment", "shadow-library"), relation_pairs)
         self.assertIn(("laion-5b", "laion-coco-aesthetic"), relation_pairs)
+        self.assertIn(("laion-5b", "moroute-laion-2b-subset"), relation_pairs)
+        self.assertIn(("helios-training-corpus", "helios-ode-solution-pairs"), relation_pairs)
+        self.assertIn(
+            ("sefi-image-internal-pretraining-corpus", "sefi-image-synthetic-text-rendered-corpus"),
+            relation_pairs,
+        )
+        self.assertIn(("fine-t2i", "sefi-image-continual-training-mixture"), relation_pairs)
         self.assertIn(
             ("id-v2v-luxpostfacto-olat-subset", "id-v2v-face-relighting-pairs"),
             relation_pairs,

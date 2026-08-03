@@ -1,0 +1,68 @@
+id: qwen-image-sft-corpus
+name: Qwen-Image SFT Corpus
+organization: Qwen Team
+released_at: "2025-08-04"
+release_date_source: https://arxiv.org/abs/2508.02324
+modality: image
+tasks:
+  - text-to-image
+  - image-editing
+  - text-rendering
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  An unreleased hierarchically organized and human-annotated multi-task corpus for
+  Qwen-Image supervised generation, editing, and reconstruction post-training.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/pdf/2508.02324
+  requires_account: false
+  notes: The report describes quality targets and tasks but no dataset identities, files, scale, license, or release plan.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: true
+  notes: No T2I, TI2I, I2I, human-annotation, or task-mixture counts are published.
+annotations:
+  types:
+    - text-prompt
+    - source-image
+    - target-image
+    - edit-instruction
+    - semantic-category
+    - human-quality-annotation
+  source: mixed
+  languages:
+    - en
+    - zh
+license:
+  metadata: Not stated
+  media: Not stated
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Dataset sources, media rights, human-annotation terms, and redistribution permission are undisclosed.
+quality:
+  dimensions:
+    - visual-quality
+    - aesthetics
+    - text-media-alignment
+    - human-preference
+    - provenance
+  known_limitations:
+    - Source identities, scale, licenses, task proportions, and annotator protocol are absent.
+    - Requirements for bright, detailed, photorealistic images can bias the output distribution.
+    - The report does not provide train-evaluation overlap or identity/privacy auditing details.
+processing:
+  recipe: Organize examples by semantic hierarchy, select clear, detailed, bright, photorealistic images, add meticulous human annotation, and mix text-to-image, text-image-to-image editing, and image reconstruction supervision.
+  recommended_format: native
+  notes: Preserve source rights, task role, input-output grouping, human annotations, selection reasons, identities, and split membership if released.
+evidence:
+  homepage: https://qwenlm.github.io/blog/qwen-image/
+  paper: https://arxiv.org/abs/2508.02324
+  used_by:
+    - Qwen-Image
+status: partial
+last_verified: "2026-08-03"

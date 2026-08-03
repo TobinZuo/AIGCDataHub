@@ -1,0 +1,66 @@
+id: refvie-bench
+name: RefVIE-Bench
+organization: RefVIE authors
+released_at: "2026-03-05"
+release_date_source: https://huggingface.co/datasets/linyq/RefVIE-Bench
+modality: evaluation
+tasks:
+  - video-editing
+  - reference-to-video
+  - video-to-video
+stages:
+  - evaluation
+description: >-
+  A public reference-guided video-editing benchmark containing source videos and
+  background or subject reference images, released with the RefVIE project.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/linyq/RefVIE-Bench
+  requires_account: false
+  notes: The official Hugging Face repository is public, ungated, and stores about 129 MB of images and videos.
+scale:
+  samples: 32
+  source_items: 86
+  hours: null
+  approximate: false
+  notes: Repository metadata contains 32 source videos and 54 references, including 8 backgrounds and 46 subjects.
+annotations:
+  types:
+    - source-video
+    - subject-reference-image
+    - background-reference-image
+    - editing-instruction
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Not stated on the official Hugging Face card
+  media: Not stated
+  commercial_use: unknown
+  redistribution: review-required
+  notes: The public repository has no dataset-license field, so access must not be interpreted as a commercial-use grant.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - provenance
+    - human-preference
+  known_limitations:
+    - Only 32 source-video cases are represented.
+    - Media provenance, consent, and license are not documented in repository metadata.
+    - Reference-guided editing categories may favor systems built around similar reference-conditioning designs.
+processing:
+  recipe: Pair each source video with one or more subject or background reference images and evaluate identity, background, motion, instruction alignment, and temporal preservation after editing.
+  recommended_format: native
+  notes: Preserve source-reference grouping, reference type, instruction, media provenance, generation seed, and per-dimension scores.
+evidence:
+  homepage: https://huggingface.co/datasets/linyq/RefVIE-Bench
+  paper: https://arxiv.org/abs/2603.02175
+  used_by:
+    - RefVIE
+    - MoRoute
+status: partial
+last_verified: "2026-08-03"

@@ -1,0 +1,110 @@
+id: qwen-image-sp
+name: Qwen-Image-SP
+organization: ByteDance Seed
+released_at: "2026-07-31"
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - text-rendering
+  - agentic-image-generation
+access:
+  status: open-weights
+  license: Apache-2.0 for the released diffusion and prompt-expander checkpoints
+  release_url: https://heheyas.github.io/context-scaling/
+  weights_url: https://huggingface.co/heheyas/Qwen-Image-SP
+  api_url: null
+architecture:
+  family: Qwen-Image diffusion transformer conditioned by recursively nested structured prompts
+  parameters: null
+  notes: >-
+    The released image checkpoint is initialized from Qwen-Image and paired with a separately
+    released Qwen3.5-35B-A3B structured-prompt expander. The paper's prompter experiments instead
+    describe a rank-128 LoRA on Qwen3.5-397B-A17B and do not explain the transfer between them.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Context Scaling SP/NL Image Corpus
+      catalog_id: context-scaling-sp-nl-corpus
+      role: fine-tuning
+      availability: not-released
+      scale: null
+      notes: Images receive six nested structured-prompt levels plus natural-language controls, but the image sources and retained sample count are not published.
+    - name: Context Scaling Prompter SFT Corpus
+      catalog_id: context-scaling-prompter-sft-corpus
+      role: fine-tuning
+      availability: not-released
+      scale: Approximately 333,000 examples and 0.97B tokens
+      notes: One third is task-specific structured-prompt supervision and two thirds is reasoning and instruction-following replay of undisclosed provenance.
+    - name: Context Scaling Cold-Start Corpus
+      catalog_id: context-scaling-cold-start-corpus
+      role: fine-tuning
+      availability: not-released
+      scale: 50,182 unique examples retained from 172,208 candidates
+      notes: Gemini 3 Pro filtering first accepted 58,907 candidates, followed by prompt deduplication.
+    - name: Context Scaling RFT Pairs
+      catalog_id: context-scaling-rft-pairs
+      role: distillation
+      availability: not-released
+      scale: 10,003 original caption-image pairs plus generated rollouts
+      notes: Six prompt-source families are named only as categories; a Gemini verifier gates rollouts before frozen-teacher KL distillation.
+    - name: Context Scaling 30K Evaluation Pairs
+      catalog_id: context-scaling-30k-evaluation-pairs
+      role: evaluation
+      availability: not-released
+      scale: 30,000 paired images
+      notes: Used only for the controlled BAGEL prompt-scaling evaluation and kept separate from training relations.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+        - synthetic
+      operations:
+        - semantic-captioning
+        - pose-estimation
+        - depth-estimation
+        - segmentation
+        - structured-annotation
+        - deterministic-field-masking
+        - token-balanced-mixing
+      scale_disclosed: false
+      strategy: >-
+        Fine-tune Qwen-Image-2512 on natural-language and six-level structured prompts derived
+        with Seed-VL, Sapiens, Depth Anything V2, SAM 2.1, and a final VLM reconciliation pass.
+    - name: distillation
+      modalities:
+        - image
+        - text
+      source_types:
+        - synthetic
+        - undisclosed
+      operations:
+        - chain-of-thought-distillation
+        - model-filtering
+        - prompt-deduplication
+        - verifier-gating
+        - on-policy-self-distillation
+      scale_disclosed: true
+      strategy: >-
+        Train the prompt expander through SFT, a filtered cold start, then verifier-gated
+        on-policy self-distillation with a frozen image-conditioned teacher.
+  strategy_summary:
+    - Scale text conditioning through recursively nested structured prompts whose fields can be masked without changing the schema.
+    - Use specialist vision models for pose, depth, and segmentation before VLM reconciliation instead of relying on captions alone.
+    - Separate prompt-expander SFT, cold-start filtering, and verifier-gated distillation from the diffusion-model corpus.
+  unknowns:
+    - Original image sources, collection rights, licenses, total diffusion fine-tuning samples, mixture weights, safety filtering, and image-level deduplication.
+    - Names and proportions of the six prompt sources behind the 10,003 RFT pairs, plus the provenance of the two-thirds replay portion of SFT.
+    - Why the released 35B-A3B prompter differs from the paper's 397B-A17B LoRA, and whether its weights were distilled or retrained.
+    - Complete inherited Qwen-Image data lineage and the in-house BAGEL context-training checkpoint lineage.
+evidence:
+  release: https://heheyas.github.io/context-scaling/
+  technical_report: https://arxiv.org/abs/2607.29679
+  repository: https://github.com/heheyas/context-scaling
+status: partial
+last_verified: "2026-08-03"

@@ -1,0 +1,67 @@
+id: qwen-image-dpo-preferences
+name: Qwen-Image DPO Preferences
+organization: Qwen Team
+released_at: "2025-08-04"
+release_date_source: https://arxiv.org/abs/2508.02324
+modality: preference
+tasks:
+  - text-to-image-preference
+  - text-to-image-reinforcement-learning
+stages:
+  - preference-tuning
+  - data-curation
+description: >-
+  An unreleased human-ranked preference corpus of best and worst Qwen-Image
+  generations, optionally judged against a gold reference image, for DPO.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2508.02324v1
+  requires_account: false
+  notes: The ranking protocol is public, but prompts, images, annotations, scale, and release plans are not.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: true
+  notes: Candidate count per prompt, prompt count, annotator count, agreement, and retained pair count are undisclosed.
+annotations:
+  types:
+    - prompt
+    - generated-candidate
+    - gold-reference-image
+    - preferred-image
+    - rejected-image
+    - all-unsatisfactory-flag
+  source: human
+  languages:
+    - en
+    - zh
+license:
+  metadata: Not stated
+  media: Not stated
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Prompt and reference-image sources, generated-image terms, annotator consent, and redistribution rights are not published.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - human-preference
+    - safety
+    - provenance
+  known_limitations:
+    - Scale, prompt distribution, candidate multiplicity, annotator demographics, and agreement are absent.
+    - Gold-reference comparison and reference-free ranking use different decision rules.
+    - Human best-worst selection can encode subjective aesthetic and cultural preferences.
+processing:
+  recipe: Generate multiple images per prompt from different random seeds; for reference-backed prompts compare candidates against the gold image and select rejected mismatches, otherwise select best and worst candidates or flag all outputs as unsatisfactory; train with DPO.
+  recommended_format: parquet
+  notes: Preserve prompt and reference provenance, every candidate and seed, annotator decisions, agreement, rejection rationale, safety flags, and DPO split.
+evidence:
+  homepage: https://qwenlm.github.io/blog/qwen-image/
+  paper: https://arxiv.org/abs/2508.02324
+  used_by:
+    - Qwen-Image
+status: partial
+last_verified: "2026-08-03"

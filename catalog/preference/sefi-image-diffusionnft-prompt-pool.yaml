@@ -1,0 +1,67 @@
+id: sefi-image-diffusionnft-prompt-pool
+name: SeFi-Image DiffusionNFT Prompt Pool
+organization: SeFi-Team
+released_at: "2026-06-21"
+release_date_source: https://arxiv.org/abs/2606.22568
+modality: preference
+tasks:
+  - text-to-image-preference
+  - text-to-image-reinforcement-learning
+stages:
+  - preference-tuning
+  - data-curation
+description: >-
+  An unreleased capability-tagged prompt distribution and online generated reward
+  samples used for DiffusionNFT post-training of SeFi-Image-5B-RL.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2606.22568
+  requires_account: false
+  notes: The online loop and per-iteration size are disclosed, but prompts, rewards, generated samples, and release plans are not.
+scale:
+  samples: null
+  source_items: 400
+  hours: null
+  approximate: true
+  notes: Each iteration uses 400 prompt groups and 12 generations per group, or 4,800 images; total iterations and retained counts are not stated.
+annotations:
+  types:
+    - capability-tag
+    - prompt-group
+    - generated-image
+    - scalar-reward
+    - normalized-advantage
+    - positive-negative-selection
+  source: model-generated
+  languages:
+    - en
+    - zh
+license:
+  metadata: Not stated
+  media: Not stated for prompts or generated samples
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Prompt origins, reward-model terms, generated-image rights, and dataset redistribution terms are undisclosed.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - human-preference
+    - safety
+    - provenance
+  known_limitations:
+    - Prompt origins, exact capability distribution, reward models, and total run size are undisclosed.
+    - Low-dispersion filtering and top-bottom selection can narrow the learned distribution.
+    - Online samples inherit the current policy's artifacts and biases.
+processing:
+  recipe: Select 400 consistently evaluable capability-tagged prompt groups, generate 12 candidates per group, compute tagged scalar rewards, drop groups with low reward standard deviation or range, and use top versus bottom samples as positive and implicit-negative DiffusionNFT gradients.
+  recommended_format: parquet
+  notes: A release should preserve prompt provenance, capability tags, policy commit, seeds, all 12 samples, reward-model versions, raw rewards, selection decisions, and iteration number.
+evidence:
+  homepage: https://huggingface.co/SeFi-Image/SeFi-Image-5B-RL
+  paper: https://arxiv.org/abs/2606.22568
+  used_by:
+    - SeFi-Image
+status: partial
+last_verified: "2026-08-03"

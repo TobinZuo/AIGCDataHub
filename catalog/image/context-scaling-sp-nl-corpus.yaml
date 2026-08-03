@@ -1,0 +1,68 @@
+id: context-scaling-sp-nl-corpus
+name: Context Scaling SP/NL Image Corpus
+organization: ByteDance Seed
+released_at: "2026-07-31"
+release_date_source: https://arxiv.org/abs/2607.29679
+modality: image
+tasks:
+  - text-to-image
+  - text-rendering
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  The unreleased image corpus used to fine-tune Qwen-Image-SP with natural-language
+  captions and six recursively nested structured-prompt levels from L5 through L10.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2607.29679
+  requires_account: false
+  notes: The paper describes the annotation pipeline but provides no data files, manifest, request form, source list, or release date.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The number of source images, prompt records, epochs, and mixture weights is not disclosed.
+annotations:
+  types:
+    - natural-language-caption
+    - nested-structured-prompt
+    - dense-semantic-description
+    - human-pose
+    - depth
+    - segmentation
+    - text-layout
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: Not stated
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The released checkpoints are Apache-2.0, but that does not license the unreleased source images or annotations.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - geometry-quality
+    - provenance
+    - deduplication
+    - safety
+  known_limitations:
+    - Image sources, collection rights, licenses, scale, language distribution, and safety policy are undisclosed.
+    - Specialist models and final VLM reconciliation can propagate pose, depth, segmentation, OCR, and semantic errors.
+    - The paper does not publish image-level deduplication or train-evaluation overlap controls.
+processing:
+  recipe: Use Seed-VL for dense semantics, Sapiens for 133-keypoint pose, Depth Anything V2 for depth, SAM 2.1 for masks, and a final VLM reconciliation pass; serialize six nested prompt levels and randomly expose structured or natural-language conditioning.
+  recommended_format: native
+  notes: If released, preserve source rights, specialist-model versions, every nested level, masked fields, reconciliation output, rejection reasons, and split membership.
+evidence:
+  homepage: https://heheyas.github.io/context-scaling/
+  paper: https://arxiv.org/abs/2607.29679
+  used_by:
+    - Qwen-Image-SP
+status: partial
+last_verified: "2026-08-03"

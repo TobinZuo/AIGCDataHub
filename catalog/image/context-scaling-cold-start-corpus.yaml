@@ -1,0 +1,64 @@
+id: context-scaling-cold-start-corpus
+name: Context Scaling Cold-Start Corpus
+organization: ByteDance Seed
+released_at: "2026-07-31"
+release_date_source: https://arxiv.org/abs/2607.29679
+modality: image
+tasks:
+  - agentic-image-generation
+  - text-to-image
+stages:
+  - fine-tuning
+  - data-curation
+description: >-
+  The unreleased filtered cold-start set used before on-policy structured-prompt
+  distillation, retaining unique prompt-image examples from a larger candidate pool.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2607.29679
+  requires_account: false
+  notes: The paper publishes counts and filtering stages but no item identifiers, files, or request mechanism.
+scale:
+  samples: 50182
+  source_items: 172208
+  hours: null
+  approximate: false
+  notes: Gemini 3 Pro accepted 58,907 of 172,208 candidates before prompt deduplication retained 50,182 unique examples.
+annotations:
+  types:
+    - structured-prompt
+    - source-image
+    - model-quality-verdict
+    - deduplication-key
+  source: model-generated
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: Not stated
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Source-image rights, Gemini-generated labels, and dataset redistribution terms are not published.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - deduplication
+    - provenance
+    - safety
+  known_limitations:
+    - Candidate image and prompt sources are undisclosed.
+    - A single closed-model filter can embed undocumented preferences and false-positive rejection patterns.
+    - Deduplication method, threshold, and train-evaluation overlap policy are not specified.
+processing:
+  recipe: Generate candidate structured-prompt examples, filter them with Gemini 3 Pro, then deduplicate by prompt to obtain the cold-start training set.
+  recommended_format: parquet
+  notes: Preserve candidate and retained IDs, filter scores and rationales, prompt-normalization rules, deduplication clusters, and source rights if released.
+evidence:
+  homepage: https://heheyas.github.io/context-scaling/
+  paper: https://arxiv.org/abs/2607.29679
+  used_by:
+    - Qwen-Image-SP
+status: partial
+last_verified: "2026-08-03"

@@ -1,0 +1,114 @@
+id: qwen-image
+name: Qwen-Image
+organization: Qwen Team
+released_at: "2025-08-04"
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - text-rendering
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://qwenlm.github.io/blog/qwen-image/
+  weights_url: https://huggingface.co/Qwen/Qwen-Image
+  api_url: null
+architecture:
+  family: 20B MMDiT with frozen Qwen2.5-VL conditioning, joint image-video VAE, and MSRoPE
+  parameters: 20000000000
+  notes: >-
+    Qwen-Image unifies native bilingual text rendering and multi-task image generation.
+    The VAE keeps a frozen Wan2.1-derived encoder and fine-tunes a specialized image decoder.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Qwen-Image VAE Text-Rich Corpus
+      catalog_id: qwen-image-vae-text-rich-corpus
+      role: fine-tuning
+      availability: not-released
+      scale: null
+      notes: In-house PDFs, PowerPoint slides, posters, and synthetic paragraphs fine-tune only the image decoder.
+    - name: Qwen-Image Pretraining Corpus
+      catalog_id: qwen-image-pretraining-corpus
+      role: pretraining
+      availability: not-released
+      scale: null
+      notes: The paper discloses a 55/27/13/5 percent Nature, Design, People, and controlled-synthetic distribution but no total sample count or source names.
+    - name: Qwen-Image SFT Corpus
+      catalog_id: qwen-image-sft-corpus
+      role: fine-tuning
+      availability: not-released
+      scale: null
+      notes: Human-curated hierarchy targets realism, detail, editing, reconstruction, and other multi-task gaps; identities and size are absent.
+    - name: Qwen-Image DPO Preferences
+      catalog_id: qwen-image-dpo-preferences
+      role: preference
+      availability: not-released
+      scale: null
+      notes: Annotators select best and worst seeded generations with and without gold reference images.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+        - synthetic
+      operations:
+        - corrupted-file-filtering
+        - resolution-filtering
+        - near-deduplication
+        - nsfw-filtering
+        - clarity-and-color-filtering
+        - bilingual-vlm-recaptioning
+        - clip-alignment-filtering
+        - text-language-balancing
+        - text-rendering-synthesis
+        - progressive-resolution-training
+      scale_disclosed: false
+      strategy: Progress through seven curation stages, increasing data quality and resolution while introducing controlled text rendering from simple glyphs to realistic contexts and structured layouts.
+    - name: fine-tuning
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+        - human-feedback
+      operations:
+        - hierarchical-category-curation
+        - human-annotation
+        - multi-task-mixing
+        - reference-conditioned-editing
+        - image-reconstruction
+      scale_disclosed: false
+      strategy: Supervise clear, detailed, bright, photorealistic examples across T2I, text-image-to-image editing, and image reconstruction tasks.
+    - name: preference
+      modalities:
+        - image
+        - text
+      source_types:
+        - synthetic
+        - human-feedback
+      operations:
+        - multi-seed-generation
+        - best-worst-ranking
+        - reference-aware-ranking
+        - direct-preference-optimization
+      scale_disclosed: false
+      strategy: Build preferred and rejected generations per prompt through human best-worst selection, optionally comparing candidates with a gold image, then apply DPO.
+  strategy_summary:
+    - Balance Nature, Design, People, and controlled synthetic rendering at roughly 55, 27, 13, and 5 percent.
+    - Use raw, Qwen-VL recaptioned, and fused-caption splits, with seven progressive filtering and resolution stages.
+    - Add multi-task SFT and human-ranked DPO without presenting evaluation benchmarks as training data.
+  unknowns:
+    - Total pretraining, VAE, SFT, and DPO sample counts; source identities, licenses, rights, languages beyond the disclosed splits, and exact synthetic font/template provenance.
+    - Component-level mixture weights inside raw, recaptioned, fused, SFT, editing, reconstruction, and preference data; training compute and released training files.
+evidence:
+  release: https://qwenlm.github.io/blog/qwen-image/
+  technical_report: https://arxiv.org/abs/2508.02324
+  repository: https://github.com/QwenLM/Qwen-Image
+status: partial
+last_verified: "2026-08-03"

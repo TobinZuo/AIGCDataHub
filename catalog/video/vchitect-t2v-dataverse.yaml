@@ -1,0 +1,66 @@
+id: vchitect-t2v-dataverse
+name: Vchitect T2V DataVerse
+organization: Vchitect
+released_at: "2025-03-14"
+release_date_source: https://huggingface.co/datasets/Vchitect/Vchitect_T2V_DataVerse
+modality: video
+tasks:
+  - text-to-video
+  - video-text-pretraining
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A public multi-million-row text-to-video WebDataset distributed by Vchitect and
+  reused by MoRoute as part of its recaptioned stage-2 video mixture.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/Vchitect/Vchitect_T2V_DataVerse
+  requires_account: false
+  notes: Hugging Face hosts WebDataset shards directly; official metadata reports about 7.18 TB of stored content.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The official card declares the 1M-to-10M size category but does not expose a single authoritative row count in repository metadata.
+annotations:
+  types:
+    - text-caption
+    - source-video
+    - webdataset-key
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Apache-2.0
+  media: Dataset release terms plus original source-media rights
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The official card labels the dataset Apache-2.0; users must still review rights and provenance for component videos.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - provenance
+    - deduplication
+    - safety
+  known_limitations:
+    - Repository metadata gives only a broad row-count band.
+    - Component-video rights and removals may vary by source.
+    - MoRoute does not publish its retained shard list or stage-2 contribution.
+processing:
+  recipe: Consume the official WebDataset shards, validate media-caption joins, and retain source and filtering metadata; MoRoute applies a separate VLM recaptioning pass.
+  recommended_format: webdataset
+  notes: Record repository commit, shard checksums, source provenance, media availability, original and recaptioned text, and downstream filter decisions.
+evidence:
+  homepage: https://huggingface.co/datasets/Vchitect/Vchitect_T2V_DataVerse
+  paper: https://arxiv.org/abs/2501.08453
+  used_by:
+    - MoRoute
+status: partial
+last_verified: "2026-08-03"
