@@ -103,6 +103,9 @@ class CatalogTests(unittest.TestCase):
                 "innotext-30k",
                 "agenthoi-mixed-source-corpus",
                 "fmri-face",
+                "thuman2-0",
+                "culturevidbench",
+                "mie-bench",
             }.issubset(cards)
         )
         self.assertIn("video-dubbing", cards["audiovisual-translation-dub"]["tasks"])
@@ -158,6 +161,12 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(cards["agenthoi-mixed-source-corpus"]["scale"]["samples"], 108000)
         self.assertEqual(cards["agenthoi-mixed-source-corpus"]["scale"]["source_items"], 10000000)
         self.assertEqual(cards["fmri-face"]["scale"]["samples"], 62856)
+        self.assertEqual(cards["thuman2-0"]["access"]["status"], "gated")
+        self.assertEqual(cards["thuman2-0"]["scale"]["samples"], 500)
+        self.assertEqual(cards["culturevidbench"]["access"]["status"], "unavailable")
+        self.assertEqual(cards["culturevidbench"]["scale"]["samples"], 1000)
+        self.assertEqual(cards["mie-bench"]["access"]["status"], "unavailable")
+        self.assertEqual(cards["mie-bench"]["scale"]["samples"], 3000)
         self.assertEqual(cards["fmri-face"]["scale"]["source_items"], 2174)
         self.assertEqual(cards["voxceleb2"]["access"]["status"], "unavailable")
         self.assertEqual(cards["lrs3"]["access"]["status"], "unavailable")
@@ -296,16 +305,7 @@ class CatalogTests(unittest.TestCase):
         newest_ids = {card["id"] for card in datasets if card["released_at"] == newest_date}
         self.assertEqual(
             newest_ids,
-            {
-                "context-scaling-30k-evaluation-pairs",
-                "context-scaling-cold-start-corpus",
-                "context-scaling-prompter-sft-corpus",
-                "context-scaling-rft-pairs",
-                "context-scaling-sp-nl-corpus",
-                "moroute-internal-t2v-corpus",
-                "moroute-laion-2b-subset",
-                "moroute-ue5-editing-pairs",
-            },
+            {"culturevidbench", "mie-bench"},
         )
 
     def test_site_catalog_orders_models_by_release_date(self) -> None:

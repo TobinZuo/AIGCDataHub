@@ -2,7 +2,7 @@
 
 Generated from `catalog/**/*.yaml`, newest release first. Every row links to the publisher's current distribution, metadata/downloader, request form, or primary-source availability notice. A link here does not override the media rights recorded in the dataset card.
 
-- Datasets: 172 (gated 25, metadata only 24, open 68, unavailable 55)
+- Datasets: 175 (gated 26, metadata only 24, open 68, unavailable 57)
 - `hosted`: downloadable or browsable files are distributed at the link
 - `urls`: the publisher distributes source URLs or a downloader, not a durable media archive
 - `metadata`: metadata or tooling only
@@ -11,6 +11,8 @@ Generated from `catalog/**/*.yaml`, newest release first. Every row links to the
 
 | Dataset card | Released | Access status | Delivery | Get data / access evidence | Account | Access notes |
 |---|---:|---|---|---|:---:|---|
+| [MIE-Bench](catalog/evaluation/mie-bench.yaml) | 2026-08-03 | unavailable | none | [Availability notice](https://github.com/IntMeGroup/MIEScore) | no | The official repository advertises a TmpAccount Hugging Face dataset URL, but that endpoint returned 404 during verification; no downloadable benchmark files are currently available. |
+| [CultureVidBench](catalog/evaluation/culturevidbench.yaml) | 2026-08-03 | unavailable | none | [Availability notice](https://hanxjing.github.io/CultureVidBench/) | no | The official project page labels both code and dataset as coming soon and provides no prompt file, manifest, or download endpoint. |
 | [MoRoute UE5 Editing Pairs](catalog/video/moroute-ue5-editing-pairs.yaml) | 2026-07-31 | unavailable | none | [Availability notice](https://arxiv.org/html/2607.29545) | no | The paper describes the synthetic UE5 construction but supplies no files, asset manifest, request form, or release date. |
 | [MoRoute LAION-2B Stage-1 Subset](catalog/image/moroute-laion-2b-subset.yaml) | 2026-07-31 | unavailable | none | [Availability notice](https://arxiv.org/html/2607.29545) | no | The paper gives the retained count but no sample manifest, selection query, files, or request path. |
 | [MoRoute Internal T2V Corpus](catalog/video/moroute-internal-t2v-corpus.yaml) | 2026-07-31 | unavailable | none | [Availability notice](https://arxiv.org/html/2607.29545) | no | No constituent source, files, manifest, request form, standalone count, or release plan is published. |
@@ -160,6 +162,7 @@ Generated from `catalog/**/*.yaml`, newest release first. Every row links to the
 | [V2C-Animation](catalog/video/v2c-animation.yaml) | 2021-11-25 | metadata only | urls | [Source URLs / downloader](https://github.com/chenqi008/V2C) | no | The official repository publishes extraction code, annotations, timestamps, and links to the 26 source movies; it does not redistribute a ready-to-train archive of copyrighted movie media. |
 | [Chem](catalog/video/chem.yaml) | 2021-10-18 | metadata only | metadata | [Metadata / tooling](https://tsinghua-mars-lab.github.io/NeuralDubber/) | no | The official Neural Dubber project publishes the paper and downloadable result examples, but no complete Chem training archive, reconstruction manifest, or request form. |
 | [CO3D](catalog/video/co3d.yaml) | 2021-09-01 | open | hosted | [Download / browse files](https://github.com/facebookresearch/co3d/tree/v1) | no | The official v1 repository provides download manifests and tooling for the original CO3D release; the repository's default branch now documents the larger CO3Dv2 separately. |
+| [THuman2.0](catalog/3d/thuman2-0.yaml) | 2021-06-19 | gated | request | [Request access](https://github.com/ytrock/THuman2.0-Dataset) | yes | Applicants sign the project agreement and email the maintainers for an encrypted-dataset download link; separate fitting files are linked publicly. |
 | [Clotho 2.1](catalog/audio/clotho-2-1.yaml) | 2021-05-26 | open | hosted | [Download / browse files](https://zenodo.org/records/4783391) | no | Audio archives, caption CSV files, metadata, and checksums are directly hosted on Zenodo. |
 | [VideoMatte240K](catalog/video/videomatte240k.yaml) | 2021-04-21 | open | hosted | [Download / browse files](https://grail.cs.washington.edu/projects/background-matting-v2/#/datasets) | no | The official project provides downloadable dataset archives; Robust Video Matting also documents 6 GB SD and 60 GB HD preprocessed variants. |
 | [HDTF](catalog/video/hdtf.yaml) | 2021-03-28 | metadata only | urls | [Source URLs / downloader](https://github.com/MRzzm/HDTF) | no | The official repository distributes YouTube URLs, timestamps, crop metadata, and preprocessing scripts rather than redistributing all source videos. |

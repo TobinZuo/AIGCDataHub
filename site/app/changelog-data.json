@@ -47,6 +47,171 @@
   ],
   "entries": [
     {
+      "date": "2026-08-04",
+      "title": {
+        "zh": "2026-08-04 更新",
+        "en": "2026-08-04 Update"
+      },
+      "summary": [
+        {
+          "id": "models",
+          "label": {
+            "zh": "模型",
+            "en": "Models"
+          },
+          "text": {
+            "zh": "新增 VTON 360 历史模型卡，按 2025-03-15 官方论文日期排序；官方提供 THuman/MVHumanNet 两套百度 checkpoint，但没有 API，也未声明官方代码或权重许可。另补充 Grok Imagine Video 1.5 的 Arena 720p 排行榜别名。",
+            "en": "Added a verified historical card for VTON 360, ordered by its 2025-03-15 official paper date. Official THuman and MVHumanNet checkpoints are downloadable from Baidu, but no API or official code/checkpoint license is stated. Also mapped the Arena 720p alias for Grok Imagine Video 1.5."
+          },
+          "links": [
+            {
+              "href": "/#model-vton-360",
+              "label": {
+                "zh": "VTON 360",
+                "en": "VTON 360"
+              }
+            },
+            {
+              "href": "/#model-grok-imagine-video-1-5",
+              "label": {
+                "zh": "Grok Imagine Video 1.5",
+                "en": "Grok Imagine Video 1.5"
+              }
+            }
+          ]
+        },
+        {
+          "id": "datasets",
+          "label": {
+            "zh": "数据集",
+            "en": "Datasets"
+          },
+          "text": {
+            "zh": "新增 THuman2.0、CultureVidBench 与 MIE-Bench。THuman2.0 为申请制、非商业且禁止再分发；两个新评测均公布规模，但实际文件尚不可下载，因此明确记录 unavailable 且不提供伪下载链接。",
+            "en": "Added THuman2.0, CultureVidBench, and MIE-Bench. THuman2.0 is request-gated, non-commercial, and non-redistributable; both new benchmarks disclose their scale but do not currently provide downloadable files, so they remain explicitly unavailable."
+          },
+          "links": [
+            {
+              "href": "/#dataset-thuman2-0",
+              "label": {
+                "zh": "THuman2.0",
+                "en": "THuman2.0"
+              }
+            },
+            {
+              "href": "/#dataset-culturevidbench",
+              "label": {
+                "zh": "CultureVidBench",
+                "en": "CultureVidBench"
+              }
+            },
+            {
+              "href": "/#dataset-mie-bench",
+              "label": {
+                "zh": "MIE-Bench",
+                "en": "MIE-Bench"
+              }
+            }
+          ]
+        },
+        {
+          "id": "relations",
+          "label": {
+            "zh": "数据关系",
+            "en": "Data relations"
+          },
+          "text": {
+            "zh": "新增 VTON 360 到 THuman2.0 与 MVHumanNet 的四条关系，分别保留 fine-tuning 与 evaluation 角色；Stable Diffusion v1.5 继承语料维持 undisclosed，不创建无证据 catalog_id。",
+            "en": "Added four VTON 360 relations to THuman2.0 and MVHumanNet, preserving separate fine-tuning and evaluation roles. The inherited Stable Diffusion v1.5 corpus remains undisclosed without an unsupported catalog ID."
+          },
+          "links": [
+            {
+              "href": "/#lineage",
+              "label": {
+                "zh": "查看关系图谱",
+                "en": "View lineage"
+              }
+            }
+          ]
+        },
+        {
+          "id": "rankings",
+          "label": {
+            "zh": "排行榜",
+            "en": "Rankings"
+          },
+          "text": {
+            "zh": "记录 Arena 文生视频及 Artificial Analysis 图片编辑、图生视频、文生视频四榜变化；修复 Arena 图生视频端点并补齐 Grok Imagine Video 1.5 720p 映射后，所有前 15 名称均可解析。",
+            "en": "Recorded changes on Arena text-to-video and three Artificial Analysis boards. After repairing Arena image-to-video ingestion and mapping the Grok Imagine Video 1.5 720p name, every monitored top-15 entry resolves to a model card."
+          },
+          "links": [
+            {
+              "href": "/#rankings",
+              "label": {
+                "zh": "查看行业排行榜",
+                "en": "View industry rankings"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monitoring",
+          "label": {
+            "zh": "监控",
+            "en": "Monitoring"
+          },
+          "text": {
+            "zh": "监控扩至 401 个一手来源，加入 VTON 360、THuman2.0、CultureVidBench 与 MIE-Bench 精确探针，并把 Arena 图生视频从失败的 filter 查询迁移至官方 first-rows 端点；最终扫描 0 失败、0 coverage gap。",
+            "en": "Expanded monitoring to 401 primary sources with precise VTON 360, THuman2.0, CultureVidBench, and MIE-Bench probes. Replaced the failing Arena image-to-video filter query with the official first-rows endpoint; the final scan has zero failures and zero coverage gaps."
+          },
+          "links": [
+            {
+              "href": "/#sources",
+              "label": {
+                "zh": "查看来源监控",
+                "en": "View source monitoring"
+              }
+            }
+          ]
+        },
+        {
+          "id": "unknowns",
+          "label": {
+            "zh": "未披露",
+            "en": "Undisclosed"
+          },
+          "text": {
+            "zh": "VTON 360 未披露官方 checkpoint 许可、基础模型精确继承链、训练混合/算力/筛选与电商服装权利；CultureVidBench 与 MIE-Bench 未公开文件、许可、源内容权利及完整标注协议，MIE 官方占位下载当前返回 404。",
+            "en": "VTON 360 does not disclose its official checkpoint license, exact inherited base lineage, training mixture, compute, filtering, or commerce-garment rights. CultureVidBench and MIE-Bench do not publish their files, licenses, source-content rights, or full annotation protocols, and MIE's advertised placeholder download currently returns 404."
+          },
+          "links": [
+            {
+              "href": "/#model-vton-360",
+              "label": {
+                "zh": "VTON 360 未知项",
+                "en": "VTON 360 unknowns"
+              }
+            },
+            {
+              "href": "/#dataset-culturevidbench",
+              "label": {
+                "zh": "CultureVidBench 限制",
+                "en": "CultureVidBench limitations"
+              }
+            },
+            {
+              "href": "/#dataset-mie-bench",
+              "label": {
+                "zh": "MIE-Bench 限制",
+                "en": "MIE-Bench limitations"
+              }
+            }
+          ]
+        }
+      ],
+      "source_path": "updates/2026-08-04.md"
+    },
+    {
       "date": "2026-08-03",
       "title": {
         "zh": "2026-08-03 更新",

@@ -618,11 +618,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            171,
+            174,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            103,
+            104,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -645,7 +645,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "model-release-feeds" for source in sources), 17)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
-        self.assertEqual(len(sources), 394)
+        self.assertEqual(len(sources), 401)
         self.assertIn(
             "https://huggingface.co/api/models?pipeline_tag=text-to-video&sort=createdAt&direction=-1&limit=50&full=true",
             urls,
@@ -705,6 +705,9 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(arena.ranking_parser, "arena-hf-dataset")
         self.assertEqual(arena.ranking_coverage_policy, "required")
         self.assertEqual(arena.ranking_modality, "image")
+        arena_i2v = next(source for source in sources if source.ranking_id == "arena-image-to-video")
+        self.assertIn("/first-rows?", arena_i2v.source_url)
+        self.assertNotIn("/filter?", arena_i2v.source_url)
         avgen = next(source for source in sources if source.ranking_id == "avgen-text-to-audio-video")
         self.assertEqual(avgen.ranking_provider, "AVGen-Bench")
         self.assertEqual(avgen.ranking_parser, "avgen-markdown")
@@ -723,6 +726,11 @@ class DiscoveryTests(unittest.TestCase):
                 "https://huggingface.co/api/datasets/Haosonnn/OpenHumanVid-Talking",
                 "https://github.com/fudan-generative-vision/OpenHumanVid/commits/main.atom",
                 "https://github.com/snap-research/Panda-70M/commits/main.atom",
+                "https://scnuhealthy.github.io/VTON360/",
+                "https://github.com/scnuhealthy/VTON360/commits/main.atom",
+                "https://github.com/ytrock/THuman2.0-Dataset/commits/main.atom",
+                "https://hanxjing.github.io/CultureVidBench/",
+                "https://github.com/IntMeGroup/MIEScore/commits/main.atom",
                 "https://huggingface.co/api/datasets/Koala-36M/Koala-36M-v1",
                 "https://huggingface.co/api/datasets/wjwow/FreeMan",
                 "https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet/commits/main.atom",
@@ -837,6 +845,8 @@ class DiscoveryTests(unittest.TestCase):
         impacts = dataset_impact_index()
         self.assertEqual(impacts["fit-vto-100k"]["model_ids"], ("fit-vto",))
         self.assertEqual(impacts["viton-hd-edit"]["model_ids"], ("ctrlvton",))
+        self.assertEqual(impacts["thuman2-0"]["model_ids"], ("vton-360",))
+        self.assertEqual(impacts["mvhumannet"]["model_ids"], ("vton-360",))
         self.assertEqual(impacts["tripvvt-10k"]["model_ids"], ("tripvvt",))
         self.assertEqual(impacts["audiovisual-translation-dub"]["model_ids"], ("just-dub-it",))
         self.assertEqual(impacts["talkverse"]["model_ids"], ("talkverse-5b",))

@@ -66,6 +66,12 @@ discovery:
     - https://huggingface.co/SeFi-Image/SeFi-Image-2B-Base-diffusers
     - https://huggingface.co/SeFi-Image/SeFi-Image-2B-turbo-diffusers
     - https://huggingface.co/Qwen/Qwen-Image
+    - https://huggingface.co/nielsr/VTON360-MVHumanNet
+    - https://huggingface.co/nielsr/VTON360-THuman2.0
+    - https://huggingface.co/AMD-PAVS-AI/esrgan
+    - https://huggingface.co/cornbox/krea2-raw-merge-v1_1
+    - https://arxiv.org/pdf/2503.12165
+    - https://github.com/nerfies/nerfies.github.io
 
 tracks:
   - id: image-generation
@@ -160,6 +166,8 @@ tracks:
       - https://github.com/fashn-AI/fashn-vton-1.5
       - https://hunorlaczko.github.io/MV-Fashion/
       - https://oxygenvision.github.io/Oxygen-TryOn/
+      - https://scnuhealthy.github.io/VTON360/
+      - https://github.com/scnuhealthy/VTON360
 
   - id: datasets
     topics:
@@ -177,7 +185,10 @@ tracks:
       - identity-preservation-benchmark
       - camera-controlled-video-dataset
       - multi-person-editing-benchmark
+      - cultural-video-generation-benchmark
+      - multi-source-image-editing-benchmark
     official_sources:
+      - https://github.com/IntMeGroup/MIEScore
       - https://huggingface.co/datasets
       - https://arxiv.org/list/cs.CV/recent
       - https://arxiv.org/list/cs.MM/recent
@@ -372,7 +383,7 @@ tracks:
         ranking_date_label: 榜单快照
         ranking_coverage_policy: required
         ranking_page_url: https://arena.ai/leaderboard/text-to-video
-      - url: "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=image_to_video&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100"
+      - url: "https://datasets-server.huggingface.co/first-rows?dataset=lmarena-ai%2Fleaderboard-dataset&config=image_to_video&split=latest"
         ranking_id: arena-image-to-video
         ranking_limit: 15
         ranking_provider: Arena
@@ -930,6 +941,15 @@ tracks:
       - url: https://github.com/QwenLM/Qwen-Image/commits/main.atom
         catalog_id: qwen-image-dpo-preferences
         priority: critical
+      - url: https://github.com/ytrock/THuman2.0-Dataset/commits/main.atom
+        catalog_id: thuman2-0
+        priority: critical
+      - url: https://hanxjing.github.io/CultureVidBench/
+        catalog_id: culturevidbench
+        priority: critical
+      - url: https://github.com/IntMeGroup/MIEScore/commits/main.atom
+        catalog_id: mie-bench
+        priority: critical
 
   - id: important-model-updates
     topics:
@@ -952,6 +972,9 @@ tracks:
         priority: critical
       - url: "https://huggingface.co/api/models/Qwen/Qwen-Image?expand=lastModified&expand=sha"
         model_id: qwen-image
+        priority: critical
+      - url: https://github.com/scnuhealthy/VTON360/commits/main.atom
+        model_id: vton-360
         priority: critical
       - url: https://updates.midjourney.com/version-8-2/
         model_id: midjourney-v8-2

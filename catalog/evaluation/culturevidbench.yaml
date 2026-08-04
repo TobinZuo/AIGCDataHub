@@ -1,0 +1,67 @@
+id: culturevidbench
+name: CultureVidBench
+organization: CultureVidBench authors
+released_at: "2026-08-03"
+release_date_source: https://arxiv.org/abs/2608.01942
+modality: evaluation
+tasks:
+  - text-to-video
+  - cultural-evaluation
+  - multimodal-video-evaluation
+stages:
+  - evaluation
+description: >-
+  An announced cultural-understanding benchmark for text-to-video systems with
+  prompts spanning material culture, social practices and performances, and
+  rituals and ceremonies.
+access:
+  status: unavailable
+  type: none
+  url: https://hanxjing.github.io/CultureVidBench/
+  requires_account: false
+  notes: The official project page labels both code and dataset as coming soon and provides no prompt file, manifest, or download endpoint.
+scale:
+  samples: 1000
+  source_items: 1000
+  hours: null
+  approximate: false
+  notes: The paper reports 1,000 curated prompts across 12 countries, 6 continents, 8 cultural regions, 14 cultural aspects, and 3 top-level categories.
+annotations:
+  types:
+    - text-prompt
+    - country
+    - cultural-region
+    - cultural-aspect
+    - cultural-category
+    - human-rating
+    - mllm-score
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: Not applicable to the unreleased prompt benchmark
+  commercial_use: unknown
+  redistribution: unknown
+  notes: No benchmark license or prompt-source rights statement is published while the dataset remains unreleased.
+quality:
+  dimensions:
+    - text-media-alignment
+    - visual-quality
+    - audio-quality
+    - human-preference
+    - provenance
+  known_limitations:
+    - The benchmark files, prompt wording, sampling protocol, annotator demographics, and license are not yet public.
+    - Twelve countries cannot represent the full diversity or within-region variation of the cultures being assessed.
+    - The benchmark emphasizes culturally specific visible text and audio in addition to video, which may confound model capability with localization quality.
+processing:
+  recipe: Curate culturally specific prompts, generate outputs with seven representative text-to-video models, and score cultural faithfulness, multimodal cultural rendering, semantic adherence, and perceptual quality with humans and MLLMs.
+  recommended_format: native
+  notes: Keep country, region, cultural aspect, category, visible-text requirement, audio requirement, evaluated model version, and human versus automatic scores separate if released.
+evidence:
+  homepage: https://hanxjing.github.io/CultureVidBench/
+  paper: https://arxiv.org/abs/2608.01942
+  used_by: []
+status: partial
+last_verified: "2026-08-04"

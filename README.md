@@ -20,7 +20,7 @@ training stages, processing strategies, access conditions, and data lineage.
 <!-- BEGIN PROJECT METRICS -->
 | Models | Datasets | Model–dataset links | Dataset lineage | Open access | Latest review |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| 107 | 172 | 184 | 42 | 68 | 2026-08-03 |
+| 108 | 175 | 188 | 42 | 68 | 2026-08-04 |
 <!-- END PROJECT METRICS -->
 
 > [!NOTE]
@@ -213,6 +213,7 @@ newest first.
 | [Phantom-Wan-14B](models/video/phantom-wan-14b.yaml) | ByteDance Intelligent Creation Team | video, image | 2025-05-27 | open weights | partial | [Panda-70M](catalog/video/panda-70m.yaml), In-house video sources, Subject200K, OmniGen paired image data | 🟡 |
 | [VoiceCraft-Dub](models/video/voicecraft-dub.yaml) | KAIST, MIT, University of Oxford, and Adobe Research | video, audio | 2025-04-03 | open weights | partial | VoiceCraft pretrained checkpoint lineage, [LRS3-TED](catalog/video/lrs3.yaml), [CelebV-Dub](catalog/video/celebv-dub.yaml), [VoxCeleb2](catalog/video/voxceleb2.yaml) | ✅ |
 | [MuseTalk 1.5](models/video/musetalk-1-5.yaml) | Tencent Music Entertainment Lyra Lab | video, audio | 2025-03-28 | open weights | partial | Stable Diffusion 1.4 inherited training mixture, [HDTF](catalog/video/hdtf.yaml), MuseTalk private talking-face dataset | ✅ |
+| [VTON 360](models/image/vton-360.yaml) | Sun Yat-sen University and collaborators | image, 3d | 2025-03-15 | open weights | partial | Stable Diffusion v1.5 inherited pretraining mixture, [THuman2.0](catalog/3d/thuman2-0.yaml), [MVHumanNet](catalog/3d/mvhumannet.yaml) | 🟡 |
 | [CommonCanvas-XL-C](models/image/commoncanvas-xl-c.yaml) | CommonCanvas collaborators | image | 2024-05-16 | open weights | partial | [CommonCatalog commercial subset](catalog/image/commoncatalog.yaml) | ✅ |
 <!-- END MODEL CATALOG -->
 
@@ -273,6 +274,8 @@ notice. For a download-first view of every card, use the
 <!-- BEGIN DATASET CATALOG -->
 | Dataset | Organization | Modality | Released | Tasks | Scale | Access | Commercial use | Status |
 |---|---|---|---|---|---:|---|---|:---:|
+| [MIE-Bench](catalog/evaluation/mie-bench.yaml) | IntMe Group and collaborators | evaluation | 2026-08-03 | multi source image editing, image editing evaluation, human preference evaluation | 3K | [availability notice (unavailable)](https://github.com/IntMeGroup/MIEScore) | unknown | 🟡 |
+| [CultureVidBench](catalog/evaluation/culturevidbench.yaml) | CultureVidBench authors | evaluation | 2026-08-03 | text to video, cultural evaluation, multimodal video evaluation | 1K | [availability notice (unavailable)](https://hanxjing.github.io/CultureVidBench/) | unknown | 🟡 |
 | [MoRoute UE5 Editing Pairs](catalog/video/moroute-ue5-editing-pairs.yaml) | MoRoute authors | video | 2026-07-31 | video editing, reference to video, video to video | unknown | [availability notice (unavailable)](https://arxiv.org/html/2607.29545) | unknown | 🟡 |
 | [MoRoute LAION-2B Stage-1 Subset](catalog/image/moroute-laion-2b-subset.yaml) | MoRoute authors | image | 2026-07-31 | image text pretraining, text to image | 9.9M | [availability notice (unavailable)](https://arxiv.org/html/2607.29545) | review required | 🟡 |
 | [MoRoute Internal T2V Corpus](catalog/video/moroute-internal-t2v-corpus.yaml) | MoRoute authors | video | 2026-07-31 | text to video, video text pretraining | unknown | [availability notice (unavailable)](https://arxiv.org/html/2607.29545) | unknown | 🟡 |
@@ -422,6 +425,7 @@ notice. For a download-first view of every card, use the
 | [V2C-Animation](catalog/video/v2c-animation.yaml) | University of Adelaide, South China University of Technology, and Pazhou Lab | video | 2021-11-25 | video dubbing, visual voice cloning, emotion conditioned speech generation | 10.2K | [URLs / downloader (metadata only)](https://github.com/chenqi008/V2C) | review required | 🟡 |
 | [Chem](catalog/video/chem.yaml) | Tsinghua MARS Lab and ByteDance | video | 2021-10-18 | video dubbing, lip sync training, audiovisual speech synthesis | ~6.3K | [metadata / tooling (metadata only)](https://tsinghua-mars-lab.github.io/NeuralDubber/) | unknown | 🟡 |
 | [CO3D](catalog/video/co3d.yaml) | Meta AI | video | 2021-09-01 | object centric video, multi view reconstruction, novel view synthesis, camera pose estimation | ~18.6K | [download / browse (open)](https://github.com/facebookresearch/co3d/tree/v1) | noncommercial | ✅ |
+| [THuman2.0](catalog/3d/thuman2-0.yaml) | Tsinghua University THU3DV Lab | 3d | 2021-06-19 | digital human, 3d human reconstruction, virtual try on, human rendering | 500 | [request access (gated)](https://github.com/ytrock/THuman2.0-Dataset) | noncommercial | 🟡 |
 | [Clotho 2.1](catalog/audio/clotho-2-1.yaml) | Tampere University | audio | 2021-05-26 | audio captioning, audio text retrieval, text to audio, audio language pretraining | 7K | [download / browse (open)](https://zenodo.org/records/4783391) | noncommercial | 🟡 |
 | [VideoMatte240K](catalog/video/videomatte240k.yaml) | University of Washington | video | 2021-04-21 | video matting, foreground extraction, background replacement, layered video generation | 240.7K | [download / browse (open)](https://grail.cs.washington.edu/projects/background-matting-v2/#/datasets) | allowed | ✅ |
 | [HDTF](catalog/video/hdtf.yaml) | University of Science and Technology of China and Microsoft Research Asia | video | 2021-03-28 | talking head generation, audio driven avatar, lip sync training, talking head evaluation | ~362 | [URLs / downloader (metadata only)](https://github.com/MRzzm/HDTF) | review required | 🟡 |

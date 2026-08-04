@@ -1,0 +1,99 @@
+id: vton-360
+name: VTON 360
+organization: Sun Yat-sen University and collaborators
+released_at: "2025-03-15"
+modalities:
+  - image
+  - 3d
+tasks:
+  - virtual-try-on
+  - multi-view-virtual-try-on
+  - garment-conditioned-generation
+  - 3d-human-reconstruction
+access:
+  status: open-weights
+  license: The official repository does not state a code or checkpoint license; THuman2.0 and MVHumanNet retain separate non-commercial data agreements
+  release_url: https://scnuhealthy.github.io/VTON360/
+  weights_url: https://github.com/scnuhealthy/VTON360#1-multi-view-consistant-try-on
+  api_url: null
+architecture:
+  family: Stable Diffusion v1.5 latent diffusion with GarmentNet, a multi-view editing UNet, spatial cross-view attention, and Gaussian Splatting lifting
+  parameters: null
+  notes: GarmentNet encodes the reference garment, the main UNet generates mutually consistent views using cross-view attention and camera-aware CLIP conditions, and a customized Splatfacto stage lifts edited views into a 3D avatar.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Stable Diffusion v1.5 inherited pretraining mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: VTON 360 initializes its latent diffusion components from Stable Diffusion v1.5 but does not restate the inherited corpus or license chain.
+    - name: THuman2.0
+      catalog_id: thuman2-0
+      role: fine-tuning
+      availability: gated
+      scale: 426 training scans in the VTON 360 split
+      notes: Textured scans are rendered into multi-view human images, normal maps, masks, cameras, and garment conditions under the dataset's non-commercial agreement.
+    - name: MVHumanNet
+      catalog_id: mvhumannet
+      role: fine-tuning
+      availability: gated
+      scale: 4,790 training subjects in the VTON 360 split
+      notes: The paper uses two randomly sampled frames per subject from the multi-view capture set and retains the dataset's request-only terms.
+    - name: THuman2.0
+      catalog_id: thuman2-0
+      role: evaluation
+      availability: gated
+      scale: 100 held-out scans; 10 scans paired with 6 garments for reported tests
+      notes: The evaluation relation is recorded separately and must not be counted as additional training data.
+    - name: MVHumanNet
+      catalog_id: mvhumannet
+      role: evaluation
+      availability: gated
+      scale: 200 held-out subjects; 10 subjects paired with 6 garments for reported tests
+      notes: The evaluation relation is recorded separately and must not be counted as additional training data.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - inherited-foundation-model
+      scale_disclosed: false
+      strategy: Initialize the diffusion backbone and VAE from Stable Diffusion v1.5; the VTON 360 paper does not re-audit its inherited source corpus.
+    - name: fine-tuning
+      modalities:
+        - image
+        - 3d
+      source_types:
+        - public-dataset
+      operations:
+        - multi-view-rendering
+        - human-parsing
+        - garment-extraction
+        - normal-map-rendering
+        - camera-conditioning
+        - multi-view-pairing
+        - latent-diffusion-fine-tuning
+      scale_disclosed: true
+      strategy: Render gated THuman2.0 scans and sample MVHumanNet captures into camera-calibrated multi-view person/garment conditions, then fine-tune garment and denoising branches for cross-view consistency before separate Gaussian Splatting reconstruction.
+  strategy_summary:
+    - Adapt an inherited Stable Diffusion v1.5 prior with two named, gated multi-view human datasets rather than claiming an undisclosed new web corpus.
+    - Use garment features, SMPL-X-derived normal maps, camera embeddings, and cross-view attention to maintain identity, clothing appearance, and geometry across viewpoints.
+    - Keep the paper's held-out identities and garment-pair evaluations distinct from the 426- and 4,790-subject training splits.
+  unknowns:
+    - Official code and checkpoint license, commercial-use terms, and whether the third-party Hugging Face mirror's OpenRAIL label applies to the official Baidu artifacts.
+    - Exact Stable Diffusion v1.5 checkpoint variant, inherited training-data lineage, and component-by-component initialization.
+    - Training mixture between THuman2.0 and MVHumanNet, total rendered views, deduplication, quality filtering, steps, compute, and random seeds.
+    - Provenance and rights for the e-commerce garment images used in qualitative tests, plus any consent review for downstream human identities.
+evidence:
+  release: https://scnuhealthy.github.io/VTON360/
+  technical_report: https://arxiv.org/abs/2503.12165
+  repository: https://github.com/scnuhealthy/VTON360
+status: partial
+last_verified: "2026-08-04"

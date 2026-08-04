@@ -22,7 +22,7 @@ class BuildChangelogDataTests(unittest.TestCase):
             (entry["date"] for entry in entries), reverse=True
         ))
         latest = entries[0]
-        self.assertEqual(latest["date"], "2026-08-03")
+        self.assertEqual(latest["date"], "2026-08-04")
         self.assertEqual(payload["format_version"], 3)
         self.assertEqual(
             [dimension["label"]["zh"] for dimension in latest["summary"]],
@@ -32,13 +32,13 @@ class BuildChangelogDataTests(unittest.TestCase):
             [dimension["label"]["en"] for dimension in latest["summary"]],
             ["Models", "Datasets", "Data relations", "Rankings", "Monitoring", "Undisclosed"],
         )
-        self.assertIn("Qwen-Image-SP", latest["summary"][0]["text"]["zh"])
-        self.assertIn("Qwen-Image-SP", latest["summary"][0]["text"]["en"])
+        self.assertIn("VTON 360", latest["summary"][0]["text"]["zh"])
+        self.assertIn("VTON 360", latest["summary"][0]["text"]["en"])
         self.assertEqual(
             latest["summary"][0]["links"][0],
             {
-                "href": "/#model-qwen-image-sp",
-                "label": {"zh": "Qwen-Image-SP", "en": "Qwen-Image-SP"},
+                "href": "/#model-vton-360",
+                "label": {"zh": "VTON 360", "en": "VTON 360"},
             },
         )
         self.assertTrue(all(dimension["links"] for dimension in latest["summary"]))

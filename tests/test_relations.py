@@ -104,6 +104,9 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn("speech-active", relation["notes"])
 
     def test_representative_scenario_relations_are_navigable(self) -> None:
+        self.assertIn("thuman2-0", self.models["vton-360"]["linked_dataset_ids"])
+        self.assertIn("mvhumannet", self.models["vton-360"]["linked_dataset_ids"])
+        self.assertIn("vton-360", self.datasets["thuman2-0"]["linked_model_ids"])
         self.assertIn("graphvid-bench", self.models["graphvid"]["linked_dataset_ids"])
         self.assertIn("graphvid", self.datasets["graphvid-bench"]["linked_model_ids"])
         self.assertEqual(
@@ -410,7 +413,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
             for entry in board["entries"]
             for model_id in entry["model_ids"]
         }
-        self.assertEqual(len(ranked_model_ids), 50)
+        self.assertEqual(len(ranked_model_ids), 49)
         self.assertEqual(
             {
                 model_id

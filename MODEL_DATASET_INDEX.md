@@ -2,9 +2,9 @@
 
 Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; runtime inputs, unreleased data, and undisclosed data must state why no card exists.
 
-- Models: 107
-- References linked to catalog cards: 184
-- References without a card, with an explicit evidence boundary: 98
+- Models: 108
+- References linked to catalog cards: 188
+- References without a card, with an explicit evidence boundary: 99
 - Ordering: model release date, newest first
 
 | Model | Released | Dataset or corpus named by source | Availability | Catalog resolution | Role | Evidence boundary |
@@ -290,4 +290,9 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [MuseTalk 1.5](models/video/musetalk-1-5.yaml) | 2025-03-28 | Stable Diffusion 1.4 inherited training mixture | undisclosed | — exact source is not disclosed | pretraining | MuseTalk initializes its UNet from Stable Diffusion 1.4 but does not restate the foundation model's complete data lineage. |
 | [MuseTalk 1.5](models/video/musetalk-1-5.yaml) | 2025-03-28 | HDTF | public | [`hdtf`](catalog/video/hdtf.yaml) | fine-tuning | The official repository explicitly says the released checkpoint was trained on HDTF together with a private dataset. |
 | [MuseTalk 1.5](models/video/musetalk-1-5.yaml) | 2025-03-28 | MuseTalk private talking-face dataset | not-released | — publisher has not released it | fine-tuning | The repository names a private component but does not disclose its size, sources, language distribution, rights, or release plan. |
+| [VTON 360](models/image/vton-360.yaml) | 2025-03-15 | Stable Diffusion v1.5 inherited pretraining mixture | undisclosed | — exact source is not disclosed | pretraining | VTON 360 initializes its latent diffusion components from Stable Diffusion v1.5 but does not restate the inherited corpus or license chain. |
+| [VTON 360](models/image/vton-360.yaml) | 2025-03-15 | THuman2.0 | gated | [`thuman2-0`](catalog/3d/thuman2-0.yaml) | fine-tuning | Textured scans are rendered into multi-view human images, normal maps, masks, cameras, and garment conditions under the dataset's non-commercial agreement. |
+| [VTON 360](models/image/vton-360.yaml) | 2025-03-15 | MVHumanNet | gated | [`mvhumannet`](catalog/3d/mvhumannet.yaml) | fine-tuning | The paper uses two randomly sampled frames per subject from the multi-view capture set and retains the dataset's request-only terms. |
+| [VTON 360](models/image/vton-360.yaml) | 2025-03-15 | THuman2.0 | gated | [`thuman2-0`](catalog/3d/thuman2-0.yaml) | evaluation | The evaluation relation is recorded separately and must not be counted as additional training data. |
+| [VTON 360](models/image/vton-360.yaml) | 2025-03-15 | MVHumanNet | gated | [`mvhumannet`](catalog/3d/mvhumannet.yaml) | evaluation | The evaluation relation is recorded separately and must not be counted as additional training data. |
 | [CommonCanvas-XL-C](models/image/commoncanvas-xl-c.yaml) | 2024-05-16 | CommonCatalog commercial subset | public | [`commoncatalog`](catalog/image/commoncatalog.yaml) | pretraining | The model card links the commoncatalog-cc-by and commoncatalog-cc-by-sa repositories; both carry BLIP-2 synthetic captions and item-level attribution. |

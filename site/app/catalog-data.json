@@ -8,7 +8,7 @@
     "sources/watchlist.yaml",
     "sources/discovery-state.json"
   ],
-  "last_verified": "2026-08-03",
+  "last_verified": "2026-08-04",
   "scenarios": [
     {
       "id": "image-generation",
@@ -674,6 +674,186 @@
     }
   ],
   "datasets": [
+    {
+      "id": "mie-bench",
+      "name": "MIE-Bench",
+      "organization": "IntMe Group and collaborators",
+      "released_at": "2026-08-03",
+      "release_date_source": "https://arxiv.org/abs/2608.02059",
+      "modality": "evaluation",
+      "tasks": [
+        "multi-source-image-editing",
+        "image-editing-evaluation",
+        "human-preference-evaluation"
+      ],
+      "stages": [
+        "evaluation"
+      ],
+      "description": "A multi-source image-editing benchmark with human mean-opinion scores over edits produced by twelve systems across sixteen editing tasks.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://github.com/IntMeGroup/MIEScore",
+        "requires_account": false,
+        "notes": "The official repository advertises a TmpAccount Hugging Face dataset URL, but that endpoint returned 404 during verification; no downloadable benchmark files are currently available."
+      },
+      "scale": {
+        "samples": 3000,
+        "source_items": 36000,
+        "hours": null,
+        "approximate": false,
+        "notes": "Each of 3,000 instances contains more than two source images and an edit prompt; twelve models produced 36,000 edited images with more than 108,000 mean-opinion scores."
+      },
+      "annotations": {
+        "types": [
+          "source-image-group",
+          "editing-instruction",
+          "edited-image",
+          "visual-quality-score",
+          "instruction-following-score",
+          "attribute-preservation-score"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not stated",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The official repository contains no dataset license or source-image rights statement, and its advertised download is not live."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Source-image identities, licenses, consent, task distribution, splits, and annotator protocol are not disclosed in the current public repository.",
+          "The advertised dataset and MIEScore model-weight links use a placeholder account and currently return 404.",
+          "Outputs from twelve selected editing systems may bias evaluation toward their common artifacts and capability profiles."
+        ]
+      },
+      "processing": {
+        "recipe": "Pair groups of more than two source images with editing prompts across sixteen tasks, render each instance with twelve editing models, and collect separate human mean-opinion scores for visual quality, instruction following, and attribute preservation.",
+        "recommended_format": "native",
+        "notes": "Preserve instance grouping, every source-image provenance record, task, prompt, generator version, output, rater protocol, and per-dimension score if released."
+      },
+      "evidence": {
+        "homepage": "https://github.com/IntMeGroup/MIEScore",
+        "paper": "https://arxiv.org/abs/2608.02059",
+        "used_by": [
+          "MIEScore"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-04",
+      "source_path": "catalog/evaluation/mie-bench.yaml",
+      "scenario_ids": [],
+      "scale_label": "3K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/IntMeGroup/MIEScore/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
+    },
+    {
+      "id": "culturevidbench",
+      "name": "CultureVidBench",
+      "organization": "CultureVidBench authors",
+      "released_at": "2026-08-03",
+      "release_date_source": "https://arxiv.org/abs/2608.01942",
+      "modality": "evaluation",
+      "tasks": [
+        "text-to-video",
+        "cultural-evaluation",
+        "multimodal-video-evaluation"
+      ],
+      "stages": [
+        "evaluation"
+      ],
+      "description": "An announced cultural-understanding benchmark for text-to-video systems with prompts spanning material culture, social practices and performances, and rituals and ceremonies.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://hanxjing.github.io/CultureVidBench/",
+        "requires_account": false,
+        "notes": "The official project page labels both code and dataset as coming soon and provides no prompt file, manifest, or download endpoint."
+      },
+      "scale": {
+        "samples": 1000,
+        "source_items": 1000,
+        "hours": null,
+        "approximate": false,
+        "notes": "The paper reports 1,000 curated prompts across 12 countries, 6 continents, 8 cultural regions, 14 cultural aspects, and 3 top-level categories."
+      },
+      "annotations": {
+        "types": [
+          "text-prompt",
+          "country",
+          "cultural-region",
+          "cultural-aspect",
+          "cultural-category",
+          "human-rating",
+          "mllm-score"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not stated",
+        "media": "Not applicable to the unreleased prompt benchmark",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "No benchmark license or prompt-source rights statement is published while the dataset remains unreleased."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "visual-quality",
+          "audio-quality",
+          "human-preference",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The benchmark files, prompt wording, sampling protocol, annotator demographics, and license are not yet public.",
+          "Twelve countries cannot represent the full diversity or within-region variation of the cultures being assessed.",
+          "The benchmark emphasizes culturally specific visible text and audio in addition to video, which may confound model capability with localization quality."
+        ]
+      },
+      "processing": {
+        "recipe": "Curate culturally specific prompts, generate outputs with seven representative text-to-video models, and score cultural faithfulness, multimodal cultural rendering, semantic adherence, and perceptual quality with humans and MLLMs.",
+        "recommended_format": "native",
+        "notes": "Keep country, region, cultural aspect, category, visible-text requirement, audio requirement, evaluated model version, and human versus automatic scores separate if released."
+      },
+      "evidence": {
+        "homepage": "https://hanxjing.github.io/CultureVidBench/",
+        "paper": "https://arxiv.org/abs/2608.01942",
+        "used_by": []
+      },
+      "status": "partial",
+      "last_verified": "2026-08-04",
+      "source_path": "catalog/evaluation/culturevidbench.yaml",
+      "scenario_ids": [
+        "video-generation"
+      ],
+      "scale_label": "1K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://hanxjing.github.io/CultureVidBench/"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": []
+    },
     {
       "id": "moroute-ue5-editing-pairs",
       "name": "MoRoute UE5 Editing Pairs",
@@ -12999,7 +13179,9 @@
       "downstream_dataset_ids": [
         "mvhumannet-plus-plus"
       ],
-      "linked_model_ids": []
+      "linked_model_ids": [
+        "vton-360"
+      ]
     },
     {
       "id": "panda-70m",
@@ -15280,6 +15462,99 @@
       ],
       "linked_model_ids": [
         "consid-gen"
+      ]
+    },
+    {
+      "id": "thuman2-0",
+      "name": "THuman2.0",
+      "organization": "Tsinghua University THU3DV Lab",
+      "released_at": "2021-06-19",
+      "release_date_source": "https://github.com/ytrock/THuman2.0-Dataset/commit/249097c72da17d6fe1a99f1be34530d07ca27857",
+      "modality": "3d",
+      "tasks": [
+        "digital-human",
+        "3d-human-reconstruction",
+        "virtual-try-on",
+        "human-rendering"
+      ],
+      "stages": [
+        "fine-tuning",
+        "evaluation"
+      ],
+      "description": "A research-only collection of textured, clothed human scans with released SMPL and SMPL-X fits, used for human reconstruction, rendering, and virtual try-on research.",
+      "access": {
+        "status": "gated",
+        "type": "request",
+        "url": "https://github.com/ytrock/THuman2.0-Dataset",
+        "requires_account": true,
+        "notes": "Applicants sign the project agreement and email the maintainers for an encrypted-dataset download link; separate fitting files are linked publicly."
+      },
+      "scale": {
+        "samples": 500,
+        "source_items": 500,
+        "hours": null,
+        "approximate": false,
+        "notes": "The official repository describes 500 high-quality scans; VTON 360 reports a 526-scan working set split into 426 training and 100 test identities, so derived-project counts must be kept distinct."
+      },
+      "annotations": {
+        "types": [
+          "textured-3d-scan",
+          "mesh",
+          "texture-map",
+          "smpl-parameters",
+          "smplx-parameters"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "THuman2.0 Dataset Agreement",
+        "media": "Non-commercial research use only",
+        "commercial_use": "noncommercial",
+        "redistribution": "prohibited",
+        "notes": "The agreement prohibits commercial use, pornography, third-party availability, publication, distribution, and external copies without Tsinghua University's prior written permission."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "geometry-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The official 500-scan count differs from the 526 scans reported by VTON 360 for its derived working split.",
+          "Human-subject, biometric, clothing, and texture rights require review before any downstream deployment.",
+          "The gated non-commercial agreement prevents unrestricted redistribution or commercial training."
+        ]
+      },
+      "processing": {
+        "recipe": "Capture clothed people with a dense DSLR rig, reconstruct textured meshes, and fit SMPL and SMPL-X body models; downstream projects may render multi-view RGB, normal, depth, mask, and camera-conditioned derivatives.",
+        "recommended_format": "native",
+        "notes": "Preserve scan identity, texture, body-fit version, agreement status, and every rendered-view transformation."
+      },
+      "evidence": {
+        "homepage": "https://github.com/ytrock/THuman2.0-Dataset",
+        "paper": "https://arxiv.org/abs/2105.01831",
+        "used_by": [
+          "VTON 360"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-04",
+      "source_path": "catalog/3d/thuman2-0.yaml",
+      "scenario_ids": [
+        "virtual-try-on"
+      ],
+      "scale_label": "500",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/ytrock/THuman2.0-Dataset/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "vton-360"
       ]
     },
     {
@@ -18020,6 +18295,24 @@
       },
       "ranking_positions": [
         {
+          "ranking_id": "arena-image-to-video",
+          "provider": "Arena",
+          "rank": 2,
+          "score": 1475.6,
+          "score_label": "Arena",
+          "entry_model": "minimax-h3",
+          "component_count": 1
+        },
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
+          "rank": 4,
+          "score": 1455.2,
+          "score_label": "Arena",
+          "entry_model": "minimax-h3",
+          "component_count": 1
+        },
+        {
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 3,
@@ -18032,7 +18325,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1239,
+          "score": 1234,
           "score_label": "Elo",
           "entry_model": "MiniMax H3",
           "component_count": 1
@@ -18041,7 +18334,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 1,
-          "score": 1129,
+          "score": 1130,
           "score_label": "Elo",
           "entry_model": "MiniMax H3",
           "component_count": 1
@@ -20937,7 +21230,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1241,
+          "score": 1242,
           "score_label": "Elo",
           "entry_model": "Seedream 5.0 Pro",
           "component_count": 1
@@ -21385,7 +21678,7 @@
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 3,
-          "score": 1458.6,
+          "score": 1457.5,
           "score_label": "Arena",
           "entry_model": "muse-video",
           "component_count": 1
@@ -21650,8 +21943,8 @@
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
-          "rank": 2,
-          "score": 1469.3,
+          "rank": 4,
+          "score": 1462.3,
           "score_label": "Arena",
           "entry_model": "gemini-omni-flash",
           "component_count": 1
@@ -21660,7 +21953,7 @@
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 1,
-          "score": 1527.5,
+          "score": 1513.3,
           "score_label": "Arena",
           "entry_model": "gemini-omni-flash",
           "component_count": 1
@@ -21678,7 +21971,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1192,
+          "score": 1193,
           "score_label": "Elo",
           "entry_model": "Gemini Omni Flash",
           "component_count": 1
@@ -21687,7 +21980,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 1,
-          "score": 1244,
+          "score": 1245,
           "score_label": "Elo",
           "entry_model": "Gemini Omni Flash",
           "component_count": 1
@@ -22148,7 +22441,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1106,
+          "score": 1108,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.1",
           "component_count": 1
@@ -22157,7 +22450,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1149,
+          "score": 1147,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.1",
           "component_count": 1
@@ -22432,7 +22725,8 @@
       "ranking_names": [
         "grok-imagine-video-1.5-preview",
         "grok-imagine-video-1.5",
-        "grok-imagine-video-1.5-preview-720p"
+        "grok-imagine-video-1.5-preview-720p",
+        "grok-imagine-video-1.5-720p"
       ],
       "modalities": [
         "video",
@@ -22520,9 +22814,9 @@
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
           "rank": 3,
-          "score": 1466.4,
+          "score": 1462.5,
           "score_label": "Arena",
-          "entry_model": "grok-imagine-video-1.5-preview-720p",
+          "entry_model": "grok-imagine-video-1.5-720p",
           "component_count": 1
         },
         {
@@ -23402,8 +23696,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 3,
-          "score": 1253,
+          "rank": 2,
+          "score": 1254,
           "score_label": "Elo",
           "entry_model": "MAI-Image-2.5",
           "component_count": 1
@@ -23412,7 +23706,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 7,
-          "score": 1232,
+          "score": 1234,
           "score_label": "Elo",
           "entry_model": "MAI-Image-2.5-Flash",
           "component_count": 1
@@ -24736,17 +25030,7 @@
         "priority": "critical",
         "source_url": "https://github.com/HiDream-ai/HiDream-O1-Image/commits/main.atom"
       },
-      "ranking_positions": [
-        {
-          "ranking_id": "image-editing",
-          "provider": "Artificial Analysis",
-          "rank": 15,
-          "score": 1202,
-          "score_label": "Elo",
-          "entry_model": "HiDream-O1-Image",
-          "component_count": 1
-        }
-      ],
+      "ranking_positions": [],
       "linked_dataset_ids": []
     },
     {
@@ -24867,7 +25151,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 8,
-          "score": 1231,
+          "score": 1230,
           "score_label": "Elo",
           "entry_model": "grok-imagine-image-quality",
           "component_count": 1
@@ -25011,7 +25295,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 10,
-          "score": 1222,
+          "score": 1221,
           "score_label": "Elo",
           "entry_model": "Luma UNI 1 Max",
           "component_count": 1
@@ -25320,8 +25604,8 @@
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
-          "rank": 4,
-          "score": 1444.2,
+          "rank": 5,
+          "score": 1441.6,
           "score_label": "Arena",
           "entry_model": "happyhorse-1.0",
           "component_count": 1
@@ -25329,8 +25613,8 @@
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
-          "rank": 4,
-          "score": 1429.5,
+          "rank": 5,
+          "score": 1428.0,
           "score_label": "Arena",
           "entry_model": "happyhorse-1.0",
           "component_count": 1
@@ -25348,7 +25632,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 7,
-          "score": 1092,
+          "score": 1090,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.0",
           "component_count": 1
@@ -25357,7 +25641,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 6,
-          "score": 1127,
+          "score": 1124,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.0",
           "component_count": 1
@@ -25483,7 +25767,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 1,
-          "score": 1259,
+          "score": 1258,
           "score_label": "Elo",
           "entry_model": "GPT Image 2 (high)",
           "component_count": 1
@@ -26160,8 +26444,8 @@
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
-          "rank": 5,
-          "score": 1434.1,
+          "rank": 6,
+          "score": 1427.4,
           "score_label": "Arena",
           "entry_model": "wan2.7-i2v",
           "component_count": 1
@@ -26169,8 +26453,8 @@
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
-          "rank": 11,
-          "score": 1347.9,
+          "rank": 13,
+          "score": 1347.1,
           "score_label": "Arena",
           "entry_model": "wan2.7-t2v",
           "component_count": 1
@@ -26179,7 +26463,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 6,
-          "score": 1092,
+          "score": 1091,
           "score_label": "Elo",
           "entry_model": "Wan 2.7",
           "component_count": 1
@@ -26188,7 +26472,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 4,
-          "score": 1160,
+          "score": 1158,
           "score_label": "Elo",
           "entry_model": "Wan2.7-260612",
           "component_count": 1
@@ -26196,8 +26480,8 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 8,
-          "score": 1108,
+          "rank": 7,
+          "score": 1110,
           "score_label": "Elo",
           "entry_model": "Wan 2.7",
           "component_count": 1
@@ -26301,10 +26585,19 @@
       },
       "ranking_positions": [
         {
-          "ranking_id": "text-to-video",
+          "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 15,
-          "score": 1090,
+          "score": 1064,
+          "score_label": "Elo",
+          "entry_model": "Veo 3.1 Lite",
+          "component_count": 1
+        },
+        {
+          "ranking_id": "text-to-video",
+          "provider": "Artificial Analysis",
+          "rank": 14,
+          "score": 1089,
           "score_label": "Elo",
           "entry_model": "Veo 3.1 Lite",
           "component_count": 1
@@ -26408,7 +26701,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 13,
-          "score": 1068,
+          "score": 1069,
           "score_label": "Elo",
           "entry_model": "PixVerse V6",
           "component_count": 1
@@ -27491,7 +27784,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 8,
-          "score": 1087,
+          "score": 1086,
           "score_label": "Elo",
           "entry_model": "SkyReels V4",
           "component_count": 1
@@ -27500,7 +27793,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 9,
-          "score": 1108,
+          "score": 1104,
           "score_label": "Elo",
           "entry_model": "SkyReels V4",
           "component_count": 1
@@ -27509,7 +27802,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 8,
-          "score": 952,
+          "score": 951,
           "score_label": "Elo",
           "entry_model": "SkyReels V4",
           "component_count": 1
@@ -27791,7 +28084,7 @@
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
           "rank": 1,
-          "score": 1473.7,
+          "score": 1478.0,
           "score_label": "Arena",
           "entry_model": "dreamina-seedance-2.0-720p",
           "component_count": 1
@@ -27800,7 +28093,7 @@
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 2,
-          "score": 1481.9,
+          "score": 1478.7,
           "score_label": "Arena",
           "entry_model": "dreamina-seedance-2.0-720p",
           "component_count": 1
@@ -27827,7 +28120,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 1,
-          "score": 1195,
+          "score": 1196,
           "score_label": "Elo",
           "entry_model": "Dreamina Seedance 2.0 720p",
           "component_count": 1
@@ -27836,7 +28129,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 3,
-          "score": 1224,
+          "score": 1221,
           "score_label": "Elo",
           "entry_model": "Dreamina Seedance 2.0 720p",
           "component_count": 1
@@ -28418,8 +28711,8 @@
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
-          "rank": 13,
-          "score": 1360.3,
+          "rank": 14,
+          "score": 1359.2,
           "score_label": "Arena",
           "entry_model": "kling-v3-pro",
           "component_count": 1
@@ -28437,7 +28730,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 11,
-          "score": 1215,
+          "score": 1213,
           "score_label": "Elo",
           "entry_model": "Kling Image 3.0 Omni",
           "component_count": 1
@@ -28446,7 +28739,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 13,
-          "score": 1203,
+          "score": 1202,
           "score_label": "Elo",
           "entry_model": "Kling Image 3.0",
           "component_count": 1
@@ -28455,7 +28748,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 12,
-          "score": 1072,
+          "score": 1073,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 1080p (Pro)",
           "component_count": 1
@@ -28472,8 +28765,8 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 7,
-          "score": 1111,
+          "rank": 8,
+          "score": 1109,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 1080p (Pro)",
           "component_count": 1
@@ -28482,7 +28775,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 10,
-          "score": 1101,
+          "score": 1100,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 720p (Standard)",
           "component_count": 1
@@ -28491,18 +28784,18 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 12,
-          "score": 1092,
+          "score": 1091,
           "score_label": "Elo",
-          "entry_model": "Kling 3.0 Omni 720p (Standard)",
+          "entry_model": "Kling 3.0 Omni 1080p (Pro)",
           "component_count": 1
         },
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 13,
-          "score": 1092,
+          "score": 1090,
           "score_label": "Elo",
-          "entry_model": "Kling 3.0 Omni 1080p (Pro)",
+          "entry_model": "Kling 3.0 Omni 720p (Standard)",
           "component_count": 1
         },
         {
@@ -28899,8 +29192,8 @@
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
-          "rank": 6,
-          "score": 1421.6,
+          "rank": 7,
+          "score": 1416.8,
           "score_label": "Arena",
           "entry_model": "grok-imagine-video-720p",
           "component_count": 1
@@ -28908,8 +29201,8 @@
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
-          "rank": 10,
-          "score": 1383.5,
+          "rank": 11,
+          "score": 1383.0,
           "score_label": "Arena",
           "entry_model": "grok-imagine-video-480p",
           "component_count": 1
@@ -28917,8 +29210,8 @@
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
-          "rank": 10,
-          "score": 1351.8,
+          "rank": 11,
+          "score": 1349.1,
           "score_label": "Arena",
           "entry_model": "grok-imagine-video-720p",
           "component_count": 1
@@ -28936,7 +29229,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 10,
-          "score": 1078,
+          "score": 1080,
           "score_label": "Elo",
           "entry_model": "grok-imagine-video",
           "component_count": 1
@@ -29043,7 +29336,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 12,
-          "score": 1214,
+          "score": 1213,
           "score_label": "Elo",
           "entry_model": "grok-imagine-image",
           "component_count": 1
@@ -29147,19 +29440,10 @@
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
-          "rank": 12,
-          "score": 1361.3,
+          "rank": 13,
+          "score": 1360.6,
           "score_label": "Arena",
           "entry_model": "vidu-q3-pro",
-          "component_count": 1
-        },
-        {
-          "ranking_id": "image-to-video",
-          "provider": "Artificial Analysis",
-          "rank": 15,
-          "score": 1064,
-          "score_label": "Elo",
-          "entry_model": "Vidu Q3 Pro",
           "component_count": 1
         }
       ],
@@ -29355,7 +29639,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 9,
-          "score": 1223,
+          "score": 1222,
           "score_label": "Elo",
           "entry_model": "HunyuanImage 3.0 Instruct (Fal)",
           "component_count": 1
@@ -29850,8 +30134,8 @@
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
-          "rank": 7,
-          "score": 1397.7,
+          "rank": 8,
+          "score": 1397.0,
           "score_label": "Arena",
           "entry_model": "veo-3.1-audio",
           "component_count": 1
@@ -29859,8 +30143,8 @@
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
-          "rank": 8,
-          "score": 1391.4,
+          "rank": 9,
+          "score": 1389.8,
           "score_label": "Arena",
           "entry_model": "veo-3.1-audio-1080p",
           "component_count": 1
@@ -29868,8 +30152,8 @@
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
-          "rank": 9,
-          "score": 1384.8,
+          "rank": 10,
+          "score": 1384.2,
           "score_label": "Arena",
           "entry_model": "veo-3.1-fast-audio",
           "component_count": 1
@@ -29877,8 +30161,8 @@
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
-          "rank": 11,
-          "score": 1373.8,
+          "rank": 12,
+          "score": 1371.0,
           "score_label": "Arena",
           "entry_model": "veo-3.1-fast-audio-1080p",
           "component_count": 1
@@ -29886,35 +30170,17 @@
         {
           "ranking_id": "arena-image-to-video",
           "provider": "Arena",
-          "rank": 14,
-          "score": 1330.4,
+          "rank": 15,
+          "score": 1329.9,
           "score_label": "Arena",
           "entry_model": "veo-3-audio",
-          "component_count": 1
-        },
-        {
-          "ranking_id": "arena-image-to-video",
-          "provider": "Arena",
-          "rank": 15,
-          "score": 1324.5,
-          "score_label": "Arena",
-          "entry_model": "veo-3-fast-audio",
-          "component_count": 1
-        },
-        {
-          "ranking_id": "arena-text-to-video",
-          "provider": "Arena",
-          "rank": 6,
-          "score": 1364.2,
-          "score_label": "Arena",
-          "entry_model": "veo-3.1-audio-1080p",
           "component_count": 1
         },
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 7,
-          "score": 1363.9,
+          "score": 1363.8,
           "score_label": "Arena",
           "entry_model": "veo-3.1-audio",
           "component_count": 1
@@ -29923,6 +30189,15 @@
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 8,
+          "score": 1363.4,
+          "score_label": "Arena",
+          "entry_model": "veo-3.1-audio-1080p",
+          "component_count": 1
+        },
+        {
+          "ranking_id": "arena-text-to-video",
+          "provider": "Arena",
+          "rank": 9,
           "score": 1362.0,
           "score_label": "Arena",
           "entry_model": "veo-3.1-fast-audio",
@@ -29931,8 +30206,8 @@
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
-          "rank": 9,
-          "score": 1359.5,
+          "rank": 10,
+          "score": 1358.5,
           "score_label": "Arena",
           "entry_model": "veo-3.1-fast-audio-1080p",
           "component_count": 1
@@ -29941,7 +30216,7 @@
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 12,
-          "score": 1346.9,
+          "score": 1347.3,
           "score_label": "Arena",
           "entry_model": "veo-3-fast-audio",
           "component_count": 1
@@ -29949,8 +30224,8 @@
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
-          "rank": 13,
-          "score": 1339.0,
+          "rank": 15,
+          "score": 1339.4,
           "score_label": "Arena",
           "entry_model": "veo-3-audio",
           "component_count": 1
@@ -29995,7 +30270,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 11,
-          "score": 1094,
+          "score": 1093,
           "score_label": "Elo",
           "entry_model": "Veo 3.1",
           "component_count": 1
@@ -30003,8 +30278,8 @@
         {
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
-          "rank": 14,
-          "score": 1091,
+          "rank": 15,
+          "score": 1088,
           "score_label": "Elo",
           "entry_model": "Veo 3.1 Fast",
           "component_count": 1
@@ -30690,15 +30965,6 @@
       },
       "ranking_positions": [
         {
-          "ranking_id": "arena-text-to-video",
-          "provider": "Arena",
-          "rank": 15,
-          "score": 1333.3,
-          "score_label": "Arena",
-          "entry_model": "wan2.6-t2v",
-          "component_count": 1
-        },
-        {
           "ranking_id": "avgen-text-to-audio-video",
           "provider": "AVGen-Bench",
           "rank": 5,
@@ -30989,8 +31255,8 @@
         {
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
-          "rank": 2,
-          "score": 1254,
+          "rank": 3,
+          "score": 1253,
           "score_label": "Elo",
           "entry_model": "GPT Image 1.5 (high)",
           "component_count": 1
@@ -31099,7 +31365,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 14,
-          "score": 1203,
+          "score": 1202,
           "score_label": "Elo",
           "entry_model": "FLUX.2 [max]",
           "component_count": 1
@@ -31581,6 +31847,15 @@
           "score": 1203.1,
           "score_label": "Arena",
           "entry_model": "kling-o1-pro",
+          "component_count": 1
+        },
+        {
+          "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
+          "rank": 15,
+          "score": 1202,
+          "score_label": "Elo",
+          "entry_model": "Kling Image O1",
           "component_count": 1
         }
       ],
@@ -32257,8 +32532,8 @@
         {
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
-          "rank": 5,
-          "score": 1365.6,
+          "rank": 6,
+          "score": 1365.4,
           "score_label": "Arena",
           "entry_model": "sora-2-pro",
           "component_count": 1
@@ -32267,7 +32542,7 @@
           "ranking_id": "arena-text-to-video",
           "provider": "Arena",
           "rank": 14,
-          "score": 1337.1,
+          "score": 1339.5,
           "score_label": "Arena",
           "entry_model": "sora-2",
           "component_count": 1
@@ -34076,6 +34351,175 @@
       ]
     },
     {
+      "id": "vton-360",
+      "name": "VTON 360",
+      "organization": "Sun Yat-sen University and collaborators",
+      "released_at": "2025-03-15",
+      "modalities": [
+        "image",
+        "3d"
+      ],
+      "tasks": [
+        "virtual-try-on",
+        "multi-view-virtual-try-on",
+        "garment-conditioned-generation",
+        "3d-human-reconstruction"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "The official repository does not state a code or checkpoint license; THuman2.0 and MVHumanNet retain separate non-commercial data agreements",
+        "release_url": "https://scnuhealthy.github.io/VTON360/",
+        "weights_url": "https://github.com/scnuhealthy/VTON360#1-multi-view-consistant-try-on",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Stable Diffusion v1.5 latent diffusion with GarmentNet, a multi-view editing UNet, spatial cross-view attention, and Gaussian Splatting lifting",
+        "parameters": null,
+        "notes": "GarmentNet encodes the reference garment, the main UNet generates mutually consistent views using cross-view attention and camera-aware CLIP conditions, and a customized Splatfacto stage lifts edited views into a 3D avatar."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Stable Diffusion v1.5 inherited pretraining mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "undisclosed",
+            "scale": null,
+            "notes": "VTON 360 initializes its latent diffusion components from Stable Diffusion v1.5 but does not restate the inherited corpus or license chain."
+          },
+          {
+            "name": "THuman2.0",
+            "catalog_id": "thuman2-0",
+            "role": "fine-tuning",
+            "availability": "gated",
+            "scale": "426 training scans in the VTON 360 split",
+            "notes": "Textured scans are rendered into multi-view human images, normal maps, masks, cameras, and garment conditions under the dataset's non-commercial agreement."
+          },
+          {
+            "name": "MVHumanNet",
+            "catalog_id": "mvhumannet",
+            "role": "fine-tuning",
+            "availability": "gated",
+            "scale": "4,790 training subjects in the VTON 360 split",
+            "notes": "The paper uses two randomly sampled frames per subject from the multi-view capture set and retains the dataset's request-only terms."
+          },
+          {
+            "name": "THuman2.0",
+            "catalog_id": "thuman2-0",
+            "role": "evaluation",
+            "availability": "gated",
+            "scale": "100 held-out scans; 10 scans paired with 6 garments for reported tests",
+            "notes": "The evaluation relation is recorded separately and must not be counted as additional training data."
+          },
+          {
+            "name": "MVHumanNet",
+            "catalog_id": "mvhumannet",
+            "role": "evaluation",
+            "availability": "gated",
+            "scale": "200 held-out subjects; 10 subjects paired with 6 garments for reported tests",
+            "notes": "The evaluation relation is recorded separately and must not be counted as additional training data."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "undisclosed"
+            ],
+            "operations": [
+              "inherited-foundation-model"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Initialize the diffusion backbone and VAE from Stable Diffusion v1.5; the VTON 360 paper does not re-audit its inherited source corpus."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "3d"
+            ],
+            "source_types": [
+              "public-dataset"
+            ],
+            "operations": [
+              "multi-view-rendering",
+              "human-parsing",
+              "garment-extraction",
+              "normal-map-rendering",
+              "camera-conditioning",
+              "multi-view-pairing",
+              "latent-diffusion-fine-tuning"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Render gated THuman2.0 scans and sample MVHumanNet captures into camera-calibrated multi-view person/garment conditions, then fine-tune garment and denoising branches for cross-view consistency before separate Gaussian Splatting reconstruction."
+          }
+        ],
+        "strategy_summary": [
+          "Adapt an inherited Stable Diffusion v1.5 prior with two named, gated multi-view human datasets rather than claiming an undisclosed new web corpus.",
+          "Use garment features, SMPL-X-derived normal maps, camera embeddings, and cross-view attention to maintain identity, clothing appearance, and geometry across viewpoints.",
+          "Keep the paper's held-out identities and garment-pair evaluations distinct from the 426- and 4,790-subject training splits."
+        ],
+        "unknowns": [
+          "Official code and checkpoint license, commercial-use terms, and whether the third-party Hugging Face mirror's OpenRAIL label applies to the official Baidu artifacts.",
+          "Exact Stable Diffusion v1.5 checkpoint variant, inherited training-data lineage, and component-by-component initialization.",
+          "Training mixture between THuman2.0 and MVHumanNet, total rendered views, deduplication, quality filtering, steps, compute, and random seeds.",
+          "Provenance and rights for the e-commerce garment images used in qualitative tests, plus any consent review for downstream human identities."
+        ]
+      },
+      "evidence": {
+        "release": "https://scnuhealthy.github.io/VTON360/",
+        "technical_report": "https://arxiv.org/abs/2503.12165",
+        "repository": "https://github.com/scnuhealthy/VTON360"
+      },
+      "status": "partial",
+      "last_verified": "2026-08-04",
+      "source_path": "models/image/vton-360.yaml",
+      "scenario_ids": [
+        "virtual-try-on"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning"
+        ],
+        "source_types": [
+          "undisclosed",
+          "public-dataset"
+        ],
+        "operations": [
+          "inherited-foundation-model",
+          "multi-view-rendering",
+          "human-parsing",
+          "garment-extraction",
+          "normal-map-rendering",
+          "camera-conditioning",
+          "multi-view-pairing",
+          "latent-diffusion-fine-tuning"
+        ],
+        "data_reference_count": 5,
+        "linked_dataset_count": 2,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 2,
+        "unknown_count": 4
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://github.com/scnuhealthy/VTON360/commits/main.atom"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "thuman2-0",
+        "mvhumannet"
+      ]
+    },
+    {
       "id": "commoncanvas-xl-c",
       "name": "CommonCanvas-XL-C",
       "organization": "CommonCanvas collaborators",
@@ -35572,6 +36016,38 @@
       "reference_name": "VoxCeleb2"
     },
     {
+      "model_id": "vton-360",
+      "dataset_id": "mvhumannet",
+      "role": "evaluation",
+      "availability": "gated",
+      "scale": "200 held-out subjects; 10 subjects paired with 6 garments for reported tests",
+      "reference_name": "MVHumanNet"
+    },
+    {
+      "model_id": "vton-360",
+      "dataset_id": "mvhumannet",
+      "role": "fine-tuning",
+      "availability": "gated",
+      "scale": "4,790 training subjects in the VTON 360 split",
+      "reference_name": "MVHumanNet"
+    },
+    {
+      "model_id": "vton-360",
+      "dataset_id": "thuman2-0",
+      "role": "evaluation",
+      "availability": "gated",
+      "scale": "100 held-out scans; 10 scans paired with 6 garments for reported tests",
+      "reference_name": "THuman2.0"
+    },
+    {
+      "model_id": "vton-360",
+      "dataset_id": "thuman2-0",
+      "role": "fine-tuning",
+      "availability": "gated",
+      "scale": "426 training scans in the VTON 360 split",
+      "reference_name": "THuman2.0"
+    },
+    {
       "model_id": "wan-2-2",
       "dataset_id": "avgen-bench",
       "role": "evaluation",
@@ -36309,16 +36785,16 @@
       "date_label": "榜单快照",
       "coverage_policy": "required",
       "source_url": "https://arena.ai/leaderboard/image-to-video",
-      "fetch_url": "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=image_to_video&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100",
+      "fetch_url": "https://datasets-server.huggingface.co/first-rows?dataset=lmarena-ai%2Fleaderboard-dataset&config=image_to_video&split=latest",
       "entries": [
         {
           "rank": 1,
           "creator": "bytedance",
           "model": "dreamina-seedance-2.0-720p",
-          "score": 1473.7,
-          "confidence_interval": "1463–1484",
-          "samples": 81746,
-          "released": "2026-07-29",
+          "score": 1478.0,
+          "confidence_interval": "1468–1488",
+          "samples": 100246,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -36335,12 +36811,56 @@
         },
         {
           "rank": 2,
+          "creator": "minimax",
+          "model": "minimax-h3",
+          "score": 1475.6,
+          "confidence_interval": "1457–1494",
+          "samples": 1190,
+          "released": "2026-08-03",
+          "open_weights": true,
+          "license": "minimax-h3-community-license-agreement",
+          "component_models": [],
+          "components": [
+            {
+              "name": "minimax-h3",
+              "model_id": "minimax-h3"
+            }
+          ],
+          "model_ids": [
+            "minimax-h3"
+          ],
+          "model_id": "minimax-h3"
+        },
+        {
+          "rank": 3,
+          "creator": "xai",
+          "model": "grok-imagine-video-1.5-720p",
+          "score": 1462.5,
+          "confidence_interval": "1456–1469",
+          "samples": 87626,
+          "released": "2026-08-03",
+          "open_weights": false,
+          "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "grok-imagine-video-1.5-720p",
+              "model_id": "grok-imagine-video-1-5"
+            }
+          ],
+          "model_ids": [
+            "grok-imagine-video-1-5"
+          ],
+          "model_id": "grok-imagine-video-1-5"
+        },
+        {
+          "rank": 4,
           "creator": "google",
           "model": "gemini-omni-flash",
-          "score": 1469.3,
-          "confidence_interval": "1458–1480",
-          "samples": 5373,
-          "released": "2026-07-29",
+          "score": 1462.3,
+          "confidence_interval": "1455–1470",
+          "samples": 44400,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -36356,35 +36876,13 @@
           "model_id": "gemini-omni-flash"
         },
         {
-          "rank": 3,
-          "creator": "xai",
-          "model": "grok-imagine-video-1.5-preview-720p",
-          "score": 1466.4,
-          "confidence_interval": "1461–1472",
-          "samples": 44400,
-          "released": "2026-07-29",
-          "open_weights": false,
-          "license": "Proprietary",
-          "component_models": [],
-          "components": [
-            {
-              "name": "grok-imagine-video-1.5-preview-720p",
-              "model_id": "grok-imagine-video-1-5"
-            }
-          ],
-          "model_ids": [
-            "grok-imagine-video-1-5"
-          ],
-          "model_id": "grok-imagine-video-1-5"
-        },
-        {
-          "rank": 4,
+          "rank": 5,
           "creator": "aorizon",
           "model": "happyhorse-1.0",
-          "score": 1444.2,
-          "confidence_interval": "1434–1454",
-          "samples": 61051,
-          "released": "2026-07-29",
+          "score": 1441.6,
+          "confidence_interval": "1432–1452",
+          "samples": 70454,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -36400,13 +36898,13 @@
           "model_id": "happyhorse-1-0"
         },
         {
-          "rank": 5,
+          "rank": 6,
           "creator": "wan",
           "model": "wan2.7-i2v",
-          "score": 1434.1,
-          "confidence_interval": "1426–1442",
-          "samples": 14113,
-          "released": "2026-07-29",
+          "score": 1427.4,
+          "confidence_interval": "1420–1435",
+          "samples": 47521,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -36422,13 +36920,13 @@
           "model_id": "wan-2-7"
         },
         {
-          "rank": 6,
+          "rank": 7,
           "creator": "xai",
           "model": "grok-imagine-video-720p",
-          "score": 1421.6,
-          "confidence_interval": "1416–1427",
-          "samples": 462748,
-          "released": "2026-07-29",
+          "score": 1416.8,
+          "confidence_interval": "1411–1423",
+          "samples": 504475,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -36444,13 +36942,13 @@
           "model_id": "grok-imagine-video"
         },
         {
-          "rank": 7,
+          "rank": 8,
           "creator": "google",
           "model": "veo-3.1-audio",
-          "score": 1397.7,
-          "confidence_interval": "1387–1408",
-          "samples": 25112,
-          "released": "2026-07-29",
+          "score": 1397.0,
+          "confidence_interval": "1386–1408",
+          "samples": 25114,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -36466,13 +36964,13 @@
           "model_id": "veo-3-1"
         },
         {
-          "rank": 8,
+          "rank": 9,
           "creator": "google",
           "model": "veo-3.1-audio-1080p",
-          "score": 1391.4,
-          "confidence_interval": "1382–1400",
-          "samples": 38881,
-          "released": "2026-07-29",
+          "score": 1389.8,
+          "confidence_interval": "1381–1398",
+          "samples": 52988,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -36488,13 +36986,13 @@
           "model_id": "veo-3-1"
         },
         {
-          "rank": 9,
+          "rank": 10,
           "creator": "google",
           "model": "veo-3.1-fast-audio",
-          "score": 1384.8,
-          "confidence_interval": "1376–1394",
-          "samples": 99804,
-          "released": "2026-07-29",
+          "score": 1384.2,
+          "confidence_interval": "1375–1393",
+          "samples": 99749,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -36510,13 +37008,13 @@
           "model_id": "veo-3-1"
         },
         {
-          "rank": 10,
+          "rank": 11,
           "creator": "xai",
           "model": "grok-imagine-video-480p",
-          "score": 1383.5,
+          "score": 1383.0,
           "confidence_interval": "1375–1392",
-          "samples": 19417,
-          "released": "2026-07-29",
+          "samples": 19407,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -36532,13 +37030,13 @@
           "model_id": "grok-imagine-video"
         },
         {
-          "rank": 11,
+          "rank": 12,
           "creator": "google",
           "model": "veo-3.1-fast-audio-1080p",
-          "score": 1373.8,
-          "confidence_interval": "1364–1384",
-          "samples": 39253,
-          "released": "2026-07-29",
+          "score": 1371.0,
+          "confidence_interval": "1361–1381",
+          "samples": 54306,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -36554,13 +37052,13 @@
           "model_id": "veo-3-1"
         },
         {
-          "rank": 12,
+          "rank": 13,
           "creator": "shengshu",
           "model": "vidu-q3-pro",
-          "score": 1361.3,
-          "confidence_interval": "1353–1369",
-          "samples": 36677,
-          "released": "2026-07-29",
+          "score": 1360.6,
+          "confidence_interval": "1353–1368",
+          "samples": 36667,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -36576,13 +37074,13 @@
           "model_id": "vidu-q3-pro"
         },
         {
-          "rank": 13,
+          "rank": 14,
           "creator": "kling",
           "model": "kling-v3-pro",
-          "score": 1360.3,
-          "confidence_interval": "1352–1368",
-          "samples": 115181,
-          "released": "2026-07-29",
+          "score": 1359.2,
+          "confidence_interval": "1352–1367",
+          "samples": 156829,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -36598,41 +37096,19 @@
           "model_id": "kling-3"
         },
         {
-          "rank": 14,
+          "rank": 15,
           "creator": "google",
           "model": "veo-3-audio",
-          "score": 1330.4,
-          "confidence_interval": "1319–1342",
-          "samples": 32383,
-          "released": "2026-07-29",
+          "score": 1329.9,
+          "confidence_interval": "1318–1342",
+          "samples": 32382,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
           "components": [
             {
               "name": "veo-3-audio",
-              "model_id": "veo-3-1"
-            }
-          ],
-          "model_ids": [
-            "veo-3-1"
-          ],
-          "model_id": "veo-3-1"
-        },
-        {
-          "rank": 15,
-          "creator": "google",
-          "model": "veo-3-fast-audio",
-          "score": 1324.5,
-          "confidence_interval": "1315–1334",
-          "samples": 41215,
-          "released": "2026-07-29",
-          "open_weights": false,
-          "license": "Proprietary",
-          "component_models": [],
-          "components": [
-            {
-              "name": "veo-3-fast-audio",
               "model_id": "veo-3-1"
             }
           ],
@@ -37001,10 +37477,10 @@
           "rank": 1,
           "creator": "google",
           "model": "gemini-omni-flash",
-          "score": 1527.5,
-          "confidence_interval": "1514–1541",
-          "samples": 5449,
-          "released": "2026-07-07",
+          "score": 1513.3,
+          "confidence_interval": "1501–1525",
+          "samples": 14571,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -37023,10 +37499,10 @@
           "rank": 2,
           "creator": "bytedance",
           "model": "dreamina-seedance-2.0-720p",
-          "score": 1481.9,
-          "confidence_interval": "1472–1492",
-          "samples": 41953,
-          "released": "2026-07-07",
+          "score": 1478.7,
+          "confidence_interval": "1468–1489",
+          "samples": 47067,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -37045,10 +37521,10 @@
           "rank": 3,
           "creator": "meta",
           "model": "muse-video",
-          "score": 1458.6,
-          "confidence_interval": "1444–1474",
-          "samples": 2152,
-          "released": "2026-07-07",
+          "score": 1457.5,
+          "confidence_interval": "1443–1472",
+          "samples": 2160,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -37065,12 +37541,34 @@
         },
         {
           "rank": 4,
+          "creator": "minimax",
+          "model": "minimax-h3",
+          "score": 1455.2,
+          "confidence_interval": "1436–1474",
+          "samples": 1060,
+          "released": "2026-08-03",
+          "open_weights": true,
+          "license": "minimax-h3-community-license-agreement",
+          "component_models": [],
+          "components": [
+            {
+              "name": "minimax-h3",
+              "model_id": "minimax-h3"
+            }
+          ],
+          "model_ids": [
+            "minimax-h3"
+          ],
+          "model_id": "minimax-h3"
+        },
+        {
+          "rank": 5,
           "creator": "aorizon",
           "model": "happyhorse-1.0",
-          "score": 1429.5,
-          "confidence_interval": "1417–1442",
-          "samples": 21985,
-          "released": "2026-07-07",
+          "score": 1428.0,
+          "confidence_interval": "1415–1441",
+          "samples": 21979,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -37086,13 +37584,13 @@
           "model_id": "happyhorse-1-0"
         },
         {
-          "rank": 5,
+          "rank": 6,
           "creator": "openai",
           "model": "sora-2-pro",
-          "score": 1365.6,
-          "confidence_interval": "1358–1374",
-          "samples": 39773,
-          "released": "2026-07-07",
+          "score": 1365.4,
+          "confidence_interval": "1358–1373",
+          "samples": 44543,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -37108,35 +37606,13 @@
           "model_id": "sora-2"
         },
         {
-          "rank": 6,
-          "creator": "google",
-          "model": "veo-3.1-audio-1080p",
-          "score": 1364.2,
-          "confidence_interval": "1354–1375",
-          "samples": 23200,
-          "released": "2026-07-07",
-          "open_weights": false,
-          "license": "Proprietary",
-          "component_models": [],
-          "components": [
-            {
-              "name": "veo-3.1-audio-1080p",
-              "model_id": "veo-3-1"
-            }
-          ],
-          "model_ids": [
-            "veo-3-1"
-          ],
-          "model_id": "veo-3-1"
-        },
-        {
           "rank": 7,
           "creator": "google",
           "model": "veo-3.1-audio",
-          "score": 1363.9,
-          "confidence_interval": "1350–1378",
-          "samples": 13691,
-          "released": "2026-07-07",
+          "score": 1363.8,
+          "confidence_interval": "1349–1378",
+          "samples": 13687,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -37154,11 +37630,33 @@
         {
           "rank": 8,
           "creator": "google",
+          "model": "veo-3.1-audio-1080p",
+          "score": 1363.4,
+          "confidence_interval": "1353–1374",
+          "samples": 24846,
+          "released": "2026-08-03",
+          "open_weights": false,
+          "license": "Proprietary",
+          "component_models": [],
+          "components": [
+            {
+              "name": "veo-3.1-audio-1080p",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
+          "model_id": "veo-3-1"
+        },
+        {
+          "rank": 9,
+          "creator": "google",
           "model": "veo-3.1-fast-audio",
           "score": 1362.0,
-          "confidence_interval": "1351–1373",
-          "samples": 39333,
-          "released": "2026-07-07",
+          "confidence_interval": "1351–1372",
+          "samples": 39301,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -37174,13 +37672,13 @@
           "model_id": "veo-3-1"
         },
         {
-          "rank": 9,
+          "rank": 10,
           "creator": "google",
           "model": "veo-3.1-fast-audio-1080p",
-          "score": 1359.5,
-          "confidence_interval": "1349–1370",
-          "samples": 23506,
-          "released": "2026-07-07",
+          "score": 1358.5,
+          "confidence_interval": "1348–1369",
+          "samples": 25637,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -37196,13 +37694,13 @@
           "model_id": "veo-3-1"
         },
         {
-          "rank": 10,
+          "rank": 11,
           "creator": "xai",
           "model": "grok-imagine-video-720p",
-          "score": 1351.8,
-          "confidence_interval": "1344–1360",
-          "samples": 144437,
-          "released": "2026-07-07",
+          "score": 1349.1,
+          "confidence_interval": "1341–1357",
+          "samples": 151774,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -37218,35 +37716,13 @@
           "model_id": "grok-imagine-video"
         },
         {
-          "rank": 11,
-          "creator": "wan",
-          "model": "wan2.7-t2v",
-          "score": 1347.9,
-          "confidence_interval": "1338–1358",
-          "samples": 8092,
-          "released": "2026-07-07",
-          "open_weights": false,
-          "license": "Proprietary",
-          "component_models": [],
-          "components": [
-            {
-              "name": "wan2.7-t2v",
-              "model_id": "wan-2-7"
-            }
-          ],
-          "model_ids": [
-            "wan-2-7"
-          ],
-          "model_id": "wan-2-7"
-        },
-        {
           "rank": 12,
           "creator": "google",
           "model": "veo-3-fast-audio",
-          "score": 1346.9,
-          "confidence_interval": "1336–1358",
-          "samples": 25153,
-          "released": "2026-07-07",
+          "score": 1347.3,
+          "confidence_interval": "1336–1359",
+          "samples": 25154,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -37263,34 +37739,34 @@
         },
         {
           "rank": 13,
-          "creator": "google",
-          "model": "veo-3-audio",
-          "score": 1339.0,
-          "confidence_interval": "1327–1351",
-          "samples": 18961,
-          "released": "2026-07-07",
+          "creator": "wan",
+          "model": "wan2.7-t2v",
+          "score": 1347.1,
+          "confidence_interval": "1338–1356",
+          "samples": 15246,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
           "components": [
             {
-              "name": "veo-3-audio",
-              "model_id": "veo-3-1"
+              "name": "wan2.7-t2v",
+              "model_id": "wan-2-7"
             }
           ],
           "model_ids": [
-            "veo-3-1"
+            "wan-2-7"
           ],
-          "model_id": "veo-3-1"
+          "model_id": "wan-2-7"
         },
         {
           "rank": 14,
           "creator": "openai",
           "model": "sora-2",
-          "score": 1337.1,
-          "confidence_interval": "1330–1344",
-          "samples": 53767,
-          "released": "2026-07-07",
+          "score": 1339.5,
+          "confidence_interval": "1333–1346",
+          "samples": 60178,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
@@ -37307,25 +37783,25 @@
         },
         {
           "rank": 15,
-          "creator": "alibaba",
-          "model": "wan2.6-t2v",
-          "score": 1333.3,
-          "confidence_interval": "1323–1343",
-          "samples": 34624,
-          "released": "2026-07-07",
+          "creator": "google",
+          "model": "veo-3-audio",
+          "score": 1339.4,
+          "confidence_interval": "1327–1352",
+          "samples": 18961,
+          "released": "2026-08-03",
           "open_weights": false,
           "license": "Proprietary",
           "component_models": [],
           "components": [
             {
-              "name": "wan2.6-t2v",
-              "model_id": "wan-2-6"
+              "name": "veo-3-audio",
+              "model_id": "veo-3-1"
             }
           ],
           "model_ids": [
-            "wan-2-6"
+            "veo-3-1"
           ],
-          "model_id": "wan-2-6"
+          "model_id": "veo-3-1"
         }
       ]
     },
@@ -37854,9 +38330,9 @@
           "rank": 1,
           "creator": "OpenAI",
           "model": "GPT Image 2 (high)",
-          "score": 1259,
+          "score": 1258,
           "confidence_interval": "-7/7",
-          "samples": 16890,
+          "samples": 17042,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -37874,33 +38350,11 @@
         },
         {
           "rank": 2,
-          "creator": "OpenAI",
-          "model": "GPT Image 1.5 (high)",
-          "score": 1254,
-          "confidence_interval": "-7/7",
-          "samples": 10372,
-          "released": "Dec 2025",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "GPT Image 1.5 (high)",
-              "model_id": "gpt-image-1-5"
-            }
-          ],
-          "model_ids": [
-            "gpt-image-1-5"
-          ],
-          "model_id": "gpt-image-1-5"
-        },
-        {
-          "rank": 3,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5",
-          "score": 1253,
-          "confidence_interval": "-9/9",
-          "samples": 9847,
+          "score": 1254,
+          "confidence_interval": "-8/8",
+          "samples": 10037,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -37917,12 +38371,34 @@
           "model_id": "mai-image-2-5"
         },
         {
+          "rank": 3,
+          "creator": "OpenAI",
+          "model": "GPT Image 1.5 (high)",
+          "score": 1253,
+          "confidence_interval": "-7/7",
+          "samples": 10516,
+          "released": "Dec 2025",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "GPT Image 1.5 (high)",
+              "model_id": "gpt-image-1-5"
+            }
+          ],
+          "model_ids": [
+            "gpt-image-1-5"
+          ],
+          "model_id": "gpt-image-1-5"
+        },
+        {
           "rank": 4,
           "creator": "Google",
           "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
           "score": 1247,
           "confidence_interval": "-7/7",
-          "samples": 11319,
+          "samples": 11464,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -37942,9 +38418,9 @@
           "rank": 5,
           "creator": "Bytedance",
           "model": "Seedream 5.0 Pro",
-          "score": 1241,
+          "score": 1242,
           "confidence_interval": "-11/11",
-          "samples": 2833,
+          "samples": 2894,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -37966,7 +38442,7 @@
           "model": "Nano Banana Pro (Gemini 3 Pro Image)",
           "score": 1240,
           "confidence_interval": "-7/7",
-          "samples": 9697,
+          "samples": 9838,
           "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -37986,9 +38462,9 @@
           "rank": 7,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5-Flash",
-          "score": 1232,
+          "score": 1234,
           "confidence_interval": "-9/9",
-          "samples": 4440,
+          "samples": 4504,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38008,9 +38484,9 @@
           "rank": 8,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image-quality",
-          "score": 1231,
+          "score": 1230,
           "confidence_interval": "-8/8",
-          "samples": 8907,
+          "samples": 9086,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38030,9 +38506,9 @@
           "rank": 9,
           "creator": "Tencent",
           "model": "HunyuanImage 3.0 Instruct (Fal)",
-          "score": 1223,
+          "score": 1222,
           "confidence_interval": "-8/8",
-          "samples": 8557,
+          "samples": 8590,
           "released": "Jan 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -38052,9 +38528,9 @@
           "rank": 10,
           "creator": "Luma Labs",
           "model": "Luma UNI 1 Max",
-          "score": 1222,
+          "score": 1221,
           "confidence_interval": "-9/9",
-          "samples": 5681,
+          "samples": 5737,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38074,9 +38550,9 @@
           "rank": 11,
           "creator": "KlingAI",
           "model": "Kling Image 3.0 Omni",
-          "score": 1215,
+          "score": 1213,
           "confidence_interval": "-7/7",
-          "samples": 8402,
+          "samples": 8440,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38096,9 +38572,9 @@
           "rank": 12,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image",
-          "score": 1214,
+          "score": 1213,
           "confidence_interval": "-8/8",
-          "samples": 8763,
+          "samples": 8815,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38118,9 +38594,9 @@
           "rank": 13,
           "creator": "KlingAI",
           "model": "Kling Image 3.0",
-          "score": 1203,
+          "score": 1202,
           "confidence_interval": "-8/8",
-          "samples": 8045,
+          "samples": 8090,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38140,9 +38616,9 @@
           "rank": 14,
           "creator": "Black Forest Labs",
           "model": "FLUX.2 [max]",
-          "score": 1203,
+          "score": 1202,
           "confidence_interval": "-8/8",
-          "samples": 8799,
+          "samples": 8965,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38160,25 +38636,25 @@
         },
         {
           "rank": 15,
-          "creator": "HiDream",
-          "model": "HiDream-O1-Image",
+          "creator": "KlingAI",
+          "model": "Kling Image O1",
           "score": 1202,
-          "confidence_interval": "-9/9",
-          "samples": 5907,
-          "released": "May 2026",
-          "open_weights": true,
-          "license": "Open weights",
+          "confidence_interval": "-8/8",
+          "samples": 7411,
+          "released": "Dec 2025",
+          "open_weights": false,
+          "license": "Proprietary / service",
           "component_models": [],
           "components": [
             {
-              "name": "HiDream-O1-Image",
-              "model_id": "hidream-o1-image"
+              "name": "Kling Image O1",
+              "model_id": "kling-o1"
             }
           ],
           "model_ids": [
-            "hidream-o1-image"
+            "kling-o1"
           ],
-          "model_id": "hidream-o1-image"
+          "model_id": "kling-o1"
         }
       ]
     },
@@ -38197,9 +38673,9 @@
           "rank": 1,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
-          "score": 1195,
+          "score": 1196,
           "confidence_interval": "-8/8",
-          "samples": 11065,
+          "samples": 11361,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38219,9 +38695,9 @@
           "rank": 2,
           "creator": "Google",
           "model": "Gemini Omni Flash",
-          "score": 1192,
+          "score": 1193,
           "confidence_interval": "-9/9",
-          "samples": 5453,
+          "samples": 5750,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38243,10 +38719,10 @@
           "model": "MiniMax H3",
           "score": 1187,
           "confidence_interval": "-10/10",
-          "samples": 5314,
+          "samples": 5392,
           "released": "Jul 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
+          "open_weights": true,
+          "license": "Open weights",
           "component_models": [],
           "components": [
             {
@@ -38265,7 +38741,7 @@
           "model": "grok-imagine-video-1.5",
           "score": 1114,
           "confidence_interval": "-9/9",
-          "samples": 4508,
+          "samples": 4597,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38285,9 +38761,9 @@
           "rank": 5,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.1",
-          "score": 1106,
+          "score": 1108,
           "confidence_interval": "-9/9",
-          "samples": 5838,
+          "samples": 6163,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38307,9 +38783,9 @@
           "rank": 6,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "score": 1092,
+          "score": 1091,
           "confidence_interval": "-9/9",
-          "samples": 3818,
+          "samples": 3891,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38329,9 +38805,9 @@
           "rank": 7,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.0",
-          "score": 1092,
+          "score": 1090,
           "confidence_interval": "-8/8",
-          "samples": 7143,
+          "samples": 7203,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38351,9 +38827,9 @@
           "rank": 8,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "score": 1087,
+          "score": 1086,
           "confidence_interval": "-9/9",
-          "samples": 4107,
+          "samples": 4158,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38375,7 +38851,7 @@
           "model": "Veo 3.1",
           "score": 1085,
           "confidence_interval": "-8/8",
-          "samples": 7418,
+          "samples": 7453,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38395,9 +38871,9 @@
           "rank": 10,
           "creator": "SpaceXAI",
           "model": "grok-imagine-video",
-          "score": 1078,
+          "score": 1080,
           "confidence_interval": "-7/7",
-          "samples": 10508,
+          "samples": 10743,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38419,7 +38895,7 @@
           "model": "Veo 3.1 Fast",
           "score": 1076,
           "confidence_interval": "-7/7",
-          "samples": 9617,
+          "samples": 9855,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38439,9 +38915,9 @@
           "rank": 12,
           "creator": "KlingAI",
           "model": "Kling 3.0 1080p (Pro)",
-          "score": 1072,
+          "score": 1073,
           "confidence_interval": "-7/7",
-          "samples": 10181,
+          "samples": 10425,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38461,9 +38937,9 @@
           "rank": 13,
           "creator": "PixVerse",
           "model": "PixVerse V6",
-          "score": 1068,
+          "score": 1069,
           "confidence_interval": "-8/8",
-          "samples": 8692,
+          "samples": 8706,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38485,7 +38961,7 @@
           "model": "Kling 3.0 720p (Standard)",
           "score": 1066,
           "confidence_interval": "-7/7",
-          "samples": 10124,
+          "samples": 10384,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38503,25 +38979,25 @@
         },
         {
           "rank": 15,
-          "creator": "Vidu",
-          "model": "Vidu Q3 Pro",
+          "creator": "Google",
+          "model": "Veo 3.1 Lite",
           "score": 1064,
-          "confidence_interval": "-7/7",
-          "samples": 10617,
-          "released": "Jan 2026",
+          "confidence_interval": "-8/8",
+          "samples": 6746,
+          "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": [],
           "components": [
             {
-              "name": "Vidu Q3 Pro",
-              "model_id": "vidu-q3-pro"
+              "name": "Veo 3.1 Lite",
+              "model_id": "veo-3-1-lite"
             }
           ],
           "model_ids": [
-            "vidu-q3-pro"
+            "veo-3-1-lite"
           ],
-          "model_id": "vidu-q3-pro"
+          "model_id": "veo-3-1-lite"
         }
       ]
     },
@@ -38883,9 +39359,9 @@
           "rank": 1,
           "creator": "Google",
           "model": "Gemini Omni Flash",
-          "score": 1244,
+          "score": 1245,
           "confidence_interval": "-8/8",
-          "samples": 9660,
+          "samples": 10070,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38905,12 +39381,12 @@
           "rank": 2,
           "creator": "MiniMax",
           "model": "MiniMax H3",
-          "score": 1239,
-          "confidence_interval": "-10/10",
-          "samples": 5864,
+          "score": 1234,
+          "confidence_interval": "-9/9",
+          "samples": 6077,
           "released": "Jul 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
+          "open_weights": true,
+          "license": "Open weights",
           "component_models": [],
           "components": [
             {
@@ -38927,9 +39403,9 @@
           "rank": 3,
           "creator": "ByteDance Seed",
           "model": "Dreamina Seedance 2.0 720p",
-          "score": 1224,
+          "score": 1221,
           "confidence_interval": "-6/6",
-          "samples": 16379,
+          "samples": 16797,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38949,9 +39425,9 @@
           "rank": 4,
           "creator": "Alibaba",
           "model": "Wan2.7-260612",
-          "score": 1160,
+          "score": 1158,
           "confidence_interval": "-7/7",
-          "samples": 10166,
+          "samples": 10552,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38971,9 +39447,9 @@
           "rank": 5,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.1",
-          "score": 1149,
+          "score": 1147,
           "confidence_interval": "-7/7",
-          "samples": 10478,
+          "samples": 10919,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -38993,9 +39469,9 @@
           "rank": 6,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.0",
-          "score": 1127,
+          "score": 1124,
           "confidence_interval": "-7/7",
-          "samples": 8209,
+          "samples": 8283,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -39013,33 +39489,11 @@
         },
         {
           "rank": 7,
-          "creator": "KlingAI",
-          "model": "Kling 3.0 1080p (Pro)",
-          "score": 1111,
-          "confidence_interval": "-6/6",
-          "samples": 15036,
-          "released": "Feb 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "Kling 3.0 1080p (Pro)",
-              "model_id": "kling-3"
-            }
-          ],
-          "model_ids": [
-            "kling-3"
-          ],
-          "model_id": "kling-3"
-        },
-        {
-          "rank": 8,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "score": 1108,
+          "score": 1110,
           "confidence_interval": "-8/8",
-          "samples": 4716,
+          "samples": 4779,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -39056,12 +39510,34 @@
           "model_id": "wan-2-7"
         },
         {
+          "rank": 8,
+          "creator": "KlingAI",
+          "model": "Kling 3.0 1080p (Pro)",
+          "score": 1109,
+          "confidence_interval": "-6/6",
+          "samples": 15353,
+          "released": "Feb 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Kling 3.0 1080p (Pro)",
+              "model_id": "kling-3"
+            }
+          ],
+          "model_ids": [
+            "kling-3"
+          ],
+          "model_id": "kling-3"
+        },
+        {
           "rank": 9,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "score": 1108,
+          "score": 1104,
           "confidence_interval": "-8/8",
-          "samples": 5193,
+          "samples": 5253,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -39081,9 +39557,9 @@
           "rank": 10,
           "creator": "KlingAI",
           "model": "Kling 3.0 720p (Standard)",
-          "score": 1101,
+          "score": 1100,
           "confidence_interval": "-6/6",
-          "samples": 14515,
+          "samples": 14806,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -39103,9 +39579,9 @@
           "rank": 11,
           "creator": "Google",
           "model": "Veo 3.1",
-          "score": 1094,
+          "score": 1093,
           "confidence_interval": "-7/7",
-          "samples": 8394,
+          "samples": 8445,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -39124,32 +39600,10 @@
         {
           "rank": 12,
           "creator": "KlingAI",
-          "model": "Kling 3.0 Omni 720p (Standard)",
-          "score": 1092,
-          "confidence_interval": "-7/7",
-          "samples": 8016,
-          "released": "Feb 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
-          "component_models": [],
-          "components": [
-            {
-              "name": "Kling 3.0 Omni 720p (Standard)",
-              "model_id": "kling-3"
-            }
-          ],
-          "model_ids": [
-            "kling-3"
-          ],
-          "model_id": "kling-3"
-        },
-        {
-          "rank": 13,
-          "creator": "KlingAI",
           "model": "Kling 3.0 Omni 1080p (Pro)",
-          "score": 1092,
+          "score": 1091,
           "confidence_interval": "-7/7",
-          "samples": 8170,
+          "samples": 8228,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -39166,34 +39620,34 @@
           "model_id": "kling-3"
         },
         {
-          "rank": 14,
-          "creator": "Google",
-          "model": "Veo 3.1 Fast",
-          "score": 1091,
-          "confidence_interval": "-6/6",
-          "samples": 13718,
-          "released": "Jan 2026",
+          "rank": 13,
+          "creator": "KlingAI",
+          "model": "Kling 3.0 Omni 720p (Standard)",
+          "score": 1090,
+          "confidence_interval": "-7/7",
+          "samples": 8043,
+          "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": [],
           "components": [
             {
-              "name": "Veo 3.1 Fast",
-              "model_id": "veo-3-1"
+              "name": "Kling 3.0 Omni 720p (Standard)",
+              "model_id": "kling-3"
             }
           ],
           "model_ids": [
-            "veo-3-1"
+            "kling-3"
           ],
-          "model_id": "veo-3-1"
+          "model_id": "kling-3"
         },
         {
-          "rank": 15,
+          "rank": 14,
           "creator": "Google",
           "model": "Veo 3.1 Lite",
-          "score": 1090,
+          "score": 1089,
           "confidence_interval": "-7/7",
-          "samples": 7829,
+          "samples": 7883,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -39208,6 +39662,28 @@
             "veo-3-1-lite"
           ],
           "model_id": "veo-3-1-lite"
+        },
+        {
+          "rank": 15,
+          "creator": "Google",
+          "model": "Veo 3.1 Fast",
+          "score": 1088,
+          "confidence_interval": "-6/6",
+          "samples": 14001,
+          "released": "Jan 2026",
+          "open_weights": false,
+          "license": "Proprietary / service",
+          "component_models": [],
+          "components": [
+            {
+              "name": "Veo 3.1 Fast",
+              "model_id": "veo-3-1"
+            }
+          ],
+          "model_ids": [
+            "veo-3-1"
+          ],
+          "model_id": "veo-3-1"
         }
       ]
     },
@@ -39226,12 +39702,12 @@
           "rank": 1,
           "creator": "MiniMax",
           "model": "MiniMax H3",
-          "score": 1129,
+          "score": 1130,
           "confidence_interval": "-6/6",
-          "samples": 7923,
+          "samples": 8223,
           "released": "Jul 2026",
-          "open_weights": false,
-          "license": "Proprietary / service",
+          "open_weights": true,
+          "license": "Open weights",
           "component_models": [],
           "components": [
             {
@@ -39250,7 +39726,7 @@
           "model": "Gemini Omni Flash",
           "score": 1122,
           "confidence_interval": "-6/6",
-          "samples": 10800,
+          "samples": 10859,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -39272,7 +39748,7 @@
           "model": "HappyHorse-1.0",
           "score": 1096,
           "confidence_interval": "-5/5",
-          "samples": 18363,
+          "samples": 18421,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -39294,7 +39770,7 @@
           "model": "Wan 2.7",
           "score": 1080,
           "confidence_interval": "-5/5",
-          "samples": 14137,
+          "samples": 14211,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -39316,7 +39792,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1037,
           "confidence_interval": "-5/5",
-          "samples": 18161,
+          "samples": 18245,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -39338,7 +39814,7 @@
           "model": "Aleph 2.0",
           "score": 1011,
           "confidence_interval": "-5/5",
-          "samples": 17720,
+          "samples": 17794,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -39360,7 +39836,7 @@
           "model": "Kling 3.0 Omni 1080p (Pro)",
           "score": 1000,
           "confidence_interval": "0/0",
-          "samples": 16475,
+          "samples": 16553,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -39380,9 +39856,9 @@
           "rank": 8,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "score": 952,
+          "score": 951,
           "confidence_interval": "-6/6",
-          "samples": 14376,
+          "samples": 14406,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",

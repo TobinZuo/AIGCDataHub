@@ -289,12 +289,23 @@ class ModelCatalogTests(unittest.TestCase):
         cards = {card["id"]: card for _, card in load_models()}
         fit_ids = {item["catalog_id"] for item in cards["fit-vto"]["data"]["datasets"]}
         ctrlvton_ids = {item["catalog_id"] for item in cards["ctrlvton"]["data"]["datasets"]}
+        vton360_ids = {item["catalog_id"] for item in cards["vton-360"]["data"]["datasets"]}
         tripvvt_ids = {item["catalog_id"] for item in cards["tripvvt"]["data"]["datasets"]}
         self.assertEqual(fit_ids, {None, "fit-vto-100k"})
         self.assertEqual(ctrlvton_ids, {None, "viton-hd-edit"})
+        self.assertEqual(vton360_ids, {None, "thuman2-0", "mvhumannet"})
         self.assertEqual(tripvvt_ids, {None, "tripvvt-10k"})
         self.assertEqual(cards["fit-vto"]["data"]["disclosure_level"], "partial")
         self.assertEqual(cards["ctrlvton"]["data"]["disclosure_level"], "partial")
+        self.assertEqual(cards["vton-360"]["access"]["status"], "open-weights")
+        self.assertEqual(
+            [
+                item["role"]
+                for item in cards["vton-360"]["data"]["datasets"]
+                if item["catalog_id"] == "thuman2-0"
+            ],
+            ["fine-tuning", "evaluation"],
+        )
         self.assertEqual(cards["tripvvt"]["data"]["disclosure_level"], "partial")
         self.assertEqual(cards["flux-vto"]["data"]["disclosure_level"], "undisclosed")
         self.assertEqual(cards["flux-vto"]["data"]["datasets"], [])

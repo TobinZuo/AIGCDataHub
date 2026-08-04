@@ -1,0 +1,66 @@
+id: thuman2-0
+name: THuman2.0
+organization: Tsinghua University THU3DV Lab
+released_at: "2021-06-19"
+release_date_source: https://github.com/ytrock/THuman2.0-Dataset/commit/249097c72da17d6fe1a99f1be34530d07ca27857
+modality: 3d
+tasks:
+  - digital-human
+  - 3d-human-reconstruction
+  - virtual-try-on
+  - human-rendering
+stages:
+  - fine-tuning
+  - evaluation
+description: >-
+  A research-only collection of textured, clothed human scans with released
+  SMPL and SMPL-X fits, used for human reconstruction, rendering, and virtual
+  try-on research.
+access:
+  status: gated
+  type: request
+  url: https://github.com/ytrock/THuman2.0-Dataset
+  requires_account: true
+  notes: Applicants sign the project agreement and email the maintainers for an encrypted-dataset download link; separate fitting files are linked publicly.
+scale:
+  samples: 500
+  source_items: 500
+  hours: null
+  approximate: false
+  notes: The official repository describes 500 high-quality scans; VTON 360 reports a 526-scan working set split into 426 training and 100 test identities, so derived-project counts must be kept distinct.
+annotations:
+  types:
+    - textured-3d-scan
+    - mesh
+    - texture-map
+    - smpl-parameters
+    - smplx-parameters
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: THuman2.0 Dataset Agreement
+  media: Non-commercial research use only
+  commercial_use: noncommercial
+  redistribution: prohibited
+  notes: The agreement prohibits commercial use, pornography, third-party availability, publication, distribution, and external copies without Tsinghua University's prior written permission.
+quality:
+  dimensions:
+    - visual-quality
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - The official 500-scan count differs from the 526 scans reported by VTON 360 for its derived working split.
+    - Human-subject, biometric, clothing, and texture rights require review before any downstream deployment.
+    - The gated non-commercial agreement prevents unrestricted redistribution or commercial training.
+processing:
+  recipe: Capture clothed people with a dense DSLR rig, reconstruct textured meshes, and fit SMPL and SMPL-X body models; downstream projects may render multi-view RGB, normal, depth, mask, and camera-conditioned derivatives.
+  recommended_format: native
+  notes: Preserve scan identity, texture, body-fit version, agreement status, and every rendered-view transformation.
+evidence:
+  homepage: https://github.com/ytrock/THuman2.0-Dataset
+  paper: https://arxiv.org/abs/2105.01831
+  used_by:
+    - VTON 360
+status: partial
+last_verified: "2026-08-04"
