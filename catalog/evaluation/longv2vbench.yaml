@@ -1,0 +1,60 @@
+id: longv2vbench
+name: LongV2VBench
+organization: JD Open Source
+released_at: "2026-08-04"
+release_date_source: https://arxiv.org/abs/2608.03974
+modality: evaluation
+tasks:
+  - long-video-editing
+  - video-editing
+stages:
+  - evaluation
+description: >-
+  A named 229-task, one-minute video editing benchmark introduced with
+  JoyAI-Video-Edit across five long-horizon editing categories.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2608.03974
+  requires_account: false
+  notes: The paper names and sizes the benchmark, but the official model and code repositories do not publish benchmark files or a download link.
+scale:
+  samples: 229
+  source_items: null
+  hours: null
+  approximate: false
+  notes: Two hundred twenty-nine approximately one-minute editing tasks in five categories.
+annotations:
+  types:
+    - edit-instruction
+    - source-video
+    - long-horizon-category
+  source: unknown
+  languages:
+    - unknown
+license:
+  metadata: Not published
+  media: Not published
+  commercial_use: unknown
+  redistribution: unknown
+  notes: No benchmark artifact, source manifest, consent statement, or license has been released.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - temporal-consistency
+    - motion
+    - provenance
+  known_limitations:
+    - Category definitions, source identities, annotation protocol, rights, and scoring files are not public.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Do not create a download URL until JD publishes the actual benchmark artifacts.
+evidence:
+  homepage: https://arxiv.org/abs/2608.03974
+  paper: https://arxiv.org/abs/2608.03974
+  used_by:
+    - JoyAI-Video-Edit
+status: partial
+last_verified: "2026-08-05"

@@ -47,6 +47,199 @@
   ],
   "entries": [
     {
+      "date": "2026-08-05",
+      "title": {
+        "zh": "2026-08-05 更新",
+        "en": "2026-08-05 Update"
+      },
+      "summary": [
+        {
+          "id": "models",
+          "label": {
+            "zh": "模型",
+            "en": "Models"
+          },
+          "text": {
+            "zh": "新增 Qwen Image 3.0 Pro、JoyAI-Video-Edit、QuerySplat、InfiniSplat 与 LeapTalk。前者为阿里云限量预览 API，其余四项均有官方可下载权重；同时把 FLUX 3 Video 从 early access 更新为正式 API，并补充 Veo 3.1 Lite 的编辑与原生音频能力边界。",
+            "en": "Added Qwen Image 3.0 Pro, JoyAI-Video-Edit, QuerySplat, InfiniSplat, and LeapTalk. Qwen is a limited-preview API; the other four provide official downloadable weights. FLUX 3 Video is now recorded as a generally available API, and Veo 3.1 Lite now captures documented editing and native-audio capability boundaries."
+          },
+          "links": [
+            {
+              "href": "/#model-qwen-image-3-0-pro",
+              "label": {
+                "zh": "Qwen Image 3.0 Pro",
+                "en": "Qwen Image 3.0 Pro"
+              }
+            },
+            {
+              "href": "/#model-joyai-video-edit",
+              "label": {
+                "zh": "JoyAI-Video-Edit",
+                "en": "JoyAI-Video-Edit"
+              }
+            },
+            {
+              "href": "/#model-querysplat",
+              "label": {
+                "zh": "QuerySplat",
+                "en": "QuerySplat"
+              }
+            },
+            {
+              "href": "/#model-infinisplat",
+              "label": {
+                "zh": "InfiniSplat",
+                "en": "InfiniSplat"
+              }
+            },
+            {
+              "href": "/#model-leaptalk",
+              "label": {
+                "zh": "LeapTalk",
+                "en": "LeapTalk"
+              }
+            }
+          ]
+        },
+        {
+          "id": "datasets",
+          "label": {
+            "zh": "数据集",
+            "en": "Datasets"
+          },
+          "text": {
+            "zh": "新增 Hypersim、DL3DV-Evaluation、ETH3D、ScanNet++、Tanks and Temples、VividHead 与 LongV2VBench。前六项均给出官方浏览或下载入口及访问条件；LongV2VBench 虽被论文正式命名并披露 229 个任务，但文件未发布，因此保持 unavailable 且不提供伪下载链接。",
+            "en": "Added Hypersim, DL3DV-Evaluation, ETH3D, ScanNet++, Tanks and Temples, VividHead, and LongV2VBench. The first six have official access paths and explicit conditions. LongV2VBench is named and sized at 229 tasks but remains unavailable because no artifact has been released."
+          },
+          "links": [
+            {
+              "href": "/#dataset-hypersim",
+              "label": {
+                "zh": "Hypersim",
+                "en": "Hypersim"
+              }
+            },
+            {
+              "href": "/#dataset-dl3dv-evaluation",
+              "label": {
+                "zh": "DL3DV-Evaluation",
+                "en": "DL3DV-Evaluation"
+              }
+            },
+            {
+              "href": "/#dataset-vividhead",
+              "label": {
+                "zh": "VividHead",
+                "en": "VividHead"
+              }
+            },
+            {
+              "href": "/#dataset-longv2vbench",
+              "label": {
+                "zh": "LongV2VBench",
+                "en": "LongV2VBench"
+              }
+            }
+          ]
+        },
+        {
+          "id": "relations",
+          "label": {
+            "zh": "数据关系",
+            "en": "Data relations"
+          },
+          "text": {
+            "zh": "新增 12 条可解析模型—数据集关系：JoyAI 关联 OpenVE-Bench/LongV2VBench；QuerySplat 区分 DL3DV-10K 训练与 DL3DV-Evaluation 评测；InfiniSplat 仅以 Hypersim 训练、四个真实数据集评测；LeapTalk 以 VividHead 蒸馏、HDTF/CelebV-HQ 评测。",
+            "en": "Added twelve resolvable relations. Training, distillation, and evaluation roles remain separate, especially for QuerySplat, InfiniSplat, and LeapTalk."
+          },
+          "links": [
+            {
+              "href": "/#lineage",
+              "label": {
+                "zh": "查看关系图谱",
+                "en": "View lineage"
+              }
+            }
+          ]
+        },
+        {
+          "id": "rankings",
+          "label": {
+            "zh": "排行榜",
+            "en": "Rankings"
+          },
+          "text": {
+            "zh": "Arena 文生图新增第 5 名 Qwen Image 3.0 Pro 并完成映射；Artificial Analysis 图片编辑榜 Reve 2.1 新进第 1，文生视频榜发生 Kling 3.0、Wan 2.7 与 Veo 3.1 Fast/Lite 的顺位变化。最终无未映射的榜单模型。",
+            "en": "Mapped the new Arena #5 Qwen Image 3.0 Pro entry. Reve 2.1 entered the Artificial Analysis editing board at #1, while Kling, Wan, and Veo variants changed order on text-to-video. Final ranking coverage has no unresolved model."
+          },
+          "links": [
+            {
+              "href": "/#rankings",
+              "label": {
+                "zh": "查看行业排行榜",
+                "en": "View industry rankings"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monitoring",
+          "label": {
+            "zh": "监控",
+            "en": "Monitoring"
+          },
+          "text": {
+            "zh": "一手来源监控新增 12 个精确模型/数据集探针及相关项目源；FASHN VTON 1.5 的不稳定项目页被官方 GitHub 与已有精确模型探针替代。最终扫描 413 个来源，来源失败和排行榜缺口均为零。",
+            "en": "Added twelve precise model and dataset probes plus project sources. Replaced the unstable FASHN research page with its official GitHub and existing precise model probe; the final scan has no source failure or ranking gap."
+          },
+          "links": [
+            {
+              "href": "/#sources",
+              "label": {
+                "zh": "查看来源监控",
+                "en": "View source monitoring"
+              }
+            }
+          ]
+        },
+        {
+          "id": "unknowns",
+          "label": {
+            "zh": "未披露",
+            "en": "Undisclosed"
+          },
+          "text": {
+            "zh": "Qwen Image 3.0 Pro 未披露模型架构与任何训练数据；JoyAI 虽披露各阶段规模和过滤/合成方法，但未命名源语料；QuerySplat/InfiniSplat/LeapTalk 均仍受冻结基础模型的继承数据未知影响。VividHead 许可元数据与正文不一致，Tanks and Temples 许可页也存在相互冲突的开放与非商业条款。",
+            "en": "Qwen discloses no training data; JoyAI reports stage scales and processing without naming source corpora; inherited checkpoint lineage remains incomplete for QuerySplat, InfiniSplat, and LeapTalk. VividHead and Tanks and Temples each have internally inconsistent license signals that require review."
+          },
+          "links": [
+            {
+              "href": "/#model-qwen-image-3-0-pro",
+              "label": {
+                "zh": "Qwen Image 3.0 Pro 未知项",
+                "en": "Qwen Image 3.0 Pro unknowns"
+              }
+            },
+            {
+              "href": "/#model-joyai-video-edit",
+              "label": {
+                "zh": "JoyAI-Video-Edit 未知项",
+                "en": "JoyAI-Video-Edit unknowns"
+              }
+            },
+            {
+              "href": "/#dataset-vividhead",
+              "label": {
+                "zh": "VividHead 限制",
+                "en": "VividHead limitations"
+              }
+            }
+          ]
+        }
+      ],
+      "source_path": "updates/2026-08-05.md"
+    },
+    {
       "date": "2026-08-04",
       "title": {
         "zh": "2026-08-04 更新",

@@ -2,13 +2,21 @@
 
 Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; runtime inputs, unreleased data, and undisclosed data must state why no card exists.
 
-- Models: 108
-- References linked to catalog cards: 188
-- References without a card, with an explicit evidence boundary: 99
+- Models: 113
+- References linked to catalog cards: 200
+- References without a card, with an explicit evidence boundary: 105
 - Ordering: model release date, newest first
 
 | Model | Released | Dataset or corpus named by source | Availability | Catalog resolution | Role | Evidence boundary |
 |---|---:|---|---|---|---|---|
+| [JoyAI-Video-Edit](models/video/joyai-video-edit.yaml) | 2026-08-04 | Unnamed text-to-image pretraining corpus | undisclosed | — exact source is not disclosed | pretraining | Source identities, rights, captions, and mixture are not disclosed. |
+| [JoyAI-Video-Edit](models/video/joyai-video-edit.yaml) | 2026-08-04 | Unnamed text-to-video pretraining and post-training corpus | undisclosed | — exact source is not disclosed | pretraining | The paper reports stage counts but not source identities or licensing. |
+| [JoyAI-Video-Edit](models/video/joyai-video-edit.yaml) | 2026-08-04 | Unnamed image-editing corpus | undisclosed | — exact source is not disclosed | fine-tuning | Editing-pair sources and rights are not published. |
+| [JoyAI-Video-Edit](models/video/joyai-video-edit.yaml) | 2026-08-04 | Synthetic bidirectional video-editing pairs | not-released | — publisher has not released it | fine-tuning | Pairs are generated through keyframe propagation or shared-latent image-to-video synthesis and then filtered and recaptioned. |
+| [JoyAI-Video-Edit](models/video/joyai-video-edit.yaml) | 2026-08-04 | OpenVE-Bench | public | [`openve-bench`](catalog/evaluation/openve-bench.yaml) | evaluation | Evaluation-only; it is not part of the disclosed training mixture. |
+| [JoyAI-Video-Edit](models/video/joyai-video-edit.yaml) | 2026-08-04 | LongV2VBench | not-released | [`longv2vbench`](catalog/evaluation/longv2vbench.yaml) | evaluation | Named by the paper but not published in the official model or code repository. |
+| [QuerySplat](models/3d/querysplat.yaml) | 2026-08-02 | DL3DV-10K | gated | [`dl3dv-10k`](catalog/video/dl3dv-10k.yaml) | pretraining | The paper states that the model is trained exclusively on DL3DV training scenes. |
+| [QuerySplat](models/3d/querysplat.yaml) | 2026-08-02 | DL3DV-Evaluation | gated | [`dl3dv-evaluation`](catalog/3d/dl3dv-evaluation.yaml) | evaluation | Evaluation-only and explicitly non-overlapping with DL3DV-10K training scenes. |
 | [Seedance 2.5](models/video/seedance-2-5.yaml) | 2026-07-31 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Qwen-Image-SP](models/image/qwen-image-sp.yaml) | 2026-07-31 | Context Scaling SP/NL Image Corpus | not-released | [`context-scaling-sp-nl-corpus`](catalog/image/context-scaling-sp-nl-corpus.yaml) | fine-tuning | Images receive six nested structured-prompt levels plus natural-language controls, but the image sources and retained sample count are not published. |
 | [Qwen-Image-SP](models/image/qwen-image-sp.yaml) | 2026-07-31 | Context Scaling Prompter SFT Corpus | not-released | [`context-scaling-prompter-sft-corpus`](catalog/image/context-scaling-prompter-sft-corpus.yaml) | fine-tuning | One third is task-specific structured-prompt supervision and two thirds is reasoning and instruction-following replay of undisclosed provenance. |
@@ -32,6 +40,10 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [ReMind 5B](models/video/remind.yaml) | 2026-07-30 | OpenVid-1M | public | [`openvid-1m`](catalog/video/openvid-1m.yaml) | fine-tuning | Named as a general real-video source; the exact retained count and sampling weight are not disclosed. |
 | [ReMind 5B](models/video/remind.yaml) | 2026-07-30 | DL3DV-10K | gated | [`dl3dv-10k`](catalog/video/dl3dv-10k.yaml) | fine-tuning | Named as a general scene-video source; the exact retained subset and sampling weight are not disclosed. |
 | [ReMind 5B](models/video/remind.yaml) | 2026-07-30 | ReMind Pexels dynamic clips | not-released | [`remind-pexels-dynamic-clips`](catalog/video/remind-pexels-dynamic-clips.yaml) | fine-tuning | Retrieved with a 100+ event taxonomy and filtered with Qwen3-VL; no source manifest or retained count is public. |
+| [LeapTalk](models/video/leaptalk.yaml) | 2026-07-29 | Wan2.1-T2V-1.3B inherited pretraining mixture | undisclosed | — exact source is not disclosed | pretraining | The teacher checkpoint is named, but its complete inherited data lineage is not restated. |
+| [LeapTalk](models/video/leaptalk.yaml) | 2026-07-29 | VividHead | public | [`vividhead`](catalog/video/vividhead.yaml) | distillation | Used for ten thousand bridge-distillation training steps; the exact subset is not published. |
+| [LeapTalk](models/video/leaptalk.yaml) | 2026-07-29 | HDTF | public | [`hdtf`](catalog/video/hdtf.yaml) | evaluation | Evaluation-only; the paper does not publish exact clip IDs. |
+| [LeapTalk](models/video/leaptalk.yaml) | 2026-07-29 | CelebV-HQ | public | [`celebv-hq`](catalog/video/celebv-hq.yaml) | evaluation | Evaluation-only; the paper does not publish exact clip IDs. |
 | [Wonder](models/video/wonder.yaml) | 2026-07-28 | Wan2.1 inherited pretraining mixture | undisclosed | — exact source is not disclosed | pretraining | Wonder initializes its teacher from Wan2.1-I2V-14B without restating the inherited checkpoint's complete training-data lineage. |
 | [Wonder](models/video/wonder.yaml) | 2026-07-28 | DL3DV-10K | gated | [`dl3dv-10k`](catalog/video/dl3dv-10k.yaml) | fine-tuning | The paper explicitly uses DL3DV for realistic geometry-aware camera motion in image-to-video training. |
 | [Wonder](models/video/wonder.yaml) | 2026-07-28 | MultiCamVideo Dataset | public | [`multicamvideo`](catalog/video/multicamvideo.yaml) | fine-tuning | The V2V training-data section names MultiCamVideo as an open paired-video source and does not publish its mixture weight. |
@@ -70,9 +82,15 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [ElasticTTT](models/video/elasticttt.yaml) | 2026-07-23 | Wan base-model training mixture | undisclosed | — exact source is not disclosed | pretraining | ElasticTTT inherits the visual prior and data lineage of its Wan backbone, but the paper does not enumerate the underlying source corpus or mixture. |
 | [ElasticTTT](models/video/elasticttt.yaml) | 2026-07-23 | User-provided source video | runtime-input | — per-run input, not a fixed published dataset | fine-tuning | Test-time tuning adapts a LoRA to each individual input video; this is per-run user input rather than a fixed publisher training dataset. |
 | [ElasticTTT](models/video/elasticttt.yaml) | 2026-07-23 | ElasticTTT Video Editing Dataset | public | [`elasticttt-video-editing`](catalog/evaluation/elasticttt-video-editing.yaml) | evaluation | The public DAVIS-selected evaluation package contains 25 source videos and five target edit instructions per video. |
+| [Qwen Image 3.0 Pro](models/image/qwen-image-3-0-pro.yaml) | 2026-07-21 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Mage-Flow](models/image/mage-flow.yaml) | 2026-07-21 | Mage-Flow curated image-text corpus | not-released | [`mage-flow-curated-image-text`](catalog/image/mage-flow-curated-image-text.yaml) | pretraining | The raw pool comes from unnamed large-scale open-source datasets and is filtered, deduplicated, recaptioned, supplemented, and concept-balanced before progressive training. |
 | [Mage-Flow](models/image/mage-flow.yaml) | 2026-07-21 | Mage-Flow-Edit training triples | not-released | [`mage-flow-edit-triples`](catalog/image/mage-flow-edit-triples.yaml) | fine-tuning | The raw pool combines about 50M triples from unnamed open-source editing datasets with 40M in-house synthetic triples; three Qwen3.5-9B filtering experts retain about 45M before edit-type balancing. |
 | [Mage-Flow](models/image/mage-flow.yaml) | 2026-07-21 | Mage-Flow capability-routed RL prompt pools | not-released | [`mage-flow-rl-prompt-pools`](catalog/preference/mage-flow-rl-prompt-pools.yaml) | preference | Generation prompts cover text rendering, aesthetics, and semantic understanding; editing prompts are sampled across edit tasks and mixed with the generation stream. |
+| [InfiniSplat](models/3d/infinisplat.yaml) | 2026-07-20 | Hypersim | public | [`hypersim`](catalog/3d/hypersim.yaml) | pretraining | The paper states that both released variants train only on Hypersim. |
+| [InfiniSplat](models/3d/infinisplat.yaml) | 2026-07-20 | ETH3D | public | [`eth3d`](catalog/3d/eth3d.yaml) | evaluation | Cross-dataset evaluation only. |
+| [InfiniSplat](models/3d/infinisplat.yaml) | 2026-07-20 | ScanNet++ | gated | [`scannet-plus-plus`](catalog/3d/scannet-plus-plus.yaml) | evaluation | Cross-dataset evaluation only under ScanNet++ access terms. |
+| [InfiniSplat](models/3d/infinisplat.yaml) | 2026-07-20 | Tanks and Temples | public | [`tanks-and-temples`](catalog/3d/tanks-and-temples.yaml) | evaluation | Cross-dataset evaluation only; site license conflicts require review. |
+| [InfiniSplat](models/3d/infinisplat.yaml) | 2026-07-20 | DL3DV-10K | gated | [`dl3dv-10k`](catalog/video/dl3dv-10k.yaml) | evaluation | Cross-dataset evaluation only; no DL3DV samples are disclosed as training data. |
 | [Seedream 5.0 Pro](models/image/seedream-5-0-pro.yaml) | 2026-07-17 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [CtrlVTON](models/image/ctrlvton.yaml) | 2026-07-10 | FLUX.2 Klein inherited pretraining mixture | undisclosed | — exact source is not disclosed | pretraining | CtrlVTON inherits the FLUX.2 Klein visual prior; this paper does not restate the foundation model's source corpus or mixture. |
 | [CtrlVTON](models/image/ctrlvton.yaml) | 2026-07-10 | VIP-Seg fashion segmentation dataset | not-released | — publisher has not released it | fine-tuning | Garment-person pairs are annotated with the exact garment-instance region to train VIP-SAM, but the dataset is not released. |

@@ -618,11 +618,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            174,
+            181,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            104,
+            108,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -645,7 +645,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "model-release-feeds" for source in sources), 17)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
-        self.assertEqual(len(sources), 401)
+        self.assertEqual(len(sources), 413)
         self.assertIn(
             "https://huggingface.co/api/models?pipeline_tag=text-to-video&sort=createdAt&direction=-1&limit=50&full=true",
             urls,
@@ -862,7 +862,10 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(impacts["commoncatalog"]["model_ids"], ("commoncanvas-xl-c",))
         self.assertEqual(impacts["gpic"]["model_ids"], ("gpic-baselines",))
-        self.assertEqual(impacts["openve-bench"]["model_ids"], ("moroute", "openve-edit"))
+        self.assertEqual(
+            impacts["openve-bench"]["model_ids"],
+            ("joyai-video-edit", "moroute", "openve-edit"),
+        )
 
     def test_dataset_impact_index_propagates_through_dataset_lineage(self) -> None:
         impacts = dataset_impact_index()
@@ -896,7 +899,10 @@ class DiscoveryTests(unittest.TestCase):
             ("mvhumannet-plus-plus",),
         )
         self.assertEqual(impacts["openve-3m"]["dataset_ids"], ("openve-bench",))
-        self.assertEqual(impacts["openve-3m"]["model_ids"], ("moroute", "openve-edit"))
+        self.assertEqual(
+            impacts["openve-3m"]["model_ids"],
+            ("joyai-video-edit", "moroute", "openve-edit"),
+        )
         self.assertEqual(impacts["koala-36m"]["dataset_ids"], ("phantom-data",))
         self.assertEqual(
             impacts["koala-36m"]["model_ids"],

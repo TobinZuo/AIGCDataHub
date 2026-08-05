@@ -1,0 +1,67 @@
+id: vividhead
+name: VividHead
+organization: Soul AI Lab
+released_at: "2026-02-06"
+release_date_source: https://huggingface.co/api/datasets/Soul-AILab/VividHead
+modality: video
+tasks:
+  - talking-head-generation
+  - audio-driven-animation
+  - lip-sync
+stages:
+  - pretraining
+  - fine-tuning
+  - data-curation
+description: >-
+  A multilingual talking-head collection with roughly 330K clips, 782 hours,
+  60K speakers, face tracks, audio, and demographic and language metadata.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/Soul-AILab/VividHead
+  requires_account: false
+  notes: Ten batch archives plus metadata are directly hosted on the official Hugging Face dataset repository.
+scale:
+  samples: 330000
+  source_items: 60000
+  hours: 782
+  approximate: true
+  notes: Official card figures are approximate and describe 512x512 clips at 25 fps across more than fifteen languages.
+annotations:
+  types:
+    - face-track
+    - speaker-id
+    - language
+    - age-group
+    - gender
+    - ethnicity
+  source: mixed
+  languages:
+    - multilingual
+license:
+  metadata: Apache-2.0 in Hugging Face frontmatter
+  media: Dataset card body states CC BY 4.0 and research or non-commercial intended use
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Repository metadata and body text do not state a single consistent media-rights policy; source-video consent and commercial rights require review.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Public-source media provenance, subject consent, and per-clip rights are not published as a complete manifest.
+    - Frontmatter license metadata conflicts with the dataset-card body and intended-use language.
+processing:
+  recipe: Face tracking, clip filtering, 512x512 normalization, and metadata annotation
+  recommended_format: native
+  notes: Preserve archive and metadata revisions; conduct identity, consent, language, and license review before training or redistribution.
+evidence:
+  homepage: https://huggingface.co/datasets/Soul-AILab/VividHead
+  paper: null
+  used_by:
+    - LeapTalk
+status: partial
+last_verified: "2026-08-05"

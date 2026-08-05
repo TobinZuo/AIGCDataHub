@@ -40,7 +40,7 @@ license:
   media: Poly Haven assets are CC0
   commercial_use: allowed
   redistribution: allowed
-  notes: Underlying Poly Haven assets are CC0, while live API or website access remains subject to platform terms; pin asset IDs and downloaded revisions.
+  notes: Underlying Poly Haven assets are CC0, while current site terms prohibit web scraping or data mining without express permission; pin asset IDs and downloaded revisions and use authorized access methods.
 quality:
   dimensions:
     - visual-quality
@@ -58,4 +58,4 @@ evidence:
   used_by:
     - ID-V2V
 status: partial
-last_verified: "2026-07-30"
+last_verified: "2026-08-05"

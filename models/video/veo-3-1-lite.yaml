@@ -6,9 +6,12 @@ ranking_names:
   - Veo 3.1 Lite
 modalities:
   - video
+  - audio
 tasks:
   - text-to-video
   - image-to-video
+  - video-editing
+  - audio-video-generation
 access:
   status: api-only
   license: Google Gemini API terms
@@ -18,7 +21,11 @@ access:
 architecture:
   family: Undisclosed cost-optimized Veo 3.1 family variant
   parameters: null
-  notes: Google positions Lite as a same-speed, lower-cost family variant supporting text-to-video and image-to-video, but publishes no variant-specific topology or parameter count.
+  notes: >-
+    Google positions Lite as a same-speed, lower-cost family variant supporting
+    text-to-video, image-to-video, editing, and video output with audio, but
+    publishes no variant-specific topology or parameter count. The current
+    preview documentation marks 4K output and video extension unsupported.
 data:
   disclosure_level: undisclosed
   exact_datasets_disclosed: false
@@ -45,4 +52,4 @@ evidence:
   technical_report: null
   repository: null
 status: watch
-last_verified: "2026-07-27"
+last_verified: "2026-08-05"

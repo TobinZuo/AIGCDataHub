@@ -1,0 +1,123 @@
+id: joyai-video-edit
+name: JoyAI-Video-Edit
+organization: JD Open Source
+released_at: "2026-08-04"
+modalities:
+  - video
+  - image
+tasks:
+  - video-editing
+  - image-to-video-editing
+  - long-video-editing
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://github.com/jd-opensource/JoyAI-Video-Edit
+  weights_url: https://huggingface.co/jdopensource/JoyAI-Video-Edit
+  api_url: null
+architecture:
+  family: 16B autoregressive diffusion model with MLLM, causal VAE, and MMDiT
+  parameters: 16000000000
+  notes: The release supports video-to-video and image-conditioned video editing, with autoregressive generation and long-horizon post-training.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Unnamed text-to-image pretraining corpus
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: 4.3B samples at 256 resolution and 793M at 512 resolution
+      notes: Source identities, rights, captions, and mixture are not disclosed.
+    - name: Unnamed text-to-video pretraining and post-training corpus
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: 370M at 256p, 108M at 360p, 30M SFT at 480p, and 6.5M continual-training samples
+      notes: The paper reports stage counts but not source identities or licensing.
+    - name: Unnamed image-editing corpus
+      catalog_id: null
+      role: fine-tuning
+      availability: undisclosed
+      scale: 3.2M samples at 720p
+      notes: Editing-pair sources and rights are not published.
+    - name: Synthetic bidirectional video-editing pairs
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: 5.3M SFT pairs at 720p and 1.1M continual-training pairs
+      notes: Pairs are generated through keyframe propagation or shared-latent image-to-video synthesis and then filtered and recaptioned.
+    - name: OpenVE-Bench
+      catalog_id: openve-bench
+      role: evaluation
+      availability: public
+      scale: Official OpenVE benchmark split
+      notes: Evaluation-only; it is not part of the disclosed training mixture.
+    - name: LongV2VBench
+      catalog_id: longv2vbench
+      role: evaluation
+      availability: not-released
+      scale: 229 one-minute tasks across five categories
+      notes: Named by the paper but not published in the official model or code repository.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - quality-filtering
+        - perceptual-deduplication
+        - embedding-deduplication
+        - concept-clustering
+        - long-tail-balancing
+      scale_disclosed: true
+      strategy: Progress from large 256 and 512 image corpora to 256p and 360p video pretraining, then supervised and continual video training.
+    - name: fine-tuning
+      modalities:
+        - image
+        - video
+        - text
+      source_types:
+        - synthetic
+        - undisclosed
+      operations:
+        - keyframe-edit-propagation
+        - shared-latent-pair-generation
+        - edit-correctness-filtering
+        - content-preservation-filtering
+        - temporal-consistency-filtering
+        - mllm-recaptioning
+      scale_disclosed: true
+      strategy: Train first on 3.2M image edits and then on synthetic bidirectional video-editing pairs at 720p.
+    - name: distillation
+      modalities:
+        - video
+        - text
+      source_types:
+        - synthetic
+        - undisclosed
+      operations:
+        - teacher-forcing
+        - resampling-forcing
+        - distribution-matching-distillation
+        - long-horizon-distillation
+        - bounded-history-conditioning
+      scale_disclosed: false
+      strategy: Combine teacher and resampling forcing, two-step SA-DMD, and autoregressive long-horizon distillation for efficient deployment.
+  strategy_summary:
+    - Filter images for quality, blur, black borders, and duplicates; filter videos for quality, motion, stability, temporal validity, and corrupted or slide-like content.
+    - Generate video-editing supervision through two synthetic pipelines, score edit correctness and preservation, and recaption instructions with an MLLM.
+    - Separate OpenVE-Bench and the unreleased LongV2VBench from all training stages.
+  unknowns:
+    - Every source dataset identity, media license, collection jurisdiction, consent basis, language mix, captioning model, deduplication threshold, and stage mixture weight.
+    - Synthetic teacher identities and prompts, safety filtering, human review scale, compute, OpenVE split details used, and LongV2VBench files and license.
+evidence:
+  release: https://huggingface.co/jdopensource/JoyAI-Video-Edit
+  technical_report: https://arxiv.org/abs/2608.03974
+  repository: https://github.com/jd-opensource/JoyAI-Video-Edit
+status: partial
+last_verified: "2026-08-05"

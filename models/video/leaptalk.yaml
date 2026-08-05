@@ -1,0 +1,80 @@
+id: leaptalk
+name: LeapTalk
+organization: LeapTalk Authors
+released_at: "2026-07-29"
+modalities:
+  - video
+  - audio
+  - image
+tasks:
+  - talking-head-generation
+  - audio-driven-animation
+  - lip-sync
+  - long-video-generation
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://huggingface.co/z-rx/leaptalk
+  weights_url: https://huggingface.co/z-rx/leaptalk
+  api_url: null
+architecture:
+  family: Single-step Brownian-bridge talking-head model distilled from Wan2.1-T2V-1.3B
+  parameters: 1300000000
+  notes: Pro and Lite variants condition on a persistent portrait reference and Wav2Vec audio features for streaming long-form generation.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: true
+  datasets:
+    - name: Wan2.1-T2V-1.3B inherited pretraining mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: The teacher checkpoint is named, but its complete inherited data lineage is not restated.
+    - name: VividHead
+      catalog_id: vividhead
+      role: distillation
+      availability: public
+      scale: 330K clips and 782 hours in the source release
+      notes: Used for ten thousand bridge-distillation training steps; the exact subset is not published.
+    - name: HDTF
+      catalog_id: hdtf
+      role: evaluation
+      availability: public
+      scale: Part of an 80-video evaluation sample
+      notes: Evaluation-only; the paper does not publish exact clip IDs.
+    - name: CelebV-HQ
+      catalog_id: celebv-hq
+      role: evaluation
+      availability: public
+      scale: Part of an 80-video evaluation sample
+      notes: Evaluation-only; the paper does not publish exact clip IDs.
+  stages:
+    - name: distillation
+      modalities:
+        - video
+        - audio
+        - image
+      source_types:
+        - public-dataset
+      operations:
+        - single-step-distillation
+        - brownian-bridge-transport
+        - snr-aligned-time-mapping
+        - audio-conditioned-guidance
+        - persistent-reference-conditioning
+      scale_disclosed: true
+      strategy: Distill the Wan2.1 teacher for 10K steps on VividHead using a data-to-data Brownian bridge and persistent reference frame.
+  strategy_summary:
+    - Replace iterative noise-to-data sampling with one-step data-to-data transport for low-latency long-form talking heads.
+    - Use VividHead only for distillation and keep HDTF and CelebV-HQ as evaluation-only samples.
+  unknowns:
+    - Exact VividHead subset, identities, consent review, preprocessing, clip weights, language balance, and handling of the dataset license inconsistency.
+    - Complete Wan2.1 and Wav2Vec inherited data lineage, teacher checkpoint license interaction, compute, and exact 80-video evaluation manifest.
+evidence:
+  release: https://huggingface.co/z-rx/leaptalk
+  technical_report: https://arxiv.org/abs/2608.00079
+  repository: https://github.com/zhangrongxiang/LeapTalk
+status: partial
+last_verified: "2026-08-05"

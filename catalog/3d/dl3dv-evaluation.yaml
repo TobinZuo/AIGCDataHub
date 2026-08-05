@@ -1,0 +1,60 @@
+id: dl3dv-evaluation
+name: DL3DV-Evaluation
+organization: DL3DV Dataset Team
+released_at: "2025-09-11"
+release_date_source: https://huggingface.co/api/datasets/DL3DV/DL3DV-Evaluation
+modality: 3d
+tasks:
+  - novel-view-synthesis
+  - 3d-reconstruction
+stages:
+  - evaluation
+description: >-
+  The official 55-scene DL3DV testing split for novel-view synthesis and 3D
+  reconstruction, explicitly independent from DL3DV-10K training scenes.
+access:
+  status: gated
+  type: hosted
+  url: https://huggingface.co/datasets/DL3DV/DL3DV-Evaluation
+  requires_account: true
+  notes: The official repository provides a token-authenticated download script for roughly 500GB of per-scene video and image archives.
+scale:
+  samples: 55
+  source_items: null
+  hours: null
+  approximate: false
+  notes: Fifty-five evaluation scenes; the repository does not state a canonical image count.
+annotations:
+  types:
+    - scene-id
+    - camera-view
+    - video
+  source: mixed
+  languages:
+    - none
+license:
+  metadata: No license field in the official Hugging Face card
+  media: Official DL3DV terms apply
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Account authentication is required and the repository does not publish a standalone license identifier.
+quality:
+  dimensions:
+    - visual-quality
+    - multi-view-consistency
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - The official card gives scene count and archive size but no complete capture, privacy, or demographic audit.
+    - The scenes must remain isolated from DL3DV-10K training data.
+processing:
+  recipe: Official Hugging Face download.py script
+  recommended_format: native
+  notes: Keep the 55 scene hashes intact and never merge this evaluation-only release into DL3DV-10K training splits.
+evidence:
+  homepage: https://huggingface.co/datasets/DL3DV/DL3DV-Evaluation
+  paper: https://arxiv.org/abs/2312.16256
+  used_by:
+    - QuerySplat
+status: verified
+last_verified: "2026-08-05"

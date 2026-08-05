@@ -1,0 +1,69 @@
+id: hypersim
+name: Hypersim
+organization: Apple
+released_at: "2020-11-04"
+release_date_source: https://arxiv.org/abs/2011.02523
+modality: 3d
+tasks:
+  - novel-view-synthesis
+  - 3d-reconstruction
+  - depth-estimation
+  - semantic-segmentation
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A photorealistic synthetic indoor-scene dataset with rendered views, dense
+  geometry, camera, material, lighting, semantic, and instance annotations.
+access:
+  status: open
+  type: urls
+  url: https://github.com/apple/ml-hypersim
+  requires_account: false
+  notes: The official script downloads roughly 1.9TB of rendered images; the source triangle meshes require purchasing the underlying Evermotion assets.
+scale:
+  samples: 74619
+  source_items: 461
+  hours: null
+  approximate: false
+  notes: The paper reports 77,400 renders, while the public release contains 74,619 after manually excluding people and prominent logos.
+annotations:
+  types:
+    - camera-pose
+    - depth
+    - surface-normal
+    - semantic-segmentation
+    - instance-segmentation
+    - material
+    - lighting
+  source: model-generated
+  languages:
+    - none
+license:
+  metadata: CC BY-SA 3.0
+  media: CC BY-SA 3.0 rendered dataset; source Evermotion assets have separate purchase terms
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The published dataset is CC BY-SA 3.0, but reconstruction from source scene assets requires separately licensed commercial files.
+quality:
+  dimensions:
+    - visual-quality
+    - geometry-quality
+    - multi-view-consistency
+    - provenance
+  known_limitations:
+    - Synthetic professionally authored interiors do not represent the full distribution of real-world indoor scenes.
+    - Public files omit images containing people or prominent logos and do not include the purchased source triangle meshes.
+processing:
+  recipe: Official per-scene ZIP download and V-Ray rendering toolkit
+  recommended_format: native
+  notes: Preserve scene, camera, and frame identifiers; distinguish the downloadable renders from separately licensed source geometry.
+evidence:
+  homepage: https://github.com/apple/ml-hypersim
+  paper: https://arxiv.org/abs/2011.02523
+  used_by:
+    - InfiniSplat
+status: verified
+last_verified: "2026-08-05"

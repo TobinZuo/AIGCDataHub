@@ -1,0 +1,62 @@
+id: querysplat
+name: QuerySplat
+organization: inspatio
+released_at: "2026-08-02"
+modalities:
+  - 3d
+  - image
+tasks:
+  - novel-view-synthesis
+  - 3d-reconstruction
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://huggingface.co/inspatio/querysplat
+  weights_url: https://huggingface.co/inspatio/querysplat
+  api_url: null
+architecture:
+  family: 1B feed-forward Gaussian-splat predictor with frozen VGGT-Omega geometry
+  parameters: 1000000000
+  notes: QuerySplat decouples geometry and appearance into fixed scene Gaussians plus progressively expanded query Gaussians.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: true
+  datasets:
+    - name: DL3DV-10K
+      catalog_id: dl3dv-10k
+      role: pretraining
+      availability: gated
+      scale: Two to twelve input views with 512-pixel crops
+      notes: The paper states that the model is trained exclusively on DL3DV training scenes.
+    - name: DL3DV-Evaluation
+      catalog_id: dl3dv-evaluation
+      role: evaluation
+      availability: gated
+      scale: Official independent 55-scene evaluation release
+      notes: Evaluation-only and explicitly non-overlapping with DL3DV-10K training scenes.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - 3d
+      source_types:
+        - public-dataset
+      operations:
+        - random-cropping
+        - multi-view-sampling
+        - progressive-query-expansion
+      scale_disclosed: true
+      strategy: Train the base representation for 300K iterations, then double query Gaussians progressively to 8192 with 30K iterations per expansion stage on 64 A800 GPUs.
+  strategy_summary:
+    - Use only DL3DV-10K training scenes and a frozen VGGT-Omega geometry backbone.
+    - Progressively expand appearance queries while keeping evaluation on the independent DL3DV-Evaluation release.
+  unknowns:
+    - Exact DL3DV scene hashes, data revision, augmentation probabilities, optimizer sample count, and whether any VGGT-Omega inherited data can affect the frozen representation.
+    - Complete inherited training lineage and rights of the frozen VGGT-Omega checkpoint.
+evidence:
+  release: https://huggingface.co/inspatio/querysplat
+  technical_report: https://arxiv.org/abs/2608.01186
+  repository: null
+status: partial
+last_verified: "2026-08-05"

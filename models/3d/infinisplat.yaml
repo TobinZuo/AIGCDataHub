@@ -1,0 +1,81 @@
+id: infinisplat
+name: InfiniSplat
+organization: PLUS-WAVE
+released_at: "2026-07-20"
+modalities:
+  - 3d
+  - image
+tasks:
+  - novel-view-synthesis
+  - 3d-reconstruction
+access:
+  status: open-weights
+  license: Apache-2.0 repository license
+  release_url: https://huggingface.co/PLUS-WAVE/InfiniSplat
+  weights_url: https://huggingface.co/PLUS-WAVE/InfiniSplat
+  api_url: null
+architecture:
+  family: Feed-forward infinite-view Gaussian-splat predictor with RGB and LiDAR variants
+  parameters: null
+  notes: Official RGB and LiDAR checkpoints combine frozen monocular geometry and semantic encoders with a generalizable splatting predictor.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: true
+  datasets:
+    - name: Hypersim
+      catalog_id: hypersim
+      role: pretraining
+      availability: public
+      scale: One context view and three target views per sample
+      notes: The paper states that both released variants train only on Hypersim.
+    - name: ETH3D
+      catalog_id: eth3d
+      role: evaluation
+      availability: public
+      scale: 512 evaluation pairs
+      notes: Cross-dataset evaluation only.
+    - name: ScanNet++
+      catalog_id: scannet-plus-plus
+      role: evaluation
+      availability: gated
+      scale: 512 evaluation pairs
+      notes: Cross-dataset evaluation only under ScanNet++ access terms.
+    - name: Tanks and Temples
+      catalog_id: tanks-and-temples
+      role: evaluation
+      availability: public
+      scale: 512 evaluation pairs
+      notes: Cross-dataset evaluation only; site license conflicts require review.
+    - name: DL3DV-10K
+      catalog_id: dl3dv-10k
+      role: evaluation
+      availability: gated
+      scale: 512 evaluation pairs
+      notes: Cross-dataset evaluation only; no DL3DV samples are disclosed as training data.
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - 3d
+      source_types:
+        - synthetic
+        - public-dataset
+      operations:
+        - multi-view-sampling
+        - random-cropping
+        - frozen-feature-extraction
+      scale_disclosed: true
+      strategy: Train for 100K steps with batch size one per GPU on eight H20 GPUs, sampling one context and three target Hypersim views.
+  strategy_summary:
+    - Train only on Hypersim while freezing pretrained geometry and semantic encoders.
+    - Evaluate zero-shot generalization separately on ETH3D, ScanNet++, Tanks and Temples, and DL3DV.
+  unknowns:
+    - Exact Hypersim scene split and revision, crop distribution, filtering, and whether removed public images are excluded by manifest.
+    - Complete inherited data lineage and licenses of frozen DepthPro, InfiniDepth, DINOv3, and other pretrained encoders.
+evidence:
+  release: https://huggingface.co/PLUS-WAVE/InfiniSplat
+  technical_report: https://arxiv.org/abs/2608.02437
+  repository: null
+status: partial
+last_verified: "2026-08-05"

@@ -1,0 +1,60 @@
+id: tanks-and-temples
+name: Tanks and Temples
+organization: Tanks and Temples Benchmark Team
+released_at: "2017-08-17"
+release_date_source: https://arxiv.org/abs/1708.05342
+modality: 3d
+tasks:
+  - 3d-reconstruction
+  - novel-view-synthesis
+stages:
+  - evaluation
+description: >-
+  A large-scale scene reconstruction benchmark with official image sequences,
+  camera trajectories, ground-truth scans, and an evaluation server.
+access:
+  status: open
+  type: hosted
+  url: https://www.tanksandtemples.org/download/
+  requires_account: false
+  notes: Benchmark archives are downloadable from the official site, but users must review the full site license before reuse.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The benchmark contains multiple training, intermediate, and advanced scenes; InfiniSplat does not disclose its exact scene manifest.
+annotations:
+  types:
+    - camera-pose
+    - image-sequence
+    - laser-scan
+    - reconstruction-ground-truth
+  source: mixed
+  languages:
+    - none
+license:
+  metadata: Conflicting CC BY 4.0 and additional site license terms
+  media: Site states CC BY 4.0 but also restricts use to non-commercial research and prohibits third-party sharing
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The official license page contains internally conflicting grants; treat commercial use and redistribution as requiring legal review.
+quality:
+  dimensions:
+    - visual-quality
+    - geometry-quality
+    - multi-view-consistency
+    - provenance
+  known_limitations:
+    - The official license page combines CC BY 4.0 language with stricter non-commercial and no-sharing clauses.
+processing:
+  recipe: Official scene downloads and TanksAndTemples evaluation toolbox
+  recommended_format: native
+  notes: Pin scene tier and archive revision and preserve camera logs and evaluation alignment files.
+evidence:
+  homepage: https://www.tanksandtemples.org/
+  paper: https://arxiv.org/abs/1708.05342
+  used_by:
+    - InfiniSplat
+status: partial
+last_verified: "2026-08-05"

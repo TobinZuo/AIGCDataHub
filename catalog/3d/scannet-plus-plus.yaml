@@ -1,0 +1,63 @@
+id: scannet-plus-plus
+name: ScanNet++
+organization: Technical University of Munich
+released_at: "2023-08-22"
+release_date_source: https://arxiv.org/abs/2308.11417
+modality: 3d
+tasks:
+  - novel-view-synthesis
+  - 3d-reconstruction
+  - semantic-segmentation
+stages:
+  - evaluation
+description: >-
+  A high-fidelity indoor dataset pairing sub-millimeter laser scans, 33MP DSLR
+  images, iPhone RGB-D streams, and open-vocabulary semantic annotations.
+access:
+  status: gated
+  type: request
+  url: https://kaldir.vc.in.tum.de/scannetpp/
+  requires_account: true
+  notes: Access requires an application and signed ScanNet++ Terms of Use, including PI or supervisor approval where applicable.
+scale:
+  samples: 460
+  source_items: 3980000
+  hours: null
+  approximate: true
+  notes: The paper reports 460 scenes, 280,000 DSLR images, and more than 3.7M iPhone RGB-D frames.
+annotations:
+  types:
+    - laser-scan
+    - camera-pose
+    - rgb-d
+    - open-vocabulary-semantics
+    - instance-segmentation
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: ScanNet++ Terms of Use
+  media: Non-commercial research and educational use only
+  commercial_use: noncommercial
+  redistribution: prohibited
+  notes: Approved recipients may not share data with others who have not separately signed the terms; GDPR deletion obligations apply.
+quality:
+  dimensions:
+    - visual-quality
+    - geometry-quality
+    - multi-view-consistency
+    - provenance
+  known_limitations:
+    - Indoor captures and gated access constrain domain and reproducibility.
+    - The terms allow access termination and require handling person-specific deletion requests.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Preserve the official split and access audit; do not redistribute raw captures or derived copies outside approved recipients.
+evidence:
+  homepage: https://kaldir.vc.in.tum.de/scannetpp/
+  paper: https://arxiv.org/abs/2308.11417
+  used_by:
+    - InfiniSplat
+status: verified
+last_verified: "2026-08-05"

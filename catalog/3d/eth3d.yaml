@@ -1,0 +1,61 @@
+id: eth3d
+name: ETH3D
+organization: ETH Zurich
+released_at: "2017-07-19"
+release_date_source: https://www.eth3d.net/
+modality: 3d
+tasks:
+  - multi-view-stereo
+  - 3d-reconstruction
+  - depth-estimation
+stages:
+  - evaluation
+description: >-
+  Official indoor and outdoor multi-view stereo, two-view stereo, and SLAM
+  benchmarks with calibrated imagery and laser-scanned ground truth.
+access:
+  status: open
+  type: hosted
+  url: https://www.eth3d.net/datasets
+  requires_account: false
+  notes: Official training and evaluation downloads are listed by benchmark track on the ETH3D site.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: false
+  notes: Multiple benchmark tracks and revisions exist; InfiniSplat does not disclose an exact ETH3D scene manifest.
+annotations:
+  types:
+    - camera-calibration
+    - depth
+    - laser-scan
+    - reconstruction-ground-truth
+  source: mixed
+  languages:
+    - none
+license:
+  metadata: CC BY-NC-SA 4.0
+  media: CC BY-NC-SA 4.0
+  commercial_use: noncommercial
+  redistribution: allowed
+  notes: Attribution, non-commercial use, and share-alike obligations apply to the official data.
+quality:
+  dimensions:
+    - geometry-quality
+    - multi-view-consistency
+    - visual-quality
+    - provenance
+  known_limitations:
+    - Benchmark tracks differ in resolution, capture rig, scene composition, and ground-truth availability.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Pin benchmark track, scene list, archive revision, and evaluation protocol.
+evidence:
+  homepage: https://www.eth3d.net/
+  paper: null
+  used_by:
+    - InfiniSplat
+status: verified
+last_verified: "2026-08-05"

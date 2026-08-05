@@ -62,7 +62,8 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /aria-pressed="true">中/);
   assert.match(html, /aria-pressed="false">EN/);
   assert.match(html, /最近核验/);
-  assert.match(html, /核验<!-- --> <!-- -->2026\/08\/04/);
+  assert.match(html, /核验<!-- --> <!-- -->2026\/08\/05/);
+  assert.match(html, /JoyAI-Video-Edit/);
   assert.match(html, /VTON 360/);
   assert.match(html, /CultureVidBench/);
   assert.match(html, /MIE-Bench/);
@@ -71,7 +72,7 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /InstructAV2AV/);
   assert.match(html, /ID-V2V/);
   assert.match(html, /JoyFox LiveTalk-DH 1\.3B/);
-  assert.match(html, /发布<!-- --> <!-- -->2025\/03\/15/);
+  assert.match(html, /发布<!-- --> <!-- -->2026\/08\/04/);
   assert.match(html, /部分披露/);
   assert.match(html, /ReMind 5B/);
   assert.ok(html.includes('open_weights\\\":true'));
@@ -320,7 +321,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
         .filter((dataset) => dataset.released_at === newestDatasetDate)
         .map((dataset) => dataset.id),
     ),
-    new Set(["culturevidbench", "mie-bench"]),
+    new Set(["longv2vbench"]),
   );
   const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
   assert.ok(parsedCatalog.models.every((model) => model.monitoring));
@@ -328,7 +329,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
   const rankedModelIds = new Set(
     parsedCatalog.rankings.flatMap((board) => board.entries.flatMap((entry) => entry.model_ids)),
   );
-  assert.equal(rankedModelIds.size, 49);
+  assert.equal(rankedModelIds.size, 50);
   assert.ok([...rankedModelIds].every((modelId) => models[modelId].monitoring));
   assert.equal(models["gpt-image-2"].monitoring.priority, "critical");
   assert.equal(models["gemini-omni-flash"].monitoring.priority, "critical");

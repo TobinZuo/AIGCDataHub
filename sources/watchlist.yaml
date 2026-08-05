@@ -72,6 +72,12 @@ discovery:
     - https://huggingface.co/cornbox/krea2-raw-merge-v1_1
     - https://arxiv.org/pdf/2503.12165
     - https://github.com/nerfies/nerfies.github.io
+    - https://huggingface.co/inspatio/querysplat
+    - https://huggingface.co/jdopensource/JoyAI-Video-Edit
+    - https://huggingface.co/PLUS-WAVE/InfiniSplat
+    - https://huggingface.co/z-rx/leaptalk
+    - https://help.aliyun.com/en/model-studio/qwen-image-api-reference
+    - https://github.com/zhangrongxiang/LeapTalk
 
 tracks:
   - id: image-generation
@@ -93,6 +99,7 @@ tracks:
       - https://ai.google.dev/gemini-api/docs/changelog
       - https://heheyas.github.io/context-scaling/
       - https://github.com/heheyas/context-scaling
+      - https://help.aliyun.com/en/model-studio/qwen-image-generation-and-editing-api-reference
 
   - id: video-and-audio-generation
     topics:
@@ -124,6 +131,7 @@ tracks:
       - https://www.minimax.io/news
       - https://orange-3dv-team.github.io/MoRoute/
       - https://github.com/PKU-YuanGroup/Helios
+      - https://github.com/jd-opensource/JoyAI-Video-Edit
 
   - id: digital-human-and-localization
     topics:
@@ -147,6 +155,7 @@ tracks:
       - https://freedomintelligence.github.io/talk-vid
       - https://github.com/FreedomIntelligence/TalkVid
       - https://github.com/Eyeline-Labs/ID-V2V
+      - https://github.com/zhangrongxiang/LeapTalk
 
   - id: virtual-try-on-and-commerce
     topics:
@@ -162,7 +171,6 @@ tracks:
       - https://huggingface.co/datasets/Yuanhao-Harry-Wang/fitvto-100k
       - https://github.com/HarryWang355/FIT-VTO
       - https://github.com/fashn-AI
-      - https://fashn.ai/research/vton-1-5
       - https://github.com/fashn-AI/fashn-vton-1.5
       - https://hunorlaczko.github.io/MV-Fashion/
       - https://oxygenvision.github.io/Oxygen-TryOn/
@@ -950,6 +958,27 @@ tracks:
       - url: https://github.com/IntMeGroup/MIEScore/commits/main.atom
         catalog_id: mie-bench
         priority: critical
+      - url: https://github.com/apple/ml-hypersim/commits/main.atom
+        catalog_id: hypersim
+        priority: high
+      - url: "https://huggingface.co/api/datasets/DL3DV/DL3DV-Evaluation?expand=lastModified&expand=sha"
+        catalog_id: dl3dv-evaluation
+        priority: critical
+      - url: https://www.eth3d.net/
+        catalog_id: eth3d
+        priority: high
+      - url: https://kaldir.vc.in.tum.de/scannetpp/static/scannetpp-terms-of-use.pdf
+        catalog_id: scannet-plus-plus
+        priority: high
+      - url: https://www.tanksandtemples.org/license/
+        catalog_id: tanks-and-temples
+        priority: high
+      - url: "https://huggingface.co/api/datasets/Soul-AILab/VividHead?expand=lastModified&expand=sha"
+        catalog_id: vividhead
+        priority: critical
+      - url: https://arxiv.org/abs/2608.03974v1
+        catalog_id: longv2vbench
+        priority: critical
 
   - id: important-model-updates
     topics:
@@ -1227,6 +1256,21 @@ tracks:
         priority: critical
       - url: https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-image
         model_id: gemini-3-1-flash-image
+        priority: critical
+      - url: https://help.aliyun.com/en/model-studio/qwen-image-generation-and-editing-api-reference
+        model_id: qwen-image-3-0-pro
+        priority: critical
+      - url: "https://huggingface.co/api/models/jdopensource/JoyAI-Video-Edit?expand=lastModified&expand=sha"
+        model_id: joyai-video-edit
+        priority: critical
+      - url: "https://huggingface.co/api/models/inspatio/querysplat?expand=lastModified&expand=sha"
+        model_id: querysplat
+        priority: critical
+      - url: "https://huggingface.co/api/models/PLUS-WAVE/InfiniSplat?expand=lastModified&expand=sha"
+        model_id: infinisplat
+        priority: critical
+      - url: "https://huggingface.co/api/models/z-rx/leaptalk?expand=lastModified&expand=sha"
+        model_id: leaptalk
         priority: critical
       - url: https://docs.x.ai/developers/models/grok-imagine-video-1.5
         model_id: grok-imagine-video-1-5
