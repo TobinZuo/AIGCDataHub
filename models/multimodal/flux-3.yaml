@@ -2,6 +2,9 @@ id: flux-3
 name: FLUX 3
 organization: Black Forest Labs
 released_at: "2026-07-23"
+ranking_names:
+  - flux-3-video-20260811
+  - flux-3-video
 modalities:
   - multimodal
   - image

@@ -42,7 +42,13 @@ data:
   disclosure_level: undisclosed
   exact_datasets_disclosed: false
   exact_mixture_disclosed: false
-  datasets: []
+  datasets:
+    - name: OmniEdit-Bench
+      catalog_id: omniedit-bench
+      role: evaluation
+      availability: public
+      scale: 790 video-editing tasks
+      notes: The paper reports KlingV3-Omni results, with reference-track coverage only where spatial reference conditioning is supported; this is not training disclosure.
   stages:
     - name: pretraining
       modalities:
@@ -64,4 +70,4 @@ evidence:
   technical_report: null
   repository: null
 status: watch
-last_verified: "2026-07-26"
+last_verified: "2026-08-16"

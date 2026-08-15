@@ -23,7 +23,7 @@ access:
   type: request
   url: https://huggingface.co/datasets/MV-Fashion/MV-Fashion
   requires_account: true
-  notes: The populated Hugging Face repository now exposes per-subject video and annotation archives after manual approval; access requires an account, the signed UBeTRAM agreement, and acceptance of the non-commercial research terms.
+  notes: The populated Hugging Face repository exposes per-subject video and annotation archives after manual approval. Applicants must sign the UBeTRAM agreement and submit the linked Hugging Face form; the project warns that university administration is unavailable during August and expects replies by mid-September.
 scale:
   samples: 52020529
   source_items: 2357
@@ -72,4 +72,4 @@ evidence:
   paper: https://arxiv.org/abs/2603.08147
   used_by: []
 status: partial
-last_verified: "2026-07-30"
+last_verified: "2026-08-16"

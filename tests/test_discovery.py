@@ -618,11 +618,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            181,
+            185,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            108,
+            112,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -645,7 +645,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "model-release-feeds" for source in sources), 17)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
-        self.assertEqual(len(sources), 413)
+        self.assertEqual(len(sources), 430)
         self.assertIn(
             "https://huggingface.co/api/models?pipeline_tag=text-to-video&sort=createdAt&direction=-1&limit=50&full=true",
             urls,
@@ -890,7 +890,7 @@ class DiscoveryTests(unittest.TestCase):
         )
         self.assertEqual(
             impacts["audioset"]["model_ids"],
-            ("mova-720p", "omni2sound", "skyreels-v4"),
+            ("mova-720p", "omni2sound", "skyreels-v4", "td-v2a"),
         )
         self.assertEqual(impacts["yfcc100m"]["dataset_ids"], ("commoncatalog",))
         self.assertEqual(impacts["yfcc100m"]["model_ids"], ("commoncanvas-xl-c",))

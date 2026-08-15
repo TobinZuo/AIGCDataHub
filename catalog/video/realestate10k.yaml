@@ -1,0 +1,64 @@
+id: realestate10k
+name: RealEstate10K
+organization: Google
+released_at: "2018-07-01"
+release_date_source: https://google.github.io/realestate10k/
+modality: video
+tasks:
+  - novel-view-synthesis
+  - camera-controlled-video-generation
+  - 3d-reconstruction
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+description: >-
+  Camera intrinsics and trajectories for 10 million frames from about 80,000
+  clips sampled from roughly 10,000 YouTube videos, derived with SLAM and bundle adjustment.
+access:
+  status: open
+  type: urls
+  url: https://google.github.io/realestate10k/download.html
+  requires_account: false
+  notes: The official 720 MB v1.0 archive contains URLs, timestamps, intrinsics, and poses rather than persistent copies of the referenced YouTube frames.
+scale:
+  samples: 80000
+  source_items: 10000000
+  hours: null
+  approximate: true
+  notes: About 80,000 clips and 10 million frames from about 10,000 source videos, with an approximately 90/10 train/test split.
+annotations:
+  types:
+    - source-url
+    - timestamp
+    - camera-intrinsics
+    - camera-pose
+  source: model-generated
+  languages:
+    - none
+license:
+  metadata: CC-BY-4.0
+  media: Original YouTube video rights and platform terms
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Google licenses the released trajectory files under CC BY 4.0, but that license does not grant rights to the referenced YouTube video frames.
+quality:
+  dimensions:
+    - geometry-quality
+    - motion
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Referenced YouTube videos can disappear, change, or become inaccessible, so the effective media snapshot is not reproducible from metadata alone.
+    - SLAM and bundle-adjustment trajectories are automated estimates and do not guarantee metric scale or error-free poses.
+processing:
+  recipe: Run SLAM and bundle adjustment over YouTube real-estate videos, then publish frame timestamps, normalized intrinsics, and 3x4 camera poses.
+  recommended_format: native
+  notes: Pin the official trajectory archive, record successful media retrieval dates and hashes separately, and preserve the train/test split without treating URLs as media redistribution rights.
+evidence:
+  homepage: https://google.github.io/realestate10k/
+  paper: https://research.google/pubs/stereo-magnification-learning-view-synthesis-using-multiplane-images/
+  used_by:
+    - SCoPE
+status: verified
+last_verified: "2026-08-16"

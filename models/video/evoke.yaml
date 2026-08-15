@@ -1,0 +1,85 @@
+id: evoke
+name: EVOKE
+organization: AlayaLab
+released_at: "2026-08-12"
+modalities:
+  - video
+tasks:
+  - text-to-video
+  - image-to-video
+  - video-to-video
+  - camera-controlled-video-generation
+  - long-video-generation
+access:
+  status: open-weights
+  license: Apache-2.0 model release; required ViGeo dependency is CC-BY-NC-4.0
+  release_url: https://github.com/AlayaLab/Evoke
+  weights_url: https://huggingface.co/AlayaLab/Evoke
+  api_url: null
+architecture:
+  family: Three-step CFG-free autoregressive video diffusion model with camera-state memory
+  parameters: null
+  notes: EVOKE derives from Helios and a LingBot-World teacher, generates 384-by-640 video at 24 fps, and supports coherent camera-controlled rollouts up to about 30 seconds.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Helios inherited pretraining mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: EVOKE inherits a video prior from Helios but does not restate the underlying source identities or rights composition.
+    - name: EVOKE camera-control and long-horizon corpus
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: null
+      notes: The release describes training objectives and capabilities but names no exact dataset or downloadable manifest.
+    - name: LingBot-World teacher generations
+      catalog_id: null
+      role: distillation
+      availability: not-released
+      scale: null
+      notes: Teacher involvement is disclosed without prompts, source inputs, output counts, filters, or licenses for the distilled pairs.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - video
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - camera-control-training
+        - camera-state-memory
+        - autoregressive-rollout-training
+      scale_disclosed: false
+      strategy: Adapt a short-video prior to camera-controlled, long-horizon autoregressive generation with a persistent state bank.
+    - name: distillation
+      modalities:
+        - video
+        - image
+        - text
+      source_types:
+        - synthetic
+        - undisclosed
+      operations:
+        - few-step-distillation
+        - classifier-free-guidance-removal
+        - long-horizon-distillation
+      scale_disclosed: false
+      strategy: Distill a LingBot-World teacher into a three-step CFG-free student while preserving long-rollout consistency.
+  strategy_summary:
+    - Combine camera-state memory and autoregressive generation to extend short video priors into controlled 30-second rollouts.
+    - Distill to three denoising steps without treating the named teacher or visible capabilities as evidence of source-dataset identity.
+  unknowns:
+    - Exact real and synthetic sources, rights, scale, mixture, captions, filtering, deduplication, rejection rates, teacher checkpoints, prompts, and per-stage compute.
+    - Whether ViGeo-derived assets participate in training or only runtime preprocessing, and the commercial implications of that non-commercial dependency.
+evidence:
+  release: https://github.com/AlayaLab/Evoke
+  technical_report: https://arxiv.org/abs/2608.10761
+  repository: https://github.com/AlayaLab/Evoke
+status: partial
+last_verified: "2026-08-16"

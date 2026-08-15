@@ -34,6 +34,12 @@ data:
       availability: public
       scale: 235 prompts and 3,009 generated examples
       notes: The official AVGen-Bench leaderboard reports Seedance 2.0 as the leading evaluated system in the current snapshot; this is evaluation evidence, not training disclosure.
+    - name: OmniEdit-Bench
+      catalog_id: omniedit-bench
+      role: evaluation
+      availability: public
+      scale: Spatial, temporal, and reasoning tracks only
+      notes: The paper excludes Seedance 2.0 from audio and reference tracks because of copyright restrictions; this partial evaluation is not training disclosure.
   stages:
     - name: pretraining
       modalities:
@@ -56,4 +62,4 @@ evidence:
   technical_report: null
   repository: null
 status: watch
-last_verified: "2026-07-26"
+last_verified: "2026-08-16"

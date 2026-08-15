@@ -6,6 +6,7 @@ ranking_names:
   - Qwen-Image 2.0 Pro
   - qwen-image-2.0-pro
   - qwen-image-2.0-pro-2026-06-22
+  - Qwen Image 2.0 Pro (2026-04-22)
 modalities:
   - image
 tasks:
@@ -47,4 +48,4 @@ evidence:
   technical_report: null
   repository: null
 status: watch
-last_verified: "2026-07-27"
+last_verified: "2026-08-16"

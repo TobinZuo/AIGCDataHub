@@ -1,0 +1,76 @@
+id: scope
+name: SCoPE
+organization: TencentARC
+released_at: "2026-08-12"
+modalities:
+  - video
+tasks:
+  - image-to-video
+  - camera-controlled-video-generation
+  - novel-view-synthesis
+access:
+  status: open-weights
+  license: Apache-2.0
+  release_url: https://github.com/TencentARC/SCoPE
+  weights_url: https://huggingface.co/TencentARC/SCoPE
+  api_url: null
+architecture:
+  family: Wan2.2-I2V-A14B with sightline-coordinate camera conditioning
+  parameters: 14000000000
+  notes: SCoPE adds fewer than 0.1 percent new parameters to the Wan2.2 image-to-video backbone and publishes the complete approximately 67 GB checkpoint.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: RealEstate10K
+      catalog_id: realestate10k
+      role: fine-tuning
+      availability: public
+      scale: Official source contains about 10M frames from roughly 80K clips
+      notes: SCoPE samples this source at temporal stride no greater than four; exact retained clips and mixture weight are not reported.
+    - name: DL3DV-10K
+      catalog_id: dl3dv-10k
+      role: fine-tuning
+      availability: gated
+      scale: Official 10K-scene release
+      notes: Used at stride one; the project does not disclose retained scene count or sampling weight.
+    - name: PanShot
+      catalog_id: panshot
+      role: fine-tuning
+      availability: public
+      scale: Official repository reports a 10K-to-100K item category
+      notes: Used at stride one for panoramic camera trajectories; exact retained count is undisclosed.
+    - name: OmniWorld
+      catalog_id: omniworld
+      role: fine-tuning
+      availability: public
+      scale: Broader project targets more than 600K sequences and 300M frames
+      notes: SCoPE uses an unspecified camera-control subset at stride one; no robot-policy task or Physical AI category is attributed to SCoPE.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - video
+        - image
+        - text
+      source_types:
+        - public-dataset
+      operations:
+        - relative-camera-pose-normalization
+        - near-depth-normalization
+        - random-temporal-stride
+        - sightline-coordinate-injection
+      scale_disclosed: false
+      strategy: Fine-tune Wan2.2-I2V-A14B for 10,000 steps on four named camera datasets using 81-frame 480-by-832 clips across eight GPUs.
+  strategy_summary:
+    - Represent each pixel ray with origin and direction coordinates so camera motion can be injected with minimal new parameters.
+    - Normalize relative camera poses and near depth, while using denser temporal sampling for three sources and a bounded random stride for RealEstate10K.
+  unknowns:
+    - Retained item counts, exact mixture weights, captions, quality thresholds, deduplication, overlap removal, data-loader sampling, and media-rights audit.
+    - Exact OmniWorld subdomains and whether every public checkpoint corresponds to the documented training configuration.
+evidence:
+  release: https://github.com/TencentARC/SCoPE
+  technical_report: https://arxiv.org/abs/2608.10538
+  repository: https://github.com/TencentARC/SCoPE
+status: partial
+last_verified: "2026-08-16"

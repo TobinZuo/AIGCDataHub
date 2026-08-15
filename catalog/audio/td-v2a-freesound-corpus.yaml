@@ -1,0 +1,59 @@
+id: td-v2a-freesound-corpus
+name: TD-V2A FreeSound Training Snapshot
+organization: Tsinghua University and collaborators
+released_at: "2026-08-05"
+release_date_source: https://arxiv.org/abs/2608.04902
+modality: audio
+tasks:
+  - text-to-audio
+  - video-to-audio
+stages:
+  - pretraining
+description: >-
+  The named but unreleased FreeSound portion of TD-V2A's text-to-audio
+  pretraining mixture, reported only as 6,246 hours of platform audio.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2608.04902
+  requires_account: false
+  notes: The paper provides no clip list, manifest, archive, request path, or downloadable training snapshot.
+scale:
+  samples: null
+  source_items: null
+  hours: 6246
+  approximate: false
+  notes: The paper reports 6,246 hours but no clip count, retention count, or exact sampling date.
+annotations:
+  types:
+    - platform-metadata
+    - text-conditioning
+  source: unknown
+  languages:
+    - unknown
+license:
+  metadata: Not disclosed
+  media: Mixed per-file FreeSound licenses; exact composition not disclosed
+  commercial_use: unknown
+  redistribution: unknown
+  notes: FreeSound assets retain per-file licenses, but the paper does not publish the selected file IDs or license manifest needed to resolve reuse rights.
+quality:
+  dimensions:
+    - audio-quality
+    - text-media-alignment
+    - deduplication
+    - provenance
+  known_limitations:
+    - Clip identities, uploader provenance, license distribution, language mix, captions, and collection dates are unavailable.
+    - Filtering, deduplication, resampling rejection, overlap checks, and source-removal handling are not disclosed.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: A reproducible release would need FreeSound IDs, file hashes, licenses, retrieval dates, captions, filter decisions, and train splits.
+evidence:
+  homepage: https://arxiv.org/abs/2608.04902
+  paper: https://arxiv.org/abs/2608.04902
+  used_by:
+    - TD-V2A
+status: partial
+last_verified: "2026-08-16"

@@ -1,0 +1,82 @@
+id: ltx-2-5
+name: LTX-2.5
+organization: Lightricks
+released_at: "2026-08-12"
+modalities:
+  - multimodal
+  - video
+  - audio
+tasks:
+  - text-to-video
+  - image-to-video
+  - video-to-video
+  - audio-to-video
+  - audio-video-generation
+  - video-editing
+  - video-dubbing
+access:
+  status: gated-weights
+  license: LTX-2 Community License
+  release_url: https://github.com/Lightricks/LTX-2/releases/tag/v1.2.0
+  weights_url: https://huggingface.co/Lightricks/LTX-2.5
+  api_url: https://docs.ltx.video/
+architecture:
+  family: 22B asymmetric audio-video diffusion transformer with Gemma 4 text encoder and separate audio/video VAEs
+  parameters: 22000000000
+  notes: The developer and distilled checkpoints add synchronized audio-video generation, retake, HDR, DubIt, video continuation, LoRA support, and spatial/temporal upscalers.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: LTX-2 inherited audio-video training mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: LTX-2.5 is released as a new checkpoint generation, but neither the release nor model card identifies the exact media sources, rights composition, or incremental 2.5 snapshot.
+    - name: Unreleased LTX-2.5 distillation corpus
+      catalog_id: null
+      role: distillation
+      availability: undisclosed
+      scale: null
+      notes: A distilled checkpoint is published without teacher-output counts, prompts, source clips, or retained-pair statistics.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - audio
+        - text
+        - image
+      source_types:
+        - undisclosed
+      operations:
+        - joint-audio-video-training
+        - inherited-foundation-model
+      scale_disclosed: false
+      strategy: Continue the LTX-2 family as a joint synchronized audio-video generator, while the 2.5 release leaves its exact corpus and incremental training recipe undisclosed.
+    - name: distillation
+      modalities:
+        - video
+        - audio
+        - text
+        - image
+      source_types:
+        - synthetic
+        - undisclosed
+      operations:
+        - model-distillation
+      scale_disclosed: false
+      strategy: Publish a faster distilled transformer beside the developer checkpoint without releasing the teacher-pair dataset or stage mixture.
+  strategy_summary:
+    - Use one asymmetric diffusion transformer to generate synchronized video and audio, with dedicated compressed latent representations for each medium.
+    - Provide developer and distilled variants plus upscalers and LoRA tooling, but do not infer dataset identities from capabilities or inherited architecture.
+  unknowns:
+    - Exact image, video, audio, and text sources; licenses; consent and rights basis; collection dates; languages; captions; filtering; deduplication; and mixture weights.
+    - Incremental changes from LTX-2.3 to LTX-2.5, distillation teachers and pair counts, preference optimization, safety data, rejection rates, and training compute.
+evidence:
+  release: https://github.com/Lightricks/LTX-2/releases/tag/v1.2.0
+  technical_report: https://arxiv.org/abs/2601.03233
+  repository: https://github.com/Lightricks/LTX-2
+status: partial
+last_verified: "2026-08-16"

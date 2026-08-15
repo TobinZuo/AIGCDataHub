@@ -117,7 +117,7 @@ class CatalogTests(unittest.TestCase):
         self.assertIn("text-to-video", cards["openhumanvid"]["tasks"])
         self.assertEqual(cards["openhumanvid"]["access"]["status"], "gated")
         self.assertIn("talking-head-generation", cards["openhumanvid-talking"]["tasks"])
-        self.assertEqual(cards["openhumanvid-talking"]["scale"]["samples"], 32176)
+        self.assertEqual(cards["openhumanvid-talking"]["scale"]["samples"], 8989)
         self.assertEqual(cards["talkvid"]["access"]["status"], "metadata-only")
         self.assertEqual(cards["talkvid"]["scale"]["samples"], 500)
         self.assertEqual(cards["mv-fashion"]["scale"]["samples"], 52020529)
@@ -305,7 +305,7 @@ class CatalogTests(unittest.TestCase):
         newest_ids = {card["id"] for card in datasets if card["released_at"] == newest_date}
         self.assertEqual(
             newest_ids,
-            {"longv2vbench"},
+            {"td-v2a-freesound-corpus"},
         )
 
     def test_site_catalog_orders_models_by_release_date(self) -> None:
@@ -316,7 +316,7 @@ class CatalogTests(unittest.TestCase):
         newest_ids = {card["id"] for card in models if card["released_at"] == newest_date}
         self.assertEqual(
             newest_ids,
-            {"joyai-video-edit"},
+            {"evoke", "jogg-avatar-v2v", "ltx-2-5", "scope"},
         )
 
     def test_every_ranking_top_fifteen_entry_maps_to_a_model_card(self) -> None:
@@ -327,7 +327,15 @@ class CatalogTests(unittest.TestCase):
             {"Artificial Analysis", "Arena", "AVGen-Bench"},
         )
         required_boards = [board for board in rankings if board["coverage_policy"] == "required"]
-        self.assertEqual(len(required_boards), 11)
+        self.assertEqual(len(required_boards), 8)
+        self.assertEqual(
+            {
+                board["id"]
+                for board in rankings
+                if board["coverage_policy"] == "monitor"
+            },
+            {"image-editing", "image-to-video", "text-to-image"},
+        )
         for board in required_boards:
             with self.subTest(board=board["id"]):
                 required = min(15, len(board["entries"]))
@@ -349,9 +357,6 @@ class CatalogTests(unittest.TestCase):
             ],
         )
         self.assertEqual(pipeline["model_ids"], ["wan-2-2", "hunyuanvideo-foley"])
-
-        monitored_boards = [board for board in rankings if board["coverage_policy"] == "monitor"]
-        self.assertEqual(monitored_boards, [])
 
     def test_compact_number(self) -> None:
         self.assertEqual(compact_number(70_723_513), "70.7M")

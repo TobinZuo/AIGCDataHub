@@ -1,0 +1,65 @@
+id: jogg-avatar-v2v
+name: Jogg-Avatar V2V 5B
+organization: Chanjing Technology
+released_at: "2026-08-12"
+modalities:
+  - video
+  - audio
+tasks:
+  - audio-driven-avatar
+  - talking-head-generation
+  - lip-sync
+  - video-to-video
+access:
+  status: open-weights
+  license: Apache-2.0 release layered on Wan2.2-TI2V-5B terms
+  release_url: https://github.com/chanjing-ai/Jogg-Avatar
+  weights_url: https://huggingface.co/cicada-ai/Jogg-Avatar-V2V
+  api_url: null
+architecture:
+  family: Audio-conditioned Wan2.2-TI2V-5B video-to-video avatar model
+  parameters: 5000000000
+  notes: The released checkpoint conditions an input avatar video on replacement speech to synthesize synchronized facial motion while preserving source identity and scene context.
+data:
+  disclosure_level: high-level
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Wan2.2-TI2V-5B inherited training mixture
+      catalog_id: null
+      role: pretraining
+      availability: undisclosed
+      scale: null
+      notes: The base checkpoint's complete image-video corpus and rights composition are not restated.
+    - name: Jogg-Avatar audio-video fine-tuning corpus
+      catalog_id: null
+      role: fine-tuning
+      availability: undisclosed
+      scale: null
+      notes: The official repository and model card disclose no named talking-head dataset, source identities, scale, or data-processing recipe.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations:
+        - audio-conditioned-video-to-video-training
+        - inherited-foundation-model
+      scale_disclosed: false
+      strategy: Adapt Wan2.2-TI2V-5B to audio-driven avatar video-to-video generation without publishing the incremental corpus or filtering pipeline.
+  strategy_summary:
+    - Reuse a 5B text-and-image-to-video prior and add speech-driven avatar control for zero-shot source videos.
+    - Keep the training corpus explicitly undisclosed because the release provides weights and inference instructions but no source-data evidence.
+  unknowns:
+    - Dataset identities, subject consent, media rights, languages, speaker demographics, clip counts, durations, captions, filtering, face tracking, audio-video alignment, deduplication, and mixture weights.
+    - Fine-tuning schedule, preference or safety data, synthetic supervision, human review, and inherited Wan2.2 data lineage.
+evidence:
+  release: https://github.com/chanjing-ai/Jogg-Avatar
+  technical_report: null
+  repository: https://github.com/chanjing-ai/Jogg-Avatar
+status: partial
+last_verified: "2026-08-16"

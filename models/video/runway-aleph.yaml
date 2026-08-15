@@ -24,7 +24,13 @@ data:
   disclosure_level: undisclosed
   exact_datasets_disclosed: false
   exact_mixture_disclosed: false
-  datasets: []
+  datasets:
+    - name: OmniEdit-Bench
+      catalog_id: omniedit-bench
+      role: evaluation
+      availability: public
+      scale: 790 video-editing tasks
+      notes: The OmniEdit-Bench paper evaluates Runway Aleph; this is evaluation evidence only and does not disclose Runway training data.
   stages:
     - name: pretraining
       modalities:
@@ -45,4 +51,4 @@ evidence:
   technical_report: null
   repository: null
 status: watch
-last_verified: "2026-07-27"
+last_verified: "2026-08-16"

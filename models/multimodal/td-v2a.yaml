@@ -1,0 +1,128 @@
+id: td-v2a
+name: TD-V2A
+organization: Tsinghua University and collaborators
+released_at: "2026-08-05"
+modalities:
+  - multimodal
+  - video
+  - audio
+tasks:
+  - video-to-audio
+access:
+  status: research-preview
+  license: Not published; the CC-BY-4.0 paper license does not license model weights
+  release_url: https://arxiv.org/abs/2608.04902
+  weights_url: null
+  api_url: null
+architecture:
+  family: Stable Audio-derived latent waveform diffusion transformer
+  parameters: null
+  notes: >-
+    The system uses an Oobleck waveform VAE at 16 kHz and a 24-layer,
+    24-head DiT with embedding width 1536. A frozen CLIP encoder represents
+    raw frames and temporal frame differences for visual conditioning.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: AudioCaps training set
+      catalog_id: audiocaps-2-0
+      role: pretraining
+      availability: gated
+      scale: 109 hours
+      notes: The paper names AudioCaps without a version; the linked card documents current AudioCaps 2.0 rather than claiming that v2.0 was the training snapshot.
+    - name: AudioSet
+      catalog_id: audioset
+      role: pretraining
+      availability: public
+      scale: 5,800 hours
+      notes: Used during text-to-audio pretraining; the official dataset exposes URL annotations and features rather than a durable raw-audio archive.
+    - name: AudioSet
+      catalog_id: audioset
+      role: fine-tuning
+      availability: public
+      scale: Included in the reported 5,800-hour AudioSet corpus
+      notes: Reused for visual-conditioning and temporal-difference fine-tuning; the paper does not report the stage-specific retained subset or sampling weight.
+    - name: VGGSound training set
+      catalog_id: vggsound
+      role: pretraining
+      availability: public
+      scale: 550 hours
+      notes: Used during text-to-audio pretraining; the effective YouTube fetch snapshot is not disclosed.
+    - name: VGGSound training set
+      catalog_id: vggsound
+      role: fine-tuning
+      availability: public
+      scale: Included in the reported 550-hour VGGSound corpus
+      notes: Reused for visual-conditioning and temporal-difference fine-tuning without a stage-specific retained-sample count.
+    - name: VGGSound test set
+      catalog_id: vggsound
+      role: evaluation
+      availability: public
+      scale: Approximately 15K ten-second clips
+      notes: Evaluation only; it is kept separate from the named training split despite sharing the VGGSound catalog card.
+    - name: TD-V2A FreeSound Training Snapshot
+      catalog_id: td-v2a-freesound-corpus
+      role: pretraining
+      availability: not-released
+      scale: 6,246 hours
+      notes: The paper reports only the platform name and aggregate hours; clip identifiers, licenses, and a downloadable manifest are not released.
+    - name: Million Song Dataset
+      catalog_id: million-song-dataset
+      role: pretraining
+      availability: not-released
+      scale: 7,333 hours
+      notes: The official MSD contains metadata and derived features rather than raw audio, while TD-V2A does not explain what audio representation or external media path produced the reported hours.
+  stages:
+    - name: pretraining
+      modalities:
+        - audio
+        - text
+      source_types:
+        - public-dataset
+      operations:
+        - ten-second-segmentation
+        - sixteen-kilohertz-resampling
+        - text-to-audio-pretraining
+      scale_disclosed: true
+      strategy: Pretrain a Stable Audio-derived text-to-audio backbone on five named corpora before introducing any visual condition.
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+      source_types:
+        - public-dataset
+      operations:
+        - visual-conditioning
+        - hierarchical-continual-learning
+      scale_disclosed: true
+      strategy: Fine-tune on AudioSet and VGGSound videos so frozen CLIP frame features condition the audio diffusion model.
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+      source_types:
+        - public-dataset
+      operations:
+        - frame-differencing
+        - hierarchical-continual-learning
+        - annealed-guidance
+      scale_disclosed: true
+      strategy: Continue fine-tuning with frame- and clip-level temporal differences encoded by the same frozen CLIP backbone, then apply annealed temporal-difference guidance at inference.
+  strategy_summary:
+    - Separate broad text-to-audio pretraining from visual and temporal-difference fine-tuning instead of learning every condition jointly from scratch.
+    - Use frame differences to suppress static appearance and expose local or longer-range motion cues without adding a dedicated motion encoder.
+    - Segment all audio into ten-second clips and resample it to 16 kHz before training.
+  unknowns:
+    - Model weights, source code, model license, parameter count, optimizer schedule, and exact Stable Audio initialization checkpoint are not published.
+    - Per-dataset clip identifiers, fetch dates, mixture weights, deduplication, quality filtering, caption processing, and rejection rates are not disclosed.
+    - The FreeSound clip manifest and per-file license composition are unavailable.
+    - The path from the metadata-and-feature-only Million Song Dataset release to 7,333 hours of training audio is unexplained.
+    - No preference-optimization, human-feedback, safety-filtering, or synthetic-data stage is reported.
+evidence:
+  release: https://arxiv.org/abs/2608.04902
+  technical_report: https://arxiv.org/abs/2608.04902
+  repository: null
+status: partial
+last_verified: "2026-08-16"

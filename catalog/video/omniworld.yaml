@@ -1,0 +1,70 @@
+id: omniworld
+name: OmniWorld
+organization: Shanghai AI Laboratory and collaborators
+released_at: "2025-09-16"
+release_date_source: https://github.com/yangzhou24/OmniWorld
+modality: video
+tasks:
+  - camera-controlled-video-generation
+  - 4d-world-modeling
+  - future-frame-prediction
+  - 3d-reconstruction
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A multi-domain 4D video collection spanning simulated, human, internet, and
+  robot-capture sources with camera, depth, caption, flow, and mask annotations.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/InternRobotics/OmniWorld
+  requires_account: false
+  notes: The official repository and download script expose released subsets; several planned components and most of the 96K-sequence Game corpus are not yet public.
+scale:
+  samples: 600000
+  source_items: 300000000
+  hours: 4000
+  approximate: true
+  notes: The project reports over 600K sequences, 300M frames, and 4,000 hours across the full collection, while release completeness varies by component and only 11K of 96K Game sequences are currently listed as public.
+annotations:
+  types:
+    - rgb-video
+    - depth
+    - camera-pose
+    - text-caption
+    - optical-flow
+    - foreground-mask
+  source: mixed
+  languages:
+    - multilingual
+license:
+  metadata: CC-BY-NC-SA-4.0
+  media: CC-BY-NC-SA-4.0 with third-party game and upstream-source restrictions
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: Commercial use is forbidden, original game assets retain publisher rights, and third-party media may not be redistributed outside legitimate research sharing.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - multi-view-consistency
+    - provenance
+  known_limitations:
+    - Published totals combine simulator, robot, human, and internet domains with uneven annotations and partially released components.
+    - Third-party game and upstream dataset rights remain layered, and the exact SCoPE-retained mixture is not published.
+processing:
+  recipe: Normalize heterogeneous video sources into sequences with available depth, poses, captions, optical flow, and foreground masks; publish component-specific manifests and archives.
+  recommended_format: native
+  notes: Pin component names, release revisions, sequence hashes, source licenses, annotation availability, and domain labels; never treat full-plan totals as fully downloadable counts.
+evidence:
+  homepage: https://github.com/yangzhou24/OmniWorld
+  paper: https://arxiv.org/abs/2509.12201
+  used_by:
+    - SCoPE
+status: partial
+last_verified: "2026-08-16"

@@ -34,7 +34,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
                 self.assertIn(model_id, self.datasets[dataset_id]["linked_model_ids"])
 
     def test_dataset_lineage_index_and_backlinks_are_symmetric(self) -> None:
-        self.assertEqual(len(self.payload["dataset_relations"]), 42)
+        self.assertEqual(len(self.payload["dataset_relations"]), 43)
         relation_pairs = {
             (relation["source_dataset_id"], relation["derived_dataset_id"])
             for relation in self.payload["dataset_relations"]
@@ -100,7 +100,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
             and item["derived_dataset_id"] == "openhumanvid-talking"
         )
         self.assertEqual(relation["relationship"], "filtered-subset")
-        self.assertIn("parts 001 through 040", relation["contribution"])
+        self.assertIn("parts 001 through 030", relation["contribution"])
         self.assertIn("speech-active", relation["notes"])
 
     def test_representative_scenario_relations_are_navigable(self) -> None:
@@ -413,7 +413,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
             for entry in board["entries"]
             for model_id in entry["model_ids"]
         }
-        self.assertEqual(len(ranked_model_ids), 50)
+        self.assertEqual(len(ranked_model_ids), 49)
         self.assertEqual(
             {
                 model_id

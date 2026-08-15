@@ -19,6 +19,7 @@ architecture:
   family: 16B autoregressive diffusion model with MLLM, causal VAE, and MMDiT
   parameters: 16000000000
   notes: The release supports video-to-video and image-conditioned video editing, with autoregressive generation and long-horizon post-training.
+    On 2026-08-14 the project published the upgraded joyai_video_edit_dit_0811.pth checkpoint for stronger reference-image-guided video editing; the update did not disclose additional training sources.
 data:
   disclosure_level: partial
   exact_datasets_disclosed: false
@@ -112,6 +113,7 @@ data:
     - Filter images for quality, blur, black borders, and duplicates; filter videos for quality, motion, stability, temporal validity, and corrupted or slide-like content.
     - Generate video-editing supervision through two synthetic pipelines, score edit correctness and preservation, and recaption instructions with an MLLM.
     - Separate OpenVE-Bench and the unreleased LongV2VBench from all training stages.
+    - Treat the 2026-08-14 reference-image-guided checkpoint as a model revision only because its incremental corpus and post-training recipe remain undisclosed.
   unknowns:
     - Every source dataset identity, media license, collection jurisdiction, consent basis, language mix, captioning model, deduplication threshold, and stage mixture weight.
     - Synthetic teacher identities and prompts, safety filtering, human review scale, compute, OpenVE split details used, and LongV2VBench files and license.
@@ -120,4 +122,4 @@ evidence:
   technical_report: https://arxiv.org/abs/2608.03974
   repository: https://github.com/jd-opensource/JoyAI-Video-Edit
 status: partial
-last_verified: "2026-08-05"
+last_verified: "2026-08-16"

@@ -78,6 +78,13 @@ discovery:
     - https://huggingface.co/z-rx/leaptalk
     - https://help.aliyun.com/en/model-studio/qwen-image-api-reference
     - https://github.com/zhangrongxiang/LeapTalk
+    - https://huggingface.co/Lightricks/LTX-2.5-Pre-Trained
+    - https://huggingface.co/AlayaLab/Evoke
+    - https://huggingface.co/TencentARC/SCoPE
+    - https://huggingface.co/cicada-ai/Jogg-Avatar-V2V
+    - https://huggingface.co/cicada-ai/jogg-avatar
+    - https://huggingface.co/donghao-zhou/ThinkV2V-5B
+    - https://huggingface.co/Guomh0707/V-RAE-Models
 
 tracks:
   - id: image-generation
@@ -132,6 +139,9 @@ tracks:
       - https://orange-3dv-team.github.io/MoRoute/
       - https://github.com/PKU-YuanGroup/Helios
       - https://github.com/jd-opensource/JoyAI-Video-Edit
+      - https://github.com/Lightricks/LTX-2
+      - https://github.com/TencentARC/SCoPE
+      - https://github.com/AlayaLab/Evoke
 
   - id: digital-human-and-localization
     topics:
@@ -156,6 +166,7 @@ tracks:
       - https://github.com/FreedomIntelligence/TalkVid
       - https://github.com/Eyeline-Labs/ID-V2V
       - https://github.com/zhangrongxiang/LeapTalk
+      - https://github.com/chanjing-ai/Jogg-Avatar
 
   - id: virtual-try-on-and-commerce
     topics:
@@ -235,6 +246,12 @@ tracks:
       - https://github.com/CelebV-HQ/CelebV-HQ
       - https://huggingface.co/datasets/FreedomIntelligence/TalkVid
       - https://huggingface.co/datasets/MV-Fashion/MV-Fashion
+      - https://google.github.io/realestate10k/
+      - https://github.com/chengzhag/UCPE
+      - https://huggingface.co/datasets/chengzhag/PanShot
+      - https://github.com/yangzhou24/OmniWorld
+      - https://huggingface.co/datasets/InternRobotics/OmniWorld
+      - https://huggingface.co/datasets/OmniEdit-Bench/OmniEdit-Bench
 
   - id: dataset-release-feeds
     topics:
@@ -312,7 +329,7 @@ tracks:
         ranking_parser: artificial-analysis-html
         ranking_score_label: Elo
         ranking_date_label: 模型发布
-        ranking_coverage_policy: required
+        ranking_coverage_policy: monitor
         ranking_page_url: https://artificialanalysis.ai/image/leaderboard/text-to-image/
       - url: https://artificialanalysis.ai/image/leaderboard/editing/
         ranking_id: image-editing
@@ -323,7 +340,7 @@ tracks:
         ranking_parser: artificial-analysis-html
         ranking_score_label: Elo
         ranking_date_label: 模型发布
-        ranking_coverage_policy: required
+        ranking_coverage_policy: monitor
         ranking_page_url: https://artificialanalysis.ai/image/leaderboard/editing/
       - url: https://artificialanalysis.ai/video/leaderboard/text-to-video
         ranking_id: text-to-video
@@ -345,7 +362,7 @@ tracks:
         ranking_parser: artificial-analysis-html
         ranking_score_label: Elo
         ranking_date_label: 模型发布
-        ranking_coverage_policy: required
+        ranking_coverage_policy: monitor
         ranking_page_url: https://artificialanalysis.ai/video/leaderboard/image-to-video
       - url: https://artificialanalysis.ai/video/leaderboard/video-editing
         ranking_id: video-editing
@@ -432,6 +449,21 @@ tracks:
       - metadata-change
       - license-change
     official_sources:
+      - url: https://google.github.io/realestate10k/
+        catalog_id: realestate10k
+        priority: high
+      - url: "https://huggingface.co/api/datasets/chengzhag/PanShot?expand=lastModified&expand=sha"
+        catalog_id: panshot
+        priority: high
+      - url: "https://huggingface.co/api/datasets/InternRobotics/OmniWorld?expand=lastModified&expand=sha"
+        catalog_id: omniworld
+        priority: high
+      - url: "https://huggingface.co/api/datasets/OmniEdit-Bench/OmniEdit-Bench?expand=lastModified&expand=sha"
+        catalog_id: omniedit-bench
+        priority: critical
+      - url: https://arxiv.org/abs/2608.04902
+        catalog_id: td-v2a-freesound-corpus
+        priority: critical
       - url: https://www.image-net.org/download.php
         catalog_id: imagenet
         priority: high
@@ -987,6 +1019,21 @@ tracks:
       - release-files
       - license-change
     official_sources:
+      - url: "https://huggingface.co/api/models/Lightricks/LTX-2.5?expand=lastModified&expand=sha"
+        model_id: ltx-2-5
+        priority: critical
+      - url: "https://huggingface.co/api/models/TencentARC/SCoPE?expand=lastModified&expand=sha"
+        model_id: scope
+        priority: critical
+      - url: "https://huggingface.co/api/models/AlayaLab/Evoke?expand=lastModified&expand=sha"
+        model_id: evoke
+        priority: critical
+      - url: "https://huggingface.co/api/models/cicada-ai/Jogg-Avatar-V2V?expand=lastModified&expand=sha"
+        model_id: jogg-avatar-v2v
+        priority: critical
+      - url: https://arxiv.org/abs/2608.04902
+        model_id: td-v2a
+        priority: critical
       - url: "https://huggingface.co/api/models/heheyas/Qwen-Image-SP?expand=lastModified&expand=sha"
         model_id: qwen-image-sp
         priority: critical

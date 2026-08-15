@@ -1,0 +1,67 @@
+id: panshot
+name: PanShot
+organization: Monash University and collaborators
+released_at: "2026-02-04"
+release_date_source: https://github.com/chengzhag/UCPE
+modality: video
+tasks:
+  - text-to-video
+  - camera-controlled-video-generation
+  - camera-pose-estimation
+stages:
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A camera-control video dataset derived from panoramic PanFlow material with
+  captions, camera poses, intrinsics, distortion, and orientation annotations.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/chengzhag/PanShot
+  requires_account: false
+  notes: The public repository hosts train/test videos, poses, metadata, captions, extraction scripts, and 28 multipart training-video archives.
+scale:
+  samples: null
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The official Hugging Face metadata places PanShot in the 10K-to-100K item category; exact retained clip and frame totals are not stated on the current card.
+annotations:
+  types:
+    - video
+    - text-caption
+    - camera-pose
+    - camera-intrinsics
+    - lens-distortion
+    - orientation
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-4.0
+  media: CC-BY-4.0 dataset release layered on PanFlow and source-video rights
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The repository declares CC BY 4.0, but the videos originate from PanFlow and YouTube-derived panoramic material whose source rights require separate review.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - YouTube's change from equirectangular to EAC delivery broke the original download path; the project now recommends its preprocessed ERP archives.
+    - Pose estimation, filtering, matching, normalization, scoring, and automated captioning can introduce geometric or semantic errors.
+processing:
+  recipe: Filter PanFlow videos, score and align camera trajectories, normalize poses, recover panoramic ERP media, and add English captions plus camera-control metadata.
+  recommended_format: native
+  notes: Preserve train/test metadata, source identities, archive hashes, pose convention, intrinsics, distortion parameters, and the exact preprocessed ERP release.
+evidence:
+  homepage: https://github.com/chengzhag/UCPE
+  paper: https://arxiv.org/abs/2512.07237
+  used_by:
+    - SCoPE
+status: partial
+last_verified: "2026-08-16"

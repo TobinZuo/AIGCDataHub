@@ -47,6 +47,206 @@
   ],
   "entries": [
     {
+      "date": "2026-08-16",
+      "title": {
+        "zh": "2026-08-16 更新",
+        "en": "2026-08-16 Update"
+      },
+      "summary": [
+        {
+          "id": "models",
+          "label": {
+            "zh": "模型",
+            "en": "Models"
+          },
+          "text": {
+            "zh": "新增 LTX-2.5、SCoPE、EVOKE、Jogg-Avatar V2V 5B 与 TD-V2A。前四项提供官方权重；TD-V2A 目前只有论文。另记录 JoyAI-Video-Edit 8 月 14 日参考图引导检查点升级。",
+            "en": "Added LTX-2.5, SCoPE, EVOKE, Jogg-Avatar V2V 5B, and TD-V2A. The first four publish official weights; TD-V2A remains paper-only. JoyAI-Video-Edit now records its August 14 reference-image-guided checkpoint revision."
+          },
+          "links": [
+            {
+              "href": "/#model-ltx-2-5",
+              "label": {
+                "zh": "LTX-2.5",
+                "en": "LTX-2.5"
+              }
+            },
+            {
+              "href": "/#model-scope",
+              "label": {
+                "zh": "SCoPE",
+                "en": "SCoPE"
+              }
+            },
+            {
+              "href": "/#model-evoke",
+              "label": {
+                "zh": "EVOKE",
+                "en": "EVOKE"
+              }
+            },
+            {
+              "href": "/#model-jogg-avatar-v2v",
+              "label": {
+                "zh": "Jogg-Avatar V2V",
+                "en": "Jogg-Avatar V2V"
+              }
+            },
+            {
+              "href": "/#model-td-v2a",
+              "label": {
+                "zh": "TD-V2A",
+                "en": "TD-V2A"
+              }
+            }
+          ]
+        },
+        {
+          "id": "datasets",
+          "label": {
+            "zh": "数据集",
+            "en": "Datasets"
+          },
+          "text": {
+            "zh": "新增 RealEstate10K、PanShot、OmniWorld、OmniEdit-Bench 与未发布的 TD-V2A FreeSound Training Snapshot。前三项补齐官方访问入口和分层许可；OmniEdit-Bench 提供公开评测数据；TD-V2A 语料只有名称和 6,246 小时规模，明确不提供伪下载链接。OpenHumanVid-Talking 更新为替换后的 8,989 段、约 12 小时版本。",
+            "en": "Added RealEstate10K, PanShot, OmniWorld, OmniEdit-Bench, and the unreleased TD-V2A FreeSound Training Snapshot. Official access and layered conditions are recorded where available; the named FreeSound snapshot has no fabricated download. OpenHumanVid-Talking now reflects its replacement 8,989-clip, approximately 12-hour release."
+          },
+          "links": [
+            {
+              "href": "/#dataset-realestate10k",
+              "label": {
+                "zh": "RealEstate10K",
+                "en": "RealEstate10K"
+              }
+            },
+            {
+              "href": "/#dataset-panshot",
+              "label": {
+                "zh": "PanShot",
+                "en": "PanShot"
+              }
+            },
+            {
+              "href": "/#dataset-omniworld",
+              "label": {
+                "zh": "OmniWorld",
+                "en": "OmniWorld"
+              }
+            },
+            {
+              "href": "/#dataset-omniedit-bench",
+              "label": {
+                "zh": "OmniEdit-Bench",
+                "en": "OmniEdit-Bench"
+              }
+            },
+            {
+              "href": "/#dataset-td-v2a-freesound-corpus",
+              "label": {
+                "zh": "TD-V2A FreeSound Snapshot",
+                "en": "TD-V2A FreeSound Snapshot"
+              }
+            }
+          ]
+        },
+        {
+          "id": "relations",
+          "label": {
+            "zh": "数据关系",
+            "en": "Data relations"
+          },
+          "text": {
+            "zh": "新增 17 条可解析关系：SCoPE 的四个微调数据集、TD-V2A 的八条分阶段训练/评测关系，以及 OmniEdit-Bench 对五个视频编辑模型的评测关系；其中 Seedance 2.0 只覆盖空间、时间与推理轨道。训练、微调、蒸馏和评估保持严格区分。",
+            "en": "Added seventeen resolvable relations covering SCoPE fine-tuning, TD-V2A stage-specific training and evaluation, and OmniEdit-Bench evaluation of five editors. Seedance 2.0 remains explicitly partial. Training, fine-tuning, distillation, and evaluation roles are not conflated."
+          },
+          "links": [
+            {
+              "href": "/#lineage",
+              "label": {
+                "zh": "查看关系图谱",
+                "en": "View lineage"
+              }
+            }
+          ]
+        },
+        {
+          "id": "rankings",
+          "label": {
+            "zh": "排行榜",
+            "en": "Rankings"
+          },
+          "text": {
+            "zh": "本轮检测到 9 个榜单快照变化。Arena 的 FLUX 3 Video 两个名称和 Artificial Analysis 的 Qwen Image 2.0 Pro 日期别名已映射；DreamImage 2.0、MAGI-2 Preview、Krea 2 Medium Turbo 缺少足够一手模型事实，因此三个相关 Artificial Analysis 榜单改为 monitor，缺口继续公开而不反推模型卡。",
+            "en": "Nine ranking snapshots changed. FLUX 3 Video Arena names and the dated Qwen Image 2.0 Pro alias are mapped. Three Artificial Analysis boards now use monitor coverage because DreamImage 2.0, MAGI-2 Preview, and Krea 2 Medium Turbo lack enough first-party model evidence; their gaps remain visible."
+          },
+          "links": [
+            {
+              "href": "/#rankings",
+              "label": {
+                "zh": "查看行业排行榜",
+                "en": "View industry rankings"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monitoring",
+          "label": {
+            "zh": "监控",
+            "en": "Monitoring"
+          },
+          "text": {
+            "zh": "新增 LTX-2.5、SCoPE、EVOKE、Jogg-Avatar、TD-V2A、RealEstate10K、PanShot、OmniWorld 与 OmniEdit-Bench 的官方项目源或精确 revision 探针；已处置的 Hugging Face 候选加入排除列表，防止重复发现。最终扫描共检查 430 个来源，得到 266 个候选、83 个重要修订、0 个失败、9 个榜单变化与 3 个 monitor 缺口。",
+            "en": "Added official project or precise revision probes for the new models and datasets and excluded handled feed candidates from repeat discovery. The final scan checked 430 sources and produced 266 candidates, 83 important revisions, zero failures, nine ranking changes, and three monitor-only gaps."
+          },
+          "links": [
+            {
+              "href": "/#sources",
+              "label": {
+                "zh": "查看来源监控",
+                "en": "View source monitoring"
+              }
+            }
+          ]
+        },
+        {
+          "id": "unknowns",
+          "label": {
+            "zh": "未披露",
+            "en": "Undisclosed"
+          },
+          "text": {
+            "zh": "LTX-2.5、EVOKE 与 Jogg-Avatar 均未披露精确训练语料和混合；SCoPE 未披露四源保留量与采样权重；TD-V2A 的 FreeSound 清单、逐文件许可及 Million Song Dataset 到训练音频的路径未说明。OpenHumanVid-Talking 有 807 段出现说话人切换，使用方必须按帧读取 track ID。",
+            "en": "LTX-2.5, EVOKE, and Jogg-Avatar do not identify exact training corpora or mixtures. SCoPE omits retained counts and weights for its four named sources. TD-V2A does not publish the FreeSound manifest or explain its Million Song Dataset audio path. OpenHumanVid-Talking contains 807 clips with speaker switches, requiring per-frame track handling."
+          },
+          "links": [
+            {
+              "href": "/#model-ltx-2-5",
+              "label": {
+                "zh": "LTX-2.5 未知项",
+                "en": "LTX-2.5 unknowns"
+              }
+            },
+            {
+              "href": "/#model-scope",
+              "label": {
+                "zh": "SCoPE 未知项",
+                "en": "SCoPE unknowns"
+              }
+            },
+            {
+              "href": "/#dataset-openhumanvid-talking",
+              "label": {
+                "zh": "OpenHumanVid-Talking 限制",
+                "en": "OpenHumanVid-Talking limitations"
+              }
+            }
+          ]
+        }
+      ],
+      "source_path": "updates/2026-08-16.md"
+    },
+    {
       "date": "2026-08-05",
       "title": {
         "zh": "2026-08-05 更新",

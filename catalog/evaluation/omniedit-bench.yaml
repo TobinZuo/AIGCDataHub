@@ -1,0 +1,80 @@
+id: omniedit-bench
+name: OmniEdit-Bench
+organization: The University of Hong Kong, Alibaba Wan Team, Zhejiang University, and Peking University
+released_at: "2026-05-07"
+release_date_source: https://huggingface.co/api/datasets/OmniEdit-Bench/OmniEdit-Bench
+modality: evaluation
+tasks:
+  - video-editing
+  - reference-based-video-editing
+  - audio-editing
+stages:
+  - evaluation
+  - data-curation
+description: >-
+  A 790-task instruction-based video-editing benchmark spanning spatial,
+  temporal, reasoning, audio, and reference-conditioned editing tracks.
+derived_from:
+  - catalog_id: openvid-1m
+    relationship: source-component
+    contribution: One named source family for benchmark videos
+    notes: The paper names OpenVid-1M alongside Pexels, Pixabay, and generated videos, but does not publish a task-level source manifest or the retained count from each family.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/OmniEdit-Bench/OmniEdit-Bench
+  requires_account: false
+  notes: Source videos, reference assets, task JSON files, evaluation prompts, and the evaluator are hosted publicly on Hugging Face.
+scale:
+  samples: 790
+  source_items: null
+  hours: null
+  approximate: false
+  notes: Contains 240 spatial, 200 temporal, 50 reasoning, 100 audio, and 200 reference-conditioned tasks; most videos are 720p.
+annotations:
+  types:
+    - source-video
+    - editing-instruction
+    - track-label
+    - fine-grained-edit-category
+    - reference-image
+    - reference-video
+    - evaluator-prompt
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: CC-BY-NC-4.0
+  media: Source-dependent Pexels, Pixabay, OpenVid-1M, and generated-video terms
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The repository declares CC BY-NC 4.0, while the paper names mixed source families without a task-level provenance or media-license manifest.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - human-preference
+    - provenance
+  known_limitations:
+    - Task-level source URLs, creation-model identities, generation prompts, license records, and source-family counts are not released.
+    - The default Gemini evaluator depends on an external API and skips missing outputs rather than automatically scoring them as failures.
+    - Seedance 2.0 is evaluated only on spatial, temporal, and reasoning tracks because of copyright restrictions.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Preserve track JSON, relative media paths, references, task IDs, evaluator prompt version, Gemini endpoint, retry logs, missing-output handling, and source provenance.
+evidence:
+  homepage: https://omniedit-bench.github.io/
+  paper: https://arxiv.org/abs/2608.05049
+  used_by:
+    - Runway Aleph
+    - Grok Imagine Video
+    - Kling 3
+    - Seedance 2.0
+    - Wan 2.7
+status: partial
+last_verified: "2026-08-16"
