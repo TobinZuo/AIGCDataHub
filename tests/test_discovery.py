@@ -618,11 +618,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            185,
+            193,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            112,
+            114,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -645,7 +645,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "model-release-feeds" for source in sources), 17)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
-        self.assertEqual(len(sources), 430)
+        self.assertEqual(len(sources), 450)
         self.assertIn(
             "https://huggingface.co/api/models?pipeline_tag=text-to-video&sort=createdAt&direction=-1&limit=50&full=true",
             urls,

@@ -1,0 +1,45 @@
+id: dreameval
+name: DreamEval
+organization: ByteDance Seed
+released_at: "2025-09-24"
+release_date_source: https://arxiv.org/abs/2509.20427
+modality: evaluation
+tasks: [text-to-image, image-generation-evaluation]
+stages: [evaluation]
+description: A difficulty-aware text-to-image evaluation suite introduced in the Seedream 4.0 report with VQA-based scoring across four generation scenarios.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2509.20427
+  requires_account: false
+  notes: The technical report names the benchmark and protocol but provides no official prompt or annotation download.
+scale:
+  samples: 1600
+  source_items: 128
+  hours: null
+  approximate: false
+  notes: DreamEval contains 1,600 prompts organized into 128 subtasks and four generation scenarios.
+annotations:
+  types: [evaluation-prompt, vqa-criterion, difficulty-tier, task-category]
+  source: mixed
+  languages: [unknown]
+license:
+  metadata: Not published
+  media: Not published
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The report does not publish benchmark artifacts, construction sources, or benchmark-specific reuse terms.
+quality:
+  dimensions: [visual-quality, text-media-alignment, provenance]
+  known_limitations:
+    - Unreleased prompts and graders prevent independent reproduction and leakage analysis.
+processing:
+  recipe: Group prompts by scenario, subtask, and difficulty, then score generated images with VQA-style criteria.
+  recommended_format: native
+  notes: Preserve the distinction between benchmark description and unavailable benchmark assets.
+evidence:
+  homepage: https://arxiv.org/abs/2509.20427
+  paper: https://arxiv.org/abs/2509.20427
+  used_by: [Seedream 4.0]
+status: partial
+last_verified: "2026-08-16"

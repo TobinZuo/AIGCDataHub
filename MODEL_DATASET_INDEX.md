@@ -2,13 +2,15 @@
 
 Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; runtime inputs, unreleased data, and undisclosed data must state why no card exists.
 
-- Models: 118
-- References linked to catalog cards: 217
-- References without a card, with an explicit evidence boundary: 108
+- Models: 120
+- References linked to catalog cards: 221
+- References without a card, with an explicit evidence boundary: 111
 - Ordering: model release date, newest first
 
 | Model | Released | Dataset or corpus named by source | Availability | Catalog resolution | Role | Evidence boundary |
 |---|---:|---|---|---|---|---|
+| [Genesis](models/image/genesis.yaml) | 2026-08-16 | Git-10M | public | [`git-10m`](catalog/image/git-10m.yaml) | pretraining | The official model card identifies Git-10M as the main training corpus for the hierarchical generation operators. |
+| [Genesis](models/image/genesis.yaml) | 2026-08-16 | SAT-493M | not-released | [`sat-493m`](catalog/image/sat-493m.yaml) | pretraining | Genesis inherits this corpus through its frozen DINOv3 ViT-L/16 SAT-493M conditioning encoder; the images are not released. |
 | [SCoPE](models/video/scope.yaml) | 2026-08-12 | RealEstate10K | public | [`realestate10k`](catalog/video/realestate10k.yaml) | fine-tuning | SCoPE samples this source at temporal stride no greater than four; exact retained clips and mixture weight are not reported. |
 | [SCoPE](models/video/scope.yaml) | 2026-08-12 | DL3DV-10K | gated | [`dl3dv-10k`](catalog/video/dl3dv-10k.yaml) | fine-tuning | Used at stride one; the project does not disclose retained scene count or sampling weight. |
 | [SCoPE](models/video/scope.yaml) | 2026-08-12 | PanShot | public | [`panshot`](catalog/video/panshot.yaml) | fine-tuning | Used at stride one for panoramic camera trajectories; exact retained count is undisclosed. |
@@ -298,6 +300,11 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [Ovi](models/video/ovi.yaml) | 2025-09-29 | AVGen-Bench | public | [`avgen-bench`](catalog/evaluation/avgen-bench.yaml) | evaluation | The official leaderboard evaluates Ovi as an open-source joint audio-video system. |
 | [HuMo-17B](models/multimodal/humo-17b.yaml) | 2025-09-10 | Phantom-Data (Koala-36M release) | public | [`phantom-data`](catalog/video/phantom-data.yaml) | fine-tuning | The official HuMo repository identifies Phantom-Data as the released Stage-1 subject-preservation dataset; it distributes metadata and references rather than source video files. |
 | [HuMo-17B](models/multimodal/humo-17b.yaml) | 2025-09-10 | HuMoSet | public | [`humoset`](catalog/video/humoset.yaml) | fine-tuning | The official companion release contains same-identity reference images, dense captions, and synchronized audio; the mapping between its aggregate rows and the paper's Stage-1 and Stage-2 subsets is not published. |
+| [Seedream 4.0](models/image/seedream-4-0.yaml) | 2025-09-09 | Seedream 4.0 multimodal pretraining mixture | not-released | — publisher has not released it | pretraining | The report describes natural and synthetic knowledge imagery but does not name the underlying corpus, providers, rights mix, or exact count. |
+| [Seedream 4.0](models/image/seedream-4-0.yaml) | 2025-09-09 | Seedream 4.0 editing triples | not-released | — publisher has not released it | fine-tuning | Each sample combines reference image, target image, and instruction with three caption granularities and consistent terminology. |
+| [Seedream 4.0](models/image/seedream-4-0.yaml) | 2025-09-09 | Seedream 4.0 human preference data | not-released | — publisher has not released it | preference | RLHF is disclosed as a post-training stage, but annotator protocol, comparisons, counts, safety dimensions, and retained rates are not published. |
+| [Seedream 4.0](models/image/seedream-4-0.yaml) | 2025-09-09 | MagicBench 4.0 | not-released | [`magicbench-4-0`](catalog/evaluation/magicbench-4-0.yaml) | evaluation | This is an evaluation benchmark and is not recorded as training data. |
+| [Seedream 4.0](models/image/seedream-4-0.yaml) | 2025-09-09 | DreamEval | not-released | [`dreameval`](catalog/evaluation/dreameval.yaml) | evaluation | This is an evaluation benchmark and is not recorded as training data. |
 | [HunyuanVideo-Foley](models/multimodal/hunyuanvideo-foley.yaml) | 2025-08-28 | HunyuanVideo-Foley TV2A corpus | not-released | — publisher has not released it | pretraining | The paper discloses scale and processing but not the raw video database, source providers, or a downloadable dataset. |
 | [HunyuanVideo-Foley](models/multimodal/hunyuanvideo-foley.yaml) | 2025-08-28 | VGGSound | public | [`vggsound`](catalog/audio/vggsound.yaml) | evaluation | The paper reports objective results on the public VGGSound test split; it does not state that VGGSound is in the 100K-hour training corpus. |
 | [HunyuanVideo-Foley](models/multimodal/hunyuanvideo-foley.yaml) | 2025-08-28 | AVGen-Bench | public | [`avgen-bench`](catalog/evaluation/avgen-bench.yaml) | evaluation | The official leaderboard evaluates a Wan2.2 plus HunyuanVideo-Foley pipeline, so the score does not isolate the Foley model. |

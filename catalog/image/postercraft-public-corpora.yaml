@@ -16,11 +16,11 @@ description: >-
   The two public PosterCraft training collections: Text-Render-2M for large-scale
   text rendering and Poster100K for region-aware high-quality poster tuning.
 access:
-  status: open
+  status: gated
   type: hosted
   url: https://huggingface.co/PosterCraft/datasets
-  requires_account: false
-  notes: The official organization hosts Text-Render-2M and Poster100K as separate downloadable Hugging Face repositories.
+  requires_account: true
+  notes: The official organization hosts separate repositories; Text-Render-2M currently requires accepting the Hugging Face access gate, while Poster100K remains openly downloadable.
 scale:
   samples: 2198400
   source_items: null
@@ -62,4 +62,4 @@ evidence:
   used_by:
     - Emu3.5
 status: partial
-last_verified: "2026-07-27"
+last_verified: "2026-08-16"

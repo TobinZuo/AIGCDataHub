@@ -1,0 +1,45 @@
+id: dior
+name: DIOR
+organization: Northwestern Polytechnical University
+released_at: "2019-04-08"
+release_date_source: https://arxiv.org/abs/1904.03658
+modality: image
+tasks: [remote-sensing-object-detection, image-pretraining]
+stages: [pretraining, evaluation, data-curation]
+description: A large optical remote-sensing object-detection benchmark containing diverse scenes and horizontal object bounding boxes.
+access:
+  status: open
+  type: hosted
+  url: https://gcheng-nwpu.github.io/
+  requires_account: false
+  notes: The official author dataset page provides OneDrive and Baidu download links for DIOR and DIOR-R.
+scale:
+  samples: 23463
+  source_items: 192518
+  hours: null
+  approximate: false
+  notes: The official page reports 23,463 images and 192,518 annotated object instances.
+annotations:
+  types: [object-category, horizontal-bounding-box, remote-sensing-image]
+  source: human
+  languages: [en]
+license:
+  metadata: CC-BY-NC-4.0
+  media: CC-BY-NC-4.0 release with source-imagery terms requiring review
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The official author page states CC BY-NC 4.0; verify underlying imagery rights before redistribution or generative training.
+quality:
+  dimensions: [visual-quality, provenance]
+  known_limitations:
+    - Detection labels do not provide dense captions and may not cover every visible object.
+processing:
+  recipe: Collect diverse optical remote-sensing scenes and annotate objects with horizontal bounding boxes.
+  recommended_format: native
+  notes: Preserve image splits, bounding-box convention, category map, and source provenance.
+evidence:
+  homepage: https://gcheng-nwpu.github.io/
+  paper: https://arxiv.org/abs/1904.03658
+  used_by: [Git-10M]
+status: partial
+last_verified: "2026-08-16"

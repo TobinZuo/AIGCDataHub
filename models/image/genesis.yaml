@@ -1,0 +1,52 @@
+id: genesis
+name: Genesis
+organization: MVRL
+released_at: "2026-08-16"
+modalities: [image]
+tasks: [satellite-image-generation, image-super-resolution, image-outpainting, hierarchical-image-generation]
+access:
+  status: open-weights
+  license: MIT for Genesis code and checkpoints; bundled DINOv3 conditioner remains under the DINOv3 License
+  release_url: https://huggingface.co/MVRL/genesis
+  weights_url: https://huggingface.co/MVRL/genesis
+  api_url: null
+architecture:
+  family: Hierarchical flow-matching JiT with parent-conditioned super-resolution and mask-based outpainting operators
+  parameters: null
+  notes: B/16 and H/16 checkpoints recursively construct a multi-scale satellite-image quadtree; a frozen DINOv3 ViT-L/16 SAT-493M encoder conditions super-resolution.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Git-10M
+      catalog_id: git-10m
+      role: pretraining
+      availability: public
+      scale: 10.5M image-text pairs
+      notes: The official model card identifies Git-10M as the main training corpus for the hierarchical generation operators.
+    - name: SAT-493M
+      catalog_id: sat-493m
+      role: pretraining
+      availability: not-released
+      scale: 493M satellite-image patches
+      notes: Genesis inherits this corpus through its frozen DINOv3 ViT-L/16 SAT-493M conditioning encoder; the images are not released.
+  stages:
+    - name: pretraining
+      modalities: [image, text]
+      source_types: [public-dataset, proprietary]
+      operations: [flow-matching, hierarchical-tile-training, parent-conditioned-super-resolution, masked-outpainting, ema-training, frozen-conditioner]
+      scale_disclosed: true
+      strategy: Train complementary super-resolution and outpainting operators for 800K steps on Git-10M while conditioning with a frozen satellite-domain DINOv3 encoder.
+  strategy_summary:
+    - Recursively generate a multi-scale quadtree by alternating parent-conditioned detail synthesis and mask-based spatial expansion.
+    - Use Git-10M directly for generative training and inherit SAT-493M representations through a frozen DINOv3 conditioner.
+  unknowns:
+    - Exact retained Git-10M subset, sampling weights, train-validation split, prompt handling, cross-source deduplication, and rights review.
+    - Parameter counts, complete optimizer and augmentation settings, hardware, safety filtering, and any preference or synthetic-data stages.
+evidence:
+  release: https://huggingface.co/MVRL/genesis
+  technical_report: null
+  repository: null
+status: partial
+last_verified: "2026-08-16"

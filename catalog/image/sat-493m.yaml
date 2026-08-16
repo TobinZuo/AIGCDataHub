@@ -1,0 +1,45 @@
+id: sat-493m
+name: SAT-493M
+organization: Meta and collaborators
+released_at: "2025-08-14"
+release_date_source: https://ai.meta.com/blog/dinov3-self-supervised-vision-model/
+modality: image
+tasks: [self-supervised-pretraining, satellite-image-representation-learning]
+stages: [pretraining, data-curation]
+description: The unreleased satellite-image pretraining corpus used for the DINOv3 ViT-L/16 SAT-493M representation model.
+access:
+  status: unavailable
+  type: none
+  url: https://github.com/facebookresearch/dinov3
+  requires_account: false
+  notes: DINOv3 weights are available under separate terms, but the SAT-493M images, manifest, and dataset download are not published.
+scale:
+  samples: 493000000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The DINOv3 paper names a 493M-image corpus of 512-by-512 satellite patches.
+annotations:
+  types: [satellite-image, geospatial-imagery]
+  source: unknown
+  languages: [none]
+license:
+  metadata: Not published
+  media: Maxar orthorectified imagery; dataset terms not published
+  commercial_use: unknown
+  redistribution: unknown
+  notes: The model-weight DINOv3 License is not a dataset license; the rights basis and redistribution terms for SAT-493M remain undisclosed.
+quality:
+  dimensions: [visual-quality, provenance]
+  known_limitations:
+    - Sampling geography, temporal coverage, privacy review, filtering, deduplication, and image-level provenance are not published.
+processing:
+  recipe: Randomly sample 512-by-512 crops from Maxar RGB orthorectified imagery at approximately 0.6-meter ground sampling distance.
+  recommended_format: native
+  notes: No public files exist; do not substitute DINOv3 model weights for a dataset download.
+evidence:
+  homepage: https://github.com/facebookresearch/dinov3
+  paper: https://arxiv.org/abs/2508.10104
+  used_by: [Genesis]
+status: partial
+last_verified: "2026-08-16"

@@ -1,0 +1,72 @@
+id: git-10m
+name: Git-10M
+organization: Beihang University and collaborators
+released_at: "2025-01-02"
+release_date_source: https://arxiv.org/abs/2501.00895
+modality: image
+tasks: [text-to-image, remote-sensing-image-generation, vision-language-pretraining]
+stages: [pretraining, data-curation]
+description: A global multi-resolution remote-sensing image-text corpus with geolocation and resolution metadata plus GPT-4o-generated descriptions.
+derived_from:
+  - catalog_id: million-aid
+    relationship: source-component
+    contribution: Public aerial scene-classification imagery and labels
+    notes: The Git-10M paper explicitly lists Million-AID as a public source component.
+  - catalog_id: geopile
+    relationship: source-component
+    contribution: Multi-source geospatial imagery
+    notes: The Git-10M paper explicitly lists GeoPile as a public source component.
+  - catalog_id: ssl4eo-s12
+    relationship: source-component
+    contribution: Global Sentinel-1 and Sentinel-2 imagery
+    notes: The Git-10M paper explicitly lists SSL4EO-S12 as a public source component.
+  - catalog_id: skyscript
+    relationship: source-component
+    contribution: Satellite imagery and geospatial metadata
+    notes: The Git-10M paper explicitly lists SkyScript as a public source component.
+  - catalog_id: dior
+    relationship: source-component
+    contribution: Optical remote-sensing imagery and scene information
+    notes: The Git-10M paper explicitly lists DIOR as a public source component.
+  - catalog_id: rsicb
+    relationship: source-component
+    contribution: Remote-sensing scene imagery and category labels
+    notes: The Git-10M paper explicitly lists RSI-CB as a public source component.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/lcybuaa/Git-10M
+  requires_account: false
+  notes: The official Hugging Face repository hosts 787 Arrow shards; pin the dataset revision and retain every source field before use.
+scale:
+  samples: 10500000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The paper reports 10.5M image-text pairs and more than 5.5B caption words, with resolutions from 0.5 to 128 meters per pixel.
+annotations:
+  types: [generation-prompt, text-caption, geolocation, spatial-resolution, scene-category]
+  source: mixed
+  languages: [en]
+license:
+  metadata: CC-BY-NC-ND-4.0 repository declaration
+  media: Layered upstream dataset and Google Earth terms
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The repository license does not erase component-specific or Google Earth rights; each sample's source and intended use require separate review.
+quality:
+  dimensions: [visual-quality, text-media-alignment, deduplication, provenance]
+  known_limitations:
+    - GPT-4o captions can hallucinate details despite automated audits and manual sampling.
+    - The paper reports manual removal of duplicate or redundant ocean scenes, not comprehensive cross-source deduplication.
+    - A private enhancement model modifies imagery, while its training corpus and possible transformation artifacts are not disclosed.
+processing:
+  recipe: Combine six named public corpora with manually selected Google Earth imagery, remove redundant ocean scenes, enhance images, and generate captions with GPT-4o using retained metadata.
+  recommended_format: native
+  notes: Preserve upstream source, coordinates, resolution, original label, generated caption, enhancement status, Arrow shard, and repository revision.
+evidence:
+  homepage: https://huggingface.co/datasets/lcybuaa/Git-10M
+  paper: https://arxiv.org/abs/2501.00895
+  used_by: [Genesis]
+status: partial
+last_verified: "2026-08-16"

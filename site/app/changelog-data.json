@@ -60,8 +60,8 @@
             "en": "Models"
           },
           "text": {
-            "zh": "新增 LTX-2.5、SCoPE、EVOKE、Jogg-Avatar V2V 5B 与 TD-V2A。前四项提供官方权重；TD-V2A 目前只有论文。另记录 JoyAI-Video-Edit 8 月 14 日参考图引导检查点升级。",
-            "en": "Added LTX-2.5, SCoPE, EVOKE, Jogg-Avatar V2V 5B, and TD-V2A. The first four publish official weights; TD-V2A remains paper-only. JoyAI-Video-Edit now records its August 14 reference-image-guided checkpoint revision."
+            "zh": "新增 LTX-2.5、SCoPE、EVOKE、Jogg-Avatar V2V 5B、TD-V2A、Genesis 与 Seedream 4.0。Genesis 提供官方开放权重，Seedream 4.0 为 API-only；另记录 JoyAI-Video-Edit 8 月 14 日参考图引导检查点升级。",
+            "en": "Added LTX-2.5, SCoPE, EVOKE, Jogg-Avatar V2V 5B, TD-V2A, Genesis, and Seedream 4.0. Genesis publishes official open weights, while Seedream 4.0 is API-only. JoyAI-Video-Edit also records its August 14 checkpoint revision."
           },
           "links": [
             {
@@ -98,6 +98,20 @@
                 "zh": "TD-V2A",
                 "en": "TD-V2A"
               }
+            },
+            {
+              "href": "/#model-genesis",
+              "label": {
+                "zh": "Genesis",
+                "en": "Genesis"
+              }
+            },
+            {
+              "href": "/#model-seedream-4-0",
+              "label": {
+                "zh": "Seedream 4.0",
+                "en": "Seedream 4.0"
+              }
             }
           ]
         },
@@ -108,43 +122,50 @@
             "en": "Datasets"
           },
           "text": {
-            "zh": "新增 RealEstate10K、PanShot、OmniWorld、OmniEdit-Bench 与未发布的 TD-V2A FreeSound Training Snapshot。前三项补齐官方访问入口和分层许可；OmniEdit-Bench 提供公开评测数据；TD-V2A 语料只有名称和 6,246 小时规模，明确不提供伪下载链接。OpenHumanVid-Talking 更新为替换后的 8,989 段、约 12 小时版本。",
-            "en": "Added RealEstate10K, PanShot, OmniWorld, OmniEdit-Bench, and the unreleased TD-V2A FreeSound Training Snapshot. Official access and layered conditions are recorded where available; the named FreeSound snapshot has no fabricated download. OpenHumanVid-Talking now reflects its replacement 8,989-clip, approximately 12-hour release."
+            "zh": "新增 RealEstate10K、PanShot、OmniWorld、OmniEdit-Bench、TD-V2A FreeSound Training Snapshot，以及 Git-10M、SAT-493M、Million-AID、GeoPile、SSL4EO-S12、SkyScript、DIOR、RSI-CB、MagicBench 4.0、DreamEval。Git-10M 与五个公开上游补齐官方入口；SAT-493M、GeoPile 统一包和两个 Seedream 评测集明确标为无可核验下载。OpenHumanVid-Talking 更新为替换后的 8,989 段、约 12 小时版本；MVHumanNet++ 改指官方 ModelScope 下载入口，PosterCraft 明确组件级访问门槛。",
+            "en": "Added the earlier five datasets plus Git-10M, SAT-493M, Million-AID, GeoPile, SSL4EO-S12, SkyScript, DIOR, RSI-CB, MagicBench 4.0, and DreamEval. Git-10M and five public upstreams have official access routes; SAT-493M, the unified GeoPile package, and both Seedream benchmarks have no verified download. MVHumanNet++ now points to ModelScope and PosterCraft records its component-level gate."
           },
           "links": [
             {
-              "href": "/#dataset-realestate10k",
+              "href": "/#dataset-git-10m",
               "label": {
-                "zh": "RealEstate10K",
-                "en": "RealEstate10K"
+                "zh": "Git-10M",
+                "en": "Git-10M"
               }
             },
             {
-              "href": "/#dataset-panshot",
+              "href": "/#dataset-sat-493m",
               "label": {
-                "zh": "PanShot",
-                "en": "PanShot"
+                "zh": "SAT-493M",
+                "en": "SAT-493M"
               }
             },
             {
-              "href": "/#dataset-omniworld",
+              "href": "/#dataset-magicbench-4-0",
               "label": {
-                "zh": "OmniWorld",
-                "en": "OmniWorld"
+                "zh": "MagicBench 4.0",
+                "en": "MagicBench 4.0"
               }
             },
             {
-              "href": "/#dataset-omniedit-bench",
+              "href": "/#dataset-dreameval",
               "label": {
-                "zh": "OmniEdit-Bench",
-                "en": "OmniEdit-Bench"
+                "zh": "DreamEval",
+                "en": "DreamEval"
               }
             },
             {
-              "href": "/#dataset-td-v2a-freesound-corpus",
+              "href": "/#dataset-mvhumannet-plus-plus",
               "label": {
-                "zh": "TD-V2A FreeSound Snapshot",
-                "en": "TD-V2A FreeSound Snapshot"
+                "zh": "MVHumanNet++",
+                "en": "MVHumanNet++"
+              }
+            },
+            {
+              "href": "/#dataset-postercraft-public-corpora",
+              "label": {
+                "zh": "PosterCraft",
+                "en": "PosterCraft"
               }
             }
           ]
@@ -156,8 +177,8 @@
             "en": "Data relations"
           },
           "text": {
-            "zh": "新增 17 条可解析关系：SCoPE 的四个微调数据集、TD-V2A 的八条分阶段训练/评测关系，以及 OmniEdit-Bench 对五个视频编辑模型的评测关系；其中 Seedance 2.0 只覆盖空间、时间与推理轨道。训练、微调、蒸馏和评估保持严格区分。",
-            "en": "Added seventeen resolvable relations covering SCoPE fine-tuning, TD-V2A stage-specific training and evaluation, and OmniEdit-Bench evaluation of five editors. Seedance 2.0 remains explicitly partial. Training, fine-tuning, distillation, and evaluation roles are not conflated."
+            "zh": "在原有 17 条关系上新增 10 条可解析关系：Genesis→Git-10M/SAT-493M、Seedream 4.0→MagicBench 4.0/DreamEval，以及 Git-10M 对六个命名上游数据集的 source-component 谱系。训练、继承预训练与评估保持严格区分。",
+            "en": "Added ten more resolvable relations: Genesis to Git-10M and SAT-493M, Seedream 4.0 to its two evaluation suites, and Git-10M to six named source components. Direct training, inherited pretraining, and evaluation roles remain distinct."
           },
           "links": [
             {
@@ -176,8 +197,8 @@
             "en": "Rankings"
           },
           "text": {
-            "zh": "本轮检测到 9 个榜单快照变化。Arena 的 FLUX 3 Video 两个名称和 Artificial Analysis 的 Qwen Image 2.0 Pro 日期别名已映射；DreamImage 2.0、MAGI-2 Preview、Krea 2 Medium Turbo 缺少足够一手模型事实，因此三个相关 Artificial Analysis 榜单改为 monitor，缺口继续公开而不反推模型卡。",
-            "en": "Nine ranking snapshots changed. FLUX 3 Video Arena names and the dated Qwen Image 2.0 Pro alias are mapped. Three Artificial Analysis boards now use monitor coverage because DreamImage 2.0, MAGI-2 Preview, and Krea 2 Medium Turbo lack enough first-party model evidence; their gaps remain visible."
+            "zh": "本日累计检测到 11 个榜单快照变化。最新一轮中，图片编辑榜 FLUX.2 [max] 离榜、Nano Banana 2 Lite 进入第 15；文生图榜 MAI-Image-2.5-Flash 与 FLUX.2 [max] 互换第 11/12，Krea 2 Medium Turbo 离榜、Seedream 4.0 进入第 15。Seedream 4.0 已用一手材料补卡，文生图覆盖恢复 required；DreamImage 2.0 与 MAGI-2 Preview 仍保留 monitor 缺口。",
+            "en": "Eleven ranking snapshots changed across the day. The latest scan records Nano Banana 2 Lite entering image editing and Seedream 4.0 entering text-to-image, alongside two exits and a position swap. Seedream 4.0 now has a first-party-backed card and text-to-image returns to required coverage; DreamImage 2.0 and MAGI-2 Preview remain monitor gaps."
           },
           "links": [
             {
@@ -196,8 +217,8 @@
             "en": "Monitoring"
           },
           "text": {
-            "zh": "新增 LTX-2.5、SCoPE、EVOKE、Jogg-Avatar、TD-V2A、RealEstate10K、PanShot、OmniWorld 与 OmniEdit-Bench 的官方项目源或精确 revision 探针；已处置的 Hugging Face 候选加入排除列表，防止重复发现。最终扫描共检查 430 个来源，得到 266 个候选、83 个重要修订、0 个失败、9 个榜单变化与 3 个 monitor 缺口。",
-            "en": "Added official project or precise revision probes for the new models and datasets and excluded handled feed candidates from repeat discovery. The final scan checked 430 sources and produced 266 candidates, 83 important revisions, zero failures, nine ranking changes, and three monitor-only gaps."
+            "zh": "新增 Genesis、Seedream 4.0、Git-10M、SAT-493M、六个上游源和两个 Seedream 评测集的官方页面或精确 revision 探针；已处置的 Hugging Face 候选加入排除列表。Dailymotion 监控范围同步纳入官方文档新增的 AI 辅助元数据能力。最终复扫检查 450 个来源：0 个新候选、3 个已核验重要修订、0 个失败、2 个榜单变化与 2 个 monitor 缺口。",
+            "en": "Added official project or precise revision probes for Genesis, Seedream 4.0, Git-10M, SAT-493M, six upstream datasets, and two Seedream benchmarks. Handled feed candidates are excluded from repeat discovery, and Dailymotion monitoring now includes its documented AI-assisted metadata scope. The final scan checked 450 sources: zero new candidates, three reviewed revisions, zero failures, two ranking changes, and two monitor gaps."
           },
           "links": [
             {
@@ -216,29 +237,29 @@
             "en": "Undisclosed"
           },
           "text": {
-            "zh": "LTX-2.5、EVOKE 与 Jogg-Avatar 均未披露精确训练语料和混合；SCoPE 未披露四源保留量与采样权重；TD-V2A 的 FreeSound 清单、逐文件许可及 Million Song Dataset 到训练音频的路径未说明。OpenHumanVid-Talking 有 807 段出现说话人切换，使用方必须按帧读取 track ID。",
-            "en": "LTX-2.5, EVOKE, and Jogg-Avatar do not identify exact training corpora or mixtures. SCoPE omits retained counts and weights for its four named sources. TD-V2A does not publish the FreeSound manifest or explain its Million Song Dataset audio path. OpenHumanVid-Talking contains 807 clips with speaker switches, requiring per-frame track handling."
+            "zh": "Genesis 未披露 Git-10M 保留子集、采样权重与完整训练配置；Seedream 4.0 未披露精确数据身份、权利组合、混合权重、编辑三元组与偏好数据规模。SAT-493M、MagicBench 4.0 与 DreamEval 未发布数据文件；Git-10M 的统一许可不能替代上游与 Google Earth 权利审查。",
+            "en": "Genesis omits its retained Git-10M subset, sampling weights, and complete training configuration. Seedream 4.0 omits exact source identities, rights composition, mixture weights, editing-triple volume, and preference-data scale. SAT-493M and both Seedream benchmarks are unreleased, and Git-10M's repository license does not supersede upstream or Google Earth rights."
           },
           "links": [
             {
-              "href": "/#model-ltx-2-5",
+              "href": "/#model-genesis",
               "label": {
-                "zh": "LTX-2.5 未知项",
-                "en": "LTX-2.5 unknowns"
+                "zh": "Genesis 未知项",
+                "en": "Genesis unknowns"
               }
             },
             {
-              "href": "/#model-scope",
+              "href": "/#model-seedream-4-0",
               "label": {
-                "zh": "SCoPE 未知项",
-                "en": "SCoPE unknowns"
+                "zh": "Seedream 4.0 未知项",
+                "en": "Seedream 4.0 unknowns"
               }
             },
             {
-              "href": "/#dataset-openhumanvid-talking",
+              "href": "/#dataset-git-10m",
               "label": {
-                "zh": "OpenHumanVid-Talking 限制",
-                "en": "OpenHumanVid-Talking limitations"
+                "zh": "Git-10M 限制",
+                "en": "Git-10M limitations"
               }
             }
           ]

@@ -85,6 +85,26 @@ discovery:
     - https://huggingface.co/cicada-ai/jogg-avatar
     - https://huggingface.co/donghao-zhou/ThinkV2V-5B
     - https://huggingface.co/Guomh0707/V-RAE-Models
+    - https://huggingface.co/biali/FLUX.2-small-decoder
+    - https://huggingface.co/Corizfuo/image
+    - https://huggingface.co/MVRL/genesis
+    - https://huggingface.co/anarcticwolve/Flux-NSFW-uncensored
+    - https://huggingface.co/brandow1984/sdxl-turbo
+    - https://huggingface.co/KOFIblto/emma21
+    - https://huggingface.co/PeachesAvicii/Slap-Wan
+    - https://huggingface.co/Severaljoneses/germanic-krea-2
+    - https://huggingface.co/biali/bonsai-image-binary-4B-GGUF
+    - https://huggingface.co/guillekenzo/aros-00001940-lora-krea-2-dreambooth
+    - https://huggingface.co/biali/bonsai-image-ternary-3B-GGUF
+    - https://github.com/daifeng2016/Change-Detection-Dataset-for-High-Resolution-Satellite-Imagery
+    - https://github.com/huggingface/pytorch-image-models
+    - https://github.com/huggingface/pytorch-image-models/releases/tag/v1.0.20
+    - https://huggingface.co/datasets?modality=modality%3Aimage
+    - https://huggingface.co/datasets?task_categories=task_categories%3Atext-to-image
+    - https://project.inria.fr/aerialimagelabeling
+    - https://www.kaggle.com/datasets/nikhil7280/coco-image-caption
+    - https://huggingface.co/guillekenzo/aros-09cc5fd4-MellowDuality
+    - https://huggingface.co/biali/bonsai-image-ternary-4B-FLUX2-klein-GGUF
 
 tracks:
   - id: image-generation
@@ -107,6 +127,9 @@ tracks:
       - https://heheyas.github.io/context-scaling/
       - https://github.com/heheyas/context-scaling
       - https://help.aliyun.com/en/model-studio/qwen-image-generation-and-editing-api-reference
+      - https://seed.bytedance.com/en/seedream4_0
+      - https://seed.bytedance.com/en/blog/seedream-4-0-officially-released-beyond-drawing-into-imagination
+      - https://huggingface.co/MVRL/genesis
 
   - id: video-and-audio-generation
     topics:
@@ -252,6 +275,14 @@ tracks:
       - https://github.com/yangzhou24/OmniWorld
       - https://huggingface.co/datasets/InternRobotics/OmniWorld
       - https://huggingface.co/datasets/OmniEdit-Bench/OmniEdit-Bench
+      - https://huggingface.co/datasets/lcybuaa/Git-10M
+      - https://github.com/facebookresearch/dinov3
+      - https://captain-whu.github.io/DiRS/
+      - https://arxiv.org/abs/2302.04476
+      - https://github.com/zhu-xlab/SSL4EO-S12
+      - https://github.com/wangzhecheng/SkyScript
+      - https://gcheng-nwpu.github.io/
+      - https://github.com/lehaifeng/RSI-CB
 
   - id: dataset-release-feeds
     topics:
@@ -329,7 +360,7 @@ tracks:
         ranking_parser: artificial-analysis-html
         ranking_score_label: Elo
         ranking_date_label: 模型发布
-        ranking_coverage_policy: monitor
+        ranking_coverage_policy: required
         ranking_page_url: https://artificialanalysis.ai/image/leaderboard/text-to-image/
       - url: https://artificialanalysis.ai/image/leaderboard/editing/
         ranking_id: image-editing
@@ -449,6 +480,36 @@ tracks:
       - metadata-change
       - license-change
     official_sources:
+      - url: "https://huggingface.co/api/datasets/lcybuaa/Git-10M?expand=lastModified&expand=sha"
+        catalog_id: git-10m
+        priority: critical
+      - url: https://github.com/facebookresearch/dinov3/commits/main.atom
+        catalog_id: sat-493m
+        priority: high
+      - url: https://captain-whu.github.io/DiRS/
+        catalog_id: million-aid
+        priority: high
+      - url: https://arxiv.org/abs/2302.04476v1
+        catalog_id: geopile
+        priority: high
+      - url: https://github.com/zhu-xlab/SSL4EO-S12/commits/main.atom
+        catalog_id: ssl4eo-s12
+        priority: high
+      - url: https://github.com/wangzhecheng/SkyScript/commits/main.atom
+        catalog_id: skyscript
+        priority: high
+      - url: https://gcheng-nwpu.github.io/
+        catalog_id: dior
+        priority: high
+      - url: https://github.com/lehaifeng/RSI-CB/commits/master.atom
+        catalog_id: rsicb
+        priority: high
+      - url: https://arxiv.org/abs/2509.20427v1
+        catalog_id: magicbench-4-0
+        priority: critical
+      - url: https://arxiv.org/abs/2509.20427
+        catalog_id: dreameval
+        priority: critical
       - url: https://google.github.io/realestate10k/
         catalog_id: realestate10k
         priority: high
@@ -1019,6 +1080,12 @@ tracks:
       - release-files
       - license-change
     official_sources:
+      - url: "https://huggingface.co/api/models/MVRL/genesis?expand=lastModified&expand=sha"
+        model_id: genesis
+        priority: critical
+      - url: https://docs.byteplus.com/en/docs/ModelArk/1824718
+        model_id: seedream-4-0
+        priority: critical
       - url: "https://huggingface.co/api/models/Lightricks/LTX-2.5?expand=lastModified&expand=sha"
         model_id: ltx-2-5
         priority: critical

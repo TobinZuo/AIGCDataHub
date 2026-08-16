@@ -84,18 +84,18 @@ platforms:
       status: documented-api
       interface_name: Dailymotion API v2
       interface_url: https://developers.dailymotion.com/docs/welcome
-      scope: Authenticated video upload and management, media delivery, players, advertising, analytics, and reporting through the recommended API v2.
+      scope: Authenticated video upload and management, media delivery, players, advertising, analytics, reporting, and documented AI-assisted metadata generation through the recommended API v2.
       requirements: Registered application, OAuth credentials, permissions, and platform terms.
       training_rights: not-granted-by-interface
     monitoring:
       url: https://developers.dailymotion.com/docs/welcome
       mode: content-revision
-      focus: API v2 objects, authentication, upload and delivery, reporting, and legacy-endpoint lifecycle changes.
+      focus: API v2 objects, authentication, upload and delivery, reporting, AI-assisted metadata generation, and legacy-endpoint lifecycle changes.
       priority: high
     source_status: candidate
     access_boundary: source-platform-not-dataset
     rights_review: required
-    last_reviewed: "2026-07-28"
+    last_reviewed: "2026-08-16"
   - id: pexels
     name: Pexels
     homepage: https://www.pexels.com/

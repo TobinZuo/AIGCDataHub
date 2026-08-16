@@ -1,0 +1,45 @@
+id: rsicb
+name: RSI-CB
+organization: Central South University and collaborators
+released_at: "2017-05-30"
+release_date_source: https://arxiv.org/abs/1705.10450
+modality: image
+tasks: [remote-sensing-scene-classification, image-pretraining]
+stages: [pretraining, evaluation, data-curation]
+description: A crowdsourced remote-sensing scene-classification benchmark with a two-level land-use hierarchy and multiple image-resolution variants.
+access:
+  status: open
+  type: hosted
+  url: https://github.com/lehaifeng/RSI-CB
+  requires_account: false
+  notes: The official repository documents the dataset and its research-use access path; mirrors may have different preprocessing or licenses.
+scale:
+  samples: 36707
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The RSI-CB128 release contains 36,707 images across 45 scene categories.
+annotations:
+  types: [scene-category, hierarchical-label, remote-sensing-image]
+  source: human
+  languages: [en]
+license:
+  metadata: Open for research purposes
+  media: Research-use release; source-image rights require review
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: Do not import the CC BY-NC license of a third-party Meta-Album derivative into the original RSI-CB release.
+quality:
+  dimensions: [visual-quality, provenance]
+  known_limitations:
+    - Counts and preprocessing differ among RSI-CB variants and third-party mirrors.
+processing:
+  recipe: Crowdsource geographically diverse remote-sensing scenes and label them with a two-level land-use taxonomy.
+  recommended_format: native
+  notes: Record the exact variant, resolution, category hierarchy, and source repository revision.
+evidence:
+  homepage: https://github.com/lehaifeng/RSI-CB
+  paper: https://arxiv.org/abs/1705.10450
+  used_by: [Git-10M]
+status: partial
+last_verified: "2026-08-16"

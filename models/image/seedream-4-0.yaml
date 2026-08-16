@@ -1,0 +1,84 @@
+id: seedream-4-0
+name: Seedream 4.0
+organization: ByteDance Seed
+released_at: "2025-09-09"
+ranking_names: [Seedream 4.0]
+modalities: [image]
+tasks: [text-to-image, image-editing, multi-image-editing, image-generation]
+access:
+  status: api-only
+  license: BytePlus ModelArk service terms
+  release_url: https://seed.bytedance.com/en/blog/seedream-4-0-officially-released-beyond-drawing-into-imagination
+  weights_url: null
+  api_url: https://docs.byteplus.com/en/docs/ModelArk/1824718
+architecture:
+  family: Unified multimodal diffusion transformer with high-compression VAE and Seed1.5-VL prompt engineering
+  parameters: null
+  notes: One model handles generation and editing at native 1K-to-4K resolution; the report also describes adversarial distillation, distribution matching, quantization, and speculative decoding for serving.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Seedream 4.0 multimodal pretraining mixture
+      catalog_id: null
+      role: pretraining
+      availability: not-released
+      scale: Billions of text-image pairs
+      notes: The report describes natural and synthetic knowledge imagery but does not name the underlying corpus, providers, rights mix, or exact count.
+    - name: Seedream 4.0 editing triples
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: Large amount; exact count not disclosed
+      notes: Each sample combines reference image, target image, and instruction with three caption granularities and consistent terminology.
+    - name: Seedream 4.0 human preference data
+      catalog_id: null
+      role: preference
+      availability: not-released
+      scale: null
+      notes: RLHF is disclosed as a post-training stage, but annotator protocol, comparisons, counts, safety dimensions, and retained rates are not published.
+    - name: MagicBench 4.0
+      catalog_id: magicbench-4-0
+      role: evaluation
+      availability: not-released
+      scale: 725 bilingual prompt cases
+      notes: This is an evaluation benchmark and is not recorded as training data.
+    - name: DreamEval
+      catalog_id: dreameval
+      role: evaluation
+      availability: not-released
+      scale: 1,600 prompts
+      notes: This is an evaluation benchmark and is not recorded as training data.
+  stages:
+    - name: pretraining
+      modalities: [image, text]
+      source_types: [proprietary, synthetic, undisclosed]
+      operations: [quality-filtering, semantic-deduplication, visual-deduplication, recaptioning, cross-modal-retrieval, multi-resolution-training]
+      scale_disclosed: true
+      strategy: Train first around 512-square resolution and then from 1024-square through 4096-square on billions of filtered, deduplicated, recaptioned natural and synthetic image-text pairs.
+    - name: fine-tuning
+      modalities: [image, text]
+      source_types: [proprietary, synthetic, human-feedback]
+      operations: [continual-training, supervised-fine-tuning, joint-generation-editing, multi-granularity-captioning]
+      scale_disclosed: false
+      strategy: Jointly post-train text-to-image and editing behavior with continual training and supervised fine-tuning over generation examples and structured editing triples.
+    - name: preference
+      modalities: [image, text]
+      source_types: [human-feedback, proprietary]
+      operations: [rlhf]
+      scale_disclosed: false
+      strategy: Apply human-feedback reinforcement learning after supervised stages without publishing preference volume or collection protocol.
+  strategy_summary:
+    - Filter low-quality imagery, apply semantic and low-level visual deduplication, refine captions, and strengthen cross-modal retrieval before multi-resolution training.
+    - Mix natural knowledge figures with synthetic OCR and LaTeX formula imagery, then jointly optimize generation and instruction-based editing.
+    - Accelerate serving with adversarial distillation, distribution matching, 4-bit or 8-bit quantization, and speculative decoding.
+  unknowns:
+    - Exact dataset identities, source URLs, acquisition dates, rights and consent basis, language distribution, mixture weights, retained counts, and safety or privacy filtering.
+    - Editing-triple provenance, synthetic-data generators, human-preference counts and protocol, stage-level compute, and benchmark prompt files.
+evidence:
+  release: https://seed.bytedance.com/en/blog/seedream-4-0-officially-released-beyond-drawing-into-imagination
+  technical_report: https://arxiv.org/abs/2509.20427
+  repository: null
+status: partial
+last_verified: "2026-08-16"

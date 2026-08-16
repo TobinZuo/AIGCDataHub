@@ -1,0 +1,50 @@
+id: geopile
+name: GeoPile
+organization: University of North Carolina at Charlotte and collaborators
+released_at: "2023-02-09"
+release_date_source: https://arxiv.org/abs/2302.04476
+modality: image
+tasks: [image-pretraining, remote-sensing-representation-learning]
+stages: [pretraining, data-curation]
+description: A compact multi-source geospatial pretraining mixture assembled for continual pretraining of vision foundation models.
+derived_from:
+  - catalog_id: million-aid
+    relationship: source-component
+    contribution: Aerial scene-classification imagery
+    notes: The GeoPile paper includes Million-AID among its source collections.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2302.04476
+  requires_account: false
+  notes: The paper describes the mixture, but no durable official standalone GeoPile download was verified in this review.
+scale:
+  samples: 600000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The paper describes roughly 600K images assembled from several public remote-sensing datasets.
+annotations:
+  types: [remote-sensing-image, inherited-source-label]
+  source: mixed
+  languages: [none]
+license:
+  metadata: Not published as a unified dataset license
+  media: Component-specific upstream terms
+  commercial_use: review-required
+  redistribution: review-required
+  notes: Rights must be evaluated per source component; the paper is not a blanket redistribution license for the mixture.
+quality:
+  dimensions: [visual-quality, provenance]
+  known_limitations:
+    - A unified downloadable manifest, exact deduplication boundary, and mixture-wide media license were not verified.
+processing:
+  recipe: Combine diverse geospatial classification sources into a compact continual-pretraining mixture.
+  recommended_format: native
+  notes: Reconstruct only from verified upstream releases and preserve source identity and license metadata.
+evidence:
+  homepage: https://arxiv.org/abs/2302.04476
+  paper: https://arxiv.org/abs/2302.04476
+  used_by: [Git-10M]
+status: partial
+last_verified: "2026-08-16"

@@ -1,0 +1,45 @@
+id: magicbench-4-0
+name: MagicBench 4.0
+organization: ByteDance Seed
+released_at: "2025-09-24"
+release_date_source: https://arxiv.org/abs/2509.20427
+modality: evaluation
+tasks: [text-to-image, image-editing, multi-image-editing]
+stages: [evaluation]
+description: A bilingual prompt benchmark named in the Seedream 4.0 technical report for text-to-image and single- or multi-image editing evaluation.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2509.20427
+  requires_account: false
+  notes: The report describes benchmark composition and results but does not publish the prompt files or an official download.
+scale:
+  samples: 725
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The report lists 325 text-to-image, 300 single-image editing, and 100 multi-image editing cases, each represented in Chinese and English.
+annotations:
+  types: [evaluation-prompt, bilingual-prompt, task-category]
+  source: human
+  languages: [zh, en]
+license:
+  metadata: Not published
+  media: Not published
+  commercial_use: unknown
+  redistribution: unknown
+  notes: Neither benchmark artifacts nor benchmark-specific license terms were published with the technical report.
+quality:
+  dimensions: [visual-quality, text-media-alignment, aesthetics, provenance]
+  known_limitations:
+    - Unreleased prompts prevent independent leakage, translation, and scoring audits.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Record only the published benchmark composition and do not fabricate a download route.
+evidence:
+  homepage: https://arxiv.org/abs/2509.20427
+  paper: https://arxiv.org/abs/2509.20427
+  used_by: [Seedream 4.0]
+status: partial
+last_verified: "2026-08-16"

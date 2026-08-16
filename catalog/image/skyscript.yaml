@@ -1,0 +1,45 @@
+id: skyscript
+name: SkyScript
+organization: University of Wisconsin-Madison and collaborators
+released_at: "2023-12-20"
+release_date_source: https://arxiv.org/abs/2312.12856
+modality: image
+tasks: [vision-language-pretraining, remote-sensing-retrieval]
+stages: [pretraining, data-curation]
+description: A global remote-sensing vision-language dataset pairing satellite image patches with OpenStreetMap-derived semantic descriptions and metadata.
+access:
+  status: open
+  type: hosted
+  url: https://github.com/wangzhecheng/SkyScript
+  requires_account: false
+  notes: The official repository publishes S3 download commands for image shards, metadata, and caption variants.
+scale:
+  samples: 5200000
+  source_items: null
+  hours: null
+  approximate: true
+  notes: The current official repository describes 5.2M image-text pairs; the initial paper release described 2.6M.
+annotations:
+  types: [text-caption, openstreetmap-tags, geolocation, satellite-image]
+  source: mixed
+  languages: [en]
+license:
+  metadata: Repository code is MIT; dataset-wide metadata license not separately verified
+  media: Source-specific satellite imagery and OpenStreetMap terms
+  commercial_use: review-required
+  redistribution: review-required
+  notes: The repository code license does not automatically license imagery or OpenStreetMap-derived content; review every collection and caption release.
+quality:
+  dimensions: [text-media-alignment, visual-quality, provenance]
+  known_limitations:
+    - OpenStreetMap tags and automated caption transformations can be incomplete, stale, or spatially misaligned.
+processing:
+  recipe: Pair satellite imagery with geographically aligned OpenStreetMap tags and convert structured tags into natural-language caption variants.
+  recommended_format: native
+  notes: Pin the image shard, metadata file, caption variant, source collection, and repository revision.
+evidence:
+  homepage: https://github.com/wangzhecheng/SkyScript
+  paper: https://arxiv.org/abs/2312.12856
+  used_by: [Git-10M]
+status: partial
+last_verified: "2026-08-16"

@@ -1,0 +1,45 @@
+id: million-aid
+name: Million-AID
+organization: Wuhan University
+released_at: "2020-06-22"
+release_date_source: https://arxiv.org/abs/2006.12485
+modality: image
+tasks: [remote-sensing-scene-classification, image-pretraining]
+stages: [pretraining, data-curation]
+description: A large-scale aerial-image collection with one million scenes organized into a hierarchical 51-category remote-sensing taxonomy.
+access:
+  status: open
+  type: hosted
+  url: https://captain-whu.github.io/DiRS/
+  requires_account: false
+  notes: The official project page provides OneDrive and Baidu download routes; availability and archive integrity should be checked before use.
+scale:
+  samples: 1000000
+  source_items: null
+  hours: null
+  approximate: false
+  notes: The official project reports one million aerial images across 51 categories.
+annotations:
+  types: [scene-category, hierarchical-label, aerial-image]
+  source: human
+  languages: [en]
+license:
+  metadata: CC-BY-NC-ND-4.0
+  media: CC-BY-NC-ND-4.0 release with source-imagery rights requiring review
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: The official challenge terms identify CC BY-NC-ND 4.0; source imagery and downstream redistribution still require separate review.
+quality:
+  dimensions: [visual-quality, provenance]
+  known_limitations:
+    - Hierarchical scene labels do not describe every visible object or establish generation rights for source imagery.
+processing:
+  recipe: Assemble globally distributed aerial scenes and assign a two-level scene taxonomy.
+  recommended_format: native
+  notes: Preserve image identifiers, hierarchy levels, archive provenance, and the exact downloaded release.
+evidence:
+  homepage: https://captain-whu.github.io/DiRS/
+  paper: https://arxiv.org/abs/2006.12485
+  used_by: [Git-10M]
+status: partial
+last_verified: "2026-08-16"

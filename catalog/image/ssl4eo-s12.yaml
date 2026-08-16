@@ -1,0 +1,45 @@
+id: ssl4eo-s12
+name: SSL4EO-S12
+organization: Technical University of Munich and collaborators
+released_at: "2022-11-14"
+release_date_source: https://arxiv.org/abs/2211.07044
+modality: image
+tasks: [self-supervised-pretraining, earth-observation]
+stages: [pretraining, data-curation]
+description: A global multimodal, multitemporal Earth-observation corpus of Sentinel-1 and Sentinel-2 patches sampled across four seasons.
+access:
+  status: open
+  type: hosted
+  url: https://mediatum.ub.tum.de/1650201
+  requires_account: false
+  notes: The official repository links raw and compressed mediaTUM releases and a Hugging Face mirror; the mediaTUM object carries the archival DOI.
+scale:
+  samples: 3012948
+  source_items: 251079
+  hours: null
+  approximate: false
+  notes: There are 251,079 locations, three modality/product variants, and four seasonal timestamps per location.
+annotations:
+  types: [sentinel-1-sar, sentinel-2-multispectral, geolocation, season]
+  source: web-metadata
+  languages: [none]
+license:
+  metadata: CC-BY-4.0
+  media: CC-BY-4.0
+  commercial_use: allowed
+  redistribution: allowed
+  notes: The official repository states that the dataset and pretrained weights use CC BY 4.0; repository code is Apache 2.0.
+quality:
+  dimensions: [visual-quality, temporal-consistency, provenance]
+  known_limitations:
+    - The compressed JPEG release is lossy and the maintainers report a possible downstream performance drop.
+processing:
+  recipe: Sample global locations, retrieve Sentinel-1 and Sentinel-2 products at four seasonal timestamps, and publish raw and compressed variants.
+  recommended_format: native
+  notes: Preserve location IDs, product level, season, spectral bands, bit depth, compression variant, and DOI revision.
+evidence:
+  homepage: https://github.com/zhu-xlab/SSL4EO-S12
+  paper: https://arxiv.org/abs/2211.07044
+  used_by: [Git-10M]
+status: verified
+last_verified: "2026-08-16"

@@ -585,20 +585,20 @@
         "status": "documented-api",
         "interface_name": "Dailymotion API v2",
         "interface_url": "https://developers.dailymotion.com/docs/welcome",
-        "scope": "Authenticated video upload and management, media delivery, players, advertising, analytics, and reporting through the recommended API v2.",
+        "scope": "Authenticated video upload and management, media delivery, players, advertising, analytics, reporting, and documented AI-assisted metadata generation through the recommended API v2.",
         "requirements": "Registered application, OAuth credentials, permissions, and platform terms.",
         "training_rights": "not-granted-by-interface"
       },
       "monitoring": {
         "url": "https://developers.dailymotion.com/docs/welcome",
         "mode": "content-revision",
-        "focus": "API v2 objects, authentication, upload and delivery, reporting, and legacy-endpoint lifecycle changes.",
+        "focus": "API v2 objects, authentication, upload and delivery, reporting, AI-assisted metadata generation, and legacy-endpoint lifecycle changes.",
         "priority": "high"
       },
       "source_status": "candidate",
       "access_boundary": "source-platform-not-dataset",
       "rights_review": "required",
-      "last_reviewed": "2026-07-28"
+      "last_reviewed": "2026-08-16"
     },
     {
       "id": "vimeo",
@@ -9887,6 +9887,182 @@
       ]
     },
     {
+      "id": "magicbench-4-0",
+      "name": "MagicBench 4.0",
+      "organization": "ByteDance Seed",
+      "released_at": "2025-09-24",
+      "release_date_source": "https://arxiv.org/abs/2509.20427",
+      "modality": "evaluation",
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "multi-image-editing"
+      ],
+      "stages": [
+        "evaluation"
+      ],
+      "description": "A bilingual prompt benchmark named in the Seedream 4.0 technical report for text-to-image and single- or multi-image editing evaluation.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2509.20427",
+        "requires_account": false,
+        "notes": "The report describes benchmark composition and results but does not publish the prompt files or an official download."
+      },
+      "scale": {
+        "samples": 725,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The report lists 325 text-to-image, 300 single-image editing, and 100 multi-image editing cases, each represented in Chinese and English."
+      },
+      "annotations": {
+        "types": [
+          "evaluation-prompt",
+          "bilingual-prompt",
+          "task-category"
+        ],
+        "source": "human",
+        "languages": [
+          "zh",
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Not published",
+        "media": "Not published",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "Neither benchmark artifacts nor benchmark-specific license terms were published with the technical report."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "aesthetics",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Unreleased prompts prevent independent leakage, translation, and scoring audits."
+        ]
+      },
+      "processing": {
+        "recipe": null,
+        "recommended_format": "native",
+        "notes": "Record only the published benchmark composition and do not fabricate a download route."
+      },
+      "evidence": {
+        "homepage": "https://arxiv.org/abs/2509.20427",
+        "paper": "https://arxiv.org/abs/2509.20427",
+        "used_by": [
+          "Seedream 4.0"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-16",
+      "source_path": "catalog/evaluation/magicbench-4-0.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "725",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2509.20427v1"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "seedream-4-0"
+      ]
+    },
+    {
+      "id": "dreameval",
+      "name": "DreamEval",
+      "organization": "ByteDance Seed",
+      "released_at": "2025-09-24",
+      "release_date_source": "https://arxiv.org/abs/2509.20427",
+      "modality": "evaluation",
+      "tasks": [
+        "text-to-image",
+        "image-generation-evaluation"
+      ],
+      "stages": [
+        "evaluation"
+      ],
+      "description": "A difficulty-aware text-to-image evaluation suite introduced in the Seedream 4.0 report with VQA-based scoring across four generation scenarios.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2509.20427",
+        "requires_account": false,
+        "notes": "The technical report names the benchmark and protocol but provides no official prompt or annotation download."
+      },
+      "scale": {
+        "samples": 1600,
+        "source_items": 128,
+        "hours": null,
+        "approximate": false,
+        "notes": "DreamEval contains 1,600 prompts organized into 128 subtasks and four generation scenarios."
+      },
+      "annotations": {
+        "types": [
+          "evaluation-prompt",
+          "vqa-criterion",
+          "difficulty-tier",
+          "task-category"
+        ],
+        "source": "mixed",
+        "languages": [
+          "unknown"
+        ]
+      },
+      "license": {
+        "metadata": "Not published",
+        "media": "Not published",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The report does not publish benchmark artifacts, construction sources, or benchmark-specific reuse terms."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Unreleased prompts and graders prevent independent reproduction and leakage analysis."
+        ]
+      },
+      "processing": {
+        "recipe": "Group prompts by scenario, subtask, and difficulty, then score generated images with VQA-style criteria.",
+        "recommended_format": "native",
+        "notes": "Preserve the distinction between benchmark description and unavailable benchmark assets."
+      },
+      "evidence": {
+        "homepage": "https://arxiv.org/abs/2509.20427",
+        "paper": "https://arxiv.org/abs/2509.20427",
+        "used_by": [
+          "Seedream 4.0"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-16",
+      "source_path": "catalog/evaluation/dreameval.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "1.6K",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://arxiv.org/abs/2509.20427"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "seedream-4-0"
+      ]
+    },
+    {
       "id": "spatialvid",
       "name": "SpatialVID",
       "organization": "Nanjing University and Institute of Automation, Chinese Academy of Sciences",
@@ -10271,6 +10447,89 @@
       "upstream_dataset_ids": [],
       "downstream_dataset_ids": [],
       "linked_model_ids": []
+    },
+    {
+      "id": "sat-493m",
+      "name": "SAT-493M",
+      "organization": "Meta and collaborators",
+      "released_at": "2025-08-14",
+      "release_date_source": "https://ai.meta.com/blog/dinov3-self-supervised-vision-model/",
+      "modality": "image",
+      "tasks": [
+        "self-supervised-pretraining",
+        "satellite-image-representation-learning"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "The unreleased satellite-image pretraining corpus used for the DINOv3 ViT-L/16 SAT-493M representation model.",
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://github.com/facebookresearch/dinov3",
+        "requires_account": false,
+        "notes": "DINOv3 weights are available under separate terms, but the SAT-493M images, manifest, and dataset download are not published."
+      },
+      "scale": {
+        "samples": 493000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The DINOv3 paper names a 493M-image corpus of 512-by-512 satellite patches."
+      },
+      "annotations": {
+        "types": [
+          "satellite-image",
+          "geospatial-imagery"
+        ],
+        "source": "unknown",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "Not published",
+        "media": "Maxar orthorectified imagery; dataset terms not published",
+        "commercial_use": "unknown",
+        "redistribution": "unknown",
+        "notes": "The model-weight DINOv3 License is not a dataset license; the rights basis and redistribution terms for SAT-493M remain undisclosed."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Sampling geography, temporal coverage, privacy review, filtering, deduplication, and image-level provenance are not published."
+        ]
+      },
+      "processing": {
+        "recipe": "Randomly sample 512-by-512 crops from Maxar RGB orthorectified imagery at approximately 0.6-meter ground sampling distance.",
+        "recommended_format": "native",
+        "notes": "No public files exist; do not substitute DINOv3 model weights for a dataset download."
+      },
+      "evidence": {
+        "homepage": "https://github.com/facebookresearch/dinov3",
+        "paper": "https://arxiv.org/abs/2508.10104",
+        "used_by": [
+          "Genesis"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-16",
+      "source_path": "catalog/image/sat-493m.yaml",
+      "scenario_ids": [],
+      "scale_label": "~493M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://github.com/facebookresearch/dinov3/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "genesis"
+      ]
     },
     {
       "id": "seedance-1-pro-human-preference",
@@ -10867,11 +11126,11 @@
       ],
       "description": "The two public PosterCraft training collections: Text-Render-2M for large-scale text rendering and Poster100K for region-aware high-quality poster tuning.",
       "access": {
-        "status": "open",
+        "status": "gated",
         "type": "hosted",
         "url": "https://huggingface.co/PosterCraft/datasets",
-        "requires_account": false,
-        "notes": "The official organization hosts Text-Render-2M and Poster100K as separate downloadable Hugging Face repositories."
+        "requires_account": true,
+        "notes": "The official organization hosts separate repositories; Text-Render-2M currently requires accepting the Hugging Face access gate, while Poster100K remains openly downloadable."
       },
       "scale": {
         "samples": 2198400,
@@ -10925,7 +11184,7 @@
         ]
       },
       "status": "partial",
-      "last_verified": "2026-07-27",
+      "last_verified": "2026-08-16",
       "source_path": "catalog/image/postercraft-public-corpora.yaml",
       "scenario_ids": [
         "image-generation"
@@ -11072,9 +11331,9 @@
       "access": {
         "status": "gated",
         "type": "request",
-        "url": "https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus",
+        "url": "https://www.modelscope.cn/datasets/GAP-Lab/MVHumanNet_plusplus",
         "requires_account": true,
-        "notes": "Users must read the Terms of Use, submit the official form, and use the granted download links."
+        "notes": "Users must read the Terms of Use and submit the official form before downloading the packaged release from the official ModelScope repository."
       },
       "scale": {
         "samples": 645000000,
@@ -11133,7 +11392,7 @@
         "used_by": []
       },
       "status": "partial",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-08-16",
       "source_path": "catalog/3d/mvhumannet-plus-plus.yaml",
       "scenario_ids": [
         "digital-human"
@@ -12237,6 +12496,144 @@
         "videocof-50k"
       ],
       "linked_model_ids": []
+    },
+    {
+      "id": "git-10m",
+      "name": "Git-10M",
+      "organization": "Beihang University and collaborators",
+      "released_at": "2025-01-02",
+      "release_date_source": "https://arxiv.org/abs/2501.00895",
+      "modality": "image",
+      "tasks": [
+        "text-to-image",
+        "remote-sensing-image-generation",
+        "vision-language-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A global multi-resolution remote-sensing image-text corpus with geolocation and resolution metadata plus GPT-4o-generated descriptions.",
+      "derived_from": [
+        {
+          "catalog_id": "million-aid",
+          "relationship": "source-component",
+          "contribution": "Public aerial scene-classification imagery and labels",
+          "notes": "The Git-10M paper explicitly lists Million-AID as a public source component."
+        },
+        {
+          "catalog_id": "geopile",
+          "relationship": "source-component",
+          "contribution": "Multi-source geospatial imagery",
+          "notes": "The Git-10M paper explicitly lists GeoPile as a public source component."
+        },
+        {
+          "catalog_id": "ssl4eo-s12",
+          "relationship": "source-component",
+          "contribution": "Global Sentinel-1 and Sentinel-2 imagery",
+          "notes": "The Git-10M paper explicitly lists SSL4EO-S12 as a public source component."
+        },
+        {
+          "catalog_id": "skyscript",
+          "relationship": "source-component",
+          "contribution": "Satellite imagery and geospatial metadata",
+          "notes": "The Git-10M paper explicitly lists SkyScript as a public source component."
+        },
+        {
+          "catalog_id": "dior",
+          "relationship": "source-component",
+          "contribution": "Optical remote-sensing imagery and scene information",
+          "notes": "The Git-10M paper explicitly lists DIOR as a public source component."
+        },
+        {
+          "catalog_id": "rsicb",
+          "relationship": "source-component",
+          "contribution": "Remote-sensing scene imagery and category labels",
+          "notes": "The Git-10M paper explicitly lists RSI-CB as a public source component."
+        }
+      ],
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://huggingface.co/datasets/lcybuaa/Git-10M",
+        "requires_account": false,
+        "notes": "The official Hugging Face repository hosts 787 Arrow shards; pin the dataset revision and retain every source field before use."
+      },
+      "scale": {
+        "samples": 10500000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The paper reports 10.5M image-text pairs and more than 5.5B caption words, with resolutions from 0.5 to 128 meters per pixel."
+      },
+      "annotations": {
+        "types": [
+          "generation-prompt",
+          "text-caption",
+          "geolocation",
+          "spatial-resolution",
+          "scene-category"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-ND-4.0 repository declaration",
+        "media": "Layered upstream dataset and Google Earth terms",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The repository license does not erase component-specific or Google Earth rights; each sample's source and intended use require separate review."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "text-media-alignment",
+          "deduplication",
+          "provenance"
+        ],
+        "known_limitations": [
+          "GPT-4o captions can hallucinate details despite automated audits and manual sampling.",
+          "The paper reports manual removal of duplicate or redundant ocean scenes, not comprehensive cross-source deduplication.",
+          "A private enhancement model modifies imagery, while its training corpus and possible transformation artifacts are not disclosed."
+        ]
+      },
+      "processing": {
+        "recipe": "Combine six named public corpora with manually selected Google Earth imagery, remove redundant ocean scenes, enhance images, and generate captions with GPT-4o using retained metadata.",
+        "recommended_format": "native",
+        "notes": "Preserve upstream source, coordinates, resolution, original label, generated caption, enhancement status, Arrow shard, and repository revision."
+      },
+      "evidence": {
+        "homepage": "https://huggingface.co/datasets/lcybuaa/Git-10M",
+        "paper": "https://arxiv.org/abs/2501.00895",
+        "used_by": [
+          "Genesis"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-16",
+      "source_path": "catalog/image/git-10m.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "scale_label": "~10.5M",
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/datasets/lcybuaa/Git-10M?expand=lastModified&expand=sha"
+      },
+      "upstream_dataset_ids": [
+        "million-aid",
+        "geopile",
+        "ssl4eo-s12",
+        "skyscript",
+        "dior",
+        "rsicb"
+      ],
+      "downstream_dataset_ids": [],
+      "linked_model_ids": [
+        "genesis"
+      ]
     },
     {
       "id": "moviebench",
@@ -14054,6 +14451,92 @@
       ]
     },
     {
+      "id": "skyscript",
+      "name": "SkyScript",
+      "organization": "University of Wisconsin-Madison and collaborators",
+      "released_at": "2023-12-20",
+      "release_date_source": "https://arxiv.org/abs/2312.12856",
+      "modality": "image",
+      "tasks": [
+        "vision-language-pretraining",
+        "remote-sensing-retrieval"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A global remote-sensing vision-language dataset pairing satellite image patches with OpenStreetMap-derived semantic descriptions and metadata.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://github.com/wangzhecheng/SkyScript",
+        "requires_account": false,
+        "notes": "The official repository publishes S3 download commands for image shards, metadata, and caption variants."
+      },
+      "scale": {
+        "samples": 5200000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The current official repository describes 5.2M image-text pairs; the initial paper release described 2.6M."
+      },
+      "annotations": {
+        "types": [
+          "text-caption",
+          "openstreetmap-tags",
+          "geolocation",
+          "satellite-image"
+        ],
+        "source": "mixed",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Repository code is MIT; dataset-wide metadata license not separately verified",
+        "media": "Source-specific satellite imagery and OpenStreetMap terms",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "The repository code license does not automatically license imagery or OpenStreetMap-derived content; review every collection and caption release."
+      },
+      "quality": {
+        "dimensions": [
+          "text-media-alignment",
+          "visual-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "OpenStreetMap tags and automated caption transformations can be incomplete, stale, or spatially misaligned."
+        ]
+      },
+      "processing": {
+        "recipe": "Pair satellite imagery with geographically aligned OpenStreetMap tags and convert structured tags into natural-language caption variants.",
+        "recommended_format": "native",
+        "notes": "Pin the image shard, metadata file, caption variant, source collection, and repository revision."
+      },
+      "evidence": {
+        "homepage": "https://github.com/wangzhecheng/SkyScript",
+        "paper": "https://arxiv.org/abs/2312.12856",
+        "used_by": [
+          "Git-10M"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-16",
+      "source_path": "catalog/image/skyscript.yaml",
+      "scenario_ids": [],
+      "scale_label": "~5.2M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://github.com/wangzhecheng/SkyScript/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "git-10m"
+      ],
+      "linked_model_ids": []
+    },
+    {
       "id": "laion-coco-aesthetic",
       "name": "LAION-COCO-Aesthetic",
       "organization": "Guangyi Li and LAION-derived dataset contributors",
@@ -15377,6 +15860,99 @@
       "linked_model_ids": []
     },
     {
+      "id": "geopile",
+      "name": "GeoPile",
+      "organization": "University of North Carolina at Charlotte and collaborators",
+      "released_at": "2023-02-09",
+      "release_date_source": "https://arxiv.org/abs/2302.04476",
+      "modality": "image",
+      "tasks": [
+        "image-pretraining",
+        "remote-sensing-representation-learning"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A compact multi-source geospatial pretraining mixture assembled for continual pretraining of vision foundation models.",
+      "derived_from": [
+        {
+          "catalog_id": "million-aid",
+          "relationship": "source-component",
+          "contribution": "Aerial scene-classification imagery",
+          "notes": "The GeoPile paper includes Million-AID among its source collections."
+        }
+      ],
+      "access": {
+        "status": "unavailable",
+        "type": "none",
+        "url": "https://arxiv.org/abs/2302.04476",
+        "requires_account": false,
+        "notes": "The paper describes the mixture, but no durable official standalone GeoPile download was verified in this review."
+      },
+      "scale": {
+        "samples": 600000,
+        "source_items": null,
+        "hours": null,
+        "approximate": true,
+        "notes": "The paper describes roughly 600K images assembled from several public remote-sensing datasets."
+      },
+      "annotations": {
+        "types": [
+          "remote-sensing-image",
+          "inherited-source-label"
+        ],
+        "source": "mixed",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "Not published as a unified dataset license",
+        "media": "Component-specific upstream terms",
+        "commercial_use": "review-required",
+        "redistribution": "review-required",
+        "notes": "Rights must be evaluated per source component; the paper is not a blanket redistribution license for the mixture."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "A unified downloadable manifest, exact deduplication boundary, and mixture-wide media license were not verified."
+        ]
+      },
+      "processing": {
+        "recipe": "Combine diverse geospatial classification sources into a compact continual-pretraining mixture.",
+        "recommended_format": "native",
+        "notes": "Reconstruct only from verified upstream releases and preserve source identity and license metadata."
+      },
+      "evidence": {
+        "homepage": "https://arxiv.org/abs/2302.04476",
+        "paper": "https://arxiv.org/abs/2302.04476",
+        "used_by": [
+          "Git-10M"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-16",
+      "source_path": "catalog/image/geopile.yaml",
+      "scenario_ids": [],
+      "scale_label": "~600K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://arxiv.org/abs/2302.04476v1"
+      },
+      "upstream_dataset_ids": [
+        "million-aid"
+      ],
+      "downstream_dataset_ids": [
+        "git-10m"
+      ],
+      "linked_model_ids": []
+    },
+    {
       "id": "omniobject3d",
       "name": "OmniObject3D",
       "organization": "Shanghai AI Laboratory, CUHK, and SenseTime Research",
@@ -15472,6 +16048,92 @@
       "linked_model_ids": [
         "consid-gen"
       ]
+    },
+    {
+      "id": "ssl4eo-s12",
+      "name": "SSL4EO-S12",
+      "organization": "Technical University of Munich and collaborators",
+      "released_at": "2022-11-14",
+      "release_date_source": "https://arxiv.org/abs/2211.07044",
+      "modality": "image",
+      "tasks": [
+        "self-supervised-pretraining",
+        "earth-observation"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A global multimodal, multitemporal Earth-observation corpus of Sentinel-1 and Sentinel-2 patches sampled across four seasons.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://mediatum.ub.tum.de/1650201",
+        "requires_account": false,
+        "notes": "The official repository links raw and compressed mediaTUM releases and a Hugging Face mirror; the mediaTUM object carries the archival DOI."
+      },
+      "scale": {
+        "samples": 3012948,
+        "source_items": 251079,
+        "hours": null,
+        "approximate": false,
+        "notes": "There are 251,079 locations, three modality/product variants, and four seasonal timestamps per location."
+      },
+      "annotations": {
+        "types": [
+          "sentinel-1-sar",
+          "sentinel-2-multispectral",
+          "geolocation",
+          "season"
+        ],
+        "source": "web-metadata",
+        "languages": [
+          "none"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-4.0",
+        "media": "CC-BY-4.0",
+        "commercial_use": "allowed",
+        "redistribution": "allowed",
+        "notes": "The official repository states that the dataset and pretrained weights use CC BY 4.0; repository code is Apache 2.0."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "temporal-consistency",
+          "provenance"
+        ],
+        "known_limitations": [
+          "The compressed JPEG release is lossy and the maintainers report a possible downstream performance drop."
+        ]
+      },
+      "processing": {
+        "recipe": "Sample global locations, retrieve Sentinel-1 and Sentinel-2 products at four seasonal timestamps, and publish raw and compressed variants.",
+        "recommended_format": "native",
+        "notes": "Preserve location IDs, product level, season, spectral bands, bit depth, compression variant, and DOI revision."
+      },
+      "evidence": {
+        "homepage": "https://github.com/zhu-xlab/SSL4EO-S12",
+        "paper": "https://arxiv.org/abs/2211.07044",
+        "used_by": [
+          "Git-10M"
+        ]
+      },
+      "status": "verified",
+      "last_verified": "2026-08-16",
+      "source_path": "catalog/image/ssl4eo-s12.yaml",
+      "scenario_ids": [],
+      "scale_label": "3M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://github.com/zhu-xlab/SSL4EO-S12/commits/main.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "git-10m"
+      ],
+      "linked_model_ids": []
     },
     {
       "id": "coyo-700m",
@@ -17073,6 +17735,91 @@
       ]
     },
     {
+      "id": "million-aid",
+      "name": "Million-AID",
+      "organization": "Wuhan University",
+      "released_at": "2020-06-22",
+      "release_date_source": "https://arxiv.org/abs/2006.12485",
+      "modality": "image",
+      "tasks": [
+        "remote-sensing-scene-classification",
+        "image-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "data-curation"
+      ],
+      "description": "A large-scale aerial-image collection with one million scenes organized into a hierarchical 51-category remote-sensing taxonomy.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://captain-whu.github.io/DiRS/",
+        "requires_account": false,
+        "notes": "The official project page provides OneDrive and Baidu download routes; availability and archive integrity should be checked before use."
+      },
+      "scale": {
+        "samples": 1000000,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The official project reports one million aerial images across 51 categories."
+      },
+      "annotations": {
+        "types": [
+          "scene-category",
+          "hierarchical-label",
+          "aerial-image"
+        ],
+        "source": "human",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-ND-4.0",
+        "media": "CC-BY-NC-ND-4.0 release with source-imagery rights requiring review",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The official challenge terms identify CC BY-NC-ND 4.0; source imagery and downstream redistribution still require separate review."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Hierarchical scene labels do not describe every visible object or establish generation rights for source imagery."
+        ]
+      },
+      "processing": {
+        "recipe": "Assemble globally distributed aerial scenes and assign a two-level scene taxonomy.",
+        "recommended_format": "native",
+        "notes": "Preserve image identifiers, hierarchy levels, archive provenance, and the exact downloaded release."
+      },
+      "evidence": {
+        "homepage": "https://captain-whu.github.io/DiRS/",
+        "paper": "https://arxiv.org/abs/2006.12485",
+        "used_by": [
+          "Git-10M"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-16",
+      "source_path": "catalog/image/million-aid.yaml",
+      "scenario_ids": [],
+      "scale_label": "1M",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://captain-whu.github.io/DiRS/"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "git-10m",
+        "geopile"
+      ],
+      "linked_model_ids": []
+    },
+    {
       "id": "condensed-movies",
       "name": "Condensed Movies Dataset",
       "organization": "Visual Geometry Group, University of Oxford",
@@ -17273,6 +18020,91 @@
         "omni2sound",
         "hunyuanvideo-foley"
       ]
+    },
+    {
+      "id": "dior",
+      "name": "DIOR",
+      "organization": "Northwestern Polytechnical University",
+      "released_at": "2019-04-08",
+      "release_date_source": "https://arxiv.org/abs/1904.03658",
+      "modality": "image",
+      "tasks": [
+        "remote-sensing-object-detection",
+        "image-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A large optical remote-sensing object-detection benchmark containing diverse scenes and horizontal object bounding boxes.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://gcheng-nwpu.github.io/",
+        "requires_account": false,
+        "notes": "The official author dataset page provides OneDrive and Baidu download links for DIOR and DIOR-R."
+      },
+      "scale": {
+        "samples": 23463,
+        "source_items": 192518,
+        "hours": null,
+        "approximate": false,
+        "notes": "The official page reports 23,463 images and 192,518 annotated object instances."
+      },
+      "annotations": {
+        "types": [
+          "object-category",
+          "horizontal-bounding-box",
+          "remote-sensing-image"
+        ],
+        "source": "human",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "CC-BY-NC-4.0",
+        "media": "CC-BY-NC-4.0 release with source-imagery terms requiring review",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "The official author page states CC BY-NC 4.0; verify underlying imagery rights before redistribution or generative training."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Detection labels do not provide dense captions and may not cover every visible object."
+        ]
+      },
+      "processing": {
+        "recipe": "Collect diverse optical remote-sensing scenes and annotate objects with horizontal bounding boxes.",
+        "recommended_format": "native",
+        "notes": "Preserve image splits, bounding-box convention, category map, and source provenance."
+      },
+      "evidence": {
+        "homepage": "https://gcheng-nwpu.github.io/",
+        "paper": "https://arxiv.org/abs/1904.03658",
+        "used_by": [
+          "Git-10M"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-16",
+      "source_path": "catalog/image/dior.yaml",
+      "scenario_ids": [],
+      "scale_label": "23.5K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://gcheng-nwpu.github.io/"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "git-10m"
+      ],
+      "linked_model_ids": []
     },
     {
       "id": "libritts",
@@ -17916,6 +18748,91 @@
       "linked_model_ids": [
         "infinisplat"
       ]
+    },
+    {
+      "id": "rsicb",
+      "name": "RSI-CB",
+      "organization": "Central South University and collaborators",
+      "released_at": "2017-05-30",
+      "release_date_source": "https://arxiv.org/abs/1705.10450",
+      "modality": "image",
+      "tasks": [
+        "remote-sensing-scene-classification",
+        "image-pretraining"
+      ],
+      "stages": [
+        "pretraining",
+        "evaluation",
+        "data-curation"
+      ],
+      "description": "A crowdsourced remote-sensing scene-classification benchmark with a two-level land-use hierarchy and multiple image-resolution variants.",
+      "access": {
+        "status": "open",
+        "type": "hosted",
+        "url": "https://github.com/lehaifeng/RSI-CB",
+        "requires_account": false,
+        "notes": "The official repository documents the dataset and its research-use access path; mirrors may have different preprocessing or licenses."
+      },
+      "scale": {
+        "samples": 36707,
+        "source_items": null,
+        "hours": null,
+        "approximate": false,
+        "notes": "The RSI-CB128 release contains 36,707 images across 45 scene categories."
+      },
+      "annotations": {
+        "types": [
+          "scene-category",
+          "hierarchical-label",
+          "remote-sensing-image"
+        ],
+        "source": "human",
+        "languages": [
+          "en"
+        ]
+      },
+      "license": {
+        "metadata": "Open for research purposes",
+        "media": "Research-use release; source-image rights require review",
+        "commercial_use": "noncommercial",
+        "redistribution": "review-required",
+        "notes": "Do not import the CC BY-NC license of a third-party Meta-Album derivative into the original RSI-CB release."
+      },
+      "quality": {
+        "dimensions": [
+          "visual-quality",
+          "provenance"
+        ],
+        "known_limitations": [
+          "Counts and preprocessing differ among RSI-CB variants and third-party mirrors."
+        ]
+      },
+      "processing": {
+        "recipe": "Crowdsource geographically diverse remote-sensing scenes and label them with a two-level land-use taxonomy.",
+        "recommended_format": "native",
+        "notes": "Record the exact variant, resolution, category hierarchy, and source repository revision."
+      },
+      "evidence": {
+        "homepage": "https://github.com/lehaifeng/RSI-CB",
+        "paper": "https://arxiv.org/abs/1705.10450",
+        "used_by": [
+          "Git-10M"
+        ]
+      },
+      "status": "partial",
+      "last_verified": "2026-08-16",
+      "source_path": "catalog/image/rsicb.yaml",
+      "scenario_ids": [],
+      "scale_label": "36.7K",
+      "monitoring": {
+        "priority": "high",
+        "source_url": "https://github.com/lehaifeng/RSI-CB/commits/master.atom"
+      },
+      "upstream_dataset_ids": [],
+      "downstream_dataset_ids": [
+        "git-10m"
+      ],
+      "linked_model_ids": []
     },
     {
       "id": "fma",
@@ -18850,6 +19767,127 @@
     }
   ],
   "models": [
+    {
+      "id": "genesis",
+      "name": "Genesis",
+      "organization": "MVRL",
+      "released_at": "2026-08-16",
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "satellite-image-generation",
+        "image-super-resolution",
+        "image-outpainting",
+        "hierarchical-image-generation"
+      ],
+      "access": {
+        "status": "open-weights",
+        "license": "MIT for Genesis code and checkpoints; bundled DINOv3 conditioner remains under the DINOv3 License",
+        "release_url": "https://huggingface.co/MVRL/genesis",
+        "weights_url": "https://huggingface.co/MVRL/genesis",
+        "api_url": null
+      },
+      "architecture": {
+        "family": "Hierarchical flow-matching JiT with parent-conditioned super-resolution and mask-based outpainting operators",
+        "parameters": null,
+        "notes": "B/16 and H/16 checkpoints recursively construct a multi-scale satellite-image quadtree; a frozen DINOv3 ViT-L/16 SAT-493M encoder conditions super-resolution."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": true,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Git-10M",
+            "catalog_id": "git-10m",
+            "role": "pretraining",
+            "availability": "public",
+            "scale": "10.5M image-text pairs",
+            "notes": "The official model card identifies Git-10M as the main training corpus for the hierarchical generation operators."
+          },
+          {
+            "name": "SAT-493M",
+            "catalog_id": "sat-493m",
+            "role": "pretraining",
+            "availability": "not-released",
+            "scale": "493M satellite-image patches",
+            "notes": "Genesis inherits this corpus through its frozen DINOv3 ViT-L/16 SAT-493M conditioning encoder; the images are not released."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "public-dataset",
+              "proprietary"
+            ],
+            "operations": [
+              "flow-matching",
+              "hierarchical-tile-training",
+              "parent-conditioned-super-resolution",
+              "masked-outpainting",
+              "ema-training",
+              "frozen-conditioner"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train complementary super-resolution and outpainting operators for 800K steps on Git-10M while conditioning with a frozen satellite-domain DINOv3 encoder."
+          }
+        ],
+        "strategy_summary": [
+          "Recursively generate a multi-scale quadtree by alternating parent-conditioned detail synthesis and mask-based spatial expansion.",
+          "Use Git-10M directly for generative training and inherit SAT-493M representations through a frozen DINOv3 conditioner."
+        ],
+        "unknowns": [
+          "Exact retained Git-10M subset, sampling weights, train-validation split, prompt handling, cross-source deduplication, and rights review.",
+          "Parameter counts, complete optimizer and augmentation settings, hardware, safety filtering, and any preference or synthetic-data stages."
+        ]
+      },
+      "evidence": {
+        "release": "https://huggingface.co/MVRL/genesis",
+        "technical_report": null,
+        "repository": null
+      },
+      "status": "partial",
+      "last_verified": "2026-08-16",
+      "source_path": "models/image/genesis.yaml",
+      "scenario_ids": [],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining"
+        ],
+        "source_types": [
+          "public-dataset",
+          "proprietary"
+        ],
+        "operations": [
+          "flow-matching",
+          "hierarchical-tile-training",
+          "parent-conditioned-super-resolution",
+          "masked-outpainting",
+          "ema-training",
+          "frozen-conditioner"
+        ],
+        "data_reference_count": 2,
+        "linked_dataset_count": 2,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 1,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://huggingface.co/api/models/MVRL/genesis?expand=lastModified&expand=sha"
+      },
+      "ranking_positions": [],
+      "linked_dataset_ids": [
+        "git-10m",
+        "sat-493m"
+      ]
+    },
     {
       "id": "scope",
       "name": "SCoPE",
@@ -23835,7 +24873,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1250,
+          "score": 1249,
           "score_label": "Elo",
           "entry_model": "Seedream 5.0 Pro",
           "component_count": 1
@@ -23844,7 +24882,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 8,
-          "score": 1282,
+          "score": 1286,
           "score_label": "Elo",
           "entry_model": "Seedream 5.0 Pro",
           "component_count": 1
@@ -24180,7 +25218,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 1,
-          "score": 1261,
+          "score": 1262,
           "score_label": "Elo",
           "entry_model": "Reve 2.1",
           "component_count": 1
@@ -24189,7 +25227,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1326,
+          "score": 1328,
           "score_label": "Elo",
           "entry_model": "Reve 2.1",
           "component_count": 1
@@ -24786,10 +25824,19 @@
           "component_count": 1
         },
         {
+          "ranking_id": "image-editing",
+          "provider": "Artificial Analysis",
+          "rank": 15,
+          "score": 1201,
+          "score_label": "Elo",
+          "entry_model": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
+          "component_count": 1
+        },
+        {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 7,
-          "score": 1292,
+          "score": 1298,
           "score_label": "Elo",
           "entry_model": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
           "component_count": 1
@@ -25055,7 +26102,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1112,
+          "score": 1113,
           "score_label": "Elo",
           "entry_model": "HappyHorse-1.1",
           "component_count": 1
@@ -25589,7 +26636,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 13,
-          "score": 1228,
+          "score": 1231,
           "score_label": "Elo",
           "entry_model": "HiDream-O1-Image-1.5",
           "component_count": 1
@@ -26329,7 +27376,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 5,
-          "score": 1310,
+          "score": 1312,
           "score_label": "Elo",
           "entry_model": "MAI-Image-2.5",
           "component_count": 1
@@ -26338,7 +27385,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 12,
-          "score": 1230,
+          "score": 1235,
           "score_label": "Elo",
           "entry_model": "MAI-Image-2.5-Flash",
           "component_count": 1
@@ -26774,7 +27821,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 6,
-          "score": 1016,
+          "score": 1017,
           "score_label": "Elo",
           "entry_model": "Aleph 2.0",
           "component_count": 1
@@ -27745,7 +28792,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 9,
-          "score": 1237,
+          "score": 1241,
           "score_label": "Elo",
           "entry_model": "grok-imagine-image-quality",
           "component_count": 1
@@ -27871,7 +28918,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 12,
-          "score": 1219,
+          "score": 1220,
           "score_label": "Elo",
           "entry_model": "Luma UNI 1 Max",
           "component_count": 1
@@ -27880,7 +28927,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 14,
-          "score": 1226,
+          "score": 1231,
           "score_label": "Elo",
           "entry_model": "Luma UNI 1 Max",
           "component_count": 1
@@ -28352,7 +29399,7 @@
           "ranking_id": "image-editing",
           "provider": "Artificial Analysis",
           "rank": 2,
-          "score": 1258,
+          "score": 1257,
           "score_label": "Elo",
           "entry_model": "GPT Image 2 (high)",
           "component_count": 1
@@ -28361,7 +29408,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 1,
-          "score": 1370,
+          "score": 1376,
           "score_label": "Elo",
           "entry_model": "GPT Image 2 (high)",
           "component_count": 1
@@ -29057,7 +30104,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 7,
-          "score": 1091,
+          "score": 1092,
           "score_label": "Elo",
           "entry_model": "Wan 2.7",
           "component_count": 1
@@ -29084,7 +30131,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 4,
-          "score": 1074,
+          "score": 1073,
           "score_label": "Elo",
           "entry_model": "Wan 2.7",
           "component_count": 1
@@ -29291,7 +30338,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 14,
-          "score": 1071,
+          "score": 1070,
           "score_label": "Elo",
           "entry_model": "PixVerse V6",
           "component_count": 1
@@ -29923,7 +30970,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 3,
-          "score": 1323,
+          "score": 1327,
           "score_label": "Elo",
           "entry_model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
           "component_count": 1
@@ -30374,7 +31421,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 9,
-          "score": 1089,
+          "score": 1090,
           "score_label": "Elo",
           "entry_model": "SkyReels V4",
           "component_count": 1
@@ -30392,7 +31439,7 @@
           "ranking_id": "video-editing",
           "provider": "Artificial Analysis",
           "rank": 8,
-          "score": 947,
+          "score": 948,
           "score_label": "Elo",
           "entry_model": "SkyReels V4",
           "component_count": 1
@@ -30849,7 +31896,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 10,
-          "score": 1234,
+          "score": 1240,
           "score_label": "Elo",
           "entry_model": "Qwen Image 2.0 Pro (2026-04-22)",
           "component_count": 1
@@ -31366,7 +32413,7 @@
           "ranking_id": "image-to-video",
           "provider": "Artificial Analysis",
           "rank": 15,
-          "score": 1068,
+          "score": 1067,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 720p (Standard)",
           "component_count": 1
@@ -31393,7 +32440,7 @@
           "ranking_id": "text-to-video",
           "provider": "Artificial Analysis",
           "rank": 13,
-          "score": 1089,
+          "score": 1090,
           "score_label": "Elo",
           "entry_model": "Kling 3.0 Omni 720p (Standard)",
           "component_count": 1
@@ -33869,7 +34916,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 4,
-          "score": 1313,
+          "score": 1317,
           "score_label": "Elo",
           "entry_model": "GPT Image 1.5 (high)",
           "component_count": 1
@@ -33966,19 +35013,10 @@
       },
       "ranking_positions": [
         {
-          "ranking_id": "image-editing",
-          "provider": "Artificial Analysis",
-          "rank": 15,
-          "score": 1201,
-          "score_label": "Elo",
-          "entry_model": "FLUX.2 [max]",
-          "component_count": 1
-        },
-        {
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 11,
-          "score": 1232,
+          "score": 1237,
           "score_label": "Elo",
           "entry_model": "FLUX.2 [max]",
           "component_count": 1
@@ -34707,7 +35745,7 @@
           "ranking_id": "text-to-image",
           "provider": "Artificial Analysis",
           "rank": 6,
-          "score": 1299,
+          "score": 1303,
           "score_label": "Elo",
           "entry_model": "Nano Banana Pro (Gemini 3 Pro Image)",
           "component_count": 1
@@ -35491,6 +36529,213 @@
       "linked_dataset_ids": [
         "phantom-data",
         "humoset"
+      ]
+    },
+    {
+      "id": "seedream-4-0",
+      "name": "Seedream 4.0",
+      "organization": "ByteDance Seed",
+      "released_at": "2025-09-09",
+      "ranking_names": [
+        "Seedream 4.0"
+      ],
+      "modalities": [
+        "image"
+      ],
+      "tasks": [
+        "text-to-image",
+        "image-editing",
+        "multi-image-editing",
+        "image-generation"
+      ],
+      "access": {
+        "status": "api-only",
+        "license": "BytePlus ModelArk service terms",
+        "release_url": "https://seed.bytedance.com/en/blog/seedream-4-0-officially-released-beyond-drawing-into-imagination",
+        "weights_url": null,
+        "api_url": "https://docs.byteplus.com/en/docs/ModelArk/1824718"
+      },
+      "architecture": {
+        "family": "Unified multimodal diffusion transformer with high-compression VAE and Seed1.5-VL prompt engineering",
+        "parameters": null,
+        "notes": "One model handles generation and editing at native 1K-to-4K resolution; the report also describes adversarial distillation, distribution matching, quantization, and speculative decoding for serving."
+      },
+      "data": {
+        "disclosure_level": "partial",
+        "exact_datasets_disclosed": false,
+        "exact_mixture_disclosed": false,
+        "datasets": [
+          {
+            "name": "Seedream 4.0 multimodal pretraining mixture",
+            "catalog_id": null,
+            "role": "pretraining",
+            "availability": "not-released",
+            "scale": "Billions of text-image pairs",
+            "notes": "The report describes natural and synthetic knowledge imagery but does not name the underlying corpus, providers, rights mix, or exact count."
+          },
+          {
+            "name": "Seedream 4.0 editing triples",
+            "catalog_id": null,
+            "role": "fine-tuning",
+            "availability": "not-released",
+            "scale": "Large amount; exact count not disclosed",
+            "notes": "Each sample combines reference image, target image, and instruction with three caption granularities and consistent terminology."
+          },
+          {
+            "name": "Seedream 4.0 human preference data",
+            "catalog_id": null,
+            "role": "preference",
+            "availability": "not-released",
+            "scale": null,
+            "notes": "RLHF is disclosed as a post-training stage, but annotator protocol, comparisons, counts, safety dimensions, and retained rates are not published."
+          },
+          {
+            "name": "MagicBench 4.0",
+            "catalog_id": "magicbench-4-0",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "725 bilingual prompt cases",
+            "notes": "This is an evaluation benchmark and is not recorded as training data."
+          },
+          {
+            "name": "DreamEval",
+            "catalog_id": "dreameval",
+            "role": "evaluation",
+            "availability": "not-released",
+            "scale": "1,600 prompts",
+            "notes": "This is an evaluation benchmark and is not recorded as training data."
+          }
+        ],
+        "stages": [
+          {
+            "name": "pretraining",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "synthetic",
+              "undisclosed"
+            ],
+            "operations": [
+              "quality-filtering",
+              "semantic-deduplication",
+              "visual-deduplication",
+              "recaptioning",
+              "cross-modal-retrieval",
+              "multi-resolution-training"
+            ],
+            "scale_disclosed": true,
+            "strategy": "Train first around 512-square resolution and then from 1024-square through 4096-square on billions of filtered, deduplicated, recaptioned natural and synthetic image-text pairs."
+          },
+          {
+            "name": "fine-tuning",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "proprietary",
+              "synthetic",
+              "human-feedback"
+            ],
+            "operations": [
+              "continual-training",
+              "supervised-fine-tuning",
+              "joint-generation-editing",
+              "multi-granularity-captioning"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Jointly post-train text-to-image and editing behavior with continual training and supervised fine-tuning over generation examples and structured editing triples."
+          },
+          {
+            "name": "preference",
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "source_types": [
+              "human-feedback",
+              "proprietary"
+            ],
+            "operations": [
+              "rlhf"
+            ],
+            "scale_disclosed": false,
+            "strategy": "Apply human-feedback reinforcement learning after supervised stages without publishing preference volume or collection protocol."
+          }
+        ],
+        "strategy_summary": [
+          "Filter low-quality imagery, apply semantic and low-level visual deduplication, refine captions, and strengthen cross-modal retrieval before multi-resolution training.",
+          "Mix natural knowledge figures with synthetic OCR and LaTeX formula imagery, then jointly optimize generation and instruction-based editing.",
+          "Accelerate serving with adversarial distillation, distribution matching, 4-bit or 8-bit quantization, and speculative decoding."
+        ],
+        "unknowns": [
+          "Exact dataset identities, source URLs, acquisition dates, rights and consent basis, language distribution, mixture weights, retained counts, and safety or privacy filtering.",
+          "Editing-triple provenance, synthetic-data generators, human-preference counts and protocol, stage-level compute, and benchmark prompt files."
+        ]
+      },
+      "evidence": {
+        "release": "https://seed.bytedance.com/en/blog/seedream-4-0-officially-released-beyond-drawing-into-imagination",
+        "technical_report": "https://arxiv.org/abs/2509.20427",
+        "repository": null
+      },
+      "status": "partial",
+      "last_verified": "2026-08-16",
+      "source_path": "models/image/seedream-4-0.yaml",
+      "scenario_ids": [
+        "image-generation"
+      ],
+      "strategy_profile": {
+        "stage_names": [
+          "pretraining",
+          "fine-tuning",
+          "preference"
+        ],
+        "source_types": [
+          "proprietary",
+          "synthetic",
+          "undisclosed",
+          "human-feedback"
+        ],
+        "operations": [
+          "quality-filtering",
+          "semantic-deduplication",
+          "visual-deduplication",
+          "recaptioning",
+          "cross-modal-retrieval",
+          "multi-resolution-training",
+          "continual-training",
+          "supervised-fine-tuning",
+          "joint-generation-editing",
+          "multi-granularity-captioning",
+          "rlhf"
+        ],
+        "data_reference_count": 5,
+        "linked_dataset_count": 2,
+        "scale_disclosed_stage_count": 1,
+        "stage_count": 3,
+        "unknown_count": 2
+      },
+      "monitoring": {
+        "priority": "critical",
+        "source_url": "https://docs.byteplus.com/en/docs/ModelArk/1824718"
+      },
+      "ranking_positions": [
+        {
+          "ranking_id": "text-to-image",
+          "provider": "Artificial Analysis",
+          "rank": 15,
+          "score": 1230,
+          "score_label": "Elo",
+          "entry_model": "Seedream 4.0",
+          "component_count": 1
+        }
+      ],
+      "linked_dataset_ids": [
+        "magicbench-4-0",
+        "dreameval"
       ]
     },
     {
@@ -37542,6 +38787,22 @@
       "reference_name": "AVGen-Bench"
     },
     {
+      "model_id": "genesis",
+      "dataset_id": "git-10m",
+      "role": "pretraining",
+      "availability": "public",
+      "scale": "10.5M image-text pairs",
+      "reference_name": "Git-10M"
+    },
+    {
+      "model_id": "genesis",
+      "dataset_id": "sat-493m",
+      "role": "pretraining",
+      "availability": "not-released",
+      "scale": "493M satellite-image patches",
+      "reference_name": "SAT-493M"
+    },
+    {
       "model_id": "gpic-baselines",
       "dataset_id": "gpic",
       "role": "pretraining",
@@ -38462,6 +39723,22 @@
       "reference_name": "OmniEdit-Bench"
     },
     {
+      "model_id": "seedream-4-0",
+      "dataset_id": "dreameval",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "1,600 prompts",
+      "reference_name": "DreamEval"
+    },
+    {
+      "model_id": "seedream-4-0",
+      "dataset_id": "magicbench-4-0",
+      "role": "evaluation",
+      "availability": "not-released",
+      "scale": "725 bilingual prompt cases",
+      "reference_name": "MagicBench 4.0"
+    },
+    {
       "model_id": "sefi-image",
       "dataset_id": "fine-t2i",
       "role": "fine-tuning",
@@ -39053,6 +40330,13 @@
       "notes": "The ElasticTTT paper states that its test set follows the DAVIS selection protocol; the public repository contains 25 source videos and their prompt table."
     },
     {
+      "source_dataset_id": "dior",
+      "derived_dataset_id": "git-10m",
+      "relationship": "source-component",
+      "contribution": "Optical remote-sensing imagery and scene information",
+      "notes": "The Git-10M paper explicitly lists DIOR as a public source component."
+    },
+    {
       "source_dataset_id": "dl3dv-10k",
       "derived_dataset_id": "shadow-library",
       "relationship": "source-component",
@@ -39065,6 +40349,13 @@
       "relationship": "source-component",
       "contribution": "Public high-quality image-text examples",
       "notes": "Fine-T2I is explicitly named, but its retained count and mixture share are not disclosed."
+    },
+    {
+      "source_dataset_id": "geopile",
+      "derived_dataset_id": "git-10m",
+      "relationship": "source-component",
+      "contribution": "Multi-source geospatial imagery",
+      "notes": "The Git-10M paper explicitly lists GeoPile as a public source component."
     },
     {
       "source_dataset_id": "helios-training-corpus",
@@ -39107,6 +40398,20 @@
       "relationship": "filtered-subset",
       "contribution": "LAION-2B component image URLs, alt text, and metadata",
       "notes": "LAION-2B is a named component of the broader LAION-5B release; MoRoute does not publish its retained identifiers."
+    },
+    {
+      "source_dataset_id": "million-aid",
+      "derived_dataset_id": "geopile",
+      "relationship": "source-component",
+      "contribution": "Aerial scene-classification imagery",
+      "notes": "The GeoPile paper includes Million-AID among its source collections."
+    },
+    {
+      "source_dataset_id": "million-aid",
+      "derived_dataset_id": "git-10m",
+      "relationship": "source-component",
+      "contribution": "Public aerial scene-classification imagery and labels",
+      "notes": "The Git-10M paper explicitly lists Million-AID as a public source component."
     },
     {
       "source_dataset_id": "miradata",
@@ -39207,6 +40512,13 @@
       "notes": "The public TalkVerse metadata exposes a Panda-70M partition of approximately 1.34M rows after TalkVerse-specific filtering and annotation."
     },
     {
+      "source_dataset_id": "rsicb",
+      "derived_dataset_id": "git-10m",
+      "relationship": "source-component",
+      "contribution": "Remote-sensing scene imagery and category labels",
+      "notes": "The Git-10M paper explicitly lists RSI-CB as a public source component."
+    },
+    {
       "source_dataset_id": "sefi-image-internal-pretraining-corpus",
       "derived_dataset_id": "sefi-image-synthetic-text-rendered-corpus",
       "relationship": "transformed-derivative",
@@ -39226,6 +40538,20 @@
       "relationship": "source-component",
       "contribution": "source short-film clips",
       "notes": "The paper names Short-Films-20K among the public datasets used to source original audiovisual clips; retained counts are not disclosed."
+    },
+    {
+      "source_dataset_id": "skyscript",
+      "derived_dataset_id": "git-10m",
+      "relationship": "source-component",
+      "contribution": "Satellite imagery and geospatial metadata",
+      "notes": "The Git-10M paper explicitly lists SkyScript as a public source component."
+    },
+    {
+      "source_dataset_id": "ssl4eo-s12",
+      "derived_dataset_id": "git-10m",
+      "relationship": "source-component",
+      "contribution": "Global Sentinel-1 and Sentinel-2 imagery",
+      "notes": "The Git-10M paper explicitly lists SSL4EO-S12 as a public source component."
     },
     {
       "source_dataset_id": "vggsound",
@@ -41197,9 +42523,9 @@
           "rank": 1,
           "creator": "Reve",
           "model": "Reve 2.1",
-          "score": 1261,
+          "score": 1262,
           "confidence_interval": "-10/10",
-          "samples": 4548,
+          "samples": 4582,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41219,9 +42545,9 @@
           "rank": 2,
           "creator": "OpenAI",
           "model": "GPT Image 2 (high)",
-          "score": 1258,
+          "score": 1257,
           "confidence_interval": "-6/6",
-          "samples": 18142,
+          "samples": 18171,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41243,7 +42569,7 @@
           "model": "MAI-Image-2.5",
           "score": 1257,
           "confidence_interval": "-8/8",
-          "samples": 11229,
+          "samples": 11252,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41265,7 +42591,7 @@
           "model": "GPT Image 1.5 (high)",
           "score": 1252,
           "confidence_interval": "-7/7",
-          "samples": 11551,
+          "samples": 11566,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41285,9 +42611,9 @@
           "rank": 5,
           "creator": "Bytedance",
           "model": "Seedream 5.0 Pro",
-          "score": 1250,
+          "score": 1249,
           "confidence_interval": "-11/11",
-          "samples": 3353,
+          "samples": 3371,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41309,7 +42635,7 @@
           "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
           "score": 1249,
           "confidence_interval": "-7/7",
-          "samples": 12506,
+          "samples": 12531,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41331,7 +42657,7 @@
           "model": "Nano Banana Pro (Gemini 3 Pro Image)",
           "score": 1244,
           "confidence_interval": "-7/7",
-          "samples": 10868,
+          "samples": 10888,
           "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41353,7 +42679,7 @@
           "model": "MAI-Image-2.5-Flash",
           "score": 1233,
           "confidence_interval": "-9/9",
-          "samples": 4924,
+          "samples": 4950,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41375,7 +42701,7 @@
           "model": "grok-imagine-image-quality",
           "score": 1228,
           "confidence_interval": "-8/8",
-          "samples": 10088,
+          "samples": 10117,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41397,7 +42723,7 @@
           "model": "HunyuanImage 3.0 Instruct (Fal)",
           "score": 1224,
           "confidence_interval": "-7/7",
-          "samples": 8889,
+          "samples": 8897,
           "released": "Jan 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -41419,7 +42745,7 @@
           "model": "DreamImage 2.0",
           "score": 1221,
           "confidence_interval": "-11/11",
-          "samples": 2868,
+          "samples": 2884,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41437,9 +42763,9 @@
           "rank": 12,
           "creator": "Luma Labs",
           "model": "Luma UNI 1 Max",
-          "score": 1219,
+          "score": 1220,
           "confidence_interval": "-8/8",
-          "samples": 6178,
+          "samples": 6196,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41461,7 +42787,7 @@
           "model": "grok-imagine-image",
           "score": 1214,
           "confidence_interval": "-7/7",
-          "samples": 9096,
+          "samples": 9106,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41483,7 +42809,7 @@
           "model": "Kling Image 3.0 Omni",
           "score": 1210,
           "confidence_interval": "-7/7",
-          "samples": 8695,
+          "samples": 8706,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41501,25 +42827,25 @@
         },
         {
           "rank": 15,
-          "creator": "Black Forest Labs",
-          "model": "FLUX.2 [max]",
+          "creator": "Google",
+          "model": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
           "score": 1201,
-          "confidence_interval": "-7/7",
-          "samples": 9965,
-          "released": "Dec 2025",
+          "confidence_interval": "-8/8",
+          "samples": 8735,
+          "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": [],
           "components": [
             {
-              "name": "FLUX.2 [max]",
-              "model_id": "flux-2-max"
+              "name": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
+              "model_id": "gemini-3-1-flash-lite-image"
             }
           ],
           "model_ids": [
-            "flux-2-max"
+            "gemini-3-1-flash-lite-image"
           ],
-          "model_id": "flux-2-max"
+          "model_id": "gemini-3-1-flash-lite-image"
         }
       ]
     },
@@ -41540,7 +42866,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1198,
           "confidence_interval": "-7/7",
-          "samples": 12605,
+          "samples": 12647,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41562,7 +42888,7 @@
           "model": "MiniMax H3",
           "score": 1192,
           "confidence_interval": "-9/9",
-          "samples": 5758,
+          "samples": 5791,
           "released": "Jul 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -41584,7 +42910,7 @@
           "model": "Gemini Omni Flash",
           "score": 1191,
           "confidence_interval": "-9/9",
-          "samples": 7090,
+          "samples": 7139,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41606,7 +42932,7 @@
           "model": "grok-imagine-video-1.5",
           "score": 1114,
           "confidence_interval": "-8/8",
-          "samples": 5147,
+          "samples": 5181,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41626,9 +42952,9 @@
           "rank": 5,
           "creator": "Alibaba-ATH",
           "model": "HappyHorse-1.1",
-          "score": 1112,
+          "score": 1113,
           "confidence_interval": "-8/8",
-          "samples": 8041,
+          "samples": 8105,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41650,7 +42976,7 @@
           "model": "MAGI-2 Preview",
           "score": 1107,
           "confidence_interval": "-8/8",
-          "samples": 10783,
+          "samples": 10814,
           "released": "Aug 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -41668,9 +42994,9 @@
           "rank": 7,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "score": 1091,
+          "score": 1092,
           "confidence_interval": "-8/8",
-          "samples": 4468,
+          "samples": 4496,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41692,7 +43018,7 @@
           "model": "HappyHorse-1.0",
           "score": 1090,
           "confidence_interval": "-8/8",
-          "samples": 7795,
+          "samples": 7819,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41712,9 +43038,9 @@
           "rank": 9,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "score": 1089,
+          "score": 1090,
           "confidence_interval": "-8/8",
-          "samples": 4747,
+          "samples": 4766,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41736,7 +43062,7 @@
           "model": "Veo 3.1",
           "score": 1086,
           "confidence_interval": "-7/7",
-          "samples": 7893,
+          "samples": 7911,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41758,7 +43084,7 @@
           "model": "grok-imagine-video",
           "score": 1079,
           "confidence_interval": "-7/7",
-          "samples": 12607,
+          "samples": 12654,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41780,7 +43106,7 @@
           "model": "Kling 3.0 1080p (Pro)",
           "score": 1077,
           "confidence_interval": "-7/7",
-          "samples": 12203,
+          "samples": 12241,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41802,7 +43128,7 @@
           "model": "Veo 3.1 Fast",
           "score": 1076,
           "confidence_interval": "-7/7",
-          "samples": 11562,
+          "samples": 11596,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41822,9 +43148,9 @@
           "rank": 14,
           "creator": "PixVerse",
           "model": "PixVerse V6",
-          "score": 1071,
+          "score": 1070,
           "confidence_interval": "-7/7",
-          "samples": 9215,
+          "samples": 9223,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41844,9 +43170,9 @@
           "rank": 15,
           "creator": "KlingAI",
           "model": "Kling 3.0 720p (Standard)",
-          "score": 1068,
+          "score": 1067,
           "confidence_interval": "-7/7",
-          "samples": 12233,
+          "samples": 12277,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41871,7 +43197,7 @@
       "modality": "image",
       "score_label": "Elo",
       "date_label": "模型发布",
-      "coverage_policy": "monitor",
+      "coverage_policy": "required",
       "source_url": "https://artificialanalysis.ai/image/leaderboard/text-to-image/",
       "fetch_url": "https://artificialanalysis.ai/image/leaderboard/text-to-image/",
       "entries": [
@@ -41879,9 +43205,9 @@
           "rank": 1,
           "creator": "OpenAI",
           "model": "GPT Image 2 (high)",
-          "score": 1370,
+          "score": 1376,
           "confidence_interval": "-10/10",
-          "samples": 13336,
+          "samples": 14295,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41901,9 +43227,9 @@
           "rank": 2,
           "creator": "Reve",
           "model": "Reve 2.1",
-          "score": 1326,
+          "score": 1328,
           "confidence_interval": "-9/9",
-          "samples": 15066,
+          "samples": 16013,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41923,9 +43249,9 @@
           "rank": 3,
           "creator": "Google",
           "model": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-          "score": 1323,
-          "confidence_interval": "-9/9",
-          "samples": 14767,
+          "score": 1327,
+          "confidence_interval": "-8/8",
+          "samples": 15649,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41945,9 +43271,9 @@
           "rank": 4,
           "creator": "OpenAI",
           "model": "GPT Image 1.5 (high)",
-          "score": 1313,
-          "confidence_interval": "-10/10",
-          "samples": 13184,
+          "score": 1317,
+          "confidence_interval": "-9/9",
+          "samples": 14082,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41967,9 +43293,9 @@
           "rank": 5,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5",
-          "score": 1310,
+          "score": 1312,
           "confidence_interval": "-9/9",
-          "samples": 14529,
+          "samples": 15456,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -41989,9 +43315,9 @@
           "rank": 6,
           "creator": "Google",
           "model": "Nano Banana Pro (Gemini 3 Pro Image)",
-          "score": 1299,
+          "score": 1303,
           "confidence_interval": "-9/9",
-          "samples": 13340,
+          "samples": 14251,
           "released": "Nov 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42011,9 +43337,9 @@
           "rank": 7,
           "creator": "Google",
           "model": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
-          "score": 1292,
+          "score": 1298,
           "confidence_interval": "-9/9",
-          "samples": 13652,
+          "samples": 14523,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42033,9 +43359,9 @@
           "rank": 8,
           "creator": "Bytedance",
           "model": "Seedream 5.0 Pro",
-          "score": 1282,
+          "score": 1286,
           "confidence_interval": "-9/9",
-          "samples": 11291,
+          "samples": 12032,
           "released": "Jul 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42055,9 +43381,9 @@
           "rank": 9,
           "creator": "SpaceXAI",
           "model": "grok-imagine-image-quality",
-          "score": 1237,
+          "score": 1241,
           "confidence_interval": "-8/8",
-          "samples": 16074,
+          "samples": 16921,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42077,9 +43403,9 @@
           "rank": 10,
           "creator": "Alibaba",
           "model": "Qwen Image 2.0 Pro (2026-04-22)",
-          "score": 1234,
+          "score": 1240,
           "confidence_interval": "-10/10",
-          "samples": 4669,
+          "samples": 5361,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42099,9 +43425,9 @@
           "rank": 11,
           "creator": "Black Forest Labs",
           "model": "FLUX.2 [max]",
-          "score": 1232,
+          "score": 1237,
           "confidence_interval": "-9/9",
-          "samples": 9235,
+          "samples": 10064,
           "released": "Dec 2025",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42121,9 +43447,9 @@
           "rank": 12,
           "creator": "Microsoft AI",
           "model": "MAI-Image-2.5-Flash",
-          "score": 1230,
+          "score": 1235,
           "confidence_interval": "-10/10",
-          "samples": 4475,
+          "samples": 5172,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42143,9 +43469,9 @@
           "rank": 13,
           "creator": "HiDream",
           "model": "HiDream-O1-Image-1.5",
-          "score": 1228,
+          "score": 1231,
           "confidence_interval": "-9/9",
-          "samples": 11862,
+          "samples": 12580,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42165,9 +43491,9 @@
           "rank": 14,
           "creator": "Luma Labs",
           "model": "Luma UNI 1 Max",
-          "score": 1226,
+          "score": 1231,
           "confidence_interval": "-10/10",
-          "samples": 4073,
+          "samples": 4800,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42185,23 +43511,25 @@
         },
         {
           "rank": 15,
-          "creator": "Krea",
-          "model": "Krea 2 Medium Turbo",
-          "score": 1223,
+          "creator": "ByteDance Seed",
+          "model": "Seedream 4.0",
+          "score": 1230,
           "confidence_interval": "-10/10",
-          "samples": 4668,
-          "released": "Jun 2026",
+          "samples": 4686,
+          "released": "Sept 2025",
           "open_weights": false,
           "license": "Proprietary / service",
           "component_models": [],
           "components": [
             {
-              "name": "Krea 2 Medium Turbo",
-              "model_id": null
+              "name": "Seedream 4.0",
+              "model_id": "seedream-4-0"
             }
           ],
-          "model_ids": [],
-          "model_id": null
+          "model_ids": [
+            "seedream-4-0"
+          ],
+          "model_id": "seedream-4-0"
         }
       ]
     },
@@ -42222,7 +43550,7 @@
           "model": "Gemini Omni Flash",
           "score": 1241,
           "confidence_interval": "-7/7",
-          "samples": 12634,
+          "samples": 12676,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42244,7 +43572,7 @@
           "model": "MiniMax H3",
           "score": 1238,
           "confidence_interval": "-9/9",
-          "samples": 7195,
+          "samples": 7213,
           "released": "Jul 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -42266,7 +43594,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1222,
           "confidence_interval": "-6/6",
-          "samples": 19295,
+          "samples": 19324,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42288,7 +43616,7 @@
           "model": "Wan2.7-260612",
           "score": 1160,
           "confidence_interval": "-7/7",
-          "samples": 13269,
+          "samples": 13331,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42310,7 +43638,7 @@
           "model": "HappyHorse-1.1",
           "score": 1146,
           "confidence_interval": "-7/7",
-          "samples": 13563,
+          "samples": 13612,
           "released": "Jun 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42332,7 +43660,7 @@
           "model": "HappyHorse-1.0",
           "score": 1126,
           "confidence_interval": "-7/7",
-          "samples": 8674,
+          "samples": 8701,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42354,7 +43682,7 @@
           "model": "Wan 2.7",
           "score": 1111,
           "confidence_interval": "-8/8",
-          "samples": 5118,
+          "samples": 5146,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42376,7 +43704,7 @@
           "model": "Kling 3.0 1080p (Pro)",
           "score": 1109,
           "confidence_interval": "-6/6",
-          "samples": 17471,
+          "samples": 17504,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42398,7 +43726,7 @@
           "model": "SkyReels V4",
           "score": 1106,
           "confidence_interval": "-7/7",
-          "samples": 5633,
+          "samples": 5655,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42420,7 +43748,7 @@
           "model": "Kling 3.0 720p (Standard)",
           "score": 1101,
           "confidence_interval": "-6/6",
-          "samples": 16759,
+          "samples": 16803,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42442,7 +43770,7 @@
           "model": "Veo 3.1",
           "score": 1091,
           "confidence_interval": "-7/7",
-          "samples": 8651,
+          "samples": 8665,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42464,7 +43792,7 @@
           "model": "Veo 3.1 Fast",
           "score": 1090,
           "confidence_interval": "-6/6",
-          "samples": 15778,
+          "samples": 15809,
           "released": "Jan 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42484,9 +43812,9 @@
           "rank": 13,
           "creator": "KlingAI",
           "model": "Kling 3.0 Omni 720p (Standard)",
-          "score": 1089,
+          "score": 1090,
           "confidence_interval": "-7/7",
-          "samples": 8263,
+          "samples": 8273,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42508,7 +43836,7 @@
           "model": "Kling 3.0 Omni 1080p (Pro)",
           "score": 1089,
           "confidence_interval": "-7/7",
-          "samples": 8449,
+          "samples": 8457,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42530,7 +43858,7 @@
           "model": "Veo 3.1 Lite",
           "score": 1088,
           "confidence_interval": "-7/7",
-          "samples": 8086,
+          "samples": 8100,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42565,7 +43893,7 @@
           "model": "MiniMax H3",
           "score": 1129,
           "confidence_interval": "-6/6",
-          "samples": 11494,
+          "samples": 11523,
           "released": "Jul 2026",
           "open_weights": true,
           "license": "Open weights",
@@ -42587,7 +43915,7 @@
           "model": "Gemini Omni Flash",
           "score": 1126,
           "confidence_interval": "-5/5",
-          "samples": 14056,
+          "samples": 14090,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42609,7 +43937,7 @@
           "model": "HappyHorse-1.0",
           "score": 1092,
           "confidence_interval": "-5/5",
-          "samples": 21714,
+          "samples": 21765,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42629,9 +43957,9 @@
           "rank": 4,
           "creator": "Alibaba",
           "model": "Wan 2.7",
-          "score": 1074,
+          "score": 1073,
           "confidence_interval": "-5/5",
-          "samples": 17492,
+          "samples": 17528,
           "released": "Apr 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42653,7 +43981,7 @@
           "model": "Dreamina Seedance 2.0 720p",
           "score": 1037,
           "confidence_interval": "-5/5",
-          "samples": 21402,
+          "samples": 21428,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42673,9 +44001,9 @@
           "rank": 6,
           "creator": "Runway",
           "model": "Aleph 2.0",
-          "score": 1016,
+          "score": 1017,
           "confidence_interval": "-5/5",
-          "samples": 19962,
+          "samples": 19996,
           "released": "May 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42697,7 +44025,7 @@
           "model": "Kling 3.0 Omni 1080p (Pro)",
           "score": 1000,
           "confidence_interval": "0/0",
-          "samples": 18156,
+          "samples": 18185,
           "released": "Feb 2026",
           "open_weights": false,
           "license": "Proprietary / service",
@@ -42717,9 +44045,9 @@
           "rank": 8,
           "creator": "Skywork AI",
           "model": "SkyReels V4",
-          "score": 947,
+          "score": 948,
           "confidence_interval": "-6/6",
-          "samples": 15019,
+          "samples": 15040,
           "released": "Mar 2026",
           "open_weights": false,
           "license": "Proprietary / service",

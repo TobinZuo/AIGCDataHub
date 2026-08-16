@@ -25,9 +25,9 @@ derived_from:
 access:
   status: gated
   type: request
-  url: https://github.com/GAP-LAB-CUHK-SZ/MVHumanNet_plusplus
+  url: https://www.modelscope.cn/datasets/GAP-Lab/MVHumanNet_plusplus
   requires_account: true
-  notes: Users must read the Terms of Use, submit the official form, and use the granted download links.
+  notes: Users must read the Terms of Use and submit the official form before downloading the packaged release from the official ModelScope repository.
 scale:
   samples: 645000000
   source_items: 60000
@@ -75,4 +75,4 @@ evidence:
   paper: https://arxiv.org/abs/2505.01838
   used_by: []
 status: partial
-last_verified: "2026-07-26"
+last_verified: "2026-08-16"
