@@ -2,7 +2,7 @@
 
 Generated from `catalog/**/*.yaml`, newest release first. Every row links to the publisher's current distribution, metadata/downloader, request form, or primary-source availability notice. A link here does not override the media rights recorded in the dataset card.
 
-- Datasets: 197 (gated 29, metadata only 24, open 81, unavailable 63)
+- Datasets: 200 (gated 30, metadata only 24, open 81, unavailable 65)
 - `hosted`: downloadable or browsable files are distributed at the link
 - `urls`: the publisher distributes source URLs or a downloader, not a durable media archive
 - `metadata`: metadata or tooling only
@@ -11,6 +11,8 @@ Generated from `catalog/**/*.yaml`, newest release first. Every row links to the
 
 | Dataset card | Released | Access status | Delivery | Get data / access evidence | Account | Access notes |
 |---|---:|---|---|---|:---:|---|
+| [CineDub-SA](catalog/evaluation/cinedub-sa.yaml) | 2026-08-16 | unavailable | none | [Availability notice](https://cinedub2026.github.io/) | no | The project page provides paper and demo media but no benchmark manifest, annotations, download endpoint, or request procedure. |
+| [CineDub-Multi](catalog/evaluation/cinedub-multi.yaml) | 2026-08-16 | unavailable | none | [Availability notice](https://cinedub2026.github.io/) | no | The project page provides paper and demo media but no benchmark manifest, annotations, download endpoint, or request procedure. |
 | [TD-V2A FreeSound Training Snapshot](catalog/audio/td-v2a-freesound-corpus.yaml) | 2026-08-05 | unavailable | none | [Availability notice](https://arxiv.org/abs/2608.04902) | no | The paper provides no clip list, manifest, archive, request path, or downloadable training snapshot. |
 | [LongV2VBench](catalog/evaluation/longv2vbench.yaml) | 2026-08-04 | unavailable | none | [Availability notice](https://arxiv.org/abs/2608.03974) | no | The paper names and sizes the benchmark, but the official model and code repositories do not publish benchmark files or a download link. |
 | [MIE-Bench](catalog/evaluation/mie-bench.yaml) | 2026-08-03 | unavailable | none | [Availability notice](https://github.com/IntMeGroup/MIEScore) | no | The official repository advertises a TmpAccount Hugging Face dataset URL, but that endpoint returned 404 during verification; no downloadable benchmark files are currently available. |
@@ -56,6 +58,7 @@ Generated from `catalog/**/*.yaml`, newest release first. Every row links to the
 | [VITON-HD-edit](catalog/image/viton-hd-edit.yaml) | 2026-07-10 | open | hosted | [Download / browse files](https://huggingface.co/datasets/NXN-Labs/VITON-HD-edit) | no | The Hugging Face repository is directly downloadable and reports 6,096 image rows totaling about 377 MB. |
 | [GenSyn10](catalog/evaluation/gensyn10.yaml) | 2026-07-10 | unavailable | none | [Availability notice](https://arxiv.org/abs/2607.16283) | no | The paper describes the full construction recipe, but no official dataset files or repository are currently linked. |
 | [ConsIDVid Public Release](catalog/video/considvid.yaml) | 2026-07-07 | open | hosted | [Download / browse files](https://huggingface.co/datasets/mingyang-wu/ConsIDVid) | no | The public Hugging Face repository is ungated and reports approximately 148 GB of total storage; the data card's sample download command currently uses a different repository id, so use the linked ConsIDVid repository itself. The repository also enumerates undocumented paths outside the release directory described by its card, so review selected paths before downloading the entire repository. |
+| [WildWorld](catalog/video/wildworld.yaml) | 2026-07-06 | gated | request | [Request access](https://huggingface.co/datasets/AlayaLab/WildWorld) | yes | Hugging Face requires login, license acknowledgement, and access approval; part 1 is released, while parts 2 and 3 remain planned. |
 | [Vera Layered Video Dataset](catalog/video/vera-layered-video.yaml) | 2026-06-22 | open | hosted | [Download / browse files](https://huggingface.co/datasets/netflix/Vera-Layered-Video-Dataset) | no | Layered video files and metadata are hosted openly on Hugging Face; current repository storage is about 220 GB and may change with revisions. |
 | [SeFi-Image Synthetic Text-Rendered Corpus](catalog/image/sefi-image-synthetic-text-rendered-corpus.yaml) | 2026-06-21 | unavailable | none | [Availability notice](https://arxiv.org/abs/2606.22568v1) | no | Examples and construction details are public, but no generated files, renderer assets, manifest, or release schedule is provided. |
 | [SeFi-Image SFT Corpus](catalog/image/sefi-image-sft-corpus.yaml) | 2026-06-21 | unavailable | none | [Availability notice](https://arxiv.org/pdf/2606.22568) | no | The paper describes composition and filters but provides no source manifest, files, request form, or release plan. |

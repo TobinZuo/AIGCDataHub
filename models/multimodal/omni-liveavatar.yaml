@@ -1,0 +1,66 @@
+id: omni-liveavatar
+name: Omni-LiveAvatar
+organization: Omni-LiveAvatar authors
+released_at: "2026-08-07"
+modalities:
+  - multimodal
+  - video
+  - audio
+tasks:
+  - audio-video-generation
+  - audio-driven-avatar
+  - talking-head-generation
+access:
+  status: research-preview
+  license: Not published; the repository does not yet release code or weights
+  release_url: https://arxiv.org/abs/2608.13602
+  weights_url: null
+  api_url: null
+architecture:
+  family: Progressively distilled autoregressive audio-video diffusion transformer
+  parameters: null
+  notes: >-
+    The paper distills a 19B-parameter LTX-2 teacher into a streaming digital-human
+    generator with synchronized audio-video long-short memory and hierarchical
+    rolling prompts. The student parameter count and exact teacher checkpoint are
+    not disclosed.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Omni-LiveAvatar internal prompt corpus
+      catalog_id: null
+      role: distillation
+      availability: not-released
+      scale: 35K text prompts
+      notes: The paper reports an internal prompt set used to generate teacher ODE-regression pairs but publishes no prompt file, source breakdown, identity manifest, or license.
+  stages:
+    - name: distillation
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - proprietary
+        - synthetic
+      operations:
+        - teacher-pair-generation
+        - ode-regression
+        - progressive-autoregressive-distillation
+      scale_disclosed: true
+      strategy: Generate teacher trajectories from 35K internal text prompts, then progressively distill the 19B LTX-2 teacher into the streaming student through three reported optimization stages.
+  strategy_summary:
+    - Use teacher-generated ODE regression pairs rather than a newly disclosed raw human-video corpus for the reported student training.
+    - Train in three stages of 4,000, 3,000, and 3,000 steps while progressively introducing streaming autoregression and long-context memory.
+    - Combine synchronized audio-video memory with rolling hierarchical prompts to maintain identity, lip motion, and temporal continuity during streaming generation.
+  unknowns:
+    - The 35K prompt texts, prompt provenance, identity composition, media rights, filtering, deduplication, rejection rates, and safety review are not disclosed.
+    - The exact LTX-2 teacher checkpoint, student parameter count, generated-pair count, sampling mixture, optimizer details, and compute consumption beyond eight H200 GPUs are not reported.
+    - Model weights, source code, training code, model license, API access, preference optimization, and human-feedback data are not released.
+evidence:
+  release: https://arxiv.org/abs/2608.13602
+  technical_report: https://arxiv.org/abs/2608.13602
+  repository: https://github.com/Aoko955/Omni-LiveAvatar
+status: watch
+last_verified: "2026-08-18"

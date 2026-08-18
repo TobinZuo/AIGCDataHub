@@ -47,6 +47,192 @@
   ],
   "entries": [
     {
+      "date": "2026-08-18",
+      "title": {
+        "zh": "2026-08-18 更新",
+        "en": "2026-08-18 Update"
+      },
+      "summary": [
+        {
+          "id": "models",
+          "label": {
+            "zh": "模型",
+            "en": "Models"
+          },
+          "text": {
+            "zh": "新增 Marionette、Omni-LiveAvatar、CineDub 与 AnyTalk；同步核实 FLUX VTO v2、LTX-2.3 v1.1 检查点和 Jogg-Avatar V2V 的训练代码披露。四个新增模型均按精确首发日期排序，未把论文许可当作模型许可。",
+            "en": "Added Marionette, Omni-LiveAvatar, CineDub, and AnyTalk, and verified the FLUX VTO v2, LTX-2.3 v1.1 checkpoint, and Jogg-Avatar V2V training-code disclosures. Exact first-public dates drive model ordering, and paper licenses are not treated as model licenses."
+          },
+          "links": [
+            {
+              "href": "/#model-marionette",
+              "label": {
+                "zh": "Marionette",
+                "en": "Marionette"
+              }
+            },
+            {
+              "href": "/#model-omni-liveavatar",
+              "label": {
+                "zh": "Omni-LiveAvatar",
+                "en": "Omni-LiveAvatar"
+              }
+            },
+            {
+              "href": "/#model-cinedub-2026",
+              "label": {
+                "zh": "CineDub",
+                "en": "CineDub"
+              }
+            },
+            {
+              "href": "/#model-anytalk",
+              "label": {
+                "zh": "AnyTalk",
+                "en": "AnyTalk"
+              }
+            }
+          ]
+        },
+        {
+          "id": "datasets",
+          "label": {
+            "zh": "数据集",
+            "en": "Datasets"
+          },
+          "text": {
+            "zh": "新增 WildWorld、CineDub-Multi 与 CineDub-SA。WildWorld 公开的是门控 part 1（3,434 段、574 小时），仅限非商业研究且禁止再分发；两个 CineDub 评测集只有论文定义和项目页，没有下载文件或数据许可。",
+            "en": "Added WildWorld, CineDub-Multi, and CineDub-SA. WildWorld exposes gated part 1 with 3,434 samples and 574 hours under noncommercial, no-redistribution terms. Both CineDub benchmarks have paper definitions and a project page but no downloadable files or dataset license."
+          },
+          "links": [
+            {
+              "href": "/#dataset-wildworld",
+              "label": {
+                "zh": "WildWorld",
+                "en": "WildWorld"
+              }
+            },
+            {
+              "href": "/#dataset-cinedub-multi",
+              "label": {
+                "zh": "CineDub-Multi",
+                "en": "CineDub-Multi"
+              }
+            },
+            {
+              "href": "/#dataset-cinedub-sa",
+              "label": {
+                "zh": "CineDub-SA",
+                "en": "CineDub-SA"
+              }
+            }
+          ]
+        },
+        {
+          "id": "relations",
+          "label": {
+            "zh": "数据关系",
+            "en": "Data relations"
+          },
+          "text": {
+            "zh": "新增 9 条模型—数据集关系与 2 条数据谱系：Marionette→WildWorld；CineDub 分别连接 AudioSet、VGGSound、SpeakerVid-5M、GRID、CHEM、VGGSound-Omni 及两个新评测集；CineDub-Multi→SpeakerVid-5M、CineDub-SA→VGGSound。训练、微调和评估角色保持分离。",
+            "en": "Added nine model-to-dataset relations and two dataset-lineage edges: Marionette to WildWorld; CineDub to AudioSet, VGGSound, SpeakerVid-5M, GRID, CHEM, VGGSound-Omni, and both new benchmarks; CineDub-Multi to SpeakerVid-5M; and CineDub-SA to VGGSound. Training, fine-tuning, and evaluation remain distinct."
+          },
+          "links": [
+            {
+              "href": "/#lineage",
+              "label": {
+                "zh": "查看关系图谱",
+                "en": "View lineage"
+              }
+            }
+          ]
+        },
+        {
+          "id": "rankings",
+          "label": {
+            "zh": "排行榜",
+            "en": "Rankings"
+          },
+          "text": {
+            "zh": "Arena 图生视频榜新增 dreamina-seedance-2.5-720p 第 2 名，已映射到 Seedance 2.5。Artificial Analysis 新出现的 Qwen-Image-3.0 非 Pro 条目没有对应的一手发布，文生图榜覆盖策略因此由 required 调整为 monitor，未错误映射到 Qwen-Image-3.0-Pro。",
+            "en": "Arena image-to-video adds dreamina-seedance-2.5-720p at rank 2, now mapped to Seedance 2.5. Artificial Analysis lists a non-Pro Qwen-Image-3.0 without a corresponding first-party release, so text-to-image coverage moves from required to monitor instead of incorrectly aliasing it to Qwen-Image-3.0-Pro."
+          },
+          "links": [
+            {
+              "href": "/#rankings",
+              "label": {
+                "zh": "查看行业排行榜",
+                "en": "View industry rankings"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monitoring",
+          "label": {
+            "zh": "监控",
+            "en": "Monitoring"
+          },
+          "text": {
+            "zh": "新增四个模型和三个数据集的官方来源及精确 revision 探针，并把本轮 131 个机器候选逐项处置后加入排除基线。MoRoute 与 Wonder 的官方项目页已复核，未发现代码、权重、API 或数据访问状态变化。",
+            "en": "Added official sources and precise revision probes for four models and three datasets, and placed all 131 reviewed machine candidates into the exclusion baseline. MoRoute and Wonder project pages were rechecked with no code, weight, API, or data-access change."
+          },
+          "links": [
+            {
+              "href": "/#sources",
+              "label": {
+                "zh": "查看来源监控",
+                "en": "View source monitoring"
+              }
+            }
+          ]
+        },
+        {
+          "id": "unknowns",
+          "label": {
+            "zh": "未披露",
+            "en": "Undisclosed"
+          },
+          "text": {
+            "zh": "Omni-LiveAvatar 未发布 3.5 万提示词、教师对和学生规模；CineDub 未披露源快照、混合权重和合成语音/音效来源；AnyTalk 未发布角色资产、1,600 段蒸馏动画和代码；Marionette 未解释 2,241 个训练索引与 WildWorld part 1 的 3,434 段之间的对应关系。",
+            "en": "Omni-LiveAvatar withholds its 35K prompts, teacher pairs, and student size. CineDub omits source snapshots, mixture weights, and synthetic speech/audio sources. AnyTalk withholds character assets, 1,600 distillation animations, and code. Marionette does not reconcile 2,241 indexed training segments with WildWorld part 1's 3,434 samples."
+          },
+          "links": [
+            {
+              "href": "/#model-omni-liveavatar",
+              "label": {
+                "zh": "Omni-LiveAvatar 未知项",
+                "en": "Omni-LiveAvatar unknowns"
+              }
+            },
+            {
+              "href": "/#model-cinedub-2026",
+              "label": {
+                "zh": "CineDub 未知项",
+                "en": "CineDub unknowns"
+              }
+            },
+            {
+              "href": "/#model-anytalk",
+              "label": {
+                "zh": "AnyTalk 未知项",
+                "en": "AnyTalk unknowns"
+              }
+            },
+            {
+              "href": "/#model-marionette",
+              "label": {
+                "zh": "Marionette 未知项",
+                "en": "Marionette unknowns"
+              }
+            }
+          ]
+        }
+      ],
+      "source_path": "updates/2026-08-18.md"
+    },
+    {
       "date": "2026-08-16",
       "title": {
         "zh": "2026-08-16 更新",

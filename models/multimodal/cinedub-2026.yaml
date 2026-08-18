@@ -1,0 +1,141 @@
+id: cinedub-2026
+name: CineDub
+organization: Monash University, University of Chinese Academy of Sciences, and Tsinghua University
+released_at: "2026-08-16"
+modalities:
+  - multimodal
+  - video
+  - audio
+tasks:
+  - video-dubbing
+  - video-to-speech
+  - video-to-audio
+  - visual-voice-cloning
+  - multi-speaker-dubbing
+access:
+  status: research-preview
+  license: Not published; the project page releases no model weights or code
+  release_url: https://cinedub2026.github.io/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Unified latent waveform diffusion transformer for visual speech and audio generation
+  parameters: null
+  notes: >-
+    CineDub uses a fully convolutional 16 kHz waveform VAE without quantization,
+    a frozen SynchFormer visual encoder, Gemma-T5 text conditioning, and decoupled
+    speech and ambient-audio branches inside one diffusion transformer.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: AudioSet
+      catalog_id: audioset
+      role: pretraining
+      availability: public
+      scale: Part of 470K video-audio-text triplets shared with VGGSound
+      notes: Used in the video-to-audio pretraining stage; the exact retained AudioSet count, media fetch snapshot, and sampling weight are not disclosed.
+    - name: VGGSound
+      catalog_id: vggsound
+      role: pretraining
+      availability: public
+      scale: Part of 470K video-audio-text triplets shared with AudioSet
+      notes: Used in the video-to-audio pretraining stage under the Omni2Sound data protocol; the effective YouTube snapshot is not reported.
+    - name: SpeakerVid-5M single- and multi-speaker subsets
+      catalog_id: speakervid-5m
+      role: fine-tuning
+      availability: public
+      scale: 1,100 hours total, comprising 700 single-speaker and 400 multi-speaker hours
+      notes: Supplies visual speech for both regimes; the paper does not release retained clip IDs, reconstruction snapshot, channel distribution, or identity distribution.
+    - name: AudioSet and VGGSound visual speech-and-audio subset
+      catalog_id: audioset
+      role: fine-tuning
+      availability: public
+      scale: More than 100 hours shared with VGGSound
+      notes: Visible talking-face clips with co-occurring speech and ambient sound; the paper reports only the aggregate duration across both source families.
+    - name: AudioSet and VGGSound visual speech-and-audio subset
+      catalog_id: vggsound
+      role: fine-tuning
+      availability: public
+      scale: More than 100 hours shared with AudioSet
+      notes: Natural clips are combined with synthetically mixed isolated speech and audio using controlled energy ratios, but source-level counts are not reported.
+    - name: CineDub-Multi
+      catalog_id: cinedub-multi
+      role: evaluation
+      availability: not-released
+      scale: 139 English multi-speaker clips
+      notes: Derived from 139 SpeakerVid-5M YouTube channels; no benchmark manifest, download, or license is published.
+    - name: CineDub-SA
+      catalog_id: cinedub-sa
+      role: evaluation
+      availability: not-released
+      scale: 562 ten-second speech-and-audio clips
+      notes: Filtered from the VGGSound test set; no benchmark files, source manifest, or license are published.
+    - name: GRID
+      catalog_id: grid
+      role: evaluation
+      availability: public
+      scale: null
+      notes: Used only for evaluation of visual speech generation and lip synchronization.
+    - name: CHEM
+      catalog_id: chem
+      role: evaluation
+      availability: not-released
+      scale: null
+      notes: Used only for evaluation; the linked card records that the benchmark media remains unavailable.
+    - name: VGGSound test set
+      catalog_id: vggsound
+      role: evaluation
+      availability: public
+      scale: null
+      notes: Used for video-to-audio evaluation separately from the named training split.
+    - name: VGGSound-Omni
+      catalog_id: vggsound-omni
+      role: evaluation
+      availability: gated
+      scale: null
+      notes: Used only for unified video-to-audio evaluation.
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - public-dataset
+      operations:
+        - video-to-audio-pretraining
+        - semantic-captioning
+      scale_disclosed: true
+      strategy: Pretrain video-to-audio generation on 470K AudioSet and VGGSound triplets following the Omni2Sound data protocol.
+    - name: fine-tuning
+      modalities:
+        - video
+        - audio
+        - text
+      source_types:
+        - public-dataset
+        - synthetic
+      operations:
+        - semantic-bundled-transcription
+        - audiovisual-speech-training
+        - synthetic-audio-mixing
+        - ambient-to-linguistic-curriculum
+      scale_disclosed: true
+      strategy: Fine-tune first on ambient-audio generation and then introduce 700 hours of single-speaker, 400 hours of multi-speaker, and more than 100 hours of speech-with-audio material with Gemini 2.5 Pro bundled annotations.
+  strategy_summary:
+    - Separate speech semantics and ambient-audio semantics into decoupled conditioning branches while generating both through one waveform latent diffusion model.
+    - Progress from ambient sound toward linguistic speech with an Ambient-to-Linguistic curriculum instead of optimizing every target distribution from the first step.
+    - Mix natural co-occurring speech and sound with synthetic isolated-speech and isolated-audio combinations at controlled energy ratios.
+  unknowns:
+    - Exact AudioSet and VGGSound snapshots, per-source counts, clip IDs, mixture weights, deduplication, quality thresholds, rejection rates, and removed-content handling are not disclosed.
+    - Sources and licenses of isolated speech and audio used for synthetic mixing, the energy-ratio distribution, and the amount of synthetic material are not reported.
+    - Model weights, source code, parameter count, optimizer schedule, model license, benchmark licenses, and commercial-use terms are not published.
+    - No preference-optimization, human-feedback, identity-consent, biometric-use, or speaker-demographic analysis is reported.
+evidence:
+  release: https://cinedub2026.github.io/
+  technical_report: https://arxiv.org/abs/2608.15734
+  repository: null
+status: watch
+last_verified: "2026-08-18"

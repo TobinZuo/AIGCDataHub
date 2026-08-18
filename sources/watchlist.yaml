@@ -105,6 +105,141 @@ discovery:
     - https://www.kaggle.com/datasets/nikhil7280/coco-image-caption
     - https://huggingface.co/guillekenzo/aros-09cc5fd4-MellowDuality
     - https://huggingface.co/biali/bonsai-image-ternary-4B-FLUX2-klein-GGUF
+    - https://huggingface.co/Devender113/IDM-VTON
+    - https://huggingface.co/datasets/whosouravsharma/text-to-image-diffusiondb-2M
+    - https://huggingface.co/jinnailli/FLUX.2-klein-4B
+    - https://huggingface.co/AlayaLab/Marionette
+    - https://huggingface.co/dronefreak/clearview-derain-nafnet
+    - https://huggingface.co/dronefreak/clearview-derain-nafnet-large
+    - https://huggingface.co/dronefreak/clearview-derain-nafnet-small
+    - https://huggingface.co/dronefreak/clearview-derain-resnet34-unet
+    - https://huggingface.co/dronefreak/clearview-derain-restormer
+    - https://huggingface.co/AlayaLab/AlayaWorld-v1.1-stage2b
+    - https://huggingface.co/Anastejsha/Z-Image-Turbo
+    - https://huggingface.co/FFFFSDAFS/stable-diffusion-v1-5
+    - https://huggingface.co/Gencarmo/Z-Image-Turbo
+    - https://huggingface.co/Lancepernell532/Qwen-Image-Edit-2511
+    - https://huggingface.co/MinhNhut3005/Qwen-Image-Edit-2511
+    - https://huggingface.co/PigeonSang/Qwen-Image-2512
+    - https://huggingface.co/SHAO-HANLKHGDYH/FlashVSR-v1.1
+    - https://huggingface.co/chunxue-dev2026/rgb2infrared
+    - https://huggingface.co/dronefreak/clearview-derain-resnet18-unet
+    - https://huggingface.co/dronefreak/clearview-derain-resnet50-unet
+    - https://huggingface.co/dronefreak/clearview-derain-restormer-small
+    - https://huggingface.co/empirischtech/poseidon-b-joint-cyl-kh
+    - https://huggingface.co/shreshthsaini/LumaFlux
+    - https://huggingface.co/jdopensource/JoyAI-Video-Edit-Diffusers
+    - https://huggingface.co/Catniti/catrex-1.0-image
+    - https://huggingface.co/Fleurrr/A2World-World-Model
+    - https://huggingface.co/LibreYOLO/LibreDDColorl-restore
+    - https://huggingface.co/LibreYOLO/LibreDDColort-restore
+    - https://huggingface.co/LibreYOLO/LibreHVICIDNett-restore
+    - https://huggingface.co/LibreYOLO/LibreLaMab-restore
+    - https://huggingface.co/Reaper698/Flux-NSFW-uncensored
+    - https://huggingface.co/XanFloof/Wan2.1-Fun-1.3B-InP
+    - https://huggingface.co/agentyaya/yaya-image
+    - https://huggingface.co/agentyaya/yaya-image-edit
+    - https://huggingface.co/apexsentrylabs-lang/Wan2.1-T2V-1.3B-Windows-Backup
+    - https://huggingface.co/taurusduan/Minimax-h3-Turbo
+    - https://huggingface.co/esalahterus/refo
+    - https://huggingface.co/Diamond1400/qwen-image-edit-plus-nsfw-lora
+    - https://arxiv.org/abs/2608.13597
+    - https://arxiv.org/abs/2608.13602
+    - https://arxiv.org/abs/2608.13957
+    - https://arxiv.org/abs/2608.14260
+    - https://arxiv.org/abs/2608.15284
+    - https://arxiv.org/abs/2608.15690
+    - https://arxiv.org/abs/2608.15734
+    - https://arxiv.org/abs/2608.16143
+    - https://arxiv.org/abs/2608.16154
+    - https://arxiv.org/abs/2608.16513
+    - https://arxiv.org/abs/2608.16585
+    - https://arxiv.org/abs/2608.16646
+    - https://arxiv.org/abs/2608.16658
+    - https://arxiv.org/abs/2608.16717
+    - https://arxiv.org/abs/2608.16721
+    - https://arxiv.org/abs/2608.16725
+    - https://arxiv.org/abs/2608.16765
+    - https://arxiv.org/abs/2608.16786
+    - https://arxiv.org/abs/2608.16812
+    - https://arxiv.org/abs/2608.16887
+    - https://huggingface.co/datasets/GokuScraper/seedance-2-prompts-datasets
+    - https://huggingface.co/sakamakismile/10Eros-Max-beta2-NVFP4
+    - https://huggingface.co/AlayaLab/AlayaWorld-v1.1-stage3
+    - https://huggingface.co/Patarapoom/ltx25-render
+    - https://huggingface.co/Qualcomm-AI-Research/ar2can
+    - https://huggingface.co/Qualcomm-AI-Research/disco
+    - https://huggingface.co/beenga8/flux-2-klein-base-4b-mirror
+    - https://huggingface.co/beenga8/flux2-klein-4b-mirror
+    - https://huggingface.co/infosave/LTX-2.5-cmf
+    - https://huggingface.co/qtum/MiniMax-H3-Qwen3-VL-Abliterated-NVFP4
+    - https://huggingface.co/tianfeng521/Qwen-Image-Edit-Rapid-AIO
+    - https://huggingface.co/Jojocodex/minimax-h3-spatial-physics-lora
+    - https://huggingface.co/Jojocodex/minimax-h3-wushu-action-lora
+    - https://huggingface.co/Jojocodex/minimax-h3-yunjing-lora
+    - https://huggingface.co/Balthulal/MedGemma_FineTuned
+    - https://huggingface.co/BlueTriangles/SDXL_Virtual_Chihaya_Noriko
+    - https://huggingface.co/BlueTriangles/SDXL_Virtual_Egawa_Miho
+    - https://huggingface.co/CH522/WAN-BCO
+    - https://huggingface.co/CH522/WAN-Consis
+    - https://huggingface.co/CH522/WAN-DR34M
+    - https://huggingface.co/CH522/WAN-DthFF
+    - https://huggingface.co/CH522/WAN-EB
+    - https://huggingface.co/CH522/WAN-Enh1
+    - https://huggingface.co/CH522/WAN-G4g
+    - https://huggingface.co/CH522/WAN-GDE
+    - https://huggingface.co/CH522/WAN-Mthfl
+    - https://huggingface.co/CH522/WAN-Str1p
+    - https://huggingface.co/Ghaxalll/ghaxal-face-v3
+    - https://huggingface.co/KOFIblto/chey1
+    - https://huggingface.co/KOFIblto/elenazo1
+    - https://huggingface.co/KOFIblto/emmamye1
+    - https://huggingface.co/Kriss-W/lora
+    - https://huggingface.co/MikiHuang/DeepMosaics-CoreML
+    - https://huggingface.co/SAkizuki/anima-deepseek
+    - https://huggingface.co/SimpleTuner/minimaxh3-suno-reggae-rank128
+    - https://huggingface.co/SyFeee/LTX-2.3-SyFe-Union-Control
+    - https://huggingface.co/VividMuse-AGI/HerRAW-krea2-lora
+    - https://huggingface.co/WaveCut/Krea-2-Turbo-OrbitQuant-W4A4
+    - https://huggingface.co/beenga8/beenga-curl-v1
+    - https://huggingface.co/funseshon/faju
+    - https://huggingface.co/funseshon/trapped-bj
+    - https://huggingface.co/guillekenzo/aros-581cdf7e-FeralMuse
+    - https://huggingface.co/guillekenzo/aros-779e6dad-MidnightOnyx
+    - https://huggingface.co/guillekenzo/aros-7aee93d6-VelvetOracle
+    - https://huggingface.co/hstty/firered-image-edit
+    - https://huggingface.co/lite-infer/krea-2-turbo-nunchaku-lite-int4_r32-bnb4-text-encoder
+    - https://huggingface.co/lite-infer/krea-2-turbo-nunchaku-lite-nvfp4_r32-bnb4-text-encoder
+    - https://huggingface.co/masafy/minimax-h3-masafy-lora
+    - https://huggingface.co/maxoak/corgy_dog_LoRA
+    - https://huggingface.co/nnndite/krea2nsfwv3
+    - https://huggingface.co/perpetual3x/Hentai-NSFW-LoRA-v3
+    - https://huggingface.co/siraxe/3d_to_real_detail_slider_H3
+    - https://huggingface.co/zehen8716/ritikada-lora
+    - https://huggingface.co/Ava2000/Griss_Illustrious
+    - https://huggingface.co/kaddzie/Krea2-Flat-Metal-Chastity-Cage
+    - https://huggingface.co/thisiskakak/LTX-2.5-Comfy-Workflows
+    - https://huggingface.co/d0gr/dreamshaper-xl-lightning-unet-onnx
+    - https://huggingface.co/d0gr/realvisxl-v5-lightning-unet-onnx
+    - https://huggingface.co/ramthi01/SDXL_FINE_TUNE
+    - https://huggingface.co/BennyDaBall/PiD-1.5-qwenimage-nvfp4-comfy
+    - https://huggingface.co/Gothic666/Nsfw
+    - https://huggingface.co/BennyDaBall/PiD-1.5-flux2-nvfp4-comfy
+    - https://huggingface.co/berryber09/MiniMax-H3-ref2va-fl2va-hybrid-w4a8
+    - https://huggingface.co/BennyDaBall/LTX-2.5-22b-distilled-nvfp4-comfy-v2
+    - https://huggingface.co/MrMofer/MiniMax-H3-MLX-8bit
+    - https://huggingface.co/PulpCut/Z-Image-Turbo-INT8-ConvRot-safetensors
+    - https://huggingface.co/SpXMerlin1D/MiniMaxH3-CondBridge-Qwen3.5-4B
+    - https://huggingface.co/berryber09/MiniMax-H3-10Eros-beta2-fl2va-w4a8
+    - https://huggingface.co/perpetual3x/Qwen-Image-2512-Lightning
+    - https://huggingface.co/ChrisColeTech/qwen-image-edit-multiple-angles-GGUF
+    - https://huggingface.co/ChrisColeTech/qwen-image-edit-uncensored-GGUF
+    - https://huggingface.co/agosh/LTX-2.5-Comfy-GGUF
+    - https://github.com/AlayaLab/Marionette
+    - https://arxiv.org/abs/2608.14530
+    - https://github.com/AlayaLab/WildWorld
+    - https://huggingface.co/datasets/AlayaLab/WildWorld
+    - https://www.modelscope.cn/studios/FunAudioLLM
 
 tracks:
   - id: image-generation
@@ -165,6 +300,7 @@ tracks:
       - https://github.com/Lightricks/LTX-2
       - https://github.com/TencentARC/SCoPE
       - https://github.com/AlayaLab/Evoke
+      - https://github.com/AlayaLab/Marionette
 
   - id: digital-human-and-localization
     topics:
@@ -190,6 +326,9 @@ tracks:
       - https://github.com/Eyeline-Labs/ID-V2V
       - https://github.com/zhangrongxiang/LeapTalk
       - https://github.com/chanjing-ai/Jogg-Avatar
+      - https://github.com/Aoko955/Omni-LiveAvatar
+      - https://cinedub2026.github.io/
+      - https://serin-yoon.github.io/projects/anytalk/
 
   - id: virtual-try-on-and-commerce
     topics:
@@ -236,6 +375,8 @@ tracks:
       - https://arxiv.org/list/cs.MM/recent
       - https://github.com/NVIDIA-NeMo/Curator
       - https://github.com/omni2sound/Omni2Sound
+      - https://github.com/AlayaLab/WildWorld
+      - https://huggingface.co/datasets/AlayaLab/WildWorld
       - https://github.com/allenai/objaverse-xl
       - https://github.com/crockwell/Cap3D
       - https://github.com/cdjkim/audiocaps
@@ -360,7 +501,7 @@ tracks:
         ranking_parser: artificial-analysis-html
         ranking_score_label: Elo
         ranking_date_label: 模型发布
-        ranking_coverage_policy: required
+        ranking_coverage_policy: monitor
         ranking_page_url: https://artificialanalysis.ai/image/leaderboard/text-to-image/
       - url: https://artificialanalysis.ai/image/leaderboard/editing/
         ranking_id: image-editing
@@ -406,7 +547,7 @@ tracks:
         ranking_date_label: 模型发布
         ranking_coverage_policy: required
         ranking_page_url: https://artificialanalysis.ai/video/leaderboard/video-editing
-      - url: "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=text_to_image&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100"
+      - url: "https://datasets-server.huggingface.co/first-rows?dataset=lmarena-ai%2Fleaderboard-dataset&config=text_to_image&split=latest"
         ranking_id: arena-text-to-image
         ranking_limit: 15
         ranking_provider: Arena
@@ -417,7 +558,7 @@ tracks:
         ranking_date_label: 榜单快照
         ranking_coverage_policy: required
         ranking_page_url: https://arena.ai/leaderboard/text-to-image
-      - url: "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=image_edit&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100"
+      - url: "https://datasets-server.huggingface.co/first-rows?dataset=lmarena-ai%2Fleaderboard-dataset&config=image_edit&split=latest"
         ranking_id: arena-image-edit
         ranking_limit: 15
         ranking_provider: Arena
@@ -428,7 +569,7 @@ tracks:
         ranking_date_label: 榜单快照
         ranking_coverage_policy: required
         ranking_page_url: https://arena.ai/leaderboard/image-edit
-      - url: "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=text_to_video&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100"
+      - url: "https://datasets-server.huggingface.co/first-rows?dataset=lmarena-ai%2Fleaderboard-dataset&config=text_to_video&split=latest"
         ranking_id: arena-text-to-video
         ranking_limit: 15
         ranking_provider: Arena
@@ -450,7 +591,7 @@ tracks:
         ranking_date_label: 榜单快照
         ranking_coverage_policy: required
         ranking_page_url: https://arena.ai/leaderboard/image-to-video
-      - url: "https://datasets-server.huggingface.co/filter?dataset=lmarena-ai%2Fleaderboard-dataset&config=video_edit&split=latest&where=%22category%22%3D%27overall%27&offset=0&length=100"
+      - url: "https://datasets-server.huggingface.co/first-rows?dataset=lmarena-ai%2Fleaderboard-dataset&config=video_edit&split=latest"
         ranking_id: arena-video-edit
         ranking_limit: 15
         ranking_provider: Arena
@@ -1072,6 +1213,15 @@ tracks:
       - url: https://arxiv.org/abs/2608.03974v1
         catalog_id: longv2vbench
         priority: critical
+      - url: https://arxiv.org/abs/2608.15734
+        catalog_id: cinedub-multi
+        priority: critical
+      - url: https://arxiv.org/abs/2608.15734v1
+        catalog_id: cinedub-sa
+        priority: critical
+      - url: "https://huggingface.co/api/datasets/AlayaLab/WildWorld?expand=lastModified&expand=sha"
+        catalog_id: wildworld
+        priority: critical
 
   - id: important-model-updates
     topics:
@@ -1439,6 +1589,18 @@ tracks:
         priority: critical
       - url: https://seed.bytedance.com/en/seedance2_5
         model_id: seedance-2-5
+        priority: critical
+      - url: https://github.com/Aoko955/Omni-LiveAvatar/commits/main.atom
+        model_id: omni-liveavatar
+        priority: critical
+      - url: https://arxiv.org/abs/2608.15734
+        model_id: cinedub-2026
+        priority: critical
+      - url: https://serin-yoon.github.io/projects/anytalk/
+        model_id: anytalk
+        priority: critical
+      - url: "https://huggingface.co/api/models/AlayaLab/Marionette?expand=lastModified&expand=sha"
+        model_id: marionette
         priority: critical
 
 acceptance_rules:

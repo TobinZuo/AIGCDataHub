@@ -20,7 +20,7 @@ training stages, processing strategies, access conditions, and data lineage.
 <!-- BEGIN PROJECT METRICS -->
 | Models | Datasets | Model–dataset links | Dataset lineage | Open access | Latest review |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| 120 | 197 | 221 | 50 | 81 | 2026-08-16 |
+| 124 | 200 | 233 | 52 | 81 | 2026-08-18 |
 <!-- END PROJECT METRICS -->
 
 > [!NOTE]
@@ -107,11 +107,15 @@ newest first.
 <!-- BEGIN MODEL CATALOG -->
 | Model | Organization | Modalities | Released | Access | Data disclosure | Named datasets | Status |
 |---|---|---|---|---|---|---|:---:|
+| [AnyTalk](models/3d/anytalk.yaml) | KAIST and University of Toronto | 3d, video, audio | 2026-08-17 | research preview | partial | Character-specific rendered still-image videos, AnyTalk-generated distillation animations | 👀 |
 | [Genesis](models/image/genesis.yaml) | MVRL | image | 2026-08-16 | open weights | partial | [Git-10M](catalog/image/git-10m.yaml), [SAT-493M](catalog/image/sat-493m.yaml) | 🟡 |
+| [CineDub](models/multimodal/cinedub-2026.yaml) | Monash University, University of Chinese Academy of Sciences, and Tsinghua University | video, audio | 2026-08-16 | research preview | partial | [AudioSet](catalog/audio/audioset.yaml), [VGGSound](catalog/audio/vggsound.yaml), [SpeakerVid-5M single- and multi-speaker subsets](catalog/video/speakervid-5m.yaml), [AudioSet and VGGSound visual speech-and-audio subset](catalog/audio/audioset.yaml), [AudioSet and VGGSound visual speech-and-audio subset](catalog/audio/vggsound.yaml), [CineDub-Multi](catalog/evaluation/cinedub-multi.yaml), [CineDub-SA](catalog/evaluation/cinedub-sa.yaml), [GRID](catalog/video/grid.yaml), [CHEM](catalog/video/chem.yaml), [VGGSound test set](catalog/audio/vggsound.yaml), [VGGSound-Omni](catalog/evaluation/vggsound-omni.yaml) | 👀 |
+| [Marionette](models/video/marionette.yaml) | Alaya Lab | video, 3d, action | 2026-08-13 | open weights | partial | [WildWorld](catalog/video/wildworld.yaml) | 🟡 |
 | [SCoPE](models/video/scope.yaml) | TencentARC | video | 2026-08-12 | open weights | partial | [RealEstate10K](catalog/video/realestate10k.yaml), [DL3DV-10K](catalog/video/dl3dv-10k.yaml), [PanShot](catalog/video/panshot.yaml), [OmniWorld](catalog/video/omniworld.yaml) | 🟡 |
 | [LTX-2.5](models/multimodal/ltx-2-5.yaml) | Lightricks | video, audio | 2026-08-12 | gated weights | high level | LTX-2 inherited audio-video training mixture, Unreleased LTX-2.5 distillation corpus | 🟡 |
 | [Jogg-Avatar V2V 5B](models/video/jogg-avatar-v2v.yaml) | Chanjing Technology | video, audio | 2026-08-12 | open weights | high level | Wan2.2-TI2V-5B inherited training mixture, Jogg-Avatar audio-video fine-tuning corpus | 🟡 |
 | [EVOKE](models/video/evoke.yaml) | AlayaLab | video | 2026-08-12 | open weights | high level | Helios inherited pretraining mixture, EVOKE camera-control and long-horizon corpus, LingBot-World teacher generations | 🟡 |
+| [Omni-LiveAvatar](models/multimodal/omni-liveavatar.yaml) | Omni-LiveAvatar authors | video, audio | 2026-08-07 | research preview | partial | Omni-LiveAvatar internal prompt corpus | 👀 |
 | [TD-V2A](models/multimodal/td-v2a.yaml) | Tsinghua University and collaborators | video, audio | 2026-08-05 | research preview | partial | [AudioCaps training set](catalog/audio/audiocaps-2-0.yaml), [AudioSet](catalog/audio/audioset.yaml), [VGGSound training set](catalog/audio/vggsound.yaml), [VGGSound test set](catalog/audio/vggsound.yaml), [TD-V2A FreeSound Training Snapshot](catalog/audio/td-v2a-freesound-corpus.yaml), [Million Song Dataset](catalog/audio/million-song-dataset.yaml) | 🟡 |
 | [JoyAI-Video-Edit](models/video/joyai-video-edit.yaml) | JD Open Source | video, image | 2026-08-04 | open weights | partial | Unnamed text-to-image pretraining corpus, Unnamed text-to-video pretraining and post-training corpus, Unnamed image-editing corpus, Synthetic bidirectional video-editing pairs, [OpenVE-Bench](catalog/evaluation/openve-bench.yaml), [LongV2VBench](catalog/evaluation/longv2vbench.yaml) | 🟡 |
 | [QuerySplat](models/3d/querysplat.yaml) | inspatio | 3d, image | 2026-08-02 | open weights | partial | [DL3DV-10K](catalog/video/dl3dv-10k.yaml), [DL3DV-Evaluation](catalog/3d/dl3dv-evaluation.yaml) | 🟡 |
@@ -286,6 +290,8 @@ notice. For a download-first view of every card, use the
 <!-- BEGIN DATASET CATALOG -->
 | Dataset | Organization | Modality | Released | Tasks | Scale | Access | Commercial use | Status |
 |---|---|---|---|---|---:|---|---|:---:|
+| [CineDub-SA](catalog/evaluation/cinedub-sa.yaml) | Monash University, University of Chinese Academy of Sciences, and Tsinghua University | evaluation | 2026-08-16 | video dubbing, video to audio, speech and audio generation | ~562 | [availability notice (unavailable)](https://cinedub2026.github.io/) | unknown | 🟡 |
+| [CineDub-Multi](catalog/evaluation/cinedub-multi.yaml) | Monash University, University of Chinese Academy of Sciences, and Tsinghua University | evaluation | 2026-08-16 | video dubbing, multi speaker dubbing, visual voice cloning | 139 | [availability notice (unavailable)](https://cinedub2026.github.io/) | unknown | 🟡 |
 | [TD-V2A FreeSound Training Snapshot](catalog/audio/td-v2a-freesound-corpus.yaml) | Tsinghua University and collaborators | audio | 2026-08-05 | text to audio, video to audio | unknown | [availability notice (unavailable)](https://arxiv.org/abs/2608.04902) | unknown | 🟡 |
 | [LongV2VBench](catalog/evaluation/longv2vbench.yaml) | JD Open Source | evaluation | 2026-08-04 | long video editing, video editing | 229 | [availability notice (unavailable)](https://arxiv.org/abs/2608.03974) | unknown | 🟡 |
 | [MIE-Bench](catalog/evaluation/mie-bench.yaml) | IntMe Group and collaborators | evaluation | 2026-08-03 | multi source image editing, image editing evaluation, human preference evaluation | 3K | [availability notice (unavailable)](https://github.com/IntMeGroup/MIEScore) | unknown | 🟡 |
@@ -331,6 +337,7 @@ notice. For a download-first view of every card, use the
 | [VITON-HD-edit](catalog/image/viton-hd-edit.yaml) | NXN Labs and KAIST | image | 2026-07-10 | virtual try on, controllable virtual try on, garment instance segmentation, image editing, virtual try on evaluation | 2K | [download / browse (open)](https://huggingface.co/datasets/NXN-Labs/VITON-HD-edit) | noncommercial | ✅ |
 | [GenSyn10](catalog/evaluation/gensyn10.yaml) | University of Western Australia | evaluation | 2026-07-10 | synthetic image detection, image classification, out of distribution evaluation | 60K | [availability notice (unavailable)](https://arxiv.org/abs/2607.16283) | review required | 🟡 |
 | [ConsIDVid Public Release](catalog/video/considvid.yaml) | Texas A&M University and eBay | video | 2026-07-07 | image to video, object centric video, identity preserving video generation, multi view consistency evaluation | 8.3K | [download / browse (open)](https://huggingface.co/datasets/mingyang-wu/ConsIDVid) | unknown | 🟡 |
+| [WildWorld](catalog/video/wildworld.yaml) | Alaya Studio, Shanda AI Research Tokyo, Beijing Institute of Technology, and Shanghai Innovation Institute | video | 2026-07-06 | interactive video generation, action conditioned video generation, world model training, camera controlled video generation | 3.4K | [request access (gated)](https://huggingface.co/datasets/AlayaLab/WildWorld) | noncommercial | 🟡 |
 | [Vera Layered Video Dataset](catalog/video/vera-layered-video.yaml) | Netflix and California Institute of Technology | video | 2026-06-22 | layered video generation, video editing, object addition, background replacement, video matting | ~18.1K | [download / browse (open)](https://huggingface.co/datasets/netflix/Vera-Layered-Video-Dataset) | review required | ✅ |
 | [SeFi-Image Synthetic Text-Rendered Corpus](catalog/image/sefi-image-synthetic-text-rendered-corpus.yaml) | SeFi-Team | image | 2026-06-21 | text to image, text rendering | 28M | [availability notice (unavailable)](https://arxiv.org/abs/2606.22568v1) | unknown | 🟡 |
 | [SeFi-Image SFT Corpus](catalog/image/sefi-image-sft-corpus.yaml) | SeFi-Team | image | 2026-06-21 | text to image, text rendering | ~650K | [availability notice (unavailable)](https://arxiv.org/pdf/2606.22568) | unknown | 🟡 |

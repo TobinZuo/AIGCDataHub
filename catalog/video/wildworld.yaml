@@ -1,0 +1,77 @@
+id: wildworld
+name: WildWorld
+organization: Alaya Studio, Shanda AI Research Tokyo, Beijing Institute of Technology, and Shanghai Innovation Institute
+released_at: "2026-07-06"
+release_date_source: https://github.com/AlayaLab/WildWorld
+modality: video
+tasks:
+  - interactive-video-generation
+  - action-conditioned-video-generation
+  - world-model-training
+  - camera-controlled-video-generation
+stages:
+  - pretraining
+  - fine-tuning
+  - evaluation
+  - data-curation
+description: >-
+  A gated action-role-playing-game corpus with 720p RGB video, depth, camera
+  geometry, multi-entity 3D skeletons, action and character state, and
+  hierarchical natural-language captions for interactive world modeling.
+access:
+  status: gated
+  type: request
+  url: https://huggingface.co/datasets/AlayaLab/WildWorld
+  requires_account: true
+  notes: Hugging Face requires login, license acknowledgement, and access approval; part 1 is released, while parts 2 and 3 remain planned.
+scale:
+  samples: 3434
+  source_items: 3434
+  hours: 574
+  approximate: false
+  notes: Released part 1 contains 3,434 one-versus-one samples and 574 hours. The broader project advertises more than 108M frames, 450 actions, 29 monster species, 4 player characters, 4 weapon types, and 5 stages, but later release parts are not yet available.
+annotations:
+  types:
+    - rgb-video
+    - depth-video
+    - camera-intrinsics
+    - camera-pose
+    - action-id
+    - character-state
+    - 3d-skeleton
+    - root-motion
+    - hierarchical-caption
+    - terrain
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: WildWorld research-only license
+  media: Proprietary game content; no rights in underlying game assets are granted
+  commercial_use: noncommercial
+  redistribution: prohibited
+  notes: The official license permits noncommercial research only and prohibits redistribution; access does not grant commercial, game-content, trademark, or other third-party rights.
+quality:
+  dimensions:
+    - visual-quality
+    - text-media-alignment
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - provenance
+  known_limitations:
+    - Only part 1 of three planned parts is released, so advertised full-corpus coverage is not yet downloadable.
+    - The data comes from one proprietary action-role-playing game and can overrepresent its characters, actions, camera behavior, environments, and combat mechanics.
+    - Commercial use and redistribution are prohibited, and the dataset license does not grant rights in the underlying game content.
+    - Hugging Face access requires approval and the effective available files may differ across access dates.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Preserve release part, sample ID, RGB and depth hashes, frame rate, state schema, skeleton type, action vocabulary, captions, retrieval date, license acknowledgement, and access decision.
+evidence:
+  homepage: https://alaya-studio.github.io/wildworld-project/
+  paper: https://arxiv.org/abs/2603.23497
+  used_by:
+    - Marionette
+status: partial
+last_verified: "2026-08-18"

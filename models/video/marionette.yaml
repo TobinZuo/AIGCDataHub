@@ -1,0 +1,69 @@
+id: marionette
+name: Marionette
+organization: Alaya Lab
+released_at: "2026-08-13"
+modalities:
+  - video
+  - 3d
+  - action
+tasks:
+  - interactive-video-generation
+  - image-to-video
+  - video-to-video
+  - camera-controlled-video-generation
+access:
+  status: open-weights
+  license: Research-only asset license; noncommercial use only and redistribution prohibited, with Apache-2.0 code
+  release_url: https://github.com/AlayaLab/Marionette
+  weights_url: https://huggingface.co/AlayaLab/Marionette
+  api_url: null
+architecture:
+  family: Explicit-state autoregressive dynamics plus deterministic renderer and control-conditioned video diffusion
+  parameters: null
+  notes: >-
+    ActionGPT and PoseGPT predict a 276-dimensional multi-entity articulated
+    world state, a zero-parameter graphics bridge renders pose controls, and a
+    fine-tuned Wan2.2-Fun-5B-Control observation model paints photorealistic
+    RGB frames. The released custom weights total about 10.5 GB.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - name: WildWorld
+      catalog_id: wildworld
+      role: fine-tuning
+      availability: gated
+      scale: 2,241 indexed training-corpus segments reported by the Marionette package
+      notes: Supplies gameplay RGB, actions, explicit state, skeletons, terrain, and appearance references; only two seed segments and one scanned stage ship with the model package, while the full WildWorld release is separately gated.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - video
+        - action
+        - 3d
+      source_types:
+        - licensed
+      operations:
+        - action-tokenization
+        - autoregressive-state-modeling
+        - pose-sequence-modeling
+        - geometry-rendering
+        - pose-controlled-video-fine-tuning
+      scale_disclosed: true
+      strategy: Train action and pose dynamics over explicit WildWorld state, render predicted skeleton and terrain geometry into pose-control video, and fine-tune the Wan2.2-Fun-5B-Control observation transformer to synthesize appearance from those controls.
+  strategy_summary:
+    - Predict action, root motion, articulated pose, and rotations explicitly instead of asking a single latent video stream to preserve long-horizon state.
+    - Compute geometry, terrain contact, and occlusion with a fixed zero-parameter renderer before appearance synthesis.
+    - Inherit the Wan2.2-Fun-5B-Control backbone and publish only Alaya's dynamics and observation-model derivatives under the stricter WildWorld asset terms.
+  unknowns:
+    - The exact 2,241-segment training split, retained frame count, sampling weights, segment filters, deduplication, caption processing, and rejection rates are not published.
+    - The relationship between the 2,241 indexed Marionette corpus segments and WildWorld part 1's 3,434 released samples is not explained.
+    - Total parameter count, optimizer schedules, compute, exact backbone revision, preference optimization, human feedback, and safety filtering are not disclosed.
+    - The project grants no rights in the underlying game content; commercial use and redistribution of weights or runtime assets are prohibited.
+evidence:
+  release: https://github.com/AlayaLab/Marionette
+  technical_report: https://arxiv.org/abs/2608.14530
+  repository: https://github.com/AlayaLab/Marionette
+status: partial
+last_verified: "2026-08-18"

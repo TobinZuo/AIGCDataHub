@@ -62,7 +62,7 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /aria-pressed="true">中/);
   assert.match(html, /aria-pressed="false">EN/);
   assert.match(html, /最近核验/);
-  assert.match(html, /核验<!-- --> <!-- -->2026\/08\/16/);
+  assert.match(html, /核验<!-- --> <!-- -->2026\/08\/18/);
   assert.match(html, /Genesis/);
   assert.match(html, /EVOKE/);
   assert.match(html, /VTON 360/);
@@ -73,7 +73,7 @@ test("server-renders the AIGCDataHub catalog", async () => {
   assert.match(html, /InstructAV2AV/);
   assert.match(html, /ID-V2V/);
   assert.match(html, /JoyFox LiveTalk-DH 1\.3B/);
-  assert.match(html, /发布<!-- --> <!-- -->2026\/08\/16/);
+  assert.match(html, /发布<!-- --> <!-- -->2026\/08\/17/);
   assert.match(html, /部分披露/);
   assert.match(html, /ReMind 5B/);
   assert.ok(html.includes('open_weights\\\":true'));
@@ -322,7 +322,7 @@ test("uses generated catalog data and removes starter preview assets", async () 
         .filter((dataset) => dataset.released_at === newestDatasetDate)
         .map((dataset) => dataset.id),
     ),
-    new Set(["td-v2a-freesound-corpus"]),
+    new Set(["cinedub-multi", "cinedub-sa"]),
   );
   const models = Object.fromEntries(parsedCatalog.models.map((model) => [model.id, model]));
   assert.ok(parsedCatalog.models.every((model) => model.monitoring));

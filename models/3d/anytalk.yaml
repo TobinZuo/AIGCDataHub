@@ -1,0 +1,86 @@
+id: anytalk
+name: AnyTalk
+organization: KAIST and University of Toronto
+released_at: "2026-08-17"
+modalities:
+  - 3d
+  - video
+  - audio
+tasks:
+  - 3d-avatar-generation
+  - audio-driven-avatar
+  - talking-head-generation
+access:
+  status: research-preview
+  license: Not published; the project page says code will be made public but exposes no repository or model weights
+  release_url: https://serin-yoon.github.io/projects/anytalk/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Personalized talking-head diffusion plus blendshape optimization and distilled real-time student
+  parameters: null
+  notes: >-
+    AnyTalk fine-tunes the spatial residual layers of a pretrained Hallo
+    talking-head generator while freezing audio, motion, and ReferenceNet
+    attention, uplifts generated video into blendshape parameters, and distills
+    the optimization pipeline into the AnyTalk-RT student.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: Character-specific rendered still-image videos
+      catalog_id: null
+      role: fine-tuning
+      availability: not-released
+      scale: Not reported
+      notes: Each activated target-character blendshape is rendered as a still image, duplicated into a video, and paired with a zeroed audio embedding; character counts, meshes, renders, and licenses are not released.
+    - name: AnyTalk-generated distillation animations
+      catalog_id: null
+      role: distillation
+      availability: not-released
+      scale: Approximately 1,600 animations
+      notes: Used to train AnyTalk-RT with feature matching and blendshape reconstruction; prompts, audio sources, characters, generated sequences, and split details are not published.
+  stages:
+    - name: fine-tuning
+      modalities:
+        - image
+        - video
+        - audio
+        - 3d
+      source_types:
+        - proprietary
+        - synthetic
+      operations:
+        - character-rendering
+        - still-video-duplication
+        - zero-audio-conditioning
+        - character-specific-fine-tuning
+      scale_disclosed: false
+      strategy: Adapt only the spatial residual network of a pretrained Hallo generator to each 3D character using rendered blendshape stills and zeroed audio, preserving the pretrained motion prior without animation training data.
+    - name: distillation
+      modalities:
+        - audio
+        - 3d
+      source_types:
+        - synthetic
+      operations:
+        - teacher-animation-generation
+        - feature-matching
+        - blendshape-reconstruction
+      scale_disclosed: true
+      strategy: Distill the slower video-generation and per-frame blendshape optimization pipeline into AnyTalk-RT using around 1,600 teacher-generated animations.
+  strategy_summary:
+    - Replace character-specific animation capture with renders of activated blendshapes paired with a no-motion audio condition.
+    - Freeze the pretrained audio and motion pathways while adapting appearance through spatial residual layers.
+    - Distill optimization outputs into a direct audio-to-blendshape network reported at 9.09 milliseconds per frame.
+  unknowns:
+    - Exact character count, render count, character asset provenance, mesh and texture licenses, speech-audio sources, language distribution, filtering, deduplication, and train-test separation are not disclosed.
+    - The pretrained Hallo and MEMO checkpoint versions, student parameter count, optimizer schedule, and full generated-animation count are not reported.
+    - Model weights, code repository, model license, data files, and commercial-use terms are not yet published.
+evidence:
+  release: https://serin-yoon.github.io/projects/anytalk/
+  technical_report: https://arxiv.org/abs/2608.16143
+  repository: null
+status: watch
+last_verified: "2026-08-18"

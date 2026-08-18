@@ -21,7 +21,7 @@ access:
 architecture:
   family: Asymmetric dual-stream audio-video diffusion transformer
   parameters: 20900000000
-  notes: Jointly models synchronized video and audio with separate latent representations and cross-modal attention.
+  notes: Jointly models synchronized video and audio with separate latent representations and cross-modal attention; the repository now also publishes distilled v1.1, distilled-LoRA v1.1, and x2 spatial-upscaler v1.1 checkpoints.
 data:
   disclosure_level: partial
   exact_datasets_disclosed: false
@@ -79,9 +79,10 @@ data:
   unknowns:
     - Exact video sources, sample count, licensing, and mixture ratios.
     - Detailed safety, deduplication, and media-quality thresholds.
+    - Incremental training data, teacher outputs, optimization schedule, and evaluation deltas for the distilled v1.1 and spatial-upscaler v1.1 checkpoint revisions.
 evidence:
   release: https://ltx.io/blog/ltx-2-3-release
   technical_report: https://videos.ltx.io/LTX-2/grants/LTX_2_Technical_Report_compressed.pdf
   repository: https://github.com/Lightricks/LTX-2
 status: verified
-last_verified: "2026-07-26"
+last_verified: "2026-08-18"

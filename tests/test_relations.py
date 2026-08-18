@@ -34,7 +34,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
                 self.assertIn(model_id, self.datasets[dataset_id]["linked_model_ids"])
 
     def test_dataset_lineage_index_and_backlinks_are_symmetric(self) -> None:
-        self.assertEqual(len(self.payload["dataset_relations"]), 50)
+        self.assertEqual(len(self.payload["dataset_relations"]), 52)
         relation_pairs = {
             (relation["source_dataset_id"], relation["derived_dataset_id"])
             for relation in self.payload["dataset_relations"]
@@ -44,6 +44,8 @@ class ModelDatasetRelationTests(unittest.TestCase):
         self.assertIn(("openhumanvid", "openhumanvid-talking"), relation_pairs)
         self.assertIn(("audioset", "soundatlas"), relation_pairs)
         self.assertIn(("vggsound", "vggsound-omni"), relation_pairs)
+        self.assertIn(("speakervid-5m", "cinedub-multi"), relation_pairs)
+        self.assertIn(("vggsound", "cinedub-sa"), relation_pairs)
         self.assertIn(("yfcc100m", "commoncatalog"), relation_pairs)
         self.assertIn(("mvhumannet", "mvhumannet-plus-plus"), relation_pairs)
         self.assertIn(("openve-3m", "openve-bench"), relation_pairs)

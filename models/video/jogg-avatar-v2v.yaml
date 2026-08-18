@@ -19,7 +19,7 @@ access:
 architecture:
   family: Audio-conditioned Wan2.2-TI2V-5B video-to-video avatar model
   parameters: 5000000000
-  notes: The released checkpoint conditions an input avatar video on replacement speech to synthesize synchronized facial motion while preserving source identity and scene context.
+  notes: The released checkpoint conditions an input avatar video on Wav2Vec2 speech features, trains LoRA plus audio-conditioning modules over Wan2.2-TI2V-5B, and regenerates facial motion while preserving source body, camera, and background motion.
 data:
   disclosure_level: high-level
   exact_datasets_disclosed: false
@@ -48,18 +48,24 @@ data:
         - undisclosed
       operations:
         - audio-conditioned-video-to-video-training
+        - face-box-extraction
+        - first-242-frame-preprocessing
+        - wav2vec2-audio-conditioning
+        - lora-training
         - inherited-foundation-model
       scale_disclosed: false
-      strategy: Adapt Wan2.2-TI2V-5B to audio-driven avatar video-to-video generation without publishing the incremental corpus or filtering pipeline.
+      strategy: Preprocess the first 242 frames of each video with SCRFD face boxes and Wav2Vec2 audio features, then train rank-128 LoRA and audio-conditioning modules for the documented 100-epoch default at learning rate 1e-4.
   strategy_summary:
     - Reuse a 5B text-and-image-to-video prior and add speech-driven avatar control for zero-shot source videos.
+    - Publish reproducible preprocessing, training, export, and inference code while keeping the production training corpus itself undisclosed.
     - Keep the training corpus explicitly undisclosed because the release provides weights and inference instructions but no source-data evidence.
   unknowns:
     - Dataset identities, subject consent, media rights, languages, speaker demographics, clip counts, durations, captions, filtering, face tracking, audio-video alignment, deduplication, and mixture weights.
-    - Fine-tuning schedule, preference or safety data, synthetic supervision, human review, and inherited Wan2.2 data lineage.
+    - Preference or safety data, synthetic supervision, human review, and inherited Wan2.2 data lineage.
+    - The published 100-epoch, learning-rate, and LoRA settings are example defaults; the exact released-checkpoint step count, GPU count, batch size, and deviations from those defaults are not identified.
 evidence:
   release: https://github.com/chanjing-ai/Jogg-Avatar
   technical_report: null
-  repository: https://github.com/chanjing-ai/Jogg-Avatar
+  repository: https://github.com/chanjing-ai/Jogg-Avatar-V2V
 status: partial
-last_verified: "2026-08-16"
+last_verified: "2026-08-18"

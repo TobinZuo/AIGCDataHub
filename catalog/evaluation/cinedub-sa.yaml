@@ -1,0 +1,71 @@
+id: cinedub-sa
+name: CineDub-SA
+organization: Monash University, University of Chinese Academy of Sciences, and Tsinghua University
+released_at: "2026-08-16"
+release_date_source: https://arxiv.org/abs/2608.15734
+modality: evaluation
+tasks:
+  - video-dubbing
+  - video-to-audio
+  - speech-and-audio-generation
+stages:
+  - evaluation
+  - data-curation
+description: >-
+  An announced benchmark of ten-second VGGSound test clips with a visibly
+  speaking face, English speech, and co-occurring non-speech sound effects.
+derived_from:
+  - catalog_id: vggsound
+    relationship: filtered-subset
+    contribution: 562 speech-and-audio evaluation clips
+    notes: The authors filter the VGGSound test split for visible talking faces, English speech, and co-occurring sound effects, but do not publish the selected IDs.
+access:
+  status: unavailable
+  type: none
+  url: https://cinedub2026.github.io/
+  requires_account: false
+  notes: The project page provides paper and demo media but no benchmark manifest, annotations, download endpoint, or request procedure.
+scale:
+  samples: 562
+  source_items: 562
+  hours: 1.56
+  approximate: true
+  notes: The paper reports 562 ten-second samples; 1.56 hours is calculated from that count and fixed clip duration rather than reported as a separate source statistic.
+annotations:
+  types:
+    - source-video
+    - transcript
+    - speech-description
+    - sound-effect-description
+    - semantic-bundled-transcription
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: Original VGGSound source-video owner terms
+  commercial_use: unknown
+  redistribution: unknown
+  notes: No benchmark license or media-redistribution grant is published; VGGSound metadata terms do not replace the original owners' rights in YouTube media.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - provenance
+  known_limitations:
+    - Benchmark files, retained VGGSound IDs, prompts, transcripts, manual-review protocol, license, and release plan are not public.
+    - The visible-face and English-speech filters narrow language, framing, and speaker diversity.
+    - Source-video deletion can change reconstructability even if a future metadata manifest is released.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Preserve VGGSound ID, split, timestamp, retrieval result, transcript, speech and sound-effect descriptions, generated outputs, metric versions, and rights review if released.
+evidence:
+  homepage: https://cinedub2026.github.io/
+  paper: https://arxiv.org/abs/2608.15734
+  used_by:
+    - CineDub
+status: partial
+last_verified: "2026-08-18"

@@ -305,7 +305,7 @@ class CatalogTests(unittest.TestCase):
         newest_ids = {card["id"] for card in datasets if card["released_at"] == newest_date}
         self.assertEqual(
             newest_ids,
-            {"td-v2a-freesound-corpus"},
+            {"cinedub-multi", "cinedub-sa"},
         )
 
     def test_site_catalog_orders_models_by_release_date(self) -> None:
@@ -316,7 +316,7 @@ class CatalogTests(unittest.TestCase):
         newest_ids = {card["id"] for card in models if card["released_at"] == newest_date}
         self.assertEqual(
             newest_ids,
-            {"genesis"},
+            {"anytalk"},
         )
 
     def test_every_ranking_top_fifteen_entry_maps_to_a_model_card(self) -> None:
@@ -327,14 +327,14 @@ class CatalogTests(unittest.TestCase):
             {"Artificial Analysis", "Arena", "AVGen-Bench"},
         )
         required_boards = [board for board in rankings if board["coverage_policy"] == "required"]
-        self.assertEqual(len(required_boards), 9)
+        self.assertEqual(len(required_boards), 8)
         self.assertEqual(
             {
                 board["id"]
                 for board in rankings
                 if board["coverage_policy"] == "monitor"
             },
-            {"image-editing", "image-to-video"},
+            {"image-editing", "image-to-video", "text-to-image"},
         )
         for board in required_boards:
             with self.subTest(board=board["id"]):

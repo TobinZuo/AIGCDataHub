@@ -1,0 +1,73 @@
+id: cinedub-multi
+name: CineDub-Multi
+organization: Monash University, University of Chinese Academy of Sciences, and Tsinghua University
+released_at: "2026-08-16"
+release_date_source: https://arxiv.org/abs/2608.15734
+modality: evaluation
+tasks:
+  - video-dubbing
+  - multi-speaker-dubbing
+  - visual-voice-cloning
+stages:
+  - evaluation
+  - data-curation
+description: >-
+  An announced English multi-speaker visual-dubbing benchmark containing one
+  manually verified clip from each of 139 SpeakerVid-5M YouTube channels.
+derived_from:
+  - catalog_id: speakervid-5m
+    relationship: filtered-subset
+    contribution: 139 English multi-speaker evaluation clips
+    notes: The paper filters SpeakerVid-5M channels for at least two active speakers, multiple turns, and no overlap or background music, but does not release the retained IDs.
+access:
+  status: unavailable
+  type: none
+  url: https://cinedub2026.github.io/
+  requires_account: false
+  notes: The project page provides paper and demo media but no benchmark manifest, annotations, download endpoint, or request procedure.
+scale:
+  samples: 139
+  source_items: 139
+  hours: null
+  approximate: false
+  notes: The paper reports 139 English samples selected from 139 distinct YouTube channels, with at least two active speakers and multiple dialogue turns per clip.
+annotations:
+  types:
+    - youtube-id
+    - clip-timestamp
+    - transcript
+    - speaker-turn
+    - active-speaker
+    - semantic-bundled-transcription
+  source: mixed
+  languages:
+    - en
+license:
+  metadata: Not stated
+  media: Source-dependent YouTube and rightsholder terms inherited through SpeakerVid-5M
+  commercial_use: unknown
+  redistribution: unknown
+  notes: No benchmark license or media-redistribution grant is published; Gemini 2.5 Pro annotations and manual verification do not change source-media rights.
+quality:
+  dimensions:
+    - visual-quality
+    - audio-quality
+    - audio-visual-alignment
+    - text-media-alignment
+    - temporal-consistency
+    - provenance
+  known_limitations:
+    - Benchmark files, clip durations, source IDs, annotation schema, license, and release plan are not public.
+    - The selection excludes overlapping speech and background music, narrowing real-world multi-speaker conditions.
+    - YouTube availability, speaker identity, consent, privacy, biometric use, and demographic coverage are not documented.
+processing:
+  recipe: null
+  recommended_format: native
+  notes: Preserve source ID, timestamp, retrieval date, active-speaker turns, transcript, language, generated outputs, metric versions, and rights review if the benchmark is released.
+evidence:
+  homepage: https://cinedub2026.github.io/
+  paper: https://arxiv.org/abs/2608.15734
+  used_by:
+    - CineDub
+status: partial
+last_verified: "2026-08-18"

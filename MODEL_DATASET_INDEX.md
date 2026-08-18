@@ -2,15 +2,29 @@
 
 Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; runtime inputs, unreleased data, and undisclosed data must state why no card exists.
 
-- Models: 120
-- References linked to catalog cards: 221
-- References without a card, with an explicit evidence boundary: 111
+- Models: 124
+- References linked to catalog cards: 233
+- References without a card, with an explicit evidence boundary: 114
 - Ordering: model release date, newest first
 
 | Model | Released | Dataset or corpus named by source | Availability | Catalog resolution | Role | Evidence boundary |
 |---|---:|---|---|---|---|---|
+| [AnyTalk](models/3d/anytalk.yaml) | 2026-08-17 | Character-specific rendered still-image videos | not-released | — publisher has not released it | fine-tuning | Each activated target-character blendshape is rendered as a still image, duplicated into a video, and paired with a zeroed audio embedding; character counts, meshes, renders, and licenses are not released. |
+| [AnyTalk](models/3d/anytalk.yaml) | 2026-08-17 | AnyTalk-generated distillation animations | not-released | — publisher has not released it | distillation | Used to train AnyTalk-RT with feature matching and blendshape reconstruction; prompts, audio sources, characters, generated sequences, and split details are not published. |
 | [Genesis](models/image/genesis.yaml) | 2026-08-16 | Git-10M | public | [`git-10m`](catalog/image/git-10m.yaml) | pretraining | The official model card identifies Git-10M as the main training corpus for the hierarchical generation operators. |
 | [Genesis](models/image/genesis.yaml) | 2026-08-16 | SAT-493M | not-released | [`sat-493m`](catalog/image/sat-493m.yaml) | pretraining | Genesis inherits this corpus through its frozen DINOv3 ViT-L/16 SAT-493M conditioning encoder; the images are not released. |
+| [CineDub](models/multimodal/cinedub-2026.yaml) | 2026-08-16 | AudioSet | public | [`audioset`](catalog/audio/audioset.yaml) | pretraining | Used in the video-to-audio pretraining stage; the exact retained AudioSet count, media fetch snapshot, and sampling weight are not disclosed. |
+| [CineDub](models/multimodal/cinedub-2026.yaml) | 2026-08-16 | VGGSound | public | [`vggsound`](catalog/audio/vggsound.yaml) | pretraining | Used in the video-to-audio pretraining stage under the Omni2Sound data protocol; the effective YouTube snapshot is not reported. |
+| [CineDub](models/multimodal/cinedub-2026.yaml) | 2026-08-16 | SpeakerVid-5M single- and multi-speaker subsets | public | [`speakervid-5m`](catalog/video/speakervid-5m.yaml) | fine-tuning | Supplies visual speech for both regimes; the paper does not release retained clip IDs, reconstruction snapshot, channel distribution, or identity distribution. |
+| [CineDub](models/multimodal/cinedub-2026.yaml) | 2026-08-16 | AudioSet and VGGSound visual speech-and-audio subset | public | [`audioset`](catalog/audio/audioset.yaml) | fine-tuning | Visible talking-face clips with co-occurring speech and ambient sound; the paper reports only the aggregate duration across both source families. |
+| [CineDub](models/multimodal/cinedub-2026.yaml) | 2026-08-16 | AudioSet and VGGSound visual speech-and-audio subset | public | [`vggsound`](catalog/audio/vggsound.yaml) | fine-tuning | Natural clips are combined with synthetically mixed isolated speech and audio using controlled energy ratios, but source-level counts are not reported. |
+| [CineDub](models/multimodal/cinedub-2026.yaml) | 2026-08-16 | CineDub-Multi | not-released | [`cinedub-multi`](catalog/evaluation/cinedub-multi.yaml) | evaluation | Derived from 139 SpeakerVid-5M YouTube channels; no benchmark manifest, download, or license is published. |
+| [CineDub](models/multimodal/cinedub-2026.yaml) | 2026-08-16 | CineDub-SA | not-released | [`cinedub-sa`](catalog/evaluation/cinedub-sa.yaml) | evaluation | Filtered from the VGGSound test set; no benchmark files, source manifest, or license are published. |
+| [CineDub](models/multimodal/cinedub-2026.yaml) | 2026-08-16 | GRID | public | [`grid`](catalog/video/grid.yaml) | evaluation | Used only for evaluation of visual speech generation and lip synchronization. |
+| [CineDub](models/multimodal/cinedub-2026.yaml) | 2026-08-16 | CHEM | not-released | [`chem`](catalog/video/chem.yaml) | evaluation | Used only for evaluation; the linked card records that the benchmark media remains unavailable. |
+| [CineDub](models/multimodal/cinedub-2026.yaml) | 2026-08-16 | VGGSound test set | public | [`vggsound`](catalog/audio/vggsound.yaml) | evaluation | Used for video-to-audio evaluation separately from the named training split. |
+| [CineDub](models/multimodal/cinedub-2026.yaml) | 2026-08-16 | VGGSound-Omni | gated | [`vggsound-omni`](catalog/evaluation/vggsound-omni.yaml) | evaluation | Used only for unified video-to-audio evaluation. |
+| [Marionette](models/video/marionette.yaml) | 2026-08-13 | WildWorld | gated | [`wildworld`](catalog/video/wildworld.yaml) | fine-tuning | Supplies gameplay RGB, actions, explicit state, skeletons, terrain, and appearance references; only two seed segments and one scanned stage ship with the model package, while the full WildWorld release is separately gated. |
 | [SCoPE](models/video/scope.yaml) | 2026-08-12 | RealEstate10K | public | [`realestate10k`](catalog/video/realestate10k.yaml) | fine-tuning | SCoPE samples this source at temporal stride no greater than four; exact retained clips and mixture weight are not reported. |
 | [SCoPE](models/video/scope.yaml) | 2026-08-12 | DL3DV-10K | gated | [`dl3dv-10k`](catalog/video/dl3dv-10k.yaml) | fine-tuning | Used at stride one; the project does not disclose retained scene count or sampling weight. |
 | [SCoPE](models/video/scope.yaml) | 2026-08-12 | PanShot | public | [`panshot`](catalog/video/panshot.yaml) | fine-tuning | Used at stride one for panoramic camera trajectories; exact retained count is undisclosed. |
@@ -22,6 +36,7 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [EVOKE](models/video/evoke.yaml) | 2026-08-12 | Helios inherited pretraining mixture | undisclosed | — exact source is not disclosed | pretraining | EVOKE inherits a video prior from Helios but does not restate the underlying source identities or rights composition. |
 | [EVOKE](models/video/evoke.yaml) | 2026-08-12 | EVOKE camera-control and long-horizon corpus | not-released | — publisher has not released it | fine-tuning | The release describes training objectives and capabilities but names no exact dataset or downloadable manifest. |
 | [EVOKE](models/video/evoke.yaml) | 2026-08-12 | LingBot-World teacher generations | not-released | — publisher has not released it | distillation | Teacher involvement is disclosed without prompts, source inputs, output counts, filters, or licenses for the distilled pairs. |
+| [Omni-LiveAvatar](models/multimodal/omni-liveavatar.yaml) | 2026-08-07 | Omni-LiveAvatar internal prompt corpus | not-released | — publisher has not released it | distillation | The paper reports an internal prompt set used to generate teacher ODE-regression pairs but publishes no prompt file, source breakdown, identity manifest, or license. |
 | [TD-V2A](models/multimodal/td-v2a.yaml) | 2026-08-05 | AudioCaps training set | gated | [`audiocaps-2-0`](catalog/audio/audiocaps-2-0.yaml) | pretraining | The paper names AudioCaps without a version; the linked card documents current AudioCaps 2.0 rather than claiming that v2.0 was the training snapshot. |
 | [TD-V2A](models/multimodal/td-v2a.yaml) | 2026-08-05 | AudioSet | public | [`audioset`](catalog/audio/audioset.yaml) | pretraining | Used during text-to-audio pretraining; the official dataset exposes URL annotations and features rather than a durable raw-audio archive. |
 | [TD-V2A](models/multimodal/td-v2a.yaml) | 2026-08-05 | AudioSet | public | [`audioset`](catalog/audio/audioset.yaml) | fine-tuning | Reused for visual-conditioning and temporal-difference fine-tuning; the paper does not report the stage-specific retained subset or sampling weight. |

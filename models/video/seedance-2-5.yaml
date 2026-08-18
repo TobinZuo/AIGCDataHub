@@ -2,6 +2,8 @@ id: seedance-2-5
 name: Seedance 2.5
 organization: ByteDance Seed
 released_at: "2026-07-31"
+ranking_names:
+  - dreamina-seedance-2.5-720p
 modalities:
   - video
   - audio
