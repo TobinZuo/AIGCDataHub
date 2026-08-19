@@ -20,11 +20,11 @@ derived_from:
     contribution: 562 speech-and-audio evaluation clips
     notes: The authors filter the VGGSound test split for visible talking faces, English speech, and co-occurring sound effects, but do not publish the selected IDs.
 access:
-  status: unavailable
-  type: none
-  url: https://cinedub2026.github.io/
-  requires_account: false
-  notes: The project page provides paper and demo media but no benchmark manifest, annotations, download endpoint, or request procedure.
+  status: gated
+  type: request
+  url: https://huggingface.co/datasets/Dalision/cinedub_benchmark
+  requires_account: true
+  notes: The official Hugging Face repository exposes the CineDub-SA manifest after accepting its automatic access gate; source media remains dependent on VGGSound availability.
 scale:
   samples: 562
   source_items: 562
@@ -42,11 +42,11 @@ annotations:
   languages:
     - en
 license:
-  metadata: Not stated
+  metadata: CC-BY-NC-4.0
   media: Original VGGSound source-video owner terms
   commercial_use: unknown
-  redistribution: unknown
-  notes: No benchmark license or media-redistribution grant is published; VGGSound metadata terms do not replace the original owners' rights in YouTube media.
+  redistribution: review-required
+  notes: The repository applies CC-BY-NC-4.0 to benchmark metadata; VGGSound metadata terms do not replace the original owners' rights in YouTube media.
 quality:
   dimensions:
     - visual-quality
@@ -55,7 +55,7 @@ quality:
     - text-media-alignment
     - provenance
   known_limitations:
-    - Benchmark files, retained VGGSound IDs, prompts, transcripts, manual-review protocol, license, and release plan are not public.
+    - The manifest is gated and authenticated media reconstruction was not exercised during this automated verification.
     - The visible-face and English-speech filters narrow language, framing, and speaker diversity.
     - Source-video deletion can change reconstructability even if a future metadata manifest is released.
 processing:
@@ -68,4 +68,4 @@ evidence:
   used_by:
     - CineDub
 status: partial
-last_verified: "2026-08-18"
+last_verified: "2026-08-19"

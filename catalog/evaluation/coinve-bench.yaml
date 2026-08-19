@@ -1,0 +1,22 @@
+id: coinve-bench
+name: CoinVE-Bench
+organization: Tencent Smart Creation Platform
+released_at: "2026-08-13"
+release_date_source: https://huggingface.co/datasets/FireCRT/CoinVE-Bench
+modality: evaluation
+tasks: [video-editing, compositional-video-editing]
+stages: [evaluation, data-curation]
+description: An announced 361-video compositional video-editing benchmark across six operation categories.
+access: {status: open, type: hosted, url: https://huggingface.co/datasets/FireCRT/CoinVE-Bench, requires_account: false, notes: "The public repository hosts the 361-case checklist, source MP4 files, masks, and evaluation metadata; storage was about 2.52 GB at verification."}
+scale: {samples: 361, source_items: 361, hours: null, approximate: false, notes: Source videos are 3 to 10 seconds and at least 1080p.}
+annotations: {types: [source-video, compositional-editing-instruction, operation-category, manual-review], source: human, languages: [en]}
+license: {metadata: CC-BY-SA-4.0, media: CC-BY-SA-4.0 release terms plus source-video dependencies, commercial_use: review-required, redistribution: review-required, notes: The dataset-card license covers the release; source repository identities and source-media rights still require review.}
+quality:
+  dimensions: [visual-quality, text-media-alignment, motion, temporal-consistency, provenance]
+  known_limitations:
+    - Source repository identities, source-level media rights, and overlap-audit artifacts are not published.
+    - A 361-video set cannot fully cover compositional edit diversity.
+processing: {recipe: "Deduplicate 361 high-resolution open-source videos, filter blur, watermarks, subtitles, transitions, occlusion, and ambiguity, then manually review instructions.", recommended_format: native, notes: Keep evaluation isolated from training until a stable manifest permits overlap checks.}
+evidence: {homepage: https://huggingface.co/datasets/FireCRT/CoinVE-Bench, paper: https://arxiv.org/abs/2608.17566, used_by: [CoinVE-Edit]}
+status: partial
+last_verified: "2026-08-19"

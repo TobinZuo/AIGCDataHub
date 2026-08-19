@@ -1,0 +1,46 @@
+id: qwen-video-edit
+name: Qwen-Video-Edit
+organization: Qwen-Video-Edit authors
+released_at: "2026-08-11"
+modalities: [video, image]
+tasks: [video-editing, instruction-guided-video-editing]
+access:
+  status: open-weights
+  license: MIT
+  release_url: https://huggingface.co/yunpeng1998/Qwen-Video-Edit
+  weights_url: https://huggingface.co/yunpeng1998/Qwen-Video-Edit
+  api_url: null
+architecture:
+  family: Qwen-Image-Edit DiT over Wan2.1 video-VAE latents with Qwen2.5-VL conditioning
+  parameters: null
+  notes: The public 360p checkpoint arranges video latents as an image grid; optional Wan2.2 SDEdit steps improve temporal consistency.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: true
+  datasets:
+    - name: Ditto-1M
+      catalog_id: ditto-1m
+      role: fine-tuning
+      availability: public
+      scale: Public million-scale video-editing corpus
+      notes: The paper names Ditto-1M as the only direct video-editing training corpus; exact retained rows are not reported.
+  stages:
+    - name: fine-tuning
+      modalities: [video, image, text]
+      source_types: [public-dataset]
+      operations: [flow-matching, latent-grid-packing, lora-or-full-fine-tuning]
+      scale_disclosed: false
+      strategy: Train rank-32 LoRA or full DiT variants on 45-frame Ditto-1M examples while freezing both VAEs and the vision-language encoder.
+  strategy_summary:
+    - Warm-start two projection layers to bridge image-editing and video latent layouts.
+    - Optimize with flow matching and optionally apply four Wan2.2 SDEdit steps at inference.
+  unknowns:
+    - Exact Ditto snapshot and retained rows, checkpoint-specific LoRA versus full-training regime, global batch, epochs, filtering, and safety or preference optimization.
+    - Complete inherited data lineage and licenses of Qwen-Image-Edit, Qwen2.5-VL, and Wan video components.
+evidence:
+  release: https://huggingface.co/yunpeng1998/Qwen-Video-Edit
+  technical_report: https://arxiv.org/abs/2608.14790
+  repository: https://github.com/yunpeng1998/Qwen-Video-Edit
+status: partial
+last_verified: "2026-08-19"

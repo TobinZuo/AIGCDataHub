@@ -1,0 +1,71 @@
+id: cmd
+name: CMD
+organization: NVIDIA
+released_at: "2026-08-13"
+modalities: [video, image, 3d]
+tasks: [image-to-video, camera-controlled-video-generation, world-modeling]
+access:
+  status: open-weights
+  license: NVIDIA OneWay Noncommercial License
+  release_url: https://huggingface.co/nvidia/cmd
+  weights_url: https://huggingface.co/nvidia/cmd
+  api_url: null
+architecture:
+  family: Cosmos-Predict2.5 2B causal video diffusion transformer with context-matched distillation
+  parameters: 2000000000
+  notes: The release provides short-, long-, and camera-controlled chunk checkpoints for image-conditioned generation.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets:
+    - name: DL3DV-10K
+      catalog_id: dl3dv-10k
+      role: fine-tuning
+      availability: gated
+      scale: Unspecified retained subset
+      notes: Used for camera-controlled teacher and student training; exact snapshot and sampling are not reported.
+    - name: Unnamed generated and curated video corpus
+      catalog_id: null
+      role: fine-tuning
+      availability: undisclosed
+      scale: null
+      notes: Used for non-camera-control training; source identities, rights, and retained scale are not disclosed.
+    - name: VBench-I2V
+      catalog_id: vbench-i2v
+      role: evaluation
+      availability: public
+      scale: Official VBench++ image-to-video suite
+      notes: Evaluation-only.
+    - name: SANA-WM-Bench
+      catalog_id: sana-wm-bench
+      role: evaluation
+      availability: public
+      scale: 80 synthetic conditioning scenes with 60-second trajectories
+      notes: Evaluation-only.
+  stages:
+    - name: fine-tuning
+      modalities: [video, image, text, action]
+      source_types: [public-dataset, synthetic, undisclosed]
+      operations: [caption-generation, teacher-training, chunk-causal-training]
+      scale_disclosed: false
+      strategy: Fine-tune Cosmos-Predict2.5-2B teachers, including a DL3DV camera-control branch, then train short and long chunk-causal students.
+    - name: distillation
+      modalities: [video, image, text, action]
+      source_types: [synthetic]
+      operations: [context-matched-distillation, teacher-sampling]
+      scale_disclosed: true
+      strategy: Distill teacher rollouts into context-matched short and long students; reported optimization ranges are roughly 0.9K to 11K iterations by branch.
+  strategy_summary:
+    - Use Qwen3-VL-8B-Instruct to caption generated teacher videos.
+    - Match teacher contexts to the causal student's inference context while extending generation through chunked long-video training.
+    - Keep VBench-I2V and SANA-WM-Bench evaluation-only.
+  unknowns:
+    - Identities, scale, rights, filtering, deduplication, and mixture of the generated and curated non-camera corpus.
+    - Exact DL3DV snapshot and retained scenes, inherited Cosmos training lineage, safety filtering, and any preference stage.
+evidence:
+  release: https://huggingface.co/nvidia/cmd
+  technical_report: https://arxiv.org/abs/2608.13391
+  repository: https://github.com/nv-tlabs/cmd
+status: partial
+last_verified: "2026-08-19"

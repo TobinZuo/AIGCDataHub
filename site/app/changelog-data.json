@@ -47,6 +47,164 @@
   ],
   "entries": [
     {
+      "date": "2026-08-19",
+      "title": {
+        "zh": "2026-08-19 更新",
+        "en": "2026-08-19 Update"
+      },
+      "summary": [
+        {
+          "id": "models",
+          "label": {
+            "zh": "模型",
+            "en": "Models"
+          },
+          "text": {
+            "zh": "新增 CMD、Qwen-Video-Edit、CoinVE-Edit；三者均有公开权重，其中 CoinVE-Edit 发布 2.85 GB 组合 LoRA checkpoint。",
+            "en": "Added CMD, Qwen-Video-Edit, and CoinVE-Edit; all three publish weights, including CoinVE-Edit's 2.85 GB composite LoRA checkpoint."
+          },
+          "links": [
+            {
+              "href": "/#model-cmd",
+              "label": {
+                "zh": "CMD",
+                "en": "CMD"
+              }
+            },
+            {
+              "href": "/#model-qwen-video-edit",
+              "label": {
+                "zh": "Qwen-Video-Edit",
+                "en": "Qwen-Video-Edit"
+              }
+            },
+            {
+              "href": "/#model-coinve-edit",
+              "label": {
+                "zh": "CoinVE-Edit",
+                "en": "CoinVE-Edit"
+              }
+            }
+          ]
+        },
+        {
+          "id": "datasets",
+          "label": {
+            "zh": "数据集",
+            "en": "Datasets"
+          },
+          "text": {
+            "zh": "新增 CoinVE-200K、CoinVE-Bench、GPT-Image-Edit-1.5M、NHR-Edit、Pico-Banana-400K、ReCo-Data、VBench-I2V、SANA-WM-Bench；更新两个 CineDub 基准的门控访问与许可。",
+            "en": "Added eight datasets and benchmarks, and updated both CineDub benchmarks with gated access and published metadata terms."
+          },
+          "links": [
+            {
+              "href": "/#dataset-coinve-200k",
+              "label": {
+                "zh": "CoinVE-200K",
+                "en": "CoinVE-200K"
+              }
+            },
+            {
+              "href": "/#dataset-cinedub-multi",
+              "label": {
+                "zh": "CineDub-Multi",
+                "en": "CineDub-Multi"
+              }
+            }
+          ]
+        },
+        {
+          "id": "relations",
+          "label": {
+            "zh": "数据关系",
+            "en": "Data relations"
+          },
+          "text": {
+            "zh": "新增 CMD 的训练/评测关系、Qwen-Video-Edit 的 Ditto-1M 微调关系，以及 CoinVE-Edit 的七个训练源与一个评测集关系；新增两条数据谱系。",
+            "en": "Added CMD training/evaluation links, Qwen-Video-Edit to Ditto-1M, and CoinVE-Edit's seven training sources plus one evaluation benchmark, with two lineage edges."
+          },
+          "links": [
+            {
+              "href": "/#lineage",
+              "label": {
+                "zh": "查看关系图谱",
+                "en": "View lineage"
+              }
+            }
+          ]
+        },
+        {
+          "id": "rankings",
+          "label": {
+            "zh": "排行榜",
+            "en": "Rankings"
+          },
+          "text": {
+            "zh": "Artificial Analysis 图像编辑榜中 GPT Image 1.5 (high) 升至第 4，Qwen-Image-3.0-Pro 降至第 5；四个未映射条目继续监控。",
+            "en": "GPT Image 1.5 (high) moved to rank 4 and Qwen-Image-3.0-Pro to rank 5 on Artificial Analysis image editing; four unmapped entries remain monitored."
+          },
+          "links": [
+            {
+              "href": "/#rankings",
+              "label": {
+                "zh": "查看行业排行榜",
+                "en": "View industry rankings"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monitoring",
+          "label": {
+            "zh": "监控",
+            "en": "Monitoring"
+          },
+          "text": {
+            "zh": "新增新模型与数据集的一手 revision 探针；73 个机器候选全部处置，MSEditor 保持证据不足状态。",
+            "en": "Added first-party revision probes for the new assets; all 73 machine candidates were dispositioned and MSEditor remains evidence-insufficient."
+          },
+          "links": [
+            {
+              "href": "/#sources",
+              "label": {
+                "zh": "查看来源监控",
+                "en": "View source monitoring"
+              }
+            }
+          ]
+        },
+        {
+          "id": "unknowns",
+          "label": {
+            "zh": "未披露",
+            "en": "Undisclosed"
+          },
+          "text": {
+            "zh": "CMD 的非相机视频池、Qwen-Video-Edit 的 checkpoint 精确训练方案、CoinVE-Edit 精确混合比例，以及 CoinVE-Bench 源媒体权利仍未披露。",
+            "en": "CMD's non-camera corpus, Qwen-Video-Edit's checkpoint-specific recipe, CoinVE-Edit's exact mixture, and CoinVE-Bench source-media rights remain undisclosed."
+          },
+          "links": [
+            {
+              "href": "/#model-cmd",
+              "label": {
+                "zh": "CMD 未知项",
+                "en": "CMD unknowns"
+              }
+            },
+            {
+              "href": "/#model-coinve-edit",
+              "label": {
+                "zh": "CoinVE-Edit 未知项",
+                "en": "CoinVE-Edit unknowns"
+              }
+            }
+          ]
+        }
+      ],
+      "source_path": "updates/2026-08-19.md"
+    },
+    {
       "date": "2026-08-18",
       "title": {
         "zh": "2026-08-18 更新",

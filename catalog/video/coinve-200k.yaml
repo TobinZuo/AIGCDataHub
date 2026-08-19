@@ -1,0 +1,46 @@
+id: coinve-200k
+name: CoinVE-200K
+organization: Tencent Smart Creation Platform
+released_at: "2026-08-13"
+release_date_source: https://huggingface.co/datasets/FireCRT/CoinVE-200K
+modality: video
+tasks: [video-editing, compositional-video-editing]
+stages: [fine-tuning, data-curation]
+description: A public 200K compositional video-editing corpus with two to five atomic operations per 1080p clip.
+derived_from:
+  - catalog_id: openvid-1m
+    relationship: transformed-derivative
+    contribution: 420K filtered OpenVid-HD source candidates before synthetic editing and final retention
+    notes: Final videos are generated edits rather than unchanged OpenVid media; exact retained source IDs are not documented in the paper.
+access:
+  status: open
+  type: hosted
+  url: https://huggingface.co/datasets/FireCRT/CoinVE-200K
+  requires_account: false
+  notes: Public Hugging Face release; repository storage was approximately 1.91 TB at verification.
+scale: {samples: 200000, source_items: 420000, hours: null, approximate: true, notes: Final count is named as 200K; the 420K figure is the pre-generation source candidate pool.}
+annotations:
+  types: [source-video, compositional-editing-instruction, atomic-operation, mask, edited-video]
+  source: model-generated
+  languages: [en]
+license:
+  metadata: CC-BY-NC-SA-4.0
+  media: CC-BY-NC-SA-4.0 release terms plus OpenVid source dependencies
+  commercial_use: noncommercial
+  redistribution: review-required
+  notes: Preserve OpenVid upstream provenance and review source-media terms in addition to the dataset-card license.
+quality:
+  dimensions: [visual-quality, text-media-alignment, motion, temporal-consistency, provenance, safety]
+  known_limitations:
+    - Synthetic edits inherit HunyuanImage, Nano Banana, Wan2.2-Animate, and VACE artifacts and policy bias.
+    - Exact retained OpenVid IDs, source-level rights, deduplication thresholds, and reviewer error rates are not published.
+processing:
+  recipe: Filter OpenVid-HD to 420K clips, compose two to five operations with Qwen3.6-27B, track masks with SAM3 and SAM2, generate keyframes and videos, then require all Gemini 2.5 Pro quality checks to pass.
+  recommended_format: native
+  notes: Preserve source IDs, operation order, masks, teacher versions, quality decisions, and source license metadata.
+evidence:
+  homepage: https://huggingface.co/datasets/FireCRT/CoinVE-200K
+  paper: https://arxiv.org/abs/2608.17566
+  used_by: [CoinVE-Edit]
+status: partial
+last_verified: "2026-08-19"

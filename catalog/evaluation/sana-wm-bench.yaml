@@ -1,0 +1,18 @@
+id: sana-wm-bench
+name: SANA-WM-Bench
+organization: NVIDIA and MIT HAN Lab
+released_at: "2026-08-14"
+release_date_source: https://huggingface.co/datasets/Efficient-Large-Model/SANA-WM-Bench
+modality: evaluation
+tasks: [image-to-video, camera-controlled-video-generation, world-modeling]
+stages: [evaluation, data-curation]
+description: A public fixed 80-scene benchmark with synthetic conditioning images and simple or hard 60-second camera trajectories.
+access: {status: open, type: hosted, url: https://huggingface.co/datasets/Efficient-Large-Model/SANA-WM-Bench, requires_account: false, notes: "Public Hugging Face release contains conditioning images, scene manifests, and trajectories but excludes baseline outputs and generated videos."}
+scale: {samples: 80, source_items: 80, hours: null, approximate: false, notes: Twenty anonymized scenes in each category; the release intentionally excludes the paper's 24-second setting.}
+annotations: {types: [synthetic-conditioning-image, camera-trajectory, scene-category], source: model-generated, languages: [none]}
+license: {metadata: CC-BY-4.0, media: CC-BY-4.0 packaging and synthetic inputs plus applicable Gemini terms, commercial_use: review-required, redistribution: allowed, notes: Conditioning images were generated with Nano Banana; users must also comply with applicable service terms and law.}
+quality: {dimensions: [visual-quality, motion, temporal-consistency, geometry-quality, provenance], known_limitations: [Only 80 synthetic scenes and 60-second trajectories are included., Baseline outputs and 24-second settings are not part of the release.]}
+processing: {recipe: Evaluate fixed synthetic scenes under simple and hard metric-scale camera trajectories for one-minute controllable rollout., recommended_format: native, notes: Pin the selected trajectory JSON and preserve scene IDs and generator provenance.}
+evidence: {homepage: https://huggingface.co/datasets/Efficient-Large-Model/SANA-WM-Bench, paper: https://arxiv.org/abs/2605.15178, used_by: [CMD, SANA-WM]}
+status: verified
+last_verified: "2026-08-19"

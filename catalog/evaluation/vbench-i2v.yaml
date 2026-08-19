@@ -1,0 +1,18 @@
+id: vbench-i2v
+name: VBench-I2V
+organization: Vchitect
+released_at: "2024-03-01"
+release_date_source: https://github.com/Vchitect/VBench
+modality: evaluation
+tasks: [image-to-video, video-generation-evaluation]
+stages: [evaluation, data-curation]
+description: The public VBench++ image-to-video prompt, image, metric, and evaluation suite.
+access: {status: open, type: hosted, url: https://github.com/Vchitect/VBench, requires_account: false, notes: Code and standard suite metadata are public; sampled outputs and human annotations are hosted separately by the official Vchitect account.}
+scale: {samples: null, source_items: null, hours: null, approximate: true, notes: Suite size evolves by version; pin repository revision and the selected standard JSON.}
+annotations: {types: [conditioning-image, prompt, metric-dimension, human-preference], source: mixed, languages: [en]}
+license: {metadata: Apache-2.0 repository license, media: Component-dependent benchmark image and sampled-video terms, commercial_use: review-required, redistribution: review-required, notes: Review the license and provenance of bundled images and model outputs separately from code.}
+quality: {dimensions: [visual-quality, text-media-alignment, motion, temporal-consistency, human-preference, provenance], known_limitations: [The benchmark and leaderboard evolve, so unpinned scores may not be comparable., Model outputs and conditioning images can carry separate rights.]}
+processing: {recipe: Evaluate three I2V-specific dimensions plus six video-quality dimensions with the VBench++ standard suite., recommended_format: native, notes: "Pin code, prompt JSON, conditioning images, model outputs, and metric versions."}
+evidence: {homepage: https://github.com/Vchitect/VBench, paper: https://arxiv.org/abs/2311.17982, used_by: [CMD]}
+status: partial
+last_verified: "2026-08-19"

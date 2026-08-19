@@ -618,11 +618,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            195,
+            204,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            116,
+            119,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -645,7 +645,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
         self.assertEqual(sum(source.track_id == "model-release-feeds" for source in sources), 17)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
-        self.assertEqual(len(sources), 457)
+        self.assertEqual(len(sources), 472)
         self.assertIn(
             "https://huggingface.co/api/models?pipeline_tag=text-to-video&sort=createdAt&direction=-1&limit=50&full=true",
             urls,
@@ -901,7 +901,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(impacts["openve-3m"]["dataset_ids"], ("openve-bench",))
         self.assertEqual(
             impacts["openve-3m"]["model_ids"],
-            ("joyai-video-edit", "moroute", "openve-edit"),
+            ("coinve-edit", "joyai-video-edit", "moroute", "openve-edit"),
         )
         self.assertEqual(impacts["koala-36m"]["dataset_ids"], ("phantom-data",))
         self.assertEqual(

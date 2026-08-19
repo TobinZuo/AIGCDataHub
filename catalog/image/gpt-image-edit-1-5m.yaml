@@ -1,0 +1,18 @@
+id: gpt-image-edit-1-5m
+name: GPT-Image-Edit-1.5M
+organization: UCSC VLAA
+released_at: "2025-07-28"
+release_date_source: https://arxiv.org/abs/2507.21033
+modality: image
+tasks: [image-editing, instruction-guided-image-editing]
+stages: [pretraining, fine-tuning, data-curation]
+description: A public large-scale image-editing corpus that regenerates targets from four established edit datasets with GPT Image.
+access: {status: open, type: hosted, url: https://huggingface.co/datasets/UCSC-VLAA/GPT-Image-Edit-1.5M, requires_account: false, notes: Public Hugging Face repository and official construction code.}
+scale: {samples: 1500000, source_items: null, hours: null, approximate: true, notes: The release name reports 1.5M samples; hosted row counts can include variants and should be pinned by revision.}
+annotations: {types: [source-image, editing-instruction, edited-image], source: model-generated, languages: [en]}
+license: {metadata: CC-BY-4.0, media: "Dataset license plus HQ-Edit, UltraEdit, OmniEdit, and Complex-Edit source dependencies", commercial_use: review-required, redistribution: review-required, notes: Review upstream image rights and GPT Image output terms.}
+quality: {dimensions: [visual-quality, text-media-alignment, provenance, safety], known_limitations: [Generated targets inherit GPT Image artifacts and policy bias., Upstream component lineage and per-item rights require separate review.]}
+processing: {recipe: "Regenerate editing targets from HQ-Edit, UltraEdit, OmniEdit, and Complex-Edit source pairs using GPT Image.", recommended_format: parquet, notes: Preserve upstream dataset and generation metadata per item.}
+evidence: {homepage: https://huggingface.co/datasets/UCSC-VLAA/GPT-Image-Edit-1.5M, paper: https://arxiv.org/abs/2507.21033, used_by: [CoinVE-Edit]}
+status: partial
+last_verified: "2026-08-19"

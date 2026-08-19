@@ -1,0 +1,54 @@
+id: coinve-edit
+name: CoinVE-Edit
+organization: Tencent Smart Creation Platform
+released_at: "2026-08-13"
+modalities: [video, image]
+tasks: [video-editing, instruction-guided-video-editing, compositional-video-editing]
+access:
+  status: open-weights
+  license: Apache-2.0 adapter checkpoint; Wan2.1 and Qwen3-VL base terms also apply
+  release_url: https://huggingface.co/FireCRT/CoinVE-Edit
+  weights_url: https://huggingface.co/FireCRT/CoinVE-Edit
+  api_url: null
+architecture:
+  family: 22B Qwen3-VL-8B-Instruct plus Wan2.1-T2V-14B editor with Mask Predictor and GateNet
+  parameters: 22000000000
+  notes: The 2.85 GB composite checkpoint contains rank-128 DiT LoRA, rank-256 MLLM LoRA, query embeddings, connector, condition encoder, and mask-head weights; Wan2.1-T2V-14B and Qwen3-VL-8B-Instruct must be downloaded separately.
+data:
+  disclosure_level: partial
+  exact_datasets_disclosed: true
+  exact_mixture_disclosed: false
+  datasets:
+    - {name: GPT-Image-Edit-1.5M, catalog_id: gpt-image-edit-1-5m, role: pretraining, availability: public, scale: Part of approximately 2M retained image-edit pairs, notes: Feature-alignment image editing after EditScore filtering above 8.}
+    - {name: NHR-Edit, catalog_id: nhr-edit, role: pretraining, availability: public, scale: Part of approximately 2M retained image-edit pairs, notes: Feature-alignment image editing after EditScore filtering above 8.}
+    - {name: Pico-Banana-400K, catalog_id: pico-banana-400k, role: pretraining, availability: public, scale: Part of approximately 2M retained image-edit pairs, notes: Feature-alignment image editing after EditScore filtering above 8.}
+    - {name: OpenVE-3M, catalog_id: openve-3m, role: fine-tuning, availability: public, scale: Selected editing subsets within approximately 0.9M retained video pairs, notes: "Local change, background, style, and subtitle subsets."}
+    - {name: Ditto-1M, catalog_id: ditto-1m, role: fine-tuning, availability: public, scale: Style subset within approximately 0.9M retained video pairs, notes: Single-instruction stage.}
+    - {name: ReCo-Data, catalog_id: reco-data, role: fine-tuning, availability: public, scale: Included in approximately 0.9M retained video pairs, notes: Single-instruction stage.}
+    - {name: CoinVE-200K, catalog_id: coinve-200k, role: fine-tuning, availability: public, scale: 200K compositional editing samples, notes: Exclusive final-stage compositional supervision.}
+    - {name: CoinVE-Bench, catalog_id: coinve-bench, role: evaluation, availability: public, scale: 361 source videos, notes: Public evaluation-only release.}
+  stages:
+    - name: pretraining
+      modalities: [image, text]
+      source_types: [public-dataset, synthetic]
+      operations: [edit-score-filtering, feature-alignment]
+      scale_disclosed: true
+      strategy: Train image-edit feature alignment for 45K steps with batch 64 on about 2M pairs retained above EditScore 8.
+    - name: fine-tuning
+      modalities: [video, image, text]
+      source_types: [public-dataset, synthetic]
+      operations: [edit-score-filtering, balanced-image-video-sampling, mask-prediction, gated-conditioning]
+      scale_disclosed: true
+      strategy: Train 32.5K steps with batch 128 on about 0.9M single-edit videos and a 1:1 image-video mixture, then 10K steps with batch 128 exclusively on CoinVE-200K.
+  strategy_summary:
+    - Progress from image feature alignment to single-instruction video editing and finally compositional multi-operation editing.
+    - Use Mask Predictor and GateNet targets offline before end-to-end final-stage optimization on 32 H200 GPUs.
+  unknowns:
+    - Exact per-dataset retained counts and mixture weights, safety and preference stages, and inherited base-model data.
+    - CoinVE-Bench source repository identities, source-media rights, and source-level consent or privacy review.
+evidence:
+  release: https://huggingface.co/FireCRT/CoinVE-Edit
+  technical_report: https://arxiv.org/abs/2608.17566
+  repository: https://github.com/coinve200k/CoinVE-200K/tree/main/CoinVE-Edit
+status: partial
+last_verified: "2026-08-19"

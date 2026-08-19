@@ -22,7 +22,7 @@ class BuildChangelogDataTests(unittest.TestCase):
             (entry["date"] for entry in entries), reverse=True
         ))
         latest = entries[0]
-        self.assertEqual(latest["date"], "2026-08-18")
+        self.assertEqual(latest["date"], "2026-08-19")
         self.assertEqual(payload["format_version"], 3)
         self.assertEqual(
             [dimension["label"]["zh"] for dimension in latest["summary"]],
@@ -32,13 +32,13 @@ class BuildChangelogDataTests(unittest.TestCase):
             [dimension["label"]["en"] for dimension in latest["summary"]],
             ["Models", "Datasets", "Data relations", "Rankings", "Monitoring", "Undisclosed"],
         )
-        self.assertIn("Marionette", latest["summary"][0]["text"]["zh"])
-        self.assertIn("Marionette", latest["summary"][0]["text"]["en"])
+        self.assertIn("CMD", latest["summary"][0]["text"]["zh"])
+        self.assertIn("CMD", latest["summary"][0]["text"]["en"])
         self.assertEqual(
             latest["summary"][0]["links"][0],
             {
-                "href": "/#model-marionette",
-                "label": {"zh": "Marionette", "en": "Marionette"},
+                "href": "/#model-cmd",
+                "label": {"zh": "CMD", "en": "CMD"},
             },
         )
         self.assertTrue(all(dimension["links"] for dimension in latest["summary"]))

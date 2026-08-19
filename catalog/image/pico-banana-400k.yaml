@@ -1,0 +1,23 @@
+id: pico-banana-400k
+name: Pico-Banana-400K
+organization: Apple
+released_at: "2025-10-22"
+release_date_source: https://github.com/apple/pico-banana-400k
+modality: image
+tasks: [image-editing, instruction-guided-image-editing, multi-turn-image-editing, preference-learning]
+stages: [fine-tuning, preference-tuning, data-curation]
+description: A public 400K-scale image-editing resource built from Open Images with SFT, preference, and multi-turn subsets.
+derived_from:
+  - catalog_id: open-images-v7
+    relationship: annotation-derivative
+    contribution: Source-image URLs and editing metadata
+    notes: Source images are not redistributed; users retrieve them under Open Images terms.
+access: {status: open, type: urls, url: https://github.com/apple/pico-banana-400k, requires_account: false, notes: Public manifests and scripts reference Open Images source assets rather than bundling all media.}
+scale: {samples: 400000, source_items: null, hours: null, approximate: true, notes: "Approximately 257K SFT, 56K preference, and 72K multi-turn records are reported."}
+annotations: {types: [source-image-url, editing-instruction, edited-image, preference-pair, multi-turn-sequence], source: model-generated, languages: [en]}
+license: {metadata: CC-BY-NC-ND-4.0, media: Open Images and generated-output dependencies, commercial_use: noncommercial, redistribution: review-required, notes: The dataset license prohibits commercial use and distribution of adaptations; source-image terms remain applicable.}
+quality: {dimensions: [visual-quality, text-media-alignment, human-preference, provenance, safety], known_limitations: [URL-based source retrieval can decay and change snapshot completeness., Gemini and Nano Banana generation and judging introduce model-policy bias.]}
+processing: {recipe: "Sample Open Images, generate prompts with Gemini 2.5 Flash, edit with Nano Banana, and judge with Gemini 2.5 Pro across 35 operations in eight categories.", recommended_format: native, notes: "Pin manifests and preserve source URL, operation taxonomy, generator, judge, and license fields."}
+evidence: {homepage: https://github.com/apple/pico-banana-400k, paper: https://arxiv.org/abs/2510.19808, used_by: [CoinVE-Edit]}
+status: partial
+last_verified: "2026-08-19"

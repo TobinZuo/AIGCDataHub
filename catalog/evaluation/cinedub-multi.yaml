@@ -20,11 +20,11 @@ derived_from:
     contribution: 139 English multi-speaker evaluation clips
     notes: The paper filters SpeakerVid-5M channels for at least two active speakers, multiple turns, and no overlap or background music, but does not release the retained IDs.
 access:
-  status: unavailable
-  type: none
-  url: https://cinedub2026.github.io/
-  requires_account: false
-  notes: The project page provides paper and demo media but no benchmark manifest, annotations, download endpoint, or request procedure.
+  status: gated
+  type: request
+  url: https://huggingface.co/datasets/Dalision/cinedub_benchmark
+  requires_account: true
+  notes: The official Hugging Face repository exposes the CineDub-Multi manifest after accepting its automatic access gate; media retrieval still depends on source availability.
 scale:
   samples: 139
   source_items: 139
@@ -43,11 +43,11 @@ annotations:
   languages:
     - en
 license:
-  metadata: Not stated
+  metadata: CC-BY-NC-4.0
   media: Source-dependent YouTube and rightsholder terms inherited through SpeakerVid-5M
   commercial_use: unknown
-  redistribution: unknown
-  notes: No benchmark license or media-redistribution grant is published; Gemini 2.5 Pro annotations and manual verification do not change source-media rights.
+  redistribution: review-required
+  notes: The repository applies CC-BY-NC-4.0 to benchmark metadata; Gemini annotations do not change source-media rights inherited from YouTube and SpeakerVid-5M.
 quality:
   dimensions:
     - visual-quality
@@ -57,7 +57,7 @@ quality:
     - temporal-consistency
     - provenance
   known_limitations:
-    - Benchmark files, clip durations, source IDs, annotation schema, license, and release plan are not public.
+    - The manifest is gated and authenticated media reconstruction was not exercised during this automated verification.
     - The selection excludes overlapping speech and background music, narrowing real-world multi-speaker conditions.
     - YouTube availability, speaker identity, consent, privacy, biometric use, and demographic coverage are not documented.
 processing:
@@ -70,4 +70,4 @@ evidence:
   used_by:
     - CineDub
 status: partial
-last_verified: "2026-08-18"
+last_verified: "2026-08-19"

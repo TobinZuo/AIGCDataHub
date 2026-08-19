@@ -63,15 +63,15 @@ data:
     - name: CineDub-Multi
       catalog_id: cinedub-multi
       role: evaluation
-      availability: not-released
+      availability: gated
       scale: 139 English multi-speaker clips
-      notes: Derived from 139 SpeakerVid-5M YouTube channels; no benchmark manifest, download, or license is published.
+      notes: Derived from 139 SpeakerVid-5M YouTube channels; the official manifest is now available through an automatic Hugging Face access gate under CC-BY-NC-4.0 metadata terms.
     - name: CineDub-SA
       catalog_id: cinedub-sa
       role: evaluation
-      availability: not-released
+      availability: gated
       scale: 562 ten-second speech-and-audio clips
-      notes: Filtered from the VGGSound test set; no benchmark files, source manifest, or license are published.
+      notes: Filtered from the VGGSound test set; the official manifest is now available through an automatic Hugging Face access gate under CC-BY-NC-4.0 metadata terms.
     - name: GRID
       catalog_id: grid
       role: evaluation
@@ -131,11 +131,11 @@ data:
   unknowns:
     - Exact AudioSet and VGGSound snapshots, per-source counts, clip IDs, mixture weights, deduplication, quality thresholds, rejection rates, and removed-content handling are not disclosed.
     - Sources and licenses of isolated speech and audio used for synthetic mixing, the energy-ratio distribution, and the amount of synthetic material are not reported.
-    - Model weights, source code, parameter count, optimizer schedule, model license, benchmark licenses, and commercial-use terms are not published.
+    - Model weights, source code, parameter count, optimizer schedule, model license, and commercial-use terms are not published; benchmark metadata is non-commercial but source-media rights remain unresolved.
     - No preference-optimization, human-feedback, identity-consent, biometric-use, or speaker-demographic analysis is reported.
 evidence:
   release: https://cinedub2026.github.io/
   technical_report: https://arxiv.org/abs/2608.15734
   repository: null
 status: watch
-last_verified: "2026-08-18"
+last_verified: "2026-08-19"

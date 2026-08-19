@@ -301,6 +301,9 @@ tracks:
       - https://github.com/TencentARC/SCoPE
       - https://github.com/AlayaLab/Evoke
       - https://github.com/AlayaLab/Marionette
+      - https://github.com/nv-tlabs/cmd
+      - https://github.com/yunpeng1998/Qwen-Video-Edit
+      - https://huggingface.co/datasets/FireCRT/CoinVE-200K
 
   - id: digital-human-and-localization
     topics:
@@ -1198,7 +1201,7 @@ tracks:
       - url: "https://huggingface.co/api/datasets/DL3DV/DL3DV-Evaluation?expand=lastModified&expand=sha"
         catalog_id: dl3dv-evaluation
         priority: critical
-      - url: https://www.eth3d.net/
+      - url: https://github.com/ETH3D/dataset-pipeline/commits/master.atom
         catalog_id: eth3d
         priority: high
       - url: https://kaldir.vc.in.tum.de/scannetpp/static/scannetpp-terms-of-use.pdf
@@ -1213,7 +1216,7 @@ tracks:
       - url: https://arxiv.org/abs/2608.03974v1
         catalog_id: longv2vbench
         priority: critical
-      - url: https://arxiv.org/abs/2608.15734
+      - url: "https://huggingface.co/api/datasets/Dalision/cinedub_benchmark?expand=lastModified&expand=sha"
         catalog_id: cinedub-multi
         priority: critical
       - url: https://arxiv.org/abs/2608.15734v1
@@ -1221,6 +1224,30 @@ tracks:
         priority: critical
       - url: "https://huggingface.co/api/datasets/AlayaLab/WildWorld?expand=lastModified&expand=sha"
         catalog_id: wildworld
+        priority: critical
+      - url: "https://huggingface.co/api/datasets/FireCRT/CoinVE-200K?expand=lastModified&expand=sha"
+        catalog_id: coinve-200k
+        priority: critical
+      - url: "https://huggingface.co/api/datasets/UCSC-VLAA/GPT-Image-Edit-1.5M?expand=lastModified&expand=sha"
+        catalog_id: gpt-image-edit-1-5m
+        priority: high
+      - url: "https://huggingface.co/api/datasets/iitolstykh/NHR-Edit?expand=lastModified&expand=sha"
+        catalog_id: nhr-edit
+        priority: high
+      - url: https://github.com/apple/pico-banana-400k/commits/main.atom
+        catalog_id: pico-banana-400k
+        priority: high
+      - url: "https://huggingface.co/api/datasets/HiDream-ai/ReCo-Data?expand=lastModified&expand=sha"
+        catalog_id: reco-data
+        priority: high
+      - url: "https://huggingface.co/api/datasets/Efficient-Large-Model/SANA-WM-Bench?expand=lastModified&expand=sha"
+        catalog_id: sana-wm-bench
+        priority: high
+      - url: https://github.com/Vchitect/VBench/commits/master.atom
+        catalog_id: vbench-i2v
+        priority: high
+      - url: "https://huggingface.co/api/datasets/FireCRT/CoinVE-Bench?expand=lastModified&expand=sha"
+        catalog_id: coinve-bench
         priority: critical
 
   - id: important-model-updates
@@ -1601,6 +1628,15 @@ tracks:
         priority: critical
       - url: "https://huggingface.co/api/models/AlayaLab/Marionette?expand=lastModified&expand=sha"
         model_id: marionette
+        priority: critical
+      - url: "https://huggingface.co/api/models/nvidia/cmd?expand=lastModified&expand=sha"
+        model_id: cmd
+        priority: critical
+      - url: "https://huggingface.co/api/models/yunpeng1998/Qwen-Video-Edit?expand=lastModified&expand=sha"
+        model_id: qwen-video-edit
+        priority: critical
+      - url: "https://huggingface.co/api/models/FireCRT/CoinVE-Edit?expand=lastModified&expand=sha"
+        model_id: coinve-edit
         priority: critical
 
 acceptance_rules:
