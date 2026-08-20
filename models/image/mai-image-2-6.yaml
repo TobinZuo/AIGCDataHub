@@ -1,0 +1,50 @@
+id: mai-image-2-6
+name: MAI-Image-2.6
+organization: Microsoft AI
+released_at: "2026-08-10"
+ranking_names:
+  - MAI-Image-2.6
+  - mai-image-2.6-preview
+modalities:
+  - image
+tasks:
+  - text-to-image
+  - image-editing
+  - multi-image-editing
+  - text-rendering
+access:
+  status: early-access
+  license: Microsoft preview service terms
+  release_url: https://microsoft.ai/news/mai-image-2-6-launches-at-no-2-on-arena-ahead-of-google-meta-and-xai/
+  weights_url: null
+  api_url: null
+architecture:
+  family: Undisclosed Microsoft AI image model
+  parameters: null
+  notes: Microsoft describes stronger text, portrait, three-dimensional composition, commercial realism, multi-reference consistency, and richer grounding; the August 18 update opened MAI Playground access and a Microsoft Foundry private preview.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - image
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: Microsoft publishes product capabilities and preview access without naming training, fine-tuning, or preference datasets or their processing methods.
+  strategy_summary:
+    - Treat the August 18 availability expansion as an access update, while retaining the official August 10 launch date.
+  unknowns:
+    - Architecture, parameter count, exact training sources, licenses, scale, mixture, captioning, filtering, deduplication, synthetic data, and preference optimization.
+    - Technical report, weights, stable API model identifier, public-preview date, pricing, and final license terms.
+evidence:
+  release: https://microsoft.ai/news/mai-image-2-6-launches-at-no-2-on-arena-ahead-of-google-meta-and-xai/
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-08-20"

@@ -25,7 +25,9 @@ architecture:
     Google positions Lite as a same-speed, lower-cost family variant supporting
     text-to-video, image-to-video, editing, and video output with audio, but
     publishes no variant-specific topology or parameter count. The current
-    preview documentation marks 4K output and video extension unsupported.
+    `veo-3.1-lite-generate-preview` endpoint accepts text or image input, returns
+    one video with audio, allows 1,024 text tokens, and marks 4K output and video
+    extension unsupported.
 data:
   disclosure_level: undisclosed
   exact_datasets_disclosed: false
@@ -52,4 +54,4 @@ evidence:
   technical_report: null
   repository: null
 status: watch
-last_verified: "2026-08-05"
+last_verified: "2026-08-20"

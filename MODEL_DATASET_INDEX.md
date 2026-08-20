@@ -2,9 +2,9 @@
 
 Generated from `models/**/*.yaml`. This is the audit view for every claimed model data reference: a public or gated named dataset must resolve to a catalog card; runtime inputs, unreleased data, and undisclosed data must state why no card exists.
 
-- Models: 127
+- Models: 130
 - References linked to catalog cards: 245
-- References without a card, with an explicit evidence boundary: 115
+- References without a card, with an explicit evidence boundary: 118
 - Ordering: model release date, newest first
 
 | Model | Released | Dataset or corpus named by source | Availability | Catalog resolution | Role | Evidence boundary |
@@ -49,7 +49,9 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [EVOKE](models/video/evoke.yaml) | 2026-08-12 | EVOKE camera-control and long-horizon corpus | not-released | — publisher has not released it | fine-tuning | The release describes training objectives and capabilities but names no exact dataset or downloadable manifest. |
 | [EVOKE](models/video/evoke.yaml) | 2026-08-12 | LingBot-World teacher generations | not-released | — publisher has not released it | distillation | Teacher involvement is disclosed without prompts, source inputs, output counts, filters, or licenses for the distilled pairs. |
 | [Qwen-Video-Edit](models/video/qwen-video-edit.yaml) | 2026-08-11 | Ditto-1M | public | [`ditto-1m`](catalog/video/ditto-1m.yaml) | fine-tuning | The paper names Ditto-1M as the only direct video-editing training corpus; exact retained rows are not reported. |
+| [MAI-Image-2.6](models/image/mai-image-2-6.yaml) | 2026-08-10 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [Omni-LiveAvatar](models/multimodal/omni-liveavatar.yaml) | 2026-08-07 | Omni-LiveAvatar internal prompt corpus | not-released | — publisher has not released it | distillation | The paper reports an internal prompt set used to generate teacher ODE-regression pairs but publishes no prompt file, source breakdown, identity manifest, or license. |
+| [Wan 3.0](models/multimodal/wan-3-0.yaml) | 2026-08-06 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [TD-V2A](models/multimodal/td-v2a.yaml) | 2026-08-05 | AudioCaps training set | gated | [`audiocaps-2-0`](catalog/audio/audiocaps-2-0.yaml) | pretraining | The paper names AudioCaps without a version; the linked card documents current AudioCaps 2.0 rather than claiming that v2.0 was the training snapshot. |
 | [TD-V2A](models/multimodal/td-v2a.yaml) | 2026-08-05 | AudioSet | public | [`audioset`](catalog/audio/audioset.yaml) | pretraining | Used during text-to-audio pretraining; the official dataset exposes URL annotations and features rather than a durable raw-audio archive. |
 | [TD-V2A](models/multimodal/td-v2a.yaml) | 2026-08-05 | AudioSet | public | [`audioset`](catalog/audio/audioset.yaml) | fine-tuning | Reused for visual-conditioning and temporal-difference fine-tuning; the paper does not report the stage-specific retained subset or sampling weight. |
@@ -123,6 +125,7 @@ Generated from `models/**/*.yaml`. This is the audit view for every claimed mode
 | [Oxygen-TryOn](models/image/oxygen-tryon.yaml) | 2026-07-23 | Oxygen-TryOn Training Corpus | not-released | [`oxygen-tryon-training-corpus`](catalog/image/oxygen-tryon-training-corpus.yaml) | fine-tuning | Real e-commerce, open-domain fashion, and synthetic images are filtered, annotated, paired into try-on triplets, and used in CPT and SFT. |
 | [Oxygen-TryOn](models/image/oxygen-tryon.yaml) | 2026-07-23 | Oxygen-TryOn Preference Pairs | not-released | [`oxygen-tryon-preference-pairs`](catalog/preference/oxygen-tryon-preference-pairs.yaml) | preference | Trains the in-house 8B try-on reward model that is combined with a rubric-guided Gemini 3.1 Pro judge for RL. |
 | [Oxygen-TryOn](models/image/oxygen-tryon.yaml) | 2026-07-23 | Oxygen-TryOn Bench | not-released | [`oxygen-tryon-bench`](catalog/evaluation/oxygen-tryon-bench.yaml) | evaluation | Internal real-world benchmark split evenly between Cloth-to-Model and Model-to-Model references; it is not training data. |
+| [MAI-Image-2.5-Pro](models/image/mai-image-2-5-pro.yaml) | 2026-07-23 | — | undisclosed | — official sources name no dataset | — | The card records the full corpus as undisclosed. |
 | [GraphVid](models/video/graphvid.yaml) | 2026-07-23 | LTX-Video base-model training mixture | undisclosed | — exact source is not disclosed | pretraining | GraphVid inherits a frozen LTX-Video generative prior whose original source corpus and mixture are not restated by this paper. |
 | [GraphVid](models/video/graphvid.yaml) | 2026-07-23 | GraphVid-Bench | not-released | [`graphvid-bench`](catalog/video/graphvid-bench.yaml) | fine-tuning | The paper constructs the training corpus from WISA-80K, Something-Something v2, and MagicData, then adds graph-structured object-interaction supervision. |
 | [FLUX 3](models/multimodal/flux-3.yaml) | 2026-07-23 | General video training corpus | undisclosed | — exact source is not disclosed | pretraining | Exact sources, filtering, and rights composition are not named. |

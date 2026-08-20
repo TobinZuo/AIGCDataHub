@@ -2,7 +2,7 @@
 
 Generated from `catalog/**/*.yaml`, newest release first. Every row links to the publisher's current distribution, metadata/downloader, request form, or primary-source availability notice. A link here does not override the media rights recorded in the dataset card.
 
-- Datasets: 208 (gated 32, metadata only 24, open 89, unavailable 63)
+- Datasets: 209 (gated 32, metadata only 24, open 89, unavailable 64)
 - `hosted`: downloadable or browsable files are distributed at the link
 - `urls`: the publisher distributes source URLs or a downloader, not a durable media archive
 - `metadata`: metadata or tooling only
@@ -11,6 +11,7 @@ Generated from `catalog/**/*.yaml`, newest release first. Every row links to the
 
 | Dataset card | Released | Access status | Delivery | Get data / access evidence | Account | Access notes |
 |---|---:|---|---|---|:---:|---|
+| [CamWorldQA](catalog/evaluation/camworldqa.yaml) | 2026-08-19 | unavailable | none | [Availability notice](https://arxiv.org/abs/2608.18710) | no | The paper names and describes the benchmark, but no official dataset repository, downloadable artifact, or browser has been released. |
 | [CineDub-SA](catalog/evaluation/cinedub-sa.yaml) | 2026-08-16 | gated | request | [Request access](https://huggingface.co/datasets/Dalision/cinedub_benchmark) | yes | The official Hugging Face repository exposes the CineDub-SA manifest after accepting its automatic access gate; source media remains dependent on VGGSound availability. |
 | [CineDub-Multi](catalog/evaluation/cinedub-multi.yaml) | 2026-08-16 | gated | request | [Request access](https://huggingface.co/datasets/Dalision/cinedub_benchmark) | yes | The official Hugging Face repository exposes the CineDub-Multi manifest after accepting its automatic access gate; media retrieval still depends on source availability. |
 | [SANA-WM-Bench](catalog/evaluation/sana-wm-bench.yaml) | 2026-08-14 | open | hosted | [Download / browse files](https://huggingface.co/datasets/Efficient-Large-Model/SANA-WM-Bench) | no | Public Hugging Face release contains conditioning images, scene manifests, and trajectories but excludes baseline outputs and generated videos. |

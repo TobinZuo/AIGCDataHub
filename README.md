@@ -20,7 +20,7 @@ training stages, processing strategies, access conditions, and data lineage.
 <!-- BEGIN PROJECT METRICS -->
 | Models | Datasets | Model–dataset links | Dataset lineage | Open access | Latest review |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| 127 | 208 | 245 | 54 | 89 | 2026-08-19 |
+| 130 | 209 | 245 | 54 | 89 | 2026-08-20 |
 <!-- END PROJECT METRICS -->
 
 > [!NOTE]
@@ -118,7 +118,9 @@ newest first.
 | [Jogg-Avatar V2V 5B](models/video/jogg-avatar-v2v.yaml) | Chanjing Technology | video, audio | 2026-08-12 | open weights | high level | Wan2.2-TI2V-5B inherited training mixture, Jogg-Avatar audio-video fine-tuning corpus | 🟡 |
 | [EVOKE](models/video/evoke.yaml) | AlayaLab | video | 2026-08-12 | open weights | high level | Helios inherited pretraining mixture, EVOKE camera-control and long-horizon corpus, LingBot-World teacher generations | 🟡 |
 | [Qwen-Video-Edit](models/video/qwen-video-edit.yaml) | Qwen-Video-Edit authors | video, image | 2026-08-11 | open weights | partial | [Ditto-1M](catalog/video/ditto-1m.yaml) | 🟡 |
+| [MAI-Image-2.6](models/image/mai-image-2-6.yaml) | Microsoft AI | image | 2026-08-10 | early access | undisclosed | not disclosed | 👀 |
 | [Omni-LiveAvatar](models/multimodal/omni-liveavatar.yaml) | Omni-LiveAvatar authors | video, audio | 2026-08-07 | research preview | partial | Omni-LiveAvatar internal prompt corpus | 👀 |
+| [Wan 3.0](models/multimodal/wan-3-0.yaml) | Alibaba Cloud | video, audio | 2026-08-06 | early access | undisclosed | not disclosed | 👀 |
 | [TD-V2A](models/multimodal/td-v2a.yaml) | Tsinghua University and collaborators | video, audio | 2026-08-05 | research preview | partial | [AudioCaps training set](catalog/audio/audiocaps-2-0.yaml), [AudioSet](catalog/audio/audioset.yaml), [VGGSound training set](catalog/audio/vggsound.yaml), [VGGSound test set](catalog/audio/vggsound.yaml), [TD-V2A FreeSound Training Snapshot](catalog/audio/td-v2a-freesound-corpus.yaml), [Million Song Dataset](catalog/audio/million-song-dataset.yaml) | 🟡 |
 | [JoyAI-Video-Edit](models/video/joyai-video-edit.yaml) | JD Open Source | video, image | 2026-08-04 | open weights | partial | Unnamed text-to-image pretraining corpus, Unnamed text-to-video pretraining and post-training corpus, Unnamed image-editing corpus, Synthetic bidirectional video-editing pairs, [OpenVE-Bench](catalog/evaluation/openve-bench.yaml), [LongV2VBench](catalog/evaluation/longv2vbench.yaml) | 🟡 |
 | [QuerySplat](models/3d/querysplat.yaml) | inspatio | 3d, image | 2026-08-02 | open weights | partial | [DL3DV-10K](catalog/video/dl3dv-10k.yaml), [DL3DV-Evaluation](catalog/3d/dl3dv-evaluation.yaml) | 🟡 |
@@ -141,10 +143,11 @@ newest first.
 | [WorldWeaver](models/video/worldweaver.yaml) | UCLA and Adobe Research | video, action | 2026-07-23 | announced | partial | Inherited single-player video diffusion prior training mixture, [WorldWeaver Minecraft 126h](catalog/video/worldweaver-minecraft-126h.yaml), [Solaris Eval Datasets](catalog/evaluation/solaris-eval-datasets.yaml) | 👀 |
 | [SANA-Video 2.0](models/video/sana-video-2-0.yaml) | NVIDIA | video | 2026-07-23 | research preview | partial | [Curated in-house image and video training pool](catalog/video/sana-video-2-progressive-training-pools.yaml), [Gemini-ranked generated video preference pairs](catalog/preference/sana-video-2-preference-pairs.yaml) | 👀 |
 | [Oxygen-TryOn](models/image/oxygen-tryon.yaml) | Team Oxygen | image | 2026-07-23 | announced | partial | [Oxygen-TryOn Training Corpus](catalog/image/oxygen-tryon-training-corpus.yaml), [Oxygen-TryOn Preference Pairs](catalog/preference/oxygen-tryon-preference-pairs.yaml), [Oxygen-TryOn Bench](catalog/evaluation/oxygen-tryon-bench.yaml) | 🟡 |
+| [MAI-Image-2.5-Pro](models/image/mai-image-2-5-pro.yaml) | Microsoft AI | image | 2026-07-23 | api only | high level | not disclosed | 👀 |
 | [GraphVid](models/video/graphvid.yaml) | University of Illinois Urbana-Champaign and Sony Research India | video | 2026-07-23 | announced | partial | LTX-Video base-model training mixture, [GraphVid-Bench](catalog/video/graphvid-bench.yaml) | 👀 |
 | [FLUX 3](models/multimodal/flux-3.yaml) | Black Forest Labs | image, video, audio, action | 2026-07-23 | api only | partial | General video training corpus, Human and robot manipulation video corpus, Robot action demonstrations | 👀 |
 | [ElasticTTT](models/video/elasticttt.yaml) | Tsinghua University and Beijing Academy of Artificial Intelligence | video | 2026-07-23 | research preview | partial | Wan base-model training mixture, User-provided source video, [ElasticTTT Video Editing Dataset](catalog/evaluation/elasticttt-video-editing.yaml) | 👀 |
-| [Qwen Image 3.0 Pro](models/image/qwen-image-3-0-pro.yaml) | Alibaba Cloud | image | 2026-07-21 | early access | undisclosed | not disclosed | 👀 |
+| [Qwen Image 3.0 Pro](models/image/qwen-image-3-0-pro.yaml) | Alibaba Cloud | image | 2026-07-21 | api only | undisclosed | not disclosed | 👀 |
 | [Mage-Flow](models/image/mage-flow.yaml) | Microsoft Mage Team | image | 2026-07-21 | open weights | partial | [Mage-Flow curated image-text corpus](catalog/image/mage-flow-curated-image-text.yaml), [Mage-Flow-Edit training triples](catalog/image/mage-flow-edit-triples.yaml), [Mage-Flow capability-routed RL prompt pools](catalog/preference/mage-flow-rl-prompt-pools.yaml) | ✅ |
 | [InfiniSplat](models/3d/infinisplat.yaml) | PLUS-WAVE | 3d, image | 2026-07-20 | open weights | partial | [Hypersim](catalog/3d/hypersim.yaml), [ETH3D](catalog/3d/eth3d.yaml), [ScanNet++](catalog/3d/scannet-plus-plus.yaml), [Tanks and Temples](catalog/3d/tanks-and-temples.yaml), [DL3DV-10K](catalog/video/dl3dv-10k.yaml) | 🟡 |
 | [Seedream 5.0 Pro](models/image/seedream-5-0-pro.yaml) | ByteDance Seed | image | 2026-07-17 | api only | undisclosed | not disclosed | 👀 |
@@ -293,6 +296,7 @@ notice. For a download-first view of every card, use the
 <!-- BEGIN DATASET CATALOG -->
 | Dataset | Organization | Modality | Released | Tasks | Scale | Access | Commercial use | Status |
 |---|---|---|---|---|---:|---|---|:---:|
+| [CamWorldQA](catalog/evaluation/camworldqa.yaml) | Shanghai Jiao Tong University and Eindhoven University of Technology | evaluation | 2026-08-19 | camera controlled video generation, video quality assessment | 720 | [availability notice (unavailable)](https://arxiv.org/abs/2608.18710) | unknown | 🟡 |
 | [CineDub-SA](catalog/evaluation/cinedub-sa.yaml) | Monash University, University of Chinese Academy of Sciences, and Tsinghua University | evaluation | 2026-08-16 | video dubbing, video to audio, speech and audio generation | ~562 | [request access (gated)](https://huggingface.co/datasets/Dalision/cinedub_benchmark) | unknown | 🟡 |
 | [CineDub-Multi](catalog/evaluation/cinedub-multi.yaml) | Monash University, University of Chinese Academy of Sciences, and Tsinghua University | evaluation | 2026-08-16 | video dubbing, multi speaker dubbing, visual voice cloning | 139 | [request access (gated)](https://huggingface.co/datasets/Dalision/cinedub_benchmark) | unknown | 🟡 |
 | [SANA-WM-Bench](catalog/evaluation/sana-wm-bench.yaml) | NVIDIA and MIT HAN Lab | evaluation | 2026-08-14 | image to video, camera controlled video generation, world modeling | 80 | [download / browse (open)](https://huggingface.co/datasets/Efficient-Large-Model/SANA-WM-Bench) | review required | ✅ |

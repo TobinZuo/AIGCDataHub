@@ -19,10 +19,10 @@ class FreshnessTests(unittest.TestCase):
             catalog_today(datetime(2026, 7, 27, 0, 36))
 
     def test_current_catalog_is_fresh_on_reference_date(self) -> None:
-        self.assertEqual(freshness_issues(date(2026, 8, 19)), [])
+        self.assertEqual(freshness_issues(date(2026, 8, 20)), [])
 
     def test_watch_cards_expire_quickly(self) -> None:
-        issues = freshness_issues(date(2026, 8, 31))
+        issues = freshness_issues(date(2026, 9, 4))
         stale_ids = {issue.item_id for issue in issues}
         self.assertIn("flux-3", stale_ids)
         self.assertIn("seedance-2-0", stale_ids)

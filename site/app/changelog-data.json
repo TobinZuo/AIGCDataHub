@@ -47,6 +47,164 @@
   ],
   "entries": [
     {
+      "date": "2026-08-20",
+      "title": {
+        "zh": "2026-08-20 更新",
+        "en": "2026-08-20 Update"
+      },
+      "summary": [
+        {
+          "id": "models",
+          "label": {
+            "zh": "模型",
+            "en": "Models"
+          },
+          "text": {
+            "zh": "新增 MAI-Image-2.6、Wan 3.0 与 MAI-Image-2.5-Pro；同步更新 FLUX 3 的视频续写限制、Veo 3.1 Lite 的端点规格和 Qwen Image 3.0 Pro 的 API 访问状态。Qwen-Image-3.0 非 Pro 已获得官方 API 文档证据，但因精确首次公开日仍无法核验而暂不建卡。",
+            "en": "Added MAI-Image-2.6, Wan 3.0, and MAI-Image-2.5-Pro; also updated FLUX 3's continuation limit, Veo 3.1 Lite's endpoint specifications, and Qwen Image 3.0 Pro's API access status. Qwen-Image-3.0 now has first-party API evidence but remains uncarded because its exact first-public date cannot be verified."
+          },
+          "links": [
+            {
+              "href": "/#model-mai-image-2-6",
+              "label": {
+                "zh": "MAI-Image-2.6",
+                "en": "MAI-Image-2.6"
+              }
+            },
+            {
+              "href": "/#model-wan-3-0",
+              "label": {
+                "zh": "Wan 3.0",
+                "en": "Wan 3.0"
+              }
+            },
+            {
+              "href": "/#model-mai-image-2-5-pro",
+              "label": {
+                "zh": "MAI-Image-2.5-Pro",
+                "en": "MAI-Image-2.5-Pro"
+              }
+            }
+          ]
+        },
+        {
+          "id": "datasets",
+          "label": {
+            "zh": "数据集",
+            "en": "Datasets"
+          },
+          "text": {
+            "zh": "新增尚未发布下载的 CamWorldQA 数据卡：论文明确其含 720 条生成视频与主观质量分，但没有数据仓库或数据许可。",
+            "en": "Added CamWorldQA as unavailable/not released: the paper specifies 720 generated videos and subjective scores but provides no dataset repository or data license."
+          },
+          "links": [
+            {
+              "href": "/#dataset-camworldqa",
+              "label": {
+                "zh": "CamWorldQA",
+                "en": "CamWorldQA"
+              }
+            }
+          ]
+        },
+        {
+          "id": "relations",
+          "label": {
+            "zh": "数据关系",
+            "en": "Data relations"
+          },
+          "text": {
+            "zh": "无变化；CamWorldQA 是独立评估数据，其六种生成方法只是数据构建对象，不据此建立训练关系。",
+            "en": "No change; CamWorldQA is standalone evaluation data, and its six generator methods are construction subjects rather than evidence of model training-data use."
+          },
+          "links": [
+            {
+              "href": "/#lineage",
+              "label": {
+                "zh": "查看关系图谱",
+                "en": "View lineage"
+              }
+            }
+          ]
+        },
+        {
+          "id": "rankings",
+          "label": {
+            "zh": "排行榜",
+            "en": "Rankings"
+          },
+          "text": {
+            "zh": "六个榜单发生变化；MAI-Image-2.6、Wan 3.0 与 MAI-Image-2.5-Pro 的榜单缺口已有组织一手来源，Grok Imagine Image 2.0、DreamImage 2.0 与 MAGI-2 Preview 仍缺足够发布证据。Arena 图片编辑榜因出现缺少可核验发布日期的 exact 型号，覆盖策略由 required 调整为 monitor，继续保留缺口而不强建模型卡。",
+            "en": "Six boards changed; MAI-Image-2.6, Wan 3.0, and MAI-Image-2.5-Pro now have first-party release evidence, while Grok Imagine Image 2.0, DreamImage 2.0, and MAGI-2 Preview remain evidence gaps. Arena image editing moves from required coverage to monitor because an exact ranked model lacks a verifiable release date; the gap remains visible without forcing an unsupported card."
+          },
+          "links": [
+            {
+              "href": "/#rankings",
+              "label": {
+                "zh": "查看行业排行榜",
+                "en": "View industry rankings"
+              }
+            }
+          ]
+        },
+        {
+          "id": "monitoring",
+          "label": {
+            "zh": "监控",
+            "en": "Monitoring"
+          },
+          "text": {
+            "zh": "已逐项审阅 70 个机器候选、15 个重要 revision、6 个排行榜变化及近七日的一手来源；个人 LoRA、量化、镜像、导航链接和超范围论文均未误收录。",
+            "en": "Reviewed all 70 machine candidates, 15 important revisions, six ranking changes, and the seven-day primary-source window; personal LoRAs, quantizations, mirrors, navigation links, and out-of-scope papers were not accepted."
+          },
+          "links": [
+            {
+              "href": "/#sources",
+              "label": {
+                "zh": "查看来源监控",
+                "en": "View source monitoring"
+              }
+            }
+          ]
+        },
+        {
+          "id": "unknowns",
+          "label": {
+            "zh": "未披露",
+            "en": "Undisclosed"
+          },
+          "text": {
+            "zh": "三个新增模型均未披露可复现的训练数据清单、规模与处理配方；CamWorldQA 的源视频身份、权利、下载时间和数据许可也未披露。",
+            "en": "None of the three added models publishes a reproducible corpus inventory, scale, or processing recipe; CamWorldQA also omits source-video identity and rights, download timing, and a data license."
+          },
+          "links": [
+            {
+              "href": "/#model-mai-image-2-6",
+              "label": {
+                "zh": "MAI-Image-2.6 未知项",
+                "en": "MAI-Image-2.6 unknowns"
+              }
+            },
+            {
+              "href": "/#model-wan-3-0",
+              "label": {
+                "zh": "Wan 3.0 未知项",
+                "en": "Wan 3.0 unknowns"
+              }
+            },
+            {
+              "href": "/#dataset-camworldqa",
+              "label": {
+                "zh": "CamWorldQA 未知项",
+                "en": "CamWorldQA unknowns"
+              }
+            }
+          ]
+        }
+      ],
+      "source_path": "updates/2026-08-20.md"
+    },
+    {
       "date": "2026-08-19",
       "title": {
         "zh": "2026-08-19 更新",

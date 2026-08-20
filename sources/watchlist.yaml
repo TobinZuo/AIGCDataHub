@@ -476,6 +476,7 @@ tracks:
       - "https://huggingface.co/api/models?search=audio-driven-animation&sort=createdAt&direction=-1&limit=50&full=true"
       - "https://huggingface.co/api/models?search=video-to-audio&sort=createdAt&direction=-1&limit=50&full=true"
       - "https://huggingface.co/api/models?search=joint-audio-video&sort=createdAt&direction=-1&limit=50&full=true"
+      - "https://docs.x.ai/developers/models/grok-imagine-image-2.0"
 
   - id: source-platform-updates
     topics:
@@ -570,7 +571,7 @@ tracks:
         ranking_parser: arena-hf-dataset
         ranking_score_label: Arena
         ranking_date_label: 榜单快照
-        ranking_coverage_policy: required
+        ranking_coverage_policy: monitor
         ranking_page_url: https://arena.ai/leaderboard/image-edit
       - url: "https://datasets-server.huggingface.co/first-rows?dataset=lmarena-ai%2Fleaderboard-dataset&config=text_to_video&split=latest"
         ranking_id: arena-text-to-video
@@ -1249,6 +1250,9 @@ tracks:
       - url: "https://huggingface.co/api/datasets/FireCRT/CoinVE-Bench?expand=lastModified&expand=sha"
         catalog_id: coinve-bench
         priority: critical
+      - url: https://arxiv.org/abs/2608.18710v1
+        catalog_id: camworldqa
+        priority: critical
 
   - id: important-model-updates
     topics:
@@ -1542,7 +1546,7 @@ tracks:
       - url: https://blog.reve.com/posts/launching-reve-2.1/
         model_id: reve-2-1
         priority: critical
-      - url: https://help.aliyun.com/en/model-studio/newly-released-models
+      - url: https://help.aliyun.com/en/model-studio/video-generate-edit-model/
         model_id: wan-2-7
         priority: critical
       - url: https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-image
@@ -1568,6 +1572,15 @@ tracks:
         priority: critical
       - url: https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-mai
         model_id: mai-image-2-5
+        priority: critical
+      - url: https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-mai-image
+        model_id: mai-image-2-5-pro
+        priority: critical
+      - url: https://microsoft.ai/news/mai-image-2-6-launches-at-no-2-on-arena-ahead-of-google-meta-and-xai/
+        model_id: mai-image-2-6
+        priority: critical
+      - url: https://help.aliyun.com/en/model-studio/newly-released-models
+        model_id: wan-3-0
         priority: critical
       - url: https://ai.meta.com/blog/
         model_id: muse-video

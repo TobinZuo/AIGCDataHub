@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import concurrent.futures
 import hashlib
+import http.client
 import json
 import os
 import re
@@ -1172,6 +1173,8 @@ def _fetch_source_once(source: WatchSource, timeout: float, max_bytes: int) -> S
         error = "timeout"
     except urllib.error.URLError as exc:
         error = f"network-{type(exc.reason).__name__}"
+    except http.client.IncompleteRead as exc:
+        error = f"network-{type(exc).__name__}"
     except OSError as exc:
         error = f"network-{type(exc).__name__}"
     except (UnicodeError, ValueError) as exc:

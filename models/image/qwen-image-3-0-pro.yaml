@@ -12,7 +12,7 @@ tasks:
   - image-editing
   - multi-image-editing
 access:
-  status: early-access
+  status: api-only
   license: Alibaba Cloud Model Studio terms
   release_url: https://help.aliyun.com/en/model-studio/newly-released-models
   weights_url: null
@@ -20,7 +20,7 @@ access:
 architecture:
   family: Undisclosed Qwen Image 3.0 Pro generation and editing model
   parameters: null
-  notes: The limited-preview API accepts text or one to three reference images, produces up to six images, and supports resolutions up to 2048x2048.
+  notes: The Recommended Model Studio API supports text-to-image and image editing, with total output pixels between 512x512 and 2048x2048; exact multi-image limits depend on the 3.0 endpoint parameters.
 data:
   disclosure_level: undisclosed
   exact_datasets_disclosed: false
@@ -35,15 +35,15 @@ data:
         - undisclosed
       operations: []
       scale_disclosed: false
-      strategy: Alibaba documents preview access and input-output capabilities without naming training or post-training data.
+      strategy: Alibaba documents API access and input-output capabilities without naming training or post-training data.
   strategy_summary:
     - Keep the 3.0 Pro preview separate from Qwen Image 2 because its endpoint, version identity, and leaderboard name are distinct.
   unknowns:
     - Architecture, parameter count, training datasets, licenses, scale, mixture, captioning, filtering, deduplication, synthetic data, preference optimization, and safety processing.
-    - General-availability date, regional availability, stable pricing, final API identifier, weights plan, and technical report.
+    - Regional availability, stable pricing, weights plan, and technical report.
 evidence:
   release: https://help.aliyun.com/en/model-studio/newly-released-models
   technical_report: null
   repository: null
 status: watch
-last_verified: "2026-08-05"
+last_verified: "2026-08-20"

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import http.client
 import json
 import sys
 import unittest
@@ -104,6 +105,28 @@ class DiscoveryTests(unittest.TestCase):
         request = urlopen.call_args.args[0]
         self.assertEqual(request.get_header("Authorization"), "Bearer test-token")
         self.assertEqual(request.get_header("X-github-api-version"), "2022-11-28")
+
+    def test_fetch_source_isolates_incomplete_chunked_reads(self) -> None:
+        class IncompleteResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+            def read(self, _max_bytes):
+                raise http.client.IncompleteRead(b"partial")
+
+        source = WatchSource(
+            "model-release-feeds",
+            "https://huggingface.co/api/models?pipeline_tag=text-to-video",
+        )
+        with patch(
+            "discover_updates.urllib.request.urlopen", return_value=IncompleteResponse()
+        ):
+            snapshot = _fetch_source(source, timeout=1, max_bytes=1024, retry_delays=())
+
+        self.assertEqual(snapshot.error, "network-IncompleteRead")
 
     def test_fetch_source_retries_transient_network_errors(self) -> None:
         class Headers:
@@ -618,11 +641,11 @@ class DiscoveryTests(unittest.TestCase):
         urls = {source.source_url for source in sources}
         self.assertEqual(
             sum(source.track_id == "important-dataset-updates" for source in sources),
-            204,
+            205,
         )
         self.assertEqual(
             sum(source.track_id == "important-model-updates" for source in sources),
-            119,
+            122,
         )
         self.assertEqual(
             sum(source.track_id == "source-platform-updates" for source in sources),
@@ -643,9 +666,9 @@ class DiscoveryTests(unittest.TestCase):
         self.assertNotIn("unified-multimodal-and-physical-ai", track_ids)
         self.assertNotIn("unified-and-physical-ai", track_ids)
         self.assertEqual(sum(source.track_id == "dataset-release-feeds" for source in sources), 8)
-        self.assertEqual(sum(source.track_id == "model-release-feeds" for source in sources), 17)
+        self.assertEqual(sum(source.track_id == "model-release-feeds" for source in sources), 18)
         self.assertEqual(sum(source.track_id == "industry-model-rankings" for source in sources), 11)
-        self.assertEqual(len(sources), 472)
+        self.assertEqual(len(sources), 477)
         self.assertIn(
             "https://huggingface.co/api/models?pipeline_tag=text-to-video&sort=createdAt&direction=-1&limit=50&full=true",
             urls,

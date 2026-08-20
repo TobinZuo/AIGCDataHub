@@ -415,7 +415,7 @@ class ModelDatasetRelationTests(unittest.TestCase):
             for entry in board["entries"]
             for model_id in entry["model_ids"]
         }
-        self.assertEqual(len(ranked_model_ids), 50)
+        self.assertEqual(len(ranked_model_ids), 51)
         self.assertEqual(
             {
                 model_id

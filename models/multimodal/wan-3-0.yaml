@@ -1,0 +1,55 @@
+id: wan-3-0
+name: Wan 3.0
+organization: Alibaba Cloud
+released_at: "2026-08-06"
+ranking_names:
+  - Wan 3.0
+  - wan3.0-video
+modalities:
+  - video
+  - audio
+  - multimodal
+tasks:
+  - text-to-video
+  - image-to-video
+  - reference-to-video
+  - video-editing
+  - audio-video-generation
+access:
+  status: early-access
+  license: Alibaba Cloud Model Studio service terms
+  release_url: https://help.aliyun.com/en/model-studio/newly-released-models
+  weights_url: null
+  api_url: https://modelstudio.console.alibabacloud.com/model-releases/wan3.0-video
+architecture:
+  family: Undisclosed multimodal Wan video architecture
+  parameters: null
+  notes: The preview service supports text-to-video, first-frame and first-last-frame image-to-video, and reference-based video generation at up to 1080p and 30 seconds with native audio-video output.
+data:
+  disclosure_level: undisclosed
+  exact_datasets_disclosed: false
+  exact_mixture_disclosed: false
+  datasets: []
+  stages:
+    - name: pretraining
+      modalities:
+        - video
+        - image
+        - audio
+        - text
+      source_types:
+        - undisclosed
+      operations: []
+      scale_disclosed: false
+      strategy: Alibaba publishes access and generation capabilities for Wan 3.0 but no model-specific training corpus or processing recipe.
+  strategy_summary:
+    - Keep Wan 3.0 separate from Wan 2.7 because the all-in-one preview endpoint, maximum duration, and leaderboard identity are distinct.
+  unknowns:
+    - Architecture, parameter count, training dataset identities, provenance, licenses, scale, mixture, filtering, deduplication, relabeling, synthetic data, and preference optimization.
+    - Technical report, model weights, general-availability date, regional rollout, stable pricing, and final service terms.
+evidence:
+  release: https://help.aliyun.com/en/model-studio/newly-released-models
+  technical_report: null
+  repository: null
+status: watch
+last_verified: "2026-08-20"

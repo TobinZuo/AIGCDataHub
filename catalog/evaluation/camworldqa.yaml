@@ -1,0 +1,62 @@
+id: camworldqa
+name: CamWorldQA
+organization: Shanghai Jiao Tong University and Eindhoven University of Technology
+released_at: "2026-08-19"
+release_date_source: https://arxiv.org/abs/2608.18710
+modality: evaluation
+tasks:
+  - camera-controlled-video-generation
+  - video-quality-assessment
+stages:
+  - evaluation
+description: >-
+  A named perceptual-quality benchmark of 720 camera-controlled generated videos,
+  built from six generation methods, 20 source videos, and six camera trajectories.
+access:
+  status: unavailable
+  type: none
+  url: https://arxiv.org/abs/2608.18710
+  requires_account: false
+  notes: The paper names and describes the benchmark, but no official dataset repository, downloadable artifact, or browser has been released.
+scale:
+  samples: 720
+  source_items: 20
+  hours: null
+  approximate: false
+  notes: Six methods generate each of 20 source videos along six camera paths; outputs are 81 frames at 832x480 and 15 frames per second.
+annotations:
+  types:
+    - mean-opinion-score
+    - perceptual-quality-rating
+    - camera-trajectory
+    - source-video
+  source: mixed
+  languages:
+    - unknown
+license:
+  metadata: Not published
+  media: Not published
+  commercial_use: unknown
+  redistribution: unknown
+  notes: No benchmark artifact, source-video rights statement, consent record, or data license is published.
+quality:
+  dimensions:
+    - visual-quality
+    - motion
+    - temporal-consistency
+    - geometry-quality
+    - human-preference
+    - provenance
+  known_limitations:
+    - The source-video identities, usage rights, exact seeded 8:2 split membership files, annotation files, and redistribution terms are not public.
+    - The paper evaluates only six generation methods, 20 source videos, and six prescribed camera trajectories.
+processing:
+  recipe: Six camera-controlled video generators are applied to each source-video and trajectory pair, followed by human perceptual-quality scoring.
+  recommended_format: native
+  notes: Keep this card unavailable until the authors publish the actual videos, annotations, and license; it is evaluation data, not disclosed training data for the generators.
+evidence:
+  homepage: https://arxiv.org/abs/2608.18710
+  paper: https://arxiv.org/abs/2608.18710
+  used_by: []
+status: partial
+last_verified: "2026-08-20"
